@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2021-07-11T14:53:44.419Z</updated>
+  <updated>2021-08-02T10:37:01.799Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2048的又一次改良</title>
+    <link href="https://junyu33.github.io/2021/08/02/2048plus.html"/>
+    <id>https://junyu33.github.io/2021/08/02/2048plus.html</id>
+    <published>2021-08-02T10:20:00.000Z</published>
+    <updated>2021-08-02T10:37:01.799Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+    
+    
+      <category term="mma" scheme="https://junyu33.github.io/tags/mma/"/>
+    
+  </entry>
   
   <entry>
     <title>(转载) 写给OIer们的一些话</title>
@@ -117,7 +143,7 @@
     <link href="https://junyu33.github.io/2021/07/06/hello-world.html"/>
     <id>https://junyu33.github.io/2021/07/06/hello-world.html</id>
     <published>2021-07-06T04:26:37.858Z</published>
-    <updated>2021-07-21T08:47:11.810Z</updated>
+    <updated>2021-07-21T12:08:26.781Z</updated>
     
     <summary type="html">
     

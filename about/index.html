@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"junyu33.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"junyu33.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 <meta name="description" content="（排版让人无语……） 现充（“リア”ル, 英文real的片假名写法），拼音是xiàn chōng，网络流行词，来源于日本网络论坛2ch的大学生活板g。主要是指在现实世界中生活得充实的人们，全称是“现实生活很充实的人生赢家”。属于日本年轻人所用的网络语言，意思是现实生活很充实。 junyu33这个昵称的前半部分是我的first name，“33”是因为我小学第一次玩的mobil">
 <meta property="og:type" content="website">
@@ -91,7 +91,9 @@
   </style>
 </noscript>
 
-<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
 <script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
 <script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
 </head>
@@ -190,6 +192,8 @@
 
         <section class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">丨junyu33丨</p>
   <div class="site-description" itemprop="description">举世皆清我独浊，众人皆醒我独醉。</div>
 </div>
@@ -244,6 +248,8 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -277,7 +283,7 @@
 <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
 
 
-    <div id="aplayer-oTKeiQGc" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6831150175" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555" data-loop="all" data-order="random"></div>
+    <div id="aplayer-kfVbkiOf" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6831150175" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555" data-loop="all" data-order="random"></div>
 <p>（排版让人无语……）</p>
 <p>现充（“リア”ル, 英文real的片假名写法），拼音是xiàn chōng，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/网络流行词/4604547">网络流行词</a>，来源于日本网络论坛2ch的大学生活板g。主要是指在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/现实世界/688877">现实世界</a>中生活得充实的人们，全称是“现实生活很充实的人生赢家”。属于日本年轻人所用的网络语言，意思是现实生活很充实。</p>
 <p>junyu33这个昵称的前半部分是我的first name，“33”是因为我小学第一次玩的mobile game是《找你妹》，需要注册一个Game Center账号，而“junyu”明显会重名，他的备选项第一个就是“junyu33”，我就毫不犹豫地选了它。（其实我在Game Center还有个小号叫“junyu34”，然而用得很少）</p>
@@ -341,13 +347,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">37k</span>
+    <span title="站点总字数">24k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">34 分钟</span>
+    <span title="站点阅读时长">22 分钟</span>
   </span>
 </div>
 
@@ -356,7 +362,7 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 
@@ -371,6 +377,8 @@
 
 
 
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

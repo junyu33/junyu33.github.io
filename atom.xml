@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2021-08-09T03:01:17.181Z</updated>
+  <updated>2021-08-12T14:57:44.232Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://junyu33.github.io/2021/08/12/%E5%BC%80%E8%BD%A6.html"/>
+    <id>https://junyu33.github.io/2021/08/12/开车.html</id>
+    <published>2021-08-12T14:55:50.127Z</published>
+    <updated>2021-08-12T14:57:44.232Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Xposed——从入门到放弃</title>
+    <link href="https://junyu33.github.io/2021/08/10/xp.html"/>
+    <id>https://junyu33.github.io/2021/08/10/xp.html</id>
+    <published>2021-08-10T15:00:00.000Z</published>
+    <updated>2021-08-10T15:15:15.718Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://junyu33.github.io/tags/linux/"/>
+    
+      <category term="android" scheme="https://junyu33.github.io/tags/android/"/>
+    
+  </entry>
   
   <entry>
     <title>2048的又一次改良</title>

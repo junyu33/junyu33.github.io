@@ -23,6 +23,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Xposed——从入门到放弃</title>
+    <url>/2021/08/10/xp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
+<span id="more"></span>
+<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
+<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2021/07/06/hello-world.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! <del>This is your very first post.</del> Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -216,22 +232,6 @@
       <categories>
         <category>随笔</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Xposed——从入门到放弃</title>
-    <url>/2021/08/10/xp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
-<span id="more"></span>
-<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
-<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>android</tag>
-      </tags>
   </entry>
   <entry>
     <title>第一篇博客</title>

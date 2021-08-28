@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2021-08-27T14:17:44.529Z</updated>
+  <updated>2021-08-28T06:39:53.519Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -21,18 +21,18 @@
     <link href="https://junyu33.github.io/2021/08/27/guess.html"/>
     <id>https://junyu33.github.io/2021/08/27/guess.html</id>
     <published>2021-08-27T12:00:00.000Z</published>
-    <updated>2021-08-27T14:17:44.529Z</updated>
+    <updated>2021-08-28T06:39:53.519Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行了改良，将网上流行的版本与小学数学结合起来，形成了如下代码。&lt;/p&gt;
+      &lt;p&gt;又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。&lt;/p&gt;
     
     </summary>
     
-      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+      <category term="c++" scheme="https://junyu33.github.io/categories/c/"/>
     
     
-      <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>
+      <category term="develop" scheme="https://junyu33.github.io/tags/develop/"/>
     
   </entry>
   
@@ -41,16 +41,16 @@
     <link href="https://junyu33.github.io/2021/08/12/kaiche.html"/>
     <id>https://junyu33.github.io/2021/08/12/kaiche.html</id>
     <published>2021-08-12T15:00:00.000Z</published>
-    <updated>2021-08-13T08:46:14.588Z</updated>
+    <updated>2021-08-28T06:40:17.034Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;从6月26日去驾校报名开始，到8月12日拿到驾照为止，学车的经历几乎贯穿了我的整个暑假。除开中途出差耽搁了将近十天，总共花了将近40天的时间来学车。总的来说过程比较顺利，考试都一次过了，暑假愉快的学车过程终成甜蜜的回忆。&lt;/p&gt;
+      有东西被加密了, 请输入密码查看.
     
     </summary>
     
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
+      <category term="随笔" scheme="https://junyu33.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -59,7 +59,7 @@
     <link href="https://junyu33.github.io/2021/08/10/xp.html"/>
     <id>https://junyu33.github.io/2021/08/10/xp.html</id>
     <published>2021-08-10T15:00:00.000Z</published>
-    <updated>2021-08-10T15:15:15.718Z</updated>
+    <updated>2021-08-28T06:40:30.228Z</updated>
     
     <summary type="html">
     
@@ -67,12 +67,12 @@
     
     </summary>
     
-      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+      <category term="linux" scheme="https://junyu33.github.io/categories/linux/"/>
+    
+      <category term="android" scheme="https://junyu33.github.io/categories/linux/android/"/>
     
     
-      <category term="linux" scheme="https://junyu33.github.io/tags/linux/"/>
-    
-      <category term="android" scheme="https://junyu33.github.io/tags/android/"/>
+      <category term="develop" scheme="https://junyu33.github.io/tags/develop/"/>
     
   </entry>
   
@@ -81,7 +81,7 @@
     <link href="https://junyu33.github.io/2021/08/02/2048plus.html"/>
     <id>https://junyu33.github.io/2021/08/02/2048plus.html</id>
     <published>2021-08-02T10:20:00.000Z</published>
-    <updated>2021-08-09T03:01:17.181Z</updated>
+    <updated>2021-08-28T06:41:09.653Z</updated>
     
     <summary type="html">
     
@@ -89,10 +89,10 @@
     
     </summary>
     
-      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+      <category term="mma" scheme="https://junyu33.github.io/categories/mma/"/>
     
     
-      <category term="mma" scheme="https://junyu33.github.io/tags/mma/"/>
+      <category term="develop" scheme="https://junyu33.github.io/tags/develop/"/>
     
   </entry>
   
@@ -101,7 +101,7 @@
     <link href="https://junyu33.github.io/2021/07/11/%E8%BD%AC%E8%BD%BD.html"/>
     <id>https://junyu33.github.io/2021/07/11/转载.html</id>
     <published>2021-07-11T14:50:00.000Z</published>
-    <updated>2021-08-09T03:00:32.460Z</updated>
+    <updated>2021-08-28T06:41:22.682Z</updated>
     
     <summary type="html">
     
@@ -109,8 +109,8 @@
     
     </summary>
     
-      <category term="OI" scheme="https://junyu33.github.io/categories/OI/"/>
     
+      <category term="OI" scheme="https://junyu33.github.io/tags/OI/"/>
     
   </entry>
   
@@ -119,59 +119,34 @@
     <link href="https://junyu33.github.io/2021/07/09/%E5%8D%81%E4%B9%9D.html"/>
     <id>https://junyu33.github.io/2021/07/09/十九.html</id>
     <published>2021-07-09T12:30:00.000Z</published>
-    <updated>2021-08-03T01:32:12.616Z</updated>
+    <updated>2021-08-28T06:38:38.280Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;引出&quot;&gt;&lt;a href=&quot;#引出&quot; class=&quot;headerlink&quot; title=&quot;引出&quot;&gt;&lt;/a&gt;引出&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;我过去一周的安排：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;把科目一过了。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;别颓了。（大概率不行）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;把数列级数看完。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;实际上的结果：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;科目一确实过了，98分。&lt;/li&gt;
-&lt;li&gt;把&lt;em&gt;《未来日记》&lt;/em&gt;看完了，确实不行。&lt;/li&gt;
-&lt;li&gt;数列级数确实看不完。&lt;/li&gt;
-&lt;li&gt;搭起了这个时不时403的网站。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;白驹过隙，汪洋恣肆颓废间，我的暑假就过去了两周——一个quarter呢。&lt;/p&gt;
+      有东西被加密了, 请输入密码查看.
     
     </summary>
     
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
+      <category term="随笔" scheme="https://junyu33.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>十八——给hash的一封回信</title>
-    <link href="https://junyu33.github.io/2021/07/07/18.html"/>
-    <id>https://junyu33.github.io/2021/07/07/18.html</id>
+    <link href="https://junyu33.github.io/2021/07/07/%E5%8D%81%E5%85%AB.html"/>
+    <id>https://junyu33.github.io/2021/07/07/十八.html</id>
     <published>2021-07-07T12:10:00.000Z</published>
-    <updated>2021-08-21T16:22:56.578Z</updated>
+    <updated>2021-08-28T06:40:08.437Z</updated>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;Q：为什么要用这个题目呢？&lt;/p&gt;
-&lt;p&gt;A：因为我回忆录的最后一节是十七节。&lt;/p&gt;
-&lt;p&gt;Q：为什么上次的内容如此怪异呢？&lt;/p&gt;
-&lt;p&gt;A：因为只是确认你的身份，而且当时脑子有点乱，写的很含蓄（不是给人看的）。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;6月25日晚上，我把那封情书送给她后便匆匆地回了家，结束了自己的高中生活。到家后，我的母亲告诉我，我小学暗恋的对象，居然成了巴中市的文科状元，进了pku！&lt;/p&gt;
-&lt;p&gt;原来pku大佬竟在我身边……&lt;/p&gt;
+      有东西被加密了, 请输入密码查看.
     
     </summary>
     
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
+      <category term="随笔" scheme="https://junyu33.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -180,21 +155,16 @@
     <link href="https://junyu33.github.io/2021/07/06/%E9%9B%B6%E2%80%94%E2%80%94%E5%8D%81%E4%B8%83.html"/>
     <id>https://junyu33.github.io/2021/07/06/零——十七.html</id>
     <published>2021-07-06T13:50:00.000Z</published>
-    <updated>2021-08-09T03:02:04.740Z</updated>
+    <updated>2021-08-28T06:40:49.555Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;（时间跨度：2019年4月中旬~2021六月下旬）&lt;/p&gt;
-&lt;h2 id=&quot;（前）&quot;&gt;&lt;a href=&quot;#（前）&quot; class=&quot;headerlink&quot; title=&quot;（前）&quot;&gt;&lt;/a&gt;（前）&lt;/h2&gt;&lt;p&gt;（转载于我的随笔本，对人名进行了模糊处理，细节层面有部分改动）&lt;/p&gt;
-&lt;p&gt;谁都知道，对于一个不善记录（或者懒于）生活中的点滴小事的人来说，要让自己回忆过去两年的波澜壮阔，实在是不知从何说起，毕竟事情啊，是太千头万绪了罢……&lt;/p&gt;
-&lt;p&gt;可是，如果让记忆这条长河上几颗璀璨的珍珠随流水逝去了，那我是于心不忍的——哪怕是浮光掠影般的撷取也好。于是，我决定动笔了。&lt;/p&gt;
-&lt;p&gt;我无法预知这篇文章的长度。我只知道，这篇回忆录将会以时间顺序撰写；我只知道，我会像汤老教我们复习生物那样将细节一点点铺陈开来；我只知道，我必须在暑假之前写完，然后就此封笔，踏向未知的远方。&lt;/p&gt;
-&lt;p&gt;……&lt;/p&gt;
+      有东西被加密了, 请输入密码查看.
     
     </summary>
     
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
+      <category term="随笔" scheme="https://junyu33.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -225,7 +195,7 @@
     <link href="https://junyu33.github.io/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html"/>
     <id>https://junyu33.github.io/2018/11/30/第一篇博客.html</id>
     <published>2018-11-30T09:30:00.000Z</published>
-    <updated>2021-08-03T02:41:56.386Z</updated>
+    <updated>2021-08-28T06:38:48.048Z</updated>
     
     <summary type="html">
     
@@ -239,18 +209,18 @@
     
     </summary>
     
-      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+      <category term="linux" scheme="https://junyu33.github.io/categories/linux/"/>
     
-      <category term="test" scheme="https://junyu33.github.io/categories/develop/test/"/>
+      <category term="os" scheme="https://junyu33.github.io/categories/linux/os/"/>
+    
+      <category term="java" scheme="https://junyu33.github.io/categories/linux/os/java/"/>
+    
+      <category term="python" scheme="https://junyu33.github.io/categories/linux/os/java/python/"/>
     
     
-      <category term="linux" scheme="https://junyu33.github.io/tags/linux/"/>
+      <category term="develop" scheme="https://junyu33.github.io/tags/develop/"/>
     
-      <category term="os" scheme="https://junyu33.github.io/tags/os/"/>
-    
-      <category term="java" scheme="https://junyu33.github.io/tags/java/"/>
-    
-      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+      <category term="test" scheme="https://junyu33.github.io/tags/test/"/>
     
   </entry>
   

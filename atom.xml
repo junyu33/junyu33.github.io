@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2021-09-14T12:06:45.182Z</updated>
+  <updated>2021-09-14T12:28:08.755Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -17,24 +17,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>陇剑杯入土记</title>
     <link href="https://junyu33.github.io/2021/09/14/ctf01.html"/>
     <id>https://junyu33.github.io/2021/09/14/ctf01.html</id>
-    <published>2021-09-14T11:48:39.874Z</published>
-    <updated>2021-09-14T12:06:45.182Z</updated>
+    <published>2021-09-14T12:00:00.000Z</published>
+    <updated>2021-09-14T12:28:08.755Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="ctf" scheme="https://junyu33.github.io/tags/ctf/"/>
     
   </entry>
   

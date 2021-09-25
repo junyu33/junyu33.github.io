@@ -42,13 +42,13 @@
 <p><img src="/2021/09/14/ctf01/j.jpg"></p>
 <p><img src="/2021/09/14/ctf01/k.jpg"></p>
 <p><img src="/2021/09/14/ctf01/l.jpg"></p>
-<p><img src="/2021/09/14/ctf01/ctf01m.jpg"></p>
+<p><img src="/2021/09/14/ctf01/m.jpg"></p>
 <p><img src="/2021/09/14/ctf01/n.jpg"></p>
 <p><img src="/2021/09/14/ctf01/o.jpg"></p>
 <p><img src="/2021/09/14/ctf01/p.jpg"></p>
 <p><img src="/2021/09/14/ctf01/q.jpg"></p>
 <h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
-<p><img src="/2021/09/14/ctf01/R.jpg"></p>
+<p><img src="/2021/09/14/ctf01/r.jpg"></p>
 <p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
 <p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
 <p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"junyu33.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。 以下按做题顺序写wp：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="强网杯出土记">
+<meta property="og:url" content="https://junyu33.github.io/2021/09/25/ctf02.html">
+<meta property="og:site_name" content="现充|junyu33">
+<meta property="og:description" content="经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。 以下按做题顺序写wp：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://junyu33.github.io/2021/09/25/ctf02/a.png">
+<meta property="og:image" content="https://junyu33.github.io/2021/09/25/ctf02/b.png">
+<meta property="og:image" content="https://junyu33.github.io/2021/09/25/ctf02/c.png">
+<meta property="article:published_time" content="2021-09-25T13:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-25T13:59:53.615Z">
+<meta property="article:author" content="丨junyu33丨">
+<meta property="article:tag" content="ctf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://junyu33.github.io/2021/09/25/ctf02/a.png">
+
+
+<link rel="canonical" href="https://junyu33.github.io/2021/09/25/ctf02.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>强网杯出土记 | 现充|junyu33</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">现充|junyu33</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AD%BE%E5%88%B0"><span class="nav-number">1.</span> <span class="nav-text">1. 签到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Lihua%E2%80%99s-for"><span class="nav-number">2.</span> <span class="nav-text">2. Lihua’s for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Crypto2"><span class="nav-number">3.</span> <span class="nav-text">3. Crypto2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%8B%BC%E5%9B%BE"><span class="nav-number">4.</span> <span class="nav-text">4. 拼图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Crypto1"><span class="nav-number">5.</span> <span class="nav-text">5. Crypto1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%BB%93%E5%B1%80"><span class="nav-number">6.</span> <span class="nav-text">6. 结局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%AD%89re2%E4%B8%8Emisc2%E5%87%BA%E6%9D%A5%E5%86%8D%E8%A1%A5"><span class="nav-number">7.</span> <span class="nav-text">7. 等re2与misc2出来再补</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">举世皆清我独浊，众人皆醒我独醉。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2658799217@qq.com" title="E-Mail → mailto:2658799217@qq.com" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://denerate.ink/" title="https:&#x2F;&#x2F;denerate.ink&#x2F;" rel="noopener" target="_blank">DeNeRATe</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://one.wh0th.ink/" title="https:&#x2F;&#x2F;one.wh0th.ink&#x2F;" rel="noopener" target="_blank">hash</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.github.io/2021/09/25/ctf02.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+      <meta itemprop="description" content="举世皆清我独浊，众人皆醒我独醉。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          强网杯出土记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-25 21:00:00 / 修改时间：21:59:53" itemprop="dateCreated datePublished" datetime="2021-09-25T21:00:00+08:00">2021-09-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/c/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2021/09/25/ctf02.html" class="post-meta-item twikoo_visitors" data-flag-title="强网杯出土记" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
+<p>以下按做题顺序写wp：</p>
+<span id="more"></span>
+<h2 id="1-签到"><a href="#1-签到" class="headerlink" title="1. 签到"></a>1. 签到</h2><p>打开exe可以直接看到flag（<strong>很开心拿到一血</strong>）</p>
+<p>flag{鲸鱼带你进入鲸奇世界}</p>
+<h2 id="2-Lihua’s-for"><a href="#2-Lihua’s-for" class="headerlink" title="2. Lihua’s for"></a>2. Lihua’s for</h2><p>第一步查壳：</p>
+<p><img src="/2021/09/25/ctf02/a.png"></p>
+<p>第二步打开64位ida，定位到主函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> flag[<span class="number">42</span>]; <span class="comment">// [rsp+20h] [rbp-60h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> a[<span class="number">42</span>]; <span class="comment">// [rsp+50h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> b[<span class="number">42</span>]; <span class="comment">// [rsp+100h] [rbp+80h]</span></span><br><span class="line">  <span class="keyword">int</span> i_0; <span class="comment">// [rsp+1B4h] [rbp+134h]</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [rsp+1B8h] [rbp+138h]</span></span><br><span class="line">  <span class="keyword">int</span> good; <span class="comment">// [rsp+1BCh] [rbp+13Ch]</span></span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  qmemcpy(a, &amp;unk_403040, <span class="keyword">sizeof</span>(a));</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;input flag&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, flag);</span><br><span class="line">  <span class="built_in">puts</span>(flag);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">41</span>; ++i )</span><br><span class="line">    b[i] = i ^ flag[i];</span><br><span class="line">  <span class="keyword">for</span> ( i_0 = <span class="number">0</span>; i_0 &lt;= <span class="number">41</span>; ++i_0 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( a[i_0] != b[i_0] )</span><br><span class="line">    &#123;</span><br><span class="line">      good = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    good = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( good == <span class="number">1</span> )</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;good~&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现程序的原理是将用户输入的flag[i]跟i异或后与a[i]比较。</p>
+<p> 第三步直接把a[i]的值dump出来，编写exp即可解出flag。</p>
+<p> （又水了一道reverse签到题）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> a[] =</span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">0x66</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x63</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x32</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x36</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6C</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x39</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x77</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x25</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x22</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x2E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x78</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x31</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x2F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x16</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x44</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x45</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x12</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x1A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x54</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">42</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> t=<span class="number">1</span>;t&lt;<span class="number">255</span>;t++)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="keyword">if</span>((i^t)==a[i*<span class="number">4</span>])</span><br><span class="line">            &#123;cout&lt;&lt;<span class="built_in"><span class="keyword">char</span></span>(t);<span class="keyword">break</span>;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>flag{a41be465-a50f-4124-b7ba-2766aff6baf2}</strong></p>
+<h2 id="3-Crypto2"><a href="#3-Crypto2" class="headerlink" title="3. Crypto2"></a>3. Crypto2</h2><p>给定：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">n1=<span class="number">20663949646446787716947370247427064802032290773674573417491154934657966734874241036307633567695175131014840617208051931753476223149652427133485160771068994073566431652969243962290116898345337189704974833817335135391974497754670322430159624252007005736522065638860351992074099453212550475552692645688800084354832716662142860413158369020005830095049988807931794736876563293916525328174812726514626029103506607813186690909585870115364600969148482617083817273910020722354923244093624032174432568413187131385994452769295894606345768596899824635672699945050103814681553981019917552667794514804359500108947102234376726009329</span></span><br><span class="line">n2=<span class="number">23260834024376640092536888922041147168387702014814910549469730354688848760379274203088716649609675449936234732528778557041701524981200368996310064584479657042098426164366286670115392015865853892816983885530312074073396422301009513106258655315791720535737587913264728919869055970993613641008348186263870234072422880033882864603438907070864271470483691729705421547143623305055532339107777314310976947392833395180922324243244784018964736826235018388498516438612962123562977736924674510730898077787055367234786519915374446506561992135856904927351307275140543635152771670410211235702283822782412971646092584646758107766061</span></span><br><span class="line">c1=<span class="number">20522772249591436865905796103232542494211695376973377722875606678999899690405480809231671346489821878050354380591999935960795888483664473952207298504196203830543208477229162177648586683957831016664569242538775928728009699300145355818417233892295367828930893733774091897666206696635744262884229680137381841581000794056156842812583057103472764486608022028638288161256424936523444974815727764620634174112474612238992061186937613171878635903455700636894570504376153482600057655480654731180740098435209814585459376319844315388048636156465832997913885636776523217188604040216732137108997444787157007665652718553013424347649</span></span><br><span class="line">c2=<span class="number">18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736</span></span><br><span class="line">e=<span class="number">65537</span></span><br></pre></td></tr></table></figure>
+<p>经检验得n1,n2不互质，可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76228394中的方法进行解密。">https://zhuanlan.zhihu.com/p/76228394中的方法进行解密。</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2  </span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes  </span><br><span class="line">c1 = ... </span><br><span class="line">c2 = ... </span><br><span class="line">n1 = ...</span><br><span class="line">n2 = ...</span><br><span class="line">e = <span class="number">65537</span>    </span><br><span class="line">p12 = gmpy2.gcd(n1, n2)  </span><br><span class="line"><span class="keyword">assert</span> (p12 != <span class="number">1</span>)  </span><br><span class="line">q1 = n1 / p12  </span><br><span class="line">q2 = n2 / p12  </span><br><span class="line">d1 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q1 - <span class="number">1</span>))  </span><br><span class="line">d2 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q2 - <span class="number">1</span>))  </span><br><span class="line">m1 = <span class="built_in">pow</span>(c1, d1, n1)  </span><br><span class="line">m2 = <span class="built_in">pow</span>(c2, d2, n2)  </span><br><span class="line"><span class="built_in">print</span> long_to_bytes(m1)+long_to_bytes(m2)  </span><br></pre></td></tr></table></figure>
+<p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
+<h2 id="4-拼图"><a href="#4-拼图" class="headerlink" title="4. 拼图"></a>4. 拼图</h2><p>或许可以写脚本做这道题，但是我不会，只能肉眼观察与众不同的图片，拼接成这样一幅图：<br>（使用了PowerPoint编辑的）</p>
+<p><img src="/2021/09/25/ctf02/b.png"></p>
+<p>做到这儿我就不大会了，然而此时名次大概在30+，离线下还差几名。而且我恰好卡在一个看上去马上要做出来的misc题上：</p>
+<p>于是我找到了那位安徽的同学（见超短裙子回忆录的第十二章，经过了一个暑假的磨练，他变强了许多），打算跟他做py交易。我把那道reverse的解法给他，他就给我了这道题的wp。</p>
+<blockquote>
+<p>提交了flag{Hamsters_are_so_cute}发现答案不正确。</p>
+<p>考虑到cute右边没有立即跟上右括号，说明cute的右边可能含有一些标点来占位。</p>
+<p>容易忽略的标点符号有“！“和”|“，因为它会与大括号相混导致误判。</p>
+<p>通过对cute后面加1~5个“！“与”|“，成功试出来了正确的flag</p>
+<p><strong>flag{Hamsters_are_so_cute!!!}</strong></p>
+</blockquote>
+<p>这™谁想得到啊！！！</p>
+<h2 id="5-Crypto1"><a href="#5-Crypto1" class="headerlink" title="5. Crypto1"></a>5. Crypto1</h2><p>眼看离比赛结束就只有20分钟了，虽然此时的我rk22，但按照上次比赛的惯例，最后的名次肯定飞速下降，必须要再AC一道题才能稳住线下赛的资格。</p>
+<p>于是那位同学好心给了我这道题的flag与wp，想让我陪他一起面基：</p>
+<blockquote>
+<p>我们有：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;n=<span class="number">96722669749951212913756678234358651184134068407812470434435916603156818917545841439779031943800634250032106764154804309935557678512858630048212204696471487762160744924838010746445510979202735123140536599975731157563069594497905809587369126155476201977830809090473053692189364335223367147692962090288185113654598050169422517553085833257142179937154768657039042632343562454149914801329414293361879935460883633117988279426277638667508115319494914342600199690237441851088350726869553691992122821267990343643644523989413546160765907845604067031798179773495433134648132709349683621175243064236059479837244518879574919017301667066698329442453248971033564328161407342561250703168154214939772631586519304164853651</span></span><br><span class="line">&gt;c1=<span class="number">66738113223447221430009739914948303261002811553064307532926788024694319846909340806982708347904688420671656410554852340732395818007063648478593071665936277836988050526188064146099581039172667768507259894363266310279948729552649788129953872816024709989260060633285022337107662251504618369065597018450927041881262189584381809106166042131798086882746986243210896131714227544235843922107304728228549916171484199199612243776469423359120753888158616202476325705252715374109256790899923317253605743212561589807498078080069511918514647943399566630574192829185904868376879831247378819590121286186417825591746918495311372015707767009078229770450338244309693800180936418605756818618708750868807720566288044943952844</span></span><br><span class="line">&gt;c2=<span class="number">88330949146651042517337653740810385187361689012501792799900873279978736035790659211001047937337215121948527017022967642906632732136313750277237761910710915459733551421653259986088596828049455592613225962133163865584111828012197112528645520371075411167515961263199635568730334149461654340122507778194391601956023625429418297129608911450200836427221311442323768087256798964844787274408624548839536279704401007441198390922847003287643673183230633728790263593607595427088882078742699027563601046309308221108391158848644822374865676056755011459026909057983805069264236657111115914570543103494726584296335044897998794251877515750910330960179539465060133592380802344398038815679281272098815068185059127533110716</span></span><br><span class="line">&gt;e1=<span class="number">49</span></span><br><span class="line">&gt;e2=<span class="number">35</span></span><br></pre></td></tr></table></figure>
+<p>很明显是共模攻击的模型，但是e1与e2并不互质，最大公约数为7。</p>
+<p>这里需要将e1与e2同时/7，从而m变为了$ m^7 $</p>
+<p>这时就可以使用低加密指数攻击了，题目代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># py2 sameNAttack.py</span></span><br><span class="line">&gt;<span class="keyword">import</span> primefac</span><br><span class="line">&gt;<span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">&gt;n=...</span><br><span class="line">&gt;e1=...</span><br><span class="line">&gt;e2=...</span><br><span class="line">&gt;c1=...</span><br><span class="line">&gt;c2=...</span><br><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">same_n_attack</span>(<span class="params">n,e1,e2,c1,c2</span>):</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">egcd</span>(<span class="params">a,b</span>):</span></span><br><span class="line">       x, lastX = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">       y, lastY = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">       <span class="keyword">while</span> (b != <span class="number">0</span>):</span><br><span class="line">           q = a // b</span><br><span class="line">           a, b = b, a % b</span><br><span class="line">           x, lastX = lastX - q * x, x</span><br><span class="line">           y, lastY = lastY - q * y, y</span><br><span class="line">       <span class="keyword">return</span> (lastX, lastY)</span><br><span class="line">   s = egcd(e1,e2)</span><br><span class="line">   s1 = s[<span class="number">0</span>]</span><br><span class="line">   s2 = s[<span class="number">1</span>]</span><br><span class="line">   <span class="keyword">if</span> s1 &lt; <span class="number">0</span>:</span><br><span class="line">       s1 = -s1</span><br><span class="line">       c1 = primefac.modinv(c1, n)</span><br><span class="line">       <span class="keyword">if</span> c1 &lt; <span class="number">0</span>:</span><br><span class="line">           c1 += n</span><br><span class="line">   <span class="keyword">elif</span> s2 &lt; <span class="number">0</span>:</span><br><span class="line">       s2 = -s2</span><br><span class="line">       c2 = primefac.modinv(c2, n)</span><br><span class="line">       <span class="keyword">if</span> c2 &lt; <span class="number">0</span>:</span><br><span class="line">           c2 += n</span><br><span class="line">   m = (<span class="built_in">pow</span>(c1, s1, n) * <span class="built_in">pow</span>(c2, s2, n)) % n</span><br><span class="line">   i = <span class="number">0</span></span><br><span class="line">   <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">       <span class="keyword">if</span> gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">1</span>] == <span class="literal">True</span>:</span><br><span class="line">           <span class="built_in">print</span>(long_to_bytes(gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">0</span>]))</span><br><span class="line">           <span class="keyword">break</span></span><br><span class="line">       i += <span class="number">1</span></span><br><span class="line">   <span class="keyword">return</span> flag</span><br><span class="line">&gt;c = res = <span class="built_in">str</span>(<span class="built_in">hex</span>(same_n_attack(n,e1,e2,c1,c2)))[<span class="number">2</span>:-<span class="number">128</span>]</span><br><span class="line">&gt;<span class="built_in">print</span> res</span><br><span class="line">&gt;flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line">&gt;<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(res),<span class="number">2</span>):</span><br><span class="line"> ch = res[i]+res[i+<span class="number">1</span>]</span><br><span class="line"> flag += <span class="built_in">chr</span>(<span class="built_in">int</span>(ch,<span class="number">16</span>))</span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">print</span> flag</span><br></pre></td></tr></table></figure>
+<p><strong>flag{8ac9f9e3-82ba-ff7e-ac7b-235a02d891ef}</strong></p>
+</blockquote>
+<h2 id="6-结局"><a href="#6-结局" class="headerlink" title="6. 结局"></a>6. 结局</h2><p>谁知道py的不止一个，而且越往后名次掉的越快（真卷），在比赛结束前30s，我的名次成功从rk24掉到了rk25，成功错失了进线下赛的资格（其实也好，反正我线下啥也不会，只会自闭）。</p>
+<p>但是，这种曲线也太**了吧。</p>
+<p><img src="/2021/09/25/ctf02/c.png"></p>
+<p><del>希望自己不被发现，前面踢掉一个。</del></p>
+<h2 id="7-等re2与misc2出来再补"><a href="#7-等re2与misc2出来再补" class="headerlink" title="7. 等re2与misc2出来再补"></a>7. 等re2与misc2出来再补</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://junyu33.github.io/2021/09/25/ctf02.html" title="强网杯出土记">https://junyu33.github.io/2021/09/25/ctf02.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ctf/" rel="tag"># ctf</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/14/ctf01.html" rel="prev" title="陇剑杯入土记">
+                  <i class="fa fa-chevron-left"></i> 陇剑杯入土记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">40k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">37 分钟</span>
+  </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+<script>
+NexT.utils.loadComments('#twikoo-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
+    twikoo.init(Object.assign({"enable":true,"visitor":true,"envId":"https://202182.vercel.app/"}, {
+      el: '#twikoo-comments'
+    }));
+  }, window.twikoo);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2021-09-14T12:28:08.755Z</updated>
+  <updated>2021-09-25T13:59:53.615Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>强网杯出土记</title>
+    <link href="https://junyu33.github.io/2021/09/25/ctf02.html"/>
+    <id>https://junyu33.github.io/2021/09/25/ctf02.html</id>
+    <published>2021-09-25T13:00:00.000Z</published>
+    <updated>2021-09-25T13:59:53.615Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。&lt;/p&gt;
+&lt;p&gt;以下按做题顺序写wp：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="c++" scheme="https://junyu33.github.io/categories/c/"/>
+    
+      <category term="python" scheme="https://junyu33.github.io/categories/c/python/"/>
+    
+    
+      <category term="ctf" scheme="https://junyu33.github.io/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
     <title>陇剑杯入土记</title>
     <link href="https://junyu33.github.io/2021/09/14/ctf01.html"/>
     <id>https://junyu33.github.io/2021/09/14/ctf01.html</id>
     <published>2021-09-14T12:00:00.000Z</published>
-    <updated>2021-09-14T12:28:08.755Z</updated>
+    <updated>2021-09-25T12:53:53.016Z</updated>
     
     <summary type="html">
     

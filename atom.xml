@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2021-10-06T03:41:41.669Z</updated>
+  <updated>2021-10-18T16:26:58.833Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>强网杯线下公费游记</title>
+    <link href="https://junyu33.github.io/2021/10/17/ctf03.html"/>
+    <id>https://junyu33.github.io/2021/10/17/ctf03.html</id>
+    <published>2021-10-17T15:20:00.000Z</published>
+    <updated>2021-10-18T16:26:58.833Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;发现一个有趣的现象，线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。&lt;/p&gt;
+&lt;p&gt;而我们组，也大致遵从这个规律。这说明了什么呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
+    
+    
+      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
+    
+  </entry>
+  
+  <entry>
     <title>强网杯出土记</title>
     <link href="https://junyu33.github.io/2021/09/25/ctf02.html"/>
     <id>https://junyu33.github.io/2021/09/25/ctf02.html</id>
     <published>2021-09-25T13:00:00.000Z</published>
-    <updated>2021-10-06T03:41:41.669Z</updated>
+    <updated>2021-10-17T15:21:05.040Z</updated>
     
     <summary type="html">
     
@@ -36,6 +63,10 @@
       <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
   </entry>
   

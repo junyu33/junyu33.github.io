@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2021-10-24T08:25:35.694Z</updated>
+  <updated>2021-10-29T04:30:49.232Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安全项目第一题解答及思路分析</title>
+    <link href="https://junyu33.github.io/2021/10/29/security01.html"/>
+    <id>https://junyu33.github.io/2021/10/29/security01.html</id>
+    <published>2021-10-29T04:25:00.000Z</published>
+    <updated>2021-10-29T04:30:49.232Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;解答（四个key及message）：&quot;&gt;&lt;a href=&quot;#解答（四个key及message）：&quot; class=&quot;headerlink&quot; title=&quot;解答（四个key及message）：&quot;&gt;&lt;/a&gt;解答（四个key及message）：&lt;/h1&gt;&lt;p&gt;  &lt;img src=&quot;/2021/10/29/security01/1.png&quot;&gt;         &lt;/p&gt;
+&lt;p&gt;（注意：这个key在不同的系统，甚至同一个系统的不同IDE得到的结果都不同，因此答案仅供参考）。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
+    
+    
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+  </entry>
   
   <entry>
     <title>二一——再见，鼠标</title>
@@ -39,7 +62,7 @@
     <link href="https://junyu33.github.io/2021/10/17/ctf03.html"/>
     <id>https://junyu33.github.io/2021/10/17/ctf03.html</id>
     <published>2021-10-17T15:20:00.000Z</published>
-    <updated>2021-10-18T16:39:05.406Z</updated>
+    <updated>2021-10-29T04:19:16.171Z</updated>
     
     <summary type="html">
     

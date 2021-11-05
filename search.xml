@@ -669,4 +669,95 @@
         <tag>encrypted</tag>
       </tags>
   </entry>
+  <entry>
+    <title>安全项目第二题解答及思路分析</title>
+    <url>/2021/11/06/security02.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p><img src="/2021/11/06/security02/1.jpg"></p>
+<p>使用的是dev c++中TDM-GCC 4.9.2 32-bit Debug编译器，其他新版本的编译器做了安全优化，我智商斗不过它们，就放弃了。</p>
+<span id="more"></span>
+<h1 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h1><h2 id="一句话总结："><a href="#一句话总结：" class="headerlink" title="一句话总结："></a>一句话总结：</h2><blockquote>
+<p>汇编知识是逃不脱的，一辈子也逃不脱的。</p>
+</blockquote>
+<h2 id="需要用到的工具："><a href="#需要用到的工具：" class="headerlink" title="需要用到的工具："></a>需要用到的工具：</h2><ul>
+<li>devc++/vs</li>
+<li>ollydbg（或者吾爱破解特供版）</li>
+</ul>
+<h2 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">	<span class="comment">/* bufbomb.c</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Bomb program that is solved using a buffer overflow attack</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * program for CS:APP problem 3.38</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * used for CS 202 HW 8 part 2</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * compile using</span></span><br><span class="line"><span class="comment"> *   gcc -g -O2 -Os -o bufbomb bufbomb.c</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Like gets, except that characters are typed as pairs of hex digits.</span></span><br><span class="line"><span class="comment">   Nondigit characters are ignored.  Stops when encounters newline */</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">getxs</span><span class="params">(<span class="keyword">char</span> *dest)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> c;</span><br><span class="line">  <span class="keyword">int</span> even = <span class="number">1</span>; <span class="comment">/* Have read even number of digits */</span></span><br><span class="line">  <span class="keyword">int</span> otherd = <span class="number">0</span>; <span class="comment">/* Other hex digit of pair */</span></span><br><span class="line">  <span class="keyword">char</span> *sp = dest;</span><br><span class="line">  <span class="keyword">while</span> ((c = getchar()) != EOF &amp;&amp; c != <span class="string">&#x27;\n&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isxdigit</span>(c)) &#123;</span><br><span class="line">      <span class="keyword">int</span> val;</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">&#x27;0&#x27;</span> &lt;= c &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">	val = c - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&#x27;A&#x27;</span> &lt;= c &amp;&amp; c &lt;= <span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">	val = c - <span class="string">&#x27;A&#x27;</span> + <span class="number">10</span>;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">	val = c - <span class="string">&#x27;a&#x27;</span> + <span class="number">10</span>;</span><br><span class="line">      <span class="keyword">if</span> (even) &#123;</span><br><span class="line">	otherd = val;</span><br><span class="line">	even = <span class="number">0</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	*sp++ = otherd * <span class="number">16</span> + val;</span><br><span class="line">	even = <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  *sp++ = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">  <span class="keyword">return</span> dest;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getbuf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">16</span>];</span><br><span class="line">  getxs(buf);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> val;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Type Hex string:&quot;</span>);</span><br><span class="line">  val = getbuf();</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;getbuf returned 0x%x\n&quot;</span>, val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> buf[<span class="number">16</span>];</span><br><span class="line">  <span class="comment">/* This little hack is an attempt to get the stack to be in a</span></span><br><span class="line"><span class="comment">     stable position</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">int</span> offset = (((<span class="keyword">int</span>) buf) &amp; <span class="number">0xFFF</span>);   </span><br><span class="line">  <span class="keyword">int</span> *space = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(offset);  </span><br><span class="line">  *space = <span class="number">0</span>; <span class="comment">/* So that don&#x27;t get complaint of unused variable */</span></span><br><span class="line">  test();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相比于上一题来说，这道题的代码友好多了。即使看上去冗长的getxs函数，也只是简单地将你输入的16进制字符串转化为16进制数，然后存放到buf这个缓冲区里。</p>
+<p>但是，这跟getbuf的返回值又有什么关系呢？我猛然发现getxs这个函数没有限制输入长度，意识到这是个简单的缓冲区溢出。然而我在强网杯比赛的时候就是直接复制的python代码，哪里知道溢出的原理？所以，我进入了漫长的学习过程。</p>
+<h2 id="前置知识1——汇编"><a href="#前置知识1——汇编" class="headerlink" title="前置知识1——汇编"></a>前置知识1——汇编</h2><h4 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h4><p>eax~edx：通用寄存器，变量的临时储存点，也可以用来寻址。</p>
+<p>esp：栈顶指针。</p>
+<p>ebp：栈底指针。</p>
+<p>eip：指令的地址（通俗理解为代码的行数）。</p>
+<h4 id="指令（以intel语法为例）"><a href="#指令（以intel语法为例）" class="headerlink" title="指令（以intel语法为例）"></a>指令（以intel语法为例）</h4><p>mov：复制指令，在将后者的值赋值给前者。</p>
+<p>add：前面的数加后面的数（sub，mul同理）</p>
+<p>push：将储存器的值加到栈顶中，同时esp-=sizeof(type)</p>
+<p>pop：取出栈顶的值给寄存器，同时esp+=sizeof(type)</p>
+<p>lea：将后者的地址取出来给前者。</p>
+<p>ptr：类型强制转换。</p>
+<p>ss：汇编代码有四个段（segment）寄存器，分为cs（code），ds（data），ss（stack），es（extra），不同段中的寄存器相互独立，因此需要加以区别。</p>
+<p>更多知识请参考：<a href="https://www.icourse163.org/learn/ZZU-1001796025#/learn/announce">汇编语言程序设计</a></p>
+<h2 id="前置知识2——堆栈图"><a href="#前置知识2——堆栈图" class="headerlink" title="前置知识2——堆栈图"></a>前置知识2——堆栈图</h2><p><strong>注意，堆栈不是一块独立的区域，而是程序运行时，内存中实际存在的一部分！因此你可以在内存窗口中找到堆栈数据。</strong></p>
+<p>堆栈遵循栈底地址高，栈顶地址低的原则。由于小段存储，我们输入的数据都是由低到高堆积而成。</p>
+<p>一个堆栈图需要包含当前的状态（命令），堆栈储存的情况，esp与ebp指针。最好可以用不同的颜色来表示不同操作对堆栈的影响，使程序的流程更清晰。</p>
+<p>在分析汇编代码的过程中顺手画堆栈图是一个良好的习惯。</p>
+<p>更多知识请参考：<a href="https://www.bilibili.com/video/BV1w54y1y7Di?p=12">堆栈图1</a></p>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>经过了一周的漫长学习，我终于有了解决这道题所需的能力。</p>
+<p>我们需要通过getbuf函数中，缓冲区溢出的漏洞，将buf中的字符串写到return的值里，从而返回字符串的起始地址，让cpu执行字符串中的十六进制指令再返回到test函数中，从而输出想要的值。</p>
+<h3 id="找到函数地址"><a href="#找到函数地址" class="headerlink" title="找到函数地址"></a>找到函数地址</h3><p>先用devc++调试源文件，将断点设置在getbuf函数中，按F5调试再查看CPU窗口，显示的就是汇编代码。在我的电脑中该函数的起始地址是0x4015c1，这就是getbuf函数的起始地址。</p>
+<p>在ollydbg中打开这个程序，Ctrl+G定位到这个地址，我们的准备工作就算完成了。</p>
+<p><img src="/2021/11/06/security02/2.jpg"></p>
+<h3 id="分析汇编代码"><a href="#分析汇编代码" class="headerlink" title="分析汇编代码"></a>分析汇编代码</h3><p>可以发现，getbuf这个函数在内存的地址是从0x4015c1~0x4015d8，接下来我们结合堆栈图来理解这段代码。</p>
+<p>4015c1：将当前栈底的地址复制到栈顶，esp指针-4，可以理解为备份入栈前状态。</p>
+<p>4015c2：ebp和esp指针在同一高度。</p>
+<p>4015c4：esp-40，可以理解为中间写入数据做准备。</p>
+<p>4015c7：将eax赋值为ebp-24的地址，准备写入字符串。</p>
+<p>4015ca：把eax的值赋值给栈顶。</p>
+<p>4015cd：调用getxs函数，在eax处写入字符串。</p>
+<p>4015d2：将eax赋值为1。</p>
+<p>4015d7：离开（等价于mov esp,ebp和pop ebp），取回入栈前状态。</p>
+<p>4015d8：返回（等价于pop eip）。</p>
+<p><img src="/2021/11/06/security02/stack.jpg"></p>
+<p>（都栈溢出了，程序运行逻辑改变，再画也没有意义）</p>
+<h3 id="撰写exp"><a href="#撰写exp" class="headerlink" title="撰写exp"></a>撰写exp</h3><p>（你可以理解成手写简单汇编）……</p>
+<h4 id="执行的命令"><a href="#执行的命令" class="headerlink" title="执行的命令"></a>执行的命令</h4><p>由于程序返回值在eax中，我们要改变eax的值，命令是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov eax,0xdeadbeef</span><br></pre></td></tr></table></figure>
+<p>然后我们要在最后一步跳出getbuf函数，需要知道getbuf返回后的地址是什么。我们再次使用devc++调试test函数，得知他的起始地址为4015d9。观察汇编代码，可以看到4015eb的地址上调用了4015c1地址（即getbuf），因此合适的返回值就是它的下一行4015f0.</p>
+<p>我们知道retn是在栈顶中取值，因此要push这个修改后的返回地址，再返回。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">push 0x4015f0</span><br><span class="line">retn</span><br></pre></td></tr></table></figure>
+<p>然后每一个汇编指令都是其机器代码对应的简写，我们还需要把它转换为16进制数。你可以选择使用gcc命令，也可以在ollydbg的汇编代码中寻找，主窗口的第二列就是右侧汇编代码翻译过来的。总之，转换后的结果是：</p>
+<blockquote>
+<p>b8 ef be ad de 68 f0 15 40 00 c3</p>
+</blockquote>
+<h4 id="偷梁换柱"><a href="#偷梁换柱" class="headerlink" title="偷梁换柱"></a>偷梁换柱</h4><p>我们做的第二步就是将程序从正常的return环节中，试图转移到前一步编写的代码上。</p>
+<p>在栈底指针esp中，保存着test函数的栈帧基址，而这个数据不能改动，否则程序将会崩溃。</p>
+<p>（其实就是返回前有个pop ebp的操作，这个值不能出现错误，有始有终，如果看了那个B站视频会更明白一点）</p>
+<p>紧接着在基址后面，填上字符串的起始地址，使eip跳转到这个位置去执行代码。</p>
+<p>（就是retn命令中的pop eip的eip被人为修改了）</p>
+<p>显然ebp在堆栈图里已经提到了，是62fe38；而eip则应该是中间的eax值62fdf0。</p>
+<blockquote>
+<p>38 f3 62 00 f0 fd 62 00</p>
+</blockquote>
+<h4 id="确定长度"><a href="#确定长度" class="headerlink" title="确定长度"></a>确定长度</h4><p>首先buf的起点是62fdf0，这个很容易可以得到。</p>
+<p>有些同学可能会认为既然buf数组的长度为16，而我们的命令用了11个字节，只需要再填充5个字节的00即可。其实并不是这样，编译器预留的空间总会比你想象得更多一点，这就是做OI题有些该RE，实际上却WA的原因。同理，将esp减少的值（此处为40）理解成exp的长度也不对。</p>
+<p>正确的做法是，将程序调试到0x4015ca处，查看ebp的值，为62fe08。</p>
+<p>剩下的两个地址每个4字节，因此长度为[ebp]-62fdf0+8=32。因此一共要填充32-8-11=13个字节的00。</p>
+<h4 id="最终答案"><a href="#最终答案" class="headerlink" title="最终答案"></a>最终答案</h4><p>通过上述过程，我们得到了最终的答案为：</p>
+<blockquote>
+<p>b8 ef be ad de 68 f0 15 40 00 c3 00 00 00 00 00 00 00 00 00 00 00 00 00 38 f3 62 00 f0 fd 62 00</p>
+</blockquote>
+<p>我们成功改变了程序的走向，且没有出错。</p>
+<p><img src="/2021/11/06/security02/win.jpg"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>系统级编程果然并非易事，我要开始担心自己的头发了。</p>
+<p>第三个安全项目，再（也不）见。</p>
+<p>我，学籍在高三，上着大一的课，学着大二的知识点，却在做以前大三的作业——川大真不错，课程难度都可以和C9高校比肩了！</p>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>reverse</tag>
+        <tag>pwn</tag>
+      </tags>
+  </entry>
 </search>

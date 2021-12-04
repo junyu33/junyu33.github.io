@@ -693,15 +693,24 @@
   <entry>
     <title>碎碎念</title>
     <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>A way to capture the glimpse of idea and creativity, which is momentary.</p>
-<span id="more"></span>
-<ul>
-<li>我的高中，是文化课与竞赛的博弈；上了大学我才知道，我的专业，是绩点与技术的博弈。</li>
-</ul>
-]]></content>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="2b5832e2f21347c71fcf2ad724714db69f4000e5cb7ee608f0ee5216525865e2">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec32d5f036c78c189b8c30cd311f0c44bcdf9ddedfd6c66bfdfc2bb4a0a23eb7a62d13e83184952540545ea7150454871ae24d80818cfeeb6aa2471f860b72b98c56bbbd4702503971a324dd6df6dd21507ec37799310b591df3f60c43021e13c24c306c1bd047d188eda2c534bb899685046131a268390326c442e9b92300fba7c5e795cd9656b2583900e08e83af6cdebba87ed3eb840c9a0930d0840b98b55775745e3a51ed3b8799fc0fb35ba9aaa30609febde5b587e16d318882d844c49395260b433fbcad4aa40ee1c13c8c92c12a0892c6c237eecd9219b0e7122d178d381fc417eb0a5589e3cdc7952dd32b28a41e36049c43e319e754e9980639dde30bfb93355680b1c2505a33f169d095d830a4d28c7532be7fca77c07874b91105ab49c4cd4d61a06d17a228640d0d7ffa099150fb87ddbac1de725b6bfebf7964ac9770c12c3b2271218be320aa442e5d7f6c9d7e591472a5c15863569219c2e366ed3f90a1f455fca9fbc04db9ca3d949b21963b61bd2238bd703e690de38ad808a07a03894d6847cdbe8a9fe1dbce6745117dabf165c12670204ba48213e2ff31f6c6b3b7d174ce9fcfc98039758c495af6dcdd98db893d04767c844cefe93fe3b790ddbdbbe7d2783686234d22cb40</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>随笔</category>
       </categories>
+      <tags>
+        <tag>encrypted</tag>
+      </tags>
   </entry>
   <entry>
     <title>第一篇博客</title>

@@ -38,20 +38,16 @@
   
   <entry>
     <title>游戏项目之简易扫雷</title>
-    <link href="https://junyu33.github.io/2021/12/27/minesweep.html"/>
-    <id>https://junyu33.github.io/2021/12/27/minesweep.html</id>
-    <published>2021-12-27T12:00:00.000Z</published>
-    <updated>2021-12-27T16:25:28.554Z</updated>
+    <link href="https://junyu33.github.io/2021/12/28/minesweep.html"/>
+    <id>https://junyu33.github.io/2021/12/28/minesweep.html</id>
+    <published>2021-12-28T02:30:00.000Z</published>
+    <updated>2021-12-28T02:37:26.102Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;本项目是程序设计课程中的游戏项目。&lt;/p&gt;
+&lt;p&gt;github链接：&lt;a href=&quot;https://github.com/junyu33/MineSweep/&quot;&gt;https://github.com/junyu33/MineSweep/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;欢迎大家提issue和pull request&lt;/p&gt;
     
     </summary>
     

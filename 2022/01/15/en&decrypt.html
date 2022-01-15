@@ -22,25 +22,20 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"junyu33.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="本项目是程序设计课程中的游戏项目。 github链接：https:&#x2F;&#x2F;github.com&#x2F;junyu33&#x2F;MineSweep&#x2F; 欢迎大家提issue和pull request">
+<meta name="description" content="与csapp相比，《加密与解密》更偏向于实践一点，内容丰富但比较杂。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="游戏项目之简易扫雷">
-<meta property="og:url" content="https://junyu33.github.io/2021/12/28/minesweep.html">
+<meta property="og:title" content="（不定期更新）《加密与解密》学习笔记">
+<meta property="og:url" content="https://junyu33.github.io/2022/01/15/en&decrypt.html">
 <meta property="og:site_name" content="现充|junyu33">
-<meta property="og:description" content="本项目是程序设计课程中的游戏项目。 github链接：https:&#x2F;&#x2F;github.com&#x2F;junyu33&#x2F;MineSweep&#x2F; 欢迎大家提issue和pull request">
+<meta property="og:description" content="与csapp相比，《加密与解密》更偏向于实践一点，内容丰富但比较杂。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s4.ax1x.com/2021/12/20/TnFiAe.png">
-<meta property="og:image" content="https://s4.ax1x.com/2021/12/28/TrfvL9.png">
-<meta property="og:image" content="https://s4.ax1x.com/2021/12/28/TrfzZR.png">
-<meta property="article:published_time" content="2021-12-28T02:30:00.000Z">
-<meta property="article:modified_time" content="2021-12-28T02:37:26.102Z">
+<meta property="article:published_time" content="2022-01-15T15:30:00.000Z">
+<meta property="article:modified_time" content="2022-01-15T16:34:37.871Z">
 <meta property="article:author" content="丨junyu33丨">
-<meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s4.ax1x.com/2021/12/20/TnFiAe.png">
 
 
-<link rel="canonical" href="https://junyu33.github.io/2021/12/28/minesweep.html">
+<link rel="canonical" href="https://junyu33.github.io/2022/01/15/en&decrypt.html">
 
 
 <script class="page-configurations">
@@ -52,7 +47,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>游戏项目之简易扫雷 | 现充|junyu33</title>
+<title>（不定期更新）《加密与解密》学习笔记 | 现充|junyu33</title>
   
 
 
@@ -212,7 +207,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">简要介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%88%AA%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">游戏截图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Changelog"><span class="nav-number">2.</span> <span class="nav-text">Changelog</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">模块划分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">函数调用关系</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF"><span class="nav-number">2.</span> <span class="nav-text">动态分析技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">静态分析技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%86%E5%90%91%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF"><span class="nav-number">4.</span> <span class="nav-text">逆向分析技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#32%E4%BD%8D%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF"><span class="nav-number">4.1.</span> <span class="nav-text">32位软件逆向技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%87%BD%E6%95%B0"><span class="nav-number">4.1.1.</span> <span class="nav-text">启动函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">4.1.2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">局部变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E2%80%94%E2%80%941-14-2022"><span class="nav-number">4.1.3.3.</span> <span class="nav-text">数组——1&#x2F;14&#x2F;2022</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0%E2%80%94%E2%80%941-15-2022"><span class="nav-number">4.1.4.</span> <span class="nav-text">虚函数——1&#x2F;15&#x2F;2022</span></a></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -321,7 +316,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://junyu33.github.io/2021/12/28/minesweep.html">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.github.io/2022/01/15/en&decrypt.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -334,7 +329,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          游戏项目之简易扫雷
+          （不定期更新）《加密与解密》学习笔记
         </h1>
 
         <div class="post-meta-container">
@@ -344,17 +339,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-12-28 10:30:00 / 修改时间：10:37:26" itemprop="dateCreated datePublished" datetime="2021-12-28T10:30:00+08:00">2021-12-28</time>
+      <time title="创建时间：2022-01-15 23:30:00" itemprop="dateCreated datePublished" datetime="2022-01-15T23:30:00+08:00">2022-01-15</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-01-16 00:34:37" itemprop="dateModified" datetime="2022-01-16T00:34:37+08:00">2022-01-16</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
         </span>
     </span>
 
@@ -366,7 +367,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>713</span>
+      <span>615</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -384,24 +385,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>本项目是程序设计课程中的游戏项目。</p>
-<p>github链接：<a target="_blank" rel="noopener" href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
-<p>欢迎大家提issue和pull request</p>
+        <p>与csapp相比，《加密与解密》更偏向于实践一点，内容丰富但比较杂。</p>
 <span id="more"></span>
-<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
-<p>2）本项目的功能说明：</p>
-<p>   ①简单、普通、困难、自定义四种模式</p>
-<p>   ②前三种模式的时间排行榜（文件归档）</p>
-<p>   ③快速扫雷与快速插旗</p>
-<p>   ④同时支持鼠标和键盘操作</p>
-<p>   ⑤游戏背景音乐的播放和控制 </p>
-<p>3）本项目的开发环境和工具</p>
-<p>   开发环境：vscode mingw 8.1.0</p>
-<p>   工具：ege20.08</p>
-<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
-<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
-<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
-<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p>诸如API、Unicode、Little-endian之类的介绍，此处略去。</p>
+<p>（但是Win32 API和WOW64放到这一段就很劝退，算了还是将来用到再查文档吧——）</p>
+<h1 id="动态分析技术"><a href="#动态分析技术" class="headerlink" title="动态分析技术"></a>动态分析技术</h1><ul>
+<li><p>OllyDbg </p>
+<p>（学了硬件断点、消息断点、条件断点、内存断点，还有trace功能）</p>
+</li>
+<li><p>x64dbg</p>
+</li>
+<li><p><del>MDebug</del></p>
+</li>
+<li><p><del>WinDbg</del></p>
+</li>
+</ul>
+<h1 id="静态分析技术"><a href="#静态分析技术" class="headerlink" title="静态分析技术"></a>静态分析技术</h1><ul>
+<li><p>PEiD/ExeinfoPE</p>
+</li>
+<li><p><del>ODDisasm、BeaEngine、Udis86、Capstone、AsmJit、Keystone</del> </p>
+</li>
+<li><p>IDA yyds!</p>
+<p>（IDA提供了一项我以前并不知道的功能，就是在系统API处按下F1键会弹出该API的用法，然而这个功能只支持.hlp文件，所以它并没有什么用）</p>
+</li>
+<li><p>WinHex/010editor</p>
+</li>
+</ul>
+<h1 id="逆向分析技术"><a href="#逆向分析技术" class="headerlink" title="逆向分析技术"></a>逆向分析技术</h1><h2 id="32位软件逆向技术"><a href="#32位软件逆向技术" class="headerlink" title="32位软件逆向技术"></a>32位软件逆向技术</h2><h3 id="启动函数"><a href="#启动函数" class="headerlink" title="启动函数"></a>启动函数</h3><p><del>WinAPI集中区域，看不懂直接跳。</del></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>第N次复习栈调用的机会。</p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><p>使用栈存放。</p>
+<h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><p>.data区段。</p>
+<h4 id="数组——1-14-2022"><a href="#数组——1-14-2022" class="headerlink" title="数组——1/14/2022"></a>数组——1/14/2022</h4><p>为了看懂数组的汇编代码，狂补csapp的相应章节。</p>
+<h3 id="虚函数——1-15-2022"><a href="#虚函数——1-15-2022" class="headerlink" title="虚函数——1/15/2022"></a>虚函数——1/15/2022</h3><p>引用虚函数：先用指针（通常由new或malloc分配）指向虚函数表（VTBL），该表存放着所有虚函数的<strong>地址</strong>，再使用虚函数表指针（VPTR）调用函数。</p>
+<blockquote>
+<p>疑问：汇编代码中0040101B地址，为什么<code>eax=*VTBL=**Add()</code>，而不是<code>eax=*VTBL=&amp;Add()</code>？</p>
+</blockquote>
 
     </div>
 
@@ -419,7 +437,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://junyu33.github.io/2021/12/28/minesweep.html" title="游戏项目之简易扫雷">https://junyu33.github.io/2021/12/28/minesweep.html</a>
+      <a href="https://junyu33.github.io/2022/01/15/en&decrypt.html" title="（不定期更新）《加密与解密》学习笔记">https://junyu33.github.io/2022/01/15/en&decrypt.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -427,21 +445,18 @@
 </ul>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/c/" rel="tag"># c++</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html" rel="prev" title="再见，acm">
-                  <i class="fa fa-chevron-left"></i> 再见，acm
+                <a href="/2022/01/15/csapp.html" rel="prev" title="（不定期更新）csapp学习笔记">
+                  <i class="fa fa-chevron-left"></i> （不定期更新）csapp学习笔记
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/12/30/bye2021.html" rel="next" title="Twenty-four——my summary of year 2021">
-                  Twenty-four——my summary of year 2021 <i class="fa fa-chevron-right"></i>
+                <a href="/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html" rel="next" title="碎碎念">
+                  碎碎念 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

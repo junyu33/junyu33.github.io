@@ -37,15 +37,39 @@
   </entry>
   
   <entry>
+    <title>C转python速成</title>
+    <link href="https://junyu33.github.io/2022/01/18/c2py.html"/>
+    <id>https://junyu33.github.io/2022/01/18/c2py.html</id>
+    <published>2022-01-18T15:00:00.000Z</published>
+    <updated>2022-01-19T03:36:42.378Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本教程只介绍将python作为一种脚本语言所需要的基本知识点。其目的不是为了机器学习或者数据分析，而是让你写出代码短小、易于维护，而且&lt;del&gt;永远也不会爆ull&lt;/del&gt;的&lt;strong&gt;脚本&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;具有良好C基础的读者可以在一个下午掌握这些知识点。&lt;/p&gt;
+&lt;p&gt;本教程部分引用了&lt;a href=&quot;https://www.liaoxuefeng.com/wiki/1016959663602400&quot;&gt;廖雪峰的博客&lt;/a&gt;，且以python3为基础。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>（不定期更新）《加密与解密》学习笔记</title>
     <link href="https://junyu33.github.io/2022/01/15/en&amp;decrypt.html"/>
     <id>https://junyu33.github.io/2022/01/15/en&amp;decrypt.html</id>
     <published>2022-01-15T15:30:00.000Z</published>
-    <updated>2022-01-15T16:34:37.871Z</updated>
+    <updated>2022-01-17T16:09:19.214Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;与csapp相比，《加密与解密》更偏向于实践一点，内容丰富但比较杂。&lt;/p&gt;
+      &lt;p&gt;与csapp相比，《加密与解密》更偏向于实践一点，内容丰富但比较杂。汇编代码语法与csapp不同，采用intel语法。&lt;/p&gt;
     
     </summary>
     
@@ -59,11 +83,12 @@
     <link href="https://junyu33.github.io/2022/01/15/csapp.html"/>
     <id>https://junyu33.github.io/2022/01/15/csapp.html</id>
     <published>2022-01-15T14:30:00.000Z</published>
-    <updated>2022-01-17T03:37:06.340Z</updated>
+    <updated>2022-01-17T16:07:49.097Z</updated>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
+      &lt;p&gt;（本文汇编代码统一采用AT&amp;amp;T语法）&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;友情提示：&lt;/p&gt;
 &lt;p&gt;看这本书，笔记、习题、实验三者缺一不可。&lt;/p&gt;
 &lt;p&gt;如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)&lt;/p&gt;
@@ -224,13 +249,13 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
     
       <category term="c" scheme="https://junyu33.github.io/tags/c/"/>
     
@@ -275,9 +300,9 @@
       <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
     
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
   </entry>
   
@@ -328,9 +353,9 @@
       <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
     
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
       <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
   </entry>
   
@@ -371,11 +396,11 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
+    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
       <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
-    
-      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
   </entry>
   
@@ -398,11 +423,11 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
-    
       <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>
     
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
   </entry>
   
@@ -441,24 +466,6 @@
     
     
       <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二十——C2驾照养成记</title>
-    <link href="https://junyu33.github.io/2021/08/12/kaiche.html"/>
-    <id>https://junyu33.github.io/2021/08/12/kaiche.html</id>
-    <published>2021-08-12T15:00:00.000Z</published>
-    <updated>2021-09-25T14:15:38.408Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;从6月26日去驾校报名开始，到8月12日拿到驾照为止，学车的经历几乎贯穿了我的整个暑假。除开中途出差耽搁了将近十天，总共花了将近40天的时间来学车。总的来说过程比较顺利，考试都一次过了，暑假愉快的学车过程终成甜蜜的回忆。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

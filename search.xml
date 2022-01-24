@@ -1,66 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2048的又一次改良</title>
-    <url>/2021/08/02/2048plus.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
-<span id="more"></span>
-<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
-<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>mma</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Twenty-two——bewilderment</title>
-    <url>/2021/11/01/bewilderment.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
-<p>This is my first time to write a post in English. There are three advantages.</p>
-<ul>
-<li><p>I can deliver my message to whom I really want to tell. </p>
-</li>
-<li><p>It’s a way to prepare for my CET4 exam.</p>
-</li>
-<li><p>Jumping between two input methods is annoying.</p>
-</li>
-</ul>
-<p>In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp; listening is nearly 15000), readers who have <strong>passed</strong> the CET4 exam might be enough to read the following text.</p>
-</blockquote>
-<p>Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I’m really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.</p>
-<span id="more"></span>
-<blockquote>
-<p>I hope that in future, I could have my own shining star in the galaxy of mathematics.</p>
-</blockquote>
-<p>To be a mathematician is a dream of my childhood. In fact, I truly have some talent in math. I started to learn math olympiad in grade 4 and spend a lot of time in it. Thus, I read less books than before and my Chinese grades dropped. Although the imbalance of grades exists, I still entered my middle school with the highest scholarship. In middle school, I met Mr. Li, a senior math teacher with wisdom and insight. His lively teaching way and systematic guidance rose my horizon, making me more interested in it. Unfortunately, for many untold reasons, I didn’t take part in any kind of formal math competitions. Instead, my poor Chinese was a pain in neck, which wasted a lot of time and energy.</p>
-<p>What made me back to reality and smashed my dream was the summer camp in cdqz. I could never find the reason why I could get the 1st place in dc summer camp while getting only 8 points here. I first found that involution has already started. The strength of olympiad in Chengdu is far more than my middle school. I wonder if I start my middle school life in Chengdu and the teacher prospects my talent, maybe there would be an another result. I also ask myself if I didn’t go to cdqz and instead followed Mr. Tan, a well-rounded coach in high school math olympiad who stuck to retaining me. Till now, I still cannot forget some words he has told me.</p>
-<blockquote>
-<p>The start of competition has relationship with your basis, whereas time pasts, when everyone has learnt what it needs, the discrepancy would be vanished. What’s more, you could even have a chance to catch up with others.</p>
-</blockquote>
-<p>So what exactly smashed my dream? My poor Chinese? Undeveloped education? Or the involution? I don’t know. But the unbalanced resources continued to confine me to go further in OI, so I AFOed quickly. Also, my fragmented knowledge in natural science (except math) made me painful in class and nearly No. 50 rank in almost every examinations. That’s one of my reasons I quitted high school in senior 2.      </p>
-<p>……</p>
-<p>It’s been nearly 2 months since I entered scu. The fresh of college life has gone. What takes place is the heavy workload, increased difficulty and higher standard of every professional courses. Someone may consider this is the feeling of “bewilderment”, cause many high school teachers may tell students that they will be liberated after entering college. But this is not the case, instead I got accustomed the college style quickly.</p>
-<p><strong>What makes me really confused is the unnecessary activities you have to take part in.</strong> There are already many time-consuming projects such as <em>8-second positive energy</em> from politics, drama play from English, brain-fucking experiments from Introduction to Computer Systems and so on. I didn’t join the students’ union to avoid meaningless tasks. However, more activities such as chorus competitions, welcoming parties which require quota on participants and actors are too annoying.</p>
-<p>For me, I need a lot of time to focus on a specific thing like working out math problems. I just want to sit in front of the computer and learn for a whole day with a break of sports. Too many tasks and activities can affect my efficiency of working. I complained this to my father, he told me that the university is a miniature of society, you need to get used to tackle many trivial matters like these, yet I think university is mainly a place for academic learning and I disagreed his opinion.     </p>
-<p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
-<p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
-<p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
     <title>二一——再见，鼠标</title>
     <url>/2021/10/24/1024.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
@@ -168,26 +108,60 @@
       </categories>
   </entry>
   <entry>
-    <title>Twenty-four——my summary of year 2021</title>
-    <url>/2021/12/30/bye2021.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
-<p><img src="/2021/12/30/bye2021/2021.png"></p>
-<span id="more"></span> 
-<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
-<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
-<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
-<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
-<blockquote>
-<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+    <title>2048的又一次改良</title>
+    <url>/2021/08/02/2048plus.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
+<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>mma</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Twenty-two——bewilderment</title>
+    <url>/2021/11/01/bewilderment.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
+<p>This is my first time to write a post in English. There are three advantages.</p>
+<ul>
+<li><p>I can deliver my message to whom I really want to tell. </p>
+</li>
+<li><p>It’s a way to prepare for my CET4 exam.</p>
+</li>
+<li><p>Jumping between two input methods is annoying.</p>
+</li>
+</ul>
+<p>In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp; listening is nearly 15000), readers who have <strong>passed</strong> the CET4 exam might be enough to read the following text.</p>
 </blockquote>
-<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
-<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
-<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<p>Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I’m really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.</p>
+<span id="more"></span>
 <blockquote>
-<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+<p>I hope that in future, I could have my own shining star in the galaxy of mathematics.</p>
 </blockquote>
-<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
-<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
+<p>To be a mathematician is a dream of my childhood. In fact, I truly have some talent in math. I started to learn math olympiad in grade 4 and spend a lot of time in it. Thus, I read less books than before and my Chinese grades dropped. Although the imbalance of grades exists, I still entered my middle school with the highest scholarship. In middle school, I met Mr. Li, a senior math teacher with wisdom and insight. His lively teaching way and systematic guidance rose my horizon, making me more interested in it. Unfortunately, for many untold reasons, I didn’t take part in any kind of formal math competitions. Instead, my poor Chinese was a pain in neck, which wasted a lot of time and energy.</p>
+<p>What made me back to reality and smashed my dream was the summer camp in cdqz. I could never find the reason why I could get the 1st place in dc summer camp while getting only 8 points here. I first found that involution has already started. The strength of olympiad in Chengdu is far more than my middle school. I wonder if I start my middle school life in Chengdu and the teacher prospects my talent, maybe there would be an another result. I also ask myself if I didn’t go to cdqz and instead followed Mr. Tan, a well-rounded coach in high school math olympiad who stuck to retaining me. Till now, I still cannot forget some words he has told me.</p>
+<blockquote>
+<p>The start of competition has relationship with your basis, whereas time pasts, when everyone has learnt what it needs, the discrepancy would be vanished. What’s more, you could even have a chance to catch up with others.</p>
+</blockquote>
+<p>So what exactly smashed my dream? My poor Chinese? Undeveloped education? Or the involution? I don’t know. But the unbalanced resources continued to confine me to go further in OI, so I AFOed quickly. Also, my fragmented knowledge in natural science (except math) made me painful in class and nearly No. 50 rank in almost every examinations. That’s one of my reasons I quitted high school in senior 2.      </p>
+<p>……</p>
+<p>It’s been nearly 2 months since I entered scu. The fresh of college life has gone. What takes place is the heavy workload, increased difficulty and higher standard of every professional courses. Someone may consider this is the feeling of “bewilderment”, cause many high school teachers may tell students that they will be liberated after entering college. But this is not the case, instead I got accustomed the college style quickly.</p>
+<p><strong>What makes me really confused is the unnecessary activities you have to take part in.</strong> There are already many time-consuming projects such as <em>8-second positive energy</em> from politics, drama play from English, brain-fucking experiments from Introduction to Computer Systems and so on. I didn’t join the students’ union to avoid meaningless tasks. However, more activities such as chorus competitions, welcoming parties which require quota on participants and actors are too annoying.</p>
+<p>For me, I need a lot of time to focus on a specific thing like working out math problems. I just want to sit in front of the computer and learn for a whole day with a break of sports. Too many tasks and activities can affect my efficiency of working. I complained this to my father, he told me that the university is a miniature of society, you need to get used to tackle many trivial matters like these, yet I think university is mainly a place for academic learning and I disagreed his opinion.     </p>
+<p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
+<p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
+<p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -413,6 +387,68 @@
       </tags>
   </entry>
   <entry>
+    <title>Twenty-four——my summary of year 2021</title>
+    <url>/2021/12/30/bye2021.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
+<p><img src="/2021/12/30/bye2021/2021.png"></p>
+<span id="more"></span> 
+<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
+<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
+<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
+<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
+<blockquote>
+<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+</blockquote>
+<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
+<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
+<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<blockquote>
+<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+</blockquote>
+<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
+<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Twenty-three——review of CLANNAD (anime)</title>
+    <url>/2021/11/17/clannad.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Followed by my last English post “bewilderment”, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart. </p>
+<p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
+<p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>
+<span id="more"></span>
+<p><strong>The English meaning of word “clannad” is “family”</strong>, so all of these sentences have something to do with the significance of family and companion, which run through all scenarios of the story. </p>
+<p>(SPOILER WARNING!!!)</p>
+<p><strong>What makes you not degenerate is neither talent nor love, but the family, or someone who can control yourself. </strong></p>
+<p>Responsibility is one of the main topic CL wants to convey. It is also responsibility that makes Tomoya changed himself from a bad guy to a great father. For instance, before his encounter with Nagisa, he hated this town and treated everything meaningless. <strong>“Because of her, my life eventually filled with color again.”</strong> Therefore he determined to care her as long as he could. From a boy hating school, to a man with high EQ, and finally a wonderful father, the responsibility he took totally transformed himself. </p>
+<p>This is the same for Nagisa. Due to her poor health (a cold is like cancer for her while nothing for Yuno instead uh-huh), she was often absent. What’s more she was also introvert and few classmates noticed her. Therefore, she had almost no friends. The appearance of Tomoya encouraged her to be outgoing and to <strong>go and find whatever she wants</strong>. With Tomoya and his friends’ help, Nagisa rebuilt the drama club, performed her favorite drama story, and made her and her family’s dream come true.</p>
+<p><img src="/2021/11/17/clannad/392528.png"></p>
+<p>In CLANNAD ~AFTER STORY~ (short for CL-2 later), Nagisa passed away because of dystocia (difficult birth). Losing his beloved wife made Tomoya numb, he refused to raise his daughter Ushio, instead, he resorted to alcohol and cigarettes just for escaping from the unrecoverable wound, the intangible past. After 5 years, Ushio happened to have a trip with Tomoya. An unexpected talk with grandma aroused him as role of a father, which made him finally find out <strong>“the one and only precious thing worthwhile to be care for”</strong> asked by Nagisa. He knew what it means to be a father at last.  </p>
+<p>The “confinement” and unbelievable change of Tomoya and Nagisa can move everyone who watched CL by heart. Maybe it is just a kind of feeling —— growth, maturity and family.</p>
+<p><strong>The dream of kids is the dream of family, we didn’t give up our dreams, we just find a sustenance on your dream. That’s how parents do and how family do.</strong></p>
+<p>Dream is also an important main idea during the story. On the last night of school anniversary, Nagisa found that her parents gave up their dream to raise her up. She was so regretful and nervous that she sobbed in her drama program the next day. At the critical moment, her father rushed up to tell her don’t be self-criticized and on the contrary, stick to the drama show in hand, for this is the expectation of the whole family. I believe it is one of the most moving scene because it is awfully true in today’s world. Parents have sacrificed a lot for our growth, isn’t it?  </p>
+<p>The most controversial character is Tomoya’s father Naoyuki. He seems to be useless and hampered Tomoya’s life. As Tomoya’s closest relative, the plot didn’t uncover his background for a long time. That’s because only Tomoya himself also becomes a father can he experience the difficulty of his father. The situation of two fathers is just the same —— losing the most important half in their life. However, Naoyuki didn’t give up raising Tomoya, instead he always bought toys and snacks to bring up his son. When his son grew up, he has already lost money, job, opportunity —— everything. He was so painful that he only had a benevolent smile. In this way, Naoyuki is truly an honorable father.</p>
+<p><strong>There are something awful that happened in our lives, however the fine moments, when time passes, will be sent down and remain in your hand.</strong></p>
+<p>The last main topic of CL is happiness and love. The legend of the town is about the glowing ball. It only appears when someone feels happy and beloved and people who gain the shining thing could make their dream come true. To move a step closer, if the town has its own thoughts, it is people who love this town makes the town happy, and the town loves the people living in it. Therefore, the town realized Tomoya’s dream and the miracle happened. </p>
+<p>We all know that when seniors recall their whole lives, they remember their delighted moments clearly. This plot also tells us that only the happy things won’t be washed away by time. So don’t be blue when life beats you, please think that there are more possibilities in future and lots of uncovered happiness are waiting for us. Also, always be grateful and helpful to others, as one day they may help you realize your dream. </p>
+<p>By the way, how residents treat others expanded the definition of word “family”, and this is a symbol of Mo Theory —— to love others equally without distinction. However, this is kind of biased from our topic so I don’t want to expand it.</p>
+<p>In general, CL has brought me the inner strength that I lacked in the past. I finally know how much my family love me and they’re always cheering me up. However, it doesn’t tell me how to find my way, it just motivates me to <strong>follow my own heart</strong>. I wonder if I would have some new feelings after several years to watch CL again. I’m looking forward to that day comes.</p>
+<p><img src="/2021/11/17/clannad/R.jpg"></p>
+<blockquote>
+<p>PS: </p>
+<ul>
+<li>only 30% of bilibili users have watched the true ending (Tomoya tells Ushio about his life). That’s kind of disappointing. </li>
+<li>To practice my listening skills and get more details, I’m watching CL English dubbed version for a second time.</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
     <title>（近期不更新）csapp学习笔记</title>
     <url>/2022/01/15/csapp.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>（本文汇编代码统一采用AT&amp;T语法）</p>
@@ -543,97 +579,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Twenty-three——review of CLANNAD (anime)</title>
-    <url>/2021/11/17/clannad.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Followed by my last English post “bewilderment”, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart. </p>
-<p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
-<p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>
-<span id="more"></span>
-<p><strong>The English meaning of word “clannad” is “family”</strong>, so all of these sentences have something to do with the significance of family and companion, which run through all scenarios of the story. </p>
-<p>(SPOILER WARNING!!!)</p>
-<p><strong>What makes you not degenerate is neither talent nor love, but the family, or someone who can control yourself. </strong></p>
-<p>Responsibility is one of the main topic CL wants to convey. It is also responsibility that makes Tomoya changed himself from a bad guy to a great father. For instance, before his encounter with Nagisa, he hated this town and treated everything meaningless. <strong>“Because of her, my life eventually filled with color again.”</strong> Therefore he determined to care her as long as he could. From a boy hating school, to a man with high EQ, and finally a wonderful father, the responsibility he took totally transformed himself. </p>
-<p>This is the same for Nagisa. Due to her poor health (a cold is like cancer for her while nothing for Yuno instead uh-huh), she was often absent. What’s more she was also introvert and few classmates noticed her. Therefore, she had almost no friends. The appearance of Tomoya encouraged her to be outgoing and to <strong>go and find whatever she wants</strong>. With Tomoya and his friends’ help, Nagisa rebuilt the drama club, performed her favorite drama story, and made her and her family’s dream come true.</p>
-<p><img src="/2021/11/17/clannad/392528.png"></p>
-<p>In CLANNAD ~AFTER STORY~ (short for CL-2 later), Nagisa passed away because of dystocia (difficult birth). Losing his beloved wife made Tomoya numb, he refused to raise his daughter Ushio, instead, he resorted to alcohol and cigarettes just for escaping from the unrecoverable wound, the intangible past. After 5 years, Ushio happened to have a trip with Tomoya. An unexpected talk with grandma aroused him as role of a father, which made him finally find out <strong>“the one and only precious thing worthwhile to be care for”</strong> asked by Nagisa. He knew what it means to be a father at last.  </p>
-<p>The “confinement” and unbelievable change of Tomoya and Nagisa can move everyone who watched CL by heart. Maybe it is just a kind of feeling —— growth, maturity and family.</p>
-<p><strong>The dream of kids is the dream of family, we didn’t give up our dreams, we just find a sustenance on your dream. That’s how parents do and how family do.</strong></p>
-<p>Dream is also an important main idea during the story. On the last night of school anniversary, Nagisa found that her parents gave up their dream to raise her up. She was so regretful and nervous that she sobbed in her drama program the next day. At the critical moment, her father rushed up to tell her don’t be self-criticized and on the contrary, stick to the drama show in hand, for this is the expectation of the whole family. I believe it is one of the most moving scene because it is awfully true in today’s world. Parents have sacrificed a lot for our growth, isn’t it?  </p>
-<p>The most controversial character is Tomoya’s father Naoyuki. He seems to be useless and hampered Tomoya’s life. As Tomoya’s closest relative, the plot didn’t uncover his background for a long time. That’s because only Tomoya himself also becomes a father can he experience the difficulty of his father. The situation of two fathers is just the same —— losing the most important half in their life. However, Naoyuki didn’t give up raising Tomoya, instead he always bought toys and snacks to bring up his son. When his son grew up, he has already lost money, job, opportunity —— everything. He was so painful that he only had a benevolent smile. In this way, Naoyuki is truly an honorable father.</p>
-<p><strong>There are something awful that happened in our lives, however the fine moments, when time passes, will be sent down and remain in your hand.</strong></p>
-<p>The last main topic of CL is happiness and love. The legend of the town is about the glowing ball. It only appears when someone feels happy and beloved and people who gain the shining thing could make their dream come true. To move a step closer, if the town has its own thoughts, it is people who love this town makes the town happy, and the town loves the people living in it. Therefore, the town realized Tomoya’s dream and the miracle happened. </p>
-<p>We all know that when seniors recall their whole lives, they remember their delighted moments clearly. This plot also tells us that only the happy things won’t be washed away by time. So don’t be blue when life beats you, please think that there are more possibilities in future and lots of uncovered happiness are waiting for us. Also, always be grateful and helpful to others, as one day they may help you realize your dream. </p>
-<p>By the way, how residents treat others expanded the definition of word “family”, and this is a symbol of Mo Theory —— to love others equally without distinction. However, this is kind of biased from our topic so I don’t want to expand it.</p>
-<p>In general, CL has brought me the inner strength that I lacked in the past. I finally know how much my family love me and they’re always cheering me up. However, it doesn’t tell me how to find my way, it just motivates me to <strong>follow my own heart</strong>. I wonder if I would have some new feelings after several years to watch CL again. I’m looking forward to that day comes.</p>
-<p><img src="/2021/11/17/clannad/R.jpg"></p>
-<blockquote>
-<p>PS: </p>
-<ul>
-<li>only 30% of bilibili users have watched the true ending (Tomoya tells Ushio about his life). That’s kind of disappointing. </li>
-<li>To practice my listening skills and get more details, I’m watching CL English dubbed version for a second time.</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>陇剑杯入土记</title>
-    <url>/2021/09/14/ctf01.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
-<span id="more"></span>
-<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
-<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
-<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
-<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
-<p><img src="/2021/09/14/ctf01/b.jpg"></p>
-<p><img src="/2021/09/14/ctf01/c.jpg"></p>
-<p><img src="/2021/09/14/ctf01/d.jpg"></p>
-<p><img src="/2021/09/14/ctf01/e.jpg"></p>
-<p><img src="/2021/09/14/ctf01/f.jpg"></p>
-<p><img src="/2021/09/14/ctf01/g.jpg"></p>
-<p><img src="/2021/09/14/ctf01/h.jpg"></p>
-<p><img src="/2021/09/14/ctf01/i.jpg"></p>
-<p><img src="/2021/09/14/ctf01/j.jpg"></p>
-<p><img src="/2021/09/14/ctf01/k.jpg"></p>
-<p><img src="/2021/09/14/ctf01/l.jpg"></p>
-<p><img src="/2021/09/14/ctf01/m.jpg"></p>
-<p><img src="/2021/09/14/ctf01/n.jpg"></p>
-<p><img src="/2021/09/14/ctf01/o.jpg"></p>
-<p><img src="/2021/09/14/ctf01/p.jpg"></p>
-<p><img src="/2021/09/14/ctf01/q.jpg"></p>
-<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
-<p><img src="/2021/09/14/ctf01/r.jpg"></p>
-<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
-<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
-<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
-<p><img src="/2021/09/14/ctf01/s.png"></p>
-<p><img src="/2021/09/14/ctf01/t.png"></p>
-<p><img src="/2021/09/14/ctf01/u.png"></p>
-<p>此刻我的内心就像这样：</p>
-<blockquote>
-<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
-<p>…………</p>
-</blockquote>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
-<blockquote>
-<p>比赛前:</p>
-<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
-<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>比赛后:</p>
-<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
-<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
-<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
-<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>ctf</category>
-      </categories>
-  </entry>
-  <entry>
     <title>强网杯出土记</title>
     <url>/2021/09/25/ctf02.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
@@ -695,6 +640,61 @@
         <tag>reverse</tag>
         <tag>crypto</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>陇剑杯入土记</title>
+    <url>/2021/09/14/ctf01.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
+<span id="more"></span>
+<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
+<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
+<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
+<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
+<p><img src="/2021/09/14/ctf01/b.jpg"></p>
+<p><img src="/2021/09/14/ctf01/c.jpg"></p>
+<p><img src="/2021/09/14/ctf01/d.jpg"></p>
+<p><img src="/2021/09/14/ctf01/e.jpg"></p>
+<p><img src="/2021/09/14/ctf01/f.jpg"></p>
+<p><img src="/2021/09/14/ctf01/g.jpg"></p>
+<p><img src="/2021/09/14/ctf01/h.jpg"></p>
+<p><img src="/2021/09/14/ctf01/i.jpg"></p>
+<p><img src="/2021/09/14/ctf01/j.jpg"></p>
+<p><img src="/2021/09/14/ctf01/k.jpg"></p>
+<p><img src="/2021/09/14/ctf01/l.jpg"></p>
+<p><img src="/2021/09/14/ctf01/m.jpg"></p>
+<p><img src="/2021/09/14/ctf01/n.jpg"></p>
+<p><img src="/2021/09/14/ctf01/o.jpg"></p>
+<p><img src="/2021/09/14/ctf01/p.jpg"></p>
+<p><img src="/2021/09/14/ctf01/q.jpg"></p>
+<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
+<p><img src="/2021/09/14/ctf01/r.jpg"></p>
+<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
+<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
+<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
+<p><img src="/2021/09/14/ctf01/s.png"></p>
+<p><img src="/2021/09/14/ctf01/t.png"></p>
+<p><img src="/2021/09/14/ctf01/u.png"></p>
+<p>此刻我的内心就像这样：</p>
+<blockquote>
+<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
+<p>…………</p>
+</blockquote>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
+<blockquote>
+<p>比赛前:</p>
+<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
+<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>比赛后:</p>
+<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
+<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
+<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
+<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
   </entry>
   <entry>
     <title>强网杯线下公费游记</title>
@@ -764,37 +764,6 @@
       </tags>
   </entry>
   <entry>
-    <title>(转载) 撸羊毛</title>
-    <url>/2022/01/05/fable.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
-<p>作者：齐辛格尔<br>链接：<a href="https://www.zhihu.com/question/489610689/answer/2150453989">https://www.zhihu.com/question/489610689/answer/2150453989</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-</blockquote>
-<p>羊已经三十岁了，娶了一只母羊，准备在自家地里盖房子，想生几只小羊。</p>
-<p>老虎看见了，就对羊说，这块地是老虎的，不许私自盖房子，要住自己去买。</p>
-<p>狐狸听说了这件事，于是送了老虎几块肉，用一百金条买了这块地并且建房子，但房子建好后要卖一千金条。</p>
-<p>羊只有十块金条，买不起这个房子。</p>
-<p>狼看见了，拿着一千金条去找羊，说可以借这一千金条给他，分三十年还完，但是每年羊需要付四块金条的利息。</p>
-<p>于是羊拿着这一千金条去找狐狸买了房子。</p>
-<p>但是，羊没有生出小羊。</p>
-<p>因为每年要还狼的利息而不停被人薅羊毛，天天感冒，身体很差，导致生不出小羊。</p>
-<p>三十年过去了，羊头发白了，也老了，小羊一直没生出来，房子也不值钱了。但是老虎，狐狸和狼都赚了很多金条，生了很多小老虎小狐狸和小狼。</p>
-<p>一天，他们相约一起去河边游泳，对着鳄鱼说：“你看看我们部落多富裕，我们家的小老虎小狐狸和小狼都喂得白白胖胖的”。</p>
-<p>鳄鱼看了很不屑，带着自己的几十只鳄鱼宝宝噗通噗通跳进河里了，并且说：“你们别得意得太早，你们的宝宝很快就要饿死了，因为羊生不出羊宝宝，他们没肉吃迟早饿死！而我至少可以吃河里的鱼，永远饿不死！”</p>
-<p>一语惊醒梦中虎，老虎害怕极了，赶紧急匆匆辞别狐狸和狼两家，回到部落里。</p>
-<p>老虎赶紧对羊说，这个房子不收你的钱了，你赶紧生羊宝宝吧。</p>
-<p>老羊抱着母羊，老泪纵横，叹了一口气，说：“老虎大人，您可能有所不知，我们已经老了，生不出羊宝宝了”。</p>
-<p>老虎急得像热锅上的蚂蚁，但又没有办法，只有让羊不分白天黑夜生产羊毛去别的部落换肉吃，终于，二十年后老羊和母羊都老死了。</p>
-<p>这时，几只小老虎也长大了，但是每天都饿着肚子，老虎爸爸看了，叹了一口气，把狐狸和狼都邀请到家里来。</p>
-<p>但是狐狸说有急事，连夜拖家带口变成鳄鱼逃到河里去了。</p>
-<p>狼跟自己老伴商量，带好金条准备送给老虎，但是老虎收了金条后，把狼老两口都咬死，喂给了小老虎吃。</p>
-<p>说也奇怪，自从老狼死后，它们的小狼中，有几只也长出了羊毛。</p>
-<p>欲知后事如何，且听下回分解。</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
     <title>（不定期更新）《加密与解密》学习笔记</title>
     <url>/2022/01/15/en&amp;decrypt.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>与csapp相比，《加密与解密》更偏向于实践一点，内容丰富但比较杂。汇编代码语法与csapp不同，采用intel语法。</p>
@@ -835,6 +804,25 @@
 <h3 id="控制语句——1-17-2022"><a href="#控制语句——1-17-2022" class="headerlink" title="控制语句——1/17/2022"></a>控制语句——1/17/2022</h3><p>（大多数都在csapp讲过了，没什么特别重要的点）</p>
 <p><code>a &amp; (-b)</code> 且b是2的幂，等价于$\lfloor \frac{a}{b} \rfloor * b$</p>
 <p><code>sbb A B</code>指令：<code>A = A - B - CF</code> </p>
+<h3 id="循环语句——1-23-2022"><a href="#循环语句——1-23-2022" class="headerlink" title="循环语句——1/23/2022"></a>循环语句——1/23/2022</h3><p>与csapp的讲述相同，本质就是高地址向低地址的跳转。</p>
+<blockquote>
+<p>更正：</p>
+<ol>
+<li><p>两个方案的<code>i &lt; 5</code>应改为<code>i &lt;= 5</code>。</p>
+</li>
+<li><p>未优化代码中0x40102E处的注释应是“由高地址向低地址区域”。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="数学运算符——1-23-2022"><a href="#数学运算符——1-23-2022" class="headerlink" title="数学运算符——1/23/2022"></a>数学运算符——1/23/2022</h3><p>加减法使用lea指令加速运算。</p>
+<p>乘法使用位移指令加速。</p>
+<p>除法在除数已知的情况下会乘一个常数（类似于逆元），取结果的高位。</p>
+<p>如果结果是负数，值会+1（可能与负数的向0舍入有关）。</p>
+<h3 id="文本字符串——1-23-2022"><a href="#文本字符串——1-23-2022" class="headerlink" title="文本字符串——1/23/2022"></a>文本字符串——1/23/2022</h3><p>目前惯用的C字符串结尾为<code>&#39;\0&#39;</code>。其余字符串为DOS字符串（结尾为<code>$</code>）、PASCAL字符串（单字节开头的ANSI字符表示长度）和Delphi字符串（双字节或四字节）。</p>
+<p>如果出现<code>mov ecx, FFFFFFFF</code>一句，代表程序很有可能获取字符串的长度，汇编代码如下。</p>
+<p><img src="/2022/01/15/en&decrypt/strlen.png"></p>
+<h3 id="指令修改技巧——1-24-2022"><a href="#指令修改技巧——1-24-2022" class="headerlink" title="指令修改技巧——1/24/2022"></a>指令修改技巧——1/24/2022</h3><p>感觉没什么好说的，直接贴图总结吧。</p>
+<p><img src="/2022/01/15/en&decrypt/trick32.png"></p>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -867,33 +855,35 @@
       </tags>
   </entry>
   <entry>
-    <title>游戏项目之简易扫雷</title>
-    <url>/2021/12/28/minesweep.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
-<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
-<p>欢迎大家提issue和pull request</p>
-<span id="more"></span>
-<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
-<p>2）本项目的功能说明：</p>
-<p>   ①简单、普通、困难、自定义四种模式</p>
-<p>   ②前三种模式的时间排行榜（文件归档）</p>
-<p>   ③快速扫雷与快速插旗</p>
-<p>   ④同时支持鼠标和键盘操作</p>
-<p>   ⑤游戏背景音乐的播放和控制 </p>
-<p>3）本项目的开发环境和工具</p>
-<p>   开发环境：vscode mingw 8.1.0</p>
-<p>   工具：ege20.08</p>
-<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
-<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
-<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
-<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+    <title>(转载) 撸羊毛</title>
+    <url>/2022/01/05/fable.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
+<p>作者：齐辛格尔<br>链接：<a href="https://www.zhihu.com/question/489610689/answer/2150453989">https://www.zhihu.com/question/489610689/answer/2150453989</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<p>羊已经三十岁了，娶了一只母羊，准备在自家地里盖房子，想生几只小羊。</p>
+<p>老虎看见了，就对羊说，这块地是老虎的，不许私自盖房子，要住自己去买。</p>
+<p>狐狸听说了这件事，于是送了老虎几块肉，用一百金条买了这块地并且建房子，但房子建好后要卖一千金条。</p>
+<p>羊只有十块金条，买不起这个房子。</p>
+<p>狼看见了，拿着一千金条去找羊，说可以借这一千金条给他，分三十年还完，但是每年羊需要付四块金条的利息。</p>
+<p>于是羊拿着这一千金条去找狐狸买了房子。</p>
+<p>但是，羊没有生出小羊。</p>
+<p>因为每年要还狼的利息而不停被人薅羊毛，天天感冒，身体很差，导致生不出小羊。</p>
+<p>三十年过去了，羊头发白了，也老了，小羊一直没生出来，房子也不值钱了。但是老虎，狐狸和狼都赚了很多金条，生了很多小老虎小狐狸和小狼。</p>
+<p>一天，他们相约一起去河边游泳，对着鳄鱼说：“你看看我们部落多富裕，我们家的小老虎小狐狸和小狼都喂得白白胖胖的”。</p>
+<p>鳄鱼看了很不屑，带着自己的几十只鳄鱼宝宝噗通噗通跳进河里了，并且说：“你们别得意得太早，你们的宝宝很快就要饿死了，因为羊生不出羊宝宝，他们没肉吃迟早饿死！而我至少可以吃河里的鱼，永远饿不死！”</p>
+<p>一语惊醒梦中虎，老虎害怕极了，赶紧急匆匆辞别狐狸和狼两家，回到部落里。</p>
+<p>老虎赶紧对羊说，这个房子不收你的钱了，你赶紧生羊宝宝吧。</p>
+<p>老羊抱着母羊，老泪纵横，叹了一口气，说：“老虎大人，您可能有所不知，我们已经老了，生不出羊宝宝了”。</p>
+<p>老虎急得像热锅上的蚂蚁，但又没有办法，只有让羊不分白天黑夜生产羊毛去别的部落换肉吃，终于，二十年后老羊和母羊都老死了。</p>
+<p>这时，几只小老虎也长大了，但是每天都饿着肚子，老虎爸爸看了，叹了一口气，把狐狸和狼都邀请到家里来。</p>
+<p>但是狐狸说有急事，连夜拖家带口变成鳄鱼逃到河里去了。</p>
+<p>狼跟自己老伴商量，带好金条准备送给老虎，但是老虎收了金条后，把狼老两口都咬死，喂给了小老虎吃。</p>
+<p>说也奇怪，自从老狼死后，它们的小狼中，有几只也长出了羊毛。</p>
+<p>欲知后事如何，且听下回分解。</p>
 ]]></content>
       <categories>
-        <category>develop</category>
+        <category>随笔</category>
       </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -911,6 +901,31 @@
       <categories>
         <category>test</category>
       </categories>
+  </entry>
+  <entry>
+    <title>广义mt19937随机数逆向</title>
+    <url>/2022/01/22/mt19937_expand.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给出mt19937中的10个参数$ N、M、A、U、S、B、T、C、L、F $，并给出<strong>刚刚生成</strong>的前$ N $个伪随机数，求出伪随机数对应的种子seed。</p>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><h2 id="20pts"><a href="#20pts" class="headerlink" title="20pts"></a>20pts</h2><p>暴力枚举seed即可，代码略。</p>
+<h2 id="100pts"><a href="#100pts" class="headerlink" title="100pts"></a>100pts</h2><p>做法的大致思路是：生成的随机数→<code>twist</code>后的<code>state</code>→<code>twist</code>前可能的<code>state[-1]</code>→求得seed</p>
+<p>我们先考虑标准情况，也就是参数与论文完全一致的时候，这里有一篇<a href="http://blog.tolinchan.xyz/2021/07/27/%E6%A2%85%E6%A3%AE%E6%97%8B%E8%BD%AC%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/">现成的题解</a>。</p>
+<p>具体原理这里就不阐释了，给的链接和<a href="https://mivik.gitee.io/2020/solution/mivik-newbie-and-chinos-contest-2020-solution-amegura/">Mivik的题解</a>叙述得很清楚。</p>
+<p>然后当$A$的首位不为1时，就不能直接通过<code>tmp</code>的首位判断原来的<code>tmp</code>是不是奇数了。</p>
+<p>原题解中逆向<code>twist</code>的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrace</span>(<span class="params">cur</span>):</span></span><br><span class="line">    high = <span class="number">0x80000000</span></span><br><span class="line">    low = <span class="number">0x7fffffff</span></span><br><span class="line">    mask = <span class="number">0x9908b0df</span></span><br><span class="line">    state = cur</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">623</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        tmp = state[i]^state[(i+<span class="number">397</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        <span class="comment"># recover highest bit</span></span><br><span class="line">        res = tmp&amp;high</span><br><span class="line">        <span class="comment"># recover other 31 bits,when i =0,it just use the method again it so beautiful!!!!</span></span><br><span class="line">        tmp = state[i-<span class="number">1</span>]^state[(i+<span class="number">396</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        res |= (tmp)&amp;low</span><br><span class="line">        state[i] = res    </span><br><span class="line">    <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
+<p>这里的问题就出在<code>if tmp &amp; high == high:</code>这个条件判断已经失效，不能据此判定tmp的准确值。</p>
+<p>一个简便的做法是枚举<code>mt[N - 1]</code>的四种可能，然后由于<code>mt[i - 1] ^ mt[i - 1] &gt;&gt; 30</code>可逆，而且因为$F$是奇数，与<code>2 ** 32</code> 必定互质，因此可以通过求$F$的逆元来倒推seed。</p>
+<p>检验这四个seed的方式就是用seed再重新生成几个随机数，与输入比对即可。</p>
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_int32</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">0xFFFFFFFF</span> &amp; x)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mt19937</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, seed=<span class="number">0</span></span>):</span><span class="comment"># magic method (run code below automatically when an object is created) </span></span><br><span class="line">        self.mt = [<span class="number">0</span>] * N</span><br><span class="line">        self.mt[<span class="number">0</span>] = seed</span><br><span class="line">        self.mti = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, N):</span><br><span class="line">            self.mt[i] = _int32(F * (self.mt[i - <span class="number">1</span>] ^ self.mt[i - <span class="number">1</span>] &gt;&gt; <span class="number">30</span>) + i)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getstate</span>(<span class="params">self,op=<span class="literal">False</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.mti == <span class="number">0</span> <span class="keyword">and</span> op==<span class="literal">False</span>:</span><br><span class="line">            self.twist()</span><br><span class="line">        y = self.mt[self.mti]</span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        self.mti = (self.mti + <span class="number">1</span>) % N</span><br><span class="line">        <span class="keyword">return</span> _int32(y)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twist</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, N):</span><br><span class="line">            y = _int32((self.mt[i] &amp; <span class="number">0x80000000</span>) + (self.mt[(i + <span class="number">1</span>) % N] &amp; <span class="number">0x7fffffff</span>))</span><br><span class="line">            self.mt[i] = (y &gt;&gt; <span class="number">1</span>) ^ self.mt[(i + M) % N]</span><br><span class="line">            <span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                self.mt[i] = self.mt[i] ^ A</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inverse_right</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span></span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &gt;&gt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inverse_left</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span></span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &lt;&lt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">extract_number</span>(<span class="params">self,y</span>):</span> <span class="comment"># namely &quot;temper&quot; in Mivik&#x27;s code</span></span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recover</span>(<span class="params">self,y</span>):</span> <span class="comment"># inverse of extract_number</span></span><br><span class="line">        y = self.inverse_right(y,L)</span><br><span class="line">        y = self.inverse_left(y,T,C)</span><br><span class="line">        y = self.inverse_left(y,S,B)</span><br><span class="line">        y = self.inverse_right(y,U)</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setstate</span>(<span class="params">self,s</span>):</span> <span class="comment"># N generated random numbers -&gt; mt[] after twisting </span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(s)!=N):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;The length of prediction must be N!&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            self.mt[i]=self.recover(s[i])</span><br><span class="line">        <span class="comment">#self.mt=s</span></span><br><span class="line">        self.mti=<span class="number">0</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; </span></span><br><span class="line"><span class="string">    def predict(self,s): # a method to predict other pseudo random numbers after given N of them (useless in this problem)</span></span><br><span class="line"><span class="string">        self.setstate(s)</span></span><br><span class="line"><span class="string">        self.twist()</span></span><br><span class="line"><span class="string">        return self.getstate(True)</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invtwist</span>(<span class="params">self</span>):</span> <span class="comment"># mt[] after twisting -&gt; 4 possible values of mt[-1] before twisting</span></span><br><span class="line">        high = <span class="number">0x80000000</span></span><br><span class="line">        low = <span class="number">0x7fffffff</span></span><br><span class="line">        mask = A</span><br><span class="line">        opt = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>,N-<span class="number">2</span>,-<span class="number">1</span>): <span class="comment"># only process the last number</span></span><br><span class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                    tmp = self.mt[i]^self.mt[(i+M)%N]</span><br><span class="line">                    <span class="keyword">if</span> s==<span class="number">0</span>: <span class="comment"># two possibilities</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res = tmp&amp;high</span><br><span class="line">                    tmp = self.mt[i-<span class="number">1</span>]^self.mt[(i+M-<span class="number">1</span>)%N]</span><br><span class="line">                    <span class="keyword">if</span> t==<span class="number">0</span>: <span class="comment"># another two</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res |= (tmp)&amp;low</span><br><span class="line">                    opt[s * <span class="number">2</span> + t] = res</span><br><span class="line">        <span class="keyword">return</span> opt</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recover_seed</span>(<span class="params">self,last</span>):</span> <span class="comment"># mt[-1] -&gt; mt[0]</span></span><br><span class="line">        n = <span class="number">1</span> &lt;&lt; <span class="number">32</span></span><br><span class="line">        inv = invert(F, n) <span class="comment"># inverse of F mod 2 ^ 32</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            last = ((last - i) * inv) % n</span><br><span class="line">            last = self.inverse_right(last, <span class="number">30</span>)</span><br><span class="line">        <span class="keyword">return</span> last</span><br><span class="line"></span><br><span class="line">N, M, A, U, S, B, T, C, L, F = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">inpt = [<span class="number">0</span>] * N <span class="comment"># align enough space</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (N):</span><br><span class="line">    inpt[i] = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">D = mt19937() </span><br><span class="line">D.setstate(inpt) <span class="comment"># using the input to recover state after twisting</span></span><br><span class="line">op = D.invtwist() <span class="comment"># generate four possibilities of D.mt[-1]</span></span><br><span class="line">seed = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>): <span class="comment"># check the seeds one by one</span></span><br><span class="line">    seed[i] = D.recover_seed(op[i]) </span><br><span class="line">    E = mt19937(seed[i])</span><br><span class="line">    E.getstate() <span class="comment"># another psuedo random number generator</span></span><br><span class="line">    flag = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>): <span class="comment"># compare first 10 numbers is totally enough </span></span><br><span class="line">        <span class="keyword">if</span> E.extract_number(E.mt[j]) != inpt[j]:</span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> flag &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(seed[i])</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>时间复杂度$ O(N) $。</p>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>crypto</tag>
+      </tags>
   </entry>
   <entry>
     <title>二十——C2驾照养成记</title>
@@ -963,6 +978,35 @@
       <categories>
         <category>随笔</category>
       </categories>
+  </entry>
+  <entry>
+    <title>游戏项目之简易扫雷</title>
+    <url>/2021/12/28/minesweep.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
+<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
+<p>欢迎大家提issue和pull request</p>
+<span id="more"></span>
+<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
+<p>2）本项目的功能说明：</p>
+<p>   ①简单、普通、困难、自定义四种模式</p>
+<p>   ②前三种模式的时间排行榜（文件归档）</p>
+<p>   ③快速扫雷与快速插旗</p>
+<p>   ④同时支持鼠标和键盘操作</p>
+<p>   ⑤游戏背景音乐的播放和控制 </p>
+<p>3）本项目的开发环境和工具</p>
+<p>   开发环境：vscode mingw 8.1.0</p>
+<p>   工具：ege20.08</p>
+<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
+<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
+<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
+<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
   </entry>
   <entry>
     <title>安全项目第一题解答及思路分析</title>
@@ -1212,69 +1256,6 @@
       </tags>
   </entry>
   <entry>
-    <title>再见，acm</title>
-    <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
-<p>比赛时间是在12月26日下午1:30~5:00，一共有10道题。众所周知acm没有部分分，排名是按照做题时间与罚时来算的。我在这个下午AC了4道题，排名16/35，然而前14名才能晋级。</p>
-<p>于是，这是我在大学打的第一场acm，也大概是最后一场了。</p>
-<span id="more"></span>
-<h1 id="游记内容"><a href="#游记内容" class="headerlink" title="游记内容"></a>游记内容</h1><h2 id="当天上午"><a href="#当天上午" class="headerlink" title="当天上午"></a>当天上午</h2><p>就写了两个板子，一个dijkstra，一个线段树。</p>
-<p>dijkstra犯的几个错误（一年没写了，记不得也正常）</p>
-<ul>
-<li>vis数组应该判断u，而不是判断v。</li>
-<li>make_pair搞忘了，编译通不过。</li>
-</ul>
-<p>线段树犯的几个错误</p>
-<ul>
-<li>忘记建树</li>
-<li>忘记pushdown怎么写</li>
-</ul>
-<p><del>然而我并没有忘记把数组和懒标记开4倍。</del></p>
-<p>午饭前得知可以带算法竞赛的书，也可以带纸质代码，可惜没时间准备了。</p>
-<p>下午准备摸鱼。</p>
-<h2 id="当天下午"><a href="#当天下午" class="headerlink" title="当天下午"></a>当天下午</h2><p>题目链接：<a href="https://vjudge.net/contest/474375">https://vjudge.net/contest/474375</a></p>
-<p>A题我本来想打表的，但是一看一群人瞬间就A了，再看看样例，规律很明显。直接$(n+1)/10$搞定，没有什么坑点。（CF评级800）</p>
-<p>接下来看B题，B题看上去像道数学题，仔细一看是个背包。但是我已经有一年没写背包了，我早已经忘了怎么写。我去了趟厕所，想掏出手机复习一下，想想还是算了——反正我就是个摸鱼的。</p>
-<p>在思考B题的同时，排行榜里已经有一堆人A了C题，但是我没管。直到我想了40分钟也没有一个时间复杂度正确的做法后，我终于暂时放掉了B题。</p>
-<p>C题果然是个签到题，简单贪心，没什么好说的。（CF评级800）</p>
-<p>然后G题A的人也比较多，然后我发现这道题是一眼题，要求的dijkstra我上午才写过，20分钟就A了。（CF评级1600）</p>
-<blockquote>
-<p>思路就是对s和t分别求遍单源最短路，然后比较$min(dis1[i]+1+dis2[j],dis1[j]+1+dis2[i])$是否等于1。如果是那么加边就符合条件。</p>
-</blockquote>
-<p>这个时候我rk12.</p>
-<p>然后回过头来思考B题，经过了一个小时的挣扎后，我证明了自己的$O(m^2)$的做法是错误的，然后重新构思了一个$O(m^3)$的做法。</p>
-<blockquote>
-<p>我之前的$O(m^2)$做法是把相同数的不同倍数处理成一个0/1背包，比如说有三个2，那么背包就为2 4 6.但是这样做，你选择的背包就有可能超过2的个数.比如说当m=12，这种算法会把2 4 6都选上，也就是你选了6个2，这当然是错误的。</p>
-<p>我的改进方法是0/1分组背包，首先循环最外层是对组数进行枚举，中间层就是对相同数的不同倍数进行枚举，最后一层枚举背包体积。</p>
-<p>我唯一做的一个优化就是如果在某一组结束之后已经枚举出和为0的方案，就直接break。</p>
-</blockquote>
-<p>当m=1000的时候，这是个复杂度错误的做法，没想到我就刚好卡过了，1700ms/2000ms。</p>
-<p><del>事后证明这个题要专门构造数据卡复杂度错误的做法也不是很容易，因此这种做法也是完全正确滴！</del>正解的标签是dp，数据结构，组合数学和双指针，我完全搞不懂。（CF评级1900，还是比较高了）</p>
-<p>这个时候我rk10.</p>
-<p>然后我再看了下排行榜，发现F题和J题A的人比较多。F题让我想起了今年CSP的t1，而J题是个构造题，于是我义无反顾地选择了J题。</p>
-<p>J题我花了半个小时写完了，交上去WA on case 5，佛了。找半天找不出错，于是我打算写一个spj。</p>
-<p>因为spj和checker也有一年没有写过了，因此我花了一个小时才写好，结果自己写的spj又不知道哪儿出锅了，次长边的长度始终是0.</p>
-<p>这个时候我rk14.</p>
-<p>我觉得我不能再浪费时间在spj上了，于是我开始自己写数据自己肉眼判错。终于在比赛结束前15min发现了一个错误，用了5min改好，再次提交。</p>
-<p>结果还是WA掉了。</p>
-<p>剩下10min我躺平了，我看到我从rk14掉到了rk16，接受着自己算法竞赛就地退役的现实。</p>
-<p>像上次强网杯那样的晋级奇迹应该不会再发生了吧，毕竟有10个人都能A掉四道题。</p>
-<h1 id="事后"><a href="#事后" class="headerlink" title="事后"></a>事后</h1><p>稍微有一点可惜，因为F题也是一道贪心，CF评级是1500，比J题的1600还简单一点，有一点亏。</p>
-<p>关键是J题我判定的特殊情况(d=h)中，有一类特殊情况中的特殊情况(d=h=1)，不能使用这种我10min中前的修正方法判定。更坑的事情是，d=h=1的情况在我之前的代码是完全正确的，导致我完全忽略了在这里翻车的可能。</p>
-<p>只不过——</p>
-<p>听acheing(rk2)说，选上的人要补之前的算法作业。我认为，即使我侥幸进入了前14名，由于学校的代表队也就那么几个人，自己也就是个打酱油的，没必要在acm队里面瞎参合。</p>
-<p>所以这究竟是一种幸运还是不幸呢？或许我就差那么一点进队，大概也是一种天意吧。我更应该干的事情是学好自己的专业，而不是尝试“脚踏两只船”，把自己弄得太疲惫。</p>
-<p>所以——</p>
-<p>さようなら，acm</p>
-]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(转载) 《茸雪》讲稿</title>
     <url>/2021/12/19/%E3%80%8A%E8%8C%B8%E9%9B%AA%E3%80%8B%E8%AE%B2%E7%A8%BF.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="《茸雪》讲稿"><a href="#《茸雪》讲稿" class="headerlink" title="《茸雪》讲稿"></a>《茸雪》讲稿</h1><p>反乌托邦的爱情，存在主义的自由、反抗。</p>
@@ -1416,6 +1397,69 @@
       </categories>
   </entry>
   <entry>
+    <title>再见，acm</title>
+    <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
+<p>比赛时间是在12月26日下午1:30~5:00，一共有10道题。众所周知acm没有部分分，排名是按照做题时间与罚时来算的。我在这个下午AC了4道题，排名16/35，然而前14名才能晋级。</p>
+<p>于是，这是我在大学打的第一场acm，也大概是最后一场了。</p>
+<span id="more"></span>
+<h1 id="游记内容"><a href="#游记内容" class="headerlink" title="游记内容"></a>游记内容</h1><h2 id="当天上午"><a href="#当天上午" class="headerlink" title="当天上午"></a>当天上午</h2><p>就写了两个板子，一个dijkstra，一个线段树。</p>
+<p>dijkstra犯的几个错误（一年没写了，记不得也正常）</p>
+<ul>
+<li>vis数组应该判断u，而不是判断v。</li>
+<li>make_pair搞忘了，编译通不过。</li>
+</ul>
+<p>线段树犯的几个错误</p>
+<ul>
+<li>忘记建树</li>
+<li>忘记pushdown怎么写</li>
+</ul>
+<p><del>然而我并没有忘记把数组和懒标记开4倍。</del></p>
+<p>午饭前得知可以带算法竞赛的书，也可以带纸质代码，可惜没时间准备了。</p>
+<p>下午准备摸鱼。</p>
+<h2 id="当天下午"><a href="#当天下午" class="headerlink" title="当天下午"></a>当天下午</h2><p>题目链接：<a href="https://vjudge.net/contest/474375">https://vjudge.net/contest/474375</a></p>
+<p>A题我本来想打表的，但是一看一群人瞬间就A了，再看看样例，规律很明显。直接$(n+1)/10$搞定，没有什么坑点。（CF评级800）</p>
+<p>接下来看B题，B题看上去像道数学题，仔细一看是个背包。但是我已经有一年没写背包了，我早已经忘了怎么写。我去了趟厕所，想掏出手机复习一下，想想还是算了——反正我就是个摸鱼的。</p>
+<p>在思考B题的同时，排行榜里已经有一堆人A了C题，但是我没管。直到我想了40分钟也没有一个时间复杂度正确的做法后，我终于暂时放掉了B题。</p>
+<p>C题果然是个签到题，简单贪心，没什么好说的。（CF评级800）</p>
+<p>然后G题A的人也比较多，然后我发现这道题是一眼题，要求的dijkstra我上午才写过，20分钟就A了。（CF评级1600）</p>
+<blockquote>
+<p>思路就是对s和t分别求遍单源最短路，然后比较$min(dis1[i]+1+dis2[j],dis1[j]+1+dis2[i])$是否等于1。如果是那么加边就符合条件。</p>
+</blockquote>
+<p>这个时候我rk12.</p>
+<p>然后回过头来思考B题，经过了一个小时的挣扎后，我证明了自己的$O(m^2)$的做法是错误的，然后重新构思了一个$O(m^3)$的做法。</p>
+<blockquote>
+<p>我之前的$O(m^2)$做法是把相同数的不同倍数处理成一个0/1背包，比如说有三个2，那么背包就为2 4 6.但是这样做，你选择的背包就有可能超过2的个数.比如说当m=12，这种算法会把2 4 6都选上，也就是你选了6个2，这当然是错误的。</p>
+<p>我的改进方法是0/1分组背包，首先循环最外层是对组数进行枚举，中间层就是对相同数的不同倍数进行枚举，最后一层枚举背包体积。</p>
+<p>我唯一做的一个优化就是如果在某一组结束之后已经枚举出和为0的方案，就直接break。</p>
+</blockquote>
+<p>当m=1000的时候，这是个复杂度错误的做法，没想到我就刚好卡过了，1700ms/2000ms。</p>
+<p><del>事后证明这个题要专门构造数据卡复杂度错误的做法也不是很容易，因此这种做法也是完全正确滴！</del>正解的标签是dp，数据结构，组合数学和双指针，我完全搞不懂。（CF评级1900，还是比较高了）</p>
+<p>这个时候我rk10.</p>
+<p>然后我再看了下排行榜，发现F题和J题A的人比较多。F题让我想起了今年CSP的t1，而J题是个构造题，于是我义无反顾地选择了J题。</p>
+<p>J题我花了半个小时写完了，交上去WA on case 5，佛了。找半天找不出错，于是我打算写一个spj。</p>
+<p>因为spj和checker也有一年没有写过了，因此我花了一个小时才写好，结果自己写的spj又不知道哪儿出锅了，次长边的长度始终是0.</p>
+<p>这个时候我rk14.</p>
+<p>我觉得我不能再浪费时间在spj上了，于是我开始自己写数据自己肉眼判错。终于在比赛结束前15min发现了一个错误，用了5min改好，再次提交。</p>
+<p>结果还是WA掉了。</p>
+<p>剩下10min我躺平了，我看到我从rk14掉到了rk16，接受着自己算法竞赛就地退役的现实。</p>
+<p>像上次强网杯那样的晋级奇迹应该不会再发生了吧，毕竟有10个人都能A掉四道题。</p>
+<h1 id="事后"><a href="#事后" class="headerlink" title="事后"></a>事后</h1><p>稍微有一点可惜，因为F题也是一道贪心，CF评级是1500，比J题的1600还简单一点，有一点亏。</p>
+<p>关键是J题我判定的特殊情况(d=h)中，有一类特殊情况中的特殊情况(d=h=1)，不能使用这种我10min中前的修正方法判定。更坑的事情是，d=h=1的情况在我之前的代码是完全正确的，导致我完全忽略了在这里翻车的可能。</p>
+<p>只不过——</p>
+<p>听acheing(rk2)说，选上的人要补之前的算法作业。我认为，即使我侥幸进入了前14名，由于学校的代表队也就那么几个人，自己也就是个打酱油的，没必要在acm队里面瞎参合。</p>
+<p>所以这究竟是一种幸运还是不幸呢？或许我就差那么一点进队，大概也是一种天意吧。我更应该干的事情是学好自己的专业，而不是尝试“脚踏两只船”，把自己弄得太疲惫。</p>
+<p>所以——</p>
+<p>さようなら，acm</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>十九——热爱杀105个人的你</title>
     <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -1460,24 +1504,6 @@
       </tags>
   </entry>
   <entry>
-    <title>第一篇博客</title>
-    <url>/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="第一次见面"><a href="#第一次见面" class="headerlink" title="第一次见面"></a>第一次见面</h2><p>你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。</p>
-<h2 id="关于Markdown"><a href="#关于Markdown" class="headerlink" title="关于Markdown"></a>关于Markdown</h2><p>当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。</p>
-<p><strong>祝你好运</strong></p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</script><script type="math/tex; mode=display">f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz</script><script type="math/tex; mode=display">\sigma = \sqrt{ \frac{1}{N} \sum_{i=1}^N (x_i -\mu)^2}</script><script type="math/tex; mode=display">\int\frac{1}{ax+b}\mbox{d}x=\frac{1}{a}\ln \left | ax+b\right|+C</script><script type="math/tex; mode=display">\vec{\nabla} \times \vec{F} =
-            \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{i}
-          + \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{j}
-          + \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{k}</script><head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-  </entry>
-  <entry>
     <title>碎碎念</title>
     <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -1498,6 +1524,24 @@
       <tags>
         <tag>encrypted</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>第一篇博客</title>
+    <url>/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="第一次见面"><a href="#第一次见面" class="headerlink" title="第一次见面"></a>第一次见面</h2><p>你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。</p>
+<h2 id="关于Markdown"><a href="#关于Markdown" class="headerlink" title="关于Markdown"></a>关于Markdown</h2><p>当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。</p>
+<p><strong>祝你好运</strong></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</script><script type="math/tex; mode=display">f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz</script><script type="math/tex; mode=display">\sigma = \sqrt{ \frac{1}{N} \sum_{i=1}^N (x_i -\mu)^2}</script><script type="math/tex; mode=display">\int\frac{1}{ax+b}\mbox{d}x=\frac{1}{a}\ln \left | ax+b\right|+C</script><script type="math/tex; mode=display">\vec{\nabla} \times \vec{F} =
+            \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{i}
+          + \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{j}
+          + \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{k}</script><head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
   </entry>
   <entry>
     <title>scuctf新生赛——幽篁终见天战队wp</title>

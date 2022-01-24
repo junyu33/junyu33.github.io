@@ -37,6 +37,34 @@
   </entry>
   
   <entry>
+    <title>广义mt19937随机数逆向</title>
+    <link href="https://junyu33.github.io/2022/01/22/mt19937_expand.html"/>
+    <id>https://junyu33.github.io/2022/01/22/mt19937_expand.html</id>
+    <published>2022-01-22T14:30:00.000Z</published>
+    <updated>2022-01-23T15:56:04.516Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
+    
+    
+      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
     <title>C转python速成</title>
     <link href="https://junyu33.github.io/2022/01/18/c2py.html"/>
     <id>https://junyu33.github.io/2022/01/18/c2py.html</id>
@@ -65,7 +93,7 @@
     <link href="https://junyu33.github.io/2022/01/15/en&amp;decrypt.html"/>
     <id>https://junyu33.github.io/2022/01/15/en&amp;decrypt.html</id>
     <published>2022-01-15T15:30:00.000Z</published>
-    <updated>2022-01-17T16:09:19.214Z</updated>
+    <updated>2022-01-23T16:06:21.727Z</updated>
     
     <summary type="html">
     
@@ -83,7 +111,7 @@
     <link href="https://junyu33.github.io/2022/01/15/csapp.html"/>
     <id>https://junyu33.github.io/2022/01/15/csapp.html</id>
     <published>2022-01-15T14:30:00.000Z</published>
-    <updated>2022-01-22T08:36:51.065Z</updated>
+    <updated>2022-01-22T16:14:08.539Z</updated>
     
     <summary type="html">
     
@@ -446,26 +474,6 @@
     
       <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>猜数游戏</title>
-    <link href="https://junyu33.github.io/2021/08/27/guess.html"/>
-    <id>https://junyu33.github.io/2021/08/27/guess.html</id>
-    <published>2021-08-27T12:00:00.000Z</published>
-    <updated>2021-09-25T14:14:23.890Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="OI" scheme="https://junyu33.github.io/categories/OI/"/>
-    
-    
-      <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>
     
   </entry>
   

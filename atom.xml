@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2022-01-12T14:30:30.190Z</updated>
+  <updated>2022-01-24T15:52:49.132Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://junyu33.github.io/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html"/>
     <id>https://junyu33.github.io/2038/01/19/碎碎念.html</id>
     <published>2038-01-18T19:14:08.000Z</published>
-    <updated>2022-01-12T14:30:30.190Z</updated>
+    <updated>2022-01-24T15:52:49.132Z</updated>
     
     <summary type="html">
     
@@ -41,17 +41,11 @@
     <link href="https://junyu33.github.io/2022/01/22/mt19937_expand.html"/>
     <id>https://junyu33.github.io/2022/01/22/mt19937_expand.html</id>
     <published>2022-01-22T14:30:00.000Z</published>
-    <updated>2022-01-23T15:56:04.516Z</updated>
+    <updated>2022-01-24T04:30:16.399Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
+      &lt;h1 id=&quot;题意简述&quot;&gt;&lt;a href=&quot;#题意简述&quot; class=&quot;headerlink&quot; title=&quot;题意简述&quot;&gt;&lt;/a&gt;题意简述&lt;/h1&gt;&lt;p&gt;给出mt19937中的10个参数$ N、M、A、U、S、B、T、C、L、F $，并给出&lt;strong&gt;刚刚生成&lt;/strong&gt;的前$ N $个伪随机数，求出伪随机数对应的种子seed。&lt;/p&gt;
     
     </summary>
     
@@ -93,7 +87,7 @@
     <link href="https://junyu33.github.io/2022/01/15/en&amp;decrypt.html"/>
     <id>https://junyu33.github.io/2022/01/15/en&amp;decrypt.html</id>
     <published>2022-01-15T15:30:00.000Z</published>
-    <updated>2022-01-23T16:06:21.727Z</updated>
+    <updated>2022-01-25T12:21:49.885Z</updated>
     
     <summary type="html">
     

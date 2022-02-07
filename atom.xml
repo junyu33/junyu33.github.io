@@ -37,11 +37,35 @@
   </entry>
   
   <entry>
+    <title>（不定期更新）二进制ctf练习</title>
+    <link href="https://junyu33.github.io/2022/02/07/bin_ctf.html"/>
+    <id>https://junyu33.github.io/2022/02/07/bin_ctf.html</id>
+    <published>2022-02-07T14:00:00.000Z</published>
+    <updated>2022-02-07T14:50:58.038Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;分为re、pwn和other三部分，用作记录思路和用得上的gadget。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何正确的抢拼手气红包</title>
     <link href="https://junyu33.github.io/2022/02/04/%E6%8A%A2%E7%BA%A2%E5%8C%85.html"/>
     <id>https://junyu33.github.io/2022/02/04/抢红包.html</id>
     <published>2022-02-04T07:00:00.000Z</published>
-    <updated>2022-02-04T08:24:39.821Z</updated>
+    <updated>2022-02-04T08:29:07.695Z</updated>
     
     <summary type="html">
     
@@ -107,7 +131,7 @@
     <link href="https://junyu33.github.io/2022/01/15/en&amp;decrypt.html"/>
     <id>https://junyu33.github.io/2022/01/15/en&amp;decrypt.html</id>
     <published>2022-01-15T15:30:00.000Z</published>
-    <updated>2022-02-03T02:51:06.109Z</updated>
+    <updated>2022-02-07T15:04:56.424Z</updated>
     
     <summary type="html">
     
@@ -117,6 +141,10 @@
     
       <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
+    
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
   </entry>
   
@@ -289,13 +317,13 @@
       <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
     
     
-      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
-    
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
-      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
-    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
       <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
     
@@ -395,9 +423,9 @@
       <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
     
     
-      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
-    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
   </entry>
   
@@ -436,40 +464,13 @@
       <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
     
     
-      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
-    
-      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
-    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
-      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>强网杯出土记</title>
-    <link href="https://junyu33.github.io/2021/09/25/ctf02.html"/>
-    <id>https://junyu33.github.io/2021/09/25/ctf02.html</id>
-    <published>2021-09-25T13:00:00.000Z</published>
-    <updated>2021-10-17T15:21:05.040Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。&lt;/p&gt;
-&lt;p&gt;以下按做题顺序写wp（这次就我一个人做出来题可还行）：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
-    
-    
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>
-    
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
-    
       <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
+    
+      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
     
   </entry>
   

@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://junyu33.github.io/2022/01/15/en&decrypt/file_api.png">
 <meta property="og:image" content="https://junyu33.github.io/2022/01/15/en&decrypt/breakpoint.png">
 <meta property="article:published_time" content="2022-01-15T15:30:00.000Z">
-<meta property="article:modified_time" content="2022-02-11T15:32:36.233Z">
+<meta property="article:modified_time" content="2022-02-12T08:20:16.995Z">
 <meta property="article:author" content="丨junyu33丨">
 <meta property="article:tag" content="reverse">
 <meta property="article:tag" content="pwn">
@@ -363,7 +363,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-02-11 23:32:36" itemprop="dateModified" datetime="2022-02-11T23:32:36+08:00">2022-02-11</time>
+        <time title="修改时间：2022-02-12 16:20:16" itemprop="dateModified" datetime="2022-02-12T16:20:16+08:00">2022-02-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -383,14 +383,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>7.9k</span>
+      <span>8.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
+      <span>8 分钟</span>
     </span>
 </div>
 
@@ -670,11 +670,9 @@
 </li>
 </ul>
 <h2 id="时间限制——2-8-2022"><a href="#时间限制——2-8-2022" class="headerlink" title="时间限制——2/8/2022"></a>时间限制——2/8/2022</h2><ul>
-<li>常见的计时器函数：<code>SetTimer() + KillTimer()</code>,<code>timeSetEvent()</code>,<code>GetTickCount()</code>,<code>timeGetTime()</code>.</li>
-<li><p>常见的用于获取时间的函数：<code>GetSystemTime()</code>,<code>GetLocalTime()</code>,<code>GetFileTime()</code>.</p>
-</li>
-<li><p>去除时间限制的两种方式：</p>
-<ul>
+<li>常见的计时器函数：<code>SetTimer()</code>,<code>KillTimer()</code>,<code>timeSetEvent()</code>,<code>GetTickCount()</code>,<code>timeGetTime()</code>.</li>
+<li>常见的用于获取时间的函数：<code>GetSystemTime()</code>,<code>GetLocalTime()</code>,<code>GetFileTime()</code>.</li>
+<li>去除时间限制的两种方式：<ul>
 <li>跳过时间函数。</li>
 <li>跳过判断超时跳转退出的函数。</li>
 </ul>
@@ -684,7 +682,7 @@
 <h2 id="菜单功能限制——2-9-2022"><a href="#菜单功能限制——2-9-2022" class="headerlink" title="菜单功能限制——2/9/2022"></a>菜单功能限制——2/9/2022</h2><ul>
 <li><p>相关函数：</p>
 <ul>
-<li><p>EnableMenuItem()函数为<code>BOOL EnableMenuItem(HMENU hMenu，UINT uIDEnableItem，UINT uEnable)</code>。其中uEnable项有<code>MF_ENABLED</code>(0h)，<code>MF_GRAYED</code>(1h)，<code>MF_DISABLED</code>(2h)，<code>MF_COMMAND</code>和<code>MF_BYPOSITION</code>.</p>
+<li><p>EnableMenuItem()函数为<code>BOOL EnableMenuItem(HMENU hMenu, UINT uIDEnableItem, UINT uEnable)</code>。其中uEnable项有<code>MF_ENABLED</code>(0h)，<code>MF_GRAYED</code>(1h)，<code>MF_DISABLED</code>(2h)，<code>MF_COMMAND</code>和<code>MF_BYPOSITION</code>.</p>
 </li>
 <li><p>EnableWindow()函数为<code>BOOL EnableWindow(HWND hWnd, BOOL bEnble)</code>。函数返回<strong>非0表示成功，0表示失败</strong>。</p>
 </li>
@@ -719,9 +717,21 @@
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">recv</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	SOCKET s,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">char</span> FAR *buf,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> len,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> flags</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><del>拆解思路：暂时跳过</del></p>
+<li><p>拆解思路：</p>
+<ol>
+<li>分析发送和接收的数据包。（关键）</li>
+<li>两种方式：<ul>
+<li>编写一个服务端用来接收和发送数据。如果客户端使用域名登录，可以修改hosts文件；如果使用IP直连，可以用<code>inet_addr</code>或<code>connect</code>设断将IP指向本地，也可以使用代理软件做到这一点。</li>
+<li>直接修改客户端程序。先将接收的正确数据包粘贴到某个空白地址，然后跳过<code>send()</code>、<code>recv()</code>函数并替换为处理正确数据包的函数，最后将诸如“连接失败”一类的对话框跳过即可。</li>
+</ul>
+</li>
+</ol>
 </li>
 </ul>
+<blockquote>
+<p>疑问：getasm.py脚本似乎不与IDA 7.6相兼容，如何重新实现以下代码？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">##《加密与解密》第四版</span></span><br><span class="line"><span class="comment">##code by DarkNess0ut</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Getasm</span>(<span class="params">ea_from, ea_to, range1, range2</span>):</span></span><br><span class="line">    fp = <span class="built_in">open</span>(<span class="string">&quot;code.txt&quot;</span>,<span class="string">&quot;w&quot;</span>)</span><br><span class="line">    ea = ea_from</span><br><span class="line">    <span class="keyword">while</span> ea &lt; ea_to:</span><br><span class="line">        cmd = GetMnem(ea)</span><br><span class="line">        <span class="keyword">if</span> cmd == <span class="string">&quot;mov&quot;</span> <span class="keyword">or</span> cmd == <span class="string">&quot;lea&quot;</span>:</span><br><span class="line">            opcode = Dword(NextNotTail(ea)-<span class="number">4</span>)</span><br><span class="line">            <span class="keyword">if</span> opcode &lt; <span class="number">0</span>: <span class="comment">#opcode &lt; 0,处理 mov  edx, [ebp-350]指令，否则处理mov  edx, [ebp+350]</span></span><br><span class="line">                opcode = (~opcode + <span class="number">1</span>)</span><br><span class="line">            Message(<span class="string">&quot;-&gt; %08X %08X\n&quot;</span> % (ea, opcode))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> range1 &lt;= opcode &lt;= range2:</span><br><span class="line">                delta = opcode - range1</span><br><span class="line">                MakeComm(ea, <span class="string">&quot;// +0x%04X&quot;</span> % delta) <span class="comment"># 加注释到IDA中</span></span><br><span class="line">                fp.write(<span class="string">&quot;%08X %s\n&quot;</span> % (ea, GetDisasm(ea)))</span><br><span class="line">        ea = NextNotTail(ea)</span><br><span class="line">    fp.close()</span><br><span class="line">    Message(<span class="string">&quot;OK!&quot;</span>)</span><br><span class="line">Getasm(<span class="number">0x401000</span>,<span class="number">0x40F951</span>,<span class="number">0x41AE68</span>,<span class="number">0x0041AEC1</span>);</span><br></pre></td></tr></table></figure>
+</blockquote>
 <h2 id="光盘检测——2-11-2022"><a href="#光盘检测——2-11-2022" class="headerlink" title="光盘检测——2/11/2022"></a>光盘检测——2/11/2022</h2><ul>
 <li><p>相关函数：</p>
 <ul>
@@ -869,13 +879,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">130k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">1:58</span>
   </span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

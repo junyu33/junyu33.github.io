@@ -810,6 +810,32 @@
       </categories>
   </entry>
   <entry>
+    <title>猜数游戏</title>
+    <url>/2021/08/27/guess.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//created by junyu33 in Feb. 3rd, 2020</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> ipt[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> used[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">char</span> b, <span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>, z = <span class="number">0</span>, pa = a, pc = c;</span><br><span class="line">    <span class="keyword">if</span> (a == <span class="number">0</span>)</span><br><span class="line">        x = ipt[a];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">while</span> (a)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> t = a % <span class="number">10</span>;</span><br><span class="line">            x += ipt[t] * <span class="built_in">pow</span>(<span class="number">10</span>, z);</span><br><span class="line">            z++;</span><br><span class="line">            a /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; pa;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">0</span>;</span><br><span class="line">    z = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>)</span><br><span class="line">        y = ipt[a];</span><br><span class="line">    <span class="keyword">while</span> (c)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> t = c % <span class="number">10</span>;</span><br><span class="line">        y += ipt[t] * <span class="built_in">pow</span>(<span class="number">10</span>, z);</span><br><span class="line">        z++;</span><br><span class="line">        c /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> preans;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">        preans = x + y;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;*&#x27;</span>)</span><br><span class="line">        preans = x * y;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">        preans = x - y;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">        preans = x / y;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; b;</span><br><span class="line">    cout &lt;&lt; pc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    z = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (preans == <span class="number">0</span>)</span><br><span class="line">        y = ipt[a];</span><br><span class="line">    <span class="keyword">while</span> (preans)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> t = preans % <span class="number">10</span>;</span><br><span class="line">        ans += ipt[t] * <span class="built_in">pow</span>(<span class="number">10</span>, z);</span><br><span class="line">        z++;</span><br><span class="line">        preans /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;=&quot;</span> &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++)</span><br><span class="line">        <span class="keyword">if</span> (ipt[i] != i)</span><br><span class="line">            cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; ipt[i] &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">srand</span>((<span class="keyword">unsigned</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;the meanings of some numbers have been changed, enter expressions to find changes&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;for example, if 2 turns to be 5 and 5 turns to be 2,then 2*2=52&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;to increase difficulty, you could only use \&quot;A+B\&quot; or \&quot;A*B\&quot;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;input the number of changes from 0 to 10&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ipt, <span class="number">-1</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(ipt));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">0</span>; p &lt; n;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="built_in">rand</span>()%<span class="number">10</span>, b = <span class="built_in">rand</span>()%<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (a != b &amp;&amp; !used[a])</span><br><span class="line">        &#123;</span><br><span class="line">            p++;</span><br><span class="line">            used[a] = <span class="number">1</span>;</span><br><span class="line">            ipt[a] = b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++)</span><br><span class="line">        <span class="keyword">if</span> (ipt[i] == <span class="number">-1</span>)</span><br><span class="line">            ipt[i] = i;</span><br><span class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        again:;</span><br><span class="line">        cnt++;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;input expression, pay attention that negative results will be replaced by 0&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">int</span> a, c;<span class="keyword">char</span> b;</span><br><span class="line">        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;</span><br><span class="line">        <span class="built_in">f</span>(a, b, c);</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;have an answer? input all changes, or input -1 to continue, or input -2 to show answer&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> in, out;</span><br><span class="line">            cin &gt;&gt; in;</span><br><span class="line">            <span class="keyword">if</span> (in == <span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">goto</span> again;</span><br><span class="line">            <span class="keyword">if</span> (in == <span class="number">-2</span>)</span><br><span class="line">                <span class="built_in">show</span>();</span><br><span class="line">            cin &gt;&gt; out;</span><br><span class="line">            <span class="keyword">if</span> (ipt[in] == out)</span><br><span class="line">                flag++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag == n)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;well done, you have finished it in &quot;</span> &lt;&lt; cnt &lt;&lt; <span class="string">&quot; steps&quot;</span> &lt;&lt;endl; </span><br><span class="line">            <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;WA&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>游戏的规则嘤文说得很清楚，这里简要阐述一下：</p>
+<blockquote>
+<p>变化规则：2 -&gt; 5,5 -&gt; 2</p>
+<p>原式：2*2</p>
+<p>第一次变：5*5</p>
+<p>结果为：25</p>
+<p>第二次变：52</p>
+</blockquote>
+<p>其实我是编写了加减乘除四种函数，但减法会有负数变为0的<strong>特性</strong>，除法只有取整，在实际猜数的过程中应用价值不高。于是我就吓唬没拿到源码的人，让他们只用加与乘来规避bug的出现。</p>
+<p>操作示例：（再按任意键继续就关了）</p>
+<p><img src="/2021/08/27/guess/1.png" style="zoom:60%;"></p>
+<p>希望各位能享受这款有点小烧脑的原创作品！</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>（转载）高考零分作文《无与伦比的二货老师》</title>
     <url>/2022/02/09/full_mark_composition.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>转载于<a href="https://zhuanlan.zhihu.com/p/383059348">https://zhuanlan.zhihu.com/p/383059348</a></p>
@@ -890,32 +916,6 @@
       </categories>
   </entry>
   <entry>
-    <title>猜数游戏</title>
-    <url>/2021/08/27/guess.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。</p>
-<span id="more"></span>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//created by junyu33 in Feb. 3rd, 2020</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> ipt[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> used[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">char</span> b, <span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>, z = <span class="number">0</span>, pa = a, pc = c;</span><br><span class="line">    <span class="keyword">if</span> (a == <span class="number">0</span>)</span><br><span class="line">        x = ipt[a];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">while</span> (a)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> t = a % <span class="number">10</span>;</span><br><span class="line">            x += ipt[t] * <span class="built_in">pow</span>(<span class="number">10</span>, z);</span><br><span class="line">            z++;</span><br><span class="line">            a /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; pa;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">0</span>;</span><br><span class="line">    z = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>)</span><br><span class="line">        y = ipt[a];</span><br><span class="line">    <span class="keyword">while</span> (c)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> t = c % <span class="number">10</span>;</span><br><span class="line">        y += ipt[t] * <span class="built_in">pow</span>(<span class="number">10</span>, z);</span><br><span class="line">        z++;</span><br><span class="line">        c /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> preans;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">        preans = x + y;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;*&#x27;</span>)</span><br><span class="line">        preans = x * y;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">        preans = x - y;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">        preans = x / y;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; b;</span><br><span class="line">    cout &lt;&lt; pc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    z = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (preans == <span class="number">0</span>)</span><br><span class="line">        y = ipt[a];</span><br><span class="line">    <span class="keyword">while</span> (preans)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> t = preans % <span class="number">10</span>;</span><br><span class="line">        ans += ipt[t] * <span class="built_in">pow</span>(<span class="number">10</span>, z);</span><br><span class="line">        z++;</span><br><span class="line">        preans /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;=&quot;</span> &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++)</span><br><span class="line">        <span class="keyword">if</span> (ipt[i] != i)</span><br><span class="line">            cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; ipt[i] &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">srand</span>((<span class="keyword">unsigned</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;the meanings of some numbers have been changed, enter expressions to find changes&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;for example, if 2 turns to be 5 and 5 turns to be 2,then 2*2=52&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;to increase difficulty, you could only use \&quot;A+B\&quot; or \&quot;A*B\&quot;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;input the number of changes from 0 to 10&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">memset</span>(ipt, <span class="number">-1</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(ipt));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">0</span>; p &lt; n;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="built_in">rand</span>()%<span class="number">10</span>, b = <span class="built_in">rand</span>()%<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (a != b &amp;&amp; !used[a])</span><br><span class="line">        &#123;</span><br><span class="line">            p++;</span><br><span class="line">            used[a] = <span class="number">1</span>;</span><br><span class="line">            ipt[a] = b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++)</span><br><span class="line">        <span class="keyword">if</span> (ipt[i] == <span class="number">-1</span>)</span><br><span class="line">            ipt[i] = i;</span><br><span class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        again:;</span><br><span class="line">        cnt++;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;input expression, pay attention that negative results will be replaced by 0&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">int</span> a, c;<span class="keyword">char</span> b;</span><br><span class="line">        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;</span><br><span class="line">        <span class="built_in">f</span>(a, b, c);</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;have an answer? input all changes, or input -1 to continue, or input -2 to show answer&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> in, out;</span><br><span class="line">            cin &gt;&gt; in;</span><br><span class="line">            <span class="keyword">if</span> (in == <span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">goto</span> again;</span><br><span class="line">            <span class="keyword">if</span> (in == <span class="number">-2</span>)</span><br><span class="line">                <span class="built_in">show</span>();</span><br><span class="line">            cin &gt;&gt; out;</span><br><span class="line">            <span class="keyword">if</span> (ipt[in] == out)</span><br><span class="line">                flag++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag == n)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;well done, you have finished it in &quot;</span> &lt;&lt; cnt &lt;&lt; <span class="string">&quot; steps&quot;</span> &lt;&lt;endl; </span><br><span class="line">            <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;WA&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>游戏的规则嘤文说得很清楚，这里简要阐述一下：</p>
-<blockquote>
-<p>变化规则：2 -&gt; 5,5 -&gt; 2</p>
-<p>原式：2*2</p>
-<p>第一次变：5*5</p>
-<p>结果为：25</p>
-<p>第二次变：52</p>
-</blockquote>
-<p>其实我是编写了加减乘除四种函数，但减法会有负数变为0的<strong>特性</strong>，除法只有取整，在实际猜数的过程中应用价值不高。于是我就吓唬没拿到源码的人，让他们只用加与乘来规避bug的出现。</p>
-<p>操作示例：（再按任意键继续就关了）</p>
-<p><img src="/2021/08/27/guess/1.png" style="zoom:60%;"></p>
-<p>希望各位能享受这款有点小烧脑的原创作品！</p>
-]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2021/07/06/hello-world.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! <del>This is your very first post.</del> Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -931,6 +931,35 @@
       <categories>
         <category>test</category>
       </categories>
+  </entry>
+  <entry>
+    <title>游戏项目之简易扫雷</title>
+    <url>/2021/12/28/minesweep.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
+<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
+<p>欢迎大家提issue和pull request</p>
+<span id="more"></span>
+<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
+<p>2）本项目的功能说明：</p>
+<p>   ①简单、普通、困难、自定义四种模式</p>
+<p>   ②前三种模式的时间排行榜（文件归档）</p>
+<p>   ③快速扫雷与快速插旗</p>
+<p>   ④同时支持鼠标和键盘操作</p>
+<p>   ⑤游戏背景音乐的播放和控制 </p>
+<p>3）本项目的开发环境和工具</p>
+<p>   开发环境：vscode mingw 8.1.0</p>
+<p>   工具：ege20.08</p>
+<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
+<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
+<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
+<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
   </entry>
   <entry>
     <title>二十——C2驾照养成记</title>
@@ -983,35 +1012,6 @@
       <categories>
         <category>随笔</category>
       </categories>
-  </entry>
-  <entry>
-    <title>游戏项目之简易扫雷</title>
-    <url>/2021/12/28/minesweep.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
-<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
-<p>欢迎大家提issue和pull request</p>
-<span id="more"></span>
-<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
-<p>2）本项目的功能说明：</p>
-<p>   ①简单、普通、困难、自定义四种模式</p>
-<p>   ②前三种模式的时间排行榜（文件归档）</p>
-<p>   ③快速扫雷与快速插旗</p>
-<p>   ④同时支持鼠标和键盘操作</p>
-<p>   ⑤游戏背景音乐的播放和控制 </p>
-<p>3）本项目的开发环境和工具</p>
-<p>   开发环境：vscode mingw 8.1.0</p>
-<p>   工具：ege20.08</p>
-<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
-<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
-<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
-<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
   </entry>
   <entry>
     <title>广义mt19937随机数逆向</title>
@@ -1204,6 +1204,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Xposed——从入门到放弃</title>
+    <url>/2021/08/10/xp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
+<span id="more"></span>
+<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
+<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>安全项目第三题解答及思路分析</title>
     <url>/2021/12/11/security03.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p><img src="/2021/12/11/security03/res.png"></p>
@@ -1268,22 +1284,6 @@
       </categories>
       <tags>
         <tag>reverse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Xposed——从入门到放弃</title>
-    <url>/2021/08/10/xp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
-<span id="more"></span>
-<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
-<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -1613,6 +1613,24 @@
       </tags>
   </entry>
   <entry>
+    <title>第一篇博客</title>
+    <url>/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="第一次见面"><a href="#第一次见面" class="headerlink" title="第一次见面"></a>第一次见面</h2><p>你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。</p>
+<h2 id="关于Markdown"><a href="#关于Markdown" class="headerlink" title="关于Markdown"></a>关于Markdown</h2><p>当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。</p>
+<p><strong>祝你好运</strong></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</script><script type="math/tex; mode=display">f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz</script><script type="math/tex; mode=display">\sigma = \sqrt{ \frac{1}{N} \sum_{i=1}^N (x_i -\mu)^2}</script><script type="math/tex; mode=display">\int\frac{1}{ax+b}\mbox{d}x=\frac{1}{a}\ln \left | ax+b\right|+C</script><script type="math/tex; mode=display">\vec{\nabla} \times \vec{F} =
+            \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{i}
+          + \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{j}
+          + \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{k}</script><head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+  </entry>
+  <entry>
     <title>碎碎念</title>
     <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -1633,24 +1651,6 @@
       <tags>
         <tag>encrypted</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>第一篇博客</title>
-    <url>/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="第一次见面"><a href="#第一次见面" class="headerlink" title="第一次见面"></a>第一次见面</h2><p>你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。</p>
-<h2 id="关于Markdown"><a href="#关于Markdown" class="headerlink" title="关于Markdown"></a>关于Markdown</h2><p>当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。</p>
-<p><strong>祝你好运</strong></p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</script><script type="math/tex; mode=display">f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz</script><script type="math/tex; mode=display">\sigma = \sqrt{ \frac{1}{N} \sum_{i=1}^N (x_i -\mu)^2}</script><script type="math/tex; mode=display">\int\frac{1}{ax+b}\mbox{d}x=\frac{1}{a}\ln \left | ax+b\right|+C</script><script type="math/tex; mode=display">\vec{\nabla} \times \vec{F} =
-            \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{i}
-          + \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{j}
-          + \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{k}</script><head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
   </entry>
   <entry>
     <title>（不定期更新）二进制ctf练习</title>
@@ -2416,6 +2416,32 @@
 </ul>
 <h2 id="常用断点设置技巧——2-11-2022"><a href="#常用断点设置技巧——2-11-2022" class="headerlink" title="常用断点设置技巧——2/11/2022"></a>常用断点设置技巧——2/11/2022</h2><p>掌握Win32编程技巧还是很重要滴！</p>
 <p><img src="/2022/01/15/en&decrypt/breakpoint.png"></p>
+<h1 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h1><blockquote>
+<p>本节笔记的记录主要以算法识别为主，不涉及算法具体过程，汇编分析与crack操作。</p>
+</blockquote>
+<h2 id="单项散列算法——2-28-2022"><a href="#单项散列算法——2-28-2022" class="headerlink" title="单项散列算法——2/28/2022"></a>单项散列算法——2/28/2022</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>重要常数：</p>
+<ul>
+<li><p>初始化消息摘要<code>67452301h</code>,<code>efcdab89h</code>,<code>98badcfeh</code>,<code>10325476h</code>.</p>
+</li>
+<li><p><code>floor(2**32 * abs(sin(i)))</code>对应的32位值，如<code>d76aa478h</code>.</p>
+</li>
+</ul>
+<p>可能的变种方式：</p>
+<ul>
+<li>修改前面的四个常数。</li>
+<li>修改原串的填充方式。</li>
+<li>修改hash变换的处理过程。</li>
+</ul>
+<h3 id="SHA"><a href="#SHA" class="headerlink" title="SHA"></a>SHA</h3><p>SHA-1的常数<code>5a827999h</code>,<code>6ed9eba1h</code>,<code>8f1bbcdch</code>,<code>ca62c1d6h</code>.</p>
+<p>SHA-1的160位的初始化消息摘要<code>67452301h</code>,<code>efcdab89h</code>,<code>98badcfeh</code>,<code>10325476h</code>,<code>c3d2e1f0h</code>.</p>
+<p>SHA-256、SHA384、SHA512的初始化消息摘要：</p>
+<p><img src="/2022/01/15/en&decrypt/sha.png"></p>
+<h3 id="SM3"><a href="#SM3" class="headerlink" title="SM3"></a>SM3</h3><p>公开的国密算法，过程简述：<a href="https://zhuanlan.zhihu.com/p/129692191">https://zhuanlan.zhihu.com/p/129692191</a></p>
+<p>可能的代码实现：<a href="https://blog.csdn.net/a344288106/article/details/80094878">https://blog.csdn.net/a344288106/article/details/80094878</a></p>
+<blockquote>
+<p>常数？<code>79CC4519h</code>,<code>7A879D8Ah</code></p>
+<p>初始化消息摘要？<code>7380166Fh</code>,<code>4914B2B9h</code>,<code>172442D7h</code>,<code>DA8A0600h</code>,<code>A96F30BCh</code>,<code>163138AAh</code>,<code>E38DEE4Dh</code>,<code>B0FB0E4Eh</code></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>笔记</category>

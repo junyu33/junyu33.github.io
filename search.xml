@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2048的又一次改良</title>
-    <url>/2021/08/02/2048plus.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
-<span id="more"></span>
-<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
-<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>mma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二一——再见，鼠标</title>
     <url>/2021/10/24/1024.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
@@ -128,6 +106,28 @@
       <categories>
         <category>随笔</category>
       </categories>
+  </entry>
+  <entry>
+    <title>2048的又一次改良</title>
+    <url>/2021/08/02/2048plus.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
+<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>mma</tag>
+      </tags>
   </entry>
   <entry>
     <title>Twenty-two——bewilderment</title>
@@ -933,35 +933,6 @@
       </categories>
   </entry>
   <entry>
-    <title>游戏项目之简易扫雷</title>
-    <url>/2021/12/28/minesweep.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
-<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
-<p>欢迎大家提issue和pull request</p>
-<span id="more"></span>
-<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
-<p>2）本项目的功能说明：</p>
-<p>   ①简单、普通、困难、自定义四种模式</p>
-<p>   ②前三种模式的时间排行榜（文件归档）</p>
-<p>   ③快速扫雷与快速插旗</p>
-<p>   ④同时支持鼠标和键盘操作</p>
-<p>   ⑤游戏背景音乐的播放和控制 </p>
-<p>3）本项目的开发环境和工具</p>
-<p>   开发环境：vscode mingw 8.1.0</p>
-<p>   工具：ege20.08</p>
-<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
-<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
-<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
-<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二十——C2驾照养成记</title>
     <url>/2021/08/12/kaiche.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>从6月26日去驾校报名开始，到8月12日拿到驾照为止，学车的经历几乎贯穿了我的整个暑假。除开中途出差耽搁了将近十天，总共花了将近40天的时间来学车。总的来说过程比较顺利，考试都一次过了，暑假愉快的学车过程终成甜蜜的回忆。</p>
@@ -1012,6 +983,35 @@
       <categories>
         <category>随笔</category>
       </categories>
+  </entry>
+  <entry>
+    <title>游戏项目之简易扫雷</title>
+    <url>/2021/12/28/minesweep.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
+<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
+<p>欢迎大家提issue和pull request</p>
+<span id="more"></span>
+<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
+<p>2）本项目的功能说明：</p>
+<p>   ①简单、普通、困难、自定义四种模式</p>
+<p>   ②前三种模式的时间排行榜（文件归档）</p>
+<p>   ③快速扫雷与快速插旗</p>
+<p>   ④同时支持鼠标和键盘操作</p>
+<p>   ⑤游戏背景音乐的播放和控制 </p>
+<p>3）本项目的开发环境和工具</p>
+<p>   开发环境：vscode mingw 8.1.0</p>
+<p>   工具：ege20.08</p>
+<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
+<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">1</span><span class="selector-class">.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">configuration</span> <span class="selector-tag">interface</span> (ok)</span><br><span class="line"><span class="selector-tag">mine-generating</span> <span class="selector-tag">xp-</span>&gt;<span class="selector-tag">win7</span> <span class="selector-tag">mode</span> (ok)</span><br><span class="line"><span class="selector-tag">basic</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">timing</span> (ok)</span><br><span class="line"><span class="selector-tag">minecnt</span> (ok)</span><br><span class="line"><span class="selector-tag">2</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">winning</span> <span class="selector-tag">interface</span> <span class="selector-tag">with</span> <span class="selector-tag">personal</span> <span class="selector-tag">things</span> (ok)</span><br><span class="line"><span class="selector-tag">fast-sweeping</span> <span class="selector-tag">keyboard</span> <span class="selector-tag">support</span> (ok)</span><br><span class="line"><span class="selector-tag">highlight</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">small</span> <span class="selector-tag">changes</span> <span class="selector-tag">about</span> <span class="selector-tag">lastx</span>,<span class="selector-tag">lasty</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">leaderboard</span> (ok)</span><br><span class="line"><span class="selector-tag">three</span> <span class="selector-tag">modes</span> (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">quit</span> <span class="selector-tag">in</span> <span class="selector-tag">menu</span> (ok)</span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">fast-flaggging</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">lowlight</span> <span class="selector-tag">blanks</span> (keyboard only) (ok)</span><br><span class="line"><span class="selector-tag">3</span><span class="selector-class">.2</span></span><br><span class="line"><span class="selector-tag">add</span> <span class="selector-tag">colors</span> <span class="selector-tag">to</span> <span class="selector-tag">numbers</span> (ok)</span><br><span class="line"><span class="selector-tag">random</span> <span class="selector-tag">block</span> <span class="selector-tag">to</span> <span class="selector-tag">start</span> (ok)</span><br></pre></td></tr></table></figure>
+<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
+<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
   </entry>
   <entry>
     <title>广义mt19937随机数逆向</title>
@@ -1204,22 +1204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Xposed——从入门到放弃</title>
-    <url>/2021/08/10/xp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
-<span id="more"></span>
-<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
-<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>安全项目第三题解答及思路分析</title>
     <url>/2021/12/11/security03.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p><img src="/2021/12/11/security03/res.png"></p>
@@ -1284,6 +1268,22 @@
       </categories>
       <tags>
         <tag>reverse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Xposed——从入门到放弃</title>
+    <url>/2021/08/10/xp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
+<span id="more"></span>
+<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
+<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -1613,24 +1613,6 @@
       </tags>
   </entry>
   <entry>
-    <title>第一篇博客</title>
-    <url>/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="第一次见面"><a href="#第一次见面" class="headerlink" title="第一次见面"></a>第一次见面</h2><p>你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。</p>
-<h2 id="关于Markdown"><a href="#关于Markdown" class="headerlink" title="关于Markdown"></a>关于Markdown</h2><p>当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。</p>
-<p><strong>祝你好运</strong></p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</script><script type="math/tex; mode=display">f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz</script><script type="math/tex; mode=display">\sigma = \sqrt{ \frac{1}{N} \sum_{i=1}^N (x_i -\mu)^2}</script><script type="math/tex; mode=display">\int\frac{1}{ax+b}\mbox{d}x=\frac{1}{a}\ln \left | ax+b\right|+C</script><script type="math/tex; mode=display">\vec{\nabla} \times \vec{F} =
-            \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{i}
-          + \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{j}
-          + \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{k}</script><head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-  </entry>
-  <entry>
     <title>碎碎念</title>
     <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -1651,6 +1633,24 @@
       <tags>
         <tag>encrypted</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>第一篇博客</title>
+    <url>/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="第一次见面"><a href="#第一次见面" class="headerlink" title="第一次见面"></a>第一次见面</h2><p>你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。</p>
+<h2 id="关于Markdown"><a href="#关于Markdown" class="headerlink" title="关于Markdown"></a>关于Markdown</h2><p>当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。</p>
+<p><strong>祝你好运</strong></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</script><script type="math/tex; mode=display">f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz</script><script type="math/tex; mode=display">\sigma = \sqrt{ \frac{1}{N} \sum_{i=1}^N (x_i -\mu)^2}</script><script type="math/tex; mode=display">\int\frac{1}{ax+b}\mbox{d}x=\frac{1}{a}\ln \left | ax+b\right|+C</script><script type="math/tex; mode=display">\vec{\nabla} \times \vec{F} =
+            \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{i}
+          + \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{j}
+          + \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{k}</script><head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
   </entry>
   <entry>
     <title>（不定期更新）二进制ctf练习</title>
@@ -2418,8 +2418,9 @@
 <p><img src="/2022/01/15/en&decrypt/breakpoint.png"></p>
 <h1 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h1><blockquote>
 <p>本节笔记的记录主要以算法识别为主，不涉及算法具体过程，汇编分析与crack操作。</p>
+<p>可以使用IDA的FindCrypt或者PEiD的Keypto ANALyzer来辅助分析算法。</p>
 </blockquote>
-<h2 id="单项散列算法——2-28-2022"><a href="#单项散列算法——2-28-2022" class="headerlink" title="单项散列算法——2/28/2022"></a>单项散列算法——2/28/2022</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>重要常数：</p>
+<h2 id="单项散列算法——2-27-2022"><a href="#单项散列算法——2-27-2022" class="headerlink" title="单项散列算法——2/27/2022"></a>单项散列算法——2/27/2022</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>重要常数：</p>
 <ul>
 <li><p>初始化消息摘要<code>67452301h</code>,<code>efcdab89h</code>,<code>98badcfeh</code>,<code>10325476h</code>.</p>
 </li>
@@ -2442,6 +2443,68 @@
 <p>常数？<code>79CC4519h</code>,<code>7A879D8Ah</code></p>
 <p>初始化消息摘要？<code>7380166Fh</code>,<code>4914B2B9h</code>,<code>172442D7h</code>,<code>DA8A0600h</code>,<code>A96F30BCh</code>,<code>163138AAh</code>,<code>E38DEE4Dh</code>,<code>B0FB0E4Eh</code></p>
 </blockquote>
+<h2 id="对称加密算法——2-28-2022"><a href="#对称加密算法——2-28-2022" class="headerlink" title="对称加密算法——2/28/2022"></a>对称加密算法——2/28/2022</h2><h3 id="RC4"><a href="#RC4" class="headerlink" title="RC4"></a>RC4</h3><p>RC4算法识别：</p>
+<p><img src="https://bbsmax.ikafan.com/static/L3Byb3h5L2h0dHBzL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAyMDExMjExMzU4NDE4NC5wbmc/eC1vc3MtcHJvY2Vzcz1pbWFnZS93YXRlcm1hcmssdHlwZV9abUZ1WjNwb1pXNW5hR1ZwZEdrLHNoYWRvd18xMCx0ZXh0X2FIUjBjSE02THk5aWJHOW5MbU56Wkc0dWJtVjBMMjFqYlhWNVlXNW5ZUT09LHNpemVfMTYsY29sb3JfRkZGRkZGLHRfNzAjcGljX2NlbnRlcg==.jpg" alt></p>
+<p>从网上嫖来的解密脚本：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rc4_main</span>(<span class="params">key = <span class="string">&quot;init_key&quot;</span>, message = <span class="string">&quot;init_message&quot;</span></span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;RC4解密主函数调用成功&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    s_box = rc4_init_sbox(key)</span><br><span class="line">    crypt = rc4_excrypt(message, s_box)</span><br><span class="line">    <span class="keyword">return</span> crypt</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rc4_init_sbox</span>(<span class="params">key</span>):</span></span><br><span class="line">    s_box = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">256</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;原来的 s 盒：%s&quot;</span> % s_box)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        j = (j + s_box[i] + <span class="built_in">ord</span>(key[i % <span class="built_in">len</span>(key)])) % <span class="number">256</span></span><br><span class="line">        s_box[i], s_box[j] = s_box[j], s_box[i]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;混乱后的 s 盒：%s&quot;</span>% s_box)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> s_box</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rc4_excrypt</span>(<span class="params">plain, box</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;调用解密程序成功。&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    plain = base64.b64decode(plain.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    plain = <span class="built_in">bytes</span>.decode(plain)</span><br><span class="line">    res = []</span><br><span class="line">    i = j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> plain:</span><br><span class="line">        i = (i + <span class="number">1</span>) % <span class="number">256</span></span><br><span class="line">        j = (j + box[i]) % <span class="number">256</span></span><br><span class="line">        box[i], box[j] = box[j], box[i]</span><br><span class="line">        t = (box[i] + box[j]) % <span class="number">256</span></span><br><span class="line">        k = box[t]</span><br><span class="line">        res.append(<span class="built_in">chr</span>(<span class="built_in">ord</span>(s) ^ k))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;res用于解密字符串，解密后是：%res&quot;</span> %res)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    cipher = <span class="string">&quot;&quot;</span>.join(res)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;解密后的字符串是：%s&quot;</span> %cipher)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;解密后的输出(没经过任何编码):&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> cipher</span><br><span class="line">a=[<span class="number">0xc6</span>,<span class="number">0x21</span>,<span class="number">0xca</span>,<span class="number">0xbf</span>,<span class="number">0x51</span>,<span class="number">0x43</span>,<span class="number">0x37</span>,<span class="number">0x31</span>,<span class="number">0x75</span>,<span class="number">0xe4</span>,<span class="number">0x8e</span>,<span class="number">0xc0</span>,<span class="number">0x54</span>,<span class="number">0x6f</span>,<span class="number">0x8f</span>,<span class="number">0xee</span>,<span class="number">0xf8</span>,<span class="number">0x5a</span>,<span class="number">0xa2</span>,<span class="number">0xc1</span>,<span class="number">0xeb</span>,<span class="number">0xa5</span>,<span class="number">0x34</span>,<span class="number">0x6d</span>,<span class="number">0x71</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x7</span>,<span class="number">0xb2</span>,<span class="number">0xa8</span>,<span class="number">0x2f</span>,<span class="number">0xf4</span>,<span class="number">0x51</span>,<span class="number">0x8e</span>,<span class="number">0xc</span>,<span class="number">0xcc</span>,<span class="number">0x33</span>,<span class="number">0x53</span>,<span class="number">0x31</span>,<span class="number">0x0</span>,<span class="number">0x40</span>,<span class="number">0xd6</span>,<span class="number">0xca</span>,<span class="number">0xec</span>,<span class="number">0xd4</span>]</span><br><span class="line">s=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    s+=<span class="built_in">chr</span>(i)</span><br><span class="line">s=<span class="built_in">str</span>(base64.b64encode(s.encode(<span class="string">&#x27;utf-8&#x27;</span>)), <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">rc4_main(<span class="string">&quot;Nu1Lctf233&quot;</span>, s)</span><br></pre></td></tr></table></figure>
+<h3 id="TEA"><a href="#TEA" class="headerlink" title="TEA"></a>TEA</h3><p>常数为<code>0x9e3779b9</code>，来源于32bit的黄金分割比$\frac{\sqrt5-1}{2}$</p>
+<p>（注意XTEA/XXTEA也是这个常数）</p>
+<p>解密脚本：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DELTA 0x9e3779b9</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MX (((z&gt;&gt;5^y<span class="meta-string">&lt;&lt;2) + (y&gt;</span>&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">btea</span> <span class="params">(<span class="keyword">uint32_t</span>* v,<span class="keyword">int</span> n, <span class="keyword">uint32_t</span>* k)</span> </span>&#123; <span class="comment">// however the &#x27;n&#x27; is useless</span></span><br><span class="line">	<span class="keyword">uint32_t</span> v0=v[<span class="number">0</span>], v1=v[<span class="number">1</span>], sum=<span class="number">0xC6EF3720</span>, i;  <span class="comment">/* set up */</span></span><br><span class="line">	<span class="keyword">uint32_t</span> delta=<span class="number">0x9e3779b9</span>;                     <span class="comment">/* a key schedule constant */</span></span><br><span class="line">	<span class="keyword">uint32_t</span> k0=k[<span class="number">0</span>], k1=k[<span class="number">1</span>], k2=k[<span class="number">2</span>], k3=k[<span class="number">3</span>];   <span class="comment">/* cache key */</span></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++) &#123;                         <span class="comment">/* basic cycle start */</span></span><br><span class="line">		v1 -= ((v0&lt;&lt;<span class="number">4</span>) + k2) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k3);</span><br><span class="line">		v0 -= ((v1&lt;&lt;<span class="number">4</span>) + k0) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k1);</span><br><span class="line">		sum -= delta;</span><br><span class="line">	&#125;                                              <span class="comment">/* end cycle */</span></span><br><span class="line">	v[<span class="number">0</span>]=v0; v[<span class="number">1</span>]=v1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">uint32_t</span> v[<span class="number">2</span>]= &#123;<span class="number">0x3e8947cb</span>,<span class="number">0xcc944639</span>&#125;;</span><br><span class="line">	<span class="keyword">uint32_t</span> w[<span class="number">2</span>]= &#123;<span class="number">0x31358388</span>,<span class="number">0x3b0b6893</span>&#125;;</span><br><span class="line">	<span class="keyword">uint32_t</span> x[<span class="number">2</span>]= &#123;<span class="number">0xda627361</span>,<span class="number">0x3b2e6427</span>&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">uint32_t</span> <span class="keyword">const</span> k[<span class="number">4</span>]= &#123;<span class="number">17477</span>,<span class="number">16708</span>,<span class="number">16965</span>,<span class="number">17734</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="number">2</span>; <span class="comment">//n的绝对值表示v的长度，取正表示加密，取负表示解密</span></span><br><span class="line">	<span class="comment">// v为要加密的数据是两个32位无符号整数</span></span><br><span class="line">	<span class="comment">// k为加密解密密钥，为4个32位无符号整数，即密钥长度为128位</span></span><br><span class="line">	btea(v, -n, k);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%x %x &quot;</span>,v[<span class="number">0</span>],v[<span class="number">1</span>]);</span><br><span class="line">	btea(w, -n, k);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%x %x &quot;</span>,w[<span class="number">0</span>],w[<span class="number">1</span>]);</span><br><span class="line">	btea(x, -n, k);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%x %x&quot;</span>,x[<span class="number">0</span>],x[<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h3><p><code>52</code>个子密钥是加密密钥对16bit加法和乘法($2^{16}+1$)的逆元。</p>
+<p>子密钥应按照加密密钥相反的顺序使用。</p>
+<p>解密代码略。自行搜索<a href="https://www.bouncycastle.org/">bouncycastle</a>。</p>
+<h3 id="BlowFish"><a href="#BlowFish" class="headerlink" title="BlowFish"></a>BlowFish</h3><p>基于Feistel网络。</p>
+<p>P数组（取Pi的小数部分）：</p>
+<p><code>243f6a88h</code>,<code>85a308d3h</code>,<code>13198a2eh</code>,<code>03707344h</code></p>
+<p>解密代码略。</p>
+<h3 id="AES-Rijndael"><a href="#AES-Rijndael" class="headerlink" title="AES(Rijndael)"></a>AES(Rijndael)</h3><p>解密的模式有：</p>
+<ul>
+<li>ECB(Electronic Code Book，电子密码本)模式</li>
+<li>CBC(Cipher Block Chaining，加密块链)模式 </li>
+<li>CTR(Counter，计数器）模式</li>
+<li>CFB(Cipher FeedBack Mode，加密反馈)模式</li>
+<li>OFB(Output FeedBack，输出反馈)模式 </li>
+</ul>
+<blockquote>
+<p>知道这些并没有什么用，到时候还是得一个一个试。</p>
+</blockquote>
+<p>S盒：</p>
+<p><img src="/2022/01/15/en&decrypt/aes_sbox_1.png" style="zoom:67%;"></p>
+<p><img src="/2022/01/15/en&decrypt/aes_sbox_2.png" style="zoom:67%;"></p>
+<p><del>网上的解密网站都只能解自己的，解不了别人的。</del></p>
+<p>解密网站：<a href="http://tool.chacuo.net/cryptaes">http://tool.chacuo.net/cryptaes</a></p>
+<h3 id="SM4"><a href="#SM4" class="headerlink" title="SM4"></a>SM4</h3><p><a href="https://zhuanlan.zhihu.com/p/363900323">https://zhuanlan.zhihu.com/p/363900323</a></p>
+<p>S盒：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-be7e50830f311025d7e8f5dcff4db2c5_720w.jpg" alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-ff781a264cd8f1ac7769ebe5cdd96d6c_720w.jpg" alt="img"></p>
+<p>系统参数$FK_i$的取值：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-dc74265802ad57bc540231f61cd24d59_720w.png" alt="img"></p>
+<p>32个固定参数$CK_i$的具体值：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-7538de08ed2a5217009c4d21b6ac2451_720w.jpg" alt="img"></p>
+<p>解密代码略。</p>
+<h2 id="公钥加密算法——2-28-2022"><a href="#公钥加密算法——2-28-2022" class="headerlink" title="公钥加密算法——2/28/2022"></a>公钥加密算法——2/28/2022</h2><h3 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h3><ul>
+<li>公私钥的产生：</li>
+</ul>
+<ol>
+<li>我们先随意选择两个质数$p$与$q$，这里取$p=33333331$,$q=998244353$，计算 $N=pq=33274809437429843$.</li>
+<li>根据欧拉函数$\varphi(x)$（小于或等于x的正整数中与x互质的数的数目），求得$r=\varphi(N)=\varphi(p)\varphi(q)=(p-1)(q-1)=33274808405852160$.</li>
+<li>选一个小于r的整数$e$，使得$e$与$r$互质。并求得e关于r的逆元$d$，即 $ed≡1\pmod r$。这里我们取$e=65537$，求得$d=17217187752050689$</li>
+<li>销毁$p$与$q$.</li>
+</ol>
+<p>​        由此，我们得到了公钥$(N,e)$与私钥$(N,d)$。</p>
+<ul>
+<li><p>加密信息：</p>
+<p>假设B想给A传送信息$m$，他知道A产生的$N$与$e$。他使用先前约定好的格式（如Unicode，下有介绍）将$m$转换为一个小于$N$的正整数$n$，使用下列公式将$n$加密为$c$：</p>
+<p>$c≡n^e\pmod N$。</p>
+<p>$c$不难计算，使用快速幂即可。</p>
+</li>
+<li><p>解密信息：</p>
+<p>A得到B的消息后可以利用他的私钥$d$来解码，他使用下列公式将$c$还原成$n$。</p>
+<p>$n≡c^d\pmod N$</p>
+</li>
+</ul>
+<p>关于对RSA攻击是密码学的专门内容，可以参考这篇文章：<a href="https://blog.csdn.net/vhkjhwbs/article/details/101160822">https://blog.csdn.net/vhkjhwbs/article/details/101160822</a></p>
 ]]></content>
       <categories>
         <category>笔记</category>

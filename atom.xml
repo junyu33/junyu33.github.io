@@ -37,6 +37,32 @@
   </entry>
   
   <entry>
+    <title>如何用vscode打造一个究极舒适的pwn环境</title>
+    <link href="https://junyu33.github.io/2022/03/07/pwn_environ.html"/>
+    <id>https://junyu33.github.io/2022/03/07/pwn_environ.html</id>
+    <published>2022-03-07T01:00:00.000Z</published>
+    <updated>2022-03-07T08:03:12.982Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;如果能把精力集中在shellcode的编写上，而不是一遍又一遍地在虚拟机和vscode中来回横跳，那是多么惬意的事情。&lt;/p&gt;
+&lt;p&gt;我们假设读者刚刚装好了vscode，里面什么插件也没有，从零开始。&lt;/p&gt;
+&lt;p&gt;整个过程大概需要花费半天到一天的时间。&lt;/p&gt;
+&lt;p&gt;成果图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2022/03/07/pwn_environ/show.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+    
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="linux" scheme="https://junyu33.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>（转载）高考零分作文《无与伦比的二货老师》</title>
     <link href="https://junyu33.github.io/2022/02/09/full_mark_composition.html"/>
     <id>https://junyu33.github.io/2022/02/09/full_mark_composition.html</id>
@@ -446,24 +472,6 @@
       <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二一——再见，鼠标</title>
-    <link href="https://junyu33.github.io/2021/10/24/1024.html"/>
-    <id>https://junyu33.github.io/2021/10/24/1024.html</id>
-    <published>2021-10-24T02:00:00.000Z</published>
-    <updated>2021-11-02T01:03:02.343Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#introduction&quot; class=&quot;headerlink&quot; title=&quot;introduction&quot;&gt;&lt;/a&gt;introduction&lt;/h1&gt;&lt;p&gt;为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个&lt;strong&gt;特殊的日子&lt;/strong&gt;，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将&lt;strong&gt;几乎&lt;/strong&gt;所有的操作全部转移到键盘上。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

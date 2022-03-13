@@ -37,11 +37,11 @@
   </entry>
   
   <entry>
-    <title>如何用vscode打造一个究极舒适的pwn环境</title>
+    <title>如何打造一个究极舒适的pwn环境</title>
     <link href="https://junyu33.github.io/2022/03/07/pwn_environ.html"/>
     <id>https://junyu33.github.io/2022/03/07/pwn_environ.html</id>
     <published>2022-03-07T01:00:00.000Z</published>
-    <updated>2022-03-07T16:21:41.449Z</updated>
+    <updated>2022-03-12T15:33:55.183Z</updated>
     
     <summary type="html">
     
@@ -59,6 +59,31 @@
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
       <category term="linux" scheme="https://junyu33.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何打造一个究极舒适的pwn环境（第二季）</title>
+    <link href="https://junyu33.github.io/2022/03/07/pwn_environ2.html"/>
+    <id>https://junyu33.github.io/2022/03/07/pwn_environ2.html</id>
+    <published>2022-03-07T01:00:00.000Z</published>
+    <updated>2022-03-13T09:16:46.546Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现在的问题是，如果你临时回家，没有带电脑。但你又想操纵位于学校的电脑，又该怎么办呢？&lt;/p&gt;
+&lt;p&gt;成果图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2022/03/07/pwn_environ2/res.png&quot; style=&quot;zoom:33%;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我们假设读者已经完成的上一季的配置，并确保自己拥有公网ip。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
+    
+    
+      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
+      <category term="web" scheme="https://junyu33.github.io/tags/web/"/>
     
   </entry>
   
@@ -373,9 +398,9 @@
     
       <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
     
-      <category term="c" scheme="https://junyu33.github.io/tags/c/"/>
-    
       <category term="web" scheme="https://junyu33.github.io/tags/web/"/>
+    
+      <category term="c" scheme="https://junyu33.github.io/tags/c/"/>
     
   </entry>
   
@@ -449,29 +474,6 @@
     
       <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>安全项目第一题解答及思路分析</title>
-    <link href="https://junyu33.github.io/2021/10/29/security01.html"/>
-    <id>https://junyu33.github.io/2021/10/29/security01.html</id>
-    <published>2021-10-29T04:25:00.000Z</published>
-    <updated>2021-12-10T12:26:21.728Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;解答（四个key及message）：&quot;&gt;&lt;a href=&quot;#解答（四个key及message）：&quot; class=&quot;headerlink&quot; title=&quot;解答（四个key及message）：&quot;&gt;&lt;/a&gt;解答（四个key及message）：&lt;/h1&gt;&lt;p&gt;  &lt;img src=&quot;/2021/10/29/security01/1.png&quot;&gt;         &lt;/p&gt;
-&lt;p&gt;（注意：这个key在不同的系统，甚至同一个系统的不同IDE得到的结果都不同，因此答案仅供参考）。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
-    
-    
-      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
-    
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
   </entry>
   

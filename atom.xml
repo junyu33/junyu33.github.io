@@ -37,6 +37,24 @@
   </entry>
   
   <entry>
+    <title>（不定期更新）数据库学习笔记</title>
+    <link href="https://junyu33.github.io/2022/03/25/database.html"/>
+    <id>https://junyu33.github.io/2022/03/25/database.html</id>
+    <published>2022-03-25T04:00:00.000Z</published>
+    <updated>2022-03-25T04:20:13.969Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据库其实不难学，就是头有点凉。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>如何打造一个究极舒适的pwn环境（第二季）</title>
     <link href="https://junyu33.github.io/2022/03/13/pwn_environ2.html"/>
     <id>https://junyu33.github.io/2022/03/13/pwn_environ2.html</id>
@@ -444,36 +462,6 @@
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Twenty-two——bewilderment</title>
-    <link href="https://junyu33.github.io/2021/11/01/bewilderment.html"/>
-    <id>https://junyu33.github.io/2021/11/01/bewilderment.html</id>
-    <published>2021-10-31T17:00:00.000Z</published>
-    <updated>2021-11-02T12:29:47.607Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;This is my first time to write a post in English. There are three advantages.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;I can deliver my message to whom I really want to tell. &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;It’s a way to prepare for my CET4 exam.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Jumping between two input methods is annoying.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp;amp; listening is nearly 15000), readers who have &lt;strong&gt;passed&lt;/strong&gt; the CET4 exam might be enough to read the following text.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I’m really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

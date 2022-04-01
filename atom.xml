@@ -41,7 +41,7 @@
     <link href="https://junyu33.github.io/2022/04/01/bandit.html"/>
     <id>https://junyu33.github.io/2022/04/01/bandit.html</id>
     <published>2022-04-01T09:00:00.000Z</published>
-    <updated>2022-04-01T13:59:07.406Z</updated>
+    <updated>2022-04-01T14:22:52.907Z</updated>
     
     <summary type="html">
     
@@ -163,9 +163,9 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
   </entry>
   
@@ -251,9 +251,9 @@
       <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
       <category term="assembly" scheme="https://junyu33.github.io/tags/assembly/"/>
     
@@ -430,13 +430,13 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
     
       <category term="web" scheme="https://junyu33.github.io/tags/web/"/>
     

@@ -37,6 +37,28 @@
   </entry>
   
   <entry>
+    <title>bandit通关记录</title>
+    <link href="https://junyu33.github.io/2022/04/01/bandit.html"/>
+    <id>https://junyu33.github.io/2022/04/01/bandit.html</id>
+    <published>2022-04-01T09:00:00.000Z</published>
+    <updated>2022-04-01T13:59:07.406Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一个练习Linux基础命令的网站，属于overthewire.org关卡系列中的基础部分。&lt;/p&gt;
+&lt;p&gt;本文中的level指的是网站的guide&lt;code&gt;level n -&amp;gt; level (n+1)&lt;/code&gt;中的后者。&lt;/p&gt;
+&lt;p&gt;网站链接：&lt;a href=&quot;https://overthewire.org/wargames/bandit/&quot;&gt;https://overthewire.org/wargames/bandit/&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="linux" scheme="https://junyu33.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>（不定期更新）数据库学习笔记</title>
     <link href="https://junyu33.github.io/2022/03/25/database.html"/>
     <id>https://junyu33.github.io/2022/03/25/database.html</id>
@@ -99,9 +121,9 @@
       <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
     
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
       <category term="linux" scheme="https://junyu33.github.io/tags/linux/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
   </entry>
   
@@ -128,7 +150,7 @@
     <link href="https://junyu33.github.io/2022/02/07/bin_ctf.html"/>
     <id>https://junyu33.github.io/2022/02/07/bin_ctf.html</id>
     <published>2022-02-07T14:00:00.000Z</published>
-    <updated>2022-03-27T13:54:24.452Z</updated>
+    <updated>2022-04-01T13:58:07.445Z</updated>
     
     <summary type="html">
     
@@ -141,9 +163,9 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
   </entry>
   
@@ -229,9 +251,9 @@
       <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+    
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
     
       <category term="assembly" scheme="https://junyu33.github.io/tags/assembly/"/>
     
@@ -408,13 +430,13 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
     
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
+      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
     
       <category term="web" scheme="https://junyu33.github.io/tags/web/"/>
     
@@ -439,29 +461,6 @@
     
       <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>安全项目第二题解答及思路分析</title>
-    <link href="https://junyu33.github.io/2021/11/06/security02.html"/>
-    <id>https://junyu33.github.io/2021/11/06/security02.html</id>
-    <published>2021-11-06T04:30:00.000Z</published>
-    <updated>2022-01-17T03:23:58.024Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;解答&quot;&gt;&lt;a href=&quot;#解答&quot; class=&quot;headerlink&quot; title=&quot;解答&quot;&gt;&lt;/a&gt;解答&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/2021/11/06/security02/1.jpg&quot; style=&quot;zoom: 67%;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;使用的是dev c++中TDM-GCC 4.9.2 32-bit Debug编译器，其他新版本的编译器做了安全优化，我智商斗不过它们，就放弃了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
-    
-    
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
   </entry>
   

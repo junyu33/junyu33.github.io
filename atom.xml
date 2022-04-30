@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://junyu33.github.io/"/>
-  <updated>2022-03-12T14:53:35.858Z</updated>
+  <updated>2022-04-26T10:20:09.715Z</updated>
   <id>https://junyu33.github.io/</id>
   
   <author>
@@ -21,7 +21,27 @@
     <link href="https://junyu33.github.io/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html"/>
     <id>https://junyu33.github.io/2038/01/19/碎碎念.html</id>
     <published>2038-01-18T19:14:08.000Z</published>
-    <updated>2022-03-12T14:53:35.858Z</updated>
+    <updated>2022-04-26T10:20:09.715Z</updated>
+    
+    <summary type="html">
+    
+      有东西被加密了, 请输入密码查看.
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="encrypted" scheme="https://junyu33.github.io/tags/encrypted/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二六——一份价值5万元的成人礼</title>
+    <link href="https://junyu33.github.io/2022/04/23/surgery.html"/>
+    <id>https://junyu33.github.io/2022/04/23/surgery.html</id>
+    <published>2022-04-23T13:00:00.000Z</published>
+    <updated>2022-04-30T04:44:53.900Z</updated>
     
     <summary type="html">
     
@@ -169,7 +189,7 @@
     <link href="https://junyu33.github.io/2022/02/07/bin_ctf.html"/>
     <id>https://junyu33.github.io/2022/02/07/bin_ctf.html</id>
     <published>2022-02-07T14:00:00.000Z</published>
-    <updated>2022-04-17T08:18:39.021Z</updated>
+    <updated>2022-04-18T02:03:35.562Z</updated>
     
     <summary type="html">
     
@@ -427,39 +447,6 @@
     
     
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>scuctf新生赛——幽篁终见天战队wp</title>
-    <link href="https://junyu33.github.io/2021/11/23/ctf04.html"/>
-    <id>https://junyu33.github.io/2021/11/23/ctf04.html</id>
-    <published>2021-11-23T15:50:00.000Z</published>
-    <updated>2021-11-23T23:46:32.862Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这场新生赛题目质量不错，我们“幽篁终见天”战队的每位成员都发挥了自己的长处，在比赛中玩得很尽兴。以下是排行榜截图和战队wp：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2021/11/23/ctf04/rank.jpg&quot; style=&quot;zoom:50%;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
-    
-    
-      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
-    
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
-    
-      <category term="crypto" scheme="https://junyu33.github.io/tags/crypto/"/>
-    
-      <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-      <category term="misc" scheme="https://junyu33.github.io/tags/misc/"/>
-    
-      <category term="web" scheme="https://junyu33.github.io/tags/web/"/>
-    
-      <category term="c" scheme="https://junyu33.github.io/tags/c/"/>
     
   </entry>
   

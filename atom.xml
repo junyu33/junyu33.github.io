@@ -224,11 +224,11 @@
       <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
+      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
+    
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
-    
-      <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
   </entry>
   
@@ -257,7 +257,7 @@
     <link href="https://junyu33.github.io/2022/01/22/mt19937_expand.html"/>
     <id>https://junyu33.github.io/2022/01/22/mt19937_expand.html</id>
     <published>2022-01-22T14:30:00.000Z</published>
-    <updated>2022-05-16T01:24:59.115Z</updated>
+    <updated>2022-05-16T02:18:24.364Z</updated>
     
     <summary type="html">
     
@@ -265,9 +265,7 @@
     
     </summary>
     
-      <category term="ctf" scheme="https://junyu33.github.io/categories/ctf/"/>
-    
-      <category term="OI" scheme="https://junyu33.github.io/categories/ctf/OI/"/>
+      <category term="OI" scheme="https://junyu33.github.io/categories/OI/"/>
     
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>

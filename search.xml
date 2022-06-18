@@ -1,118 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>bandit通关记录</title>
-    <url>/2022/04/01/bandit.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一个练习Linux基础命令的网站，属于overthewire.org关卡系列中的基础部分。</p>
-<p>本文中的level指的是网站的guide<code>level n -&gt; level (n+1)</code>中的后者。</p>
-<p>网站链接：<a href="https://overthewire.org/wargames/bandit/">https://overthewire.org/wargames/bandit/</a></p>
-<span id="more"></span>
-<h1 id="level1、level14"><a href="#level1、level14" class="headerlink" title="level1、level14"></a>level1、level14</h1><h2 id="SSH的使用"><a href="#SSH的使用" class="headerlink" title="SSH的使用"></a>SSH的使用</h2><blockquote>
-<p>你无法回忆起你学过的任何算法或者 OI 知识。你无法回忆起一切。你无法回忆起你叫什么名字。</p>
-<p>你能回忆起…… $49233121176$，或者再具体一点是 $\frac{49.233121176}{22}$。你能回忆起第 $22$ 号港口通往三山海。三山海是你向往的目的地，你一定要到达这里。</p>
-</blockquote>
-<p>考察了ssh的基本使用：</p>
-<p>网站说了用户名和密码都是bandit0</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh bandit0@bandit.labs.overthewire.org -p 2220</span><br></pre></td></tr></table></figure>
-<p>如果只有密钥，没有密码的话：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh bandit14@bandit.labs.overthewire.org -p 2220 -i ./bandit14.sshkey</span><br></pre></td></tr></table></figure>
-<h1 id="level2-level5"><a href="#level2-level5" class="headerlink" title="level2~level5"></a>level2~level5</h1><h2 id="基本的路径跳转和文件查看"><a href="#基本的路径跳转和文件查看" class="headerlink" title="基本的路径跳转和文件查看"></a>基本的路径跳转和文件查看</h2><p><code>ls -a</code>查看隐藏文件。</p>
-<p><code>ls -l</code>查看文件的详细信息，包括权限、属于的用户和组、 文件大小、修改时间等等。</p>
-<p><code>cd ../</code>返回上一级。</p>
-<p><code>cd &#39;&lt;dir&gt;&#39;</code>可以跳转到包含空格或者特殊字符（比如<code>-</code>）的路径。</p>
-<h1 id="level6、level7"><a href="#level6、level7" class="headerlink" title="level6、level7"></a>level6、level7</h1><h2 id="按照大小查找文件"><a href="#按照大小查找文件" class="headerlink" title="按照大小查找文件"></a>按照大小查找文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find -size 1033c</span><br></pre></td></tr></table></figure>
-<p>查找大小为1033字节的文件。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find -size +5k -size -99k</span><br></pre></td></tr></table></figure>
-<p>查找大小基于5k~99k的文件。</p>
-<p>常用的储存单位为<code>c</code>,<code>k</code>,<code>M</code>,和<code>G</code>.不要问我为什么前两个小写，后两个大写。</p>
-<h2 id="按照用户和组查找文件"><a href="#按照用户和组查找文件" class="headerlink" title="按照用户和组查找文件"></a>按照用户和组查找文件</h2><p>与上文类似：<code>-user</code>,<code>-group</code>.</p>
-<h1 id="level8、level9、level18"><a href="#level8、level9、level18" class="headerlink" title="level8、level9、level18"></a>level8、level9、level18</h1><h2 id="查找指定字串"><a href="#查找指定字串" class="headerlink" title="查找指定字串"></a>查找指定字串</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep millionth &lt; data.txt</span><br></pre></td></tr></table></figure>
-<p>其中<code>&lt;</code>是文件输入流，类似也有<code>&gt;</code>作为输出流。</p>
-<h2 id="查找文本中唯一出现的字串"><a href="#查找文本中唯一出现的字串" class="headerlink" title="查找文本中唯一出现的字串"></a>查找文本中唯一出现的字串</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sort data.txt | uniq -c</span><br></pre></td></tr></table></figure>
-<p>其中<code>sort</code>会将文本中的字符串按照字典序排序。</p>
-<p><code>|</code>是管道符，用来将前一个命令的输出作为后一个命令的输入。</p>
-<p>uniq是文本去重命令，它会将文本中重复出现的行压缩至一行。而<code>-c</code>参数的含义是显示该串重复出现的次数，这样我们就可以方便找到那个只出现一次的串。</p>
-<h2 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff &lt;dir_1&gt; &lt;dir_2&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="level10-level12"><a href="#level10-level12" class="headerlink" title="level10~level12"></a>level10~level12</h1><h2 id="编码的考察"><a href="#编码的考察" class="headerlink" title="编码的考察"></a>编码的考察</h2><p>举了ascii，base64和rot13。</p>
-<p>其实不一定要使用Linux内置的命令，上网找在线转换器或者编写脚本都是可以的。</p>
-<h1 id="level13"><a href="#level13" class="headerlink" title="level13"></a>level13</h1><blockquote>
-<p>13果然不是一个好数字。正如这道题的解题过程一样令人恶心。</p>
-</blockquote>
-<h2 id="16进制文本与二进制文件的转换"><a href="#16进制文本与二进制文件的转换" class="headerlink" title="16进制文本与二进制文件的转换"></a>16进制文本与二进制文件的转换</h2><p><code>xxd</code>将二进制文件转换为16进制文本。</p>
-<p><code>xxd -r</code>逆向操作。</p>
-<h2 id="复制、移动文件和重命名"><a href="#复制、移动文件和重命名" class="headerlink" title="复制、移动文件和重命名"></a>复制、移动文件和重命名</h2><p>这关需要对文件进行操作，受权限限制，需要将文件移动到临时目录。</p>
-<p><code>cp &lt;src_dir&gt; &lt;dst_dir&gt;</code>将文件从原路径复制到目的路径。</p>
-<p><code>mv &lt;src_dir&gt; &lt;dst_dir&gt;</code>将文件从原路径移动到目的路径。</p>
-<p>重命名可以通过<code>mv &lt;old_name&gt; &lt;new_name&gt;</code>来实现。</p>
-<h2 id="文件类型判断"><a href="#文件类型判断" class="headerlink" title="文件类型判断"></a>文件类型判断</h2><p>使用file命令即可，不会受扩展名影响。</p>
-<p>因为Linux本身就没有“扩展名”这种说法，所谓的“扩展名”是为了方便人类识别才有的。</p>
-<h2 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h2><h3 id="gunzip"><a href="#gunzip" class="headerlink" title="gunzip"></a>gunzip</h3><p>解压：首先确保其后缀为<code>.gz</code>，解压命令为：<code>gzip -d &lt;filename&gt;</code></p>
-<p>压缩：<code>gzip &lt;filename&gt;</code></p>
-<h3 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h3><p>解压：<code>bzip2 -d &lt;filename&gt;</code></p>
-<p>压缩：<code>bzip2 &lt;filename&gt;</code></p>
-<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>解压：<code>tar -xvf &lt;filename&gt;</code></p>
-<p>打包：<code>tar -cvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>tar</code>作为后缀。</p>
-<p>使用<code>gzip</code>压缩：<code>tar -zcvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>tar.gz</code>或<code>tgz</code>作为后缀。</p>
-<p>使用<code>bzip2</code>压缩：<code>tar -jcvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>bz2</code>作为后缀。</p>
-<h1 id="level15-level17"><a href="#level15-level17" class="headerlink" title="level15~level17"></a>level15~level17</h1><blockquote>
-<p>网络部分我是一窍不通。</p>
-</blockquote>
-<h2 id="nc连接某个地址并发送数据。"><a href="#nc连接某个地址并发送数据。" class="headerlink" title="nc连接某个地址并发送数据。"></a>nc连接某个地址并发送数据。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> &lt;your text&gt; | nc localhost 30000</span><br></pre></td></tr></table></figure>
-<p>其中<code>localhost</code>即本地<code>127.0.0.1</code>，而<code>30000</code>是端口号。</p>
-<h2 id="telnet连接某个地址并发送数据"><a href="#telnet连接某个地址并发送数据" class="headerlink" title="telnet连接某个地址并发送数据"></a>telnet连接某个地址并发送数据</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet localhost 30000</span><br><span class="line"><span class="comment">#之后你可以输入数据并回车，以进行发送</span></span><br></pre></td></tr></table></figure>
-<h2 id="ssl连接某个地址并发送加密数据"><a href="#ssl连接某个地址并发送加密数据" class="headerlink" title="ssl连接某个地址并发送加密数据"></a>ssl连接某个地址并发送加密数据</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl s_client -ign_eof -connect localhost:30001</span><br><span class="line"><span class="comment">#之后你可以输入数据并回车，以进行发送</span></span><br><span class="line"><span class="comment">#ps: 似乎 -ign_eof 这个参数不是必须的</span></span><br></pre></td></tr></table></figure>
-<h2 id="nmap扫描端口"><a href="#nmap扫描端口" class="headerlink" title="nmap扫描端口"></a>nmap扫描端口</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -p 31000-32000 localhost</span><br></pre></td></tr></table></figure>
-<p>在31000~32000端口扫描活动的端口。</p>
-<p><del>平时不要乱扫，小心进局子</del></p>
-<h1 id="bandit19-bandit21"><a href="#bandit19-bandit21" class="headerlink" title="bandit19~bandit21"></a>bandit19~bandit21</h1><blockquote>
-<p>总之，这几关让我运行了一些奇奇怪怪的程序。</p>
-</blockquote>
-<h2 id="从自动退出的终端中运行命令"><a href="#从自动退出的终端中运行命令" class="headerlink" title="从自动退出的终端中运行命令"></a>从自动退出的终端中运行命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme</span><br></pre></td></tr></table></figure>
-<h2 id="linux执行后台命令"><a href="#linux执行后台命令" class="headerlink" title="linux执行后台命令"></a>linux执行后台命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /etc/bandit_pass/bandit20 | nc -l 50000 &amp;</span><br></pre></td></tr></table></figure>
-<p>其中<code>&amp;</code>表示让命令在后台运行，这样当你之后<code>nc</code>到<code>50000</code>这个端口时，就会自动返回这个pass。</p>
-<h1 id="bandit22-bandit24"><a href="#bandit22-bandit24" class="headerlink" title="bandit22~bandit24"></a>bandit22~bandit24</h1><p>cron相当于windows的任务计划程序。</p>
-<p>只不过这几关不是让你创建计划任务，而是让你读别人脚本和自己写一个脚本。</p>
-<p><del>第二十四关的权限过滤不是很严格，我不仅看到了别人的脚本，还<code>rm -rf</code>了一部分。目测玩过这个游戏的不超过100个人？</del></p>
-<p>记得脚本第一行要写<code>#!/bin/bash</code></p>
-<h1 id="level25"><a href="#level25" class="headerlink" title="level25"></a>level25</h1><h2 id="brute-forcing"><a href="#brute-forcing" class="headerlink" title="brute-forcing"></a>brute-forcing</h2><p>其实我是用c脚本生成一万行指令，轰炸进去。如果密码正确连接会中断。</p>
-<p>我们可以大致确定密码的范围，然后缩减指令行数，重新轰炸。</p>
-<p>这个时候，再翻一翻前面的爆破记录，应该能看到密码。</p>
-<p>当然，优雅的做法是——python脚本（网上抄的）。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">brute</span>(<span class="params">nrOne,nrTwo</span>):</span></span><br><span class="line">    <span class="keyword">for</span> pin <span class="keyword">in</span> <span class="built_in">range</span>(nrOne,nrTwo):</span><br><span class="line">        pin = <span class="built_in">str</span>(pin).zfill(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">        r = remote(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">30002</span>)</span><br><span class="line">        r.recv()</span><br><span class="line">        r.send(<span class="string">&#x27;UoMYxxxxxxxxxxxxxxxxxxxxxxxxxxxx &#x27;</span> + pin + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;Wrong&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> r.recvline():</span><br><span class="line">            <span class="built_in">print</span> <span class="string">&#x27;[+] Successful -&gt; &#x27;</span> + pin</span><br><span class="line">            <span class="built_in">print</span> r.recvline()</span><br><span class="line">            r.close()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">int</span>(pin) % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="built_in">print</span> <span class="string">&#x27;[!] Failed -&gt; &#x27;</span> + pin</span><br><span class="line">            r.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    p1 = Process(target = brute, args = (<span class="number">0</span>,<span class="number">2500</span>,))</span><br><span class="line">    p2 = Process(target = brute, args = (<span class="number">2500</span>,<span class="number">5000</span>,))</span><br><span class="line">    p3 = Process(target = brute, args = (<span class="number">5000</span>,<span class="number">7500</span>,))</span><br><span class="line">    p4 = Process(target = brute, args = (<span class="number">7500</span>,<span class="number">10000</span>,))</span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line">    p3.start()</span><br><span class="line">    p4.start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="level26、level27"><a href="#level26、level27" class="headerlink" title="level26、level27"></a>level26、level27</h1><blockquote>
-<p>令人脑洞大开的两关。</p>
-</blockquote>
-<h2 id="查看系统使用了什么终端"><a href="#查看系统使用了什么终端" class="headerlink" title="查看系统使用了什么终端"></a>查看系统使用了什么终端</h2><p>只需<code>cat /etc/passwd</code>即可，最后一个就是默认终端。</p>
-<h2 id="如何从showtext程序进入vim"><a href="#如何从showtext程序进入vim" class="headerlink" title="如何从showtext程序进入vim"></a>如何从showtext程序进入vim</h2><p>将终端的窗口缩小，使文件显示不完，这个时候会有一个<code>more</code>的提示，敲<code>v</code>即可进入vim。</p>
-<h2 id="如何使用vim修改终端并进入bash"><a href="#如何使用vim修改终端并进入bash" class="headerlink" title="如何使用vim修改终端并进入bash"></a>如何使用vim修改终端并进入bash</h2><p>在vim的命令模式中输入以下两行：</p>
-<p><code>:set shell=/bin/bash</code></p>
-<p><code>:shell</code></p>
-<h1 id="level28-level32"><a href="#level28-level32" class="headerlink" title="level28~level32"></a>level28~level32</h1><h2 id="git的各种操作"><a href="#git的各种操作" class="headerlink" title="git的各种操作"></a>git的各种操作</h2><p>克隆：<code>git clone &lt;git_address&gt;</code></p>
-<p>拉取：<code>git pull</code></p>
-<p>上传：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;&lt;your_description&gt;&quot;</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-<p>回退一步：<code>git reset --hard HEAD^</code></p>
-<p>查看历史版本：<code>git log --pretty=oneline</code></p>
-<p>回退到指定版本：<code>git reset &lt;commit_id&gt;</code></p>
-<p>查看分支：<code>git branch -a</code></p>
-<p>选择分支：<code>git checkout &lt;branch&gt;</code></p>
-<p>查看标签：<code>git tag</code></p>
-<p>创建标签：<code>git tag -a v1.4 -m &#39;my version 1.4&#39;</code>.其中<code>-a</code>是“带附注”的意思。</p>
-<h1 id="level33"><a href="#level33" class="headerlink" title="level33"></a>level33</h1><blockquote>
-<p>一个将小写字母自动转成大写的SHELL——也就是看上去什么也运行不了。</p>
-<p>但是输个$0就进入正常的shell了，特别迷。</p>
-<p>能解释的发下评论区。</p>
-</blockquote>
-<h2 id="介绍-0、-1、-2、-、-、-、-的含义"><a href="#介绍-0、-1、-2、-、-、-、-的含义" class="headerlink" title="介绍 \$0、\$1、\$2、\$#、\$@、\$*、\$? 的含义"></a>介绍 \$0、\$1、\$2、\$#、\$@、\$*、\$? 的含义</h2><p>参见：<a href="https://segmentfault.com/a/1190000021435389">https://segmentfault.com/a/1190000021435389</a></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二一——再见，鼠标</title>
     <url>/2021/10/24/1024.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
@@ -242,6 +130,144 @@
       </tags>
   </entry>
   <entry>
+    <title>bandit通关记录</title>
+    <url>/2022/04/01/bandit.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一个练习Linux基础命令的网站，属于overthewire.org关卡系列中的基础部分。</p>
+<p>本文中的level指的是网站的guide<code>level n -&gt; level (n+1)</code>中的后者。</p>
+<p>网站链接：<a href="https://overthewire.org/wargames/bandit/">https://overthewire.org/wargames/bandit/</a></p>
+<span id="more"></span>
+<h1 id="level1、level14"><a href="#level1、level14" class="headerlink" title="level1、level14"></a>level1、level14</h1><h2 id="SSH的使用"><a href="#SSH的使用" class="headerlink" title="SSH的使用"></a>SSH的使用</h2><blockquote>
+<p>你无法回忆起你学过的任何算法或者 OI 知识。你无法回忆起一切。你无法回忆起你叫什么名字。</p>
+<p>你能回忆起…… $49233121176$，或者再具体一点是 $\frac{49.233121176}{22}$。你能回忆起第 $22$ 号港口通往三山海。三山海是你向往的目的地，你一定要到达这里。</p>
+</blockquote>
+<p>考察了ssh的基本使用：</p>
+<p>网站说了用户名和密码都是bandit0</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh bandit0@bandit.labs.overthewire.org -p 2220</span><br></pre></td></tr></table></figure>
+<p>如果只有密钥，没有密码的话：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh bandit14@bandit.labs.overthewire.org -p 2220 -i ./bandit14.sshkey</span><br></pre></td></tr></table></figure>
+<h1 id="level2-level5"><a href="#level2-level5" class="headerlink" title="level2~level5"></a>level2~level5</h1><h2 id="基本的路径跳转和文件查看"><a href="#基本的路径跳转和文件查看" class="headerlink" title="基本的路径跳转和文件查看"></a>基本的路径跳转和文件查看</h2><p><code>ls -a</code>查看隐藏文件。</p>
+<p><code>ls -l</code>查看文件的详细信息，包括权限、属于的用户和组、 文件大小、修改时间等等。</p>
+<p><code>cd ../</code>返回上一级。</p>
+<p><code>cd &#39;&lt;dir&gt;&#39;</code>可以跳转到包含空格或者特殊字符（比如<code>-</code>）的路径。</p>
+<h1 id="level6、level7"><a href="#level6、level7" class="headerlink" title="level6、level7"></a>level6、level7</h1><h2 id="按照大小查找文件"><a href="#按照大小查找文件" class="headerlink" title="按照大小查找文件"></a>按照大小查找文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find -size 1033c</span><br></pre></td></tr></table></figure>
+<p>查找大小为1033字节的文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find -size +5k -size -99k</span><br></pre></td></tr></table></figure>
+<p>查找大小基于5k~99k的文件。</p>
+<p>常用的储存单位为<code>c</code>,<code>k</code>,<code>M</code>,和<code>G</code>.不要问我为什么前两个小写，后两个大写。</p>
+<h2 id="按照用户和组查找文件"><a href="#按照用户和组查找文件" class="headerlink" title="按照用户和组查找文件"></a>按照用户和组查找文件</h2><p>与上文类似：<code>-user</code>,<code>-group</code>.</p>
+<h1 id="level8、level9、level18"><a href="#level8、level9、level18" class="headerlink" title="level8、level9、level18"></a>level8、level9、level18</h1><h2 id="查找指定字串"><a href="#查找指定字串" class="headerlink" title="查找指定字串"></a>查找指定字串</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep millionth &lt; data.txt</span><br></pre></td></tr></table></figure>
+<p>其中<code>&lt;</code>是文件输入流，类似也有<code>&gt;</code>作为输出流。</p>
+<h2 id="查找文本中唯一出现的字串"><a href="#查找文本中唯一出现的字串" class="headerlink" title="查找文本中唯一出现的字串"></a>查找文本中唯一出现的字串</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sort data.txt | uniq -c</span><br></pre></td></tr></table></figure>
+<p>其中<code>sort</code>会将文本中的字符串按照字典序排序。</p>
+<p><code>|</code>是管道符，用来将前一个命令的输出作为后一个命令的输入。</p>
+<p>uniq是文本去重命令，它会将文本中重复出现的行压缩至一行。而<code>-c</code>参数的含义是显示该串重复出现的次数，这样我们就可以方便找到那个只出现一次的串。</p>
+<h2 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff &lt;dir_1&gt; &lt;dir_2&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="level10-level12"><a href="#level10-level12" class="headerlink" title="level10~level12"></a>level10~level12</h1><h2 id="编码的考察"><a href="#编码的考察" class="headerlink" title="编码的考察"></a>编码的考察</h2><p>举了ascii，base64和rot13。</p>
+<p>其实不一定要使用Linux内置的命令，上网找在线转换器或者编写脚本都是可以的。</p>
+<h1 id="level13"><a href="#level13" class="headerlink" title="level13"></a>level13</h1><blockquote>
+<p>13果然不是一个好数字。正如这道题的解题过程一样令人恶心。</p>
+</blockquote>
+<h2 id="16进制文本与二进制文件的转换"><a href="#16进制文本与二进制文件的转换" class="headerlink" title="16进制文本与二进制文件的转换"></a>16进制文本与二进制文件的转换</h2><p><code>xxd</code>将二进制文件转换为16进制文本。</p>
+<p><code>xxd -r</code>逆向操作。</p>
+<h2 id="复制、移动文件和重命名"><a href="#复制、移动文件和重命名" class="headerlink" title="复制、移动文件和重命名"></a>复制、移动文件和重命名</h2><p>这关需要对文件进行操作，受权限限制，需要将文件移动到临时目录。</p>
+<p><code>cp &lt;src_dir&gt; &lt;dst_dir&gt;</code>将文件从原路径复制到目的路径。</p>
+<p><code>mv &lt;src_dir&gt; &lt;dst_dir&gt;</code>将文件从原路径移动到目的路径。</p>
+<p>重命名可以通过<code>mv &lt;old_name&gt; &lt;new_name&gt;</code>来实现。</p>
+<h2 id="文件类型判断"><a href="#文件类型判断" class="headerlink" title="文件类型判断"></a>文件类型判断</h2><p>使用file命令即可，不会受扩展名影响。</p>
+<p>因为Linux本身就没有“扩展名”这种说法，所谓的“扩展名”是为了方便人类识别才有的。</p>
+<h2 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h2><h3 id="gunzip"><a href="#gunzip" class="headerlink" title="gunzip"></a>gunzip</h3><p>解压：首先确保其后缀为<code>.gz</code>，解压命令为：<code>gzip -d &lt;filename&gt;</code></p>
+<p>压缩：<code>gzip &lt;filename&gt;</code></p>
+<h3 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h3><p>解压：<code>bzip2 -d &lt;filename&gt;</code></p>
+<p>压缩：<code>bzip2 &lt;filename&gt;</code></p>
+<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>解压：<code>tar -xvf &lt;filename&gt;</code></p>
+<p>打包：<code>tar -cvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>tar</code>作为后缀。</p>
+<p>使用<code>gzip</code>压缩：<code>tar -zcvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>tar.gz</code>或<code>tgz</code>作为后缀。</p>
+<p>使用<code>bzip2</code>压缩：<code>tar -jcvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>bz2</code>作为后缀。</p>
+<h1 id="level15-level17"><a href="#level15-level17" class="headerlink" title="level15~level17"></a>level15~level17</h1><blockquote>
+<p>网络部分我是一窍不通。</p>
+</blockquote>
+<h2 id="nc连接某个地址并发送数据。"><a href="#nc连接某个地址并发送数据。" class="headerlink" title="nc连接某个地址并发送数据。"></a>nc连接某个地址并发送数据。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> &lt;your text&gt; | nc localhost 30000</span><br></pre></td></tr></table></figure>
+<p>其中<code>localhost</code>即本地<code>127.0.0.1</code>，而<code>30000</code>是端口号。</p>
+<h2 id="telnet连接某个地址并发送数据"><a href="#telnet连接某个地址并发送数据" class="headerlink" title="telnet连接某个地址并发送数据"></a>telnet连接某个地址并发送数据</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet localhost 30000</span><br><span class="line"><span class="comment">#之后你可以输入数据并回车，以进行发送</span></span><br></pre></td></tr></table></figure>
+<h2 id="ssl连接某个地址并发送加密数据"><a href="#ssl连接某个地址并发送加密数据" class="headerlink" title="ssl连接某个地址并发送加密数据"></a>ssl连接某个地址并发送加密数据</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl s_client -ign_eof -connect localhost:30001</span><br><span class="line"><span class="comment">#之后你可以输入数据并回车，以进行发送</span></span><br><span class="line"><span class="comment">#ps: 似乎 -ign_eof 这个参数不是必须的</span></span><br></pre></td></tr></table></figure>
+<h2 id="nmap扫描端口"><a href="#nmap扫描端口" class="headerlink" title="nmap扫描端口"></a>nmap扫描端口</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -p 31000-32000 localhost</span><br></pre></td></tr></table></figure>
+<p>在31000~32000端口扫描活动的端口。</p>
+<p><del>平时不要乱扫，小心进局子</del></p>
+<h1 id="bandit19-bandit21"><a href="#bandit19-bandit21" class="headerlink" title="bandit19~bandit21"></a>bandit19~bandit21</h1><blockquote>
+<p>总之，这几关让我运行了一些奇奇怪怪的程序。</p>
+</blockquote>
+<h2 id="从自动退出的终端中运行命令"><a href="#从自动退出的终端中运行命令" class="headerlink" title="从自动退出的终端中运行命令"></a>从自动退出的终端中运行命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme</span><br></pre></td></tr></table></figure>
+<h2 id="linux执行后台命令"><a href="#linux执行后台命令" class="headerlink" title="linux执行后台命令"></a>linux执行后台命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /etc/bandit_pass/bandit20 | nc -l 50000 &amp;</span><br></pre></td></tr></table></figure>
+<p>其中<code>&amp;</code>表示让命令在后台运行，这样当你之后<code>nc</code>到<code>50000</code>这个端口时，就会自动返回这个pass。</p>
+<h1 id="bandit22-bandit24"><a href="#bandit22-bandit24" class="headerlink" title="bandit22~bandit24"></a>bandit22~bandit24</h1><p>cron相当于windows的任务计划程序。</p>
+<p>只不过这几关不是让你创建计划任务，而是让你读别人脚本和自己写一个脚本。</p>
+<p><del>第二十四关的权限过滤不是很严格，我不仅看到了别人的脚本，还<code>rm -rf</code>了一部分。目测玩过这个游戏的不超过100个人？</del></p>
+<p>记得脚本第一行要写<code>#!/bin/bash</code></p>
+<h1 id="level25"><a href="#level25" class="headerlink" title="level25"></a>level25</h1><h2 id="brute-forcing"><a href="#brute-forcing" class="headerlink" title="brute-forcing"></a>brute-forcing</h2><p>其实我是用c脚本生成一万行指令，轰炸进去。如果密码正确连接会中断。</p>
+<p>我们可以大致确定密码的范围，然后缩减指令行数，重新轰炸。</p>
+<p>这个时候，再翻一翻前面的爆破记录，应该能看到密码。</p>
+<p>当然，优雅的做法是——python脚本（网上抄的）。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">brute</span>(<span class="params">nrOne,nrTwo</span>):</span></span><br><span class="line">    <span class="keyword">for</span> pin <span class="keyword">in</span> <span class="built_in">range</span>(nrOne,nrTwo):</span><br><span class="line">        pin = <span class="built_in">str</span>(pin).zfill(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">        r = remote(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">30002</span>)</span><br><span class="line">        r.recv()</span><br><span class="line">        r.send(<span class="string">&#x27;UoMYxxxxxxxxxxxxxxxxxxxxxxxxxxxx &#x27;</span> + pin + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;Wrong&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> r.recvline():</span><br><span class="line">            <span class="built_in">print</span> <span class="string">&#x27;[+] Successful -&gt; &#x27;</span> + pin</span><br><span class="line">            <span class="built_in">print</span> r.recvline()</span><br><span class="line">            r.close()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">int</span>(pin) % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="built_in">print</span> <span class="string">&#x27;[!] Failed -&gt; &#x27;</span> + pin</span><br><span class="line">            r.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    p1 = Process(target = brute, args = (<span class="number">0</span>,<span class="number">2500</span>,))</span><br><span class="line">    p2 = Process(target = brute, args = (<span class="number">2500</span>,<span class="number">5000</span>,))</span><br><span class="line">    p3 = Process(target = brute, args = (<span class="number">5000</span>,<span class="number">7500</span>,))</span><br><span class="line">    p4 = Process(target = brute, args = (<span class="number">7500</span>,<span class="number">10000</span>,))</span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line">    p3.start()</span><br><span class="line">    p4.start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="level26、level27"><a href="#level26、level27" class="headerlink" title="level26、level27"></a>level26、level27</h1><blockquote>
+<p>令人脑洞大开的两关。</p>
+</blockquote>
+<h2 id="查看系统使用了什么终端"><a href="#查看系统使用了什么终端" class="headerlink" title="查看系统使用了什么终端"></a>查看系统使用了什么终端</h2><p>只需<code>cat /etc/passwd</code>即可，最后一个就是默认终端。</p>
+<h2 id="如何从showtext程序进入vim"><a href="#如何从showtext程序进入vim" class="headerlink" title="如何从showtext程序进入vim"></a>如何从showtext程序进入vim</h2><p>将终端的窗口缩小，使文件显示不完，这个时候会有一个<code>more</code>的提示，敲<code>v</code>即可进入vim。</p>
+<h2 id="如何使用vim修改终端并进入bash"><a href="#如何使用vim修改终端并进入bash" class="headerlink" title="如何使用vim修改终端并进入bash"></a>如何使用vim修改终端并进入bash</h2><p>在vim的命令模式中输入以下两行：</p>
+<p><code>:set shell=/bin/bash</code></p>
+<p><code>:shell</code></p>
+<h1 id="level28-level32"><a href="#level28-level32" class="headerlink" title="level28~level32"></a>level28~level32</h1><h2 id="git的各种操作"><a href="#git的各种操作" class="headerlink" title="git的各种操作"></a>git的各种操作</h2><p>克隆：<code>git clone &lt;git_address&gt;</code></p>
+<p>拉取：<code>git pull</code></p>
+<p>上传：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;&lt;your_description&gt;&quot;</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<p>回退一步：<code>git reset --hard HEAD^</code></p>
+<p>查看历史版本：<code>git log --pretty=oneline</code></p>
+<p>回退到指定版本：<code>git reset &lt;commit_id&gt;</code></p>
+<p>查看分支：<code>git branch -a</code></p>
+<p>选择分支：<code>git checkout &lt;branch&gt;</code></p>
+<p>查看标签：<code>git tag</code></p>
+<p>创建标签：<code>git tag -a v1.4 -m &#39;my version 1.4&#39;</code>.其中<code>-a</code>是“带附注”的意思。</p>
+<h1 id="level33"><a href="#level33" class="headerlink" title="level33"></a>level33</h1><blockquote>
+<p>一个将小写字母自动转成大写的SHELL——也就是看上去什么也运行不了。</p>
+<p>但是输个$0就进入正常的shell了，特别迷。</p>
+<p>能解释的发下评论区。</p>
+</blockquote>
+<h2 id="介绍-0、-1、-2、-、-、-、-的含义"><a href="#介绍-0、-1、-2、-、-、-、-的含义" class="headerlink" title="介绍 \$0、\$1、\$2、\$#、\$@、\$*、\$? 的含义"></a>介绍 \$0、\$1、\$2、\$#、\$@、\$*、\$? 的含义</h2><p>参见：<a href="https://segmentfault.com/a/1190000021435389">https://segmentfault.com/a/1190000021435389</a></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Twenty-four——my summary of year 2021</title>
+    <url>/2021/12/30/bye2021.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
+<p><img src="/2021/12/30/bye2021/2021.png"></p>
+<span id="more"></span> 
+<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
+<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
+<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
+<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
+<blockquote>
+<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+</blockquote>
+<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
+<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
+<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<blockquote>
+<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+</blockquote>
+<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
+<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Twenty-two——bewilderment</title>
     <url>/2021/11/01/bewilderment.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -274,32 +300,6 @@
 <p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
 <p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
 <p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Twenty-four——my summary of year 2021</title>
-    <url>/2021/12/30/bye2021.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
-<p><img src="/2021/12/30/bye2021/2021.png"></p>
-<span id="more"></span> 
-<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
-<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
-<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
-<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
-<blockquote>
-<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
-</blockquote>
-<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
-<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
-<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
-<blockquote>
-<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
-</blockquote>
-<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
-<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -1036,7 +1036,7 @@
 <p><img src="/2022/03/25/database/combine6.jpg"></p>
 <h1 id="数据库系统与sql——week10-13"><a href="#数据库系统与sql——week10-13" class="headerlink" title="数据库系统与sql——week10~13"></a>数据库系统与sql——week10~13</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="创建数据类型"><a href="#创建数据类型" class="headerlink" title="创建数据类型"></a>创建数据类型</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> type BranchNumber</span><br><span class="line">   <span class="keyword">from</span> <span class="type">varchar</span>(<span class="number">20</span>)</span><br><span class="line">go</span><br></pre></td></tr></table></figure>
 <h3 id="创建默认值"><a href="#创建默认值" class="headerlink" title="创建默认值"></a>创建默认值</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">default</span> D_B001</span><br><span class="line">    <span class="keyword">as</span> <span class="string">&#x27;B001&#x27;</span></span><br><span class="line">go</span><br></pre></td></tr></table></figure>
-<h3 id="将默认值与列绑定"><a href="#将默认值与列绑定" class="headerlink" title="将默认值与列绑定"></a>将默认值与列绑定</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">execute</span> sp_bindefault D_B001, <span class="string">&#x27;BranchNumber&#x27;</span></span><br><span class="line">go</span><br></pre></td></tr></table></figure>
+<h3 id="将默认值与列绑定"><a href="#将默认值与列绑定" class="headerlink" title="将默认值与列绑定"></a>将默认值与列绑定</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">execute</span> sp_bindefault D_B001, BranchNumber</span><br><span class="line">go</span><br></pre></td></tr></table></figure>
 <h3 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> rule R_SexType <span class="keyword">as</span></span><br><span class="line">      <span class="variable">@column</span> <span class="keyword">in</span> (<span class="string">&#x27;F&#x27;</span>,<span class="string">&#x27;M&#x27;</span>)</span><br><span class="line">go</span><br></pre></td></tr></table></figure>
 <h3 id="将规则与列绑定"><a href="#将规则与列绑定" class="headerlink" title="将规则与列绑定"></a>将规则与列绑定</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">execute</span> sp_bindrule R_SexType, SexType</span><br><span class="line">go</span><br></pre></td></tr></table></figure>
 <h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Staff (</span><br><span class="line">   staffNo              StaffNumber          <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">   branchNo             BranchNumber         <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">   Sup_staffNo          <span class="type">varchar</span>(<span class="number">5</span>)           <span class="keyword">null</span>,</span><br><span class="line">   fNameOfStaff         FirstName            <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">   lNameOfStaff         LastName             <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">   Position             <span class="type">varchar</span>(<span class="number">10</span>)          <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">   sex                  SexType              <span class="keyword">not</span> <span class="keyword">null</span>           D_M            R_SexType,</span><br><span class="line">   DOB                  datetime             <span class="keyword">null</span>,</span><br><span class="line">   salary               money                <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">   <span class="keyword">constraint</span> PK_STAFF <span class="keyword">primary</span> key nonclustered (staffNo)</span><br><span class="line">)# <span class="keyword">column</span> name          datatype             <span class="keyword">null</span><span class="operator">/</span><span class="keyword">not</span> <span class="keyword">null</span>      <span class="keyword">default</span> val    rule  </span><br><span class="line">go</span><br></pre></td></tr></table></figure>
@@ -1086,7 +1086,34 @@
 <h3 id="乐观检查机制"><a href="#乐观检查机制" class="headerlink" title="乐观检查机制"></a>乐观检查机制</h3><p>只对事务结束的时候进行冲突检查，可提高并发性。</p>
 <h3 id="数据粒度"><a href="#数据粒度" class="headerlink" title="数据粒度"></a>数据粒度</h3><p>粒度越细，并发度越高，但是加锁的信息也越多，反之亦然。</p>
 <h3 id="意向锁？"><a href="#意向锁？" class="headerlink" title="意向锁？"></a>意向锁？</h3><p>不管。</p>
-<h1 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h1><p>这个得靠自己。</p>
+<h1 id="安全——week16"><a href="#安全——week16" class="headerlink" title="安全——week16"></a>安全——week16</h1><p>这个得靠自己。</p>
+<h2 id="风险原因"><a href="#风险原因" class="headerlink" title="风险原因"></a>风险原因</h2><ul>
+<li>硬件故障</li>
+<li>DBMS安全机制失效</li>
+<li>数据库超出授权的范围、修改</li>
+<li>数据库管理员安全策略或过程不完备</li>
+<li>程序员制造“陷阱门”，程序变更或者员工安全方面训练不足</li>
+<li>用户用他人身份访问泄露数据，黑客侵入敲诈勒索，病毒入侵等</li>
+</ul>
+<h2 id="数据库防护措施"><a href="#数据库防护措施" class="headerlink" title="数据库防护措施"></a>数据库防护措施</h2><ul>
+<li>授权访问控制</li>
+<li>视图</li>
+<li>备份恢复</li>
+<li>完整性</li>
+<li>加密（对称、非对称）</li>
+<li>RAID技术</li>
+</ul>
+<h2 id="DBMS和网络安全防护措施"><a href="#DBMS和网络安全防护措施" class="headerlink" title="DBMS和网络安全防护措施"></a>DBMS和网络安全防护措施</h2><ul>
+<li>代理服务器</li>
+<li>防火墙</li>
+<li>Kerberos</li>
+<li>报文摘要算法和数字签名</li>
+<li>数字证书</li>
+<li>安全电子交易和安全交易技术</li>
+<li>安全套接字层和安全HTTP</li>
+<li>Java安全</li>
+<li>ActiveX安全</li>
+</ul>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -1622,6 +1649,8 @@
 <h4 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h4><p><a href="https://github.com/top-bettercode/docker-qq">https://github.com/top-bettercode/docker-qq</a></p>
 <p>启动脚本把<code>fcitx</code>都改成<code>ibus</code>可以输入中文。</p>
 <p>2022年6月13日实测可用。</p>
+<p>缺点：接收的文件不能直接打开，必须使用docker shell从虚拟环境中拷贝出来。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 10f0ec600caf是容器的id，可以通过sudo docker ps命令获得</span></span><br><span class="line">sudo docker cp 10f0ec600caf:<span class="string">&#x27;/TencentFiles/2658799217/FileRecv/RV.rar&#x27;</span> ~/Desktop</span><br></pre></td></tr></table></figure>
 <h1 id="kernel-pwn环境搭建"><a href="#kernel-pwn环境搭建" class="headerlink" title="kernel pwn环境搭建"></a>kernel pwn环境搭建</h1><blockquote>
 <p>部分内容来源于 <a href="https://kiprey.gitee.io/2021/10/kernel_pwn_introduction/">https://kiprey.gitee.io/2021/10/kernel_pwn_introduction/</a></p>
 </blockquote>
@@ -2034,6 +2063,28 @@
       </categories>
   </entry>
   <entry>
+    <title>十九——热爱杀105个人的你</title>
+    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="00edfb9e668526bb87043430ce224abfdc80b0d9f9b6c95221e12d9872b383b7">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad0a46181665f3a561a83ff3aa8234311f4017c044a496f25f56485a75332b1048c9412e0a6f1c0df0964a0d35c73cce753d617f76024efd3bfa4b05c889da81d9b965008415d6a819cbbbcefc9e464dd9f0d28a51152f7c05a54d0a8ea6653bfe490ba0c2491a307010940297b5d911a069665ca3d568dba9153877ec40bfd0764ab15ff2d5701066afb9f7063009f4610138b6b055e268428af773398d1d2c03bcd3849554324a95ce4096a998bea71932f96b0a629ae8bcf9853ffde23392b8e9021fd3c7ea939c05547077fd92e3b97460c2160a0fa9ead9aa0e6a7b7e4c151191ed80b8587555307919246a7e9f137dfa4db4311bcba64a9480c7ad409cfa435fe88b5afcb8c51415952671e49c04025195dcedbbd8445b38d8801e4c67946634e42c95c20899386155d0c62cdc74afd04b96be91c1519d893dced0ee421f86c40d14625faa9daaf690814e183cce8958de77443aac4ad52c552f48afae9c7bfd1764c116809f750e542eb89c60a2228ffacf834068c299f86d8dd2e3fd51d5a487cf0706526d81033a48e712cab5fdda79e395c1fa81f19a988ee2b966d1732715e15d96012587ae6417ee72d760c850192f8241192b05eda871743bebfbc7a1a0d25f4f5f6a8d952a91344fdff442ebff524cf13b89697c035fe002c2788ec1b7eb61169e63742c261f05eb3b4050c21b4bf34809b1e96b292f672d4cd3198a276d0d81e782fe4221245c734198d848d2984aa9b7a310bcfb4aca7c1084188af47d8efbcdb33c16a9278a2795275816f15da49c873424bb4fd2892d0e756094dbb00df729a8adb7483c832f27d0f4a84c76d2e7721ec0e1437826df40850ab928eea0492d69d048afa6358a6457c1376e39bd7c7b1247555f778afc030730cfcd816a58748f5e2c0b4e8bd8f1ce135af66abfea8bd6e1f5f3827d55b442dc9a7c58d68080ce7a12e3d2c36d488ff645f4ca4fd6de8afe8a562f70c03b097e63134cf81ec8814a29f51765bff8be523d02e57c55834e6c628afe521ef0bdc9f4cc5c2617d70ef092c913e1dd7700f5898c5cb78a8a309200d87b6c0ca1129671ff666e0c27a6af86040dd9dbe1c66065a909a5707654c1358c6e6232e83f867232d65825794e566309719b4d3a64ee040e884d8ef8afa380e305e2ec828e4f6e7d1dd09a86f534edac5a86060abf820de9ec8ebfa2152fd63e348266569842456060c94ae90dae7e75dc94cb4622c6056892c645367218d2232caa2b3fd99918d2b6f3b9b963acdc78657bf8bb38ce94ef383b60b207f2d3075b152daeb0ddd1020845251a02ef61fc21c71bbdc816adf8da39458850923428da85be819ac524b555b57506b7d3c4ad0b337da2dea1ae5dd42050cf9ab6b907f9b4d8f3c548b373aafb0475da40ee88e803530116de72b38167edcfaa915f67c95d43b8800910889acfc50440218fe1dbf54b9ecebe82d4a18d15e3dc3183ec4efc6e9e9f9470ae555f75fb7d9dbe4225f71ecde89799898e516b0e144b9ac1d346cf683f673b67f8fa6d9e2475e11f61505e5be011e7a56df407ae3b7c3f5c97b3ec8627b6cc10edbf27c720838b8755d2a9449329c1aec5bc00d3c6b602023b6e32efc6f894732db45aafe68acfabf3dfdb5c771a1fc5085cb680cc8806072300d78010909b8f434e86f6bc66fd18894265806a92576c23b71e71eb18765d136e52e63ca2bbaa8da16ceada0b26f0db91e68143b430844191628d1ff27519c532d956f3c50df607d0d6217558e0980119b674335d140bacd3631a04dbbb53c34a38357134c2f560d7dc19f47b593461f2cb309ddc4f85628c581a9b3ba35b162f13e1725807f8b80f194c5b8e64a27daa68684844c6c7ffabdae00328c65d18398e460bae6b1c0dd748e82705ddb3a035afe6d5086262e5aebe9501e96e581e4299caacd8a09fa0d3033500c1caae0f1bacf64745483110d77d5040165869a0e5de48b999017d2f8366f69c92ab928f68c347cc8c8eff3e52317b729d60ed9583c5fc1161af5b6ecf089384616afb74140ad418ac0fe17ccded8e5eb946d22670aa00e45a1649886fbe02256a480f4511c96300039f53c78c22c7d3bc9bd2391915bcf2e79621a7544bbc331f996634a29a7fc9cf5db4a7ab690a940232fe8f19b4d72bd05e85ce8f5b9553c984d2445bcff846b9c5850b2588b87c315eeffcc1cba0ac54dbe633c8cdb244dd0a8119420ec1ff66693f68a71a5923c19161fb5c23325ae61023bcf0094d08a22431583890db2e6fe02d7fd9438fdf793e109904d8a6ab1585b92f52ffcc7570f41a223590497d1e3d1910870c6cd4c8323dfd63606bf5ffa450650273299b297fdb7abe77103ed53bc0a04d6c51148fc6d68732645ce816ccea95027f6d98ea3c032011fdd75a144ebe7fbb18f5dac7e029758bc68179b827108cb53aa59c9e2aa8a924c5a7e5ad8ce4d8e38fd945b5ff7a22210ac6aae08549113d90095f0eaef6356daaf163c23879f84f16edeceabfdab009b9f6ffd4829e3093b0960f9e8e88c69f3e4aee2e98f5c573348eae3e9e27b09133f1095233a3dc9ad8ce175410f7fcf8543e9de96a00032333aae9683a4bbd252a7d01836e0611f961beea850d34d163930633b99fe88b536ed6455210e6460ad2ee02e6e429142d65fb2dd1c510e27d7bb17f467a763844a39af9a15658d6e200d514df9a711b812a2d9ef5bdd33a26279668be8cb4fadd2eecbb8957146327a2a8aff43d4dc67ec4388fc3d7e4467c53fd494a30d259c7f3b0b27d7648b7da88670e664362f655ad971654dbc53b0ffcf24d7e9a1407ec6b0004e88e3711e9b4c3865bd78a486175a05d3714a7871ff65eb82974d814eddcaca78660b453df766e456777bd0c4c4b80b0aa41e02668547330cc9e1009c893cba495400afaead758efdfcb8aa977de27b9a1b6cbc2284636ae38d03926b3b63e16d16cd05c62709cf71e4290866b237f002abc1e3eb36c6642084be64776984c0c5533692ff737ad1baa15bdd106a231ff8d516c5c89c65331e0f204de455f52f91b0690e77e02c9a588c33bf4fe73a211599f79934b1d048524b9aeffc4e341668299d93044f67e3707e111b348da09537ce1b06a9174779b75adff2526eb0ed2c04c37d0cac0d3d44b43007030c8bcb595bfaed4de9eb2b42320a3f45d7dcede75db78573456d057d0c36f81581ee3f5d0dae62fd7e0a55266908d0e4516bedc24f2b750cfb65c80580c3392e429e265b5bf46966347f5a9ac10bbf3a1d3a19845f102f30f821a1eacf6af75ce17b8ad00ba7b6ccf0d4dbe03db6f8ae733e5ecf2036474407a1d612ce6fd192cf7f233e09b87f2c7674bea73fbaff7b74bac3d92e834ee3282e332ec4ccd8e0594b9206448ae182247f0d145da019ee1e899af7a68887f9875a231bb2502bd04e78d4243ff55b11a99e67881ee1e1dd8f2adeb10b747870f2af1517012475b6e07d21ff439f99c14b422f1cf90218567105506b2574364b188e8fc737591804719b87b266e1fd71df3ae085becefcaec498e97946a0cf93feeccbd5bbb59ada2166d4e2fb80a26128f400116541bf8d0e7dfd13c023ec5c6e234eefa20d740b36701465e41bd797c551d64cafe934c746e26b751e63af5ea640b941d4890967183e371c577d05412bba9abb99c5b9118b951a9a4013203b907d794e412fce8f6b5f4a8b5ab37ae915dda58d4abf4db7331b07d4774588db3f9e8176b6464f8131646c316c0f29f8d057cdda0e0c714f9f62aad46253c1d13b5401d554abe729f87a6afb9d54567435b5b0088b6a97ff448eaa82cc0c3f66ec8286101f1516cb633c9fe901b8292c5aa8ce99ebab34ad4ce9d1f8a9c2b6dc196feb569c7264f4894a16a7482147a89a409b9aa09f07758cfb7899646eed737a622980dfae8ed50e60351a9ac47cd62e62a903cb8ffe9cc99ba60c2342d61e39aaf5a200836125a004dbd2f65e6fe30f5037c9222ce4e50ac5758d8cb10068a4ccba68b59e708fdbe507295a1e90dc3ad3336d680d420d8b4af4dba69f624bbc307f67548a9a10a11e5ad37b3097f4cd918b0105a1cad7e992201a3169afd3b05beebcf437c06aa12cd9d2b32c1ca0eed6febe01468d29bb2969228a11f104198dc3db248815de4aaf8f612606eabbec04de8f53f89fe93108449742cf2805519b9c701bf2892227a4802fd6e1f2dbb2f991877f7251714e55675d917d91805f7225b6431729da2d164e0883425bf306b70fc9370b6f75d231b49d346bc2aed7b85f496552736fb598147672f7a1f1b2b5bd1922fa252fa4dc463b2881416977ffa1c43e0502d8b48fb58d1835d1bdc70119f0b292245108b844b1a18d91c37f02626a3e9d00a669b406a0aba59881743f1534d9447662fedbae0b79438a171d7fab5709c8d6d859395d15060bb18add3eae248a544c3312c93f3b2a6d6261d128208e62d3cf06e4b69fc082618dac157e6edbb2b1f9e61dea7e5072374d7041b3a088f6b7d9db7b767c6df144495806d51cadd0c8ebb06ac2d6d590afa60b355f11784fcd232b138f8493bcbe96536839eeb66d30dfc8d90f200a4b4fe7509f8b67e6249dc8f3f56e9b68ac9f3c11199bde2cb63a6a00e7e19e9594edc3c2649ab86d08f4d5c2e7a718b610667fb888dee6d83b012de0d252d0cd694d8af391ddd6eee300178b70dbfb7d576dff399ecc734f28ff20ab785794b2fd330cd4383e4a34a661ab8efb38358efdfebc5289fcc4a04e81af2e74f92f6dfeca667645e6ecf9a3f94b76b44785753e0d680ca023d44874348c19374fa7aba1cc5f34a55cf209106f5e66c544bbc3473af7677ac33ac7b63b479989770d6b36812363883f83ba3aac3b54095ab588366584b2b81fa9840cf50cccda935e7b0c5fa98a58351d7e74e4dc7a28676b590b70bc530f31398b72a2b04dac9b28d47d51ab597bc61a43727478b052ab6c6beb5b6f4a251ed40165a0dd56ea400869561620ef60f785f1ccfe09597b3f176a796af704c06595056fab4aaf2f0eb5b15c22a4b8a0a6b1546c345bef9e2087ace2a54c3106c007e26919221c70ddbe71addbc0473cf74471deb51360703fd94544b2e61104ad67f9ed3920c5f66815719c43e9d70b033f6134872fc6d7fbe8dfbf0e5ba5df043e2baf94822d7aa60652c791f16604844ceabdec26668670b5ae3bed2d8973735bee8bbbabbff7d30126bb7974585b90769da34fd802944f13a4e113375386731a29905be64b6ff82206d45385a572c4d521381519fb2f6d16fad9d066badf37407ce52fd9470d5fd1d3e8c61131c6d389d6a454d5a7ef00642163a11835c5e3f0be9ab5450a30c296cf7a7f39d93f0a6234771c58d6613130ceba442359a4ae24d7ab1c41dcc349a37d2d1e6532b44d785912d42fe4c313329a2df10de608b7fe0ad27640befd7cf113d72b1a1c175f71b2ba2aeabe1272851cf79ec5fc576484bfd567bfe0e84850779ac8ff983abbec205ac963b44f4355faa31e22694bb64dd06cece5e948b4ca474631cc5ad5a04acac1457eda09f3d689c25ba91650f5d66a4e641fdccd76d250a968c13f5a321faf12cc29f5c7bf9b3655d52c60648c22550a8d8586012a1c29bf5471585afc67424cacfac5a8222d2384eb5b1fbed75eb41297de524c45a7bf2bd6e59b63c81315715899960f2c7477d6281bc2d72a1a6ecbd2b9c2b73d9bed20d69beea9a7ef5ebaa0b187105fda89b4236386444a926d0187644fa60f0314cf44a5d294da3e13a97504859a9f6bf8388e73d99d6a7698112bc134786012b47dbba5a316b9a34da98614a775455a9473a2879e7d6a8ca8d734edbb8125077ab09a9f3284436621590edae46c5bbe80667aa6b3c327e24acf92e721845825e98e4d5afde675418a94fa60fa9c02de17f9820e103fd7200ace648f901b3b307db292d879f8dc69a2d19765f8dfee07043e96fd57471052208039e8bffc0eb987b962792b9d3a450d1f6ce3cc69c9298cd337547e8b8328b6df62387262144c909347d96874ad0a312dd12243263b198cbb6c188bb2ac61f29afce658da675014d142d04e62aa906468f7a677b26da78279286dc09fe97bc7047e473ed1577eef7736fcb4d27089acab76b1bd2f4ab4ec15240008c58c57e1d313672b8d23fa7320d7136b25aa03ed22f504696b9b6c6a890f0467ebe261955a8c652171dffff456fdd449be87f9a45d8654583c986f0727388339f8d9c57e6d31d72b114a28391c1291a320c87a81681fcd9f8fd1a01a84956b49aa7811599a6df033cc20357839686ede2a0a1cb4253df0d321be75ccba25a1ec7c6200a152fd762ff3bf5ae4360f76b130fc406b699e716d9b2cc99af905bdf024b577bac22371895b4e3cfa6ea056d7712eab9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>encrypted</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>再见，acm</title>
     <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
@@ -2094,28 +2145,6 @@
       </categories>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>十九——热爱杀105个人的你</title>
-    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="00edfb9e668526bb87043430ce224abfdc80b0d9f9b6c95221e12d9872b383b7">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad0a46181665f3a561a83ff3aa8234311f4017c044a496f25f56485a75332b1048c9412e0a6f1c0df0964a0d35c73cce753d617f76024efd3bfa4b05c889da81d9b965008415d6a819cbbbcefc9e464dd9f0d28a51152f7c05a54d0a8ea6653bfe490ba0c2491a307010940297b5d911a069665ca3d568dba9153877ec40bfd0764ab15ff2d5701066afb9f7063009f4610138b6b055e268428af773398d1d2c03bcd3849554324a95ce4096a998bea71932f96b0a629ae8bcf9853ffde23392b8e9021fd3c7ea939c05547077fd92e3b97460c2160a0fa9ead9aa0e6a7b7e4c151191ed80b8587555307919246a7e9f137dfa4db4311bcba64a9480c7ad409cfa435fe88b5afcb8c51415952671e49c04025195dcedbbd8445b38d8801e4c67946634e42c95c20899386155d0c62cdc74afd04b96be91c1519d893dced0ee421f86c40d14625faa9daaf690814e183cce8958de77443aac4ad52c552f48afae9c7bfd1764c116809f750e542eb89c60a2228ffacf834068c299f86d8dd2e3fd51d5a487cf0706526d81033a48e712cab5fdda79e395c1fa81f19a988ee2b966d1732715e15d96012587ae6417ee72d760c850192f8241192b05eda871743bebfbc7a1a0d25f4f5f6a8d952a91344fdff442ebff524cf13b89697c035fe002c2788ec1b7eb61169e63742c261f05eb3b4050c21b4bf34809b1e96b292f672d4cd3198a276d0d81e782fe4221245c734198d848d2984aa9b7a310bcfb4aca7c1084188af47d8efbcdb33c16a9278a2795275816f15da49c873424bb4fd2892d0e756094dbb00df729a8adb7483c832f27d0f4a84c76d2e7721ec0e1437826df40850ab928eea0492d69d048afa6358a6457c1376e39bd7c7b1247555f778afc030730cfcd816a58748f5e2c0b4e8bd8f1ce135af66abfea8bd6e1f5f3827d55b442dc9a7c58d68080ce7a12e3d2c36d488ff645f4ca4fd6de8afe8a562f70c03b097e63134cf81ec8814a29f51765bff8be523d02e57c55834e6c628afe521ef0bdc9f4cc5c2617d70ef092c913e1dd7700f5898c5cb78a8a309200d87b6c0ca1129671ff666e0c27a6af86040dd9dbe1c66065a909a5707654c1358c6e6232e83f867232d65825794e566309719b4d3a64ee040e884d8ef8afa380e305e2ec828e4f6e7d1dd09a86f534edac5a86060abf820de9ec8ebfa2152fd63e348266569842456060c94ae90dae7e75dc94cb4622c6056892c645367218d2232caa2b3fd99918d2b6f3b9b963acdc78657bf8bb38ce94ef383b60b207f2d3075b152daeb0ddd1020845251a02ef61fc21c71bbdc816adf8da39458850923428da85be819ac524b555b57506b7d3c4ad0b337da2dea1ae5dd42050cf9ab6b907f9b4d8f3c548b373aafb0475da40ee88e803530116de72b38167edcfaa915f67c95d43b8800910889acfc50440218fe1dbf54b9ecebe82d4a18d15e3dc3183ec4efc6e9e9f9470ae555f75fb7d9dbe4225f71ecde89799898e516b0e144b9ac1d346cf683f673b67f8fa6d9e2475e11f61505e5be011e7a56df407ae3b7c3f5c97b3ec8627b6cc10edbf27c720838b8755d2a9449329c1aec5bc00d3c6b602023b6e32efc6f894732db45aafe68acfabf3dfdb5c771a1fc5085cb680cc8806072300d78010909b8f434e86f6bc66fd18894265806a92576c23b71e71eb18765d136e52e63ca2bbaa8da16ceada0b26f0db91e68143b430844191628d1ff27519c532d956f3c50df607d0d6217558e0980119b674335d140bacd3631a04dbbb53c34a38357134c2f560d7dc19f47b593461f2cb309ddc4f85628c581a9b3ba35b162f13e1725807f8b80f194c5b8e64a27daa68684844c6c7ffabdae00328c65d18398e460bae6b1c0dd748e82705ddb3a035afe6d5086262e5aebe9501e96e581e4299caacd8a09fa0d3033500c1caae0f1bacf64745483110d77d5040165869a0e5de48b999017d2f8366f69c92ab928f68c347cc8c8eff3e52317b729d60ed9583c5fc1161af5b6ecf089384616afb74140ad418ac0fe17ccded8e5eb946d22670aa00e45a1649886fbe02256a480f4511c96300039f53c78c22c7d3bc9bd2391915bcf2e79621a7544bbc331f996634a29a7fc9cf5db4a7ab690a940232fe8f19b4d72bd05e85ce8f5b9553c984d2445bcff846b9c5850b2588b87c315eeffcc1cba0ac54dbe633c8cdb244dd0a8119420ec1ff66693f68a71a5923c19161fb5c23325ae61023bcf0094d08a22431583890db2e6fe02d7fd9438fdf793e109904d8a6ab1585b92f52ffcc7570f41a223590497d1e3d1910870c6cd4c8323dfd63606bf5ffa450650273299b297fdb7abe77103ed53bc0a04d6c51148fc6d68732645ce816ccea95027f6d98ea3c032011fdd75a144ebe7fbb18f5dac7e029758bc68179b827108cb53aa59c9e2aa8a924c5a7e5ad8ce4d8e38fd945b5ff7a22210ac6aae08549113d90095f0eaef6356daaf163c23879f84f16edeceabfdab009b9f6ffd4829e3093b0960f9e8e88c69f3e4aee2e98f5c573348eae3e9e27b09133f1095233a3dc9ad8ce175410f7fcf8543e9de96a00032333aae9683a4bbd252a7d01836e0611f961beea850d34d163930633b99fe88b536ed6455210e6460ad2ee02e6e429142d65fb2dd1c510e27d7bb17f467a763844a39af9a15658d6e200d514df9a711b812a2d9ef5bdd33a26279668be8cb4fadd2eecbb8957146327a2a8aff43d4dc67ec4388fc3d7e4467c53fd494a30d259c7f3b0b27d7648b7da88670e664362f655ad971654dbc53b0ffcf24d7e9a1407ec6b0004e88e3711e9b4c3865bd78a486175a05d3714a7871ff65eb82974d814eddcaca78660b453df766e456777bd0c4c4b80b0aa41e02668547330cc9e1009c893cba495400afaead758efdfcb8aa977de27b9a1b6cbc2284636ae38d03926b3b63e16d16cd05c62709cf71e4290866b237f002abc1e3eb36c6642084be64776984c0c5533692ff737ad1baa15bdd106a231ff8d516c5c89c65331e0f204de455f52f91b0690e77e02c9a588c33bf4fe73a211599f79934b1d048524b9aeffc4e341668299d93044f67e3707e111b348da09537ce1b06a9174779b75adff2526eb0ed2c04c37d0cac0d3d44b43007030c8bcb595bfaed4de9eb2b42320a3f45d7dcede75db78573456d057d0c36f81581ee3f5d0dae62fd7e0a55266908d0e4516bedc24f2b750cfb65c80580c3392e429e265b5bf46966347f5a9ac10bbf3a1d3a19845f102f30f821a1eacf6af75ce17b8ad00ba7b6ccf0d4dbe03db6f8ae733e5ecf2036474407a1d612ce6fd192cf7f233e09b87f2c7674bea73fbaff7b74bac3d92e834ee3282e332ec4ccd8e0594b9206448ae182247f0d145da019ee1e899af7a68887f9875a231bb2502bd04e78d4243ff55b11a99e67881ee1e1dd8f2adeb10b747870f2af1517012475b6e07d21ff439f99c14b422f1cf90218567105506b2574364b188e8fc737591804719b87b266e1fd71df3ae085becefcaec498e97946a0cf93feeccbd5bbb59ada2166d4e2fb80a26128f400116541bf8d0e7dfd13c023ec5c6e234eefa20d740b36701465e41bd797c551d64cafe934c746e26b751e63af5ea640b941d4890967183e371c577d05412bba9abb99c5b9118b951a9a4013203b907d794e412fce8f6b5f4a8b5ab37ae915dda58d4abf4db7331b07d4774588db3f9e8176b6464f8131646c316c0f29f8d057cdda0e0c714f9f62aad46253c1d13b5401d554abe729f87a6afb9d54567435b5b0088b6a97ff448eaa82cc0c3f66ec8286101f1516cb633c9fe901b8292c5aa8ce99ebab34ad4ce9d1f8a9c2b6dc196feb569c7264f4894a16a7482147a89a409b9aa09f07758cfb7899646eed737a622980dfae8ed50e60351a9ac47cd62e62a903cb8ffe9cc99ba60c2342d61e39aaf5a200836125a004dbd2f65e6fe30f5037c9222ce4e50ac5758d8cb10068a4ccba68b59e708fdbe507295a1e90dc3ad3336d680d420d8b4af4dba69f624bbc307f67548a9a10a11e5ad37b3097f4cd918b0105a1cad7e992201a3169afd3b05beebcf437c06aa12cd9d2b32c1ca0eed6febe01468d29bb2969228a11f104198dc3db248815de4aaf8f612606eabbec04de8f53f89fe93108449742cf2805519b9c701bf2892227a4802fd6e1f2dbb2f991877f7251714e55675d917d91805f7225b6431729da2d164e0883425bf306b70fc9370b6f75d231b49d346bc2aed7b85f496552736fb598147672f7a1f1b2b5bd1922fa252fa4dc463b2881416977ffa1c43e0502d8b48fb58d1835d1bdc70119f0b292245108b844b1a18d91c37f02626a3e9d00a669b406a0aba59881743f1534d9447662fedbae0b79438a171d7fab5709c8d6d859395d15060bb18add3eae248a544c3312c93f3b2a6d6261d128208e62d3cf06e4b69fc082618dac157e6edbb2b1f9e61dea7e5072374d7041b3a088f6b7d9db7b767c6df144495806d51cadd0c8ebb06ac2d6d590afa60b355f11784fcd232b138f8493bcbe96536839eeb66d30dfc8d90f200a4b4fe7509f8b67e6249dc8f3f56e9b68ac9f3c11199bde2cb63a6a00e7e19e9594edc3c2649ab86d08f4d5c2e7a718b610667fb888dee6d83b012de0d252d0cd694d8af391ddd6eee300178b70dbfb7d576dff399ecc734f28ff20ab785794b2fd330cd4383e4a34a661ab8efb38358efdfebc5289fcc4a04e81af2e74f92f6dfeca667645e6ecf9a3f94b76b44785753e0d680ca023d44874348c19374fa7aba1cc5f34a55cf209106f5e66c544bbc3473af7677ac33ac7b63b479989770d6b36812363883f83ba3aac3b54095ab588366584b2b81fa9840cf50cccda935e7b0c5fa98a58351d7e74e4dc7a28676b590b70bc530f31398b72a2b04dac9b28d47d51ab597bc61a43727478b052ab6c6beb5b6f4a251ed40165a0dd56ea400869561620ef60f785f1ccfe09597b3f176a796af704c06595056fab4aaf2f0eb5b15c22a4b8a0a6b1546c345bef9e2087ace2a54c3106c007e26919221c70ddbe71addbc0473cf74471deb51360703fd94544b2e61104ad67f9ed3920c5f66815719c43e9d70b033f6134872fc6d7fbe8dfbf0e5ba5df043e2baf94822d7aa60652c791f16604844ceabdec26668670b5ae3bed2d8973735bee8bbbabbff7d30126bb7974585b90769da34fd802944f13a4e113375386731a29905be64b6ff82206d45385a572c4d521381519fb2f6d16fad9d066badf37407ce52fd9470d5fd1d3e8c61131c6d389d6a454d5a7ef00642163a11835c5e3f0be9ab5450a30c296cf7a7f39d93f0a6234771c58d6613130ceba442359a4ae24d7ab1c41dcc349a37d2d1e6532b44d785912d42fe4c313329a2df10de608b7fe0ad27640befd7cf113d72b1a1c175f71b2ba2aeabe1272851cf79ec5fc576484bfd567bfe0e84850779ac8ff983abbec205ac963b44f4355faa31e22694bb64dd06cece5e948b4ca474631cc5ad5a04acac1457eda09f3d689c25ba91650f5d66a4e641fdccd76d250a968c13f5a321faf12cc29f5c7bf9b3655d52c60648c22550a8d8586012a1c29bf5471585afc67424cacfac5a8222d2384eb5b1fbed75eb41297de524c45a7bf2bd6e59b63c81315715899960f2c7477d6281bc2d72a1a6ecbd2b9c2b73d9bed20d69beea9a7ef5ebaa0b187105fda89b4236386444a926d0187644fa60f0314cf44a5d294da3e13a97504859a9f6bf8388e73d99d6a7698112bc134786012b47dbba5a316b9a34da98614a775455a9473a2879e7d6a8ca8d734edbb8125077ab09a9f3284436621590edae46c5bbe80667aa6b3c327e24acf92e721845825e98e4d5afde675418a94fa60fa9c02de17f9820e103fd7200ace648f901b3b307db292d879f8dc69a2d19765f8dfee07043e96fd57471052208039e8bffc0eb987b962792b9d3a450d1f6ce3cc69c9298cd337547e8b8328b6df62387262144c909347d96874ad0a312dd12243263b198cbb6c188bb2ac61f29afce658da675014d142d04e62aa906468f7a677b26da78279286dc09fe97bc7047e473ed1577eef7736fcb4d27089acab76b1bd2f4ab4ec15240008c58c57e1d313672b8d23fa7320d7136b25aa03ed22f504696b9b6c6a890f0467ebe261955a8c652171dffff456fdd449be87f9a45d8654583c986f0727388339f8d9c57e6d31d72b114a28391c1291a320c87a81681fcd9f8fd1a01a84956b49aa7811599a6df033cc20357839686ede2a0a1cb4253df0d321be75ccba25a1ec7c6200a152fd762ff3bf5ae4360f76b130fc406b699e716d9b2cc99af905bdf024b577bac22371895b4e3cfa6ea056d7712eab9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>encrypted</tag>
       </tags>
   </entry>
   <entry>

@@ -37,11 +37,11 @@
   </entry>
   
   <entry>
-    <title>(转载) 我家跨上了“信息高速路”</title>
+    <title>（转载）我家跨上了“信息高速路”</title>
     <link href="https://junyu33.github.io/2022/06/24/cxxxt.html"/>
     <id>https://junyu33.github.io/2022/06/24/cxxxt.html</id>
     <published>2022-06-24T10:00:00.000Z</published>
-    <updated>2022-06-24T10:40:28.755Z</updated>
+    <updated>2022-06-25T13:35:19.547Z</updated>
     
     <summary type="html">
     
@@ -141,11 +141,11 @@
   </entry>
   
   <entry>
-    <title>（不定期更新）数据库学习笔记</title>
+    <title>数据库学习笔记</title>
     <link href="https://junyu33.github.io/2022/03/25/database.html"/>
     <id>https://junyu33.github.io/2022/03/25/database.html</id>
     <published>2022-03-25T04:00:00.000Z</published>
-    <updated>2022-06-19T14:25:30.475Z</updated>
+    <updated>2022-06-25T13:36:29.536Z</updated>
     
     <summary type="html">
     
@@ -232,11 +232,12 @@
     <link href="https://junyu33.github.io/2022/02/07/bin_ctf.html"/>
     <id>https://junyu33.github.io/2022/02/07/bin_ctf.html</id>
     <published>2022-02-07T14:00:00.000Z</published>
-    <updated>2022-06-25T10:24:14.415Z</updated>
+    <updated>2022-06-25T13:34:28.601Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;分为re、pwn和other三部分，用作记录思路和用得上的gadget。&lt;/p&gt;
+&lt;p&gt;以下二级标题不带网站的默认为buuoj对应分区题目。&lt;/p&gt;
     
     </summary>
     
@@ -245,9 +246,9 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
-    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
   </entry>
   
@@ -333,9 +334,9 @@
       <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
-    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="assembly" scheme="https://junyu33.github.io/tags/assembly/"/>
     
@@ -365,11 +366,11 @@
   </entry>
   
   <entry>
-    <title>(转载) 撸羊毛</title>
+    <title>（转载）撸羊毛</title>
     <link href="https://junyu33.github.io/2022/01/05/fable.html"/>
     <id>https://junyu33.github.io/2022/01/05/fable.html</id>
     <published>2022-01-04T16:30:00.000Z</published>
-    <updated>2022-01-15T15:16:01.087Z</updated>
+    <updated>2022-06-25T13:35:55.917Z</updated>
     
     <summary type="html">
     

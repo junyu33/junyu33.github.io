@@ -37,6 +37,24 @@
   </entry>
   
   <entry>
+    <title>博客一周年祭</title>
+    <link href="https://junyu33.github.io/2022/07/06/anniversary.html"/>
+    <id>https://junyu33.github.io/2022/07/06/anniversary.html</id>
+    <published>2022-07-05T16:00:00.000Z</published>
+    <updated>2022-07-07T04:46:38.710Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;没有内容&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="test" scheme="https://junyu33.github.io/categories/test/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>（转载）我家跨上了“信息高速路”</title>
     <link href="https://junyu33.github.io/2022/06/24/cxxxt.html"/>
     <id>https://junyu33.github.io/2022/06/24/cxxxt.html</id>
@@ -246,9 +264,9 @@
     
       <category term="python" scheme="https://junyu33.github.io/tags/python/"/>
     
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
-    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
   </entry>
   
@@ -334,9 +352,9 @@
       <category term="笔记" scheme="https://junyu33.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
-    
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+      <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="assembly" scheme="https://junyu33.github.io/tags/assembly/"/>
     
@@ -424,28 +442,6 @@
     </summary>
     
       <category term="develop" scheme="https://junyu33.github.io/categories/develop/"/>
-    
-    
-      <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>再见，acm</title>
-    <link href="https://junyu33.github.io/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html"/>
-    <id>https://junyu33.github.io/2021/12/26/再见——acm.html</id>
-    <published>2021-12-26T10:00:00.000Z</published>
-    <updated>2021-12-26T15:03:25.176Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。&lt;/p&gt;
-&lt;p&gt;比赛时间是在12月26日下午1:30~5:00，一共有10道题。众所周知acm没有部分分，排名是按照做题时间与罚时来算的。我在这个下午AC了4道题，排名16/35，然而前14名才能晋级。&lt;/p&gt;
-&lt;p&gt;于是，这是我在大学打的第一场acm，也大概是最后一场了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="OI" scheme="https://junyu33.github.io/categories/OI/"/>
     
     
       <category term="c++" scheme="https://junyu33.github.io/tags/c/"/>

@@ -130,6 +130,51 @@
       </categories>
   </entry>
   <entry>
+    <title>博客一周年祭</title>
+    <url>/2022/07/06/anniversary.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>其实是github学生包申请的经历。</p>
+<p><img src="/2022/07/06/anniversary/success.png"></p>
+<span id="more"></span>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近<code>colipot</code>内测结束开始收费了，广告甚至打到了github的首页上。从yyx方面得知，如果你通过了github学生认证，就可以白嫖每月10刀的<code>copilot</code>。除此之外，对于我来说有用的学生包产品还有<code>terminus</code>和<code>educative</code>，这些东西就足以让我心动了。听他说，他只申请了两次就成功了，看上去很简单，于是我决定试一试。</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>我从知乎上找到了一篇github申请学生包的教程，关掉了代理，复制了github520上的hosts。打开了申请链接，绑定了自己的学生邮箱，胡乱写了几句使用学生包的原因。接着github让我提供学籍证明材料，我把学信网的证明翻译成英文上传上去提交。</p>
+<p>过程行云流水，对不对？</p>
+<p>大概半分钟过后，我就收到了认证失败的邮件，说什么<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code></p>
+<p>于是我决定用手机拍一张学信网的证明，结果仍然失败，还是一模一样的理由。手机拍的照片怎么可能修改得了嘛，这机器审核也是绝了。但我又有什么办法呢，只能一遍一遍试啊，我尝试了人脸、学信网证明、学生证，拍照和上传文件的各种组合，一共16次，都是通通秒拒。我的耐心被用光了。</p>
+<p>于是我想知道究竟是yyx欧还是我运气拉胯，就找了我的室友进行申请，结果他两次就成功了。</p>
+<p>我按照室友的摆法摆好了<strong>录取通知书、学生证和校园卡</strong>，然后用手机拍照，再通过文件上传。这个时候github提示“与你同校的申请者提供了更可信的材料，请考虑更换自己的材料”，无法上传。后来得知，我无论上传什么图片，都会有这个提示——也就是我相当于再也上传不了了！</p>
+<p>没办法，我又开了一个小号继续申请，拍了好几次，上传了好几次，仍旧是秒回<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code>当时的我真的想重开——</p>
+<h1 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h1><p>我怒了，直接开始怼客服。我辛辛苦苦写了10分钟的ticket竟然无情的被机器人close了，以下是我的申诉：</p>
+<blockquote>
+<p>Application not approved (student)</p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>I’m a student from China and I use credit from <a href="https://support.github.com/ticket/personal/0/url">https://www.chsi.com.cn/</a> to prove my identity and get the student pack.<br>Unfortunately I’ve tried 8 times, the bot always returns <code>you uploaded is insufficient to demonstrate your current academic status</code> and asks me to upload <code>School issued photo ID with current enrollment date</code>. However my proof clearly shows my photo, school name and my admission time. I’ve tried several hours and I’m really confused.<br>This is a screen shot.<br>（学信网截图）<br>And this is a photo.<br>（手机拍的截图）<br>Could you please tell me the other reason besides repetitive <code>uploaded is insufficient</code> ?</p>
+</blockquote>
+<p>之后又补了一句<code>pls</code>来reopen ticket，这下终于没被关了。</p>
+<p>几天之后，我又加了一句：</p>
+<blockquote>
+<p>Now I’ve tried 16 times, providing materials including my face, school curriculum, student ID card and credit from . I believe that’s enough to prove my identity.</p>
+</blockquote>
+<p>就在7月7日，github终于有了回复：</p>
+<blockquote>
+<p>Hello,</p>
+<p>Thanks for contacting GitHub support.</p>
+<p>Please reapply using your school issued email address;</p>
+<p><a href="https://education.github.com/discount_requests/student_application">https://education.github.com/discount_requests/student_application</a></p>
+<p>If you can, let me know once that is done.</p>
+<p>Kind regards,<br> Topaz</p>
+</blockquote>
+<p>我按照它的链接点进去后，重新交了一遍带有<strong>录取通知书、学生证和校园卡</strong>的照片，大概过了两分钟，终于通过了。</p>
+<p><img src="/2022/07/06/anniversary/success.png"></p>
+<p>真的心累……</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先我尝试了一下<code>copilot</code>，对于OI的c++代码来说，除了平衡树、树剖、FFT、后缀数组等又臭又长的模板跟印象中相差很大，需要适应之外，基本上80%的代码都不用写了。java方面写后端香得不要不要的，基本上写一个注释，几行代码就出来了，都不带修改的。python写pwn的exp时有点妨碍思维（毕竟创造性的东西还是难以替代的）。</p>
+<p>然后手机上的<code>terminus</code>的UI挺好看，还自带code snippets，以后打算装在电脑上，可以跟Xshell说再见了。</p>
+<p>至于<code>educative</code>，我手贱点了6个月的免费试用。结果点开一看，大多数都是编程语言、前端开发与机器学习相关的课程，一时半会儿用不上，有点后悔。为了不暴殄天物，我把帐户共享给了高中同学，至少心里感觉没那么浪费……</p>
+<p>还有<code>azure</code>,<code>name.com</code>之类的，就等以后有需求再说吧。</p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+  </entry>
+  <entry>
     <title>bandit通关记录</title>
     <url>/2022/04/01/bandit.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一个练习Linux基础命令的网站，属于overthewire.org关卡系列中的基础部分。</p>
@@ -242,16 +287,6 @@
       </tags>
   </entry>
   <entry>
-    <title>博客一周年祭</title>
-    <url>/2022/07/06/anniversary.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>没有内容</p>
-<span id="more"></span>
-<h1 id="咕咕"><a href="#咕咕" class="headerlink" title="咕咕"></a>咕咕</h1>]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Twenty-two——bewilderment</title>
     <url>/2021/11/01/bewilderment.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -354,206 +389,6 @@
 ]]></content>
       <categories>
         <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>（近期不更新）csapp学习笔记</title>
-    <url>/2022/01/15/csapp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>（本文汇编代码统一采用AT&amp;T语法）</p>
-<blockquote>
-<p>友情提示：</p>
-<p>看这本书，笔记、习题、实验三者缺一不可。</p>
-<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
-</blockquote>
-<span id="more"></span>
-<h1 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h1><p>一个接下所有章节的outline，<del>可以作为计算机系统导论的复习材料。</del></p>
-<h1 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h1><p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
-<p>有空再填坑。</p>
-<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="历史观点"><a href="#历史观点" class="headerlink" title="历史观点"></a>历史观点</h2><p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
-<h2 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h2><p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
-<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><ul>
-<li>char</li>
-<li>short</li>
-<li>int</li>
-<li>long（即long long，下同）</li>
-<li>float</li>
-<li>double</li>
-<li>指针（本书是64位环境，所有指针均为8字节）</li>
-</ul>
-<h2 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h2><p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
-<p><img src="/2022/01/15/csapp/reg.png"></p>
-<p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
-<h2 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h2><p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
-<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
-<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
-<p>inc、dec——不改变flag状态</p>
-<p>cqto——64位转128位，做128位除法有用</p>
-<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
-<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
-<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
-<p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
-<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>lea指令的作用就是专门为访问数组设计的。</p>
-<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
-<h2 id="异数的数据结构——1-15-2022"><a href="#异数的数据结构——1-15-2022" class="headerlink" title="异数的数据结构——1/15/2022"></a>异数的数据结构——1/15/2022</h2><p>讲了struct、union和空间对齐。</p>
-<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
-<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
-<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
-<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022"><a href="#在机器级程序中将控制与数据结合起来——1-16-2022" class="headerlink" title="在机器级程序中将控制与数据结合起来——1/16/2022"></a>在机器级程序中将控制与数据结合起来——1/16/2022</h2><p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span> m=*((<span class="keyword">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="keyword">int</span> n=*((<span class="keyword">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>答案是<code>8 11</code>.</p>
-<p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
-<p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
-<p>gdb的各种调试命令（对于安了peda的人，就b、si、ni、x/s、x/wx可能有点用，因为peda把寄存器、汇编、堆栈啥都给你显示完了）：</p>
-<p><img src="/2022/01/15/csapp/gdb.png"></p>
-<blockquote>
-<p>习题3.46的<strong>正文</strong>错误：</p>
-<p>global edition: <code>get_line</code> is called with the return address equal to <del>0x400776</del> 0x400076.</p>
-<p>Chinese edition: 字符 0~9 的 ASCII 码是 <del>0x3~0x39</del> 0x30~0x39.</p>
-</blockquote>
-<p>在堆栈图中，地址从下到上，从右到左逐渐增大。因此对于一个dword(qword)，数据的储存方式是从左到右（小端序）；而单个字节的储存方式是从右到左。</p>
-<blockquote>
-<p>疑问：</p>
-<p>D题中，当<code>get_line</code>函数返回时，损毁的寄存器应该还有%rip，而不只是答案所说的%rbx.</p>
-</blockquote>
-<p>防止栈溢出的三种主要方式：地址空间随机化（ASLR）、栈保护（canary）和内存不可执行（NX）。</p>
-<p>对长度可变栈的汇编支持——栈底指针rbp：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushq %rbp</span><br><span class="line">movq %rsp, %rbp</span><br><span class="line">;procedure in the function</span><br><span class="line">leave </span><br><span class="line">;movq %rbp, %rsp</span><br><span class="line">;popq %rbp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
-<p><del>书上说最近的编译器取消了使用栈底指针的惯例</del>实际上，我用最新的编译器，随便写个hello world都会使用栈底指针，这个惯例依旧保持着。</p>
-<blockquote>
-<p>疑问：</p>
-<p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
-</blockquote>
-<h2 id="浮点代码——1-19-2022"><a href="#浮点代码——1-19-2022" class="headerlink" title="浮点代码——1/19/2022"></a>浮点代码——1/19/2022</h2><p>寄存器：</p>
-<p>%ymm0~%ymm15是256位的浮点寄存器。</p>
-<p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
-<p>前8个寄存器可视为函数参数（特别地，%xmm0为<strong>约定俗成</strong>的返回值，类似于%rax），后8个由调用者保存。</p>
-<p>在内存与寄存器中移动浮点数：</p>
-<p>movss：移动float（从%xmm移动到一段32位的内存区域，或反之）</p>
-<p>movsd：移动double（从%xmm移动到一段64位的内存区域，或反之）</p>
-<p>在寄存器间移动：</p>
-<p>movaps：打包移动float</p>
-<p>movapd：打包移动double</p>
-<p><strong>与整型寄存器类似，不能将一个内存的值直接移到另一个内存</strong>。</p>
-<p>浮点与整型的转换（src也可以为mem，此处省去）：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>(src type)\(dst type)</th>
-<th>int</th>
-<th>long</th>
-<th>float</th>
-<th>double</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>int</td>
-<td>\\</td>
-<td>cltq</td>
-<td>cvtsi2ssl %eax %xmm0</td>
-<td>cvtsi2sdl %eax %xmm0</td>
-</tr>
-<tr>
-<td>long</td>
-<td>%eax</td>
-<td>\\</td>
-<td>cvtsi2ssq %rax %xmm0</td>
-<td>cvtsi2sdq %rax %xmm0</td>
-</tr>
-<tr>
-<td>float</td>
-<td>cvttss2si %xmm0 %eax</td>
-<td>cvttss2siq %xmm0 %rax</td>
-<td>\\</td>
-<td>cvtss2sd mem %xmm0</td>
-</tr>
-<tr>
-<td>double</td>
-<td>cvttsd2si %xmm0 %eax</td>
-<td>cvttsd2siq %xmm0 %rax</td>
-<td>cvtsd2ss mem %xmm0</td>
-<td>\\</td>
-</tr>
-</tbody>
-</table>
-</div>
-<blockquote>
-<p>此处csapp的指令与现行编译器的汇编语法产生了较大分歧，该表以现行标准为准。现列出以下不同点：</p>
-<ol>
-<li>csapp中所有的浮点指令前面都加了字母“v”，目前gcc（mingw 10.3）已经弃用。int转float和double指令后面的“l”是以前没有的。</li>
-<li>与csapp不同，目前带有三个参数的浮点指令已经不复存在。</li>
-<li>与csapp中<strong>生僻</strong>的float~double自转指令（vunpcklps、vcvtps2pd、vmovddup、vcvtpd2psx）不同，gcc先把寄存器的值拷贝到内存，再使用cvt指令。 </li>
-</ol>
-</blockquote>
-<p>浮点运算符：略，汇编语句肉眼可见。</p>
-<p>浮点中的位运算：只针对操作数均位于寄存器内部。</p>
-<p>浮点运算中的立即数：预先以IEEE标准存放在内存里，参与运算时再复制到%xmm寄存器。</p>
-<p>浮点比较指令：</p>
-<p>comiss：float比较。</p>
-<p>comisd：double比较。</p>
-<p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
-<p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
-<h2 id="小结——1-22-2022"><a href="#小结——1-22-2022" class="headerlink" title="小结——1/22/2022"></a>小结——1/22/2022</h2><p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>陇剑杯入土记</title>
-    <url>/2021/09/14/ctf01.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
-<span id="more"></span>
-<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
-<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
-<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
-<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
-<p><img src="/2021/09/14/ctf01/b.jpg"></p>
-<p><img src="/2021/09/14/ctf01/c.jpg"></p>
-<p><img src="/2021/09/14/ctf01/d.jpg"></p>
-<p><img src="/2021/09/14/ctf01/e.jpg"></p>
-<p><img src="/2021/09/14/ctf01/f.jpg"></p>
-<p><img src="/2021/09/14/ctf01/g.jpg"></p>
-<p><img src="/2021/09/14/ctf01/h.jpg"></p>
-<p><img src="/2021/09/14/ctf01/i.jpg"></p>
-<p><img src="/2021/09/14/ctf01/j.jpg"></p>
-<p><img src="/2021/09/14/ctf01/k.jpg"></p>
-<p><img src="/2021/09/14/ctf01/l.jpg"></p>
-<p><img src="/2021/09/14/ctf01/m.jpg"></p>
-<p><img src="/2021/09/14/ctf01/n.jpg"></p>
-<p><img src="/2021/09/14/ctf01/o.jpg"></p>
-<p><img src="/2021/09/14/ctf01/p.jpg"></p>
-<p><img src="/2021/09/14/ctf01/q.jpg"></p>
-<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
-<p><img src="/2021/09/14/ctf01/r.jpg"></p>
-<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
-<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
-<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
-<p><img src="/2021/09/14/ctf01/s.png"></p>
-<p><img src="/2021/09/14/ctf01/t.png"></p>
-<p><img src="/2021/09/14/ctf01/u.png"></p>
-<p>此刻我的内心就像这样：</p>
-<blockquote>
-<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
-<p>…………</p>
-</blockquote>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
-<blockquote>
-<p>比赛前:</p>
-<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
-<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>比赛后:</p>
-<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
-<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
-<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
-<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>ctf</category>
       </categories>
   </entry>
   <entry>
@@ -790,6 +625,269 @@
       </categories>
   </entry>
   <entry>
+    <title>（近期不更新）csapp学习笔记</title>
+    <url>/2022/01/15/csapp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>（本文汇编代码统一采用AT&amp;T语法）</p>
+<blockquote>
+<p>友情提示：</p>
+<p>看这本书，笔记、习题、实验三者缺一不可。</p>
+<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h1><p>一个接下所有章节的outline，<del>可以作为计算机系统导论的复习材料。</del></p>
+<h1 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h1><p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
+<p>有空再填坑。</p>
+<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="历史观点"><a href="#历史观点" class="headerlink" title="历史观点"></a>历史观点</h2><p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
+<h2 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h2><p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
+<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><ul>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long（即long long，下同）</li>
+<li>float</li>
+<li>double</li>
+<li>指针（本书是64位环境，所有指针均为8字节）</li>
+</ul>
+<h2 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h2><p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
+<p><img src="/2022/01/15/csapp/reg.png"></p>
+<p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
+<h2 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h2><p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
+<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
+<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
+<p>inc、dec——不改变flag状态</p>
+<p>cqto——64位转128位，做128位除法有用</p>
+<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
+<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
+<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
+<p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
+<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>lea指令的作用就是专门为访问数组设计的。</p>
+<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
+<h2 id="异数的数据结构——1-15-2022"><a href="#异数的数据结构——1-15-2022" class="headerlink" title="异数的数据结构——1/15/2022"></a>异数的数据结构——1/15/2022</h2><p>讲了struct、union和空间对齐。</p>
+<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
+<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
+<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
+<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022"><a href="#在机器级程序中将控制与数据结合起来——1-16-2022" class="headerlink" title="在机器级程序中将控制与数据结合起来——1/16/2022"></a>在机器级程序中将控制与数据结合起来——1/16/2022</h2><p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span> m=*((<span class="keyword">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="keyword">int</span> n=*((<span class="keyword">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案是<code>8 11</code>.</p>
+<p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
+<p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
+<p>gdb的各种调试命令（对于安了peda的人，就b、si、ni、x/s、x/wx可能有点用，因为peda把寄存器、汇编、堆栈啥都给你显示完了）：</p>
+<p><img src="/2022/01/15/csapp/gdb.png"></p>
+<blockquote>
+<p>习题3.46的<strong>正文</strong>错误：</p>
+<p>global edition: <code>get_line</code> is called with the return address equal to <del>0x400776</del> 0x400076.</p>
+<p>Chinese edition: 字符 0~9 的 ASCII 码是 <del>0x3~0x39</del> 0x30~0x39.</p>
+</blockquote>
+<p>在堆栈图中，地址从下到上，从右到左逐渐增大。因此对于一个dword(qword)，数据的储存方式是从左到右（小端序）；而单个字节的储存方式是从右到左。</p>
+<blockquote>
+<p>疑问：</p>
+<p>D题中，当<code>get_line</code>函数返回时，损毁的寄存器应该还有%rip，而不只是答案所说的%rbx.</p>
+</blockquote>
+<p>防止栈溢出的三种主要方式：地址空间随机化（ASLR）、栈保护（canary）和内存不可执行（NX）。</p>
+<p>对长度可变栈的汇编支持——栈底指针rbp：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushq %rbp</span><br><span class="line">movq %rsp, %rbp</span><br><span class="line">;procedure in the function</span><br><span class="line">leave </span><br><span class="line">;movq %rbp, %rsp</span><br><span class="line">;popq %rbp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p><del>书上说最近的编译器取消了使用栈底指针的惯例</del>实际上，我用最新的编译器，随便写个hello world都会使用栈底指针，这个惯例依旧保持着。</p>
+<blockquote>
+<p>疑问：</p>
+<p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
+</blockquote>
+<h2 id="浮点代码——1-19-2022"><a href="#浮点代码——1-19-2022" class="headerlink" title="浮点代码——1/19/2022"></a>浮点代码——1/19/2022</h2><p>寄存器：</p>
+<p>%ymm0~%ymm15是256位的浮点寄存器。</p>
+<p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
+<p>前8个寄存器可视为函数参数（特别地，%xmm0为<strong>约定俗成</strong>的返回值，类似于%rax），后8个由调用者保存。</p>
+<p>在内存与寄存器中移动浮点数：</p>
+<p>movss：移动float（从%xmm移动到一段32位的内存区域，或反之）</p>
+<p>movsd：移动double（从%xmm移动到一段64位的内存区域，或反之）</p>
+<p>在寄存器间移动：</p>
+<p>movaps：打包移动float</p>
+<p>movapd：打包移动double</p>
+<p><strong>与整型寄存器类似，不能将一个内存的值直接移到另一个内存</strong>。</p>
+<p>浮点与整型的转换（src也可以为mem，此处省去）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>(src type)\(dst type)</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>\\</td>
+<td>cltq</td>
+<td>cvtsi2ssl %eax %xmm0</td>
+<td>cvtsi2sdl %eax %xmm0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>%eax</td>
+<td>\\</td>
+<td>cvtsi2ssq %rax %xmm0</td>
+<td>cvtsi2sdq %rax %xmm0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>cvttss2si %xmm0 %eax</td>
+<td>cvttss2siq %xmm0 %rax</td>
+<td>\\</td>
+<td>cvtss2sd mem %xmm0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>cvttsd2si %xmm0 %eax</td>
+<td>cvttsd2siq %xmm0 %rax</td>
+<td>cvtsd2ss mem %xmm0</td>
+<td>\\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>此处csapp的指令与现行编译器的汇编语法产生了较大分歧，该表以现行标准为准。现列出以下不同点：</p>
+<ol>
+<li>csapp中所有的浮点指令前面都加了字母“v”，目前gcc（mingw 10.3）已经弃用。int转float和double指令后面的“l”是以前没有的。</li>
+<li>与csapp不同，目前带有三个参数的浮点指令已经不复存在。</li>
+<li>与csapp中<strong>生僻</strong>的float~double自转指令（vunpcklps、vcvtps2pd、vmovddup、vcvtpd2psx）不同，gcc先把寄存器的值拷贝到内存，再使用cvt指令。 </li>
+</ol>
+</blockquote>
+<p>浮点运算符：略，汇编语句肉眼可见。</p>
+<p>浮点中的位运算：只针对操作数均位于寄存器内部。</p>
+<p>浮点运算中的立即数：预先以IEEE标准存放在内存里，参与运算时再复制到%xmm寄存器。</p>
+<p>浮点比较指令：</p>
+<p>comiss：float比较。</p>
+<p>comisd：double比较。</p>
+<p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
+<p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
+<h2 id="小结——1-22-2022"><a href="#小结——1-22-2022" class="headerlink" title="小结——1/22/2022"></a>小结——1/22/2022</h2><p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>陇剑杯入土记</title>
+    <url>/2021/09/14/ctf01.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
+<span id="more"></span>
+<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
+<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
+<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
+<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
+<p><img src="/2021/09/14/ctf01/b.jpg"></p>
+<p><img src="/2021/09/14/ctf01/c.jpg"></p>
+<p><img src="/2021/09/14/ctf01/d.jpg"></p>
+<p><img src="/2021/09/14/ctf01/e.jpg"></p>
+<p><img src="/2021/09/14/ctf01/f.jpg"></p>
+<p><img src="/2021/09/14/ctf01/g.jpg"></p>
+<p><img src="/2021/09/14/ctf01/h.jpg"></p>
+<p><img src="/2021/09/14/ctf01/i.jpg"></p>
+<p><img src="/2021/09/14/ctf01/j.jpg"></p>
+<p><img src="/2021/09/14/ctf01/k.jpg"></p>
+<p><img src="/2021/09/14/ctf01/l.jpg"></p>
+<p><img src="/2021/09/14/ctf01/m.jpg"></p>
+<p><img src="/2021/09/14/ctf01/n.jpg"></p>
+<p><img src="/2021/09/14/ctf01/o.jpg"></p>
+<p><img src="/2021/09/14/ctf01/p.jpg"></p>
+<p><img src="/2021/09/14/ctf01/q.jpg"></p>
+<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
+<p><img src="/2021/09/14/ctf01/r.jpg"></p>
+<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
+<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
+<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
+<p><img src="/2021/09/14/ctf01/s.png"></p>
+<p><img src="/2021/09/14/ctf01/t.png"></p>
+<p><img src="/2021/09/14/ctf01/u.png"></p>
+<p>此刻我的内心就像这样：</p>
+<blockquote>
+<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
+<p>…………</p>
+</blockquote>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
+<blockquote>
+<p>比赛前:</p>
+<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
+<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>比赛后:</p>
+<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
+<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
+<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
+<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>强网杯出土记</title>
+    <url>/2021/09/25/ctf02.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
+<p>以下按做题顺序写wp（这次就我一个人做出来题可还行）：</p>
+<span id="more"></span>
+<h2 id="1-签到"><a href="#1-签到" class="headerlink" title="1. 签到"></a>1. 签到</h2><p>打开exe可以直接看到flag（<strong>很开心拿到一血</strong>）</p>
+<p><strong>flag{鲸鱼带你进入鲸奇世界}</strong></p>
+<h2 id="2-Lihua’s-for"><a href="#2-Lihua’s-for" class="headerlink" title="2. Lihua’s for"></a>2. Lihua’s for</h2><p>第一步查壳：</p>
+<p><img src="/2021/09/25/ctf02/a.png"></p>
+<p>第二步打开64位ida，定位到主函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> flag[<span class="number">42</span>]; <span class="comment">// [rsp+20h] [rbp-60h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> a[<span class="number">42</span>]; <span class="comment">// [rsp+50h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> b[<span class="number">42</span>]; <span class="comment">// [rsp+100h] [rbp+80h]</span></span><br><span class="line">  <span class="keyword">int</span> i_0; <span class="comment">// [rsp+1B4h] [rbp+134h]</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [rsp+1B8h] [rbp+138h]</span></span><br><span class="line">  <span class="keyword">int</span> good; <span class="comment">// [rsp+1BCh] [rbp+13Ch]</span></span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  qmemcpy(a, &amp;unk_403040, <span class="keyword">sizeof</span>(a));</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;input flag&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, flag);</span><br><span class="line">  <span class="built_in">puts</span>(flag);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">41</span>; ++i )</span><br><span class="line">    b[i] = i ^ flag[i];</span><br><span class="line">  <span class="keyword">for</span> ( i_0 = <span class="number">0</span>; i_0 &lt;= <span class="number">41</span>; ++i_0 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( a[i_0] != b[i_0] )</span><br><span class="line">    &#123;</span><br><span class="line">      good = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    good = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( good == <span class="number">1</span> )</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;good~&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现程序的原理是将用户输入的flag[i]跟i异或后与a[i]比较。</p>
+<p> 第三步直接把a[i]的值dump出来，编写exp即可解出flag。</p>
+<p> （又水了一道reverse签到题）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> a[] =</span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">0x66</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x63</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x32</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x36</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6C</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x39</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x77</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x25</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x22</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x2E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x78</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x31</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x2F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x16</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x44</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x45</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x12</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x1A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x54</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">42</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> t=<span class="number">1</span>;t&lt;<span class="number">255</span>;t++)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="keyword">if</span>((i^t)==a[i*<span class="number">4</span>])</span><br><span class="line">            &#123;cout&lt;&lt;<span class="built_in"><span class="keyword">char</span></span>(t);<span class="keyword">break</span>;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>flag{a41be465-a50f-4124-b7ba-2766aff6baf2}</strong></p>
+<h2 id="3-Crypto2"><a href="#3-Crypto2" class="headerlink" title="3. Crypto2"></a>3. Crypto2</h2><p>给定：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n1=<span class="number">20663949646446787716947370247427064802032290773674573417491154934657966734874241036307633567695175131014840617208051931753476223149652427133485160771068994073566431652969243962290116898345337189704974833817335135391974497754670322430159624252007005736522065638860351992074099453212550475552692645688800084354832716662142860413158369020005830095049988807931794736876563293916525328174812726514626029103506607813186690909585870115364600969148482617083817273910020722354923244093624032174432568413187131385994452769295894606345768596899824635672699945050103814681553981019917552667794514804359500108947102234376726009329</span></span><br><span class="line">n2=<span class="number">23260834024376640092536888922041147168387702014814910549469730354688848760379274203088716649609675449936234732528778557041701524981200368996310064584479657042098426164366286670115392015865853892816983885530312074073396422301009513106258655315791720535737587913264728919869055970993613641008348186263870234072422880033882864603438907070864271470483691729705421547143623305055532339107777314310976947392833395180922324243244784018964736826235018388498516438612962123562977736924674510730898077787055367234786519915374446506561992135856904927351307275140543635152771670410211235702283822782412971646092584646758107766061</span></span><br><span class="line">c1=<span class="number">20522772249591436865905796103232542494211695376973377722875606678999899690405480809231671346489821878050354380591999935960795888483664473952207298504196203830543208477229162177648586683957831016664569242538775928728009699300145355818417233892295367828930893733774091897666206696635744262884229680137381841581000794056156842812583057103472764486608022028638288161256424936523444974815727764620634174112474612238992061186937613171878635903455700636894570504376153482600057655480654731180740098435209814585459376319844315388048636156465832997913885636776523217188604040216732137108997444787157007665652718553013424347649</span></span><br><span class="line">c2=<span class="number">18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736</span></span><br><span class="line">e=<span class="number">65537</span></span><br></pre></td></tr></table></figure>
+<p>经检验得n1,n2不互质，可以参考 <a href="https://zhuanlan.zhihu.com/p/76228394">https://zhuanlan.zhihu.com/p/76228394</a> 中的方法进行解密。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2  </span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes  </span><br><span class="line">c1 = ... </span><br><span class="line">c2 = ... </span><br><span class="line">n1 = ...</span><br><span class="line">n2 = ...</span><br><span class="line">e = <span class="number">65537</span>    </span><br><span class="line">p12 = gmpy2.gcd(n1, n2)  </span><br><span class="line"><span class="keyword">assert</span> (p12 != <span class="number">1</span>)  </span><br><span class="line">q1 = n1 / p12  </span><br><span class="line">q2 = n2 / p12  </span><br><span class="line">d1 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q1 - <span class="number">1</span>))  </span><br><span class="line">d2 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q2 - <span class="number">1</span>))  </span><br><span class="line">m1 = <span class="built_in">pow</span>(c1, d1, n1)  </span><br><span class="line">m2 = <span class="built_in">pow</span>(c2, d2, n2)  </span><br><span class="line"><span class="built_in">print</span> long_to_bytes(m1)+long_to_bytes(m2)  </span><br></pre></td></tr></table></figure>
+<p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
+<h2 id="4-拼图"><a href="#4-拼图" class="headerlink" title="4. 拼图"></a>4. 拼图</h2><p>或许可以写脚本做这道题，但是我不会，只能肉眼观察与众不同的图片，拼接成这样一幅图：<br>（使用了PowerPoint编辑的）</p>
+<p><img src="/2021/09/25/ctf02/b.png"></p>
+<p>做到这儿我就不大会了，然而此时名次大概在30+，离线下还差几名。而且我恰好卡在一个看上去马上要做出来的misc题上：</p>
+<p>于是我找到了那位安徽的同学（见超短裙子回忆录的第十二章，经过了一个暑假的磨练，他变强了许多），打算跟他做py交易。我把那道reverse的解法给他，他就给我了这道题的wp。</p>
+<blockquote>
+<p>提交了flag{Hamsters_are_so_cute}发现答案不正确。</p>
+<p>考虑到cute右边没有立即跟上右括号，说明cute的右边可能含有一些标点来占位。</p>
+<p>容易忽略的标点符号有“！“和”|“，因为它会与大括号相混导致误判。</p>
+<p>通过对cute后面加1~5个“！“与”|“，成功试出来了正确的flag</p>
+<p><strong>flag{Hamsters_are_so_cute!!!}</strong></p>
+</blockquote>
+<p>这™谁想得到啊！！！</p>
+<h2 id="5-Crypto1"><a href="#5-Crypto1" class="headerlink" title="5. Crypto1"></a>5. Crypto1</h2><p>眼看离比赛结束就只有20分钟了，虽然此时的我rk22，但按照上次比赛的惯例，最后的名次肯定飞速下降，必须要再AC一道题才能稳住线下赛的资格。</p>
+<p>于是那位同学好心给了我这道题的flag与wp，想让我陪他一起面基：</p>
+<blockquote>
+<p>我们有：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n=<span class="number">96722669749951212913756678234358651184134068407812470434435916603156818917545841439779031943800634250032106764154804309935557678512858630048212204696471487762160744924838010746445510979202735123140536599975731157563069594497905809587369126155476201977830809090473053692189364335223367147692962090288185113654598050169422517553085833257142179937154768657039042632343562454149914801329414293361879935460883633117988279426277638667508115319494914342600199690237441851088350726869553691992122821267990343643644523989413546160765907845604067031798179773495433134648132709349683621175243064236059479837244518879574919017301667066698329442453248971033564328161407342561250703168154214939772631586519304164853651</span></span><br><span class="line">c1=<span class="number">66738113223447221430009739914948303261002811553064307532926788024694319846909340806982708347904688420671656410554852340732395818007063648478593071665936277836988050526188064146099581039172667768507259894363266310279948729552649788129953872816024709989260060633285022337107662251504618369065597018450927041881262189584381809106166042131798086882746986243210896131714227544235843922107304728228549916171484199199612243776469423359120753888158616202476325705252715374109256790899923317253605743212561589807498078080069511918514647943399566630574192829185904868376879831247378819590121286186417825591746918495311372015707767009078229770450338244309693800180936418605756818618708750868807720566288044943952844</span></span><br><span class="line">c2=<span class="number">88330949146651042517337653740810385187361689012501792799900873279978736035790659211001047937337215121948527017022967642906632732136313750277237761910710915459733551421653259986088596828049455592613225962133163865584111828012197112528645520371075411167515961263199635568730334149461654340122507778194391601956023625429418297129608911450200836427221311442323768087256798964844787274408624548839536279704401007441198390922847003287643673183230633728790263593607595427088882078742699027563601046309308221108391158848644822374865676056755011459026909057983805069264236657111115914570543103494726584296335044897998794251877515750910330960179539465060133592380802344398038815679281272098815068185059127533110716</span></span><br><span class="line">e1=<span class="number">49</span></span><br><span class="line">e2=<span class="number">35</span></span><br></pre></td></tr></table></figure>
+<p>很明显是共模攻击的模型，但是e1与e2并不互质，最大公约数为7。</p>
+<p>这里需要将e1与e2同时/7，从而m变为了$ m^7 $</p>
+<p>这时就可以使用低加密指数攻击了，题目代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># py2 sameNAttack.py</span></span><br><span class="line"><span class="keyword">import</span> primefac</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">n=...</span><br><span class="line">e1=...</span><br><span class="line">e2=...</span><br><span class="line">c1=...</span><br><span class="line">c2=...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">same_n_attack</span>(<span class="params">n,e1,e2,c1,c2</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">egcd</span>(<span class="params">a,b</span>):</span></span><br><span class="line">        x, lastX = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">        y, lastY = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (b != <span class="number">0</span>):</span><br><span class="line">            q = a // b</span><br><span class="line">            a, b = b, a % b</span><br><span class="line">            x, lastX = lastX - q * x, x</span><br><span class="line">            y, lastY = lastY - q * y, y</span><br><span class="line">        <span class="keyword">return</span> (lastX, lastY)</span><br><span class="line">    s = egcd(e1,e2)</span><br><span class="line">    s1 = s[<span class="number">0</span>]</span><br><span class="line">    s2 = s[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> s1 &lt; <span class="number">0</span>:</span><br><span class="line">        s1 = -s1</span><br><span class="line">        c1 = primefac.modinv(c1, n)</span><br><span class="line">        <span class="keyword">if</span> c1 &lt; <span class="number">0</span>:</span><br><span class="line">            c1 += n</span><br><span class="line">    <span class="keyword">elif</span> s2 &lt; <span class="number">0</span>:</span><br><span class="line">        s2 = -s2</span><br><span class="line">        c2 = primefac.modinv(c2, n)</span><br><span class="line">        <span class="keyword">if</span> c2 &lt; <span class="number">0</span>:</span><br><span class="line">            c2 += n</span><br><span class="line">    m = (<span class="built_in">pow</span>(c1, s1, n) * <span class="built_in">pow</span>(c2, s2, n)) % n</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">1</span>] == <span class="literal">True</span>:</span><br><span class="line">            <span class="built_in">print</span>(long_to_bytes(gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">0</span>]))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line">c = res = <span class="built_in">str</span>(<span class="built_in">hex</span>(same_n_attack(n,e1,e2,c1,c2)))[<span class="number">2</span>:-<span class="number">128</span>]</span><br><span class="line"><span class="built_in">print</span> res</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(res),<span class="number">2</span>):</span><br><span class="line">  ch = res[i]+res[i+<span class="number">1</span>]</span><br><span class="line">  flag += <span class="built_in">chr</span>(<span class="built_in">int</span>(ch,<span class="number">16</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> flag</span><br></pre></td></tr></table></figure>
+<p><strong>flag{8ac9f9e3-82ba-ff7e-ac7b-235a02d891ef}</strong></p>
+</blockquote>
+<h2 id="6-结局"><a href="#6-结局" class="headerlink" title="6. 结局"></a>6. 结局</h2><p>谁知道py的不止一个，而且越往后名次掉的越快（真卷），在比赛结束前30s，我的名次成功从rk24掉到了rk25，成功错失了进线下赛的资格（其实也好，反正我线下啥也不会，只会自闭）。</p>
+<p>但是，这种曲线也太**了吧。</p>
+<p><img src="/2021/09/25/ctf02/c.png"></p>
+<p><del>希望自己不被发现，前面踢掉一个。</del></p>
+<h2 id="7-等re2与misc2出来再补"><a href="#7-等re2与misc2出来再补" class="headerlink" title="7. 等re2与misc2出来再补"></a>7. 等re2与misc2出来再补</h2><h2 id="8-updated-on-10-2"><a href="#8-updated-on-10-2" class="headerlink" title="8. (updated on 10.2)"></a>8. (updated on 10.2)</h2><p>好家伙，我居然进线下赛了。</p>
+<p>本来以为是因为前面有人没写wp或者py被发现，被踢了。结果是因为23~26名分数都一样，于是就都进了。</p>
+<p>比赛时间10.16~10.17，刚好可以逃掉寝室文化节的大寝表演，快哉快哉！</p>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>c++</tag>
+        <tag>reverse</tag>
+        <tag>crypto</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>强网杯线下公费游记</title>
     <url>/2021/10/17/ctf03.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>发现一个有趣的现象，线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。</p>
@@ -851,73 +949,121 @@
       </categories>
       <tags>
         <tag>python</tag>
+        <tag>crypto</tag>
         <tag>pwn</tag>
         <tag>misc</tag>
-        <tag>crypto</tag>
       </tags>
   </entry>
   <entry>
-    <title>强网杯出土记</title>
-    <url>/2021/09/25/ctf02.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
-<p>以下按做题顺序写wp（这次就我一个人做出来题可还行）：</p>
-<span id="more"></span>
-<h2 id="1-签到"><a href="#1-签到" class="headerlink" title="1. 签到"></a>1. 签到</h2><p>打开exe可以直接看到flag（<strong>很开心拿到一血</strong>）</p>
-<p><strong>flag{鲸鱼带你进入鲸奇世界}</strong></p>
-<h2 id="2-Lihua’s-for"><a href="#2-Lihua’s-for" class="headerlink" title="2. Lihua’s for"></a>2. Lihua’s for</h2><p>第一步查壳：</p>
-<p><img src="/2021/09/25/ctf02/a.png"></p>
-<p>第二步打开64位ida，定位到主函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> flag[<span class="number">42</span>]; <span class="comment">// [rsp+20h] [rbp-60h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> a[<span class="number">42</span>]; <span class="comment">// [rsp+50h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> b[<span class="number">42</span>]; <span class="comment">// [rsp+100h] [rbp+80h]</span></span><br><span class="line">  <span class="keyword">int</span> i_0; <span class="comment">// [rsp+1B4h] [rbp+134h]</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [rsp+1B8h] [rbp+138h]</span></span><br><span class="line">  <span class="keyword">int</span> good; <span class="comment">// [rsp+1BCh] [rbp+13Ch]</span></span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  qmemcpy(a, &amp;unk_403040, <span class="keyword">sizeof</span>(a));</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;input flag&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, flag);</span><br><span class="line">  <span class="built_in">puts</span>(flag);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">41</span>; ++i )</span><br><span class="line">    b[i] = i ^ flag[i];</span><br><span class="line">  <span class="keyword">for</span> ( i_0 = <span class="number">0</span>; i_0 &lt;= <span class="number">41</span>; ++i_0 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( a[i_0] != b[i_0] )</span><br><span class="line">    &#123;</span><br><span class="line">      good = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    good = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( good == <span class="number">1</span> )</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;good~&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以发现程序的原理是将用户输入的flag[i]跟i异或后与a[i]比较。</p>
-<p> 第三步直接把a[i]的值dump出来，编写exp即可解出flag。</p>
-<p> （又水了一道reverse签到题）</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> a[] =</span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">0x66</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x63</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x32</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x36</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6C</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x39</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x77</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x25</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x22</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x2E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x78</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x31</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x2F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x16</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x44</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x45</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x12</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x1A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x54</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">42</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> t=<span class="number">1</span>;t&lt;<span class="number">255</span>;t++)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="keyword">if</span>((i^t)==a[i*<span class="number">4</span>])</span><br><span class="line">            &#123;cout&lt;&lt;<span class="built_in"><span class="keyword">char</span></span>(t);<span class="keyword">break</span>;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>flag{a41be465-a50f-4124-b7ba-2766aff6baf2}</strong></p>
-<h2 id="3-Crypto2"><a href="#3-Crypto2" class="headerlink" title="3. Crypto2"></a>3. Crypto2</h2><p>给定：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n1=<span class="number">20663949646446787716947370247427064802032290773674573417491154934657966734874241036307633567695175131014840617208051931753476223149652427133485160771068994073566431652969243962290116898345337189704974833817335135391974497754670322430159624252007005736522065638860351992074099453212550475552692645688800084354832716662142860413158369020005830095049988807931794736876563293916525328174812726514626029103506607813186690909585870115364600969148482617083817273910020722354923244093624032174432568413187131385994452769295894606345768596899824635672699945050103814681553981019917552667794514804359500108947102234376726009329</span></span><br><span class="line">n2=<span class="number">23260834024376640092536888922041147168387702014814910549469730354688848760379274203088716649609675449936234732528778557041701524981200368996310064584479657042098426164366286670115392015865853892816983885530312074073396422301009513106258655315791720535737587913264728919869055970993613641008348186263870234072422880033882864603438907070864271470483691729705421547143623305055532339107777314310976947392833395180922324243244784018964736826235018388498516438612962123562977736924674510730898077787055367234786519915374446506561992135856904927351307275140543635152771670410211235702283822782412971646092584646758107766061</span></span><br><span class="line">c1=<span class="number">20522772249591436865905796103232542494211695376973377722875606678999899690405480809231671346489821878050354380591999935960795888483664473952207298504196203830543208477229162177648586683957831016664569242538775928728009699300145355818417233892295367828930893733774091897666206696635744262884229680137381841581000794056156842812583057103472764486608022028638288161256424936523444974815727764620634174112474612238992061186937613171878635903455700636894570504376153482600057655480654731180740098435209814585459376319844315388048636156465832997913885636776523217188604040216732137108997444787157007665652718553013424347649</span></span><br><span class="line">c2=<span class="number">18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736</span></span><br><span class="line">e=<span class="number">65537</span></span><br></pre></td></tr></table></figure>
-<p>经检验得n1,n2不互质，可以参考 <a href="https://zhuanlan.zhihu.com/p/76228394">https://zhuanlan.zhihu.com/p/76228394</a> 中的方法进行解密。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2  </span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes  </span><br><span class="line">c1 = ... </span><br><span class="line">c2 = ... </span><br><span class="line">n1 = ...</span><br><span class="line">n2 = ...</span><br><span class="line">e = <span class="number">65537</span>    </span><br><span class="line">p12 = gmpy2.gcd(n1, n2)  </span><br><span class="line"><span class="keyword">assert</span> (p12 != <span class="number">1</span>)  </span><br><span class="line">q1 = n1 / p12  </span><br><span class="line">q2 = n2 / p12  </span><br><span class="line">d1 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q1 - <span class="number">1</span>))  </span><br><span class="line">d2 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q2 - <span class="number">1</span>))  </span><br><span class="line">m1 = <span class="built_in">pow</span>(c1, d1, n1)  </span><br><span class="line">m2 = <span class="built_in">pow</span>(c2, d2, n2)  </span><br><span class="line"><span class="built_in">print</span> long_to_bytes(m1)+long_to_bytes(m2)  </span><br></pre></td></tr></table></figure>
-<p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
-<h2 id="4-拼图"><a href="#4-拼图" class="headerlink" title="4. 拼图"></a>4. 拼图</h2><p>或许可以写脚本做这道题，但是我不会，只能肉眼观察与众不同的图片，拼接成这样一幅图：<br>（使用了PowerPoint编辑的）</p>
-<p><img src="/2021/09/25/ctf02/b.png"></p>
-<p>做到这儿我就不大会了，然而此时名次大概在30+，离线下还差几名。而且我恰好卡在一个看上去马上要做出来的misc题上：</p>
-<p>于是我找到了那位安徽的同学（见超短裙子回忆录的第十二章，经过了一个暑假的磨练，他变强了许多），打算跟他做py交易。我把那道reverse的解法给他，他就给我了这道题的wp。</p>
-<blockquote>
-<p>提交了flag{Hamsters_are_so_cute}发现答案不正确。</p>
-<p>考虑到cute右边没有立即跟上右括号，说明cute的右边可能含有一些标点来占位。</p>
-<p>容易忽略的标点符号有“！“和”|“，因为它会与大括号相混导致误判。</p>
-<p>通过对cute后面加1~5个“！“与”|“，成功试出来了正确的flag</p>
-<p><strong>flag{Hamsters_are_so_cute!!!}</strong></p>
+    <title>（转载）撸羊毛</title>
+    <url>/2022/01/05/fable.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p>作者：齐辛格尔<br>链接：<a href="https://www.zhihu.com/question/489610689/answer/2150453989">https://www.zhihu.com/question/489610689/answer/2150453989</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 </blockquote>
-<p>这™谁想得到啊！！！</p>
-<h2 id="5-Crypto1"><a href="#5-Crypto1" class="headerlink" title="5. Crypto1"></a>5. Crypto1</h2><p>眼看离比赛结束就只有20分钟了，虽然此时的我rk22，但按照上次比赛的惯例，最后的名次肯定飞速下降，必须要再AC一道题才能稳住线下赛的资格。</p>
-<p>于是那位同学好心给了我这道题的flag与wp，想让我陪他一起面基：</p>
-<blockquote>
-<p>我们有：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n=<span class="number">96722669749951212913756678234358651184134068407812470434435916603156818917545841439779031943800634250032106764154804309935557678512858630048212204696471487762160744924838010746445510979202735123140536599975731157563069594497905809587369126155476201977830809090473053692189364335223367147692962090288185113654598050169422517553085833257142179937154768657039042632343562454149914801329414293361879935460883633117988279426277638667508115319494914342600199690237441851088350726869553691992122821267990343643644523989413546160765907845604067031798179773495433134648132709349683621175243064236059479837244518879574919017301667066698329442453248971033564328161407342561250703168154214939772631586519304164853651</span></span><br><span class="line">c1=<span class="number">66738113223447221430009739914948303261002811553064307532926788024694319846909340806982708347904688420671656410554852340732395818007063648478593071665936277836988050526188064146099581039172667768507259894363266310279948729552649788129953872816024709989260060633285022337107662251504618369065597018450927041881262189584381809106166042131798086882746986243210896131714227544235843922107304728228549916171484199199612243776469423359120753888158616202476325705252715374109256790899923317253605743212561589807498078080069511918514647943399566630574192829185904868376879831247378819590121286186417825591746918495311372015707767009078229770450338244309693800180936418605756818618708750868807720566288044943952844</span></span><br><span class="line">c2=<span class="number">88330949146651042517337653740810385187361689012501792799900873279978736035790659211001047937337215121948527017022967642906632732136313750277237761910710915459733551421653259986088596828049455592613225962133163865584111828012197112528645520371075411167515961263199635568730334149461654340122507778194391601956023625429418297129608911450200836427221311442323768087256798964844787274408624548839536279704401007441198390922847003287643673183230633728790263593607595427088882078742699027563601046309308221108391158848644822374865676056755011459026909057983805069264236657111115914570543103494726584296335044897998794251877515750910330960179539465060133592380802344398038815679281272098815068185059127533110716</span></span><br><span class="line">e1=<span class="number">49</span></span><br><span class="line">e2=<span class="number">35</span></span><br></pre></td></tr></table></figure>
-<p>很明显是共模攻击的模型，但是e1与e2并不互质，最大公约数为7。</p>
-<p>这里需要将e1与e2同时/7，从而m变为了$ m^7 $</p>
-<p>这时就可以使用低加密指数攻击了，题目代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># py2 sameNAttack.py</span></span><br><span class="line"><span class="keyword">import</span> primefac</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">n=...</span><br><span class="line">e1=...</span><br><span class="line">e2=...</span><br><span class="line">c1=...</span><br><span class="line">c2=...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">same_n_attack</span>(<span class="params">n,e1,e2,c1,c2</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">egcd</span>(<span class="params">a,b</span>):</span></span><br><span class="line">        x, lastX = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">        y, lastY = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (b != <span class="number">0</span>):</span><br><span class="line">            q = a // b</span><br><span class="line">            a, b = b, a % b</span><br><span class="line">            x, lastX = lastX - q * x, x</span><br><span class="line">            y, lastY = lastY - q * y, y</span><br><span class="line">        <span class="keyword">return</span> (lastX, lastY)</span><br><span class="line">    s = egcd(e1,e2)</span><br><span class="line">    s1 = s[<span class="number">0</span>]</span><br><span class="line">    s2 = s[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> s1 &lt; <span class="number">0</span>:</span><br><span class="line">        s1 = -s1</span><br><span class="line">        c1 = primefac.modinv(c1, n)</span><br><span class="line">        <span class="keyword">if</span> c1 &lt; <span class="number">0</span>:</span><br><span class="line">            c1 += n</span><br><span class="line">    <span class="keyword">elif</span> s2 &lt; <span class="number">0</span>:</span><br><span class="line">        s2 = -s2</span><br><span class="line">        c2 = primefac.modinv(c2, n)</span><br><span class="line">        <span class="keyword">if</span> c2 &lt; <span class="number">0</span>:</span><br><span class="line">            c2 += n</span><br><span class="line">    m = (<span class="built_in">pow</span>(c1, s1, n) * <span class="built_in">pow</span>(c2, s2, n)) % n</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">1</span>] == <span class="literal">True</span>:</span><br><span class="line">            <span class="built_in">print</span>(long_to_bytes(gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">0</span>]))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line">c = res = <span class="built_in">str</span>(<span class="built_in">hex</span>(same_n_attack(n,e1,e2,c1,c2)))[<span class="number">2</span>:-<span class="number">128</span>]</span><br><span class="line"><span class="built_in">print</span> res</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(res),<span class="number">2</span>):</span><br><span class="line">  ch = res[i]+res[i+<span class="number">1</span>]</span><br><span class="line">  flag += <span class="built_in">chr</span>(<span class="built_in">int</span>(ch,<span class="number">16</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> flag</span><br></pre></td></tr></table></figure>
-<p><strong>flag{8ac9f9e3-82ba-ff7e-ac7b-235a02d891ef}</strong></p>
-</blockquote>
-<h2 id="6-结局"><a href="#6-结局" class="headerlink" title="6. 结局"></a>6. 结局</h2><p>谁知道py的不止一个，而且越往后名次掉的越快（真卷），在比赛结束前30s，我的名次成功从rk24掉到了rk25，成功错失了进线下赛的资格（其实也好，反正我线下啥也不会，只会自闭）。</p>
-<p>但是，这种曲线也太**了吧。</p>
-<p><img src="/2021/09/25/ctf02/c.png"></p>
-<p><del>希望自己不被发现，前面踢掉一个。</del></p>
-<h2 id="7-等re2与misc2出来再补"><a href="#7-等re2与misc2出来再补" class="headerlink" title="7. 等re2与misc2出来再补"></a>7. 等re2与misc2出来再补</h2><h2 id="8-updated-on-10-2"><a href="#8-updated-on-10-2" class="headerlink" title="8. (updated on 10.2)"></a>8. (updated on 10.2)</h2><p>好家伙，我居然进线下赛了。</p>
-<p>本来以为是因为前面有人没写wp或者py被发现，被踢了。结果是因为23~26名分数都一样，于是就都进了。</p>
-<p>比赛时间10.16~10.17，刚好可以逃掉寝室文化节的大寝表演，快哉快哉！</p>
+<p>羊已经三十岁了，娶了一只母羊，准备在自家地里盖房子，想生几只小羊。</p>
+<p>老虎看见了，就对羊说，这块地是老虎的，不许私自盖房子，要住自己去买。</p>
+<p>狐狸听说了这件事，于是送了老虎几块肉，用一百金条买了这块地并且建房子，但房子建好后要卖一千金条。</p>
+<p>羊只有十块金条，买不起这个房子。</p>
+<p>狼看见了，拿着一千金条去找羊，说可以借这一千金条给他，分三十年还完，但是每年羊需要付四块金条的利息。</p>
+<p>于是羊拿着这一千金条去找狐狸买了房子。</p>
+<p>但是，羊没有生出小羊。</p>
+<p>因为每年要还狼的利息而不停被人薅羊毛，天天感冒，身体很差，导致生不出小羊。</p>
+<p>三十年过去了，羊头发白了，也老了，小羊一直没生出来，房子也不值钱了。但是老虎，狐狸和狼都赚了很多金条，生了很多小老虎小狐狸和小狼。</p>
+<p>一天，他们相约一起去河边游泳，对着鳄鱼说：“你看看我们部落多富裕，我们家的小老虎小狐狸和小狼都喂得白白胖胖的”。</p>
+<p>鳄鱼看了很不屑，带着自己的几十只鳄鱼宝宝噗通噗通跳进河里了，并且说：“你们别得意得太早，你们的宝宝很快就要饿死了，因为羊生不出羊宝宝，他们没肉吃迟早饿死！而我至少可以吃河里的鱼，永远饿不死！”</p>
+<p>一语惊醒梦中虎，老虎害怕极了，赶紧急匆匆辞别狐狸和狼两家，回到部落里。</p>
+<p>老虎赶紧对羊说，这个房子不收你的钱了，你赶紧生羊宝宝吧。</p>
+<p>老羊抱着母羊，老泪纵横，叹了一口气，说：“老虎大人，您可能有所不知，我们已经老了，生不出羊宝宝了”。</p>
+<p>老虎急得像热锅上的蚂蚁，但又没有办法，只有让羊不分白天黑夜生产羊毛去别的部落换肉吃，终于，二十年后老羊和母羊都老死了。</p>
+<p>这时，几只小老虎也长大了，但是每天都饿着肚子，老虎爸爸看了，叹了一口气，把狐狸和狼都邀请到家里来。</p>
+<p>但是狐狸说有急事，连夜拖家带口变成鳄鱼逃到河里去了。</p>
+<p>狼跟自己老伴商量，带好金条准备送给老虎，但是老虎收了金条后，把狼老两口都咬死，喂给了小老虎吃。</p>
+<p>说也奇怪，自从老狼死后，它们的小狼中，有几只也长出了羊毛。</p>
+<p>欲知后事如何，且听下回分解。</p>
 ]]></content>
       <categories>
-        <category>ctf</category>
+        <category>随笔</category>
       </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>crypto</tag>
-        <tag>c++</tag>
-        <tag>reverse</tag>
-      </tags>
+  </entry>
+  <entry>
+    <title>（转载）高考零分作文《无与伦比的二货老师》</title>
+    <url>/2022/02/09/full_mark_composition.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载于<a href="https://zhuanlan.zhihu.com/p/383059348">https://zhuanlan.zhihu.com/p/383059348</a></p>
+<span id="more"></span>
+<h1 id="题目（2015年陕西高考作文）"><a href="#题目（2015年陕西高考作文）" class="headerlink" title="题目（2015年陕西高考作文）"></a>题目（2015年陕西高考作文）</h1><p>阅读下面的材料，根据要求写一篇不少于800字的文章：</p>
+<p>　　因父亲总是在高速路上开车时接电话，家人屡劝不改，女大学生小陈迫于无奈，更出于生命安全的考虑，通过微博私信向警方举报了自己的父亲；警方查实后，依法对老陈进行了教育和处罚，并将这起举报发在了官方微博上。此事赢得众多网友点赞，也引发一些质疑，经媒体报道然后，激起了更大范围，更多角度的讨论。</p>
+<p>　　对于以上事情，你怎么看？请给小陈、老陈或其他相关方写一封信，表明你的态度，阐述你的看法。 </p>
+<p>　　要求综合材料内容及含意，选好角度，确定立意，完成写作任务。明确收信人，统一以“明华”为写信人，不得泄露个人信息。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>无与伦比的二货老师：</p>
+<p>　　你好，在经历了十二年寒窗苦读后我第一次踏足城区，今天我满怀信心的走进了咸阳市中学考点参加20xx年高考，我相信只要我发挥正常我一定能考上一所好大学。当我打开语文卷看到作文材料时，我不禁泪流满面。十二年来无论饥寒交迫，穷困潦倒我都挺过来了，为的是能以优秀的成绩考取理想的大学，但看到这作文材料后，我知道我可能让父亲失望了。</p>
+<p>　　你可能无法想像我的父亲——一个地地道道的咸阳农民，一辈子连自行车都不会骑，家里唯一能称之为车的就是爷爷留下的那辆架子车，前两天挖洋芋父亲的背影已经明显的瘦小了许多。父亲没手机也不会用手机，父亲拉架子车时只是很重地喘着粗气，偶尔说话也上气不接下气。尊敬的出题的二货老师，你也许不相信我的父亲从来没见到高速路，当他从电视上看到那么宽的马路时总是裂着嘴说:多好的地方，晾包谷瞭太。我们村的沙石路还得好几年才能硬化，一到雨天我们都挽着裤子上路，这次到城区参加高考我才第一次见到高速路。</p>
+<p>　　尊敬的出题的二货老师，你有没有想过全陕西省像我这样的家庭不少，家里没私家车的家庭更多，你让全省的孩子在同一场考试中比谁家富有吗?你让没钱卖车的父亲们由于自己的寒酸而影响到孩子作文的发挥而无地自容吗?你这不是制造分裂吗?你这是赤裸裸给政府找麻烦呀。你让我给一个不识字没见过交警没上过高速更不会开车的父亲写一封有关安全驾驶的信，你不是二货就是脑子被门夹了?你为何不让城里的孩子给父亲写一封信关于父亲借别人家的公猪给自家的母猪配种时不按规范操作可能造成的后果的材料作文，城里的孩子几乎分不请麦子和韭菜，辨不出大葱和蒜苗，这样的材料对城里的孩子和现在的材料对农村的孩子有什么区别?估计城里的孩子早就掀翻了桌子，城里的家长在网上，政府门前闹得让你辞职回家了。但你不怕农村孩子，更不悄他们深居大山大字不识的父亲，因为他们连车都卖不起，何惧之有。</p>
+<p>　　十二年来我起早贪黑努力学习，一个月前父亲就开始向亲朋借供我上大学的钱，但我和父亲千算万算也没想到我的高考以这样的结局结束。尊敬的出题的二货老师，你一定没到过咸阳市彬县、淳化、等深山人家中，那里山清、水秀、林密，那里的人穷得拖了全省的后腿，丢了全省人的脸，让出题老意笑话了。</p>
+<p>　　昨天，父亲给我书包里揣了两块锅盔馍，今天早上我吃了半块，父亲告诉我别省着，吃饱了好好考试。如今看来剩下的我不用吃了，还是带回去准备复读吧。希望明年的高考作文题不再让我流泪了，更希望明年的高考作文题不要升级为父亲在驾驶游艇时……</p>
+<p>　　算了，写给父亲的信就免了，写了也空话连篇他也看不懂，你这个二货老师的一番用意也是白费了。阅卷老师请您谅解，我跑题了，我本来就是个咸阳楞姓，您给我零分我不怕。但愿你也是从农村走出来的或曾经去过农村。万一这样，你就把这篇文章传出去吧，拜托了。</p>
+<p>　　最后，祝20xx年出题老师二的健康，二的顺利。</p>
+<p>　　（落款略，<del>2015年陕西高考零分作文</del>）</p>
+<h1 id="出题老师的回信"><a href="#出题老师的回信" class="headerlink" title="出题老师的回信"></a>出题老师的回信</h1><blockquote>
+<p>括号内容和最后的引用为朱剑玮的批注。</p>
+</blockquote>
+<p>　　亲爱的同学：（第1句话多假？未见其人先闻其声，骨子里动刀，这里卖个虚情假意）</p>
+<p>　　非常庆幸能在6月7日下午就看到你的考场作文，尽管不知道你的文章是如何这么快流出考场，尽管网络上对你的作品毁誉参半。（为何用流字？是想“包”藏此文吗？）</p>
+<p>　　这几天，我们辗转反侧，一直想给你回一封信，因为有些事情，如鲠在喉，不吐不快。 高考（ke ju）制度，你知道，与其说是选拔人才，不如说是促进社会底层向上进阶的一种方式，尽管大家吐槽，（用的是底层而不是基层）但是这也许是目前最公平、最合理的办法了。我粗略看下古今的其他选拔制度，都不及高考公平。察举时代，你很可能会输给你们村的会计儿子，即使你才华横溢，但是他也许更受“拥戴”；即使民国百家争鸣的自招时代，你如果出不了村子，即使学富五车，也终究不过一个段子手。高考好在哪里？公平，尽管只是相对公平，但是依然可以遴选人才，促进阶层的流动。法治，总比人治要公平，否则，老百姓就更无出头之日。</p>
+<p>　　再说说试题，其实高速公路、私家车、手机这些，你文中对其充满了戏谑的调侃。我很能理解你的心情，就如同材料换做韭菜和高粱之后，你依然会摇身一变。先看看历史上的考题吧。《周唐外重内轻秦魏外轻内重各有得论》，清末科举真题；《总统制与责任内阁制如何分别》，民国西南联大试题。周唐秦魏时代离你很遥远，你的父亲也可能不是特别了解，更不要说内外轻重了；总统与内阁离你更远，恐怕你见过的最大官员就是你们村的书记了。而且出题的人，都曾是你敬仰过的翁同龢、朱自清。我想说的是，出题者其实考察的并非是高速公路或私家车，而是考察思维能力、价值取向，如果揪住高速公路不放，你显然没有分清重点，或者纯粹在哗众取宠。</p>
+<p>　　范仲淹二岁而孤，欧阳修三岁投亲。都是穷人家的孩子，不论诗文，还是政绩，都灿若星辰，最重要的是，都是进士出身，成绩都很好。中国的文官体系之中，不乏各种暗箱，但是科举却是向这一阶层注入活水的最好办法。试想，一个人学富五车，独立思想，情系社稷，胸怀黎庶，是不是社会的需要？是不是百姓的福祉？对家乡的依恋，对父亲的疼惜，都没有错误，但是，这不是拒绝社会制度的理由，更不是排斥现代文明的借口。陶渊明的“采菊东篱下，悠然见南山。”只是闲情逸致，而他的“精卫衔微木，将以填沧海。”才是灵魂所在；柳三变的“三秋桂子，十里荷花”也不过秦楼低唱，而“鬻海之民何苦辛，安得母富子不贫”才是中国文人的赤子丹心。</p>
+<p>　　责任感、使命感，是中国知识分子的精髓。穷则独善其身，达则兼善天下。孩子，请你再站得高一点，哪怕是站在那村口的土丘之上，即使你目光中带着贫瘠，请不要放弃眺望那未知的前方，因为那里可能就是你的理想。</p>
+<p>　　而你的父亲，黝黑的脊梁，家庭的担当，期待的，绝不是你纸面上的悲怆。</p>
+<blockquote>
+<p>责任感、使命感，是中国知识分子的精髓？对吗？质朴的人身上不具备吗？</p>
+<p>“你目光中带着贫瘠”，我看考生的目光很远大。</p>
+</blockquote>
+<h1 id="朱剑玮评"><a href="#朱剑玮评" class="headerlink" title="朱剑玮评"></a>朱剑玮评</h1><p>　　言为心声，以信观心，这才是掌握语文这门学问的标志。</p>
+<p>　　我们看这封因高考互写的信很有意义。</p>
+<p>　　从语文高考出题老师的回信中可以看出该届高考语文出题考官学问也是二货。</p>
+<p>　　考生不错，考生第一句话就讲到语文作文的重要性！可见对语文课认识到位。</p>
+<p>　　出题考官，回信开头就跑题，辩论跑题。说的是高考的重要性。出题考官你是觉得你只给语文出题权利小吗？</p>
+<p>　　第一段，文斗比武，考生胜。</p>
+<p>　　二，考生通篇写实话，实话为作文第一要义，无论屈原、李白的浪漫夸张也是法理道理最真实的表达，才名垂千古，杜甫更是写实。作为作品写实，语文功力高！作为作文人，写实 是人品人格高尚。</p>
+<p>　　老师开始写考生无知！这是人身攻击。</p>
+<p>　　考生是无知吗？</p>
+<p>　　不是，那出题老师打“考生无知”这一招，二货出题考官再次跑偏。</p>
+<p>　　高考出题老师“正面驳斥”引经据典，大有“大兵压境”、“气势磅礴”、“国内国外”的大道理侃侃而谈，看得出来似乎已用了“看家的本领”、加吃奶的力气……费了心思欲驳倒考生所写之文的“本意”，从而为自己所出作文题目背后所反映出的中国教育问题作出辩解，但我认为却“格格不入”……这位出题老师的自己的辩解之词与考生所写文章中所反映的本质“走题跑调”的路上奔驰。</p>
+<p>　　考生观点明确，借自己的父亲的农村形象来表达关心对社会的疾苦的感同深受，有最温情处也有义气之理，有杜甫之心，有居易之才。</p>
+<p>　　考官出题老师通篇写“高考改变命运！”</p>
+<p>　　高考是能改变个人的命运！</p>
+<p>　　高考能改善国家和民族的命运吗？</p>
+<p>　　国家的命运需要教育出高贵人格的人来改进。</p>
+<p>　　可见此高考出题老师世界观人格市侩庸俗。</p>
+<p>　　进入正论，二货高考出题老师开始卖弄学识，什么翁同龢怎样？</p>
+<p>　　翁同龢是清代末期同治和光绪皇帝的两代帝师，其心狭隘，对于国之重臣大力排挤，李鸿章等国家栋梁，不懂军事，不识大体，中饱私囊，在科举考试中作为主考或副主考徇私舞弊，这样的重要职位，小人翁同龢能担大任吗？最后满清被八国联军侵略，全国赔款割地，新中国的高考出题老师怎么能把误国贼子的清朝科举总监翁同龢当榜样能是非不分，不是二货是什么？</p>
+<p>　　高考出题老师举的例子也立不住，</p>
+<p>　　考生先说自己考试失利，是因为对出此题考官的失望，这是真高，有未卜先知之明，可见高考语文出题老师，出的作文材料中带着高高在上的官僚气味，不见其人已见其心了。</p>
+<p>　　考生罢写给“父亲的信”其气节大有 朱棣篡位时方孝孺的气概，朱棣闯进南京皇宫，命当时文渊阁博士方孝孺写登基昭书，方孝孺写“燕贼反”，朱棣说，你不怕我灭你九族？方孝孺说：你灭我十族我也写“燕贼反”，万世之后，你也脱不掉 一个篡字！</p>
+<p>　　才华非要官方认可吗？篡位国王的命令也比不过大儒的骨气。</p>
+<p>　　高考出题老师举了 陶渊明采菊东篱下，这是闲情吗？那是政治黑暗给陶公带来的无奈，‘悠然见南山’，这个南山是指商山，张良推荐辅佐太子刘盈成为西汉皇帝的商山四皓，陶公崇拜张良和商山四皓，这首田园诗也是中华文人的治国理想。</p>
+<p>　　高考出题老师，你连陶渊明写的千古名篇‘南山’的寓意正确答案都不知道，你说你不接受‘二货’这个称呼吗？这二货的称呼是高抬了。考生有眼界啊，用词用语准确，没有戏虐，倒是高考出题老师口口声声说 ，到时候你又“摇身一变”，这是无有根据的诽谤。</p>
+<p>　　“周唐秦魏时代离你很遥远，你的父亲也可能不是特别了解，更不要说内外轻重了;总统与内阁离你更远，恐怕你见过的最大官员就是你们村的书记了”</p>
+<p>　　这是老师写的话吗？</p>
+<p>　　你怎么知道考生的父亲不明此呢？</p>
+<p>　　你怎么知道考生见的最大官就是村书记呢？</p>
+<p>　　你这个决定考生和家族命运的官是不是位太高了权太重了？</p>
+<p>　　语文高考出题老师骨子里是不是瞧不起农村人的，是瞧不起穷人的，这才是该考生不写此高考命题作文的导火索。</p>
+<p>　　考生看的明白，出题人老师其心何哉？</p>
+<p>　　我们再来看此出题老师的信，“察举时代，你很可能会输给你们村的会计儿子，即使你才华横溢，但是他也许更受“拥戴”；这是编造历史了，汉朝举孝廉，后来到了察举时代，都很好，当然后期会有舞弊现象，但“那会计的儿子”是怎么回事？你是说过去人会经济账就可当长官吗？说什么心里有什么！！！那到要察察这出题考官的经济账了，到底有没有贪污，查吧！</p>
+<p>　　高考出题老师用排比句说“该考生排斥现代文明的借口。”</p>
+<p>　　考生作文中说这次出题高考作文的考官‘二货’，考官说这是排斥现代文明，还不如村夫野叟心量的二货能代表现代文明吗？明明是出题老师的骄傲愚昧，愚在是非不明，中奸不辩，眛在无有良心。</p>
+<p>　　老师为了给自己遮丑，一直偷换概念，考生写一个“二货出题老师”表达一下自己的真实感受的作文就是拒绝高考制度吗？</p>
+<p>　　这上纲上线的辞令让千万百姓和高考教师和学子们很怕怕啊！</p>
+<p>　　其实这个出题老师，能代表中国的高考制度吗？ 该高考出题老师说，“高考科举制度，你知道，与其说是选拔人才，不如说是促进社会底层向上进阶的一种方式，”这个阶级观念存在的根深蒂固，是不可取的。共产党是工人阶级的政党，是最彻底最先进的阶级，共产党是这一阶级最有觉悟与有组织的部分。请问底层在中国是什么阶层，“促进阶层流动”，“向上进阶”进的是那个阶？这个问题要是弄不清，搞错了，请问是如何成为高考语文出题人的？</p>
+<p>　　这个语文高考出题老师 不知道此考生作文好在什么地方，是无知无识，</p>
+<p>　　更可悲的是此出题二货老师不知道自己浅薄和愚蠢。</p>
+<p>　　有此考生的作文天意也，</p>
+<p>　　有此高考二货出题老师，人事也！</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p><img src="/2022/02/09/full_mark_composition/egg.jpg"></p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
   </entry>
   <entry>
     <title>（转载）我家跨上了“信息高速路”</title>
@@ -1142,117 +1288,6 @@
 ]]></content>
       <categories>
         <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>（转载）撸羊毛</title>
-    <url>/2022/01/05/fable.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p>作者：齐辛格尔<br>链接：<a href="https://www.zhihu.com/question/489610689/answer/2150453989">https://www.zhihu.com/question/489610689/answer/2150453989</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-</blockquote>
-<p>羊已经三十岁了，娶了一只母羊，准备在自家地里盖房子，想生几只小羊。</p>
-<p>老虎看见了，就对羊说，这块地是老虎的，不许私自盖房子，要住自己去买。</p>
-<p>狐狸听说了这件事，于是送了老虎几块肉，用一百金条买了这块地并且建房子，但房子建好后要卖一千金条。</p>
-<p>羊只有十块金条，买不起这个房子。</p>
-<p>狼看见了，拿着一千金条去找羊，说可以借这一千金条给他，分三十年还完，但是每年羊需要付四块金条的利息。</p>
-<p>于是羊拿着这一千金条去找狐狸买了房子。</p>
-<p>但是，羊没有生出小羊。</p>
-<p>因为每年要还狼的利息而不停被人薅羊毛，天天感冒，身体很差，导致生不出小羊。</p>
-<p>三十年过去了，羊头发白了，也老了，小羊一直没生出来，房子也不值钱了。但是老虎，狐狸和狼都赚了很多金条，生了很多小老虎小狐狸和小狼。</p>
-<p>一天，他们相约一起去河边游泳，对着鳄鱼说：“你看看我们部落多富裕，我们家的小老虎小狐狸和小狼都喂得白白胖胖的”。</p>
-<p>鳄鱼看了很不屑，带着自己的几十只鳄鱼宝宝噗通噗通跳进河里了，并且说：“你们别得意得太早，你们的宝宝很快就要饿死了，因为羊生不出羊宝宝，他们没肉吃迟早饿死！而我至少可以吃河里的鱼，永远饿不死！”</p>
-<p>一语惊醒梦中虎，老虎害怕极了，赶紧急匆匆辞别狐狸和狼两家，回到部落里。</p>
-<p>老虎赶紧对羊说，这个房子不收你的钱了，你赶紧生羊宝宝吧。</p>
-<p>老羊抱着母羊，老泪纵横，叹了一口气，说：“老虎大人，您可能有所不知，我们已经老了，生不出羊宝宝了”。</p>
-<p>老虎急得像热锅上的蚂蚁，但又没有办法，只有让羊不分白天黑夜生产羊毛去别的部落换肉吃，终于，二十年后老羊和母羊都老死了。</p>
-<p>这时，几只小老虎也长大了，但是每天都饿着肚子，老虎爸爸看了，叹了一口气，把狐狸和狼都邀请到家里来。</p>
-<p>但是狐狸说有急事，连夜拖家带口变成鳄鱼逃到河里去了。</p>
-<p>狼跟自己老伴商量，带好金条准备送给老虎，但是老虎收了金条后，把狼老两口都咬死，喂给了小老虎吃。</p>
-<p>说也奇怪，自从老狼死后，它们的小狼中，有几只也长出了羊毛。</p>
-<p>欲知后事如何，且听下回分解。</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>（转载）高考零分作文《无与伦比的二货老师》</title>
-    <url>/2022/02/09/full_mark_composition.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载于<a href="https://zhuanlan.zhihu.com/p/383059348">https://zhuanlan.zhihu.com/p/383059348</a></p>
-<span id="more"></span>
-<h1 id="题目（2015年陕西高考作文）"><a href="#题目（2015年陕西高考作文）" class="headerlink" title="题目（2015年陕西高考作文）"></a>题目（2015年陕西高考作文）</h1><p>阅读下面的材料，根据要求写一篇不少于800字的文章：</p>
-<p>　　因父亲总是在高速路上开车时接电话，家人屡劝不改，女大学生小陈迫于无奈，更出于生命安全的考虑，通过微博私信向警方举报了自己的父亲；警方查实后，依法对老陈进行了教育和处罚，并将这起举报发在了官方微博上。此事赢得众多网友点赞，也引发一些质疑，经媒体报道然后，激起了更大范围，更多角度的讨论。</p>
-<p>　　对于以上事情，你怎么看？请给小陈、老陈或其他相关方写一封信，表明你的态度，阐述你的看法。 </p>
-<p>　　要求综合材料内容及含意，选好角度，确定立意，完成写作任务。明确收信人，统一以“明华”为写信人，不得泄露个人信息。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>无与伦比的二货老师：</p>
-<p>　　你好，在经历了十二年寒窗苦读后我第一次踏足城区，今天我满怀信心的走进了咸阳市中学考点参加20xx年高考，我相信只要我发挥正常我一定能考上一所好大学。当我打开语文卷看到作文材料时，我不禁泪流满面。十二年来无论饥寒交迫，穷困潦倒我都挺过来了，为的是能以优秀的成绩考取理想的大学，但看到这作文材料后，我知道我可能让父亲失望了。</p>
-<p>　　你可能无法想像我的父亲——一个地地道道的咸阳农民，一辈子连自行车都不会骑，家里唯一能称之为车的就是爷爷留下的那辆架子车，前两天挖洋芋父亲的背影已经明显的瘦小了许多。父亲没手机也不会用手机，父亲拉架子车时只是很重地喘着粗气，偶尔说话也上气不接下气。尊敬的出题的二货老师，你也许不相信我的父亲从来没见到高速路，当他从电视上看到那么宽的马路时总是裂着嘴说:多好的地方，晾包谷瞭太。我们村的沙石路还得好几年才能硬化，一到雨天我们都挽着裤子上路，这次到城区参加高考我才第一次见到高速路。</p>
-<p>　　尊敬的出题的二货老师，你有没有想过全陕西省像我这样的家庭不少，家里没私家车的家庭更多，你让全省的孩子在同一场考试中比谁家富有吗?你让没钱卖车的父亲们由于自己的寒酸而影响到孩子作文的发挥而无地自容吗?你这不是制造分裂吗?你这是赤裸裸给政府找麻烦呀。你让我给一个不识字没见过交警没上过高速更不会开车的父亲写一封有关安全驾驶的信，你不是二货就是脑子被门夹了?你为何不让城里的孩子给父亲写一封信关于父亲借别人家的公猪给自家的母猪配种时不按规范操作可能造成的后果的材料作文，城里的孩子几乎分不请麦子和韭菜，辨不出大葱和蒜苗，这样的材料对城里的孩子和现在的材料对农村的孩子有什么区别?估计城里的孩子早就掀翻了桌子，城里的家长在网上，政府门前闹得让你辞职回家了。但你不怕农村孩子，更不悄他们深居大山大字不识的父亲，因为他们连车都卖不起，何惧之有。</p>
-<p>　　十二年来我起早贪黑努力学习，一个月前父亲就开始向亲朋借供我上大学的钱，但我和父亲千算万算也没想到我的高考以这样的结局结束。尊敬的出题的二货老师，你一定没到过咸阳市彬县、淳化、等深山人家中，那里山清、水秀、林密，那里的人穷得拖了全省的后腿，丢了全省人的脸，让出题老意笑话了。</p>
-<p>　　昨天，父亲给我书包里揣了两块锅盔馍，今天早上我吃了半块，父亲告诉我别省着，吃饱了好好考试。如今看来剩下的我不用吃了，还是带回去准备复读吧。希望明年的高考作文题不再让我流泪了，更希望明年的高考作文题不要升级为父亲在驾驶游艇时……</p>
-<p>　　算了，写给父亲的信就免了，写了也空话连篇他也看不懂，你这个二货老师的一番用意也是白费了。阅卷老师请您谅解，我跑题了，我本来就是个咸阳楞姓，您给我零分我不怕。但愿你也是从农村走出来的或曾经去过农村。万一这样，你就把这篇文章传出去吧，拜托了。</p>
-<p>　　最后，祝20xx年出题老师二的健康，二的顺利。</p>
-<p>　　（落款略，<del>2015年陕西高考零分作文</del>）</p>
-<h1 id="出题老师的回信"><a href="#出题老师的回信" class="headerlink" title="出题老师的回信"></a>出题老师的回信</h1><blockquote>
-<p>括号内容和最后的引用为朱剑玮的批注。</p>
-</blockquote>
-<p>　　亲爱的同学：（第1句话多假？未见其人先闻其声，骨子里动刀，这里卖个虚情假意）</p>
-<p>　　非常庆幸能在6月7日下午就看到你的考场作文，尽管不知道你的文章是如何这么快流出考场，尽管网络上对你的作品毁誉参半。（为何用流字？是想“包”藏此文吗？）</p>
-<p>　　这几天，我们辗转反侧，一直想给你回一封信，因为有些事情，如鲠在喉，不吐不快。 高考（ke ju）制度，你知道，与其说是选拔人才，不如说是促进社会底层向上进阶的一种方式，尽管大家吐槽，（用的是底层而不是基层）但是这也许是目前最公平、最合理的办法了。我粗略看下古今的其他选拔制度，都不及高考公平。察举时代，你很可能会输给你们村的会计儿子，即使你才华横溢，但是他也许更受“拥戴”；即使民国百家争鸣的自招时代，你如果出不了村子，即使学富五车，也终究不过一个段子手。高考好在哪里？公平，尽管只是相对公平，但是依然可以遴选人才，促进阶层的流动。法治，总比人治要公平，否则，老百姓就更无出头之日。</p>
-<p>　　再说说试题，其实高速公路、私家车、手机这些，你文中对其充满了戏谑的调侃。我很能理解你的心情，就如同材料换做韭菜和高粱之后，你依然会摇身一变。先看看历史上的考题吧。《周唐外重内轻秦魏外轻内重各有得论》，清末科举真题；《总统制与责任内阁制如何分别》，民国西南联大试题。周唐秦魏时代离你很遥远，你的父亲也可能不是特别了解，更不要说内外轻重了；总统与内阁离你更远，恐怕你见过的最大官员就是你们村的书记了。而且出题的人，都曾是你敬仰过的翁同龢、朱自清。我想说的是，出题者其实考察的并非是高速公路或私家车，而是考察思维能力、价值取向，如果揪住高速公路不放，你显然没有分清重点，或者纯粹在哗众取宠。</p>
-<p>　　范仲淹二岁而孤，欧阳修三岁投亲。都是穷人家的孩子，不论诗文，还是政绩，都灿若星辰，最重要的是，都是进士出身，成绩都很好。中国的文官体系之中，不乏各种暗箱，但是科举却是向这一阶层注入活水的最好办法。试想，一个人学富五车，独立思想，情系社稷，胸怀黎庶，是不是社会的需要？是不是百姓的福祉？对家乡的依恋，对父亲的疼惜，都没有错误，但是，这不是拒绝社会制度的理由，更不是排斥现代文明的借口。陶渊明的“采菊东篱下，悠然见南山。”只是闲情逸致，而他的“精卫衔微木，将以填沧海。”才是灵魂所在；柳三变的“三秋桂子，十里荷花”也不过秦楼低唱，而“鬻海之民何苦辛，安得母富子不贫”才是中国文人的赤子丹心。</p>
-<p>　　责任感、使命感，是中国知识分子的精髓。穷则独善其身，达则兼善天下。孩子，请你再站得高一点，哪怕是站在那村口的土丘之上，即使你目光中带着贫瘠，请不要放弃眺望那未知的前方，因为那里可能就是你的理想。</p>
-<p>　　而你的父亲，黝黑的脊梁，家庭的担当，期待的，绝不是你纸面上的悲怆。</p>
-<blockquote>
-<p>责任感、使命感，是中国知识分子的精髓？对吗？质朴的人身上不具备吗？</p>
-<p>“你目光中带着贫瘠”，我看考生的目光很远大。</p>
-</blockquote>
-<h1 id="朱剑玮评"><a href="#朱剑玮评" class="headerlink" title="朱剑玮评"></a>朱剑玮评</h1><p>　　言为心声，以信观心，这才是掌握语文这门学问的标志。</p>
-<p>　　我们看这封因高考互写的信很有意义。</p>
-<p>　　从语文高考出题老师的回信中可以看出该届高考语文出题考官学问也是二货。</p>
-<p>　　考生不错，考生第一句话就讲到语文作文的重要性！可见对语文课认识到位。</p>
-<p>　　出题考官，回信开头就跑题，辩论跑题。说的是高考的重要性。出题考官你是觉得你只给语文出题权利小吗？</p>
-<p>　　第一段，文斗比武，考生胜。</p>
-<p>　　二，考生通篇写实话，实话为作文第一要义，无论屈原、李白的浪漫夸张也是法理道理最真实的表达，才名垂千古，杜甫更是写实。作为作品写实，语文功力高！作为作文人，写实 是人品人格高尚。</p>
-<p>　　老师开始写考生无知！这是人身攻击。</p>
-<p>　　考生是无知吗？</p>
-<p>　　不是，那出题老师打“考生无知”这一招，二货出题考官再次跑偏。</p>
-<p>　　高考出题老师“正面驳斥”引经据典，大有“大兵压境”、“气势磅礴”、“国内国外”的大道理侃侃而谈，看得出来似乎已用了“看家的本领”、加吃奶的力气……费了心思欲驳倒考生所写之文的“本意”，从而为自己所出作文题目背后所反映出的中国教育问题作出辩解，但我认为却“格格不入”……这位出题老师的自己的辩解之词与考生所写文章中所反映的本质“走题跑调”的路上奔驰。</p>
-<p>　　考生观点明确，借自己的父亲的农村形象来表达关心对社会的疾苦的感同深受，有最温情处也有义气之理，有杜甫之心，有居易之才。</p>
-<p>　　考官出题老师通篇写“高考改变命运！”</p>
-<p>　　高考是能改变个人的命运！</p>
-<p>　　高考能改善国家和民族的命运吗？</p>
-<p>　　国家的命运需要教育出高贵人格的人来改进。</p>
-<p>　　可见此高考出题老师世界观人格市侩庸俗。</p>
-<p>　　进入正论，二货高考出题老师开始卖弄学识，什么翁同龢怎样？</p>
-<p>　　翁同龢是清代末期同治和光绪皇帝的两代帝师，其心狭隘，对于国之重臣大力排挤，李鸿章等国家栋梁，不懂军事，不识大体，中饱私囊，在科举考试中作为主考或副主考徇私舞弊，这样的重要职位，小人翁同龢能担大任吗？最后满清被八国联军侵略，全国赔款割地，新中国的高考出题老师怎么能把误国贼子的清朝科举总监翁同龢当榜样能是非不分，不是二货是什么？</p>
-<p>　　高考出题老师举的例子也立不住，</p>
-<p>　　考生先说自己考试失利，是因为对出此题考官的失望，这是真高，有未卜先知之明，可见高考语文出题老师，出的作文材料中带着高高在上的官僚气味，不见其人已见其心了。</p>
-<p>　　考生罢写给“父亲的信”其气节大有 朱棣篡位时方孝孺的气概，朱棣闯进南京皇宫，命当时文渊阁博士方孝孺写登基昭书，方孝孺写“燕贼反”，朱棣说，你不怕我灭你九族？方孝孺说：你灭我十族我也写“燕贼反”，万世之后，你也脱不掉 一个篡字！</p>
-<p>　　才华非要官方认可吗？篡位国王的命令也比不过大儒的骨气。</p>
-<p>　　高考出题老师举了 陶渊明采菊东篱下，这是闲情吗？那是政治黑暗给陶公带来的无奈，‘悠然见南山’，这个南山是指商山，张良推荐辅佐太子刘盈成为西汉皇帝的商山四皓，陶公崇拜张良和商山四皓，这首田园诗也是中华文人的治国理想。</p>
-<p>　　高考出题老师，你连陶渊明写的千古名篇‘南山’的寓意正确答案都不知道，你说你不接受‘二货’这个称呼吗？这二货的称呼是高抬了。考生有眼界啊，用词用语准确，没有戏虐，倒是高考出题老师口口声声说 ，到时候你又“摇身一变”，这是无有根据的诽谤。</p>
-<p>　　“周唐秦魏时代离你很遥远，你的父亲也可能不是特别了解，更不要说内外轻重了;总统与内阁离你更远，恐怕你见过的最大官员就是你们村的书记了”</p>
-<p>　　这是老师写的话吗？</p>
-<p>　　你怎么知道考生的父亲不明此呢？</p>
-<p>　　你怎么知道考生见的最大官就是村书记呢？</p>
-<p>　　你这个决定考生和家族命运的官是不是位太高了权太重了？</p>
-<p>　　语文高考出题老师骨子里是不是瞧不起农村人的，是瞧不起穷人的，这才是该考生不写此高考命题作文的导火索。</p>
-<p>　　考生看的明白，出题人老师其心何哉？</p>
-<p>　　我们再来看此出题老师的信，“察举时代，你很可能会输给你们村的会计儿子，即使你才华横溢，但是他也许更受“拥戴”；这是编造历史了，汉朝举孝廉，后来到了察举时代，都很好，当然后期会有舞弊现象，但“那会计的儿子”是怎么回事？你是说过去人会经济账就可当长官吗？说什么心里有什么！！！那到要察察这出题考官的经济账了，到底有没有贪污，查吧！</p>
-<p>　　高考出题老师用排比句说“该考生排斥现代文明的借口。”</p>
-<p>　　考生作文中说这次出题高考作文的考官‘二货’，考官说这是排斥现代文明，还不如村夫野叟心量的二货能代表现代文明吗？明明是出题老师的骄傲愚昧，愚在是非不明，中奸不辩，眛在无有良心。</p>
-<p>　　老师为了给自己遮丑，一直偷换概念，考生写一个“二货出题老师”表达一下自己的真实感受的作文就是拒绝高考制度吗？</p>
-<p>　　这上纲上线的辞令让千万百姓和高考教师和学子们很怕怕啊！</p>
-<p>　　其实这个出题老师，能代表中国的高考制度吗？ 该高考出题老师说，“高考科举制度，你知道，与其说是选拔人才，不如说是促进社会底层向上进阶的一种方式，”这个阶级观念存在的根深蒂固，是不可取的。共产党是工人阶级的政党，是最彻底最先进的阶级，共产党是这一阶级最有觉悟与有组织的部分。请问底层在中国是什么阶层，“促进阶层流动”，“向上进阶”进的是那个阶？这个问题要是弄不清，搞错了，请问是如何成为高考语文出题人的？</p>
-<p>　　这个语文高考出题老师 不知道此考生作文好在什么地方，是无知无识，</p>
-<p>　　更可悲的是此出题二货老师不知道自己浅薄和愚蠢。</p>
-<p>　　有此考生的作文天意也，</p>
-<p>　　有此高考二货出题老师，人事也！</p>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p><img src="/2022/02/09/full_mark_composition/egg.jpg"></p>
-]]></content>
-      <categories>
-        <category>随笔</category>
       </categories>
   </entry>
   <entry>
@@ -1754,8 +1789,8 @@
         <category>ctf</category>
       </categories>
       <tags>
-        <tag>pwn</tag>
         <tag>crypto</tag>
+        <tag>pwn</tag>
       </tags>
   </entry>
   <entry>
@@ -1861,8 +1896,8 @@
         <category>ctf</category>
       </categories>
       <tags>
-        <tag>pwn</tag>
         <tag>reverse</tag>
+        <tag>pwn</tag>
       </tags>
   </entry>
   <entry>
@@ -1930,22 +1965,6 @@
       </categories>
       <tags>
         <tag>reverse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Xposed——从入门到放弃</title>
-    <url>/2021/08/10/xp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
-<span id="more"></span>
-<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
-<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -2090,6 +2109,44 @@
       </categories>
   </entry>
   <entry>
+    <title>Xposed——从入门到放弃</title>
+    <url>/2021/08/10/xp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
+<span id="more"></span>
+<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
+<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>十九——热爱杀105个人的你</title>
+    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="00edfb9e668526bb87043430ce224abfdc80b0d9f9b6c95221e12d9872b383b7">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad0a46181665f3a561a83ff3aa8234311f4017c044a496f25f56485a75332b1048c9412e0a6f1c0df0964a0d35c73cce753d617f76024efd3bfa4b05c889da81d9b965008415d6a819cbbbcefc9e464dd9f0d28a51152f7c05a54d0a8ea6653bfe490ba0c2491a307010940297b5d911a069665ca3d568dba9153877ec40bfd0764ab15ff2d5701066afb9f7063009f4610138b6b055e268428af773398d1d2c03bcd3849554324a95ce4096a998bea71932f96b0a629ae8bcf9853ffde23392b8e9021fd3c7ea939c05547077fd92e3b97460c2160a0fa9ead9aa0e6a7b7e4c151191ed80b8587555307919246a7e9f137dfa4db4311bcba64a9480c7ad409cfa435fe88b5afcb8c51415952671e49c04025195dcedbbd8445b38d8801e4c67946634e42c95c20899386155d0c62cdc74afd04b96be91c1519d893dced0ee421f86c40d14625faa9daaf690814e183cce8958de77443aac4ad52c552f48afae9c7bfd1764c116809f750e542eb89c60a2228ffacf834068c299f86d8dd2e3fd51d5a487cf0706526d81033a48e712cab5fdda79e395c1fa81f19a988ee2b966d1732715e15d96012587ae6417ee72d760c850192f8241192b05eda871743bebfbc7a1a0d25f4f5f6a8d952a91344fdff442ebff524cf13b89697c035fe002c2788ec1b7eb61169e63742c261f05eb3b4050c21b4bf34809b1e96b292f672d4cd3198a276d0d81e782fe4221245c734198d848d2984aa9b7a310bcfb4aca7c1084188af47d8efbcdb33c16a9278a2795275816f15da49c873424bb4fd2892d0e756094dbb00df729a8adb7483c832f27d0f4a84c76d2e7721ec0e1437826df40850ab928eea0492d69d048afa6358a6457c1376e39bd7c7b1247555f778afc030730cfcd816a58748f5e2c0b4e8bd8f1ce135af66abfea8bd6e1f5f3827d55b442dc9a7c58d68080ce7a12e3d2c36d488ff645f4ca4fd6de8afe8a562f70c03b097e63134cf81ec8814a29f51765bff8be523d02e57c55834e6c628afe521ef0bdc9f4cc5c2617d70ef092c913e1dd7700f5898c5cb78a8a309200d87b6c0ca1129671ff666e0c27a6af86040dd9dbe1c66065a909a5707654c1358c6e6232e83f867232d65825794e566309719b4d3a64ee040e884d8ef8afa380e305e2ec828e4f6e7d1dd09a86f534edac5a86060abf820de9ec8ebfa2152fd63e348266569842456060c94ae90dae7e75dc94cb4622c6056892c645367218d2232caa2b3fd99918d2b6f3b9b963acdc78657bf8bb38ce94ef383b60b207f2d3075b152daeb0ddd1020845251a02ef61fc21c71bbdc816adf8da39458850923428da85be819ac524b555b57506b7d3c4ad0b337da2dea1ae5dd42050cf9ab6b907f9b4d8f3c548b373aafb0475da40ee88e803530116de72b38167edcfaa915f67c95d43b8800910889acfc50440218fe1dbf54b9ecebe82d4a18d15e3dc3183ec4efc6e9e9f9470ae555f75fb7d9dbe4225f71ecde89799898e516b0e144b9ac1d346cf683f673b67f8fa6d9e2475e11f61505e5be011e7a56df407ae3b7c3f5c97b3ec8627b6cc10edbf27c720838b8755d2a9449329c1aec5bc00d3c6b602023b6e32efc6f894732db45aafe68acfabf3dfdb5c771a1fc5085cb680cc8806072300d78010909b8f434e86f6bc66fd18894265806a92576c23b71e71eb18765d136e52e63ca2bbaa8da16ceada0b26f0db91e68143b430844191628d1ff27519c532d956f3c50df607d0d6217558e0980119b674335d140bacd3631a04dbbb53c34a38357134c2f560d7dc19f47b593461f2cb309ddc4f85628c581a9b3ba35b162f13e1725807f8b80f194c5b8e64a27daa68684844c6c7ffabdae00328c65d18398e460bae6b1c0dd748e82705ddb3a035afe6d5086262e5aebe9501e96e581e4299caacd8a09fa0d3033500c1caae0f1bacf64745483110d77d5040165869a0e5de48b999017d2f8366f69c92ab928f68c347cc8c8eff3e52317b729d60ed9583c5fc1161af5b6ecf089384616afb74140ad418ac0fe17ccded8e5eb946d22670aa00e45a1649886fbe02256a480f4511c96300039f53c78c22c7d3bc9bd2391915bcf2e79621a7544bbc331f996634a29a7fc9cf5db4a7ab690a940232fe8f19b4d72bd05e85ce8f5b9553c984d2445bcff846b9c5850b2588b87c315eeffcc1cba0ac54dbe633c8cdb244dd0a8119420ec1ff66693f68a71a5923c19161fb5c23325ae61023bcf0094d08a22431583890db2e6fe02d7fd9438fdf793e109904d8a6ab1585b92f52ffcc7570f41a223590497d1e3d1910870c6cd4c8323dfd63606bf5ffa450650273299b297fdb7abe77103ed53bc0a04d6c51148fc6d68732645ce816ccea95027f6d98ea3c032011fdd75a144ebe7fbb18f5dac7e029758bc68179b827108cb53aa59c9e2aa8a924c5a7e5ad8ce4d8e38fd945b5ff7a22210ac6aae08549113d90095f0eaef6356daaf163c23879f84f16edeceabfdab009b9f6ffd4829e3093b0960f9e8e88c69f3e4aee2e98f5c573348eae3e9e27b09133f1095233a3dc9ad8ce175410f7fcf8543e9de96a00032333aae9683a4bbd252a7d01836e0611f961beea850d34d163930633b99fe88b536ed6455210e6460ad2ee02e6e429142d65fb2dd1c510e27d7bb17f467a763844a39af9a15658d6e200d514df9a711b812a2d9ef5bdd33a26279668be8cb4fadd2eecbb8957146327a2a8aff43d4dc67ec4388fc3d7e4467c53fd494a30d259c7f3b0b27d7648b7da88670e664362f655ad971654dbc53b0ffcf24d7e9a1407ec6b0004e88e3711e9b4c3865bd78a486175a05d3714a7871ff65eb82974d814eddcaca78660b453df766e456777bd0c4c4b80b0aa41e02668547330cc9e1009c893cba495400afaead758efdfcb8aa977de27b9a1b6cbc2284636ae38d03926b3b63e16d16cd05c62709cf71e4290866b237f002abc1e3eb36c6642084be64776984c0c5533692ff737ad1baa15bdd106a231ff8d516c5c89c65331e0f204de455f52f91b0690e77e02c9a588c33bf4fe73a211599f79934b1d048524b9aeffc4e341668299d93044f67e3707e111b348da09537ce1b06a9174779b75adff2526eb0ed2c04c37d0cac0d3d44b43007030c8bcb595bfaed4de9eb2b42320a3f45d7dcede75db78573456d057d0c36f81581ee3f5d0dae62fd7e0a55266908d0e4516bedc24f2b750cfb65c80580c3392e429e265b5bf46966347f5a9ac10bbf3a1d3a19845f102f30f821a1eacf6af75ce17b8ad00ba7b6ccf0d4dbe03db6f8ae733e5ecf2036474407a1d612ce6fd192cf7f233e09b87f2c7674bea73fbaff7b74bac3d92e834ee3282e332ec4ccd8e0594b9206448ae182247f0d145da019ee1e899af7a68887f9875a231bb2502bd04e78d4243ff55b11a99e67881ee1e1dd8f2adeb10b747870f2af1517012475b6e07d21ff439f99c14b422f1cf90218567105506b2574364b188e8fc737591804719b87b266e1fd71df3ae085becefcaec498e97946a0cf93feeccbd5bbb59ada2166d4e2fb80a26128f400116541bf8d0e7dfd13c023ec5c6e234eefa20d740b36701465e41bd797c551d64cafe934c746e26b751e63af5ea640b941d4890967183e371c577d05412bba9abb99c5b9118b951a9a4013203b907d794e412fce8f6b5f4a8b5ab37ae915dda58d4abf4db7331b07d4774588db3f9e8176b6464f8131646c316c0f29f8d057cdda0e0c714f9f62aad46253c1d13b5401d554abe729f87a6afb9d54567435b5b0088b6a97ff448eaa82cc0c3f66ec8286101f1516cb633c9fe901b8292c5aa8ce99ebab34ad4ce9d1f8a9c2b6dc196feb569c7264f4894a16a7482147a89a409b9aa09f07758cfb7899646eed737a622980dfae8ed50e60351a9ac47cd62e62a903cb8ffe9cc99ba60c2342d61e39aaf5a200836125a004dbd2f65e6fe30f5037c9222ce4e50ac5758d8cb10068a4ccba68b59e708fdbe507295a1e90dc3ad3336d680d420d8b4af4dba69f624bbc307f67548a9a10a11e5ad37b3097f4cd918b0105a1cad7e992201a3169afd3b05beebcf437c06aa12cd9d2b32c1ca0eed6febe01468d29bb2969228a11f104198dc3db248815de4aaf8f612606eabbec04de8f53f89fe93108449742cf2805519b9c701bf2892227a4802fd6e1f2dbb2f991877f7251714e55675d917d91805f7225b6431729da2d164e0883425bf306b70fc9370b6f75d231b49d346bc2aed7b85f496552736fb598147672f7a1f1b2b5bd1922fa252fa4dc463b2881416977ffa1c43e0502d8b48fb58d1835d1bdc70119f0b292245108b844b1a18d91c37f02626a3e9d00a669b406a0aba59881743f1534d9447662fedbae0b79438a171d7fab5709c8d6d859395d15060bb18add3eae248a544c3312c93f3b2a6d6261d128208e62d3cf06e4b69fc082618dac157e6edbb2b1f9e61dea7e5072374d7041b3a088f6b7d9db7b767c6df144495806d51cadd0c8ebb06ac2d6d590afa60b355f11784fcd232b138f8493bcbe96536839eeb66d30dfc8d90f200a4b4fe7509f8b67e6249dc8f3f56e9b68ac9f3c11199bde2cb63a6a00e7e19e9594edc3c2649ab86d08f4d5c2e7a718b610667fb888dee6d83b012de0d252d0cd694d8af391ddd6eee300178b70dbfb7d576dff399ecc734f28ff20ab785794b2fd330cd4383e4a34a661ab8efb38358efdfebc5289fcc4a04e81af2e74f92f6dfeca667645e6ecf9a3f94b76b44785753e0d680ca023d44874348c19374fa7aba1cc5f34a55cf209106f5e66c544bbc3473af7677ac33ac7b63b479989770d6b36812363883f83ba3aac3b54095ab588366584b2b81fa9840cf50cccda935e7b0c5fa98a58351d7e74e4dc7a28676b590b70bc530f31398b72a2b04dac9b28d47d51ab597bc61a43727478b052ab6c6beb5b6f4a251ed40165a0dd56ea400869561620ef60f785f1ccfe09597b3f176a796af704c06595056fab4aaf2f0eb5b15c22a4b8a0a6b1546c345bef9e2087ace2a54c3106c007e26919221c70ddbe71addbc0473cf74471deb51360703fd94544b2e61104ad67f9ed3920c5f66815719c43e9d70b033f6134872fc6d7fbe8dfbf0e5ba5df043e2baf94822d7aa60652c791f16604844ceabdec26668670b5ae3bed2d8973735bee8bbbabbff7d30126bb7974585b90769da34fd802944f13a4e113375386731a29905be64b6ff82206d45385a572c4d521381519fb2f6d16fad9d066badf37407ce52fd9470d5fd1d3e8c61131c6d389d6a454d5a7ef00642163a11835c5e3f0be9ab5450a30c296cf7a7f39d93f0a6234771c58d6613130ceba442359a4ae24d7ab1c41dcc349a37d2d1e6532b44d785912d42fe4c313329a2df10de608b7fe0ad27640befd7cf113d72b1a1c175f71b2ba2aeabe1272851cf79ec5fc576484bfd567bfe0e84850779ac8ff983abbec205ac963b44f4355faa31e22694bb64dd06cece5e948b4ca474631cc5ad5a04acac1457eda09f3d689c25ba91650f5d66a4e641fdccd76d250a968c13f5a321faf12cc29f5c7bf9b3655d52c60648c22550a8d8586012a1c29bf5471585afc67424cacfac5a8222d2384eb5b1fbed75eb41297de524c45a7bf2bd6e59b63c81315715899960f2c7477d6281bc2d72a1a6ecbd2b9c2b73d9bed20d69beea9a7ef5ebaa0b187105fda89b4236386444a926d0187644fa60f0314cf44a5d294da3e13a97504859a9f6bf8388e73d99d6a7698112bc134786012b47dbba5a316b9a34da98614a775455a9473a2879e7d6a8ca8d734edbb8125077ab09a9f3284436621590edae46c5bbe80667aa6b3c327e24acf92e721845825e98e4d5afde675418a94fa60fa9c02de17f9820e103fd7200ace648f901b3b307db292d879f8dc69a2d19765f8dfee07043e96fd57471052208039e8bffc0eb987b962792b9d3a450d1f6ce3cc69c9298cd337547e8b8328b6df62387262144c909347d96874ad0a312dd12243263b198cbb6c188bb2ac61f29afce658da675014d142d04e62aa906468f7a677b26da78279286dc09fe97bc7047e473ed1577eef7736fcb4d27089acab76b1bd2f4ab4ec15240008c58c57e1d313672b8d23fa7320d7136b25aa03ed22f504696b9b6c6a890f0467ebe261955a8c652171dffff456fdd449be87f9a45d8654583c986f0727388339f8d9c57e6d31d72b114a28391c1291a320c87a81681fcd9f8fd1a01a84956b49aa7811599a6df033cc20357839686ede2a0a1cb4253df0d321be75ccba25a1ec7c6200a152fd762ff3bf5ae4360f76b130fc406b699e716d9b2cc99af905bdf024b577bac22371895b4e3cfa6ea056d7712eab9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>encrypted</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>再见，acm</title>
     <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
@@ -2150,28 +2207,6 @@
       </categories>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>十九——热爱杀105个人的你</title>
-    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="00edfb9e668526bb87043430ce224abfdc80b0d9f9b6c95221e12d9872b383b7">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad0a46181665f3a561a83ff3aa8234311f4017c044a496f25f56485a75332b1048c9412e0a6f1c0df0964a0d35c73cce753d617f76024efd3bfa4b05c889da81d9b965008415d6a819cbbbcefc9e464dd9f0d28a51152f7c05a54d0a8ea6653bfe490ba0c2491a307010940297b5d911a069665ca3d568dba9153877ec40bfd0764ab15ff2d5701066afb9f7063009f4610138b6b055e268428af773398d1d2c03bcd3849554324a95ce4096a998bea71932f96b0a629ae8bcf9853ffde23392b8e9021fd3c7ea939c05547077fd92e3b97460c2160a0fa9ead9aa0e6a7b7e4c151191ed80b8587555307919246a7e9f137dfa4db4311bcba64a9480c7ad409cfa435fe88b5afcb8c51415952671e49c04025195dcedbbd8445b38d8801e4c67946634e42c95c20899386155d0c62cdc74afd04b96be91c1519d893dced0ee421f86c40d14625faa9daaf690814e183cce8958de77443aac4ad52c552f48afae9c7bfd1764c116809f750e542eb89c60a2228ffacf834068c299f86d8dd2e3fd51d5a487cf0706526d81033a48e712cab5fdda79e395c1fa81f19a988ee2b966d1732715e15d96012587ae6417ee72d760c850192f8241192b05eda871743bebfbc7a1a0d25f4f5f6a8d952a91344fdff442ebff524cf13b89697c035fe002c2788ec1b7eb61169e63742c261f05eb3b4050c21b4bf34809b1e96b292f672d4cd3198a276d0d81e782fe4221245c734198d848d2984aa9b7a310bcfb4aca7c1084188af47d8efbcdb33c16a9278a2795275816f15da49c873424bb4fd2892d0e756094dbb00df729a8adb7483c832f27d0f4a84c76d2e7721ec0e1437826df40850ab928eea0492d69d048afa6358a6457c1376e39bd7c7b1247555f778afc030730cfcd816a58748f5e2c0b4e8bd8f1ce135af66abfea8bd6e1f5f3827d55b442dc9a7c58d68080ce7a12e3d2c36d488ff645f4ca4fd6de8afe8a562f70c03b097e63134cf81ec8814a29f51765bff8be523d02e57c55834e6c628afe521ef0bdc9f4cc5c2617d70ef092c913e1dd7700f5898c5cb78a8a309200d87b6c0ca1129671ff666e0c27a6af86040dd9dbe1c66065a909a5707654c1358c6e6232e83f867232d65825794e566309719b4d3a64ee040e884d8ef8afa380e305e2ec828e4f6e7d1dd09a86f534edac5a86060abf820de9ec8ebfa2152fd63e348266569842456060c94ae90dae7e75dc94cb4622c6056892c645367218d2232caa2b3fd99918d2b6f3b9b963acdc78657bf8bb38ce94ef383b60b207f2d3075b152daeb0ddd1020845251a02ef61fc21c71bbdc816adf8da39458850923428da85be819ac524b555b57506b7d3c4ad0b337da2dea1ae5dd42050cf9ab6b907f9b4d8f3c548b373aafb0475da40ee88e803530116de72b38167edcfaa915f67c95d43b8800910889acfc50440218fe1dbf54b9ecebe82d4a18d15e3dc3183ec4efc6e9e9f9470ae555f75fb7d9dbe4225f71ecde89799898e516b0e144b9ac1d346cf683f673b67f8fa6d9e2475e11f61505e5be011e7a56df407ae3b7c3f5c97b3ec8627b6cc10edbf27c720838b8755d2a9449329c1aec5bc00d3c6b602023b6e32efc6f894732db45aafe68acfabf3dfdb5c771a1fc5085cb680cc8806072300d78010909b8f434e86f6bc66fd18894265806a92576c23b71e71eb18765d136e52e63ca2bbaa8da16ceada0b26f0db91e68143b430844191628d1ff27519c532d956f3c50df607d0d6217558e0980119b674335d140bacd3631a04dbbb53c34a38357134c2f560d7dc19f47b593461f2cb309ddc4f85628c581a9b3ba35b162f13e1725807f8b80f194c5b8e64a27daa68684844c6c7ffabdae00328c65d18398e460bae6b1c0dd748e82705ddb3a035afe6d5086262e5aebe9501e96e581e4299caacd8a09fa0d3033500c1caae0f1bacf64745483110d77d5040165869a0e5de48b999017d2f8366f69c92ab928f68c347cc8c8eff3e52317b729d60ed9583c5fc1161af5b6ecf089384616afb74140ad418ac0fe17ccded8e5eb946d22670aa00e45a1649886fbe02256a480f4511c96300039f53c78c22c7d3bc9bd2391915bcf2e79621a7544bbc331f996634a29a7fc9cf5db4a7ab690a940232fe8f19b4d72bd05e85ce8f5b9553c984d2445bcff846b9c5850b2588b87c315eeffcc1cba0ac54dbe633c8cdb244dd0a8119420ec1ff66693f68a71a5923c19161fb5c23325ae61023bcf0094d08a22431583890db2e6fe02d7fd9438fdf793e109904d8a6ab1585b92f52ffcc7570f41a223590497d1e3d1910870c6cd4c8323dfd63606bf5ffa450650273299b297fdb7abe77103ed53bc0a04d6c51148fc6d68732645ce816ccea95027f6d98ea3c032011fdd75a144ebe7fbb18f5dac7e029758bc68179b827108cb53aa59c9e2aa8a924c5a7e5ad8ce4d8e38fd945b5ff7a22210ac6aae08549113d90095f0eaef6356daaf163c23879f84f16edeceabfdab009b9f6ffd4829e3093b0960f9e8e88c69f3e4aee2e98f5c573348eae3e9e27b09133f1095233a3dc9ad8ce175410f7fcf8543e9de96a00032333aae9683a4bbd252a7d01836e0611f961beea850d34d163930633b99fe88b536ed6455210e6460ad2ee02e6e429142d65fb2dd1c510e27d7bb17f467a763844a39af9a15658d6e200d514df9a711b812a2d9ef5bdd33a26279668be8cb4fadd2eecbb8957146327a2a8aff43d4dc67ec4388fc3d7e4467c53fd494a30d259c7f3b0b27d7648b7da88670e664362f655ad971654dbc53b0ffcf24d7e9a1407ec6b0004e88e3711e9b4c3865bd78a486175a05d3714a7871ff65eb82974d814eddcaca78660b453df766e456777bd0c4c4b80b0aa41e02668547330cc9e1009c893cba495400afaead758efdfcb8aa977de27b9a1b6cbc2284636ae38d03926b3b63e16d16cd05c62709cf71e4290866b237f002abc1e3eb36c6642084be64776984c0c5533692ff737ad1baa15bdd106a231ff8d516c5c89c65331e0f204de455f52f91b0690e77e02c9a588c33bf4fe73a211599f79934b1d048524b9aeffc4e341668299d93044f67e3707e111b348da09537ce1b06a9174779b75adff2526eb0ed2c04c37d0cac0d3d44b43007030c8bcb595bfaed4de9eb2b42320a3f45d7dcede75db78573456d057d0c36f81581ee3f5d0dae62fd7e0a55266908d0e4516bedc24f2b750cfb65c80580c3392e429e265b5bf46966347f5a9ac10bbf3a1d3a19845f102f30f821a1eacf6af75ce17b8ad00ba7b6ccf0d4dbe03db6f8ae733e5ecf2036474407a1d612ce6fd192cf7f233e09b87f2c7674bea73fbaff7b74bac3d92e834ee3282e332ec4ccd8e0594b9206448ae182247f0d145da019ee1e899af7a68887f9875a231bb2502bd04e78d4243ff55b11a99e67881ee1e1dd8f2adeb10b747870f2af1517012475b6e07d21ff439f99c14b422f1cf90218567105506b2574364b188e8fc737591804719b87b266e1fd71df3ae085becefcaec498e97946a0cf93feeccbd5bbb59ada2166d4e2fb80a26128f400116541bf8d0e7dfd13c023ec5c6e234eefa20d740b36701465e41bd797c551d64cafe934c746e26b751e63af5ea640b941d4890967183e371c577d05412bba9abb99c5b9118b951a9a4013203b907d794e412fce8f6b5f4a8b5ab37ae915dda58d4abf4db7331b07d4774588db3f9e8176b6464f8131646c316c0f29f8d057cdda0e0c714f9f62aad46253c1d13b5401d554abe729f87a6afb9d54567435b5b0088b6a97ff448eaa82cc0c3f66ec8286101f1516cb633c9fe901b8292c5aa8ce99ebab34ad4ce9d1f8a9c2b6dc196feb569c7264f4894a16a7482147a89a409b9aa09f07758cfb7899646eed737a622980dfae8ed50e60351a9ac47cd62e62a903cb8ffe9cc99ba60c2342d61e39aaf5a200836125a004dbd2f65e6fe30f5037c9222ce4e50ac5758d8cb10068a4ccba68b59e708fdbe507295a1e90dc3ad3336d680d420d8b4af4dba69f624bbc307f67548a9a10a11e5ad37b3097f4cd918b0105a1cad7e992201a3169afd3b05beebcf437c06aa12cd9d2b32c1ca0eed6febe01468d29bb2969228a11f104198dc3db248815de4aaf8f612606eabbec04de8f53f89fe93108449742cf2805519b9c701bf2892227a4802fd6e1f2dbb2f991877f7251714e55675d917d91805f7225b6431729da2d164e0883425bf306b70fc9370b6f75d231b49d346bc2aed7b85f496552736fb598147672f7a1f1b2b5bd1922fa252fa4dc463b2881416977ffa1c43e0502d8b48fb58d1835d1bdc70119f0b292245108b844b1a18d91c37f02626a3e9d00a669b406a0aba59881743f1534d9447662fedbae0b79438a171d7fab5709c8d6d859395d15060bb18add3eae248a544c3312c93f3b2a6d6261d128208e62d3cf06e4b69fc082618dac157e6edbb2b1f9e61dea7e5072374d7041b3a088f6b7d9db7b767c6df144495806d51cadd0c8ebb06ac2d6d590afa60b355f11784fcd232b138f8493bcbe96536839eeb66d30dfc8d90f200a4b4fe7509f8b67e6249dc8f3f56e9b68ac9f3c11199bde2cb63a6a00e7e19e9594edc3c2649ab86d08f4d5c2e7a718b610667fb888dee6d83b012de0d252d0cd694d8af391ddd6eee300178b70dbfb7d576dff399ecc734f28ff20ab785794b2fd330cd4383e4a34a661ab8efb38358efdfebc5289fcc4a04e81af2e74f92f6dfeca667645e6ecf9a3f94b76b44785753e0d680ca023d44874348c19374fa7aba1cc5f34a55cf209106f5e66c544bbc3473af7677ac33ac7b63b479989770d6b36812363883f83ba3aac3b54095ab588366584b2b81fa9840cf50cccda935e7b0c5fa98a58351d7e74e4dc7a28676b590b70bc530f31398b72a2b04dac9b28d47d51ab597bc61a43727478b052ab6c6beb5b6f4a251ed40165a0dd56ea400869561620ef60f785f1ccfe09597b3f176a796af704c06595056fab4aaf2f0eb5b15c22a4b8a0a6b1546c345bef9e2087ace2a54c3106c007e26919221c70ddbe71addbc0473cf74471deb51360703fd94544b2e61104ad67f9ed3920c5f66815719c43e9d70b033f6134872fc6d7fbe8dfbf0e5ba5df043e2baf94822d7aa60652c791f16604844ceabdec26668670b5ae3bed2d8973735bee8bbbabbff7d30126bb7974585b90769da34fd802944f13a4e113375386731a29905be64b6ff82206d45385a572c4d521381519fb2f6d16fad9d066badf37407ce52fd9470d5fd1d3e8c61131c6d389d6a454d5a7ef00642163a11835c5e3f0be9ab5450a30c296cf7a7f39d93f0a6234771c58d6613130ceba442359a4ae24d7ab1c41dcc349a37d2d1e6532b44d785912d42fe4c313329a2df10de608b7fe0ad27640befd7cf113d72b1a1c175f71b2ba2aeabe1272851cf79ec5fc576484bfd567bfe0e84850779ac8ff983abbec205ac963b44f4355faa31e22694bb64dd06cece5e948b4ca474631cc5ad5a04acac1457eda09f3d689c25ba91650f5d66a4e641fdccd76d250a968c13f5a321faf12cc29f5c7bf9b3655d52c60648c22550a8d8586012a1c29bf5471585afc67424cacfac5a8222d2384eb5b1fbed75eb41297de524c45a7bf2bd6e59b63c81315715899960f2c7477d6281bc2d72a1a6ecbd2b9c2b73d9bed20d69beea9a7ef5ebaa0b187105fda89b4236386444a926d0187644fa60f0314cf44a5d294da3e13a97504859a9f6bf8388e73d99d6a7698112bc134786012b47dbba5a316b9a34da98614a775455a9473a2879e7d6a8ca8d734edbb8125077ab09a9f3284436621590edae46c5bbe80667aa6b3c327e24acf92e721845825e98e4d5afde675418a94fa60fa9c02de17f9820e103fd7200ace648f901b3b307db292d879f8dc69a2d19765f8dfee07043e96fd57471052208039e8bffc0eb987b962792b9d3a450d1f6ce3cc69c9298cd337547e8b8328b6df62387262144c909347d96874ad0a312dd12243263b198cbb6c188bb2ac61f29afce658da675014d142d04e62aa906468f7a677b26da78279286dc09fe97bc7047e473ed1577eef7736fcb4d27089acab76b1bd2f4ab4ec15240008c58c57e1d313672b8d23fa7320d7136b25aa03ed22f504696b9b6c6a890f0467ebe261955a8c652171dffff456fdd449be87f9a45d8654583c986f0727388339f8d9c57e6d31d72b114a28391c1291a320c87a81681fcd9f8fd1a01a84956b49aa7811599a6df033cc20357839686ede2a0a1cb4253df0d321be75ccba25a1ec7c6200a152fd762ff3bf5ae4360f76b130fc406b699e716d9b2cc99af905bdf024b577bac22371895b4e3cfa6ea056d7712eab9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>encrypted</tag>
       </tags>
   </entry>
   <entry>
@@ -2542,10 +2577,10 @@
       </categories>
       <tags>
         <tag>python</tag>
+        <tag>reverse</tag>
+        <tag>crypto</tag>
         <tag>pwn</tag>
         <tag>misc</tag>
-        <tag>crypto</tag>
-        <tag>reverse</tag>
         <tag>web</tag>
         <tag>c</tag>
       </tags>
@@ -3201,8 +3236,8 @@
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>pwn</tag>
         <tag>reverse</tag>
+        <tag>pwn</tag>
         <tag>assembly</tag>
       </tags>
   </entry>
@@ -3475,8 +3510,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>pwn</tag>
         <tag>reverse</tag>
+        <tag>pwn</tag>
       </tags>
   </entry>
   <entry>

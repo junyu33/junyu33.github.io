@@ -417,6 +417,14 @@
     </span>
 
   
+    <span id="/2021/11/23/ctf04.html" class="post-meta-item twikoo_visitors" data-flag-title="scuctf新生赛——幽篁终见天战队wp" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
       </div>
       <div class="post-meta">
     <span class="post-meta-item" title="本文字数">
@@ -719,6 +727,7 @@
 
 
 
+    <div class="comments"><div id="twikoo-comments"></div></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -838,6 +847,15 @@
 </script>
 
 
+<script>
+NexT.utils.loadComments('#twikoo-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
+    twikoo.init(Object.assign({"enable":true,"visitor":true,"envId":"https://202182.vercel.app/"}, {
+      el: '#twikoo-comments'
+    }));
+  }, window.twikoo);
+});
+</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

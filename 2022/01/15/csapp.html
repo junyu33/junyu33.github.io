@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -438,7 +438,7 @@
 <p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
 <p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
 <h2 id="在机器级程序中将控制与数据结合起来——1-16-2022"><a href="#在机器级程序中将控制与数据结合起来——1-16-2022" class="headerlink" title="在机器级程序中将控制与数据结合起来——1/16/2022"></a>在机器级程序中将控制与数据结合起来——1/16/2022</h2><p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span> m=*((<span class="keyword">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="keyword">int</span> n=*((<span class="keyword">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> arr[<span class="number">20</span>]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> *p=&amp;arr;</span><br><span class="line">	*(p+<span class="number">8</span>)+=<span class="number">9</span>;</span><br><span class="line">	<span class="type">int</span> m=*((<span class="type">char</span>*)p+<span class="number">8</span>);</span><br><span class="line">	<span class="type">int</span> n=*((<span class="type">char</span>*)(p+<span class="number">8</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,m,n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>答案是<code>8 11</code>.</p>
 <p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
 <p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
@@ -488,7 +488,7 @@
 <tbody>
 <tr>
 <td>int</td>
-<td>\\</td>
+<td>\</td>
 <td>cltq</td>
 <td>cvtsi2ssl %eax %xmm0</td>
 <td>cvtsi2sdl %eax %xmm0</td>
@@ -496,7 +496,7 @@
 <tr>
 <td>long</td>
 <td>%eax</td>
-<td>\\</td>
+<td>\</td>
 <td>cvtsi2ssq %rax %xmm0</td>
 <td>cvtsi2sdq %rax %xmm0</td>
 </tr>
@@ -504,7 +504,7 @@
 <td>float</td>
 <td>cvttss2si %xmm0 %eax</td>
 <td>cvttss2siq %xmm0 %rax</td>
-<td>\\</td>
+<td>\</td>
 <td>cvtss2sd mem %xmm0</td>
 </tr>
 <tr>
@@ -512,7 +512,7 @@
 <td>cvttsd2si %xmm0 %eax</td>
 <td>cvttsd2siq %xmm0 %rax</td>
 <td>cvtsd2ss mem %xmm0</td>
-<td>\\</td>
+<td>\</td>
 </tr>
 </tbody>
 </table>
@@ -661,15 +661,6 @@
 
   
 
-<script>
-NexT.utils.loadComments('#twikoo-comments', () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
-    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"https://202182.vercel.app/"}, {
-      el: '#twikoo-comments'
-    }));
-  }, window.twikoo);
-});
-</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

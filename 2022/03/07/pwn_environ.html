@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -490,12 +490,12 @@
 <li><p>你会来到一个settings界面，不要管里面有什么内容。在你的<strong>远端ip</strong>的设置中找到<code>edit in setting.json</code>这个选项，点进去。</p>
 </li>
 <li><p>在最后一个大括号的上一行添加如下代码：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;python.analysis.diagnosticSeverityOverrides&quot;</span>: &#123;</span><br><span class="line">     <span class="attr">&quot;reportUndefinedVariable&quot;</span>: <span class="string">&quot;none&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;python.analysis.diagnosticSeverityOverrides&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;reportUndefinedVariable&quot;</span><span class="punctuation">:</span> <span class="string">&quot;none&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>vscode的pylance插件还可能会因为<code>sendline</code>系列函数，大段大段地报<code>code is unreachable</code>这个错误，修改方法如下：</p>
 <p>查看sendline的源码，修改以下部分</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_raw</span>(<span class="params">self, data</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;send_raw(data) Should not be called directly. Sends data to the tube. Should return ``exceptions.EOFError``, if it is unable to send any more, because of a close tube. &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">raise</span> EOFError(<span class="string">&#x27;Not implemented&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">send_raw</span>(<span class="params">self, data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;send_raw(data) Should not be called directly. Sends data to the tube. Should return ``exceptions.EOFError``, if it is unable to send any more, because of a close tube. &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">raise</span> EOFError(<span class="string">&#x27;Not implemented&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>将<code>raise EOFError(&#39;Not implemented&#39;)</code>改为<code>raise NotImplementedError</code>即可。</p>
 <h2 id="vscode界面微调"><a href="#vscode界面微调" class="headerlink" title="vscode界面微调"></a>vscode界面微调</h2><p>在<strong>非编辑区域</strong>右键即可调整。</p>
 <p><strong>做完这些事情后，我们就可以开始愉快地coding啦！</strong></p>
@@ -630,15 +630,6 @@
 
   
 
-<script>
-NexT.utils.loadComments('#twikoo-comments', () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
-    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"https://202182.vercel.app/"}, {
-      el: '#twikoo-comments'
-    }));
-  }, window.twikoo);
-});
-</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

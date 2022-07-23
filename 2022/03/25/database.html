@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -589,7 +589,7 @@
 <h3 id="查询视图"><a href="#查询视图" class="headerlink" title="查询视图"></a>查询视图</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 视图可以当成一张表进行进一步查询</span><br><span class="line"><span class="keyword">select</span> staffNo, cnt</span><br><span class="line"><span class="keyword">From</span> StaffPropCnt</span><br><span class="line"><span class="keyword">where</span> branchNo<span class="operator">=</span><span class="string">&#x27;B003&#x27;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> staffNo</span><br><span class="line"></span><br><span class="line"># 等同于</span><br><span class="line"><span class="keyword">select</span> s.staffNo <span class="keyword">as</span> staffNo, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> cnt</span><br><span class="line"><span class="keyword">from</span> Staff s, PropertyForRent p</span><br><span class="line"><span class="keyword">where</span> s.staffNo <span class="operator">=</span> p.staffNo <span class="keyword">and</span> s.branchNo <span class="operator">=</span> <span class="string">&#x27;B003&#x27;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> s.branchNo,s.staffNo</span><br></pre></td></tr></table></figure>
 <h3 id="视图修改"><a href="#视图修改" class="headerlink" title="视图修改"></a>视图修改</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> StaffPropCnt</span><br><span class="line"><span class="keyword">values</span>(<span class="string">&#x27;B003&#x27;</span>,<span class="string">&#x27;SG5&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"># 报错，更改视图不能更改视图来源的表（信息量过小）。</span><br></pre></td></tr></table></figure>
 <h3 id="创建角色"><a href="#创建角色" class="headerlink" title="创建角色"></a>创建角色</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> role Manager</span><br></pre></td></tr></table></figure>
-<h3 id="授予权限"><a href="#授予权限" class="headerlink" title="授予权限"></a>授予权限</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, update, <span class="keyword">delete</span>, <span class="keyword">references</span>, <span class="keyword">alter</span></span><br><span class="line"><span class="keyword">on</span> Staff</span><br><span class="line"><span class="keyword">to</span> Manager</span><br><span class="line"><span class="keyword">with</span> <span class="keyword">grant</span> option</span><br></pre></td></tr></table></figure>
+<h3 id="授予权限"><a href="#授予权限" class="headerlink" title="授予权限"></a>授予权限</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, <span class="keyword">update</span>, <span class="keyword">delete</span>, <span class="keyword">references</span>, <span class="keyword">alter</span></span><br><span class="line"><span class="keyword">on</span> Staff</span><br><span class="line"><span class="keyword">to</span> Manager</span><br><span class="line"><span class="keyword">with</span> <span class="keyword">grant</span> option</span><br></pre></td></tr></table></figure>
 <h3 id="撤回权限"><a href="#撤回权限" class="headerlink" title="撤回权限"></a>撤回权限</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">revoke</span> <span class="keyword">references</span> </span><br><span class="line"><span class="keyword">on</span> Staff</span><br><span class="line"><span class="keyword">from</span> Manager </span><br><span class="line">cascade</span><br></pre></td></tr></table></figure>
 <h2 id="事务并发——week14"><a href="#事务并发——week14" class="headerlink" title="事务并发——week14"></a>事务并发——week14</h2><h3 id="串行化"><a href="#串行化" class="headerlink" title="串行化"></a>串行化</h3><p>对不同线程的同一事务的<strong>读写</strong>和<strong>写写</strong>会有冲突。</p>
 <p>把每一个线程作为一个点，对同一事务不同线程的<strong>读写</strong>和<strong>写写</strong>进行加<strong>有向</strong>边，如果生成图无环，代表并行调度<strong>冲突</strong>可串行化。</p>
@@ -767,15 +767,6 @@
 
   
 
-<script>
-NexT.utils.loadComments('#twikoo-comments', () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
-    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"https://202182.vercel.app/"}, {
-      el: '#twikoo-comments'
-    }));
-  }, window.twikoo);
-});
-</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

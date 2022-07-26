@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://junyu33.github.io/2022/07/26/newsite/1.png">
 <meta property="article:published_time" content="2022-07-26T06:40:00.000Z">
-<meta property="article:modified_time" content="2022-07-26T09:31:08.513Z">
+<meta property="article:modified_time" content="2022-07-26T09:44:05.179Z">
 <meta property="article:author" content="丨junyu33丨">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://junyu33.github.io/2022/07/26/newsite/1.png">
@@ -352,7 +352,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-07-26 14:40:00 / 修改时间：17:31:08" itemprop="dateCreated datePublished" datetime="2022-07-26T14:40:00+08:00">2022-07-26</time>
+      <time title="创建时间：2022-07-26 14:40:00 / 修改时间：17:44:05" itemprop="dateCreated datePublished" datetime="2022-07-26T14:40:00+08:00">2022-07-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -440,7 +440,7 @@
 <p>没办法，我只好乖乖的把<code>CHAME</code>加上netlify开始提供的那四个域名服务器，结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># junyu33 @ zjy in ~/Desktop [16:24:37] </span></span><br><span class="line">$ ping junyu33.me        </span><br><span class="line">PING junyu33.me(dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1)) 56 data bytes</span><br><span class="line">64 字节，来自 dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=1 ttl=53 时间=245 毫秒</span><br><span class="line">64 字节，来自 dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=2 ttl=53 时间=304 毫秒</span><br><span class="line">64 字节，来自 dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=3 ttl=53 时间=225 毫秒</span><br><span class="line">64 字节，来自 dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=4 ttl=53 时间=243 毫秒</span><br><span class="line">^C</span><br><span class="line">--- junyu33.me ping 统计 ---</span><br><span class="line">已发送 5 个包， 已接收 4 个包, 20% 包丢失, 耗时 4005 毫秒</span><br><span class="line">rtt min/avg/max/mdev = 224.650/254.204/304.193/29.931 ms</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>甚至比之前变得更慢了。</p>
-<h2 id="自己的尝试"><a href="#自己的尝试" class="headerlink" title="自己的尝试"></a>自己的尝试</h2><p>然而我在ping <a target="_blank" rel="noopener" href="https://junyu33.netlify.app/时，速度却比较快，我发现dns将其解析到了一个ipv6地址。而且由于ipv6地址较多，域名可以和ipv6一一映射，因此这个ip应该不会变化。">https://junyu33.netlify.app/时，速度却比较快，我发现dns将其解析到了一个ipv6地址。而且由于ipv6地址较多，域名可以和ipv6一一映射，因此这个ip应该不会变化。</a></p>
+<h2 id="自己的尝试"><a href="#自己的尝试" class="headerlink" title="自己的尝试"></a>自己的尝试</h2><p>然而我在ping <a target="_blank" rel="noopener" href="https://junyu33.netlify.app/">https://junyu33.netlify.app/</a> 时，速度却比较快，我发现dns将其解析到了一个ipv6地址。而且由于ipv6地址较多，域名可以和ipv6一一映射，因此这个ip应该不会变化。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># junyu33 @ zjy in ~/Desktop [16:31:18] </span></span><br><span class="line">$ ping junyu33.netlify.app</span><br><span class="line">PING junyu33.netlify.app(2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6)) 56 data bytes</span><br><span class="line">64 字节，来自 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=1 ttl=46 时间=92.9 毫秒</span><br><span class="line">64 字节，来自 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=2 ttl=46 时间=85.3 毫秒</span><br><span class="line">64 字节，来自 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=3 ttl=46 时间=85.7 毫秒</span><br><span class="line">64 字节，来自 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=4 ttl=46 时间=131 毫秒</span><br><span class="line">^C</span><br><span class="line">--- junyu33.netlify.app ping 统计 ---</span><br><span class="line">已发送 4 个包， 已接收 4 个包, 0% 包丢失, 耗时 3005 毫秒</span><br><span class="line">rtt min/avg/max/mdev = 85.273/98.665/130.809/18.805 ms</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>于是我将先前的<code>A Record</code>改成了<code>AAAA Record</code>，填入了这个ipv6地址，再进行了测试：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># junyu33 @ zjy in ~/Desktop [16:33:58] </span></span><br><span class="line">$ ping junyu33.me</span><br><span class="line">PING junyu33.me (54.255.56.197) 56(84) bytes of data.</span><br><span class="line">64 字节，来自 ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=2 ttl=46 时间=91.9 毫秒</span><br><span class="line">64 字节，来自 ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=3 ttl=46 时间=84.5 毫秒</span><br><span class="line">64 字节，来自 ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=4 ttl=46 时间=85.5 毫秒</span><br><span class="line">64 字节，来自 ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=5 ttl=46 时间=88.0 毫秒</span><br><span class="line">^C</span><br><span class="line">--- junyu33.me ping 统计 ---</span><br><span class="line">已发送 5 个包， 已接收 4 个包, 20% 包丢失, 耗时 4031 毫秒</span><br><span class="line">rtt min/avg/max/mdev = 84.479/87.482/91.940/2.873 ms</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -465,167 +465,4 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://junyu33.github.io/2022/07/26/newsite.html" title="博客域名变更小记">https://junyu33.github.io/2022/07/26/newsite.html</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/07/21/easiestctf.html" rel="prev" title="四川大学CTF实训杯wp">
-                  <i class="fa fa-chevron-left"></i> 四川大学CTF实训杯wp
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2032/02/07/bin_ctf.html" rel="next" title="（置顶）主要是二进制的ctf练习">
-                  （置顶）主要是二进制的ctf练习 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-    <div class="comments"><div id="twikoo-comments"></div></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 2021 – 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
-</div>
-<div class="wordcount">
-  <span class="post-meta-item">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-line"></i>
-    </span>
-    <span title="站点总字数">248k</span>
-  </span>
-  <span class="post-meta-item">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">3:45</span>
-  </span>
-</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-    </div>
-  </footer>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
-
-  
-
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-  
-
-
-
-
-
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-
-<script>
-NexT.utils.loadComments('#twikoo-comments', () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
-    twikoo.init(Object.assign({"enable":true,"visitor":true,"envId":"https://202182.vercel.app/"}, {
-      el: '#twikoo-comments'
-    }));
-  }, window.twikoo);
-});
-</script>
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
-</html>
+     

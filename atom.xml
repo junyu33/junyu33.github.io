@@ -41,7 +41,7 @@
     <link href="https://junyu33.github.io/2032/02/07/bin_ctf.html"/>
     <id>https://junyu33.github.io/2032/02/07/bin_ctf.html</id>
     <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2022-07-25T09:46:43.382Z</updated>
+    <updated>2022-07-26T01:36:10.776Z</updated>
     
     <summary type="html">
     
@@ -58,6 +58,24 @@
       <category term="reverse" scheme="https://junyu33.github.io/tags/reverse/"/>
     
       <category term="pwn" scheme="https://junyu33.github.io/tags/pwn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客域名变更小记</title>
+    <link href="https://junyu33.github.io/2022/07/26/newsite.html"/>
+    <id>https://junyu33.github.io/2022/07/26/newsite.html</id>
+    <published>2022-07-26T06:40:00.000Z</published>
+    <updated>2022-07-26T09:31:08.513Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为原先博客域名过长，并且国内解析速度较慢，我决定用利用github学生包白嫖一个域名，并解析到netlify的dns上。最后域名成功由&lt;code&gt;junyu33.github.io&lt;/code&gt;变更为&lt;code&gt;junyu33.me&lt;/code&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="test" scheme="https://junyu33.github.io/categories/test/"/>
+    
     
   </entry>
   
@@ -424,25 +442,6 @@
           &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
         
       
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://junyu33.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Twenty-four——my summary of year 2021</title>
-    <link href="https://junyu33.github.io/2021/12/30/bye2021.html"/>
-    <id>https://junyu33.github.io/2021/12/30/bye2021.html</id>
-    <published>2021-12-29T23:00:00.000Z</published>
-    <updated>2021-12-30T03:07:41.568Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2021/12/30/bye2021/2021.png&quot;&gt;&lt;/p&gt;
     
     </summary>
     

@@ -37,25 +37,21 @@
   </entry>
   
   <entry>
-    <title>（置顶）主要是二进制的ctf练习</title>
+    <title>（置顶）ctf练习(pwn)</title>
     <link href="https://junyu33.me/2032/02/07/bin_ctf.html"/>
     <id>https://junyu33.me/2032/02/07/bin_ctf.html</id>
     <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2022-07-26T01:36:10.776Z</updated>
+    <updated>2022-07-27T02:57:40.821Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;分为re、pwn和other三部分，用作记录思路和用得上的gadget。&lt;/p&gt;
+      &lt;p&gt;分为stack、fmtstr、heap三部分，用作记录思路和用得上的gadget。&lt;/p&gt;
 &lt;p&gt;以下二级标题不带网站的默认为buuoj对应分区题目。&lt;/p&gt;
     
     </summary>
     
-      <category term="笔记" scheme="https://junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+      <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
     
-    
-      <category term="python" scheme="https://junyu33.me/tags/python/"/>
-    
-      <category term="reverse" scheme="https://junyu33.me/tags/reverse/"/>
     
       <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
     
@@ -119,6 +115,26 @@
     
       <category term="test" scheme="https://junyu33.me/categories/test/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>pwncollege之堆通关记录</title>
+    <link href="https://junyu33.me/2022/07/03/pwn_college_heap.html"/>
+    <id>https://junyu33.me/2022/07/03/pwn_college_heap.html</id>
+    <published>2022-07-03T10:00:00.000Z</published>
+    <updated>2022-07-27T03:10:16.487Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;指 &lt;a href=&quot;https://dojo.pwn.college/challenges&quot;&gt;https://dojo.pwn.college/challenges&lt;/a&gt; 中的&lt;code&gt;Dynamic Allocator Misuse&lt;/code&gt;部分。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
+    
+    
+      <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
     
   </entry>
   
@@ -314,6 +330,36 @@
   </entry>
   
   <entry>
+    <title>ctf练习（杂）</title>
+    <link href="https://junyu33.me/2022/02/07/bin_ctf2.html"/>
+    <id>https://junyu33.me/2022/02/07/bin_ctf2.html</id>
+    <published>2022-02-07T14:00:00.000Z</published>
+    <updated>2022-07-27T03:09:39.904Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
+    
+    
+      <category term="reverse" scheme="https://junyu33.me/tags/reverse/"/>
+    
+      <category term="crypto" scheme="https://junyu33.me/tags/crypto/"/>
+    
+      <category term="misc" scheme="https://junyu33.me/tags/misc/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何正确的抢拼手气红包</title>
     <link href="https://junyu33.me/2022/02/04/%E6%8A%A2%E7%BA%A2%E5%8C%85.html"/>
     <id>https://junyu33.me/2022/02/04/抢红包.html</id>
@@ -400,53 +446,6 @@
       <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
     
       <category term="assembly" scheme="https://junyu33.me/tags/assembly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>（近期不更新）csapp学习笔记</title>
-    <link href="https://junyu33.me/2022/01/15/csapp.html"/>
-    <id>https://junyu33.me/2022/01/15/csapp.html</id>
-    <published>2022-01-15T14:30:00.000Z</published>
-    <updated>2022-02-15T03:22:16.195Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;（本文汇编代码统一采用AT&amp;amp;T语法）&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;友情提示：&lt;/p&gt;
-&lt;p&gt;看这本书，笔记、习题、实验三者缺一不可。&lt;/p&gt;
-&lt;p&gt;如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>（转载）撸羊毛</title>
-    <link href="https://junyu33.me/2022/01/05/fable.html"/>
-    <id>https://junyu33.me/2022/01/05/fable.html</id>
-    <published>2022-01-04T16:30:00.000Z</published>
-    <updated>2022-06-25T13:35:55.917Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

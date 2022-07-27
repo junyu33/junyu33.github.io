@@ -41,11 +41,11 @@
     <link href="https://junyu33.me/2032/02/07/bin_ctf.html"/>
     <id>https://junyu33.me/2032/02/07/bin_ctf.html</id>
     <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2022-07-27T03:15:31.160Z</updated>
+    <updated>2022-07-27T03:32:44.796Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;分为stack、fmtstr、heap三部分，用作记录思路和用得上的gadget。&lt;/p&gt;
+      &lt;p&gt;分为stack、fmtstr、heap、misc四部分，用作记录思路和用得上的gadget。&lt;/p&gt;
 &lt;p&gt;以下二级标题不带网站的默认为buuoj对应分区题目。&lt;/p&gt;
     
     </summary>
@@ -123,7 +123,7 @@
     <link href="https://junyu33.me/2022/07/03/pwn_college_heap.html"/>
     <id>https://junyu33.me/2022/07/03/pwn_college_heap.html</id>
     <published>2022-07-03T10:00:00.000Z</published>
-    <updated>2022-07-27T03:27:02.925Z</updated>
+    <updated>2022-07-27T09:28:11.945Z</updated>
     
     <summary type="html">
     

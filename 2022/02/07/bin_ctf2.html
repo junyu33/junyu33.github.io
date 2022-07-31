@@ -22,22 +22,22 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="分为re、crypto、misc三部分，用作记录思路和用得上的gadget。 以下二级标题不带网站的默认为buuoj对应分区题目。 rexctf-50: catch-megetenv函数用来获取环境变量，python中手动设置环境变量的脚本如下： 123# if ASIS &#x3D;&#x3D; CTF &#x3D;&#x3D; 0x4ff2da0a, thenexport ASIS&#x3D;&quot;$(printf &quot;\x0a">
+<meta name="description" content="分为re、crypto、misc三部分，用作记录思路和用得上的gadget。 以下二级标题不带网站的默认为buuoj对应分区题目。 re&#x2F;mobilexctf-50: catch-megetenv函数用来获取环境变量，python中手动设置环境变量的脚本如下： 123# if ASIS &#x3D;&#x3D; CTF &#x3D;&#x3D; 0x4ff2da0a, thenexport ASIS&#x3D;&quot;$(printf &amp;qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctf练习（杂）">
 <meta property="og:url" content="https://junyu33.me/2022/02/07/bin_ctf2.html">
 <meta property="og:site_name" content="现充|junyu33">
-<meta property="og:description" content="分为re、crypto、misc三部分，用作记录思路和用得上的gadget。 以下二级标题不带网站的默认为buuoj对应分区题目。 rexctf-50: catch-megetenv函数用来获取环境变量，python中手动设置环境变量的脚本如下： 123# if ASIS &#x3D;&#x3D; CTF &#x3D;&#x3D; 0x4ff2da0a, thenexport ASIS&#x3D;&quot;$(printf &quot;\x0a">
+<meta property="og:description" content="分为re、crypto、misc三部分，用作记录思路和用得上的gadget。 以下二级标题不带网站的默认为buuoj对应分区题目。 re&#x2F;mobilexctf-50: catch-megetenv函数用来获取环境变量，python中手动设置环境变量的脚本如下： 123# if ASIS &#x3D;&#x3D; CTF &#x3D;&#x3D; 0x4ff2da0a, thenexport ASIS&#x3D;&quot;$(printf &amp;qu">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://bbsmax.ikafan.com/static/L3Byb3h5L2h0dHBzL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAyMDExMjExMzU4NDE4NC5wbmc/eC1vc3MtcHJvY2Vzcz1pbWFnZS93YXRlcm1hcmssdHlwZV9abUZ1WjNwb1pXNW5hR1ZwZEdrLHNoYWRvd18xMCx0ZXh0X2FIUjBjSE02THk5aWJHOW5MbU56Wkc0dWJtVjBMMjFqYlhWNVlXNW5ZUT09LHNpemVfMTYsY29sb3JfRkZGRkZGLHRfNzAjcGljX2NlbnRlcg==.jpg">
 <meta property="og:image" content="https://junyu33.me/2022/02/07/bin_ctf2/junyu33/小软件/junyu33/source/_posts/bin_ctf2/649a0f60-43d2-4b07-8734-3f24a8a97cc5.png">
 <meta property="og:image" content="https://junyu33.me/2022/02/07/bin_ctf2/junyu33/小软件/junyu33/source/_posts/bin_ctf2/mutex.png">
 <meta property="article:published_time" content="2022-02-07T14:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-27T03:09:39.904Z">
+<meta property="article:modified_time" content="2022-07-31T07:55:58.790Z">
 <meta property="article:author" content="丨junyu33丨">
-<meta property="article:tag" content="reverse">
-<meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
+<meta property="article:tag" content="crypto">
+<meta property="article:tag" content="reverse">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://bbsmax.ikafan.com/static/L3Byb3h5L2h0dHBzL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAyMDExMjExMzU4NDE4NC5wbmc/eC1vc3MtcHJvY2Vzcz1pbWFnZS93YXRlcm1hcmssdHlwZV9abUZ1WjNwb1pXNW5hR1ZwZEdrLHNoYWRvd18xMCx0ZXh0X2FIUjBjSE02THk5aWJHOW5MbU56Wkc0dWJtVjBMMjFqYlhWNVlXNW5ZUT09LHNpemVfMTYsY29sb3JfRkZGRkZGLHRfNzAjcGljX2NlbnRlcg==.jpg">
 
@@ -214,7 +214,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#re"><span class="nav-number">1.</span> <span class="nav-text">re</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xctf-50-catch-me"><span class="nav-number">1.1.</span> <span class="nav-text">xctf-50: catch-me</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#buu-n1book-babyalgo"><span class="nav-number">1.2.</span> <span class="nav-text">buu-n1book: babyalgo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#susctf-DigitalCircuits"><span class="nav-number">1.3.</span> <span class="nav-text">susctf: DigitalCircuits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#starctf-Simple-File-System"><span class="nav-number">1.4.</span> <span class="nav-text">starctf: Simple File System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Youngter-drive"><span class="nav-number">1.5.</span> <span class="nav-text">Youngter-drive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Universe-final-answer"><span class="nav-number">1.6.</span> <span class="nav-text">Universe_final_answer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equation"><span class="nav-number">1.7.</span> <span class="nav-text">equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-jocker"><span class="nav-number">1.8.</span> <span class="nav-text">[网鼎杯 2020 青龙组]jocker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#crypto"><span class="nav-number">2.</span> <span class="nav-text">crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#buu-re-rsa"><span class="nav-number">2.1.</span> <span class="nav-text">buu-re: rsa</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N1book-N1DES"><span class="nav-number">2.2.</span> <span class="nav-text">N1book_N1DES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rsa1"><span class="nav-number">2.3.</span> <span class="nav-text">rsa1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#misc"><span class="nav-number">3.</span> <span class="nav-text">misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tqlctf2022-misc-wizard"><span class="nav-number">3.1.</span> <span class="nav-text">tqlctf2022-misc: wizard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xctf-mobile-beginner-6-easy-apk"><span class="nav-number">3.2.</span> <span class="nav-text">xctf-mobile-(beginner)-6: easy-apk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NepCTF2022-signin"><span class="nav-number">3.3.</span> <span class="nav-text">NepCTF2022 signin</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#re-mobile"><span class="nav-number">1.</span> <span class="nav-text">re&#x2F;mobile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xctf-50-catch-me"><span class="nav-number">1.1.</span> <span class="nav-text">xctf-50: catch-me</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#buu-n1book-babyalgo"><span class="nav-number">1.2.</span> <span class="nav-text">buu-n1book: babyalgo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#susctf-DigitalCircuits"><span class="nav-number">1.3.</span> <span class="nav-text">susctf: DigitalCircuits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#starctf-Simple-File-System"><span class="nav-number">1.4.</span> <span class="nav-text">starctf: Simple File System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Youngter-drive"><span class="nav-number">1.5.</span> <span class="nav-text">Youngter-drive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Universe-final-answer"><span class="nav-number">1.6.</span> <span class="nav-text">Universe_final_answer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equation"><span class="nav-number">1.7.</span> <span class="nav-text">equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-jocker"><span class="nav-number">1.8.</span> <span class="nav-text">[网鼎杯 2020 青龙组]jocker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n1book-%E6%95%B0%E5%AD%97%E5%A3%B3%E7%9A%84%E4%BC%A0%E8%AF%B4"><span class="nav-number">1.9.</span> <span class="nav-text">n1book: 数字壳的传说</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#crypto"><span class="nav-number">2.</span> <span class="nav-text">crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#buu-re-rsa"><span class="nav-number">2.1.</span> <span class="nav-text">buu-re: rsa</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N1book-N1DES"><span class="nav-number">2.2.</span> <span class="nav-text">N1book_N1DES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rsa1"><span class="nav-number">2.3.</span> <span class="nav-text">rsa1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#misc"><span class="nav-number">3.</span> <span class="nav-text">misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tqlctf2022-misc-wizard"><span class="nav-number">3.1.</span> <span class="nav-text">tqlctf2022-misc: wizard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xctf-mobile-beginner-6-easy-apk"><span class="nav-number">3.2.</span> <span class="nav-text">xctf-mobile-(beginner)-6: easy-apk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NepCTF2022-signin"><span class="nav-number">3.3.</span> <span class="nav-text">NepCTF2022 signin</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -363,7 +363,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-07-27 11:09:39" itemprop="dateModified" datetime="2022-07-27T11:09:39+08:00">2022-07-27</time>
+        <time title="修改时间：2022-07-31 15:55:58" itemprop="dateModified" datetime="2022-07-31T15:55:58+08:00">2022-07-31</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -383,14 +383,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>27k</span>
+      <span>28k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>25 分钟</span>
+      <span>26 分钟</span>
     </span>
 </div>
 
@@ -403,7 +403,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>分为re、crypto、misc三部分，用作记录思路和用得上的gadget。</p>
 <p>以下二级标题不带网站的默认为buuoj对应分区题目。</p>
-<h1 id="re"><a href="#re" class="headerlink" title="re"></a>re</h1><h2 id="xctf-50-catch-me"><a href="#xctf-50-catch-me" class="headerlink" title="xctf-50: catch-me"></a>xctf-50: catch-me</h2><p>getenv函数用来获取环境变量，python中手动设置环境变量的脚本如下：</p>
+<h1 id="re-mobile"><a href="#re-mobile" class="headerlink" title="re/mobile"></a>re/mobile</h1><h2 id="xctf-50-catch-me"><a href="#xctf-50-catch-me" class="headerlink" title="xctf-50: catch-me"></a>xctf-50: catch-me</h2><p>getenv函数用来获取环境变量，python中手动设置环境变量的脚本如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if ASIS == CTF == 0x4ff2da0a, then</span></span><br><span class="line">export ASIS=<span class="string">&quot;$(printf &quot;</span>\x0a\xda\xf2\x4<span class="string">f&quot;)&quot;</span></span><br><span class="line">export CTF=<span class="string">&quot;$(printf &quot;</span>\x0a\xda\xf2\x4<span class="string">f&quot;)&quot;</span></span><br></pre></td></tr></table></figure>
 <p><del>我那几十行的浮点指令白看了</del></p>
 <h2 id="buu-n1book-babyalgo"><a href="#buu-n1book-babyalgo" class="headerlink" title="buu-n1book: babyalgo"></a>buu-n1book: babyalgo</h2><p>常见算法识别，容易看见密文和密钥，就猜是什么加密算法呗。</p>
@@ -447,6 +447,15 @@
 <h2 id="网鼎杯-2020-青龙组-jocker"><a href="#网鼎杯-2020-青龙组-jocker" class="headerlink" title="[网鼎杯 2020 青龙组]jocker"></a>[网鼎杯 2020 青龙组]jocker</h2><p>脑洞题+smc自解密——idc初体验。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;idc.idc&gt;</span></span></span><br><span class="line"><span class="type">static</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">auto</span> i, x;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">0xBA</span>; i++ ) &#123;</span><br><span class="line">        x = Byte(<span class="number">0x401500</span> + i);</span><br><span class="line">        PatchByte(<span class="number">0x401500</span> + i, x ^ <span class="number">0x41</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>按c可以从二进制数据生成代码，按p可以从代码块构造函数。</p>
+<h2 id="n1book-数字壳的传说"><a href="#n1book-数字壳的传说" class="headerlink" title="n1book: 数字壳的传说"></a>n1book: 数字壳的传说</h2><p>frida-hook</p>
+<p>在root的安卓虚拟机或模拟器上的<code>/data/local/tmp</code>上拷贝frida-server并启动，在物理机上安一个<code>frida-dexdump</code>。</p>
+<p>虚拟机启动app，主机执行脱壳命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frida-dexdump -FU</span><br></pre></td></tr></table></figure>
+<p>输出几个<code>classes.dex</code>，选择没有序号的那个打开，定位到<code>Secret</code>类，内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sec.n1book1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Secret</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">check</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (AESUtils.encryptString2Base64(s, s.substring(<span class="number">0</span>, <span class="number">6</span>), <span class="string">&quot;123456&quot;</span>).replaceAll(<span class="string">&quot;\r|\n&quot;</span>, BuildConfig.FLAVOR).equals(<span class="string">&quot;u0uYYmh4yRpPIT/zSP7EL/MOCliVoVLt3gHcrXDymLc=&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它调用了<code>encryptString2Base64(String content, String password, String iv)</code>这个方法，从而得知这是一个CBC加密，密钥为flag前6位，iv为123456。</p>
+<p>然而我并不知道填充怎么处理，参考网上的一些脚本才知道是用空格处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">password = <span class="string">b&#x27;n1book&#x27;</span>.ljust(<span class="number">32</span>, <span class="string">b&quot; &quot;</span>) </span><br><span class="line">b64 = <span class="string">b&#x27;u0uYYmh4yRpPIT/zSP7EL/MOCliVoVLt3gHcrXDymLc=&#x27;</span> </span><br><span class="line">en_text = base64.b64decode(b64)</span><br><span class="line">iv = <span class="string">b&#x27;123456&#x27;</span>.ljust(<span class="number">16</span>,<span class="string">b&quot; &quot;</span>)</span><br><span class="line"></span><br><span class="line">aes = AES.new(password,AES.MODE_CBC,iv) </span><br><span class="line">den_text = aes.decrypt(en_text) </span><br><span class="line"><span class="built_in">print</span>(den_text)</span><br></pre></td></tr></table></figure>
 <h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="buu-re-rsa"><a href="#buu-re-rsa" class="headerlink" title="buu-re: rsa"></a>buu-re: rsa</h2><p><del>真不知道这道题为什么要放在re里面。</del></p>
 <p>已知公钥pub.key和密文flag.enc，而且公钥较小可暴力分解p、q。</p>
 <ol>
@@ -504,9 +513,9 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/reverse/" rel="tag"># reverse</a>
-              <a href="/tags/crypto/" rel="tag"># crypto</a>
               <a href="/tags/misc/" rel="tag"># misc</a>
+              <a href="/tags/crypto/" rel="tag"># crypto</a>
+              <a href="/tags/reverse/" rel="tag"># reverse</a>
           </div>
 
         
@@ -575,13 +584,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">252k</span>
+    <span title="站点总字数">253k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:49</span>
+    <span title="站点阅读时长">3:50</span>
   </span>
 </div>
 <div class="busuanzi-count">

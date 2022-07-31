@@ -449,7 +449,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-07-27 11:09:39" itemprop="dateModified" datetime="2022-07-27T11:09:39+08:00">2022-07-27</time>
+        <time title="修改时间：2022-07-31 15:55:58" itemprop="dateModified" datetime="2022-07-31T15:55:58+08:00">2022-07-31</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -469,14 +469,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>27k</span>
+      <span>28k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>25 分钟</span>
+      <span>26 分钟</span>
     </span>
 </div>
 
@@ -489,7 +489,7 @@
     <div class="post-body" itemprop="articleBody">
           <p>分为re、crypto、misc三部分，用作记录思路和用得上的gadget。</p>
 <p>以下二级标题不带网站的默认为buuoj对应分区题目。</p>
-<h1 id="re"><a href="#re" class="headerlink" title="re"></a>re</h1><h2 id="xctf-50-catch-me"><a href="#xctf-50-catch-me" class="headerlink" title="xctf-50: catch-me"></a>xctf-50: catch-me</h2><p>getenv函数用来获取环境变量，python中手动设置环境变量的脚本如下：</p>
+<h1 id="re-mobile"><a href="#re-mobile" class="headerlink" title="re/mobile"></a>re/mobile</h1><h2 id="xctf-50-catch-me"><a href="#xctf-50-catch-me" class="headerlink" title="xctf-50: catch-me"></a>xctf-50: catch-me</h2><p>getenv函数用来获取环境变量，python中手动设置环境变量的脚本如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if ASIS == CTF == 0x4ff2da0a, then</span></span><br><span class="line">export ASIS=<span class="string">&quot;$(printf &quot;</span>\x0a\xda\xf2\x4<span class="string">f&quot;)&quot;</span></span><br><span class="line">export CTF=<span class="string">&quot;$(printf &quot;</span>\x0a\xda\xf2\x4<span class="string">f&quot;)&quot;</span></span><br></pre></td></tr></table></figure>
 <p><del>我那几十行的浮点指令白看了</del></p>
 <h2 id="buu-n1book-babyalgo"><a href="#buu-n1book-babyalgo" class="headerlink" title="buu-n1book: babyalgo"></a>buu-n1book: babyalgo</h2><p>常见算法识别，容易看见密文和密钥，就猜是什么加密算法呗。</p>
@@ -533,6 +533,15 @@
 <h2 id="网鼎杯-2020-青龙组-jocker"><a href="#网鼎杯-2020-青龙组-jocker" class="headerlink" title="[网鼎杯 2020 青龙组]jocker"></a>[网鼎杯 2020 青龙组]jocker</h2><p>脑洞题+smc自解密——idc初体验。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;idc.idc&gt;</span></span></span><br><span class="line"><span class="type">static</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">auto</span> i, x;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">0xBA</span>; i++ ) &#123;</span><br><span class="line">        x = Byte(<span class="number">0x401500</span> + i);</span><br><span class="line">        PatchByte(<span class="number">0x401500</span> + i, x ^ <span class="number">0x41</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>按c可以从二进制数据生成代码，按p可以从代码块构造函数。</p>
+<h2 id="n1book-数字壳的传说"><a href="#n1book-数字壳的传说" class="headerlink" title="n1book: 数字壳的传说"></a>n1book: 数字壳的传说</h2><p>frida-hook</p>
+<p>在root的安卓虚拟机或模拟器上的<code>/data/local/tmp</code>上拷贝frida-server并启动，在物理机上安一个<code>frida-dexdump</code>。</p>
+<p>虚拟机启动app，主机执行脱壳命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frida-dexdump -FU</span><br></pre></td></tr></table></figure>
+<p>输出几个<code>classes.dex</code>，选择没有序号的那个打开，定位到<code>Secret</code>类，内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sec.n1book1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Secret</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">check</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (AESUtils.encryptString2Base64(s, s.substring(<span class="number">0</span>, <span class="number">6</span>), <span class="string">&quot;123456&quot;</span>).replaceAll(<span class="string">&quot;\r|\n&quot;</span>, BuildConfig.FLAVOR).equals(<span class="string">&quot;u0uYYmh4yRpPIT/zSP7EL/MOCliVoVLt3gHcrXDymLc=&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它调用了<code>encryptString2Base64(String content, String password, String iv)</code>这个方法，从而得知这是一个CBC加密，密钥为flag前6位，iv为123456。</p>
+<p>然而我并不知道填充怎么处理，参考网上的一些脚本才知道是用空格处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">password = <span class="string">b&#x27;n1book&#x27;</span>.ljust(<span class="number">32</span>, <span class="string">b&quot; &quot;</span>) </span><br><span class="line">b64 = <span class="string">b&#x27;u0uYYmh4yRpPIT/zSP7EL/MOCliVoVLt3gHcrXDymLc=&#x27;</span> </span><br><span class="line">en_text = base64.b64decode(b64)</span><br><span class="line">iv = <span class="string">b&#x27;123456&#x27;</span>.ljust(<span class="number">16</span>,<span class="string">b&quot; &quot;</span>)</span><br><span class="line"></span><br><span class="line">aes = AES.new(password,AES.MODE_CBC,iv) </span><br><span class="line">den_text = aes.decrypt(en_text) </span><br><span class="line"><span class="built_in">print</span>(den_text)</span><br></pre></td></tr></table></figure>
 <h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="buu-re-rsa"><a href="#buu-re-rsa" class="headerlink" title="buu-re: rsa"></a>buu-re: rsa</h2><p><del>真不知道这道题为什么要放在re里面。</del></p>
 <p>已知公钥pub.key和密文flag.enc，而且公钥较小可暴力分解p、q。</p>
 <ol>
@@ -1146,13 +1155,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">252k</span>
+    <span title="站点总字数">253k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:49</span>
+    <span title="站点阅读时长">3:50</span>
   </span>
 </div>
 <div class="busuanzi-count">

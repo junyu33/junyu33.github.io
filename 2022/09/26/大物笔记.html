@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"127.0.0.1","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="大物上本质就是微积分.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（不定期更新）大物上笔记">
+<meta property="og:url" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html">
+<meta property="og:site_name" content="现充|junyu33">
+<meta property="og:description" content="大物上本质就是微积分.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165345686.png">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165946582.png">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170757538.png">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170610078.png">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908175730122.png">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908182223490.png">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220915171811861.png">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/常用电场.jpg">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/高斯定理.jpg">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/课例均匀带电球壳1.jpg">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球壳2.jpg">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面1.jpg">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面2.jpg">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限大带电平面.jpg">
+<meta property="og:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球体.jpg">
+<meta property="article:published_time" content="2022-09-26T13:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-26T13:40:45.472Z">
+<meta property="article:author" content="丨junyu33丨">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165345686.png">
+
+
+<link rel="canonical" href="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>（不定期更新）大物上笔记 | 现充|junyu33</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">现充|junyu33</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">第五章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%EF%BC%88%E5%9C%BA%E5%BC%BA%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">电场强度（场强）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E5%9C%BA%E5%BC%BA%EF%BC%88%E7%A6%BB%E6%95%A3%E5%9E%8B%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">求场强（离散型）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E5%9C%BA%E5%BC%BA%EF%BC%88%E8%BF%9E%E7%BB%AD%E5%9E%8B%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">求场强（连续型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E9%95%BF%E5%9D%87%E5%8C%80%E5%B8%A6%E7%94%B5%E7%9B%B4%E7%BA%BF%EF%BC%88%E6%88%96%E4%B8%8E%E7%9B%B4%E7%BA%BF%E8%B7%9D%E7%A6%BB%E5%BE%88%E8%BF%91%EF%BC%89%EF%BC%8C%E5%8D%8A%E6%97%A0%E9%99%90%E9%95%BF%E4%B9%981-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">无限长均匀带电直线（或与直线距离很近），半无限长乘1&#x2F;2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%90%83%E5%A3%B3"><span class="nav-number">1.3.2.</span> <span class="nav-text">半球壳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%94%B5%E5%9C%BA%E5%9C%BA%E5%BC%BA"><span class="nav-number">1.4.</span> <span class="nav-text">常用电场场强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%AE%9A%E7%90%86%E6%B1%82%E5%9C%BA%E5%BC%BA%EF%BC%88%E5%AF%B9%E7%A7%B0%E6%80%A7%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">高斯定理求场强（对称性）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E7%90%83%E5%A3%B3"><span class="nav-number">1.5.1.</span> <span class="nav-text">带电球壳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E9%95%BF%E6%9F%B1%E9%9D%A2"><span class="nav-number">1.5.2.</span> <span class="nav-text">无限长柱面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E7%90%83%E4%BD%93"><span class="nav-number">1.5.3.</span> <span class="nav-text">带电球体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF"><span class="nav-number">1.6.</span> <span class="nav-text">电势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%94%B5%E5%8A%BF"><span class="nav-number">1.6.1.</span> <span class="nav-text">常用电势</span></a></li></ol></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2021141530091@stu.scu.edu.cn" title="E-Mail → mailto:2021141530091@stu.scu.edu.cn" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://denerate.ink/" title="https:&#x2F;&#x2F;denerate.ink&#x2F;" rel="noopener" target="_blank">DeNeRATe</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          （不定期更新）大物上笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-09-26 21:00:00 / 修改时间：21:40:45" itemprop="dateCreated datePublished" datetime="2022-09-26T21:00:00+08:00">2022-09-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>835</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>大物上本质就是微积分.</p>
+<span id="more"></span>
+<h1 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h1><h2 id="电场强度（场强）"><a href="#电场强度（场强）" class="headerlink" title="电场强度（场强）"></a>电场强度（场强）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165345686.png"></p>
+<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165946582.png"></p>
+<p>其中$\vec{e_r}$是$q$指向$P$点的<strong>单位矢量</strong>。</p>
+<h2 id="求场强（离散型）"><a href="#求场强（离散型）" class="headerlink" title="求场强（离散型）"></a>求场强（离散型）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170757538.png"></p>
+<h2 id="求场强（连续型）"><a href="#求场强（连续型）" class="headerlink" title="求场强（连续型）"></a>求场强（连续型）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170610078.png"></p>
+<h3 id="无限长均匀带电直线（或与直线距离很近），半无限长乘1-2"><a href="#无限长均匀带电直线（或与直线距离很近），半无限长乘1-2" class="headerlink" title="无限长均匀带电直线（或与直线距离很近），半无限长乘1/2"></a>无限长均匀带电直线（或与直线距离很近），半无限长乘1/2</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908175730122.png"></p>
+<p>&lt;img src = ‘大均匀带电平面（或与平面举例很近）</p>
+<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908182223490.png"></p>
+<h3 id="半球壳"><a href="#半球壳" class="headerlink" title="半球壳"></a>半球壳</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220915171811861.png"></p>
+<h2 id="常用电场场强"><a href="#常用电场场强" class="headerlink" title="常用电场场强"></a>常用电场场强</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/常用电场.jpg"></p>
+<h2 id="高斯定理求场强（对称性）"><a href="#高斯定理求场强（对称性）" class="headerlink" title="高斯定理求场强（对称性）"></a>高斯定理求场强（对称性）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/高斯定理.jpg"></p>
+<h3 id="带电球壳"><a href="#带电球壳" class="headerlink" title="带电球壳"></a>带电球壳</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/课例均匀带电球壳1.jpg"></p>
+<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球壳2.jpg"></p>
+<p>对于求球壳外的电场，可以将球壳等效为<strong>电荷集中在球心处的点电荷</strong>进行计算。</p>
+<h3 id="无限长柱面"><a href="#无限长柱面" class="headerlink" title="无限长柱面"></a>无限长柱面</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面1.jpg"></p>
+<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面2.jpg"></p>
+<p>对于求柱面外的电场，可以将球壳等效为<strong>无限长均匀带电直线</strong>进行计算。</p>
+<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限大带电平面.jpg"></p>
+<p>注意结果是匀强电场。一对无限大带电平面就乘2即可。</p>
+<h3 id="带电球体"><a href="#带电球体" class="headerlink" title="带电球体"></a>带电球体</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球体.jpg"></p>
+<h2 id="电势"><a href="#电势" class="headerlink" title="电势"></a>电势</h2><p>设正电荷为$q$,距离<script type="math/tex">r_{p_1}</script>处有一点<script type="math/tex">p_1</script>,电势为<script type="math/tex">\varphi_1</script>,距离<script type="math/tex">r_{p_2}</script>处有一点$p_2$,电势为$\varphi_2$,则:</p>
+<p>$\varphi_a=\int_a^\infty \vec{E} \cdot \mathrm{d} \vec{l}$，通常我们的考试题下$\vec{E}$与$\vec{l}$是同向的，因此可以直接去掉箭头。</p>
+<p>电势是标量,可以直接累加.</p>
+<blockquote>
+<script type="math/tex; mode=display">A_{12}=W_1-W_2=\int_{r_{p_1}}^{r_{p_2}}\vec{F} \cdot \mathrm{d} \vec{r}=q\int_{r_{p_1}}^{r_{p_2}}\vec{E} \cdot \mathrm{d} \vec{r}</script><script type="math/tex; mode=display">\frac{A_{12}}{q}=\varphi_{p_1}-\varphi_{p_2}=|{\Delta\varphi _{p_1 p_2}}|</script></blockquote>
+<h3 id="常用电势"><a href="#常用电势" class="headerlink" title="常用电势"></a>常用电势</h3><p>点电荷的电势: $\varphi=\frac{1}{4\pi\epsilon_0}\frac{q}{r}$</p>
+<p>连续带电体的电势分布: $\varphi=\frac{1}{4\pi\epsilon_0}\int\frac{\mathrm{d}q}{r}$</p>
+<p>带电球壳的内部电势相同(因为内部场强为0),在球壳外,电势与球心距离成反比.</p>
+<p>带电$q$细圆环的电势直接将$r$换为$\sqrt{R^2+x^2}$即可.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://127.0.0.1/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html" title="（不定期更新）大物上笔记">https://127.0.0.1/2022/09/26/大物笔记.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/26/%E6%A6%82%E7%BB%9F.html" rel="prev" title="（不定期更新）概统笔记">
+                  <i class="fa fa-chevron-left"></i> （不定期更新）概统笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2032/02/07/bin_ctf.html" rel="next" title="（置顶）ctf练习(pwn)">
+                  （置顶）ctf练习(pwn) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">310k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:42</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.4/busuanzi.pure.mini.js"></script>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+<script>
+NexT.utils.loadComments('#twikoo-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
+    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"https://202182.vercel.app/"}, {
+      el: '#twikoo-comments'
+    }));
+  }, window.twikoo);
+});
+</script>
+
+</body>
+</html>

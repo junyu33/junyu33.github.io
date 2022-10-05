@@ -30,7 +30,7 @@
 <meta property="og:description" content="为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-05T09:30:00.000Z">
-<meta property="article:modified_time" content="2022-10-05T10:19:16.388Z">
+<meta property="article:modified_time" content="2022-10-05T10:25:42.347Z">
 <meta property="article:author" content="丨junyu33丨">
 <meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary">
@@ -208,7 +208,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#idea"><span class="nav-number">1.</span> <span class="nav-text">idea</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part0"><span class="nav-number">2.1.</span> <span class="nav-text">part0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part1"><span class="nav-number">2.2.</span> <span class="nav-text">part1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps"><span class="nav-number">3.</span> <span class="nav-text">ps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part0-1"><span class="nav-number">3.1.</span> <span class="nav-text">part0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part1-1"><span class="nav-number">3.2.</span> <span class="nav-text">part1</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#idea"><span class="nav-number">1.</span> <span class="nav-text">idea</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#question"><span class="nav-number">2.</span> <span class="nav-text">question</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part0"><span class="nav-number">2.1.</span> <span class="nav-text">part0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part1"><span class="nav-number">2.2.</span> <span class="nav-text">part1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">3.</span> <span class="nav-text">solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part0-1"><span class="nav-number">3.1.</span> <span class="nav-text">part0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part1-1"><span class="nav-number">3.2.</span> <span class="nav-text">part1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps"><span class="nav-number">4.</span> <span class="nav-text">ps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part0-2"><span class="nav-number">4.1.</span> <span class="nav-text">part0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part1-2"><span class="nav-number">4.2.</span> <span class="nav-text">part1</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -351,7 +351,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-10-05 17:30:00 / 修改时间：18:19:16" itemprop="dateCreated datePublished" datetime="2022-10-05T17:30:00+08:00">2022-10-05</time>
+      <time title="创建时间：2022-10-05 17:30:00 / 修改时间：18:25:42" itemprop="dateCreated datePublished" datetime="2022-10-05T17:30:00+08:00">2022-10-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -371,7 +371,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -392,23 +392,25 @@
         <p>为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。</p>
 <span id="more"></span>
 <h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><p>与yjp在某日中午恰饭时得出，yjp很快想到了part 0的正解，但对part 1的解答存在一些问题。我通过了某种方式（下文会说）得到了一种复杂度较低的做法。</p>
-<h1 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h1><h2 id="part0"><a href="#part0" class="headerlink" title="part0"></a>part0</h2><p>从二进制角度思考：对这个数乘2相当于左移一位，而对这个数加一相当于在末尾加1，而这个1什么时候加都可以。因此最优的解法就是在左移的途中，那一位如果最后是1，就马上加上（不然要加更多个1才能补回去）。我们可以导出一个公式：</p>
+<h1 id="question"><a href="#question" class="headerlink" title="question"></a>question</h1><h2 id="part0"><a href="#part0" class="headerlink" title="part0"></a>part0</h2><p>给一个数x，它初始为0，你有加1、乘2两种操作。问从0变成自然数a最少需要几种操作。</p>
+<h2 id="part1"><a href="#part1" class="headerlink" title="part1"></a>part1</h2><p>给一个数x，它初始为1，你有加1、减1、乘2三种操作。问从1变成自然数a最少需要几种操作。</p>
+<h1 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h1><h2 id="part0-1"><a href="#part0-1" class="headerlink" title="part0"></a>part0</h2><p>从二进制角度思考：对这个数乘2相当于左移一位，而对这个数加一相当于在末尾加1，而这个1什么时候加都可以。因此最优的解法就是在左移的途中，那一位如果最后是1，就马上加上（不然要加更多个1才能补回去）。我们可以导出一个公式：</p>
 <blockquote>
 <p>最少的次数 = 二进制的位数 + 二进制中1的个数 + C</p>
 </blockquote>
 <p>随便代一个样例可得$C=-1$</p>
 <p>将一个数转换成二进制需要$O(\log x)$，因此时间复杂度是$O(\log x)$，总时间复杂度为$O(T \log x)$</p>
-<h2 id="part1"><a href="#part1" class="headerlink" title="part1"></a>part1</h2><p>yjp开始是想对末尾为一连串1的情况进行处理，可是具体的细节没有想得太清楚，只好作罢。</p>
+<h2 id="part1-1"><a href="#part1-1" class="headerlink" title="part1"></a>part1</h2><p>yjp开始是想对末尾为一连串1的情况进行处理，可是具体的细节没有想得太清楚，只好作罢。</p>
 <p>首先做一下dp，设<code>dp[i]</code>为从<code>1</code>变为<code>i</code>所需的最少次数，显然<code>dp[1]=0</code>，可列出以下转移方程：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">	dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i<span class="number">-1</span>] + <span class="number">1</span>, dp[i]);    </span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i+<span class="number">1</span>] + <span class="number">1</span>, dp[i]); </span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i<span class="number">-1</span>] + <span class="number">1</span>, dp[i]);    </span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i+<span class="number">1</span>] + <span class="number">1</span>, dp[i]); </span><br></pre></td></tr></table></figure>
 <p>显然这个dp不具备<strong>无后效性</strong>的条件，怎么办呢？多试几次就可以了。</p>
 <p>只不过此时的总复杂度是$O(Tkx)$，妥妥地TLE.</p>
 <p>此时我灵光一闪，把得到的最优解放在oeis上，然后得到了更优的转移方程。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">	dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">2</span>, dp[i/<span class="number">2</span>+<span class="number">1</span>] + <span class="number">2</span>, dp[i]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">2</span>, dp[i/<span class="number">2</span>+<span class="number">1</span>] + <span class="number">2</span>, dp[i]);</span><br></pre></td></tr></table></figure>
 <p>这样可能的状态数就是log级别了，拿个<code>map</code>维护一下，记忆化搜索即可。</p>
 <p>由于<code>map</code>是用红黑树维护的，读写一个数也是log级别，因此总复杂度为$O(T \log^2 x)$。</p>
-<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><h2 id="part0-1"><a href="#part0-1" class="headerlink" title="part0"></a>part0</h2><p>第一题的解题人数在我预料之内。24h之内就有10人左右AC了。</p>
-<h2 id="part1-1"><a href="#part1-1" class="headerlink" title="part1"></a>part1</h2><p>第二题在前24h无人AC，这稍微出乎了预期。</p>
+<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><h2 id="part0-2"><a href="#part0-2" class="headerlink" title="part0"></a>part0</h2><p>第一题的解题人数在我预料之内。24h之内就有10人左右AC了。</p>
+<h2 id="part1-2"><a href="#part1-2" class="headerlink" title="part1"></a>part1</h2><p>第二题在前24h无人AC，这稍微出乎了预期。</p>
 <p>在第二天有非少年生AC了，这符合我出题的意图。</p>
 <p>只不过之后又有少年生写出了$O(T \log x)$的做法。看了一些AC的代码，的确是模拟+分类讨论做的——看来yjp的愿望的确实现了，可喜可贺。</p>
 

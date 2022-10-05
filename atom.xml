@@ -41,7 +41,7 @@
     <link href="https://junyu33.me/2032/02/07/bin_ctf.html"/>
     <id>https://junyu33.me/2032/02/07/bin_ctf.html</id>
     <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2022-10-05T04:21:39.163Z</updated>
+    <updated>2022-10-05T04:48:40.597Z</updated>
     
     <summary type="html">
     
@@ -54,6 +54,26 @@
     
     
       <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>子文略略略题解</title>
+    <link href="https://junyu33.me/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html"/>
+    <id>https://junyu33.me/2022/10/05/子文略略略题解.html</id>
+    <published>2022-10-05T09:30:00.000Z</published>
+    <updated>2022-10-05T10:19:16.388Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="OI" scheme="https://junyu33.me/categories/OI/"/>
+    
+    
+      <category term="cpp" scheme="https://junyu33.me/tags/cpp/"/>
     
   </entry>
   
@@ -421,26 +441,6 @@
       <category term="reverse" scheme="https://junyu33.me/tags/reverse/"/>
     
       <category term="misc" scheme="https://junyu33.me/tags/misc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何正确的抢拼手气红包</title>
-    <link href="https://junyu33.me/2022/02/04/%E6%8A%A2%E7%BA%A2%E5%8C%85.html"/>
-    <id>https://junyu33.me/2022/02/04/抢红包.html</id>
-    <published>2022-02-04T07:00:00.000Z</published>
-    <updated>2022-08-12T02:46:06.545Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;注意：本文仅对微信拼手气红包的算法进行分析，指出最佳的抢红包位置，并不能帮助读者从微信红包中盈利。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://junyu33.me/categories/develop/"/>
-    
-    
-      <category term="cpp" scheme="https://junyu33.me/tags/cpp/"/>
     
   </entry>
   

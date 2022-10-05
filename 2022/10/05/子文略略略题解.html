@@ -22,36 +22,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="大物上本质就是微积分.">
+<meta name="description" content="为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="（不定期更新）大物上笔记">
-<meta property="og:url" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html">
+<meta property="og:title" content="子文略略略题解">
+<meta property="og:url" content="https://junyu33.me/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html">
 <meta property="og:site_name" content="现充|junyu33">
-<meta property="og:description" content="大物上本质就是微积分.">
+<meta property="og:description" content="为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165345686.png">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165946582.png">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170757538.png">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170610078.png">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908175730122.png">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908182223490.png">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220915171811861.png">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/常用电场.jpg">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/高斯定理.jpg">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/课例均匀带电球壳1.jpg">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球壳2.jpg">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面1.jpg">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面2.jpg">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限大带电平面.jpg">
-<meta property="og:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球体.jpg">
-<meta property="article:published_time" content="2022-09-26T13:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-01T09:43:11.287Z">
+<meta property="article:published_time" content="2022-10-05T09:30:00.000Z">
+<meta property="article:modified_time" content="2022-10-05T10:19:16.388Z">
 <meta property="article:author" content="丨junyu33丨">
+<meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165345686.png">
 
 
-<link rel="canonical" href="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html">
+<link rel="canonical" href="https://junyu33.me/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html">
 
 
 <script class="page-configurations">
@@ -63,7 +48,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>（不定期更新）大物上笔记 | 现充|junyu33</title>
+<title>子文略略略题解 | 现充|junyu33</title>
   
 
 
@@ -223,7 +208,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">第五章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%EF%BC%88%E5%9C%BA%E5%BC%BA%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">电场强度（场强）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E5%9C%BA%E5%BC%BA%EF%BC%88%E7%A6%BB%E6%95%A3%E5%9E%8B%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">求场强（离散型）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E5%9C%BA%E5%BC%BA%EF%BC%88%E8%BF%9E%E7%BB%AD%E5%9E%8B%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">求场强（连续型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E9%95%BF%E5%9D%87%E5%8C%80%E5%B8%A6%E7%94%B5%E7%9B%B4%E7%BA%BF%EF%BC%88%E6%88%96%E4%B8%8E%E7%9B%B4%E7%BA%BF%E8%B7%9D%E7%A6%BB%E5%BE%88%E8%BF%91%EF%BC%89%EF%BC%8C%E5%8D%8A%E6%97%A0%E9%99%90%E9%95%BF%E4%B9%981-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">无限长均匀带电直线（或与直线距离很近），半无限长乘1&#x2F;2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E5%A4%A7%E5%9D%87%E5%8C%80%E5%B8%A6%E7%94%B5%E5%B9%B3%E9%9D%A2%EF%BC%88%E6%88%96%E4%B8%8E%E5%B9%B3%E9%9D%A2%E8%B7%9D%E7%A6%BB%E5%BE%88%E8%BF%91%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">无限大均匀带电平面（或与平面距离很近）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%90%83%E5%A3%B3"><span class="nav-number">1.3.3.</span> <span class="nav-text">半球壳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%94%B5%E5%9C%BA%E5%9C%BA%E5%BC%BA"><span class="nav-number">1.4.</span> <span class="nav-text">常用电场场强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%AE%9A%E7%90%86%E6%B1%82%E5%9C%BA%E5%BC%BA%EF%BC%88%E5%AF%B9%E7%A7%B0%E6%80%A7%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">高斯定理求场强（对称性）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E7%90%83%E5%A3%B3"><span class="nav-number">1.5.1.</span> <span class="nav-text">带电球壳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E9%95%BF%E6%9F%B1%E9%9D%A2"><span class="nav-number">1.5.2.</span> <span class="nav-text">无限长柱面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E7%90%83%E4%BD%93"><span class="nav-number">1.5.3.</span> <span class="nav-text">带电球体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF"><span class="nav-number">1.6.</span> <span class="nav-text">电势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%94%B5%E5%8A%BF"><span class="nav-number">1.6.1.</span> <span class="nav-text">常用电势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E7%94%B5%E5%8A%BF%E6%B1%82%E5%9C%BA%E5%BC%BA"><span class="nav-number">1.6.2.</span> <span class="nav-text">用电势求场强</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#idea"><span class="nav-number">1.</span> <span class="nav-text">idea</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part0"><span class="nav-number">2.1.</span> <span class="nav-text">part0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part1"><span class="nav-number">2.2.</span> <span class="nav-text">part1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps"><span class="nav-number">3.</span> <span class="nav-text">ps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part0-1"><span class="nav-number">3.1.</span> <span class="nav-text">part0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part1-1"><span class="nav-number">3.2.</span> <span class="nav-text">part1</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -341,7 +326,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -354,7 +339,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          （不定期更新）大物上笔记
+          子文略略略题解
         </h1>
 
         <div class="post-meta-container">
@@ -364,23 +349,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-09-26 21:00:00" itemprop="dateCreated datePublished" datetime="2022-09-26T21:00:00+08:00">2022-09-26</time>
+      <time title="创建时间：2022-10-05 17:30:00 / 修改时间：18:19:16" itemprop="dateCreated datePublished" datetime="2022-10-05T17:30:00+08:00">2022-10-05</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-10-01 17:43:11" itemprop="dateModified" datetime="2022-10-01T17:43:11+08:00">2022-10-01</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+          <a href="/categories/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
         </span>
     </span>
 
@@ -410,38 +389,28 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>大物上本质就是微积分.</p>
+        <p>为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。</p>
 <span id="more"></span>
-<h1 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h1><h2 id="电场强度（场强）"><a href="#电场强度（场强）" class="headerlink" title="电场强度（场强）"></a>电场强度（场强）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165345686.png"></p>
-<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165946582.png"></p>
-<p>其中$\vec{e_r}$是$q$指向$P$点的<strong>单位矢量</strong>。</p>
-<h2 id="求场强（离散型）"><a href="#求场强（离散型）" class="headerlink" title="求场强（离散型）"></a>求场强（离散型）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170757538.png"></p>
-<h2 id="求场强（连续型）"><a href="#求场强（连续型）" class="headerlink" title="求场强（连续型）"></a>求场强（连续型）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908170610078.png"></p>
-<h3 id="无限长均匀带电直线（或与直线距离很近），半无限长乘1-2"><a href="#无限长均匀带电直线（或与直线距离很近），半无限长乘1-2" class="headerlink" title="无限长均匀带电直线（或与直线距离很近），半无限长乘1/2"></a>无限长均匀带电直线（或与直线距离很近），半无限长乘1/2</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908175730122.png"></p>
-<h3 id="无限大均匀带电平面（或与平面距离很近）"><a href="#无限大均匀带电平面（或与平面距离很近）" class="headerlink" title="无限大均匀带电平面（或与平面距离很近）"></a>无限大均匀带电平面（或与平面距离很近）</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908182223490.png"></p>
-<h3 id="半球壳"><a href="#半球壳" class="headerlink" title="半球壳"></a>半球壳</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220915171811861.png"></p>
-<h2 id="常用电场场强"><a href="#常用电场场强" class="headerlink" title="常用电场场强"></a>常用电场场强</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/常用电场.jpg"></p>
-<h2 id="高斯定理求场强（对称性）"><a href="#高斯定理求场强（对称性）" class="headerlink" title="高斯定理求场强（对称性）"></a>高斯定理求场强（对称性）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/高斯定理.jpg"></p>
-<h3 id="带电球壳"><a href="#带电球壳" class="headerlink" title="带电球壳"></a>带电球壳</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/课例均匀带电球壳1.jpg"></p>
-<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球壳2.jpg"></p>
-<p>对于求球壳外的电场，可以将球壳等效为<strong>电荷集中在球心处的点电荷</strong>进行计算。</p>
-<h3 id="无限长柱面"><a href="#无限长柱面" class="headerlink" title="无限长柱面"></a>无限长柱面</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面1.jpg"></p>
-<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限长柱面2.jpg"></p>
-<p>对于求柱面外的电场，可以将球壳等效为<strong>无限长均匀带电直线</strong>进行计算。</p>
-<p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/无限大带电平面.jpg"></p>
-<p>注意结果是匀强电场。一对无限大带电平面就乘2即可。</p>
-<h3 id="带电球体"><a href="#带电球体" class="headerlink" title="带电球体"></a>带电球体</h3><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/均匀带电球体.jpg"></p>
-<h2 id="电势"><a href="#电势" class="headerlink" title="电势"></a>电势</h2><p>设正电荷为$q$,距离<script type="math/tex">r_{p_1}</script>处有一点<script type="math/tex">p_1</script>,电势为<script type="math/tex">\varphi_1</script>,距离<script type="math/tex">r_{p_2}</script>处有一点$p_2$,电势为$\varphi_2$,则:</p>
-<p>$\varphi_a=\int_a^\infty \vec{E} \cdot \mathrm{d} \vec{l}$，通常我们的考试题下$\vec{E}$与$\vec{l}$是同向的，因此可以直接去掉箭头。</p>
-<p>电势是标量,可以直接累加.</p>
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><p>与yjp在某日中午恰饭时得出，yjp很快想到了part 0的正解，但对part 1的解答存在一些问题。我通过了某种方式（下文会说）得到了一种复杂度较低的做法。</p>
+<h1 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h1><h2 id="part0"><a href="#part0" class="headerlink" title="part0"></a>part0</h2><p>从二进制角度思考：对这个数乘2相当于左移一位，而对这个数加一相当于在末尾加1，而这个1什么时候加都可以。因此最优的解法就是在左移的途中，那一位如果最后是1，就马上加上（不然要加更多个1才能补回去）。我们可以导出一个公式：</p>
 <blockquote>
-<script type="math/tex; mode=display">A_{12}=W_1-W_2=\int_{r_{p_1}}^{r_{p_2}}\vec{F} \cdot \mathrm{d} \vec{r}=q\int_{r_{p_1}}^{r_{p_2}}\vec{E} \cdot \mathrm{d} \vec{r}</script><script type="math/tex; mode=display">\frac{A_{12}}{q}=\varphi_{p_1}-\varphi_{p_2}=|{\Delta\varphi _{p_1 p_2}}|</script></blockquote>
-<h3 id="常用电势"><a href="#常用电势" class="headerlink" title="常用电势"></a>常用电势</h3><p>点电荷的电势: $\varphi=\frac{1}{4\pi\epsilon_0}\frac{q}{r}$</p>
-<p>连续带电体的电势分布: $\varphi=\frac{1}{4\pi\epsilon_0}\int\frac{\mathrm{d}q}{r}$</p>
-<p>带电球壳的内部电势相同(因为内部场强为0),在球壳外,电势与球心距离成反比.</p>
-<p>带电$q$细圆环的电势直接将$r$换为$\sqrt{R^2+x^2}$即可.</p>
-<h3 id="用电势求场强"><a href="#用电势求场强" class="headerlink" title="用电势求场强"></a>用电势求场强</h3><script type="math/tex; mode=display">\vec{E}=-\frac{\partial \varphi}{\partial n}\vec{e_n}=-\nabla\varphi</script><p>大部分情况只考虑一元,也就是<script type="math/tex">-\frac{\mathrm{d} \varphi}{\mathrm{d} n}\vec{e_n}</script>的情况.</p>
-<p>其中大小为<script type="math/tex">|-\frac{\mathrm{d} \varphi}{\mathrm{d} n}\vec{e_n}|=-\frac{\mathrm{d} \varphi}{\mathrm{d} n}</script>,方向为<script type="math/tex">\vec{e_n}</script>.</p>
+<p>最少的次数 = 二进制的位数 + 二进制中1的个数 + C</p>
+</blockquote>
+<p>随便代一个样例可得$C=-1$</p>
+<p>将一个数转换成二进制需要$O(\log x)$，因此时间复杂度是$O(\log x)$，总时间复杂度为$O(T \log x)$</p>
+<h2 id="part1"><a href="#part1" class="headerlink" title="part1"></a>part1</h2><p>yjp开始是想对末尾为一连串1的情况进行处理，可是具体的细节没有想得太清楚，只好作罢。</p>
+<p>首先做一下dp，设<code>dp[i]</code>为从<code>1</code>变为<code>i</code>所需的最少次数，显然<code>dp[1]=0</code>，可列出以下转移方程：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">	dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i<span class="number">-1</span>] + <span class="number">1</span>, dp[i]);    </span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i+<span class="number">1</span>] + <span class="number">1</span>, dp[i]); </span><br></pre></td></tr></table></figure>
+<p>显然这个dp不具备<strong>无后效性</strong>的条件，怎么办呢？多试几次就可以了。</p>
+<p>只不过此时的总复杂度是$O(Tkx)$，妥妥地TLE.</p>
+<p>此时我灵光一闪，把得到的最优解放在oeis上，然后得到了更优的转移方程。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">	dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">2</span>, dp[i/<span class="number">2</span>+<span class="number">1</span>] + <span class="number">2</span>, dp[i]);</span><br></pre></td></tr></table></figure>
+<p>这样可能的状态数就是log级别了，拿个<code>map</code>维护一下，记忆化搜索即可。</p>
+<p>由于<code>map</code>是用红黑树维护的，读写一个数也是log级别，因此总复杂度为$O(T \log^2 x)$。</p>
+<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><h2 id="part0-1"><a href="#part0-1" class="headerlink" title="part0"></a>part0</h2><p>第一题的解题人数在我预料之内。24h之内就有10人左右AC了。</p>
+<h2 id="part1-1"><a href="#part1-1" class="headerlink" title="part1"></a>part1</h2><p>第二题在前24h无人AC，这稍微出乎了预期。</p>
+<p>在第二天有非少年生AC了，这符合我出题的意图。</p>
+<p>只不过之后又有少年生写出了$O(T \log x)$的做法。看了一些AC的代码，的确是模拟+分类讨论做的——看来yjp的愿望的确实现了，可喜可贺。</p>
 
     </div>
 
@@ -459,7 +428,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html" title="（不定期更新）大物上笔记">https://junyu33.me/2022/09/26/大物笔记.html</a>
+      <a href="https://junyu33.me/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html" title="子文略略略题解">https://junyu33.me/2022/10/05/子文略略略题解.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -467,18 +436,21 @@
 </ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/cpp/" rel="tag"># cpp</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/26/%E6%A6%82%E7%BB%9F.html" rel="prev" title="（不定期更新）概统笔记">
-                  <i class="fa fa-chevron-left"></i> （不定期更新）概统笔记
+                <a href="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html" rel="prev" title="（不定期更新）大物上笔记">
+                  <i class="fa fa-chevron-left"></i> （不定期更新）大物上笔记
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html" rel="next" title="子文略略略题解">
-                  子文略略略题解 <i class="fa fa-chevron-right"></i>
+                <a href="/2032/02/07/bin_ctf.html" rel="next" title="（置顶）ctf练习(pwn)">
+                  （置顶）ctf练习(pwn) <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

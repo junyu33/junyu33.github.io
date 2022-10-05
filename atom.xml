@@ -58,6 +58,24 @@
   </entry>
   
   <entry>
+    <title>二七——浅谈《数学女孩5》</title>
+    <link href="https://junyu33.me/2022/10/05/math_girls_5.html"/>
+    <id>https://junyu33.me/2022/10/05/math_girls_5.html</id>
+    <published>2022-10-05T12:00:00.000Z</published>
+    <updated>2022-10-05T13:15:40.533Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;《数学女孩5》是我在看椭圆曲线$\mathrm{GF}(p)$相关文章时安利的一本“伪装成小说的数学读物”，先前在高中ymq提到过$Galois$这位英年早逝的数学家。正巧在购买新学期教材时，我在二手书店瞥见了这本书（前面几个series也有，第二天我再看时就没了，还是挺有缘的），原价69，打折下来15，就毫不犹豫入手了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>子文略略略题解</title>
     <link href="https://junyu33.me/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html"/>
     <id>https://junyu33.me/2022/10/05/子文略略略题解.html</id>
@@ -130,9 +148,9 @@
       <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
     
     
-      <category term="reverse" scheme="https://junyu33.me/tags/reverse/"/>
-    
       <category term="crypto" scheme="https://junyu33.me/tags/crypto/"/>
+    
+      <category term="reverse" scheme="https://junyu33.me/tags/reverse/"/>
     
       <category term="misc" scheme="https://junyu33.me/tags/misc/"/>
     
@@ -411,36 +429,6 @@
     
       <category term="随笔" scheme="https://junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>ctf练习（杂）</title>
-    <link href="https://junyu33.me/2022/02/07/bin_ctf2.html"/>
-    <id>https://junyu33.me/2022/02/07/bin_ctf2.html</id>
-    <published>2022-02-07T14:00:00.000Z</published>
-    <updated>2022-08-12T02:46:06.507Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
-    
-    
-      <category term="reverse" scheme="https://junyu33.me/tags/reverse/"/>
-    
-      <category term="crypto" scheme="https://junyu33.me/tags/crypto/"/>
-    
-      <category term="misc" scheme="https://junyu33.me/tags/misc/"/>
     
   </entry>
   

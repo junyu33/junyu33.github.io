@@ -41,7 +41,7 @@
     <link href="https://junyu33.me/2032/02/07/bin_ctf.html"/>
     <id>https://junyu33.me/2032/02/07/bin_ctf.html</id>
     <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2022-10-05T04:48:40.597Z</updated>
+    <updated>2022-10-16T16:48:28.452Z</updated>
     
     <summary type="html">
     
@@ -54,6 +54,24 @@
     
     
       <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>（转载）论限位器</title>
+    <link href="https://junyu33.me/2022/10/17/%E8%AE%BA%E9%99%90%E4%BD%8D%E5%99%A8.html"/>
+    <id>https://junyu33.me/2022/10/17/论限位器.html</id>
+    <published>2022-10-17T05:00:00.000Z</published>
+    <updated>2022-10-17T04:58:39.587Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文地址：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/545571040&quot;&gt;https://zhuanlan.zhihu.com/p/545571040&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
     
   </entry>
   
@@ -159,7 +177,7 @@
     <link href="https://junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F.html"/>
     <id>https://junyu33.me/2022/09/26/概统.html</id>
     <published>2022-09-26T12:30:00.000Z</published>
-    <updated>2022-10-10T07:20:39.405Z</updated>
+    <updated>2022-10-18T16:12:25.043Z</updated>
     
     <summary type="html">
     
@@ -401,31 +419,6 @@
     
       <category term="笔记" scheme="https://junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>如何打造一个究极舒适的pwn环境（第二季）</title>
-    <link href="https://junyu33.me/2022/03/13/pwn_environ2.html"/>
-    <id>https://junyu33.me/2022/03/13/pwn_environ2.html</id>
-    <published>2022-03-13T09:30:00.000Z</published>
-    <updated>2022-08-12T02:46:06.533Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;现在的问题是，如果你临时回家，没有带电脑。但你又想操纵位于学校的电脑，又该怎么办呢？&lt;/p&gt;
-&lt;p&gt;成果图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2022/03/13/pwn_environ2/res.png&quot; style=&quot;zoom:33%;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我们假设读者已经完成的上一季的配置，并确保自己拥有公网ip。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://junyu33.me/categories/develop/"/>
-    
-    
-      <category term="python" scheme="https://junyu33.me/tags/python/"/>
-    
-      <category term="web" scheme="https://junyu33.me/tags/web/"/>
     
   </entry>
   

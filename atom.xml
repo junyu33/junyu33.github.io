@@ -37,16 +37,21 @@
   </entry>
   
   <entry>
-    <title>（置顶）ctf练习(pwn)</title>
+    <title>（archived）ctf练习(pwn)</title>
     <link href="https://junyu33.me/2032/02/07/bin_ctf.html"/>
     <id>https://junyu33.me/2032/02/07/bin_ctf.html</id>
     <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2022-10-23T10:21:15.099Z</updated>
+    <updated>2022-10-23T12:50:34.935Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;分为stack、fmtstr、heap、misc四部分，用作记录思路和用得上的gadget。&lt;/p&gt;
 &lt;p&gt;以下二级标题不带网站的默认为buuoj对应分区题目。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;updated on 2022/10/23: &lt;/p&gt;
+&lt;p&gt;buu前五页已经完成，该专栏将不再更新具体的思路与exp。&lt;/p&gt;
+&lt;p&gt;接下来可能学一堆高版本的house系列，比赛的题解会单独开文章，并在对应的栏目添加文章链接。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     

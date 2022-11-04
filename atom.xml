@@ -41,7 +41,7 @@
     <link href="https://junyu33.me/2032/02/07/bin_ctf.html"/>
     <id>https://junyu33.me/2032/02/07/bin_ctf.html</id>
     <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2022-10-23T12:50:34.935Z</updated>
+    <updated>2022-10-29T06:16:13.913Z</updated>
     
     <summary type="html">
     
@@ -50,7 +50,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;updated on 2022/10/23: &lt;/p&gt;
 &lt;p&gt;buu前五页已经完成，该专栏将不再更新具体的思路与exp。&lt;/p&gt;
-&lt;p&gt;接下来可能学一堆高版本的house系列，比赛的题解会单独开文章，并在对应的栏目添加文章链接。&lt;/p&gt;
+&lt;p&gt;接下来可能学内核、高版本的house系列，比赛的题解会单独开文章，并在对应的栏目添加文章链接。&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
@@ -164,11 +164,11 @@
     <link href="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html"/>
     <id>https://junyu33.me/2022/09/26/大物笔记.html</id>
     <published>2022-09-26T13:00:00.000Z</published>
-    <updated>2022-10-01T09:43:11.287Z</updated>
+    <updated>2022-11-04T10:04:32.180Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;大物上本质就是微积分.&lt;/p&gt;
+      &lt;p&gt;大物上本质就是微积分，只不过对微分变量的选取更加讲究。&lt;/p&gt;
     
     </summary>
     
@@ -182,7 +182,7 @@
     <link href="https://junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F.html"/>
     <id>https://junyu33.me/2022/09/26/概统.html</id>
     <published>2022-09-26T12:30:00.000Z</published>
-    <updated>2022-10-20T06:12:58.317Z</updated>
+    <updated>2022-11-04T09:49:30.393Z</updated>
     
     <summary type="html">
     
@@ -286,15 +286,15 @@
   </entry>
   
   <entry>
-    <title>pwncollege之堆通关记录</title>
-    <link href="https://junyu33.me/2022/07/03/pwn_college_heap.html"/>
-    <id>https://junyu33.me/2022/07/03/pwn_college_heap.html</id>
+    <title>pwncollege部分通关记录</title>
+    <link href="https://junyu33.me/2022/07/03/pwn_college.html"/>
+    <id>https://junyu33.me/2022/07/03/pwn_college.html</id>
     <published>2022-07-03T10:00:00.000Z</published>
-    <updated>2022-08-12T02:46:06.531Z</updated>
+    <updated>2022-10-31T02:33:54.832Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;指 &lt;a href=&quot;https://dojo.pwn.college/challenges&quot;&gt;https://dojo.pwn.college/challenges&lt;/a&gt; 中的&lt;code&gt;Dynamic Allocator Misuse&lt;/code&gt;部分。&lt;/p&gt;
+      &lt;p&gt;指 &lt;a href=&quot;https://dojo.pwn.college/challenges&quot;&gt;https://dojo.pwn.college/challenges&lt;/a&gt; &lt;/p&gt;
     
     </summary>
     

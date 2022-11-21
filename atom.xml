@@ -37,6 +37,48 @@
   </entry>
   
   <entry>
+    <title>（置顶）pwncollege部分通关记录</title>
+    <link href="https://junyu33.me/2032/07/03/pwn_college.html"/>
+    <id>https://junyu33.me/2032/07/03/pwn_college.html</id>
+    <published>2032-07-03T10:00:00.000Z</published>
+    <updated>2022-11-21T15:55:31.522Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;指 &lt;a href=&quot;https://dojo.pwn.college/challenges&quot;&gt;https://dojo.pwn.college/challenges&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;按照网站要求，这里只提供思路和第一题的exploit。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
+    
+    
+      <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>unctf2022pwn wp</title>
+    <link href="https://junyu33.me/2022/11/21/unctf2022.html"/>
+    <id>https://junyu33.me/2022/11/21/unctf2022.html</id>
+    <published>2022-11-21T14:20:00.000Z</published>
+    <updated>2022-11-21T15:58:01.364Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然pwn AK了，但pwn手还是输麻了。&lt;/p&gt;
+&lt;p&gt;运维水平很是蛋疼，以后文件别放毒盘（&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
+    
+    
+      <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
+    
+  </entry>
+  
+  <entry>
     <title>（转载）论限位器</title>
     <link href="https://junyu33.me/2022/10/17/%E8%AE%BA%E9%99%90%E4%BD%8D%E5%99%A8.html"/>
     <id>https://junyu33.me/2022/10/17/论限位器.html</id>
@@ -138,7 +180,7 @@
     <link href="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html"/>
     <id>https://junyu33.me/2022/09/26/大物笔记.html</id>
     <published>2022-09-26T13:00:00.000Z</published>
-    <updated>2022-11-11T05:17:49.035Z</updated>
+    <updated>2022-11-21T08:26:06.022Z</updated>
     
     <summary type="html">
     
@@ -156,11 +198,12 @@
     <link href="https://junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F.html"/>
     <id>https://junyu33.me/2022/09/26/概统.html</id>
     <published>2022-09-26T12:30:00.000Z</published>
-    <updated>2022-11-11T05:22:34.937Z</updated>
+    <updated>2022-11-21T16:20:29.607Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;顺便用作$\LaTeX$练习.&lt;/p&gt;
+&lt;p&gt;bug: 目前发现转mathjax时X的平均值（即&lt;code&gt;\overline&amp;#123;X&amp;#125;&lt;/code&gt;)不能正常显示。&lt;/p&gt;
     
     </summary>
     
@@ -256,26 +299,6 @@
     
       <category term="test" scheme="https://junyu33.me/categories/test/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>pwncollege部分通关记录</title>
-    <link href="https://junyu33.me/2022/07/03/pwn_college.html"/>
-    <id>https://junyu33.me/2022/07/03/pwn_college.html</id>
-    <published>2022-07-03T10:00:00.000Z</published>
-    <updated>2022-10-31T02:33:54.832Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;指 &lt;a href=&quot;https://dojo.pwn.college/challenges&quot;&gt;https://dojo.pwn.college/challenges&lt;/a&gt; &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
-    
-    
-      <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
     
   </entry>
   
@@ -398,31 +421,6 @@
     
       <category term="笔记" scheme="https://junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>如何打造一个究极舒适的pwn环境（第二季）</title>
-    <link href="https://junyu33.me/2022/03/13/pwn_environ2.html"/>
-    <id>https://junyu33.me/2022/03/13/pwn_environ2.html</id>
-    <published>2022-03-13T09:30:00.000Z</published>
-    <updated>2022-08-12T02:46:06.533Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;现在的问题是，如果你临时回家，没有带电脑。但你又想操纵位于学校的电脑，又该怎么办呢？&lt;/p&gt;
-&lt;p&gt;成果图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2022/03/13/pwn_environ2/res.png&quot; style=&quot;zoom:33%;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我们假设读者已经完成的上一季的配置，并确保自己拥有公网ip。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://junyu33.me/categories/develop/"/>
-    
-    
-      <category term="python" scheme="https://junyu33.me/tags/python/"/>
-    
-      <category term="web" scheme="https://junyu33.me/tags/web/"/>
     
   </entry>
   

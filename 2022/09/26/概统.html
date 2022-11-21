@@ -22,16 +22,16 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="顺便用作$\LaTeX$练习.">
+<meta name="description" content="顺便用作$\LaTeX$练习. bug: 目前发现转mathjax时X的平均值（即\overline&amp;#123;X&amp;#125;)不能正常显示。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="（不定期更新）概统笔记">
 <meta property="og:url" content="https://junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F.html">
 <meta property="og:site_name" content="现充|junyu33">
-<meta property="og:description" content="顺便用作$\LaTeX$练习.">
+<meta property="og:description" content="顺便用作$\LaTeX$练习. bug: 目前发现转mathjax时X的平均值（即\overline&amp;#123;X&amp;#125;)不能正常显示。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F/20190405121236967.png">
 <meta property="article:published_time" content="2022-09-26T12:30:00.000Z">
-<meta property="article:modified_time" content="2022-11-11T05:22:34.937Z">
+<meta property="article:modified_time" content="2022-11-21T16:20:29.607Z">
 <meta property="article:author" content="丨junyu33丨">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F/20190405121236967.png">
@@ -209,7 +209,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%90%E7%BB%A9%E5%88%86%E5%B8%83"><span class="nav-number">1.</span> <span class="nav-text">成绩分布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0"><span class="nav-number">3.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">3.1.</span> <span class="nav-text">概率论基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83"><span class="nav-number">3.2.</span> <span class="nav-text">随机变量及其分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83"><span class="nav-number">3.2.1.</span> <span class="nav-text">非连续分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83"><span class="nav-number">3.2.2.</span> <span class="nav-text">连续分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83Y-f-X-%E5%9E%8B%E9%A2%98%E7%9B%AE%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">3.2.3.</span> <span class="nav-text">随机变量函数的分布Y&#x3D;f(X)型题目的做法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83"><span class="nav-number">3.3.</span> <span class="nav-text">多（二）维随机变量及其分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="nav-number">3.3.1.</span> <span class="nav-text">二维离散型随机变量分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="nav-number">3.3.2.</span> <span class="nav-text">二维连续型随机变量分布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B"><span class="nav-number">3.4.</span> <span class="nav-text">数学期望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.4.1.</span> <span class="nav-text">数学期望的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E6%9C%9F%E6%9C%9B"><span class="nav-number">3.4.2.</span> <span class="nav-text">随机变量函数的期望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.4.3.</span> <span class="nav-text">数学期望的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE"><span class="nav-number">3.5.</span> <span class="nav-text">方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.5.1.</span> <span class="nav-text">方差的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.5.2.</span> <span class="nav-text">方差的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%9C%9F%E6%9C%9B%E4%B8%8E%E6%96%B9%E5%B7%AE"><span class="nav-number">3.5.3.</span> <span class="nav-text">常见分布的期望与方差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%82%B9%E7%9F%A9%E4%B8%8E%E4%B8%AD%E5%BF%83%E7%9F%A9"><span class="nav-number">3.5.4.</span> <span class="nav-text">原点矩与中心矩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E4%B8%8E%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0"><span class="nav-number">3.6.</span> <span class="nav-text">协方差与相关系数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.6.1.</span> <span class="nav-text">协方差的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.6.2.</span> <span class="nav-text">协方差的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96"><span class="nav-number">3.6.3.</span> <span class="nav-text">随机变量的标准化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.6.4.</span> <span class="nav-text">相关系数的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.6.5.</span> <span class="nav-text">相关系数的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">3.7.</span> <span class="nav-text">正态分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">3.7.1.</span> <span class="nav-text">标准正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83-1"><span class="nav-number">3.7.2.</span> <span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">3.7.3.</span> <span class="nav-text">二维正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83%E6%97%8F"><span class="nav-number">3.7.4.</span> <span class="nav-text">自然指数分布族</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%90%E7%BB%A9%E5%88%86%E5%B8%83"><span class="nav-number">1.</span> <span class="nav-text">成绩分布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E9%83%A8%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">概率部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">3.1.</span> <span class="nav-text">概率论基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83"><span class="nav-number">3.2.</span> <span class="nav-text">随机变量及其分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83"><span class="nav-number">3.2.1.</span> <span class="nav-text">非连续分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83"><span class="nav-number">3.2.2.</span> <span class="nav-text">连续分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83Y-f-X-%E5%9E%8B%E9%A2%98%E7%9B%AE%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">3.2.3.</span> <span class="nav-text">随机变量函数的分布Y&#x3D;f(X)型题目的做法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83"><span class="nav-number">3.3.</span> <span class="nav-text">多（二）维随机变量及其分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="nav-number">3.3.1.</span> <span class="nav-text">二维离散型随机变量分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="nav-number">3.3.2.</span> <span class="nav-text">二维连续型随机变量分布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B"><span class="nav-number">3.4.</span> <span class="nav-text">数学期望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.4.1.</span> <span class="nav-text">数学期望的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E6%9C%9F%E6%9C%9B"><span class="nav-number">3.4.2.</span> <span class="nav-text">随机变量函数的期望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.4.3.</span> <span class="nav-text">数学期望的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE"><span class="nav-number">3.5.</span> <span class="nav-text">方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.5.1.</span> <span class="nav-text">方差的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.5.2.</span> <span class="nav-text">方差的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%9C%9F%E6%9C%9B%E4%B8%8E%E6%96%B9%E5%B7%AE"><span class="nav-number">3.5.3.</span> <span class="nav-text">常见分布的期望与方差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%82%B9%E7%9F%A9%E4%B8%8E%E4%B8%AD%E5%BF%83%E7%9F%A9"><span class="nav-number">3.5.4.</span> <span class="nav-text">原点矩与中心矩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E4%B8%8E%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0"><span class="nav-number">3.6.</span> <span class="nav-text">协方差与相关系数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.6.1.</span> <span class="nav-text">协方差的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.6.2.</span> <span class="nav-text">协方差的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96"><span class="nav-number">3.6.3.</span> <span class="nav-text">随机变量的标准化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.6.4.</span> <span class="nav-text">相关系数的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.6.5.</span> <span class="nav-text">相关系数的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">3.7.</span> <span class="nav-text">正态分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">3.7.1.</span> <span class="nav-text">标准正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83-1"><span class="nav-number">3.7.2.</span> <span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">3.7.3.</span> <span class="nav-text">二维正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83%E6%97%8F"><span class="nav-number">3.7.4.</span> <span class="nav-text">自然指数分布族</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86"><span class="nav-number">3.8.</span> <span class="nav-text">极限定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="nav-number">3.8.1.</span> <span class="nav-text">切比雪夫不等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E6%95%B0%E5%BE%8B"><span class="nav-number">3.8.2.</span> <span class="nav-text">大数律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86"><span class="nav-number">3.8.3.</span> <span class="nav-text">中心极限定理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E9%83%A8%E5%88%86"><span class="nav-number">4.</span> <span class="nav-text">统计部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83"><span class="nav-number">4.1.</span> <span class="nav-text">常见分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%A1%E6%96%B9%E5%88%86%E5%B8%83%E2%80%94%E2%80%94%E6%AD%A3%E6%80%81%E5%B9%B3%E6%96%B9%E5%92%8C"><span class="nav-number">4.1.1.</span> <span class="nav-text">卡方分布——正态平方和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t%E5%88%86%E5%B8%83%E2%80%94%E2%80%94%E6%AD%A3%E6%80%81%E6%AF%94%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="nav-number">4.1.2.</span> <span class="nav-text">t分布——正态比一个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F%E5%88%86%E5%B8%83%E2%80%94%E2%80%94%E6%AD%A3%E6%80%81%E5%B9%B3%E6%96%B9%E5%92%8C%E7%9B%B8%E6%AF%94"><span class="nav-number">4.1.3.</span> <span class="nav-text">F分布——正态平方和相比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-number">4.2.</span> <span class="nav-text">常见统计量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B7%E6%9C%AC%E5%9D%87%E5%80%BC"><span class="nav-number">4.2.1.</span> <span class="nav-text">样本均值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B7%E6%9C%AC%E6%96%B9%E5%B7%AE"><span class="nav-number">4.2.2.</span> <span class="nav-text">样本方差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83%E5%AE%9A%E7%90%86"><span class="nav-number">4.3.</span> <span class="nav-text">抽样分布定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%B8%80%EF%BC%88%E5%B7%B2%E7%9F%A5%E6%96%B9%E5%B7%AE%EF%BC%89"><span class="nav-number">4.3.1.</span> <span class="nav-text">其一（已知方差）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BA%8C%EF%BC%88%E5%B7%B2%E7%9F%A5%E5%9D%87%E5%80%BC%EF%BC%89"><span class="nav-number">4.3.2.</span> <span class="nav-text">其二（已知均值）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%B8%89%EF%BC%88%E5%A4%9A%E4%B8%AA%E6%95%B4%E4%BD%93%EF%BC%89"><span class="nav-number">4.3.3.</span> <span class="nav-text">其三（多个整体）</span></a></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -225,7 +225,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -358,7 +358,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-11-11 13:22:34" itemprop="dateModified" datetime="2022-11-11T13:22:34+08:00">2022-11-11</time>
+        <time title="修改时间：2022-11-22 00:20:29" itemprop="dateModified" datetime="2022-11-22T00:20:29+08:00">2022-11-22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -397,6 +397,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>顺便用作$\LaTeX$练习.</p>
+<p>bug: 目前发现转mathjax时X的平均值（即<code>\overline&#123;X&#125;</code>)不能正常显示。</p>
 <span id="more"></span>
 <h1 id="成绩分布"><a href="#成绩分布" class="headerlink" title="成绩分布"></a>成绩分布</h1><p>卷面成绩：50%</p>
 <p>平时成绩：50%</p>
@@ -406,10 +407,15 @@
 <li>非标</li>
 <li>随堂表现</li>
 </ul>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>理解性、记忆性</p>
-<p>微积分功底</p>
-<p>题型固定</p>
-<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h2><p>用$A,B,C$等表示事件</p>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ul>
+<li><p>理解性、记忆性</p>
+</li>
+<li><p>微积分功底</p>
+</li>
+<li><p>题型固定</p>
+</li>
+</ul>
+<h1 id="概率部分"><a href="#概率部分" class="headerlink" title="概率部分"></a>概率部分</h1><h2 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h2><p>用$A,B,C$等表示事件</p>
 <p>$\overline{A}$表示A的对立事件（对立是互斥的充分条件）</p>
 <p>$AB=A\cap B$</p>
 <p>$A-B=A\overline{B}=A-AB$</p>
@@ -594,7 +600,44 @@
 <script type="math/tex; mode=display">=\frac{1}{\sigma_1\sigma_2 2\pi\sqrt{1-r^2}} e^{-\frac{1}{2(1-r^2)}((\frac{x-\mu_1}{\sigma_1})^2+(\frac{y-\mu_2}{\sigma_2})^2-2(\frac{x-\mu_1}{\sigma_1})(\frac{y-\mu_2}{\sigma_2})r)}</script><p>对二维正态分布而言，其边缘分布与条件分布是正态分布。同时，不相关与独立性是等价的。</p>
 <h3 id="自然指数分布族"><a href="#自然指数分布族" class="headerlink" title="自然指数分布族"></a>自然指数分布族</h3><script type="math/tex; mode=display">f(x,\theta)=e^{\theta x-\varphi(\theta)}h(x)</script><p>常见分布中除了均匀分布均可化成这种形式。</p>
 <p>其均值参数（期望）为$\varphi’(\theta)$,方差函数为$\varphi^{(2)}(\theta)$</p>
-
+<h2 id="极限定理"><a href="#极限定理" class="headerlink" title="极限定理"></a>极限定理</h2><h3 id="切比雪夫不等式"><a href="#切比雪夫不等式" class="headerlink" title="切比雪夫不等式"></a>切比雪夫不等式</h3><script type="math/tex; mode=display">P(|X-E(X)| \ge \varepsilon) \le \frac{D(x)}{\varepsilon^2}</script><script type="math/tex; mode=display">P(|X-E(X)| < \varepsilon) \ge 1- \frac{D(x)}{\varepsilon^2}</script><h3 id="大数律"><a href="#大数律" class="headerlink" title="大数律"></a>大数律</h3><p>随机变量序列${X_n}$，考虑均值$\overline{X}$，</p>
+<p>若<script type="math/tex">\overline{X}-E(\overline{X}) \stackrel{P}{\longrightarrow} 0</script> ，则${X_n}$服从大数律。</p>
+<ul>
+<li>切比雪夫大数律：</li>
+</ul>
+<p>充要条件是随机变量的方差<strong>一致有界</strong>，即有常数$C$，使$D(X_k)\le C$ 即可满足符合大数律。</p>
+<ul>
+<li>独立同分布大数律：</li>
+</ul>
+<p>只要$X_k$独立同分布，且$E(X_k)=\mu$，$D(X_k)=\sigma^2$即可保证符合大数律。</p>
+<ul>
+<li>伯努利大数律：</li>
+</ul>
+<p>$X_k \sim \mathrm{B}(n,p)$，则<script type="math/tex">\frac{n_A}{n} \stackrel{P}{\longrightarrow} p</script></p>
+<h3 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h3><p>$X_i$独立同分布，则 <script type="math/tex">Z_n=\Sigma_{i=1}^n X_i</script> 近似服从正态分布。</p>
+<script type="math/tex; mode=display">E(X_k)=\mu, D(X_k)=\sigma^2\rightarrow P(\frac{n\overline{X} - nu}{\sigma \sqrt{n}} \le x)=\Phi(x)</script><p>可得$Z$近似服从$\mathrm{N}(n\mu, n\sigma^2)$，$\overline{X}$近似服从$N(\mu, \frac{\sigma^2}{n})$</p>
+<blockquote>
+<p>设$X \sim \mathrm{B}(n,p)$，若$Z_n=\Sigma_{i=1}^n X_i$</p>
+<script type="math/tex; mode=display">\lim_{n\to \infty} P(\frac{X_n - np}{\sqrt{npq}}\le x)=\Phi(x)</script><p>即$Z$近似服从$\mathrm{N}(np, npq)$</p>
+</blockquote>
+<h1 id="统计部分"><a href="#统计部分" class="headerlink" title="统计部分"></a>统计部分</h1><h2 id="常见分布"><a href="#常见分布" class="headerlink" title="常见分布"></a>常见分布</h2><h3 id="卡方分布——正态平方和"><a href="#卡方分布——正态平方和" class="headerlink" title="卡方分布——正态平方和"></a>卡方分布——正态平方和</h3><p>正态分布$X_i \sim \mathrm{N}(0,1)$的平方和。</p>
+<p>$\chi^2=\Sigma_{i=1}^n X_i^2$服从自由度为$n$的$\chi^2$分布，即$\chi^2(n)$</p>
+<p>$\chi^2(n)=\Gamma(\frac{n}{2}, \frac{1}{2})$，故$E(\chi^2)=n, D(\chi^2)=2n$</p>
+<p>卡方分布满足可加性。</p>
+<h3 id="t分布——正态比一个数"><a href="#t分布——正态比一个数" class="headerlink" title="t分布——正态比一个数"></a>t分布——正态比一个数</h3><script type="math/tex; mode=display">X \sim \mathrm{N}(0,1), Y \sim \chi^2(n)</script><script type="math/tex; mode=display">t(n) = \frac{X}{\sqrt{\frac{Y}{n}}}</script><p>分布与正态分布相似，但尾巴比正态分布更厚。</p>
+<h3 id="F分布——正态平方和相比"><a href="#F分布——正态平方和相比" class="headerlink" title="F分布——正态平方和相比"></a>F分布——正态平方和相比</h3><script type="math/tex; mode=display">X \sim \chi^2(n), Y \sim \chi^2(m)</script><script type="math/tex; mode=display">F(n,m)=\frac{X/n}{Y/m}</script><script type="math/tex; mode=display">\frac{1}{F}=F(m,m)</script><h2 id="常见统计量"><a href="#常见统计量" class="headerlink" title="常见统计量"></a>常见统计量</h2><h3 id="样本均值"><a href="#样本均值" class="headerlink" title="样本均值"></a>样本均值</h3><script type="math/tex; mode=display">\overline{X}=\frac{1}{n} \Sigma_{i=1}^n X_i</script><h3 id="样本方差"><a href="#样本方差" class="headerlink" title="样本方差"></a>样本方差</h3><p>$S^2=\frac{1}{n-1} \Sigma_{i=1}^n (X_i-\overline{X})^2$（注意是n-1，不是n）</p>
+<h2 id="抽样分布定理"><a href="#抽样分布定理" class="headerlink" title="抽样分布定理"></a>抽样分布定理</h2><h3 id="其一（已知方差）"><a href="#其一（已知方差）" class="headerlink" title="其一（已知方差）"></a>其一（已知方差）</h3><p>样本<script type="math/tex">X_1,X_2,...,X_n</script>来自$\mathrm{N}(\mu, \sigma^2)$，则</p>
+<script type="math/tex; mode=display">\chi^2=\frac{(n-1) S^2}{\sigma^2}=\frac{1}{\sigma^2} \Sigma(X_i-\overline{X})^2 \sim \chi^2(n-1)</script><p>且$\overline{X}$与$\chi^2$独立。</p>
+<h3 id="其二（已知均值）"><a href="#其二（已知均值）" class="headerlink" title="其二（已知均值）"></a>其二（已知均值）</h3><p>样本<script type="math/tex">X_1,X_2,...,X_n</script>来自$\mathrm{N}(\mu, \sigma^2)$，则</p>
+<script type="math/tex; mode=display">t=\frac{\overline{X}-\mu}{S\sqrt{\frac{1}{n}}} \sim t(n-1)</script><h3 id="其三（多个整体）"><a href="#其三（多个整体）" class="headerlink" title="其三（多个整体）"></a>其三（多个整体）</h3><blockquote>
+<p>概统成功变成了文科</p>
+</blockquote>
+<p>若<script type="math/tex">X \sim \mathrm{N}(\mu_1, \sigma^2), Y \sim \mathrm{N}(\mu_2, \sigma^2)</script>则，</p>
+<script type="math/tex; mode=display">\overline{X}-\overline{Y} \sim \mathrm{N}(\mu_1 - \mu_2, \frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2})</script><script type="math/tex; mode=display">\frac{(n_1-1) S_1^2 + (n_2-1) S_2^2}{\sigma^2} =\chi^2(n_1+n_2-2)</script><script type="math/tex; mode=display">\frac{(\overline{X}-\overline{Y})-(\mu_1-\mu_2)}{S_w\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \sim t(n_1+n_2-2)</script><blockquote>
+<p>其中<script type="math/tex">S_w^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}</script></p>
+</blockquote>
+<p>若<script type="math/tex">X \sim \mathrm{N}(\mu_1, \sigma_1^2), Y \sim \mathrm{N}(\mu_2, \sigma_2^2)</script>则，</p>
+<script type="math/tex; mode=display">\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2} \sim F(n_1-1,n_2-1)</script>
     </div>
 
     
@@ -686,13 +729,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">344k</span>
+    <span title="站点总字数">348k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:13</span>
+    <span title="站点阅读时长">5:16</span>
   </span>
 </div>
 <div class="busuanzi-count">

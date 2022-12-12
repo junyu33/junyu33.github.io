@@ -58,6 +58,25 @@
   </entry>
   
   <entry>
+    <title>ChatGPT 初探</title>
+    <link href="https://junyu33.me/2022/12/12/chatgpt.html"/>
+    <id>https://junyu33.me/2022/12/12/chatgpt.html</id>
+    <published>2022-12-12T13:30:00.000Z</published>
+    <updated>2022-12-12T15:14:07.516Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;感觉还不错，虽然并没有我想象得那么万能。&lt;/p&gt;
+&lt;p&gt;注：保留原格式，不对输出格式进行修饰。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://junyu33.me/categories/develop/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>unctf2022pwn wp</title>
     <link href="https://junyu33.me/2022/11/21/unctf2022.html"/>
     <id>https://junyu33.me/2022/11/21/unctf2022.html</id>
@@ -180,7 +199,7 @@
     <link href="https://junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html"/>
     <id>https://junyu33.me/2022/09/26/大物笔记.html</id>
     <published>2022-09-26T13:00:00.000Z</published>
-    <updated>2022-11-21T08:26:06.022Z</updated>
+    <updated>2022-12-08T10:14:36.930Z</updated>
     
     <summary type="html">
     
@@ -194,11 +213,11 @@
   </entry>
   
   <entry>
-    <title>（不定期更新）概统笔记</title>
+    <title>（已完结）概统笔记</title>
     <link href="https://junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F.html"/>
     <id>https://junyu33.me/2022/09/26/概统.html</id>
     <published>2022-09-26T12:30:00.000Z</published>
-    <updated>2022-11-25T12:45:16.899Z</updated>
+    <updated>2022-12-12T08:11:47.157Z</updated>
     
     <summary type="html">
     
@@ -229,15 +248,15 @@
       <category term="ctf" scheme="https://junyu33.me/categories/ctf/"/>
     
     
-      <category term="crypto" scheme="https://junyu33.me/tags/crypto/"/>
-    
       <category term="reverse" scheme="https://junyu33.me/tags/reverse/"/>
+    
+      <category term="crypto" scheme="https://junyu33.me/tags/crypto/"/>
     
       <category term="misc" scheme="https://junyu33.me/tags/misc/"/>
     
-      <category term="web" scheme="https://junyu33.me/tags/web/"/>
-    
       <category term="pwn" scheme="https://junyu33.me/tags/pwn/"/>
+    
+      <category term="web" scheme="https://junyu33.me/tags/web/"/>
     
   </entry>
   
@@ -403,24 +422,6 @@
     
     
       <category term="linux" scheme="https://junyu33.me/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库学习笔记</title>
-    <link href="https://junyu33.me/2022/03/25/database.html"/>
-    <id>https://junyu33.me/2022/03/25/database.html</id>
-    <published>2022-03-25T04:00:00.000Z</published>
-    <updated>2022-08-12T02:46:06.555Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;数据库其实不难学，就是头有点凉。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
     
   </entry>
   

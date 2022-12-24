@@ -1,90 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>博客一周年祭</title>
-    <url>/2022/07/06/anniversary.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>其实是github学生包申请的经历。</p>
-<p><img src="/2022/07/06/anniversary/success.png"></p>
-<span id="more"></span>
-<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近<code>colipot</code>内测结束开始收费了，广告甚至打到了github的首页上。从yyx方面得知，如果你通过了github学生认证，就可以白嫖每月10刀的<code>copilot</code>。除此之外，对于我来说有用的学生包产品还有<code>terminus</code>和<code>educative</code>，这些东西就足以让我心动了。听他说，他只申请了两次就成功了，看上去很简单，于是我决定试一试。</p>
-<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>我从知乎上找到了一篇github申请学生包的教程，关掉了代理，复制了github520上的hosts。打开了申请链接，绑定了自己的学生邮箱，胡乱写了几句使用学生包的原因。接着github让我提供学籍证明材料，我把学信网的证明翻译成英文上传上去提交。</p>
-<p>过程行云流水，对不对？</p>
-<p>大概半分钟过后，我就收到了认证失败的邮件，说什么<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code></p>
-<p>于是我决定用手机拍一张学信网的证明，结果仍然失败，还是一模一样的理由。手机拍的照片怎么可能修改得了嘛，这机器审核也是绝了。但我又有什么办法呢，只能一遍一遍试啊，我尝试了人脸、学信网证明、学生证，拍照和上传文件的各种组合，一共16次，都是通通秒拒。我的耐心被用光了。</p>
-<p>于是我想知道究竟是yyx欧还是我运气拉胯，就找了我的室友进行申请，结果他两次就成功了。</p>
-<p>我按照室友的摆法摆好了<strong>录取通知书、学生证和校园卡</strong>，然后用手机拍照，再通过文件上传。这个时候github提示“与你同校的申请者提供了更可信的材料，请考虑更换自己的材料”，无法上传。后来得知，我无论上传什么图片，都会有这个提示——也就是我相当于再也上传不了了！</p>
-<p>没办法，我又开了一个小号继续申请，拍了好几次，上传了好几次，仍旧是秒回<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code>当时的我真的想重开——</p>
-<h1 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h1><p>我怒了，直接开始怼客服。我辛辛苦苦写了10分钟的ticket竟然无情的被机器人close了，以下是我的申诉：</p>
-<blockquote>
-<p>Application not approved (student)</p>
-<p>Description</p>
-<p>I’m a student from China and I use credit from <a href="https://support.github.com/ticket/personal/0/url">https://www.chsi.com.cn/</a> to prove my identity and get the student pack.<br>Unfortunately I’ve tried 8 times, the bot always returns <code>you uploaded is insufficient to demonstrate your current academic status</code> and asks me to upload <code>School issued photo ID with current enrollment date</code>. However my proof clearly shows my photo, school name and my admission time. I’ve tried several hours and I’m really confused.<br>This is a screen shot.<br>（学信网截图）<br>And this is a photo.<br>（手机拍的截图）<br>Could you please tell me the other reason besides repetitive <code>uploaded is insufficient</code> ?</p>
-</blockquote>
-<p>之后又补了一句<code>pls</code>来reopen ticket，这下终于没被关了。</p>
-<p>几天之后，我又加了一句：</p>
-<blockquote>
-<p>Now I’ve tried 16 times, providing materials including my face, school curriculum, student ID card and credit from . I believe that’s enough to prove my identity.</p>
-</blockquote>
-<p>就在7月7日，github终于有了回复：</p>
-<blockquote>
-<p>Hello,</p>
-<p>Thanks for contacting GitHub support.</p>
-<p>Please reapply using your school issued email address;</p>
-<p><a href="https://education.github.com/discount_requests/student_application">https://education.github.com/discount_requests/student_application</a></p>
-<p>If you can, let me know once that is done.</p>
-<p>Kind regards,<br> Topaz</p>
-</blockquote>
-<p>我按照它的链接点进去后，重新交了一遍带有<strong>录取通知书、学生证和校园卡</strong>的照片，大概过了两分钟，终于通过了。</p>
-<p><img src="/2022/07/06/anniversary/success.png"></p>
-<p>真的心累……</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先我尝试了一下<code>copilot</code>，对于OI的c++代码来说，除了平衡树、树剖、FFT、后缀数组等又臭又长的模板跟印象中相差很大，需要适应之外，基本上80%的代码都不用写了。java方面写后端香得不要不要的，基本上写一个注释，几行代码就出来了，都不带修改的。python写pwn的exp时有点妨碍思维（毕竟创造性的东西还是难以替代的）。</p>
-<p>然后手机上的<code>terminus</code>的UI挺好看，还自带code snippets，以后打算装在电脑上，可以跟Xshell说再见了。</p>
-<p>至于<code>educative</code>，我手贱点了6个月的免费试用。结果点开一看，大多数都是编程语言、前端开发与机器学习相关的课程，一时半会儿用不上，有点后悔。为了不暴殄天物，我把帐户共享给了高中同学，至少心里感觉没那么浪费……</p>
-<p>还有<code>azure</code>,<code>name.com</code>之类的，就等以后有需求再说吧。</p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Twenty-two——bewilderment</title>
-    <url>/2021/11/01/bewilderment.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p>This is my first time to write a post in English. There are three advantages.</p>
-<ul>
-<li><p>I can deliver my message to whom I really want to tell. </p>
-</li>
-<li><p>It’s a way to prepare for my CET4 exam.</p>
-</li>
-<li><p>Jumping between two input methods is annoying.</p>
-</li>
-</ul>
-<p>In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp; listening is nearly 15000), readers who have <strong>passed</strong> the CET4 exam might be enough to read the following text.</p>
-</blockquote>
-<p>Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I’m really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.</p>
-<span id="more"></span>
-<blockquote>
-<p>I hope that in future, I could have my own shining star in the galaxy of mathematics.</p>
-</blockquote>
-<p>To be a mathematician is a dream of my childhood. In fact, I truly have some talent in math. I started to learn math olympiad in grade 4 and spend a lot of time in it. Thus, I read less books than before and my Chinese grades dropped. Although the imbalance of grades exists, I still entered my middle school with the highest scholarship. In middle school, I met Mr. Li, a senior math teacher with wisdom and insight. His lively teaching way and systematic guidance rose my horizon, making me more interested in it. Unfortunately, for many untold reasons, I didn’t take part in any kind of formal math competitions. Instead, my poor Chinese was a pain in neck, which wasted a lot of time and energy.</p>
-<p>What made me back to reality and smashed my dream was the summer camp in cdqz. I could never find the reason why I could get the 1st place in dc summer camp while getting only 8 points here. I first found that involution has already started. The strength of olympiad in Chengdu is far more than my middle school. I wonder if I start my middle school life in Chengdu and the teacher prospects my talent, maybe there would be an another result. I also ask myself if I didn’t go to cdqz and instead followed Mr. Tan, a well-rounded coach in high school math olympiad who stuck to retaining me. Till now, I still cannot forget some words he has told me.</p>
-<blockquote>
-<p>The start of competition has relationship with your basis, whereas time pasts, when everyone has learnt what it needs, the discrepancy would be vanished. What’s more, you could even have a chance to catch up with others.</p>
-</blockquote>
-<p>So what exactly smashed my dream? My poor Chinese? Undeveloped education? Or the involution? I don’t know. But the unbalanced resources continued to confine me to go further in OI, so I AFOed quickly. Also, my fragmented knowledge in natural science (except math) made me painful in class and nearly No. 50 rank in almost every examinations. That’s one of my reasons I quitted high school in senior 2.      </p>
-<p>……</p>
-<p>It’s been nearly 2 months since I entered scu. The fresh of college life has gone. What takes place is the heavy workload, increased difficulty and higher standard of every professional courses. Someone may consider this is the feeling of “bewilderment”, cause many high school teachers may tell students that they will be liberated after entering college. But this is not the case, instead I got accustomed the college style quickly.</p>
-<p><strong>What makes me really confused is the unnecessary activities you have to take part in.</strong> There are already many time-consuming projects such as <em>8-second positive energy</em> from politics, drama play from English, brain-fucking experiments from Introduction to Computer Systems and so on. I didn’t join the students’ union to avoid meaningless tasks. However, more activities such as chorus competitions, welcoming parties which require quota on participants and actors are too annoying.</p>
-<p>For me, I need a lot of time to focus on a specific thing like working out math problems. I just want to sit in front of the computer and learn for a whole day with a break of sports. Too many tasks and activities can affect my efficiency of working. I complained this to my father, he told me that the university is a miniature of society, you need to get used to tackle many trivial matters like these, yet I think university is mainly a place for academic learning and I disagreed his opinion.     </p>
-<p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
-<p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
-<p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
     <title>二一——再见，鼠标</title>
     <url>/2021/10/24/1024.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>为了提高工作效率，以及出于对手腕健康的考虑（现在已经有一定程度的肿胀磨损）。在这个<strong>特殊的日子</strong>，我鼠标的最后一点电耗尽之际，我决心抛弃鼠标，将<strong>几乎</strong>所有的操作全部转移到键盘上。</p>
@@ -189,6 +105,52 @@
 ]]></content>
       <categories>
         <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>博客一周年祭</title>
+    <url>/2022/07/06/anniversary.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>其实是github学生包申请的经历。</p>
+<p><img src="/2022/07/06/anniversary/success.png"></p>
+<span id="more"></span>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近<code>colipot</code>内测结束开始收费了，广告甚至打到了github的首页上。从yyx方面得知，如果你通过了github学生认证，就可以白嫖每月10刀的<code>copilot</code>。除此之外，对于我来说有用的学生包产品还有<code>terminus</code>和<code>educative</code>，这些东西就足以让我心动了。听他说，他只申请了两次就成功了，看上去很简单，于是我决定试一试。</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>我从知乎上找到了一篇github申请学生包的教程，关掉了代理，复制了github520上的hosts。打开了申请链接，绑定了自己的学生邮箱，胡乱写了几句使用学生包的原因。接着github让我提供学籍证明材料，我把学信网的证明翻译成英文上传上去提交。</p>
+<p>过程行云流水，对不对？</p>
+<p>大概半分钟过后，我就收到了认证失败的邮件，说什么<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code></p>
+<p>于是我决定用手机拍一张学信网的证明，结果仍然失败，还是一模一样的理由。手机拍的照片怎么可能修改得了嘛，这机器审核也是绝了。但我又有什么办法呢，只能一遍一遍试啊，我尝试了人脸、学信网证明、学生证，拍照和上传文件的各种组合，一共16次，都是通通秒拒。我的耐心被用光了。</p>
+<p>于是我想知道究竟是yyx欧还是我运气拉胯，就找了我的室友进行申请，结果他两次就成功了。</p>
+<p>我按照室友的摆法摆好了<strong>录取通知书、学生证和校园卡</strong>，然后用手机拍照，再通过文件上传。这个时候github提示“与你同校的申请者提供了更可信的材料，请考虑更换自己的材料”，无法上传。后来得知，我无论上传什么图片，都会有这个提示——也就是我相当于再也上传不了了！</p>
+<p>没办法，我又开了一个小号继续申请，拍了好几次，上传了好几次，仍旧是秒回<code>The item you uploaded is insufficient to demonstrate your current academic status. Modifications to your photo proof might have been detected by the system. Please see suggestions.</code>当时的我真的想重开——</p>
+<h1 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h1><p>我怒了，直接开始怼客服。我辛辛苦苦写了10分钟的ticket竟然无情的被机器人close了，以下是我的申诉：</p>
+<blockquote>
+<p>Application not approved (student)</p>
+<p>Description</p>
+<p>I’m a student from China and I use credit from <a href="https://support.github.com/ticket/personal/0/url">https://www.chsi.com.cn/</a> to prove my identity and get the student pack.<br>Unfortunately I’ve tried 8 times, the bot always returns <code>you uploaded is insufficient to demonstrate your current academic status</code> and asks me to upload <code>School issued photo ID with current enrollment date</code>. However my proof clearly shows my photo, school name and my admission time. I’ve tried several hours and I’m really confused.<br>This is a screen shot.<br>（学信网截图）<br>And this is a photo.<br>（手机拍的截图）<br>Could you please tell me the other reason besides repetitive <code>uploaded is insufficient</code> ?</p>
+</blockquote>
+<p>之后又补了一句<code>pls</code>来reopen ticket，这下终于没被关了。</p>
+<p>几天之后，我又加了一句：</p>
+<blockquote>
+<p>Now I’ve tried 16 times, providing materials including my face, school curriculum, student ID card and credit from . I believe that’s enough to prove my identity.</p>
+</blockquote>
+<p>就在7月7日，github终于有了回复：</p>
+<blockquote>
+<p>Hello,</p>
+<p>Thanks for contacting GitHub support.</p>
+<p>Please reapply using your school issued email address;</p>
+<p><a href="https://education.github.com/discount_requests/student_application">https://education.github.com/discount_requests/student_application</a></p>
+<p>If you can, let me know once that is done.</p>
+<p>Kind regards,<br> Topaz</p>
+</blockquote>
+<p>我按照它的链接点进去后，重新交了一遍带有<strong>录取通知书、学生证和校园卡</strong>的照片，大概过了两分钟，终于通过了。</p>
+<p><img src="/2022/07/06/anniversary/success.png"></p>
+<p>真的心累……</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先我尝试了一下<code>copilot</code>，对于OI的c++代码来说，除了平衡树、树剖、FFT、后缀数组等又臭又长的模板跟印象中相差很大，需要适应之外，基本上80%的代码都不用写了。java方面写后端香得不要不要的，基本上写一个注释，几行代码就出来了，都不带修改的。python写pwn的exp时有点妨碍思维（毕竟创造性的东西还是难以替代的）。</p>
+<p>然后手机上的<code>terminus</code>的UI挺好看，还自带code snippets，以后打算装在电脑上，可以跟Xshell说再见了。</p>
+<p>至于<code>educative</code>，我手贱点了6个月的免费试用。结果点开一看，大多数都是编程语言、前端开发与机器学习相关的课程，一时半会儿用不上，有点后悔。为了不暴殄天物，我把帐户共享给了高中同学，至少心里感觉没那么浪费……</p>
+<p>还有<code>azure</code>,<code>name.com</code>之类的，就等以后有需求再说吧。</p>
+]]></content>
+      <categories>
+        <category>test</category>
       </categories>
   </entry>
   <entry>
@@ -326,6 +288,70 @@
       </tags>
   </entry>
   <entry>
+    <title>Twenty-two——bewilderment</title>
+    <url>/2021/11/01/bewilderment.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p>This is my first time to write a post in English. There are three advantages.</p>
+<ul>
+<li><p>I can deliver my message to whom I really want to tell. </p>
+</li>
+<li><p>It’s a way to prepare for my CET4 exam.</p>
+</li>
+<li><p>Jumping between two input methods is annoying.</p>
+</li>
+</ul>
+<p>In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp; listening is nearly 15000), readers who have <strong>passed</strong> the CET4 exam might be enough to read the following text.</p>
+</blockquote>
+<p>Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I’m really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.</p>
+<span id="more"></span>
+<blockquote>
+<p>I hope that in future, I could have my own shining star in the galaxy of mathematics.</p>
+</blockquote>
+<p>To be a mathematician is a dream of my childhood. In fact, I truly have some talent in math. I started to learn math olympiad in grade 4 and spend a lot of time in it. Thus, I read less books than before and my Chinese grades dropped. Although the imbalance of grades exists, I still entered my middle school with the highest scholarship. In middle school, I met Mr. Li, a senior math teacher with wisdom and insight. His lively teaching way and systematic guidance rose my horizon, making me more interested in it. Unfortunately, for many untold reasons, I didn’t take part in any kind of formal math competitions. Instead, my poor Chinese was a pain in neck, which wasted a lot of time and energy.</p>
+<p>What made me back to reality and smashed my dream was the summer camp in cdqz. I could never find the reason why I could get the 1st place in dc summer camp while getting only 8 points here. I first found that involution has already started. The strength of olympiad in Chengdu is far more than my middle school. I wonder if I start my middle school life in Chengdu and the teacher prospects my talent, maybe there would be an another result. I also ask myself if I didn’t go to cdqz and instead followed Mr. Tan, a well-rounded coach in high school math olympiad who stuck to retaining me. Till now, I still cannot forget some words he has told me.</p>
+<blockquote>
+<p>The start of competition has relationship with your basis, whereas time pasts, when everyone has learnt what it needs, the discrepancy would be vanished. What’s more, you could even have a chance to catch up with others.</p>
+</blockquote>
+<p>So what exactly smashed my dream? My poor Chinese? Undeveloped education? Or the involution? I don’t know. But the unbalanced resources continued to confine me to go further in OI, so I AFOed quickly. Also, my fragmented knowledge in natural science (except math) made me painful in class and nearly No. 50 rank in almost every examinations. That’s one of my reasons I quitted high school in senior 2.      </p>
+<p>……</p>
+<p>It’s been nearly 2 months since I entered scu. The fresh of college life has gone. What takes place is the heavy workload, increased difficulty and higher standard of every professional courses. Someone may consider this is the feeling of “bewilderment”, cause many high school teachers may tell students that they will be liberated after entering college. But this is not the case, instead I got accustomed the college style quickly.</p>
+<p><strong>What makes me really confused is the unnecessary activities you have to take part in.</strong> There are already many time-consuming projects such as <em>8-second positive energy</em> from politics, drama play from English, brain-fucking experiments from Introduction to Computer Systems and so on. I didn’t join the students’ union to avoid meaningless tasks. However, more activities such as chorus competitions, welcoming parties which require quota on participants and actors are too annoying.</p>
+<p>For me, I need a lot of time to focus on a specific thing like working out math problems. I just want to sit in front of the computer and learn for a whole day with a break of sports. Too many tasks and activities can affect my efficiency of working. I complained this to my father, he told me that the university is a miniature of society, you need to get used to tackle many trivial matters like these, yet I think university is mainly a place for academic learning and I disagreed his opinion.     </p>
+<p>So please cherish the last year of your senior high. It’s truly the purest time of your whole life.</p>
+<p><strong>Another thing is the distance between my dream and the reality.</strong> I’m very suitable for my current profession because I’m skilled in math, English and programming. Also, I’m satisfied with my current place and my family are proud of me. However, the path to my dream becomes more and more blurred and my avarice for money (I believe a high salary is waiting for me) prevents me from achieving it. Maybe in the rest of my life I could only daydream it, which makes me feel gloomy with a bit of melancholy.</p>
+<p>Lastly, I sincerely congratulate her and hope her could achieve the dream. After all, unlike olympiad which tests agility and cleverness, learning serious math requires very tough work, at least 10 times harder than my profession. I also hope myself could get out of the woods and reach a new altitude. At that time, maybe I will find the way to my dream again.</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Twenty-four——my summary of year 2021</title>
+    <url>/2021/12/30/bye2021.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
+<p><img src="/2021/12/30/bye2021/2021.png"></p>
+<span id="more"></span> 
+<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
+<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
+<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
+<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
+<blockquote>
+<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
+</blockquote>
+<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
+<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
+<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
+<blockquote>
+<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
+</blockquote>
+<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
+<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
     <title>twenty-five——bye, Baidu</title>
     <url>/2022/04/15/bye_baidu.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>My English presentation on 4/14/2022.</p>
@@ -361,32 +387,6 @@
 <p>It must be said that Baidu still has some advantages. Due to the lack of copyright awareness in Mainland China, you can still find lots of pirated software in Baidu. By the way, it’s also a good choice to look for pornography in Baidu.</p>
 <p>All in all, as college students, to save time and find more refined information, let’s say “goodbye” to Baidu and user other search engines together. Thanks for your listening!</p>
 <p><img src="/2022/04/15/bye_baidu/17.png"></p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Twenty-four——my summary of year 2021</title>
-    <url>/2021/12/30/bye2021.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
-<p><img src="/2021/12/30/bye2021/2021.png"></p>
-<span id="more"></span> 
-<p>The year of 2021 started with disappointment of AFO and frustration of failing in the monthly examination. I knew this was a crux of my life because there were only 5 months left before gaokao but I still had a bunch of things to master. My goal was to reach 600, and I had to prepare for OI, CTF for self-enrollment exam, attend classes and review those unfamiliar knowledge before simultaneously. It’s a very tough work, like walking in the darkness while looking for the correct path myself. The only joyful thing in my “senior 3” was playing table-tennis and taking photos in snowy days after the academic proficiency test ended.</p>
-<p>In winter vacation, to help go through courses I’ve learnt and forgotten in senior 1, I asked my parents to find “one to one” tutoring for my physics and chemistry. Surely I recovered what I learned before and I’ve got a lot of practical skills for exam, but more importantly, my physics tutor told me the prospect of computer science and asked me to work hard on it. I was motivated by him and put more attention to self-enrollment.</p>
-<p>By the end of March, my hard work in CTF has paid off and I succeeded in self-enrollment exam by scu. It’s the first and huge progress I’ve made this year. After the exam, my task became much simpler. I just need to focus on gaokao and got a high score instead.</p>
-<p>Time passed quickly and gaokao finally arrived in a glimpse. Although the difficulty of natural science has raised, I still got a fairly high score in math. However, I messed up in physics and chemistry, which made the overall score just a little more than 600. There were some classmates attending gaokao <strong>in senior 2 with me</strong> and the best score was about 670, but I don’t care. All in all, 605 is still a highlight for student who only takes classes for about one year. </p>
-<blockquote>
-<p>After gaokao, my mother told me that she was diagnosed with lung cancer when I was having a self-enrollment. But luckily, it was an early stage and can be cured by an operation. Also, she had an insurance and got paid a lot of money, which was far more than the fare of operation. Say, this was the unexpected fortune. What depressed my family was she indulged in <del>investment</del> lottery and took no notice of my advice of quitting. When she realized this was a fraud, she had lost all of the “unexpected fortune”.</p>
-</blockquote>
-<p>The life in summer vacation wasn’t as easy as I thought before. I had to learn calculus, linear algebra and got a driving license in only 2 months. I couldn’t imagine how I managed to handle these but I still worked them out. Also, I played <em>Mystery Lover</em> recommended by Hash and developed an interest in Touhou (although I don’t plan to play the game because it’s too time-consuming), yandere (like Yuno) and music games. These games, anime and music took me into another idealized world apart from the cruel reality. Say, another habitat for my heart.</p>
-<p>By the time I entered university, I firstly felt all the surroundings are fresh and we have plenty of time to what I want. Then I realized that self-control is impressively significant in campus life now, which can make you distinctive or degenerate. So I continued to learn with the strength of senior high. Then in a CTF competition nationwide, we ranked 4th in 24 participants, winning the glory of our university <del>and high school</del>.</p>
-<p>However in the mid-term exam, I didn’t do a very good job in calculus, just a little more than 60 again. Also, the freshness of campus life has vanished, I gradually found that there are many unnecessary tasks you have to do and boresome courses you have to take. That made me kind of annoyed. Sometimes I even doubted if the path I chose is my dream and lost in thought. </p>
-<blockquote>
-<p>To seek the meaning of my campus life and look for way to achieve my dream, I watched <em>CLANNAD</em> and also played the game. Although I didn’t find the answer to my current situation, I truly felt a different kind of warmth. I was moved by the grand redefinition of “FAMILY” and the growth and maturity of Okazaki couple. Till now, the plots and scenarios still reverberate in my heart.</p>
-</blockquote>
-<p>When the security project comes in late November and December, some classmates asked me questions about pointers, stack overflow and reverse engineering. So, I posted some blogs, trying to explain these knowledge in a friendly way. While teaching others, I also have a deeper understanding of these principle by manipulating over and over again. And step by step I’ve felt the charm of my major and I’m not as bewildered as before. So I’m starting to learn <em>CSAPP</em> and <em>encryption and decryption</em> on my own during spare time to enrich my academic ability.</p>
-<p>Hoping I will get good grades in calculus and linear algebra, and learn more practical skills in the next year 2022!  </p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -590,7 +590,7 @@
       </tags>
   </entry>
   <entry>
-    <title>ChatGPT 初探</title>
+    <title>二九——ChatGPT 初探</title>
     <url>/2022/12/12/chatgpt.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>感觉还不错，虽然并没有我想象得那么万能。</p>
 <p>注：保留原格式，不对输出格式进行修饰。</p>
@@ -685,7 +685,7 @@
 <blockquote>
 <p>算了，不让你算这些只有考研才会用到的东西。</p>
 </blockquote>
-<h2 id="how-my-subgroups-in-S-4"><a href="#how-my-subgroups-in-S-4" class="headerlink" title="how my subgroups in S_4"></a>how my subgroups in S_4</h2><p>The symmetric group on four elements, denoted S_4, is a group of permutations on four objects. This group has 24 elements, and any non-empty subset of a group is called a subgroup. Therefore, the number of subgroups of S_4 is 2^24, which is 16,777,216. However, this number includes the empty set and the group itself, so the actual number of subgroups of S_4 is 16,777,214.</p>
+<h2 id="how-many-subgroups-in-S-4"><a href="#how-many-subgroups-in-S-4" class="headerlink" title="how many subgroups in S_4"></a>how many subgroups in S_4</h2><p>The symmetric group on four elements, denoted S_4, is a group of permutations on four objects. This group has 24 elements, and any non-empty subset of a group is called a subgroup. Therefore, the number of subgroups of S_4 is 2^24, which is 16,777,216. However, this number includes the empty set and the group itself, so the actual number of subgroups of S_4 is 16,777,214.</p>
 <blockquote>
 <p>没让你算子集啊。</p>
 </blockquote>
@@ -749,42 +749,6 @@
 </ul>
 ]]></content>
       <categories>
-        <category>develop</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Twenty-three——review of CLANNAD (anime)</title>
-    <url>/2021/11/17/clannad.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Followed by my last English post “bewilderment”, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart. </p>
-<p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
-<p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>
-<span id="more"></span>
-<p><strong>The English meaning of word “clannad” is “family”</strong>, so all of these sentences have something to do with the significance of family and companion, which run through all scenarios of the story. </p>
-<p>(SPOILER WARNING!!!)</p>
-<p><strong>What makes you not degenerate is neither talent nor love, but the family, or someone who can control yourself. </strong></p>
-<p>Responsibility is one of the main topic CL wants to convey. It is also responsibility that makes Tomoya changed himself from a bad guy to a great father. For instance, before his encounter with Nagisa, he hated this town and treated everything meaningless. <strong>“Because of her, my life eventually filled with color again.”</strong> Therefore he determined to care her as long as he could. From a boy hating school, to a man with high EQ, and finally a wonderful father, the responsibility he took totally transformed himself. </p>
-<p>This is the same for Nagisa. Due to her poor health (a cold is like cancer for her while nothing for Yuno instead uh-huh), she was often absent. What’s more she was also introvert and few classmates noticed her. Therefore, she had almost no friends. The appearance of Tomoya encouraged her to be outgoing and to <strong>go and find whatever she wants</strong>. With Tomoya and his friends’ help, Nagisa rebuilt the drama club, performed her favorite drama story, and made her and her family’s dream come true.</p>
-<p><img src="/2021/11/17/clannad/392528.png"></p>
-<p>In CLANNAD ~AFTER STORY~ (short for CL-2 later), Nagisa passed away because of dystocia (difficult birth). Losing his beloved wife made Tomoya numb, he refused to raise his daughter Ushio, instead, he resorted to alcohol and cigarettes just for escaping from the unrecoverable wound, the intangible past. After 5 years, Ushio happened to have a trip with Tomoya. An unexpected talk with grandma aroused him as role of a father, which made him finally find out <strong>“the one and only precious thing worthwhile to be care for”</strong> asked by Nagisa. He knew what it means to be a father at last.  </p>
-<p>The “confinement” and unbelievable change of Tomoya and Nagisa can move everyone who watched CL by heart. Maybe it is just a kind of feeling —— growth, maturity and family.</p>
-<p><strong>The dream of kids is the dream of family, we didn’t give up our dreams, we just find a sustenance on your dream. That’s how parents do and how family do.</strong></p>
-<p>Dream is also an important main idea during the story. On the last night of school anniversary, Nagisa found that her parents gave up their dream to raise her up. She was so regretful and nervous that she sobbed in her drama program the next day. At the critical moment, her father rushed up to tell her don’t be self-criticized and on the contrary, stick to the drama show in hand, for this is the expectation of the whole family. I believe it is one of the most moving scene because it is awfully true in today’s world. Parents have sacrificed a lot for our growth, isn’t it?  </p>
-<p>The most controversial character is Tomoya’s father Naoyuki. He seems to be useless and hampered Tomoya’s life. As Tomoya’s closest relative, the plot didn’t uncover his background for a long time. That’s because only Tomoya himself also becomes a father can he experience the difficulty of his father. The situation of two fathers is just the same —— losing the most important half in their life. However, Naoyuki didn’t give up raising Tomoya, instead he always bought toys and snacks to bring up his son. When his son grew up, he has already lost money, job, opportunity —— everything. He was so painful that he only had a benevolent smile. In this way, Naoyuki is truly an honorable father.</p>
-<p><strong>There are something awful that happened in our lives, however the fine moments, when time passes, will be sent down and remain in your hand.</strong></p>
-<p>The last main topic of CL is happiness and love. The legend of the town is about the glowing ball. It only appears when someone feels happy and beloved and people who gain the shining thing could make their dream come true. To move a step closer, if the town has its own thoughts, it is people who love this town makes the town happy, and the town loves the people living in it. Therefore, the town realized Tomoya’s dream and the miracle happened. </p>
-<p>We all know that when seniors recall their whole lives, they remember their delighted moments clearly. This plot also tells us that only the happy things won’t be washed away by time. So don’t be blue when life beats you, please think that there are more possibilities in future and lots of uncovered happiness are waiting for us. Also, always be grateful and helpful to others, as one day they may help you realize your dream. </p>
-<p>By the way, how residents treat others expanded the definition of word “family”, and this is a symbol of Mo Theory —— to love others equally without distinction. However, this is kind of biased from our topic so I don’t want to expand it.</p>
-<p>In general, CL has brought me the inner strength that I lacked in the past. I finally know how much my family love me and they’re always cheering me up. However, it doesn’t tell me how to find my way, it just motivates me to <strong>follow my own heart</strong>. I wonder if I would have some new feelings after several years to watch CL again. I’m looking forward to that day comes.</p>
-<p><img src="/2021/11/17/clannad/R.jpg"></p>
-<blockquote>
-<p>PS: </p>
-<ul>
-<li>only 30% of bilibili users have watched the true ending (Tomoya tells Ushio about his life). That’s kind of disappointing. </li>
-<li>To practice my listening skills and get more details, I’m watching CL English dubbed version for a second time.</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
         <category>随笔</category>
       </categories>
   </entry>
@@ -840,6 +804,42 @@
         <tag>web</tag>
         <tag>pwn</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Twenty-three——review of CLANNAD (anime)</title>
+    <url>/2021/11/17/clannad.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Followed by my last English post “bewilderment”, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart. </p>
+<p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
+<p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>
+<span id="more"></span>
+<p><strong>The English meaning of word “clannad” is “family”</strong>, so all of these sentences have something to do with the significance of family and companion, which run through all scenarios of the story. </p>
+<p>(SPOILER WARNING!!!)</p>
+<p><strong>What makes you not degenerate is neither talent nor love, but the family, or someone who can control yourself. </strong></p>
+<p>Responsibility is one of the main topic CL wants to convey. It is also responsibility that makes Tomoya changed himself from a bad guy to a great father. For instance, before his encounter with Nagisa, he hated this town and treated everything meaningless. <strong>“Because of her, my life eventually filled with color again.”</strong> Therefore he determined to care her as long as he could. From a boy hating school, to a man with high EQ, and finally a wonderful father, the responsibility he took totally transformed himself. </p>
+<p>This is the same for Nagisa. Due to her poor health (a cold is like cancer for her while nothing for Yuno instead uh-huh), she was often absent. What’s more she was also introvert and few classmates noticed her. Therefore, she had almost no friends. The appearance of Tomoya encouraged her to be outgoing and to <strong>go and find whatever she wants</strong>. With Tomoya and his friends’ help, Nagisa rebuilt the drama club, performed her favorite drama story, and made her and her family’s dream come true.</p>
+<p><img src="/2021/11/17/clannad/392528.png"></p>
+<p>In CLANNAD ~AFTER STORY~ (short for CL-2 later), Nagisa passed away because of dystocia (difficult birth). Losing his beloved wife made Tomoya numb, he refused to raise his daughter Ushio, instead, he resorted to alcohol and cigarettes just for escaping from the unrecoverable wound, the intangible past. After 5 years, Ushio happened to have a trip with Tomoya. An unexpected talk with grandma aroused him as role of a father, which made him finally find out <strong>“the one and only precious thing worthwhile to be care for”</strong> asked by Nagisa. He knew what it means to be a father at last.  </p>
+<p>The “confinement” and unbelievable change of Tomoya and Nagisa can move everyone who watched CL by heart. Maybe it is just a kind of feeling —— growth, maturity and family.</p>
+<p><strong>The dream of kids is the dream of family, we didn’t give up our dreams, we just find a sustenance on your dream. That’s how parents do and how family do.</strong></p>
+<p>Dream is also an important main idea during the story. On the last night of school anniversary, Nagisa found that her parents gave up their dream to raise her up. She was so regretful and nervous that she sobbed in her drama program the next day. At the critical moment, her father rushed up to tell her don’t be self-criticized and on the contrary, stick to the drama show in hand, for this is the expectation of the whole family. I believe it is one of the most moving scene because it is awfully true in today’s world. Parents have sacrificed a lot for our growth, isn’t it?  </p>
+<p>The most controversial character is Tomoya’s father Naoyuki. He seems to be useless and hampered Tomoya’s life. As Tomoya’s closest relative, the plot didn’t uncover his background for a long time. That’s because only Tomoya himself also becomes a father can he experience the difficulty of his father. The situation of two fathers is just the same —— losing the most important half in their life. However, Naoyuki didn’t give up raising Tomoya, instead he always bought toys and snacks to bring up his son. When his son grew up, he has already lost money, job, opportunity —— everything. He was so painful that he only had a benevolent smile. In this way, Naoyuki is truly an honorable father.</p>
+<p><strong>There are something awful that happened in our lives, however the fine moments, when time passes, will be sent down and remain in your hand.</strong></p>
+<p>The last main topic of CL is happiness and love. The legend of the town is about the glowing ball. It only appears when someone feels happy and beloved and people who gain the shining thing could make their dream come true. To move a step closer, if the town has its own thoughts, it is people who love this town makes the town happy, and the town loves the people living in it. Therefore, the town realized Tomoya’s dream and the miracle happened. </p>
+<p>We all know that when seniors recall their whole lives, they remember their delighted moments clearly. This plot also tells us that only the happy things won’t be washed away by time. So don’t be blue when life beats you, please think that there are more possibilities in future and lots of uncovered happiness are waiting for us. Also, always be grateful and helpful to others, as one day they may help you realize your dream. </p>
+<p>By the way, how residents treat others expanded the definition of word “family”, and this is a symbol of Mo Theory —— to love others equally without distinction. However, this is kind of biased from our topic so I don’t want to expand it.</p>
+<p>In general, CL has brought me the inner strength that I lacked in the past. I finally know how much my family love me and they’re always cheering me up. However, it doesn’t tell me how to find my way, it just motivates me to <strong>follow my own heart</strong>. I wonder if I would have some new feelings after several years to watch CL again. I’m looking forward to that day comes.</p>
+<p><img src="/2021/11/17/clannad/R.jpg"></p>
+<blockquote>
+<p>PS: </p>
+<ul>
+<li>only 30% of bilibili users have watched the true ending (Tomoya tells Ushio about his life). That’s kind of disappointing. </li>
+<li>To practice my listening skills and get more details, I’m watching CL English dubbed version for a second time.</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
   </entry>
   <entry>
     <title>（近期不更新）csapp学习笔记</title>
@@ -1105,6 +1105,21 @@
       </tags>
   </entry>
   <entry>
+    <title>（转载）我家跨上了“信息高速路”</title>
+    <url>/2022/06/24/cxxxt.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p>原文来源：知乎</p>
+<p>原文地址：<a href="https://www.zhihu.com/question/538640614/answer/2539426890">https://www.zhihu.com/question/538640614/answer/2539426890</a></p>
+</blockquote>
+<span id="more"></span>
+<p>“太好辣！太好辣！”听妈妈说，我的学习通信息被泄露出去辣，爷一知半解地欢呼起来。学习通信息泄露这个新鲜玩应儿到底是个什么勾八呢？　　<br>爸爸告诉爷：“呐，学习通它就像一个遍布全国高校的巨大臭水沟，把每一个人的身份信息都收集到一起，在学习通里，你要设置密码，要位置信息，要手机号码，要实名认证，要人脸识别，要你的许多敏感信息捏！”　　<br>学习通这个勾吧玩应真他酿的有这么残暴？我带着好奇心，迫不及待地命令妈妈打开电脑/手机，进入了学习通。　　<br>不一会儿，“学习是一种信仰”的文字就出现在手机屏幕上。我目不转睛地盯着屏幕，哇！我定睛一看！签到，作业，考试等等这些爷早就认识的贵物都晦气地看着我，还伴随着网络做出各种nt动作。“真滴神辣！”爷不由得赞叹起来。　　<br>妈妈带我访问了许多课程，里面的内容非常丰富，有高等数学，有线性代数，有复变函数，有概率论，有马思毛，有工程力学，有工程制图，有各种讨论小组，有收不完的消息，有签到和作业提醒，还有一辈子也用不到的啥软知识。真他酿滴事应有尽有。我感到地球一下子变小力，臭水沟的排水渠一下子炸开力。妈妈又教我身份认证。我试着人认真了真名，并给绑定了手机号，还有我的位置和学校。　　<br>爸爸看着我，羡慕地说：“害害害！你们这一代真是大幸福辣。我们小时候哪有啥寄吧学习通，上课签到只能点名，考试不用开摄像头，现在可方便多了，仅仅几秒钟，就可以把你的所有信息都收集了，以后诈骗电话天天打，盗取信息去乱搞，在网络上裸奔，直接就把那你们这些啥卵大学生整破防辣！而且那么方便。科学技术发展得多么滴快呀！”　　<br>妈妈说：“差不多得了，你是对的，在学习通上买信息还能节省成本，保护地球呢嘻嘻～不会吧不会吧，不会现在还有人不喜欢学习通叭？”我恋恋不舍地下了网，愣愣地看着爸爸妈妈，心思还在那什奇的臭水沟世界里呢！　　<br>爸爸说：“就这就这就这就这就这？今天用到的，只是学习通功能的一部分，学习通的用处还有很多很多很多很多很多呐！”我听了，更加喜欢超星学习通这个新玩应辣！</p>
+<p><img src="/2022/06/24/cxxxt/123.jpg" style="zoom:50%;"></p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
     <title>强网杯线下公费游记</title>
     <url>/2021/10/17/ctf03.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>发现一个有趣的现象，线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。</p>
@@ -1173,21 +1188,6 @@
         <tag>misc</tag>
         <tag>pwn</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>（转载）我家跨上了“信息高速路”</title>
-    <url>/2022/06/24/cxxxt.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p>原文来源：知乎</p>
-<p>原文地址：<a href="https://www.zhihu.com/question/538640614/answer/2539426890">https://www.zhihu.com/question/538640614/answer/2539426890</a></p>
-</blockquote>
-<span id="more"></span>
-<p>“太好辣！太好辣！”听妈妈说，我的学习通信息被泄露出去辣，爷一知半解地欢呼起来。学习通信息泄露这个新鲜玩应儿到底是个什么勾八呢？　　<br>爸爸告诉爷：“呐，学习通它就像一个遍布全国高校的巨大臭水沟，把每一个人的身份信息都收集到一起，在学习通里，你要设置密码，要位置信息，要手机号码，要实名认证，要人脸识别，要你的许多敏感信息捏！”　　<br>学习通这个勾吧玩应真他酿的有这么残暴？我带着好奇心，迫不及待地命令妈妈打开电脑/手机，进入了学习通。　　<br>不一会儿，“学习是一种信仰”的文字就出现在手机屏幕上。我目不转睛地盯着屏幕，哇！我定睛一看！签到，作业，考试等等这些爷早就认识的贵物都晦气地看着我，还伴随着网络做出各种nt动作。“真滴神辣！”爷不由得赞叹起来。　　<br>妈妈带我访问了许多课程，里面的内容非常丰富，有高等数学，有线性代数，有复变函数，有概率论，有马思毛，有工程力学，有工程制图，有各种讨论小组，有收不完的消息，有签到和作业提醒，还有一辈子也用不到的啥软知识。真他酿滴事应有尽有。我感到地球一下子变小力，臭水沟的排水渠一下子炸开力。妈妈又教我身份认证。我试着人认真了真名，并给绑定了手机号，还有我的位置和学校。　　<br>爸爸看着我，羡慕地说：“害害害！你们这一代真是大幸福辣。我们小时候哪有啥寄吧学习通，上课签到只能点名，考试不用开摄像头，现在可方便多了，仅仅几秒钟，就可以把你的所有信息都收集了，以后诈骗电话天天打，盗取信息去乱搞，在网络上裸奔，直接就把那你们这些啥卵大学生整破防辣！而且那么方便。科学技术发展得多么滴快呀！”　　<br>妈妈说：“差不多得了，你是对的，在学习通上买信息还能节省成本，保护地球呢嘻嘻～不会吧不会吧，不会现在还有人不喜欢学习通叭？”我恋恋不舍地下了网，愣愣地看着爸爸妈妈，心思还在那什奇的臭水沟世界里呢！　　<br>爸爸说：“就这就这就这就这就这？今天用到的，只是学习通功能的一部分，学习通的用处还有很多很多很多很多很多呐！”我听了，更加喜欢超星学习通这个新玩应辣！</p>
-<p><img src="/2022/06/24/cxxxt/123.jpg" style="zoom:50%;"></p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
   </entry>
   <entry>
     <title>数据库学习笔记</title>
@@ -1790,6 +1790,105 @@
       <tags>
         <tag>python</tag>
         <tag>crypto</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web项目之nazo game for web</title>
+    <url>/2022/12/24/nazo_game_for_web.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>web项目报告的截取，时机合适时开源。</p>
+<p>为了保证安全性，在2022年12月23日，我将<code>babyweb.py</code>重新用docker部署，替换了原来的nginx服务器。</p>
+<span id="more"></span>
+<h1 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h1><p>本项目是一个简单的网页解谜游戏，玩家通过阅读关卡的要求，得出相应的答案并输入到网址，跳转到下一关。如果通过了所有的关卡，就会跳转到成功的页面。选择这个项目的原因是：</p>
+<p><strong>1、</strong>     <strong>作为个人主页的一个重要组成部分。</strong></p>
+<p><strong>2、</strong>     <strong>让玩家在解谜的同时复习本学期web知识。</strong></p>
+<p><strong>3、</strong>     <strong>体验从构思题目、设计前端、开发后端、部署到服务器与维护的全过程。</strong></p>
+<p><strong>4、</strong>     <strong>做一个从零开始，100%手写的项目。</strong></p>
+<h1 id="系统分析"><a href="#系统分析" class="headerlink" title="系统分析"></a>系统分析</h1><h2 id="业务分析"><a href="#业务分析" class="headerlink" title="业务分析"></a>业务分析</h2><p>前端：使用了bootstrap框架，在第10关使用了jQuery与ajax用于提交用户的输入。</p>
+<p>后端：网页的路由和第8关的post请求后端用node.js的express框架写成，第10关的后端是flask，用mysql储存路由数据。</p>
+<p>部署：将源码同步到github，使用vercel进行部署与反代，在服务器本地使用nginx进行反代。</p>
+<h2 id="业务流程"><a href="#业务流程" class="headerlink" title="业务流程"></a>业务流程</h2><h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><p><img src="/2022/12/24/nazo_game_for_web/1.png"></p>
+<h3 id="后端及部署"><a href="#后端及部署" class="headerlink" title="后端及部署"></a>后端及部署</h3><p><img src="/2022/12/24/nazo_game_for_web/2.png"></p>
+<blockquote>
+<p>现在nginx应该换成docker</p>
+</blockquote>
+<h2 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h2><h3 id="总体设计"><a href="#总体设计" class="headerlink" title="总体设计"></a>总体设计</h3><p>项目的主题是一个需要web知识的闯关游戏，搭建在自己服务器上，并使用bootstrap,jQuery,ajax,flask,node.js,mysql,nginx,vercel等技术。</p>
+<h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><p><img src="/2022/12/24/nazo_game_for_web/3.png"></p>
+<h3 id="输入-输出设计"><a href="#输入-输出设计" class="headerlink" title="输入/输出设计"></a>输入/输出设计</h3><p>1-7关与9关将答案填写到网址，在第8关会使用post请求，在第10关会与shell进行交互。</p>
+<h3 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h3><p><img src="/2022/12/24/nazo_game_for_web/4.png"></p>
+<p>游戏分为三个部分，首先是欢迎界面，给出游戏规则与游戏简介；然后是游戏界面，有1到10关的内容和错误内容；最后是成功界面，给出成功提示语与关于信息。</p>
+<h1 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h1><h2 id="个人主页模块——junyu33-me"><a href="#个人主页模块——junyu33-me" class="headerlink" title="个人主页模块——junyu33.me"></a>个人主页模块——junyu33.me</h2><p>静态网页，纯html+css实现：</p>
+<p>用bootstrap把中间1/2的区域留出来填写内容。高度为90vh时将内容沿高度居中正好合适。上半部分写标题，中间图片用下boder-radius: 50%属性。然后<code>&lt;hr&gt;</code>分割，下半部分用bootstrap按钮写4个href子域名即可。</p>
+<h2 id="解谜游戏模块——nazo-junyu33-me"><a href="#解谜游戏模块——nazo-junyu33-me" class="headerlink" title="解谜游戏模块——nazo.junyu33.me"></a>解谜游戏模块——nazo.junyu33.me</h2><blockquote>
+<p>以下内容涉及部分思路解析，请谨慎观看！！</p>
+</blockquote>
+<p>Nazo game的含义是通过解决页面上的一个问题，将答案输入到域名后面来跳转到下一关，当完成了作者所有的关卡后可以访问到一个恭喜通关的页面。</p>
+<p>完整的前后端结合项目，也是本课程设计的主体，运用了html，css，javascript，bootstrap，jQuery，ajax，node.js，flask，nginx，mysql等技术。</p>
+<h3 id="欢迎界面"><a href="#欢迎界面" class="headerlink" title="欢迎界面"></a>欢迎界面</h3><p>主要介绍游戏规则，页面布局与个人主页面差不多，bootstrap写的button用路由实现到第一关的链接。</p>
+<h3 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h3><p>简单考察html5的历史与玩家的Google能力，没有什么特殊的地方。这里采用了bootstrap中的card元素用于区分关卡名与内容。之后的问题都将按照这个为模板创建。</p>
+<h3 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h3><p>对玩家基本html5关键字的考察。这里使用了bootstrap中的list元素表示提供的四个选项，使用了code元素来展示行间代码。</p>
+<h3 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h3><p>简单地考察了玩家对css内容的了解，需要查看css源代码以获得使用的字体。</p>
+<h3 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h3><p>考察对css hex RGB的理解<del>以及肉眼分辨颜色的能力</del>，可以使用开发者工具中的取色器来完成本题。这里采用了JavaScript弹窗的方式给出相应的提示。</p>
+<h3 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h3><p>考察玩家对css定位的理解，仍旧采用了4选1的形式，没有什么特殊的地方。 </p>
+<h3 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h3><p>考察用户的javascript数据类型的理解。为了限制可能的答案，题干规定了开头的字符（同时为了降低难度，也提示了字符长度<del>方便爆破</del>）。</p>
+<p>这里的答案有三个，通过将答案储存到数据库，规避了url编码带来的答案不一致的问题，使得多个路由指向一个文件得以实现。</p>
+<h3 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h3><p>考察javascript的语法糖<code>reduce</code>与bootstrap的响应式图片功能。正确的解法是暴力循环求解。</p>
+<h3 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h3><p>考察对基本后端操作的理解。首先，这4门语言肯定是都可以做后端的，于是把这四个选项输进去肯定都不对。查看网页源代码后发现给了一句注释，要求post其中一个选项。可以使用curl、hackbar、postman乃至burpsuite达成目的。</p>
+<h3 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h3><p>考察玩家对web技术的了解以及信息搜集的能力。首先查看网页源码发现每个页面都使用了bootstrap5，进一步查看bootstrap5的css发现有大量flex的字样，由此C项即可排除。</p>
+<p>同时，查看第八关答案的源代码，可以看到有一句注释<code>my_server: node.js</code>。由此B项即可排除。</p>
+<p>由于response header的server是vercel，并且ping的结果也是vercel的ip地址，由此可以判断网站使用了反代技术，D项排除。</p>
+<h3 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h3><p>考察玩家基础的渗透测试能力，如果没有公网ip应该会比较麻烦。（具体过程在flask后端部分）</p>
+<p>这里的输入框使用了ajax与jQuery技术，将用户的命令与域名结合起来形成一个GET请求发送到服务器，并用alert函数接受服务器的范围内容。</p>
+<h3 id="答案错误页面"><a href="#答案错误页面" class="headerlink" title="答案错误页面"></a>答案错误页面</h3><p>若答案不在数据库的RUOTE字段之中，后端就会在header中写404并返回<code>err.html</code></p>
+<h3 id="通关页面"><a href="#通关页面" class="headerlink" title="通关页面"></a>通关页面</h3><p>若答案不在数据库的RUOTE字段之中，后端就会在header中写404并返回err.html</p>
+<h3 id="node-js后端"><a href="#node-js后端" class="headerlink" title="node.js后端"></a>node.js后端</h3><p>采用express框架编写，将用户的输入路由通过中间件<code>body-parser</code>取出，通过连接到储存路由及对应文件的数据库来判断用户的输入是否为正确答案。如果在，就取出对应的html并写入到res，否则在header中写入404并返回<code>err.html</code>。对于第八关的post请求则专门用一个路由来处理。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; readFileSync &#125; = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">&quot;url&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">&#x27;body-parser&#x27;</span>);</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">bodyParser</span>());</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mysql      = <span class="built_in">require</span>(<span class="string">&#x27;mysql&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> connection = mysql.<span class="title function_">createConnection</span>(&#123;</span><br><span class="line">  host     : <span class="string">&#x27;47.114.45.27&#x27;</span>,</span><br><span class="line">  user     : <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">  password : <span class="string">&#x27;******&#x27;</span>,</span><br><span class="line">  database : <span class="string">&#x27;nazo_answer&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">connection.<span class="title function_">connect</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/31337&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">   <span class="keyword">if</span> ( req.<span class="property">body</span>.<span class="property">Go</span> != <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">&quot;./answer.html&quot;</span>);</span><br><span class="line">      res.<span class="title function_">end</span>(data);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">&quot;./level8.html&quot;</span>);</span><br><span class="line">      res.<span class="title function_">end</span>(data);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;*&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> route = req.<span class="property">params</span>[<span class="number">0</span>];</span><br><span class="line">   connection.<span class="title function_">query</span>(<span class="string">&#x27;SELECT `PATH` FROM `ANSWER` WHERE `ROUTE` = &quot;&#x27;</span> + route + <span class="string">&#x27;&quot;&#x27;</span>, <span class="keyword">function</span> (<span class="params">error, results, fields</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (error) <span class="keyword">throw</span> error;</span><br><span class="line">      <span class="keyword">if</span> (results.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">&quot;./&quot;</span> + results[<span class="number">0</span>].<span class="property">PATH</span>);</span><br><span class="line">         res.<span class="title function_">end</span>(data);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         res.<span class="title function_">writeHead</span>(<span class="number">404</span>, &#123;<span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/html&#x27;</span>&#125;)</span><br><span class="line">         <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">&quot;./err.html&quot;</span>);</span><br><span class="line">         res.<span class="title function_">end</span>(data);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="string">&quot;80&quot;</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;serv running on http://127.0.0.1:80&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="flask后端"><a href="#flask后端" class="headerlink" title="flask后端"></a>flask后端</h3><p>这里演示了一个ssrf vuln的应用，首先查看源码可以发现用户的输入没有过滤，因此可以构造特定的字符串拿到服务器的shell。然后可以发现date命令的特性会导致shell输出会过滤长度小于3的字母和数字，因此通过cat命令不能得到key。即使尝试转换成base64等其它编码并结合head、tail命令也很难拼凑出完整的编码串。</p>
+<p>与此同时，shell的用户不是root，没有足够的权限来修改html文件，因此将key追加到html后面也不可行。</p>
+<blockquote>
+<p>现在放docker了，html根本不在docker里面，这个方法彻底失效。</p>
+</blockquote>
+<p>可行的方式之一是反弹shell到公网ip（一般需要有自己的服务器），具体的过程这里就省略了。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line"><span class="keyword">import</span> tempfile</span><br><span class="line"><span class="keyword">import</span> contextlib</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, session, redirect</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"></span><br><span class="line">level = <span class="number">10</span></span><br><span class="line">challenge_host = <span class="string">&quot;localhost&quot;</span></span><br><span class="line">hacker_host = <span class="string">&quot;localhost&quot;</span></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">level10</span>():</span><br><span class="line">    timezone = request.args.get(<span class="string">&quot;timezone&quot;</span>, <span class="string">&quot;UTC&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> subprocess.check_output(<span class="string">f&quot;TZ=<span class="subst">&#123;timezone&#125;</span> date&quot;</span>, shell=<span class="literal">True</span>, encoding=<span class="string">&quot;latin&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>, methods=[<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&lt;path:path&gt;&quot;</span>, methods=[<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">catch_all</span>(<span class="params">path=<span class="string">&quot;&quot;</span></span>):</span><br><span class="line">    challenge = <span class="built_in">globals</span>()[<span class="string">f&quot;level<span class="subst">&#123;level&#125;</span>&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> challenge()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">challenge</span>():</span><br><span class="line">    app.run(challenge_host, <span class="number">8080</span>)</span><br><span class="line"></span><br><span class="line">challenge()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="部署到服务器并实现域名与https"><a href="#部署到服务器并实现域名与https" class="headerlink" title="部署到服务器并实现域名与https"></a>部署到服务器并实现域名与https</h2><p>首先将代码上传到GitHub的私有仓库，在服务器pull下来，对于nodejs后端，由于先前执行了npm install xxx –save命令，服务器端只需npm install即可。而python后端也只需要安装flask flask-cors。最后使用sudo chmod对所有文件设为只读权限防止将key写入html，由于Python flask后端启动不需要 root权限，这样不会影响之后玩家的游戏体验。</p>
+<p>域名的部署与https相对比较困难。由于我的域名是凭github学生包在namecheap上免费获得的（一年），没有对域名进行备案，因此不能通过直接把dns的A记录映射到服务器的IP。这里只能使用反代的方式解决这个问题。</p>
+<p>反代的方式有两种，其一是nginx，但nginx需要有一个中间服务器，中间服务器必须备过案或者在国外（然而这就成了一个套娃的问题，因此不可行）；其二是通过第三方服务进行反代（比如说vercel），具体步骤如下：</p>
+<ol>
+<li><p>在本地使用npm安装vercel的客户端并登录。</p>
+</li>
+<li><p>编写反代的nazo.json文件：</p>
+</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;routes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span><span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/(.*)&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dest&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://&lt;server ip&gt;&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>vercel -A nazo.json –prod</li>
+</ol>
+<p>通过这样的方式就可以实现免备案访问在境内服务器搭建的网站，缺点是由于国内会对vercel的dns进行污染，访问速度是肯定不如国内网站的。</p>
+<p><del>为了保险起见，最后我还是在自己的服务器中搭建了一个nginx服务器，反代了一下flask的端口。</del></p>
+<p>至于子域名的添加方面，vercel允许你给自己的前端添加一个顶级域名下自定义的子域名，甚至还会给你分配一个免费的ssl证书以升级为https。我本身是想用nginx+certbot+crontab来申请ssl证书并定期更新的，vercel的操作实在是太贴心了。</p>
+<h2 id="docker环境的配置"><a href="#docker环境的配置" class="headerlink" title="docker环境的配置"></a>docker环境的配置</h2><p>学校正课上完之后，我便有了时间进一步优化我的项目。在copilot的帮助下，我成功编写了第一个dockerfile：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python with flask and flask-cors</span></span><br><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.10</span>.<span class="number">7</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install flask flask-cors</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./babyweb.py /</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./key /</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">5000</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;python&quot;</span>, <span class="string">&quot;babyweb.py&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>然而这个dockerfile在windows端的docker下运行失败，错误跟路径有关。或许是docker下载了windows的python环境？</p>
+<p>出于方便，我在ubuntu环境下重新运行了这个命令，不仅运行成功了，而且导出的镜像大小从5个G缩减到了900M，linux确实香啊。</p>
+<p>最后在服务器端启动了容器，进行了exp的测试，没有问题后把反代的json换了个端口，vercel部署了一下，就把原来的端口销毁了。</p>
+<h1 id="课程设计心得体会"><a href="#课程设计心得体会" class="headerlink" title="课程设计心得体会"></a>课程设计心得体会</h1><p>作为一个从零开始，100%手写的项目，走完一套从构思、前端、后端到部署和维护的过程还是颇费周折的。尤其是部署部分，开始我想把flask后端与node.js后端放在一个域名的不同端口，花费了一两天的时间都因为跨域与https的问题而毫无进展。不得已我只好将两个服务拆成两个域名，随着时间的推移，加在网站上的技术也越来越多。从先前简单的bootstrap+nodejs+本地服务器，到现在的bootstrap+express+flask+nginx+mysql+全站https+服务器权限管理，可以见得web开发是一个精心打磨的过程。希望游玩nazo game的同学能够玩得开心，巩固自己学到的web知识。</p>
+<h1 id="项目完善说明"><a href="#项目完善说明" class="headerlink" title="项目完善说明"></a>项目完善说明</h1><ol>
+<li><p><del>没有将服务部署到docker，移植困难且带有一定的安全隐患。</del></p>
+</li>
+<li><p>没有设计cookie，用于防止跳关和记录答错的次数。</p>
+</li>
+<li><p>国内访问速度较慢。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>develop</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>python</tag>
+        <tag>web</tag>
+        <tag>javascript</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2679,28 +2778,6 @@
       </categories>
   </entry>
   <entry>
-    <title>十九——热爱杀105个人的你</title>
-    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="00edfb9e668526bb87043430ce224abfdc80b0d9f9b6c95221e12d9872b383b7">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad0a46181665f3a561a83ff3aa8234311f4017c044a496f25f56485a75332b1048c9412e0a6f1c0df0964a0d35c73cce753d617f76024efd3bfa4b05c889da81d9b965008415d6a819cbbbcefc9e464dd9f0d28a51152f7c05a54d0a8ea6653bfe490ba0c2491a307010940297b5d911a069665ca3d568dba9153877ec40bfd0764ab15ff2d5701066afb9f7063009f4610138b6b055e268428af773398d1d2c03bcd3849554324a95ce4096a998bea71932f96b0a629ae8bcf9853ffde23392b8e9021fd3c7ea939c05547077fd92e3b97460c2160a0fa9ead9aa0e6a7b7e4c151191ed80b8587555307919246a7e9f137dfa4db4311bcba64a9480c7ad409cfa435fe88b5afcb8c51415952671e49c04025195dcedbbd8445b38d8801e4c67946634e42c95c20899386155d0c62cdc74afd04b96be91c1519d893dced0ee421f86c40d14625faa9daaf690814e183cce8958de77443aac4ad52c552f48afae9c7bfd1764c116809f750e542eb89c60a2228ffacf834068c299f86d8dd2e3fd51d5a487cf0706526d81033a48e712cab5fdda79e395c1fa81f19a988ee2b966d1732715e15d96012587ae6417ee72d760c850192f8241192b05eda871743bebfbc7a1a0d25f4f5f6a8d952a91344fdff442ebff524cf13b89697c035fe002c2788ec1b7eb61169e63742c261f05eb3b4050c21b4bf34809b1e96b292f672d4cd3198a276d0d81e782fe4221245c734198d848d2984aa9b7a310bcfb4aca7c1084188af47d8efbcdb33c16a9278a2795275816f15da49c873424bb4fd2892d0e756094dbb00df729a8adb7483c832f27d0f4a84c76d2e7721ec0e1437826df40850ab928eea0492d69d048afa6358a6457c1376e39bd7c7b1247555f778afc030730cfcd816a58748f5e2c0b4e8bd8f1ce135af66abfea8bd6e1f5f3827d55b442dc9a7c58d68080ce7a12e3d2c36d488ff645f4ca4fd6de8afe8a562f70c03b097e63134cf81ec8814a29f51765bff8be523d02e57c55834e6c628afe521ef0bdc9f4cc5c2617d70ef092c913e1dd7700f5898c5cb78a8a309200d87b6c0ca1129671ff666e0c27a6af86040dd9dbe1c66065a909a5707654c1358c6e6232e83f867232d65825794e566309719b4d3a64ee040e884d8ef8afa380e305e2ec828e4f6e7d1dd09a86f534edac5a86060abf820de9ec8ebfa2152fd63e348266569842456060c94ae90dae7e75dc94cb4622c6056892c645367218d2232caa2b3fd99918d2b6f3b9b963acdc78657bf8bb38ce94ef383b60b207f2d3075b152daeb0ddd1020845251a02ef61fc21c71bbdc816adf8da39458850923428da85be819ac524b555b57506b7d3c4ad0b337da2dea1ae5dd42050cf9ab6b907f9b4d8f3c548b373aafb0475da40ee88e803530116de72b38167edcfaa915f67c95d43b8800910889acfc50440218fe1dbf54b9ecebe82d4a18d15e3dc3183ec4efc6e9e9f9470ae555f75fb7d9dbe4225f71ecde89799898e516b0e144b9ac1d346cf683f673b67f8fa6d9e2475e11f61505e5be011e7a56df407ae3b7c3f5c97b3ec8627b6cc10edbf27c720838b8755d2a9449329c1aec5bc00d3c6b602023b6e32efc6f894732db45aafe68acfabf3dfdb5c771a1fc5085cb680cc8806072300d78010909b8f434e86f6bc66fd18894265806a92576c23b71e71eb18765d136e52e63ca2bbaa8da16ceada0b26f0db91e68143b430844191628d1ff27519c532d956f3c50df607d0d6217558e0980119b674335d140bacd3631a04dbbb53c34a38357134c2f560d7dc19f47b593461f2cb309ddc4f85628c581a9b3ba35b162f13e1725807f8b80f194c5b8e64a27daa68684844c6c7ffabdae00328c65d18398e460bae6b1c0dd748e82705ddb3a035afe6d5086262e5aebe9501e96e581e4299caacd8a09fa0d3033500c1caae0f1bacf64745483110d77d5040165869a0e5de48b999017d2f8366f69c92ab928f68c347cc8c8eff3e52317b729d60ed9583c5fc1161af5b6ecf089384616afb74140ad418ac0fe17ccded8e5eb946d22670aa00e45a1649886fbe02256a480f4511c96300039f53c78c22c7d3bc9bd2391915bcf2e79621a7544bbc331f996634a29a7fc9cf5db4a7ab690a940232fe8f19b4d72bd05e85ce8f5b9553c984d2445bcff846b9c5850b2588b87c315eeffcc1cba0ac54dbe633c8cdb244dd0a8119420ec1ff66693f68a71a5923c19161fb5c23325ae61023bcf0094d08a22431583890db2e6fe02d7fd9438fdf793e109904d8a6ab1585b92f52ffcc7570f41a223590497d1e3d1910870c6cd4c8323dfd63606bf5ffa450650273299b297fdb7abe77103ed53bc0a04d6c51148fc6d68732645ce816ccea95027f6d98ea3c032011fdd75a144ebe7fbb18f5dac7e029758bc68179b827108cb53aa59c9e2aa8a924c5a7e5ad8ce4d8e38fd945b5ff7a22210ac6aae08549113d90095f0eaef6356daaf163c23879f84f16edeceabfdab009b9f6ffd4829e3093b0960f9e8e88c69f3e4aee2e98f5c573348eae3e9e27b09133f1095233a3dc9ad8ce175410f7fcf8543e9de96a00032333aae9683a4bbd252a7d01836e0611f961beea850d34d163930633b99fe88b536ed6455210e6460ad2ee02e6e429142d65fb2dd1c510e27d7bb17f467a763844a39af9a15658d6e200d514df9a711b812a2d9ef5bdd33a26279668be8cb4fadd2eecbb8957146327a2a8aff43d4dc67ec4388fc3d7e4467c53fd494a30d259c7f3b0b27d7648b7da88670e664362f655ad971654dbc53b0ffcf24d7e9a1407ec6b0004e88e3711e9b4c3865bd78a486175a05d3714a7871ff65eb82974d814eddcaca78660b453df766e456777bd0c4c4b80b0aa41e02668547330cc9e1009c893cba495400afaead758efdfcb8aa977de27b9a1b6cbc2284636ae38d03926b3b63e16d16cd05c62709cf71e4290866b237f002abc1e3eb36c6642084be64776984c0c5533692ff737ad1baa15bdd106a231ff8d516c5c89c65331e0f204de455f52f91b0690e77e02c9a588c33bf4fe73a211599f79934b1d048524b9aeffc4e341668299d93044f67e3707e111b348da09537ce1b06a9174779b75adff2526eb0ed2c04c37d0cac0d3d44b43007030c8bcb595bfaed4de9eb2b42320a3f45d7dcede75db78573456d057d0c36f81581ee3f5d0dae62fd7e0a55266908d0e4516bedc24f2b750cfb65c80580c3392e429e265b5bf46966347f5a9ac10bbf3a1d3a19845f102f30f821a1eacf6af75ce17b8ad00ba7b6ccf0d4dbe03db6f8ae733e5ecf2036474407a1d612ce6fd192cf7f233e09b87f2c7674bea73fbaff7b74bac3d92e834ee3282e332ec4ccd8e0594b9206448ae182247f0d145da019ee1e899af7a68887f9875a231bb2502bd04e78d4243ff55b11a99e67881ee1e1dd8f2adeb10b747870f2af1517012475b6e07d21ff439f99c14b422f1cf90218567105506b2574364b188e8fc737591804719b87b266e1fd71df3ae085becefcaec498e97946a0cf93feeccbd5bbb59ada2166d4e2fb80a26128f400116541bf8d0e7dfd13c023ec5c6e234eefa20d740b36701465e41bd797c551d64cafe934c746e26b751e63af5ea640b941d4890967183e371c577d05412bba9abb99c5b9118b951a9a4013203b907d794e412fce8f6b5f4a8b5ab37ae915dda58d4abf4db7331b07d4774588db3f9e8176b6464f8131646c316c0f29f8d057cdda0e0c714f9f62aad46253c1d13b5401d554abe729f87a6afb9d54567435b5b0088b6a97ff448eaa82cc0c3f66ec8286101f1516cb633c9fe901b8292c5aa8ce99ebab34ad4ce9d1f8a9c2b6dc196feb569c7264f4894a16a7482147a89a409b9aa09f07758cfb7899646eed737a622980dfae8ed50e60351a9ac47cd62e62a903cb8ffe9cc99ba60c2342d61e39aaf5a200836125a004dbd2f65e6fe30f5037c9222ce4e50ac5758d8cb10068a4ccba68b59e708fdbe507295a1e90dc3ad3336d680d420d8b4af4dba69f624bbc307f67548a9a10a11e5ad37b3097f4cd918b0105a1cad7e992201a3169afd3b05beebcf437c06aa12cd9d2b32c1ca0eed6febe01468d29bb2969228a11f104198dc3db248815de4aaf8f612606eabbec04de8f53f89fe93108449742cf2805519b9c701bf2892227a4802fd6e1f2dbb2f991877f7251714e55675d917d91805f7225b6431729da2d164e0883425bf306b70fc9370b6f75d231b49d346bc2aed7b85f496552736fb598147672f7a1f1b2b5bd1922fa252fa4dc463b2881416977ffa1c43e0502d8b48fb58d1835d1bdc70119f0b292245108b844b1a18d91c37f02626a3e9d00a669b406a0aba59881743f1534d9447662fedbae0b79438a171d7fab5709c8d6d859395d15060bb18add3eae248a544c3312c93f3b2a6d6261d128208e62d3cf06e4b69fc082618dac157e6edbb2b1f9e61dea7e5072374d7041b3a088f6b7d9db7b767c6df144495806d51cadd0c8ebb06ac2d6d590afa60b355f11784fcd232b138f8493bcbe96536839eeb66d30dfc8d90f200a4b4fe7509f8b67e6249dc8f3f56e9b68ac9f3c11199bde2cb63a6a00e7e19e9594edc3c2649ab86d08f4d5c2e7a718b610667fb888dee6d83b012de0d252d0cd694d8af391ddd6eee300178b70dbfb7d576dff399ecc734f28ff20ab785794b2fd330cd4383e4a34a661ab8efb38358efdfebc5289fcc4a04e81af2e74f92f6dfeca667645e6ecf9a3f94b76b44785753e0d680ca023d44874348c19374fa7aba1cc5f34a55cf209106f5e66c544bbc3473af7677ac33ac7b63b479989770d6b36812363883f83ba3aac3b54095ab588366584b2b81fa9840cf50cccda935e7b0c5fa98a58351d7e74e4dc7a28676b590b70bc530f31398b72a2b04dac9b28d47d51ab597bc61a43727478b052ab6c6beb5b6f4a251ed40165a0dd56ea400869561620ef60f785f1ccfe09597b3f176a796af704c06595056fab4aaf2f0eb5b15c22a4b8a0a6b1546c345bef9e2087ace2a54c3106c007e26919221c70ddbe71addbc0473cf74471deb51360703fd94544b2e61104ad67f9ed3920c5f66815719c43e9d70b033f6134872fc6d7fbe8dfbf0e5ba5df043e2baf94822d7aa60652c791f16604844ceabdec26668670b5ae3bed2d8973735bee8bbbabbff7d30126bb7974585b90769da34fd802944f13a4e113375386731a29905be64b6ff82206d45385a572c4d521381519fb2f6d16fad9d066badf37407ce52fd9470d5fd1d3e8c61131c6d389d6a454d5a7ef00642163a11835c5e3f0be9ab5450a30c296cf7a7f39d93f0a6234771c58d6613130ceba442359a4ae24d7ab1c41dcc349a37d2d1e6532b44d785912d42fe4c313329a2df10de608b7fe0ad27640befd7cf113d72b1a1c175f71b2ba2aeabe1272851cf79ec5fc576484bfd567bfe0e84850779ac8ff983abbec205ac963b44f4355faa31e22694bb64dd06cece5e948b4ca474631cc5ad5a04acac1457eda09f3d689c25ba91650f5d66a4e641fdccd76d250a968c13f5a321faf12cc29f5c7bf9b3655d52c60648c22550a8d8586012a1c29bf5471585afc67424cacfac5a8222d2384eb5b1fbed75eb41297de524c45a7bf2bd6e59b63c81315715899960f2c7477d6281bc2d72a1a6ecbd2b9c2b73d9bed20d69beea9a7ef5ebaa0b187105fda89b4236386444a926d0187644fa60f0314cf44a5d294da3e13a97504859a9f6bf8388e73d99d6a7698112bc134786012b47dbba5a316b9a34da98614a775455a9473a2879e7d6a8ca8d734edbb8125077ab09a9f3284436621590edae46c5bbe80667aa6b3c327e24acf92e721845825e98e4d5afde675418a94fa60fa9c02de17f9820e103fd7200ace648f901b3b307db292d879f8dc69a2d19765f8dfee07043e96fd57471052208039e8bffc0eb987b962792b9d3a450d1f6ce3cc69c9298cd337547e8b8328b6df62387262144c909347d96874ad0a312dd12243263b198cbb6c188bb2ac61f29afce658da675014d142d04e62aa906468f7a677b26da78279286dc09fe97bc7047e473ed1577eef7736fcb4d27089acab76b1bd2f4ab4ec15240008c58c57e1d313672b8d23fa7320d7136b25aa03ed22f504696b9b6c6a890f0467ebe261955a8c652171dffff456fdd449be87f9a45d8654583c986f0727388339f8d9c57e6d31d72b114a28391c1291a320c87a81681fcd9f8fd1a01a84956b49aa7811599a6df033cc20357839686ede2a0a1cb4253df0d321be75ccba25a1ec7c6200a152fd762ff3bf5ae4360f76b130fc406b699e716d9b2cc99af905bdf024b577bac22371895b4e3cfa6ea056d7712eab9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>encrypted</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>再见，acm</title>
     <url>/2021/12/26/%E5%86%8D%E8%A7%81%E2%80%94%E2%80%94acm.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>学校上周末和这周末有两场acm选拔赛，上周末因为自己回家没有参加。于是我在今天打算去试试水，看看自己是不是应该在打ctf的同时，把我一年没管的算法竞赛捡起来。</p>
@@ -2764,6 +2841,28 @@
       </tags>
   </entry>
   <entry>
+    <title>十九——热爱杀105个人的你</title>
+    <url>/2021/07/09/%E5%8D%81%E4%B9%9D.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="00edfb9e668526bb87043430ce224abfdc80b0d9f9b6c95221e12d9872b383b7">6fcf1523ddce79b7eefea9a75525b5245de786104bf519d9988408b867bdf551bd0c68bfb36652de0234a851b59b631ffe9d78a9e0290bfff0952c565a4257c23f889a6206ebd9cee2e4e4b13fb740ec11e2312a5d4ceb5e2aadac9c4363471e7bcaf41f992ea7712d75943fde8bfabb64f8ecd8b8076af6711c58d6c1dbdcd520f418c247d8811b10404a981d540156f3d027819ef91d00bfcdb9ef8ec20ec4c3b49909a9255c6e1a1ac04d27a5e8619ce7ff1a57a894ed25be367fd9b33ea0f532221e36c25dd7f263dbb71e97fd06aa61f93bd8bab8d8f46c5f67c48e41957bcec6aa11f7ba3b7431f12306f8466ff0623b1c5324feda48995b26e678e9e87921a5167121673e2eb3fa5bbfd684b0407e5c767e6b0500bdbfb70f00cd93ad0a46181665f3a561a83ff3aa8234311f4017c044a496f25f56485a75332b1048c9412e0a6f1c0df0964a0d35c73cce753d617f76024efd3bfa4b05c889da81d9b965008415d6a819cbbbcefc9e464dd9f0d28a51152f7c05a54d0a8ea6653bfe490ba0c2491a307010940297b5d911a069665ca3d568dba9153877ec40bfd0764ab15ff2d5701066afb9f7063009f4610138b6b055e268428af773398d1d2c03bcd3849554324a95ce4096a998bea71932f96b0a629ae8bcf9853ffde23392b8e9021fd3c7ea939c05547077fd92e3b97460c2160a0fa9ead9aa0e6a7b7e4c151191ed80b8587555307919246a7e9f137dfa4db4311bcba64a9480c7ad409cfa435fe88b5afcb8c51415952671e49c04025195dcedbbd8445b38d8801e4c67946634e42c95c20899386155d0c62cdc74afd04b96be91c1519d893dced0ee421f86c40d14625faa9daaf690814e183cce8958de77443aac4ad52c552f48afae9c7bfd1764c116809f750e542eb89c60a2228ffacf834068c299f86d8dd2e3fd51d5a487cf0706526d81033a48e712cab5fdda79e395c1fa81f19a988ee2b966d1732715e15d96012587ae6417ee72d760c850192f8241192b05eda871743bebfbc7a1a0d25f4f5f6a8d952a91344fdff442ebff524cf13b89697c035fe002c2788ec1b7eb61169e63742c261f05eb3b4050c21b4bf34809b1e96b292f672d4cd3198a276d0d81e782fe4221245c734198d848d2984aa9b7a310bcfb4aca7c1084188af47d8efbcdb33c16a9278a2795275816f15da49c873424bb4fd2892d0e756094dbb00df729a8adb7483c832f27d0f4a84c76d2e7721ec0e1437826df40850ab928eea0492d69d048afa6358a6457c1376e39bd7c7b1247555f778afc030730cfcd816a58748f5e2c0b4e8bd8f1ce135af66abfea8bd6e1f5f3827d55b442dc9a7c58d68080ce7a12e3d2c36d488ff645f4ca4fd6de8afe8a562f70c03b097e63134cf81ec8814a29f51765bff8be523d02e57c55834e6c628afe521ef0bdc9f4cc5c2617d70ef092c913e1dd7700f5898c5cb78a8a309200d87b6c0ca1129671ff666e0c27a6af86040dd9dbe1c66065a909a5707654c1358c6e6232e83f867232d65825794e566309719b4d3a64ee040e884d8ef8afa380e305e2ec828e4f6e7d1dd09a86f534edac5a86060abf820de9ec8ebfa2152fd63e348266569842456060c94ae90dae7e75dc94cb4622c6056892c645367218d2232caa2b3fd99918d2b6f3b9b963acdc78657bf8bb38ce94ef383b60b207f2d3075b152daeb0ddd1020845251a02ef61fc21c71bbdc816adf8da39458850923428da85be819ac524b555b57506b7d3c4ad0b337da2dea1ae5dd42050cf9ab6b907f9b4d8f3c548b373aafb0475da40ee88e803530116de72b38167edcfaa915f67c95d43b8800910889acfc50440218fe1dbf54b9ecebe82d4a18d15e3dc3183ec4efc6e9e9f9470ae555f75fb7d9dbe4225f71ecde89799898e516b0e144b9ac1d346cf683f673b67f8fa6d9e2475e11f61505e5be011e7a56df407ae3b7c3f5c97b3ec8627b6cc10edbf27c720838b8755d2a9449329c1aec5bc00d3c6b602023b6e32efc6f894732db45aafe68acfabf3dfdb5c771a1fc5085cb680cc8806072300d78010909b8f434e86f6bc66fd18894265806a92576c23b71e71eb18765d136e52e63ca2bbaa8da16ceada0b26f0db91e68143b430844191628d1ff27519c532d956f3c50df607d0d6217558e0980119b674335d140bacd3631a04dbbb53c34a38357134c2f560d7dc19f47b593461f2cb309ddc4f85628c581a9b3ba35b162f13e1725807f8b80f194c5b8e64a27daa68684844c6c7ffabdae00328c65d18398e460bae6b1c0dd748e82705ddb3a035afe6d5086262e5aebe9501e96e581e4299caacd8a09fa0d3033500c1caae0f1bacf64745483110d77d5040165869a0e5de48b999017d2f8366f69c92ab928f68c347cc8c8eff3e52317b729d60ed9583c5fc1161af5b6ecf089384616afb74140ad418ac0fe17ccded8e5eb946d22670aa00e45a1649886fbe02256a480f4511c96300039f53c78c22c7d3bc9bd2391915bcf2e79621a7544bbc331f996634a29a7fc9cf5db4a7ab690a940232fe8f19b4d72bd05e85ce8f5b9553c984d2445bcff846b9c5850b2588b87c315eeffcc1cba0ac54dbe633c8cdb244dd0a8119420ec1ff66693f68a71a5923c19161fb5c23325ae61023bcf0094d08a22431583890db2e6fe02d7fd9438fdf793e109904d8a6ab1585b92f52ffcc7570f41a223590497d1e3d1910870c6cd4c8323dfd63606bf5ffa450650273299b297fdb7abe77103ed53bc0a04d6c51148fc6d68732645ce816ccea95027f6d98ea3c032011fdd75a144ebe7fbb18f5dac7e029758bc68179b827108cb53aa59c9e2aa8a924c5a7e5ad8ce4d8e38fd945b5ff7a22210ac6aae08549113d90095f0eaef6356daaf163c23879f84f16edeceabfdab009b9f6ffd4829e3093b0960f9e8e88c69f3e4aee2e98f5c573348eae3e9e27b09133f1095233a3dc9ad8ce175410f7fcf8543e9de96a00032333aae9683a4bbd252a7d01836e0611f961beea850d34d163930633b99fe88b536ed6455210e6460ad2ee02e6e429142d65fb2dd1c510e27d7bb17f467a763844a39af9a15658d6e200d514df9a711b812a2d9ef5bdd33a26279668be8cb4fadd2eecbb8957146327a2a8aff43d4dc67ec4388fc3d7e4467c53fd494a30d259c7f3b0b27d7648b7da88670e664362f655ad971654dbc53b0ffcf24d7e9a1407ec6b0004e88e3711e9b4c3865bd78a486175a05d3714a7871ff65eb82974d814eddcaca78660b453df766e456777bd0c4c4b80b0aa41e02668547330cc9e1009c893cba495400afaead758efdfcb8aa977de27b9a1b6cbc2284636ae38d03926b3b63e16d16cd05c62709cf71e4290866b237f002abc1e3eb36c6642084be64776984c0c5533692ff737ad1baa15bdd106a231ff8d516c5c89c65331e0f204de455f52f91b0690e77e02c9a588c33bf4fe73a211599f79934b1d048524b9aeffc4e341668299d93044f67e3707e111b348da09537ce1b06a9174779b75adff2526eb0ed2c04c37d0cac0d3d44b43007030c8bcb595bfaed4de9eb2b42320a3f45d7dcede75db78573456d057d0c36f81581ee3f5d0dae62fd7e0a55266908d0e4516bedc24f2b750cfb65c80580c3392e429e265b5bf46966347f5a9ac10bbf3a1d3a19845f102f30f821a1eacf6af75ce17b8ad00ba7b6ccf0d4dbe03db6f8ae733e5ecf2036474407a1d612ce6fd192cf7f233e09b87f2c7674bea73fbaff7b74bac3d92e834ee3282e332ec4ccd8e0594b9206448ae182247f0d145da019ee1e899af7a68887f9875a231bb2502bd04e78d4243ff55b11a99e67881ee1e1dd8f2adeb10b747870f2af1517012475b6e07d21ff439f99c14b422f1cf90218567105506b2574364b188e8fc737591804719b87b266e1fd71df3ae085becefcaec498e97946a0cf93feeccbd5bbb59ada2166d4e2fb80a26128f400116541bf8d0e7dfd13c023ec5c6e234eefa20d740b36701465e41bd797c551d64cafe934c746e26b751e63af5ea640b941d4890967183e371c577d05412bba9abb99c5b9118b951a9a4013203b907d794e412fce8f6b5f4a8b5ab37ae915dda58d4abf4db7331b07d4774588db3f9e8176b6464f8131646c316c0f29f8d057cdda0e0c714f9f62aad46253c1d13b5401d554abe729f87a6afb9d54567435b5b0088b6a97ff448eaa82cc0c3f66ec8286101f1516cb633c9fe901b8292c5aa8ce99ebab34ad4ce9d1f8a9c2b6dc196feb569c7264f4894a16a7482147a89a409b9aa09f07758cfb7899646eed737a622980dfae8ed50e60351a9ac47cd62e62a903cb8ffe9cc99ba60c2342d61e39aaf5a200836125a004dbd2f65e6fe30f5037c9222ce4e50ac5758d8cb10068a4ccba68b59e708fdbe507295a1e90dc3ad3336d680d420d8b4af4dba69f624bbc307f67548a9a10a11e5ad37b3097f4cd918b0105a1cad7e992201a3169afd3b05beebcf437c06aa12cd9d2b32c1ca0eed6febe01468d29bb2969228a11f104198dc3db248815de4aaf8f612606eabbec04de8f53f89fe93108449742cf2805519b9c701bf2892227a4802fd6e1f2dbb2f991877f7251714e55675d917d91805f7225b6431729da2d164e0883425bf306b70fc9370b6f75d231b49d346bc2aed7b85f496552736fb598147672f7a1f1b2b5bd1922fa252fa4dc463b2881416977ffa1c43e0502d8b48fb58d1835d1bdc70119f0b292245108b844b1a18d91c37f02626a3e9d00a669b406a0aba59881743f1534d9447662fedbae0b79438a171d7fab5709c8d6d859395d15060bb18add3eae248a544c3312c93f3b2a6d6261d128208e62d3cf06e4b69fc082618dac157e6edbb2b1f9e61dea7e5072374d7041b3a088f6b7d9db7b767c6df144495806d51cadd0c8ebb06ac2d6d590afa60b355f11784fcd232b138f8493bcbe96536839eeb66d30dfc8d90f200a4b4fe7509f8b67e6249dc8f3f56e9b68ac9f3c11199bde2cb63a6a00e7e19e9594edc3c2649ab86d08f4d5c2e7a718b610667fb888dee6d83b012de0d252d0cd694d8af391ddd6eee300178b70dbfb7d576dff399ecc734f28ff20ab785794b2fd330cd4383e4a34a661ab8efb38358efdfebc5289fcc4a04e81af2e74f92f6dfeca667645e6ecf9a3f94b76b44785753e0d680ca023d44874348c19374fa7aba1cc5f34a55cf209106f5e66c544bbc3473af7677ac33ac7b63b479989770d6b36812363883f83ba3aac3b54095ab588366584b2b81fa9840cf50cccda935e7b0c5fa98a58351d7e74e4dc7a28676b590b70bc530f31398b72a2b04dac9b28d47d51ab597bc61a43727478b052ab6c6beb5b6f4a251ed40165a0dd56ea400869561620ef60f785f1ccfe09597b3f176a796af704c06595056fab4aaf2f0eb5b15c22a4b8a0a6b1546c345bef9e2087ace2a54c3106c007e26919221c70ddbe71addbc0473cf74471deb51360703fd94544b2e61104ad67f9ed3920c5f66815719c43e9d70b033f6134872fc6d7fbe8dfbf0e5ba5df043e2baf94822d7aa60652c791f16604844ceabdec26668670b5ae3bed2d8973735bee8bbbabbff7d30126bb7974585b90769da34fd802944f13a4e113375386731a29905be64b6ff82206d45385a572c4d521381519fb2f6d16fad9d066badf37407ce52fd9470d5fd1d3e8c61131c6d389d6a454d5a7ef00642163a11835c5e3f0be9ab5450a30c296cf7a7f39d93f0a6234771c58d6613130ceba442359a4ae24d7ab1c41dcc349a37d2d1e6532b44d785912d42fe4c313329a2df10de608b7fe0ad27640befd7cf113d72b1a1c175f71b2ba2aeabe1272851cf79ec5fc576484bfd567bfe0e84850779ac8ff983abbec205ac963b44f4355faa31e22694bb64dd06cece5e948b4ca474631cc5ad5a04acac1457eda09f3d689c25ba91650f5d66a4e641fdccd76d250a968c13f5a321faf12cc29f5c7bf9b3655d52c60648c22550a8d8586012a1c29bf5471585afc67424cacfac5a8222d2384eb5b1fbed75eb41297de524c45a7bf2bd6e59b63c81315715899960f2c7477d6281bc2d72a1a6ecbd2b9c2b73d9bed20d69beea9a7ef5ebaa0b187105fda89b4236386444a926d0187644fa60f0314cf44a5d294da3e13a97504859a9f6bf8388e73d99d6a7698112bc134786012b47dbba5a316b9a34da98614a775455a9473a2879e7d6a8ca8d734edbb8125077ab09a9f3284436621590edae46c5bbe80667aa6b3c327e24acf92e721845825e98e4d5afde675418a94fa60fa9c02de17f9820e103fd7200ace648f901b3b307db292d879f8dc69a2d19765f8dfee07043e96fd57471052208039e8bffc0eb987b962792b9d3a450d1f6ce3cc69c9298cd337547e8b8328b6df62387262144c909347d96874ad0a312dd12243263b198cbb6c188bb2ac61f29afce658da675014d142d04e62aa906468f7a677b26da78279286dc09fe97bc7047e473ed1577eef7736fcb4d27089acab76b1bd2f4ab4ec15240008c58c57e1d313672b8d23fa7320d7136b25aa03ed22f504696b9b6c6a890f0467ebe261955a8c652171dffff456fdd449be87f9a45d8654583c986f0727388339f8d9c57e6d31d72b114a28391c1291a320c87a81681fcd9f8fd1a01a84956b49aa7811599a6df033cc20357839686ede2a0a1cb4253df0d321be75ccba25a1ec7c6200a152fd762ff3bf5ae4360f76b130fc406b699e716d9b2cc99af905bdf024b577bac22371895b4e3cfa6ea056d7712eab9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>encrypted</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>十八——给hash的一封回信</title>
     <url>/2021/07/07/%E5%8D%81%E5%85%AB.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -2783,41 +2882,6 @@
       </categories>
       <tags>
         <tag>encrypted</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>子文略略略题解</title>
-    <url>/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。</p>
-<span id="more"></span>
-<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><p>与yjp在某日中午恰饭时得出，yjp很快想到了part 0的正解，但对part 1的解答存在一些问题。我通过了某种方式（下文会说）得到了一种复杂度较低的做法。</p>
-<h1 id="question"><a href="#question" class="headerlink" title="question"></a>question</h1><h2 id="part0"><a href="#part0" class="headerlink" title="part0"></a>part0</h2><p>给一个数x，它初始为0，你有加1、乘2两种操作。问从0变成自然数a最少需要几种操作。</p>
-<h2 id="part1"><a href="#part1" class="headerlink" title="part1"></a>part1</h2><p>给一个数x，它初始为1，你有加1、减1、乘2三种操作。问从1变成自然数a最少需要几种操作。</p>
-<h1 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h1><h2 id="part0-1"><a href="#part0-1" class="headerlink" title="part0"></a>part0</h2><p>从二进制角度思考：对这个数乘2相当于左移一位，而对这个数加一相当于在末尾加1，而这个1什么时候加都可以。因此最优的解法就是在左移的途中，那一位如果最后是1，就马上加上（不然要加更多个1才能补回去）。我们可以导出一个公式：</p>
-<blockquote>
-<p>最少的次数 = 二进制的位数 + 二进制中1的个数 + C</p>
-</blockquote>
-<p>随便代一个样例可得$C=-1$</p>
-<p>将一个数转换成二进制需要$O(\log x)$，因此时间复杂度是$O(\log x)$，总时间复杂度为$O(T \log x)$</p>
-<h2 id="part1-1"><a href="#part1-1" class="headerlink" title="part1"></a>part1</h2><p>yjp开始是想对末尾为一连串1的情况进行处理，可是具体的细节没有想得太清楚，只好作罢。</p>
-<p>首先做一下dp，设<code>dp[i]</code>为从<code>1</code>变为<code>i</code>所需的最少次数，显然<code>dp[1]=0</code>，可列出以下转移方程：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i<span class="number">-1</span>] + <span class="number">1</span>, dp[i]);    </span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i+<span class="number">1</span>] + <span class="number">1</span>, dp[i]); </span><br></pre></td></tr></table></figure>
-<p>显然这个dp不具备<strong>无后效性</strong>的条件，怎么办呢？多试几次就可以了。</p>
-<p>只不过此时的总复杂度是$O(Tkx)$，妥妥地TLE.</p>
-<p>此时我灵光一闪，把得到的最优解放在oeis上，然后得到了更优的转移方程。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">2</span>, dp[i/<span class="number">2</span>+<span class="number">1</span>] + <span class="number">2</span>, dp[i]);</span><br></pre></td></tr></table></figure>
-<p>这样可能的状态数就是log级别了，拿个<code>map</code>维护一下，记忆化搜索即可。</p>
-<p>由于<code>map</code>是用红黑树维护的，读写一个数也是log级别，因此总复杂度为$O(T \log^2 x)$。</p>
-<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><h2 id="part0-2"><a href="#part0-2" class="headerlink" title="part0"></a>part0</h2><p>第一题的解题人数在我预料之内。24h之内就有10人左右AC了。</p>
-<h2 id="part1-2"><a href="#part1-2" class="headerlink" title="part1"></a>part1</h2><p>第二题在前24h无人AC，这稍微出乎了预期。</p>
-<p>在第二天有非少年生AC了，这符合我出题的意图。</p>
-<p>只不过之后又有少年生写出了$O(T \log x)$的做法。看了一些AC的代码，的确是模拟+分类讨论做的——看来yjp的愿望的确实现了，可喜可贺。</p>
-]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -2953,6 +3017,41 @@ $$I'=\int j'\mathrm{d}l</script><h1 id="第八章"><a href="#第八章" class="h
       <categories>
         <category>笔记</category>
       </categories>
+  </entry>
+  <entry>
+    <title>子文略略略题解</title>
+    <url>/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。</p>
+<span id="more"></span>
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><p>与yjp在某日中午恰饭时得出，yjp很快想到了part 0的正解，但对part 1的解答存在一些问题。我通过了某种方式（下文会说）得到了一种复杂度较低的做法。</p>
+<h1 id="question"><a href="#question" class="headerlink" title="question"></a>question</h1><h2 id="part0"><a href="#part0" class="headerlink" title="part0"></a>part0</h2><p>给一个数x，它初始为0，你有加1、乘2两种操作。问从0变成自然数a最少需要几种操作。</p>
+<h2 id="part1"><a href="#part1" class="headerlink" title="part1"></a>part1</h2><p>给一个数x，它初始为1，你有加1、减1、乘2三种操作。问从1变成自然数a最少需要几种操作。</p>
+<h1 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h1><h2 id="part0-1"><a href="#part0-1" class="headerlink" title="part0"></a>part0</h2><p>从二进制角度思考：对这个数乘2相当于左移一位，而对这个数加一相当于在末尾加1，而这个1什么时候加都可以。因此最优的解法就是在左移的途中，那一位如果最后是1，就马上加上（不然要加更多个1才能补回去）。我们可以导出一个公式：</p>
+<blockquote>
+<p>最少的次数 = 二进制的位数 + 二进制中1的个数 + C</p>
+</blockquote>
+<p>随便代一个样例可得$C=-1$</p>
+<p>将一个数转换成二进制需要$O(\log x)$，因此时间复杂度是$O(\log x)$，总时间复杂度为$O(T \log x)$</p>
+<h2 id="part1-1"><a href="#part1-1" class="headerlink" title="part1"></a>part1</h2><p>yjp开始是想对末尾为一连串1的情况进行处理，可是具体的细节没有想得太清楚，只好作罢。</p>
+<p>首先做一下dp，设<code>dp[i]</code>为从<code>1</code>变为<code>i</code>所需的最少次数，显然<code>dp[1]=0</code>，可列出以下转移方程：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i<span class="number">-1</span>] + <span class="number">1</span>, dp[i]);    </span><br><span class="line">dp[i] = <span class="built_in">min</span>(dp[i+<span class="number">1</span>] + <span class="number">1</span>, dp[i]); </span><br></pre></td></tr></table></figure>
+<p>显然这个dp不具备<strong>无后效性</strong>的条件，怎么办呢？多试几次就可以了。</p>
+<p>只不过此时的总复杂度是$O(Tkx)$，妥妥地TLE.</p>
+<p>此时我灵光一闪，把得到的最优解放在oeis上，然后得到了更优的转移方程。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">1</span>, dp[i]);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   dp[i] = <span class="built_in">min</span>(dp[i/<span class="number">2</span>] + <span class="number">2</span>, dp[i/<span class="number">2</span>+<span class="number">1</span>] + <span class="number">2</span>, dp[i]);</span><br></pre></td></tr></table></figure>
+<p>这样可能的状态数就是log级别了，拿个<code>map</code>维护一下，记忆化搜索即可。</p>
+<p>由于<code>map</code>是用红黑树维护的，读写一个数也是log级别，因此总复杂度为$O(T \log^2 x)$。</p>
+<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><h2 id="part0-2"><a href="#part0-2" class="headerlink" title="part0"></a>part0</h2><p>第一题的解题人数在我预料之内。24h之内就有10人左右AC了。</p>
+<h2 id="part1-2"><a href="#part1-2" class="headerlink" title="part1"></a>part1</h2><p>第二题在前24h无人AC，这稍微出乎了预期。</p>
+<p>在第二天有非少年生AC了，这符合我出题的意图。</p>
+<p>只不过之后又有少年生写出了$O(T \log x)$的做法。看了一些AC的代码，的确是模拟+分类讨论做的——看来yjp的愿望的确实现了，可喜可贺。</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
   </entry>
   <entry>
     <title>如何正确的抢拼手气红包</title>

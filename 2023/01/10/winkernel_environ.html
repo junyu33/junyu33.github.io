@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="在大创的压力下，开始学习 windows 驱动开发的环境配置。只能说：  因为时效性，看网上的教程，不如老老实实看 MSDN（机翻的也行）。 因为开源，做 windows 驱动开发，不如做 linux 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows 驱动开发环境搭建">
+<meta property="og:url" content="https://blog.junyu33.me/2023/01/10/winkernel_environ.html">
+<meta property="og:site_name" content="现充|junyu33">
+<meta property="og:description" content="在大创的压力下，开始学习 windows 驱动开发的环境配置。只能说：  因为时效性，看网上的教程，不如老老实实看 MSDN（机翻的也行）。 因为开源，做 windows 驱动开发，不如做 linux 。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.junyu33.me/2023/01/10/winkernel_environ/congrats.png">
+<meta property="article:published_time" content="2023-01-10T08:30:00.000Z">
+<meta property="article:modified_time" content="2023-01-10T09:33:03.279Z">
+<meta property="article:author" content="丨junyu33丨">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.junyu33.me/2023/01/10/winkernel_environ/congrats.png">
+
+
+<link rel="canonical" href="https://blog.junyu33.me/2023/01/10/winkernel_environ.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>windows 驱动开发环境搭建 | 现充|junyu33</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">现充|junyu33</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Prerequisite"><span class="nav-number">1.</span> <span class="nav-text">Prerequisite</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Steps"><span class="nav-number">2.</span> <span class="nav-text">Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#install-vs2022"><span class="nav-number">2.1.</span> <span class="nav-text">install vs2022</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-win11-SDK-amp-WDK-for-22H2"><span class="nav-number">2.2.</span> <span class="nav-text">install win11 SDK&amp;WDK for 22H2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-win10-on-your-vm"><span class="nav-number">2.3.</span> <span class="nav-text">install win10 on your vm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-WDK-for-vm"><span class="nav-number">2.4.</span> <span class="nav-text">install WDK  for vm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#run-the-WDK-Test-Target-Setup"><span class="nav-number">2.5.</span> <span class="nav-text">run the WDK Test Target Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ensure-host-amp-guest-can-ping-each-other"><span class="nav-number">2.6.</span> <span class="nav-text">ensure host&amp;guest can ping each other</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Write-amp-build-your-first-driver"><span class="nav-number">2.7.</span> <span class="nav-text">Write&amp;build your first driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#create-a-project"><span class="nav-number">2.7.1.</span> <span class="nav-text">create a project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#write-a-sample-code"><span class="nav-number">2.7.2.</span> <span class="nav-text">write a sample code</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Driver-c"><span class="nav-number">2.7.2.1.</span> <span class="nav-text">Driver.c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fun-asm"><span class="nav-number">2.7.2.2.</span> <span class="nav-text">fun.asm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Header-h"><span class="nav-number">2.7.2.3.</span> <span class="nav-text">Header.h</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build-project"><span class="nav-number">2.7.3.</span> <span class="nav-text">build project</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Provision-test-computer"><span class="nav-number">2.8.</span> <span class="nav-text">Provision test computer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-the-driver"><span class="nav-number">2.9.</span> <span class="nav-text">install the driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debug-the-driver"><span class="nav-number">2.10.</span> <span class="nav-text">debug the driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#using-winDbg-winDbg-preview-more-steps"><span class="nav-number">2.10.1.</span> <span class="nav-text">using winDbg&#x2F;winDbg preview (more steps)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#using-VS2022-not-always-works"><span class="nav-number">2.10.2.</span> <span class="nav-text">using VS2022 (not always works)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2021141530091@stu.scu.edu.cn" title="E-Mail → mailto:2021141530091@stu.scu.edu.cn" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tiger1218.com/" title="https:&#x2F;&#x2F;tiger1218.com" rel="noopener" target="_blank">tiger1218</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junyu33.me/2023/01/10/winkernel_environ.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          windows 驱动开发环境搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-01-10 16:30:00 / 修改时间：17:33:03" itemprop="dateCreated datePublished" datetime="2023-01-10T16:30:00+08:00">2023-01-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在大创的压力下，开始学习 windows 驱动开发<del>的环境配置</del>。只能说：</p>
+<ul>
+<li>因为时效性，看网上的教程，不如老老实实看 MSDN（机翻的也行）。</li>
+<li><del>因为开源，做 windows 驱动开发，不如做 linux 。</del></li>
+</ul>
+<p><img src="/2023/01/10/winkernel_environ/congrats.png"></p>
+<span id="more"></span>
+<h1 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h1><ul>
+<li>host: win11.</li>
+<li>disk space: at least 20GB, SSD recommended.</li>
+</ul>
+<h1 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h1><h2 id="install-vs2022"><a href="#install-vs2022" class="headerlink" title="install vs2022"></a>install vs2022</h2><p>Ensure <strong>Desktop development with C++</strong> and <strong>MSVC v143 - VS 2022 C++ x64/x86 build tools (Latest)</strong> are ticked.</p>
+<h2 id="install-win11-SDK-amp-WDK-for-22H2"><a href="#install-win11-SDK-amp-WDK-for-22H2" class="headerlink" title="install win11 SDK&amp;WDK for 22H2"></a>install win11 SDK&amp;WDK for 22H2</h2><p>Use default, just install.</p>
+<h2 id="install-win10-on-your-vm"><a href="#install-win10-on-your-vm" class="headerlink" title="install win10 on your vm"></a>install win10 on your vm</h2><p>Quite easy.</p>
+<h2 id="install-WDK-for-vm"><a href="#install-WDK-for-vm" class="headerlink" title="install WDK  for vm"></a>install WDK  for vm</h2><p>The avg download speed is 200KB/s, although the proxy/VPN is turned on, time for touching fish.</p>
+<h2 id="run-the-WDK-Test-Target-Setup"><a href="#run-the-WDK-Test-Target-Setup" class="headerlink" title="run the WDK Test Target Setup"></a>run the WDK Test Target Setup</h2><p>Easy, search <code>WDK Test Target Setup x64-x64_en-us.msi</code>. Copy&amp;paste.</p>
+<h2 id="ensure-host-amp-guest-can-ping-each-other"><a href="#ensure-host-amp-guest-can-ping-each-other" class="headerlink" title="ensure host&amp;guest can ping each other"></a>ensure host&amp;guest can ping each other</h2><p>If you use vmware, I suggest using NAT so the host IP is the item of <code>vmnet8</code> when running <code>ipconfig</code>, the guest IP is the only one IPv4 when running <code>ipconfig</code>. Usually the network segment is the same (i.e. the first three numbers).</p>
+<h2 id="Write-amp-build-your-first-driver"><a href="#Write-amp-build-your-first-driver" class="headerlink" title="Write&amp;build your first driver"></a>Write&amp;build your first driver</h2><h3 id="create-a-project"><a href="#create-a-project" class="headerlink" title="create a project"></a>create a project</h3><p>Follow steps from MSDN directly.</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#create-and-build-a-driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#create-and-build-a-driver</a></p>
+<h3 id="write-a-sample-code"><a href="#write-a-sample-code" class="headerlink" title="write a sample code"></a>write a sample code</h3><ul>
+<li>because inline asm is deprecated on x64 platform, we use this tutorial instead: <a target="_blank" rel="noopener" href="https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/#toc-heading-19">https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/#toc-heading-19</a></li>
+</ul>
+<h4 id="Driver-c"><a href="#Driver-c" class="headerlink" title="Driver.c"></a>Driver.c</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://bbs.kanxue.com/thread-254041.htm</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ntddk.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Header.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">VOID <span class="title function_">DriverUnload</span><span class="params">(PDRIVER_OBJECT driver)</span></span><br><span class="line">&#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;first: Our driver is unloading…\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT driver, PUNICODE_STRING reg_path)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> DBG</span></span><br><span class="line">    int_3();</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    DbgPrint(<span class="string">&quot;first: Hello world!\r\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    driver-&gt;DriverUnload = DriverUnload;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="fun-asm"><a href="#fun-asm" class="headerlink" title="fun.asm"></a>fun.asm</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.CODE</span><br><span class="line"></span><br><span class="line">int_3 PROC</span><br><span class="line">	int 3</span><br><span class="line">	ret</span><br><span class="line">int_3 ENDP</span><br><span class="line"></span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+<h4 id="Header-h"><a href="#Header-h" class="headerlink" title="Header.h"></a>Header.h</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">int_3</span><span class="params">(<span class="type">void</span>)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="build-project"><a href="#build-project" class="headerlink" title="build project"></a>build project</h3><p>Before compiling the program, you also need to set the project properties:</p>
+<ul>
+<li><p>Right click - Properties - C/C++</p>
+<ul>
+<li><p>Set warning level to level 3 (/W3)</p>
+</li>
+<li><p>Change Warnings as errors to No (/WX-)</p>
+</li>
+<li><p>Code Generation - Security Checks changed to Disable Security Checks (/GS-)</p>
+</li>
+<li>Code Generation - Spectre Mitigation to Disabled</li>
+</ul>
+</li>
+<li><p>Right click - properties - linker</p>
+<ul>
+<li>Treat linker warnings as errors to No (/WX:NO)</li>
+</ul>
+</li>
+<li><p>Right-click-Properties-Driver Settings</p>
+<ul>
+<li><p>Change Target OS Version to Windows 10 or higher</p>
+</li>
+<li><p>Change Target Platform to Desktop</p>
+</li>
+</ul>
+</li>
+<li><p>Right-click-Properties-Inf2Cat</p>
+<ul>
+<li>Change Use local time to Yes (/uselocaltime)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-254041.htm">https://bbs.kanxue.com/thread-254041.htm</a></p>
+</blockquote>
+<h2 id="Provision-test-computer"><a href="#Provision-test-computer" class="headerlink" title="Provision test computer"></a>Provision test computer</h2><p>Extensions &gt; Driver &gt; Test &gt; Configure Devices &gt; Add a new device</p>
+<p>Enter your IP of <strong>test computer</strong> as <code>host name</code> and choose <code>Provision device and choose debugger settings</code></p>
+<p>In the next page, choose <code>Network</code>, the <code>Host IP</code> should be IP of <strong>host computer (vmnet8)</strong>.</p>
+<p>Wait for provisioning. Maybe the <code>TAEF service</code> will fail to install, just ignore it.</p>
+<h2 id="install-the-driver"><a href="#install-the-driver" class="headerlink" title="install the driver"></a>install the driver</h2><p>Just follow the MSDN</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#install-the-driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#install-the-driver</a></p>
+<h2 id="debug-the-driver"><a href="#debug-the-driver" class="headerlink" title="debug the driver"></a>debug the driver</h2><p>here are two ways: </p>
+<h3 id="using-winDbg-winDbg-preview-more-steps"><a href="#using-winDbg-winDbg-preview-more-steps" class="headerlink" title="using winDbg/winDbg preview (more steps)"></a>using winDbg/winDbg preview (more steps)</h3><ul>
+<li><p>if the deploy (right click your project &gt; deploy) process is successful, then your driver will be placed in your system drive in your test computer. Otherwise you need to copy the output file in your host computer to the test computer.</p>
+</li>
+<li><p>Download <code>INSTDRV.EXE</code> and copy to your test computer.</p>
+</li>
+<li><p>Open <code>INSTDRV.EXE</code> <strong>as Administrator</strong> and it’s time to open your winDbg/winDbg preview, attach the kernel as the step shown in <strong>Provision test computer</strong>.</p>
+</li>
+<li><p>Create a snapshot in your vm. (IMPORTANT)</p>
+</li>
+<li><p>First <strong>install</strong> the driver <code>kmdfHelloWorld.sys</code> then <strong>start</strong> it. If everything works, your winDbg instance will stuck at <code>fun.asm</code> finally. Then you can restore to your snapshot if something unpleasant happened (e.g. bluescreen). </p>
+</li>
+</ul>
+<h3 id="using-VS2022-not-always-works"><a href="#using-VS2022-not-always-works" class="headerlink" title="using VS2022 (not always works)"></a>using VS2022 (not always works)</h3><ul>
+<li>Restore to your (successfully configured) snapshot.</li>
+<li>Right-click-Properties &gt; Configuration Properties &gt; Debugging &gt; Debugger to launch &gt; Kernel Debugger</li>
+<li>F5. If everything works, your VS2022 instance will stuck at <code>fun.asm</code> finally, but there would be no highlights when debugging, just like the picture I placed in preface.</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver</a></li>
+<li><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-254041.htm">https://bbs.kanxue.com/thread-254041.htm</a></li>
+<li><a target="_blank" rel="noopener" href="https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/">https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/</a></li>
+<li>《加密与解密》（第四版）</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.junyu33.me/2023/01/10/winkernel_environ.html" title="windows 驱动开发环境搭建">https://blog.junyu33.me/2023/01/10/winkernel_environ.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/windows/" rel="tag"># windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/28/bye2022.html" rel="prev" title="Thirty——my summary of year 2022">
+                  <i class="fa fa-chevron-left"></i> Thirty——my summary of year 2022
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2032/07/03/pwn_college.html" rel="next" title="（置顶）pwncollege部分通关记录">
+                  （置顶）pwncollege部分通关记录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">391k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:55</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.4/busuanzi.pure.mini.js"></script>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+<script>
+NexT.utils.loadComments('#twikoo-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
+    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"https://202182.vercel.app/"}, {
+      el: '#twikoo-comments'
+    }));
+  }, window.twikoo);
+});
+</script>
+
+</body>
+</html>

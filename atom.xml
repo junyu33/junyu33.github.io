@@ -58,6 +58,31 @@
   </entry>
   
   <entry>
+    <title>windows 驱动开发环境搭建</title>
+    <link href="https://blog.junyu33.me/2023/01/10/winkernel_environ.html"/>
+    <id>https://blog.junyu33.me/2023/01/10/winkernel_environ.html</id>
+    <published>2023-01-10T08:30:00.000Z</published>
+    <updated>2023-01-10T09:33:03.279Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在大创的压力下，开始学习 windows 驱动开发&lt;del&gt;的环境配置&lt;/del&gt;。只能说：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;因为时效性，看网上的教程，不如老老实实看 MSDN（机翻的也行）。&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;因为开源，做 windows 驱动开发，不如做 linux 。&lt;/del&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/2023/01/10/winkernel_environ/congrats.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="windows" scheme="https://blog.junyu33.me/tags/windows/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Thirty——my summary of year 2022</title>
     <link href="https://blog.junyu33.me/2022/12/28/bye2022.html"/>
     <id>https://blog.junyu33.me/2022/12/28/bye2022.html</id>
@@ -409,26 +434,6 @@
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
       <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二六——一份价值5万元的成人礼</title>
-    <link href="https://blog.junyu33.me/2022/04/23/surgery.html"/>
-    <id>https://blog.junyu33.me/2022/04/23/surgery.html</id>
-    <published>2022-04-23T13:00:00.000Z</published>
-    <updated>2022-08-12T02:46:06.539Z</updated>
-    
-    <summary type="html">
-    
-      有东西被加密了, 请输入密码查看.
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="encrypted" scheme="https://blog.junyu33.me/tags/encrypted/"/>
     
   </entry>
   

@@ -58,11 +58,30 @@
   </entry>
   
   <entry>
+    <title>三一——杂谈《夜雀食堂》</title>
+    <link href="https://blog.junyu33.me/2023/01/27/mystia.html"/>
+    <id>https://blog.junyu33.me/2023/01/27/mystia.html</id>
+    <published>2023-01-27T02:30:00.000Z</published>
+    <updated>2023-01-28T15:35:33.669Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于时间和&lt;del&gt;财力&lt;/del&gt;的限制，本人只游玩了本体部分（那个电脑我也没有管）。&lt;/p&gt;
+&lt;p&gt;版本号为：&lt;code&gt;2.2.9d&lt;/code&gt;(BetaV86)&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>windows 驱动开发环境搭建</title>
     <link href="https://blog.junyu33.me/2023/01/10/winkernel_environ.html"/>
     <id>https://blog.junyu33.me/2023/01/10/winkernel_environ.html</id>
     <published>2023-01-10T08:30:00.000Z</published>
-    <updated>2023-01-10T09:33:03.279Z</updated>
+    <updated>2023-01-10T15:20:55.528Z</updated>
     
     <summary type="html">
     
@@ -321,9 +340,9 @@
       <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
     
     
-      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
-    
       <category term="reverse" scheme="https://blog.junyu33.me/tags/reverse/"/>
+    
+      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
     
       <category term="misc" scheme="https://blog.junyu33.me/tags/misc/"/>
     
@@ -412,28 +431,6 @@
     
       <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>如何打造一个究极舒适的pwn环境（第三季）</title>
-    <link href="https://blog.junyu33.me/2022/05/23/pwn_environ3.html"/>
-    <id>https://blog.junyu33.me/2022/05/23/pwn_environ3.html</id>
-    <published>2022-05-23T14:00:00.000Z</published>
-    <updated>2022-08-12T02:46:06.534Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在物理机上安装ubuntu20.04并配置常用软件和kernel pwn环境。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
     
   </entry>
   

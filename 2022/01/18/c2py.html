@@ -2,92 +2,45 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content=""><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg" color="">
 
 <link rel="stylesheet" href="/css/main.css">
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
-  </script>
-<meta name="description" content="本教程只介绍将python作为一种脚本语言所需要的基本知识点。其目的不是为了机器学习或者数据分析，而是让你写出代码短小、易于维护，而且永远也不会爆ull的脚本。 具有良好C基础的读者可以在一个下午掌握这些知识点。 本教程部分引用了廖雪峰的博客，且以python3为基础。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C转python速成">
-<meta property="og:url" content="https://blog.junyu33.me/2022/01/18/c2py.html">
-<meta property="og:site_name" content="现充|junyu33">
-<meta property="og:description" content="本教程只介绍将python作为一种脚本语言所需要的基本知识点。其目的不是为了机器学习或者数据分析，而是让你写出代码短小、易于维护，而且永远也不会爆ull的脚本。 具有良好C基础的读者可以在一个下午掌握这些知识点。 本教程部分引用了廖雪峰的博客，且以python3为基础。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-18T15:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-12T02:46:06.517Z">
-<meta property="article:author" content="丨junyu33丨">
-<meta property="article:tag" content="python">
-<meta name="twitter:card" content="summary">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
 
 
 <link rel="canonical" href="https://blog.junyu33.me/2022/01/18/c2py.html">
 
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.junyu33.me/2022/01/18/c2py.html","path":"2022/01/18/c2py.html","title":"C转python速成"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C转python速成 | 现充|junyu33</title>
   
 
 
 
+
+
+
+
+
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 <!-- hexo injector head_end end --></head>
@@ -96,10 +49,10 @@
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -110,13 +63,13 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">现充|junyu33</h1>
+      <p class="site-title">现充|junyu33</p>
       <i class="logo-line"></i>
     </a>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -125,32 +78,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -170,7 +98,7 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -184,15 +112,9 @@
   </div>
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
@@ -207,113 +129,98 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8EC%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">与C的主要区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-O"><span class="nav-number">2.</span> <span class="nav-text">I&#x2F;O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-type-amp-transfer"><span class="nav-number">3.</span> <span class="nav-text">Data type &amp; transfer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Encoding"><span class="nav-number">4.</span> <span class="nav-text">Encoding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-databases"><span class="nav-number">5.</span> <span class="nav-text">Basic databases</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#list%E2%80%94%E2%80%94"><span class="nav-number">5.1.</span> <span class="nav-text">list——[]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tuple%E2%80%94%E2%80%94"><span class="nav-number">5.2.</span> <span class="nav-text">tuple——()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict%E2%80%94%E2%80%94"><span class="nav-number">5.3.</span> <span class="nav-text">dict——{}</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set%E2%80%94%E2%80%94set-list"><span class="nav-number">5.4.</span> <span class="nav-text">set——set(list)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Condition-and-loop"><span class="nav-number">6.</span> <span class="nav-text">Condition and loop</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Function"><span class="nav-number">7.</span> <span class="nav-text">Function</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-number">7.1.</span> <span class="nav-text">位置参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="nav-number">7.2.</span> <span class="nav-text">默认参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">8.</span> <span class="nav-text">Summary</span></a></li></ol></div>
-        </section>
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8Ec%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">与C的主要区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#io"><span class="nav-number">2.</span> <span class="nav-text">I&#x2F;O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-type-transfer"><span class="nav-number">3.</span> <span class="nav-text">Data type &amp; transfer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#encoding"><span class="nav-number">4.</span> <span class="nav-text">Encoding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-databases"><span class="nav-number">5.</span> <span class="nav-text">Basic databases</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">5.1.</span> <span class="nav-text">list——[]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tuple"><span class="nav-number">5.2.</span> <span class="nav-text">tuple——()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict"><span class="nav-number">5.3.</span> <span class="nav-text">dict——</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setsetlist"><span class="nav-number">5.4.</span> <span class="nav-text">set——set(list)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#condition-and-loop"><span class="nav-number">6.</span> <span class="nav-text">Condition and loop</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#function"><span class="nav-number">7.</span> <span class="nav-text">Function</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-number">7.1.</span> <span class="nav-text">位置参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="nav-number">7.2.</span> <span class="nav-text">默认参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#summary"><span class="nav-number">8.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
       src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">丨junyu33丨</p>
   <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+        <a href="/archives/">
           <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
+          <a href="/categories/">
         <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
+          <a href="/tags/">
         <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author site-overview-item animated">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:2021141530091@stu.scu.edu.cn" title="E-Mail → mailto:2021141530091@stu.scu.edu.cn" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:2021141530091@stu.scu.edu.cn" title="E-Mail → mailto:2021141530091@stu.scu.edu.cn" rel="noopener me" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
       </span>
   </div>
 
-
-  <div class="links-of-blogroll site-overview-item animated">
-    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+        </div>
+      </div>
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://tiger1218.com/" title="https:&#x2F;&#x2F;tiger1218.com" rel="noopener" target="_blank">tiger1218</a>
-        </li>
-    </ul>
-  </div>
 
-        </section>
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://tiger1218.com/" title="https:&#x2F;&#x2F;tiger1218.com" rel="noopener" target="_blank">tiger1218</a>
+            </li>
+        </ul>
       </div>
     </div>
   </aside>
-  <div class="sidebar-dimmer"></div>
 
 
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
+    </div>
 
     <div class="main-inner post posts-expand">
 
@@ -331,11 +238,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="丨junyu33丨">
-      <meta itemprop="description" content="flag{CU73_D3V1L}">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="现充|junyu33">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C转python速成 | 现充|junyu33">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -352,13 +264,13 @@
 
       <time title="创建时间：2022-01-18 23:00:00" itemprop="dateCreated datePublished" datetime="2022-01-18T23:00:00+08:00">2022-01-18</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-08-12 10:46:06" itemprop="dateModified" datetime="2022-08-12T10:46:06+08:00">2022-08-12</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-12 10:46:06" itemprop="dateModified" datetime="2022-08-12T10:46:06+08:00">2022-08-12</time>
+    </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -370,14 +282,13 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.7k</span>
+      <span>4.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -401,147 +312,119 @@
 <p>本教程部分引用了<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400">廖雪峰的博客</a>，且以python3为基础。</p>
 </blockquote>
 <span id="more"></span>
-<h1 id="与C的主要区别"><a href="#与C的主要区别" class="headerlink" title="与C的主要区别"></a>与C的主要区别</h1><ul>
-<li><p>变量定义时不用声明类型，但是是强类型语言</p>
-</li>
-<li><p>句尾没有<code>;</code></p>
-</li>
-<li><p>没有<code>&#123;&#125;</code>，而用缩进代替（注意统一使用space或者tab，而且要控制长度统一）</p>
-</li>
-<li><p>if、while语句句尾加<code>:</code></p>
-</li>
-<li><p>条件表达式用<code>and</code>和<code>or</code>，而不是<code>&amp;&amp;</code>或<code>||</code></p>
-</li>
-<li><p>python的整除是<code>//</code>，而不是<code>/</code></p>
-</li>
-<li><p>注释用<code>#</code>，而不是<code>//</code></p>
-</li>
-<li><p><code>&#39;abc&#39;</code>和<code>&quot;abc&quot;</code>表达的意思相同</p>
-</li>
+<h1 id="与c的主要区别">与C的主要区别</h1>
+<ul>
+<li><p>变量定义时不用声明类型，但是是强类型语言</p></li>
+<li><p>句尾没有<code>;</code></p></li>
+<li><p>没有<code>&#123;&#125;</code>，而用缩进代替（注意统一使用space或者tab，而且要控制长度统一）</p></li>
+<li><p>if、while语句句尾加<code>:</code></p></li>
+<li><p>条件表达式用<code>and</code>和<code>or</code>，而不是<code>&amp;&amp;</code>或<code>||</code></p></li>
+<li><p>python的整除是<code>//</code>，而不是<code>/</code></p></li>
+<li><p>注释用<code>#</code>，而不是<code>//</code></p></li>
+<li><p><code>'abc'</code>和<code>"abc"</code>表达的意思相同</p></li>
 </ul>
-<h1 id="I-O"><a href="#I-O" class="headerlink" title="I/O"></a>I/O</h1><ul>
-<li><p>输入一整行并保存：<code>var = input()</code></p>
-</li>
-<li><p>读入带空格的数据：<code>a, b = map(int, input().split())</code></p>
-</li>
-<li><p>读入提示语：<code>var = input(&#39;please type what you want&#39;)</code></p>
-</li>
-<li><p>输出一行：<code>print(res)</code></p>
-</li>
-<li><p>输出带空格：<code>print(&#39;hello&#39;, res1, res2)</code></p>
-</li>
-<li><p>格式化输出：<code>print(&#39;my name is %s and I\&#39;m %d year(s) old.&#39; %(name, age))</code>，或者<code>print(f&#39;my name is &#123;name&#125; and I\&#39;m &#123;age&#125; year(s) old.&#39;)</code></p>
-</li>
-<li><p>文件I/O：</p>
-</li>
+<h1 id="io">I/O</h1>
+<ul>
+<li><p>输入一整行并保存：<code>var = input()</code></p></li>
+<li><p>读入带空格的数据：<code>a, b = map(int, input().split())</code></p></li>
+<li><p>读入提示语：<code>var = input('please type what you want')</code></p></li>
+<li><p>输出一行：<code>print(res)</code></p></li>
+<li><p>输出带空格：<code>print('hello', res1, res2)</code></p></li>
+<li><p>格式化输出：<code>print('my name is %s and I\'m %d year(s) old.' %(name, age))</code>，或者<code>print(f'my name is &#123;name&#125; and I\'m &#123;age&#125; year(s) old.')</code></p></li>
+<li><p>文件I/O：</p></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:/tmp1/file.txt&#x27;</span>,<span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">   f.write(<span class="string">&#x27;this is a trivial test for file I/O.&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:/tmp1/file.txt&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">   content = f.read()</span><br><span class="line"><span class="built_in">print</span>(content) <span class="comment">#然而文件本身有中文时乱码了，「你好」变成了「浣犲ソ」，解决方法在后文。</span></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
-<h1 id="Data-type-amp-transfer"><a href="#Data-type-amp-transfer" class="headerlink" title="Data type &amp; transfer"></a>Data type &amp; transfer</h1><p>变量从创建（赋值）好后，它的类型便确定了。可以通过<code>type(var)</code>来查看其类型。</p>
+<h1 id="data-type-transfer">Data type &amp; transfer</h1>
+<p>变量从创建（赋值）好后，它的类型便确定了。可以通过<code>type(var)</code>来查看其类型。</p>
 <ul>
-<li><p>整型(int)：<code>567</code>，<code>0xc0ffee</code>，<code>2**100+1</code>，<code>998244353 // 114514</code>等。</p>
-</li>
-<li><p>浮点(float)：<code>3.14</code>，<code>1.6e-19</code>，<code>0.1 + 0.2</code>，<code>math.sqrt(1919810)</code>等。</p>
-</li>
-<li><p>字符串(str)：<code>&#39;I\&#39;m \&quot;OK\&quot;!&#39;</code>，<code>&#39;\\\t\\&#39;</code>或者</p>
-</li>
+<li><p>整型(int)：<code>567</code>，<code>0xc0ffee</code>，<code>2**100+1</code>，<code>998244353 // 114514</code>等。</p></li>
+<li><p>浮点(float)：<code>3.14</code>，<code>1.6e-19</code>，<code>0.1 + 0.2</code>，<code>math.sqrt(1919810)</code>等。</p></li>
+<li><p>字符串(str)：<code>'I\'m \"OK\"!'</code>，<code>'\\\t\\'</code>或者</p></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;hello,</span></span><br><span class="line"><span class="string">world!&#x27;&#x27;&#x27;</span> <span class="comment">#字符串可以换行书写</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>字节型(bytes)：如<code>b&#39;A&#39;</code>，<code>b&#39;1qaz2wsx&#39;</code>。它们不能和int或str做运算。</li>
-<li>布尔值：<code>True</code>和<code>False</code>，等同于1和0。它们可以进行算术和逻辑运算，但不能对这两者重新赋值。</li>
-<li>空值：<code>None</code></li>
+<li><p>字节型(bytes)：如<code>b'A'</code>，<code>b'1qaz2wsx'</code>。它们不能和int或str做运算。</p></li>
+<li><p>布尔值：<code>True</code>和<code>False</code>，等同于1和0。它们可以进行算术和逻辑运算，但不能对这两者重新赋值。</p></li>
+<li><p>空值：<code>None</code></p></li>
+<li><p>将字符串转整型：<code>int(input())</code></p></li>
+<li><p>将整型转为浮点：<code>float(19260817)</code></p></li>
+<li><p>16进制转10进制：<code>int('0xdeadbeef',16)</code>或<code>int('0ff1ce'，16)</code></p></li>
+<li><p>10进制转2进制：<code>bin(10)</code></p></li>
 </ul>
-<ul>
-<li>将字符串转整型：<code>int(input())</code></li>
-<li>将整型转为浮点：<code>float(19260817)</code></li>
-<li>16进制转10进制：<code>int(&#39;0xdeadbeef&#39;,16)</code>或<code>int(&#39;0ff1ce&#39;，16)</code></li>
-<li>10进制转2进制：<code>bin(10)</code></li>
-</ul>
-<h1 id="Encoding"><a href="#Encoding" class="headerlink" title="Encoding"></a>Encoding</h1><p>（我终于能处理带中文字符的文件了！）</p>
+<h1 id="encoding">Encoding</h1>
+<p>（我终于能处理带中文字符的文件了！）</p>
 <ul>
 <li>几种编码的主要区别（Unicode只用于内存显示，不用于数据储存）：</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:center">ASCII</th>
-<th style="text-align:center">Unicode</th>
-<th style="text-align:center">UTF-8</th>
+<tr class="header">
+<th style="text-align: center;">字符</th>
+<th style="text-align: center;">ASCII</th>
+<th style="text-align: center;">Unicode</th>
+<th style="text-align: center;">UTF-8</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">01000001</td>
-<td style="text-align:center">00000000 01000001</td>
-<td style="text-align:center">01000001</td>
+<tr class="odd">
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">01000001</td>
+<td style="text-align: center;">00000000 01000001</td>
+<td style="text-align: center;">01000001</td>
 </tr>
-<tr>
-<td style="text-align:center">中</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">01001110 00101101</td>
-<td style="text-align:center">11100100 10111000 10101101</td>
+<tr class="even">
+<td style="text-align: center;">中</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">01001110 00101101</td>
+<td style="text-align: center;">11100100 10111000 10101101</td>
 </tr>
 </tbody>
 </table>
-</div>
 <ul>
-<li><p>int -&gt; chr用<code>chr()</code>，chr -&gt; int用<code>ord()</code></p>
-</li>
-<li><p>将str转成ascii或utf-8需使用<code>&#39;xxx&#39;.encode(&#39;ascii&#39;)</code>或<code>&#39;xxx&#39;.encode(&#39;utf-8&#39;)</code></p>
-</li>
-<li><p>将字节码转回str则使用decode：</p>
-</li>
+<li><p>int -&gt; chr用<code>chr()</code>，chr -&gt;
+int用<code>ord()</code></p></li>
+<li><p>将str转成ascii或utf-8需使用<code>'xxx'.encode('ascii')</code>或<code>'xxx'.encode('utf-8')</code></p></li>
+<li><p>将字节码转回str则使用decode：</p></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">b&#x27;ABC&#x27;</span>.decode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;ABC&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">b&#x27;\xe4\xb8\xad\xe6\x96\x87&#x27;</span>.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;中文&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>回到之前的文件I/O，我们只需要在第二次打开文件时加上一项<code>encoding = &#39;utf-8&#39;</code>即可。</p>
-<h1 id="Basic-databases"><a href="#Basic-databases" class="headerlink" title="Basic databases"></a>Basic databases</h1><p>在python，数据结构被作为<em>对象</em>来处理，它们本身已经内置了一些<em>方法</em>，这是与面向过程的C的一个重要不同点。</p>
-<h2 id="list——"><a href="#list——" class="headerlink" title="list——[]"></a>list——[]</h2><ul>
-<li><p>创建一个list：<code>subjects = [&#39;calculus&#39;, &#39;programming&#39;, &#39;politics&#39;]</code></p>
-</li>
-<li><p>查询最后一项：<code>subjects[2]</code>或者<code>subjects[-1]</code></p>
-</li>
-<li><p>对第二项重新赋值：<code>subjects[1] = PE</code>或者 <code>subjects[-2] = PE</code></p>
-</li>
-<li><p>在尾部插入：<code>subjects.append(&#39;introduction_to_computer_system&#39;)</code></p>
-</li>
-<li><p>在指定位置（下标为2处）插入：<code>subjects.append(2, &#39;databases&#39;)</code></p>
-</li>
-<li><p>在尾部删除：<code>subjects.pop()</code></p>
-</li>
-<li><p>删除下标为3的元素：<code>subjects.pop(3)</code></p>
-</li>
-<li><p>对元素排序（list内元素类型必须相同）：<code>subjects.sort()</code></p>
-</li>
+<p>回到之前的文件I/O，我们只需要在第二次打开文件时加上一项<code>encoding = 'utf-8'</code>即可。</p>
+<h1 id="basic-databases">Basic databases</h1>
+<p>在python，数据结构被作为<em>对象</em>来处理，它们本身已经内置了一些<em>方法</em>，这是与面向过程的C的一个重要不同点。</p>
+<h2 id="list">list——[]</h2>
+<ul>
+<li><p>创建一个list：<code>subjects = ['calculus', 'programming', 'politics']</code></p></li>
+<li><p>查询最后一项：<code>subjects[2]</code>或者<code>subjects[-1]</code></p></li>
+<li><p>对第二项重新赋值：<code>subjects[1] = PE</code>或者
+<code>subjects[-2] = PE</code></p></li>
+<li><p>在尾部插入：<code>subjects.append('introduction_to_computer_system')</code></p></li>
+<li><p>在指定位置（下标为2处）插入：<code>subjects.append(2, 'databases')</code></p></li>
+<li><p>在尾部删除：<code>subjects.pop()</code></p></li>
+<li><p>删除下标为3的元素：<code>subjects.pop(3)</code></p></li>
+<li><p>对元素排序（list内元素类型必须相同）：<code>subjects.sort()</code></p></li>
 </ul>
-<h2 id="tuple——"><a href="#tuple——" class="headerlink" title="tuple——()"></a>tuple——()</h2><ul>
-<li>创建一个tuple：<code>subjects = (&#39;calculus&#39;, &#39;programming&#39;, &#39;politics&#39;)</code></li>
+<h2 id="tuple">tuple——()</h2>
+<ul>
+<li>创建一个tuple：<code>subjects = ('calculus', 'programming', 'politics')</code></li>
 </ul>
 <p>tuple<strong>一旦创建，就不能修改</strong></p>
-<h2 id="dict——"><a href="#dict——" class="headerlink" title="dict——{}"></a>dict——{}</h2><p>（dict类似于c++中的<code>map</code>。我本来以为dict也是靠rb-tree实现的，结果一个错误告诉我它是靠hash实现的，因此dict中的元素必须是str、tuple等<strong>不可变对象</strong>，而不能插入list）</p>
+<h2 id="dict">dict——</h2>
+<p>（dict类似于c++中的<code>map</code>。我本来以为dict也是靠rb-tree实现的，结果一个错误告诉我它是靠hash实现的，因此dict中的元素必须是str、tuple等<strong>不可变对象</strong>，而不能插入list）</p>
 <ul>
-<li><p>创建一个dict：<code>score = &#123;&#39;calculus&#39;:96, &#39;programming&#39;:92, &#39;politics&#39;:86&#125;</code></p>
-</li>
-<li><p>插入元素：<code>score[&#39;PE&#39;]=80</code></p>
-</li>
-<li><p>删除元素：<code>score.pop(&#39;calculus&#39;)</code></p>
-</li>
+<li><p>创建一个dict：<code>score = &#123;'calculus':96, 'programming':92, 'politics':86&#125;</code></p></li>
+<li><p>插入元素：<code>score['PE']=80</code></p></li>
+<li><p>删除元素：<code>score.pop('calculus')</code></p></li>
 </ul>
-<h2 id="set——set-list"><a href="#set——set-list" class="headerlink" title="set——set(list)"></a>set——set(list)</h2><p>顾名思义，set中不会含有重复的元素。</p>
+<h2 id="setsetlist">set——set(list)</h2>
+<p>顾名思义，set中不会含有重复的元素。</p>
 <ul>
-<li><p>创建一个set：<code>academic = set([&#39;programming&#39;, &#39;databases&#39;, &#39;assembly&#39;])</code></p>
-</li>
-<li><p>插入元素：<code>academic.add(&#39;networking&#39;)</code></p>
-</li>
-<li><p>删除元素：<code>academic.remove(&#39;programming&#39;)</code></p>
-</li>
-<li><p>交集并集：</p>
-</li>
+<li><p>创建一个set：<code>academic = set(['programming', 'databases', 'assembly'])</code></p></li>
+<li><p>插入元素：<code>academic.add('networking')</code></p></li>
+<li><p>删除元素：<code>academic.remove('programming')</code></p></li>
+<li><p>交集并集：</p></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s1 = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s2 = <span class="built_in">set</span>([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s1 &amp; s2</span><br><span class="line">&#123;<span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s1 | s2</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Condition-and-loop"><a href="#Condition-and-loop" class="headerlink" title="Condition and loop"></a>Condition and loop</h1><ul>
+<h1 id="condition-and-loop">Condition and loop</h1>
+<ul>
 <li>再强调一遍：组合条件用<code>and</code>和<code>or</code>，而不是<code>&amp;&amp;</code>或<code>||</code>！</li>
 </ul>
 <p>条件语句剩下的注意事项看以下例子：</p>
@@ -562,14 +445,17 @@
 <li>遍历list、tuple、str中元素更高效的方式是<em>切片</em>，切片中的三个参数分别表示初值、终值和步长</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>L = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">100</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[:<span class="number">10</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[-<span class="number">10</span>:]</span><br><span class="line">[<span class="number">90</span>, <span class="number">91</span>, <span class="number">92</span>, <span class="number">93</span>, <span class="number">94</span>, <span class="number">95</span>, <span class="number">96</span>, <span class="number">97</span>, <span class="number">98</span>, <span class="number">99</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[<span class="number">10</span>:<span class="number">20</span>]</span><br><span class="line">[<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[:<span class="number">10</span>:<span class="number">2</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[::<span class="number">5</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">40</span>, <span class="number">45</span>, <span class="number">50</span>, <span class="number">55</span>, <span class="number">60</span>, <span class="number">65</span>, <span class="number">70</span>, <span class="number">75</span>, <span class="number">80</span>, <span class="number">85</span>, <span class="number">90</span>, <span class="number">95</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[:]</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, ..., <span class="number">99</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[::-<span class="number">1</span>]</span><br><span class="line">[<span class="number">99</span>, <span class="number">98</span>, <span class="number">97</span>, <span class="number">96</span>, ..., <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h1 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h1><p>一个简单的阶乘函数：</p>
+<h1 id="function">Function</h1>
+<p>一个简单的阶乘函数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fact</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> n * fact(n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>函数可以返回多个值——其实是一个tuple</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">rot90</span>(<span class="params">x, y</span>):</span><br><span class="line">    tmp = x</span><br><span class="line">    x = -y</span><br><span class="line">    y = tmp</span><br><span class="line">    <span class="keyword">return</span> x, y</span><br></pre></td></tr></table></figure>
-<h2 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h2><p>跟你C语言的参数是一个意思。</p>
-<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><p>比如之前<code>open</code>函数的帮助文档是这样写的：</p>
+<h2 id="位置参数">位置参数</h2>
+<p>跟你C语言的参数是一个意思。</p>
+<h2 id="默认参数">默认参数</h2>
+<p>比如之前<code>open</code>函数的帮助文档是这样写的：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">help</span>(<span class="built_in">open</span>)</span><br><span class="line">Help on built-<span class="keyword">in</span> function <span class="built_in">open</span> <span class="keyword">in</span> module io:</span><br><span class="line"></span><br><span class="line"><span class="built_in">open</span>(file, mode=<span class="string">&#x27;r&#x27;</span>, buffering=-<span class="number">1</span>, encoding=<span class="literal">None</span>, errors=<span class="literal">None</span>, newline=<span class="literal">None</span>, closefd=<span class="literal">True</span>, opener=<span class="literal">None</span>)</span><br><span class="line">    Open file <span class="keyword">and</span> <span class="keyword">return</span> a stream.  Raise OSError upon failure.</span><br><span class="line"></span><br><span class="line">    file <span class="keyword">is</span> either a text <span class="keyword">or</span> byte string giving the name (<span class="keyword">and</span> the path</span><br><span class="line">    <span class="keyword">if</span> the file isn<span class="string">&#x27;t in the current working directory) of the file to</span></span><br><span class="line"><span class="string">    be opened or an integer file descriptor of the file to be</span></span><br><span class="line"><span class="string">    wrapped. (If a file descriptor is given, it is closed when the</span></span><br><span class="line"><span class="string">-- More  --</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>除了第一项文件路径之外，剩下的都是默认参数。由于我之前没有填写<code>encoding</code>的参数，它默认是<code>None</code>，从而导致读取的文件乱码。</li>
@@ -577,7 +463,8 @@
 <blockquote>
 <p>注意：默认参数需要指向不可变对象！否则每一次函数运行后，得到的结果都可能不同。</p>
 </blockquote>
-<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><blockquote>
+<h1 id="summary">Summary</h1>
+<blockquote>
 <p>The best way to learn a language is to use it.</p>
 </blockquote>
 <p>快去刷题！</p>
@@ -634,28 +521,6 @@
 
 
     <div class="comments"><div id="twikoo-comments"></div></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
 </div>
   </main>
 
@@ -676,17 +541,17 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">399k</span>
+    <span title="站点总字数">422k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:03</span>
+    <span title="站点阅读时长">6:24</span>
   </span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -694,7 +559,7 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -727,13 +592,30 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
 
   
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-<script src="/js/local-search.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
@@ -745,18 +627,33 @@
 
 
 
-
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-new.vercel.app/","el":"#twikoo-comments"}</script>
 <script>
-NexT.utils.loadComments('#twikoo-comments', () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
-    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"https://202182.vercel.app/"}, {
-      el: '#twikoo-comments'
-    }));
-  }, window.twikoo);
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
 });
 </script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
 
 </body>
 </html>

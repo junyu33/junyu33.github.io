@@ -58,32 +58,6 @@
   </entry>
   
   <entry>
-    <title>（archived）ctf练习(pwn)</title>
-    <link href="https://blog.junyu33.me/2032/02/07/bin_ctf.html"/>
-    <id>https://blog.junyu33.me/2032/02/07/bin_ctf.html</id>
-    <published>2032-02-07T14:00:00.000Z</published>
-    <updated>2023-03-04T16:40:26.185Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;分为stack、fmtstr、heap、misc四部分，用作记录思路和用得上的gadget。&lt;/p&gt;
-&lt;p&gt;以下二级标题不带网站的默认为buuoj对应分区题目。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;updated on 2022/10/23:&lt;/p&gt;
-&lt;p&gt;buu前五页已经完成，该专栏将不再更新具体的思路与exp。&lt;/p&gt;
-&lt;p&gt;接下来可能学内核、高版本的house系列，比赛的题解会单独开文章，并在对应的栏目添加文章链接。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
-    
-    
-      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
-    
-  </entry>
-  
-  <entry>
     <title>（不定期更新）OS笔记</title>
     <link href="https://blog.junyu33.me/2023/03/05/OS.html"/>
     <id>https://blog.junyu33.me/2023/03/05/OS.html</id>
@@ -106,7 +80,7 @@
     <link href="https://blog.junyu33.me/2023/02/27/cryptology.html"/>
     <id>https://blog.junyu33.me/2023/02/27/cryptology.html</id>
     <published>2023-02-27T06:30:00.000Z</published>
-    <updated>2023-03-13T08:20:06.150Z</updated>
+    <updated>2023-03-13T13:37:00.570Z</updated>
     
     <summary type="html">
     
@@ -377,7 +351,7 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html"/>
     <id>https://blog.junyu33.me/2022/09/26/大物笔记.html</id>
     <published>2022-09-26T13:00:00.000Z</published>
-    <updated>2023-03-13T08:23:10.282Z</updated>
+    <updated>2023-03-13T13:30:38.722Z</updated>
     
     <summary type="html">
     
@@ -395,7 +369,7 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F.html"/>
     <id>https://blog.junyu33.me/2022/09/26/概统.html</id>
     <published>2022-09-26T12:30:00.000Z</published>
-    <updated>2023-03-13T08:17:33.927Z</updated>
+    <updated>2023-03-13T13:23:30.175Z</updated>
     
     <summary type="html">
     
@@ -434,6 +408,24 @@ extraordinary happened.&lt;/p&gt;
       <category term="misc" scheme="https://blog.junyu33.me/tags/misc/"/>
     
       <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客域名变更小记</title>
+    <link href="https://blog.junyu33.me/2022/07/26/newsite.html"/>
+    <id>https://blog.junyu33.me/2022/07/26/newsite.html</id>
+    <published>2022-07-26T06:40:00.000Z</published>
+    <updated>2022-08-12T02:46:06.530Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为原先博客域名过长，并且国内解析速度较慢，我决定用利用github学生包白嫖一个域名，并解析到netlify的dns上。最后域名成功由&lt;code&gt;junyu33.github.io&lt;/code&gt;变更为&lt;code&gt;junyu33.me&lt;/code&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="test" scheme="https://blog.junyu33.me/categories/test/"/>
+    
     
   </entry>
   

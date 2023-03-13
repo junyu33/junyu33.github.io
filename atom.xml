@@ -41,7 +41,7 @@
     <link href="https://blog.junyu33.me/2032/07/03/pwn_college.html"/>
     <id>https://blog.junyu33.me/2032/07/03/pwn_college.html</id>
     <published>2032-07-03T10:00:00.000Z</published>
-    <updated>2022-12-17T14:25:08.202Z</updated>
+    <updated>2023-03-13T04:44:20.195Z</updated>
     
     <summary type="html">
     
@@ -88,7 +88,7 @@
     <link href="https://blog.junyu33.me/2023/03/05/OS.html"/>
     <id>https://blog.junyu33.me/2023/03/05/OS.html</id>
     <published>2023-03-04T16:30:00.000Z</published>
-    <updated>2023-03-04T17:13:04.446Z</updated>
+    <updated>2023-03-07T07:40:56.985Z</updated>
     
     <summary type="html">
     
@@ -106,7 +106,7 @@
     <link href="https://blog.junyu33.me/2023/02/27/cryptology.html"/>
     <id>https://blog.junyu33.me/2023/02/27/cryptology.html</id>
     <published>2023-02-27T06:30:00.000Z</published>
-    <updated>2023-03-04T16:51:35.423Z</updated>
+    <updated>2023-03-13T08:05:10.476Z</updated>
     
     <summary type="html">
     
@@ -391,12 +391,11 @@
     <link href="https://blog.junyu33.me/2022/09/26/%E6%A6%82%E7%BB%9F.html"/>
     <id>https://blog.junyu33.me/2022/09/26/概统.html</id>
     <published>2022-09-26T12:30:00.000Z</published>
-    <updated>2023-02-20T13:52:45.731Z</updated>
+    <updated>2023-03-13T08:17:33.927Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;顺便用作&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext&gt;LaTeX&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\LaTeX&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.89883em;vertical-align:-0.2155em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord text&quot;&gt;&lt;span class=&quot;mord textrm&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:-0.36em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;vlist-t&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.68333em;&quot;&gt;&lt;span style=&quot;top:-2.904999em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord textrm mtight sizing reset-size6 size3&quot;&gt;A&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:-0.15em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord text&quot;&gt;&lt;span class=&quot;mord textrm&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:-0.1667em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.46782999999999997em;&quot;&gt;&lt;span style=&quot;top:-2.7845em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord textrm&quot;&gt;E&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.2155em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:-0.125em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord textrm&quot;&gt;X&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;练习.&lt;/p&gt;
-&lt;p&gt;~~bug: 目前发现转mathjax时X的平均值（即&lt;code&gt;\overline{X}&lt;/code&gt;)不能正常显示。~~该bug在寒假更新hexo与nexT主题时被修复。&lt;/p&gt;
     
     </summary>
     
@@ -422,13 +421,13 @@
       <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
     
     
+      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
+    
       <category term="reverse" scheme="https://blog.junyu33.me/tags/reverse/"/>
     
       <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
     
       <category term="misc" scheme="https://blog.junyu33.me/tags/misc/"/>
-    
-      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
     
       <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
     

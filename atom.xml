@@ -41,7 +41,7 @@
     <link href="https://blog.junyu33.me/2032/07/03/pwn_college.html"/>
     <id>https://blog.junyu33.me/2032/07/03/pwn_college.html</id>
     <published>2032-07-03T10:00:00.000Z</published>
-    <updated>2023-03-13T04:44:20.195Z</updated>
+    <updated>2023-03-14T14:41:39.417Z</updated>
     
     <summary type="html">
     
@@ -54,6 +54,26 @@
     
     
       <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>（转载）ChatGPT虚拟信用卡绑定</title>
+    <link href="https://blog.junyu33.me/2023/03/22/depay.html"/>
+    <id>https://blog.junyu33.me/2023/03/22/depay.html</id>
+    <published>2023-03-22T05:00:00.000Z</published>
+    <updated>2023-03-22T04:47:59.893Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文地址：关键词太多，原作者的服务器又备案，所以我就代发了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
     
   </entry>
   
@@ -84,7 +104,7 @@
     <link href="https://blog.junyu33.me/2023/03/05/OS.html"/>
     <id>https://blog.junyu33.me/2023/03/05/OS.html</id>
     <published>2023-03-04T16:30:00.000Z</published>
-    <updated>2023-03-07T07:40:56.985Z</updated>
+    <updated>2023-03-21T07:36:28.301Z</updated>
     
     <summary type="html">
     
@@ -102,7 +122,7 @@
     <link href="https://blog.junyu33.me/2023/02/27/cryptology.html"/>
     <id>https://blog.junyu33.me/2023/02/27/cryptology.html</id>
     <published>2023-02-27T06:30:00.000Z</published>
-    <updated>2023-03-13T13:37:00.570Z</updated>
+    <updated>2023-03-20T08:25:35.043Z</updated>
     
     <summary type="html">
     
@@ -409,35 +429,6 @@ extraordinary happened.&lt;/p&gt;
     
       <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>corctf2022-wp</title>
-    <link href="https://blog.junyu33.me/2022/08/11/corctf2022.html"/>
-    <id>https://blog.junyu33.me/2022/08/11/corctf2022.html</id>
-    <published>2022-08-11T14:00:00.000Z</published>
-    <updated>2022-08-12T03:03:40.235Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;把各个方向的简单题给摸完了。&lt;/p&gt;
-&lt;p&gt;当然这样是不行的。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
-    
-    
-      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
-    
-      <category term="reverse" scheme="https://blog.junyu33.me/tags/reverse/"/>
-    
-      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
-    
-      <category term="misc" scheme="https://blog.junyu33.me/tags/misc/"/>
-    
-      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
     
   </entry>
   

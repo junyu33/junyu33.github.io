@@ -243,7 +243,7 @@ mjx-container[display="true"] + br {
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#computer-system-overview"><span class="nav-number">1.</span> <span class="nav-text">Computer System Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#operating-system-overview"><span class="nav-number">2.</span> <span class="nav-text">Operating System Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#process-description-and-control"><span class="nav-number">3.</span> <span class="nav-text">Process Description and
-Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#process"><span class="nav-number">3.1.</span> <span class="nav-text">process</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#threads"><span class="nav-number">4.</span> <span class="nav-text">Threads</span></a></li></ol></div>
+Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#process"><span class="nav-number">3.1.</span> <span class="nav-text">process</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#threads"><span class="nav-number">4.</span> <span class="nav-text">Threads</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#concurrency"><span class="nav-number">5.</span> <span class="nav-text">Concurrency</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#terminology"><span class="nav-number">5.1.</span> <span class="nav-text">terminology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithm"><span class="nav-number">5.2.</span> <span class="nav-text">algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dekker"><span class="nav-number">5.2.1.</span> <span class="nav-text">dekker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#peterson"><span class="nav-number">5.2.2.</span> <span class="nav-text">peterson</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hardware-disabling"><span class="nav-number">5.2.3.</span> <span class="nav-text">hardware disabling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#special-instruction"><span class="nav-number">5.2.4.</span> <span class="nav-text">special instruction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#semaphores"><span class="nav-number">5.3.</span> <span class="nav-text">Semaphores</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#terminology-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">terminology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operation"><span class="nav-number">5.3.2.</span> <span class="nav-text">operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step"><span class="nav-number">5.3.3.</span> <span class="nav-text">step</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#problems"><span class="nav-number">5.3.4.</span> <span class="nav-text">problems</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -385,7 +385,7 @@ Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a clas
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-21 15:36:28" itemprop="dateModified" datetime="2023-03-21T15:36:28+08:00">2023-03-21</time>
+      <time title="修改时间：2023-03-28 17:15:43" itemprop="dateModified" datetime="2023-03-28T17:15:43+08:00">2023-03-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -404,14 +404,14 @@ Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a clas
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>749</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -446,14 +446,100 @@ Control</h1>
 <blockquote>
 <p>交替执行(interleave)、策略(stategy)、死锁(deadlock).</p>
 </blockquote>
-<p>definition: - 一个正在执行(running, executing)的程序。 -
-一个正在计算机上执行的程序实例 - 能分配给处理器并由处理器执行的实体 -
-由一组执行的指令、一个当前状态和一组相关的系统资源表征的活动单元。</p>
-<p>component: - ID - State</p>
+<p>definition:</p>
+<ul>
+<li>一个正在执行(running, executing)的程序。</li>
+<li>一个正在计算机上执行的程序实例</li>
+<li>能分配给处理器并由处理器执行的实体</li>
+<li>由一组执行的指令、一个当前状态和一组相关的系统资源表征的活动单元。</li>
+</ul>
+<p>component:</p>
+<ul>
+<li>ID</li>
+<li>State</li>
+</ul>
 <h1 id="threads">Threads</h1>
 <p>Thread: lightweighted process.</p>
 <p>Linux has no kernel threads while Windows does, the advantanges of no
 threads are lightweighted and easy to manage.</p>
+<h1 id="concurrency">Concurrency</h1>
+<h2 id="terminology">terminology</h2>
+<ul>
+<li>atomic operation</li>
+<li>critical section</li>
+<li>deadlock</li>
+<li>livelock</li>
+<li>mutual exclusion</li>
+<li>race condition</li>
+<li>starvation</li>
+</ul>
+<p>单道程序的特点：</p>
+<ul>
+<li>封闭性</li>
+<li>连续性</li>
+<li>可再现性</li>
+</ul>
+<p>多道程序的特点：</p>
+<ul>
+<li>失去封闭性</li>
+<li>间断性</li>
+<li>不可再现性</li>
+</ul>
+<h2 id="algorithm">algorithm</h2>
+<h3 id="dekker">dekker</h3>
+<p><img src="/2023/03/05/OS/dekker.png"></p>
+<ul>
+<li>存在活锁。</li>
+<li>规定了进程执行的顺序，不灵活。</li>
+<li>程序实现复杂，难以验证。</li>
+</ul>
+<h3 id="peterson">peterson</h3>
+<p><img src="/2023/03/05/OS/peterson.png"></p>
+<h3 id="hardware-disabling">hardware disabling</h3>
+<p>disadvantage:</p>
+<ul>
+<li>Processor is limited in its ability to interleave programs.</li>
+<li>disabling interrupts on one processor will not guarantee mutual
+exclusion in multi-processors environment。</li>
+</ul>
+<h3 id="special-instruction">special instruction</h3>
+<p>优点：进程数目不限、简单易证、支持多临界区。</p>
+<p>缺点：忙时等待、饥饿、死锁。</p>
+<h2 id="semaphores">Semaphores</h2>
+<h3 id="terminology-1">terminology</h3>
+<ul>
+<li>二元信号量</li>
+<li>计数信号量</li>
+<li>互斥量</li>
+<li>强信号量</li>
+<li>弱信号量</li>
+</ul>
+<h3 id="operation">operation</h3>
+<ul>
+<li>semwait: 申请一个资源/等待一个条件</li>
+<li>semsignal: 释放一个资源/产生一个条件</li>
+<li>如果前两者在一个进程出现，称为互斥；如果不在一个进程出现，称为同步</li>
+<li>对于semwait，先处理同步，再处理互斥</li>
+</ul>
+<h3 id="step">step</h3>
+<ul>
+<li>determine the number of processes</li>
+<li>analysis of the nature of the problem</li>
+<li>define the semaphore and initialize the value of the semaphore</li>
+<li>calling semwait and semsignal in the process</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Semaphore(a,b,c)</span><br><span class="line">{</span><br><span class="line">  a = <span class="number">1</span>;</span><br><span class="line">  b = <span class="number">2</span>;</span><br><span class="line">  c = <span class="number">3</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> p_1...p_n()</span><br><span class="line">{</span><br><span class="line">  <span class="comment">// do sth</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">  Parbegin(p(<span class="number">1</span>),p(<span class="number">2</span>), p3(<span class="number">3</span>), ... p(n));</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="problems">problems</h3>
+<p>生产者消费者问题：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">producer</span><span class="params">()</span> {</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) {</span><br><span class="line">    produce();</span><br><span class="line">    semwait(empty);</span><br><span class="line">    semwait(mutex);</span><br><span class="line">    <span class="comment">// put item in store</span></span><br><span class="line">    semsignal(mutex);</span><br><span class="line">    semsignal(product);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"><span class="type">void</span> <span class="title function_">consumer</span><span class="params">()</span> {</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>) {</span><br><span class="line">    semwait(product);</span><br><span class="line">    semwait(mutex);</span><br><span class="line">    <span class="comment">// take item from store</span></span><br><span class="line">    semsignal(mutex);</span><br><span class="line">    semsignal(empty);</span><br><span class="line">    use();</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>读者写者问题：</p>
+<blockquote>
+<p>rw，ww之间互斥 rr之间互斥（条件竞争）</p>
+</blockquote>
+<p>读者优先：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> counter = <span class="number">0</span>；</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> reader() {</span><br><span class="line">  <span class="type">int</span> m;</span><br><span class="line">  semwait(mutex2);</span><br><span class="line">  counter++;</span><br><span class="line">  m = counter; <span class="comment">// because counter maybe updated</span></span><br><span class="line">  semsignal(mutex2);</span><br><span class="line">  <span class="keyword">if</span> (m == <span class="number">1</span>) semwait(mutex1); <span class="comment">// the first to read, compete with write</span></span><br><span class="line">  read();</span><br><span class="line">  semwait(mutex2);</span><br><span class="line">  counter--;</span><br><span class="line">  m = counter;</span><br><span class="line">  semsignal(mutex2);</span><br><span class="line">  <span class="keyword">if</span> (m == <span class="number">0</span>) semsignal(mutex1);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">writer</span><span class="params">()</span> {</span><br><span class="line">  semwait(mutex1);</span><br><span class="line">  write();</span><br><span class="line">  semsignal(mutex1);</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>读写平等：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Semphore mutex =<span class="number">1</span>; <span class="comment">//文件互斥量</span></span><br><span class="line">Semphore readmutex=<span class="number">1</span>; <span class="comment">//读进程计数互斥量</span></span><br><span class="line">Semphore <span class="built_in">queue</span>=<span class="number">1</span>; <span class="comment">//读进程与写进程排队互斥量</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> readcount=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">reader</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">  <span class="type">int</span> m=<span class="number">0</span>;</span><br><span class="line">  semwait(<span class="built_in">queue</span>);</span><br><span class="line">  semwait(readmutex);</span><br><span class="line">  readcount+=<span class="number">1</span>;</span><br><span class="line">  m= readcount;</span><br><span class="line">  semsignal(readmutex);</span><br><span class="line">  <span class="keyword">if</span> (m==<span class="number">1</span>) semwait(mutex)</span><br><span class="line">  semsignal(<span class="built_in">queue</span>)</span><br><span class="line">  read();</span><br><span class="line">  semwait(readmutex)</span><br><span class="line">  readcount-=<span class="number">1</span>;</span><br><span class="line">  m = readcount;</span><br><span class="line">  semsigal(readmutex)</span><br><span class="line">  <span class="keyword">if</span> (m==<span class="number">0</span>) semsignal(mutex)</span><br><span class="line">}</span><br><span class="line">Void <span class="title function_">writer</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">  semwait(<span class="built_in">queue</span>);</span><br><span class="line">  semwait(mutex);</span><br><span class="line">  write();</span><br><span class="line">  semsignal(mutex);</span><br><span class="line">  semsignal(<span class="built_in">queue</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -524,13 +610,13 @@ threads are lightweighted and easy to manage.</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">453k</span>
+    <span title="站点总字数">456k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:52</span>
+    <span title="站点阅读时长">6:54</span>
   </span>
 </div>
 <div class="busuanzi-count">

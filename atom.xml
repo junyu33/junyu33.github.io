@@ -58,6 +58,28 @@
   </entry>
   
   <entry>
+    <title>nand2tetris</title>
+    <link href="https://blog.junyu33.me/2023/04/17/nand2tetris.html"/>
+    <id>https://blog.junyu33.me/2023/04/17/nand2tetris.html</id>
+    <published>2023-04-17T13:00:00.000Z</published>
+    <updated>2023-04-17T12:55:31.591Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;nand2tetris 各 module 的评价以及本人的 workout.&lt;/p&gt;
+&lt;p&gt;43 hours (approximately) for part1 (module1-6) in December 28, 2022, grade 100%.&lt;/p&gt;
+&lt;p&gt;89 hours (approximately) for part2 (module7-12) in April 17, 2023, grade 96.8%.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PicoCTF 2023 pwn wp</title>
     <link href="https://blog.junyu33.me/2023/03/30/picoctf2023.html"/>
     <id>https://blog.junyu33.me/2023/03/30/picoctf2023.html</id>
@@ -142,7 +164,7 @@
     <link href="https://blog.junyu33.me/2023/02/27/cryptology.html"/>
     <id>https://blog.junyu33.me/2023/02/27/cryptology.html</id>
     <published>2023-02-27T06:30:00.000Z</published>
-    <updated>2023-04-10T08:25:42.253Z</updated>
+    <updated>2023-04-17T08:12:40.732Z</updated>
     
     <summary type="html">
     
@@ -413,24 +435,6 @@ extraordinary happened.&lt;/p&gt;
     
     
       <category term="cpp" scheme="https://blog.junyu33.me/tags/cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>（不定期更新）大物上笔记</title>
-    <link href="https://blog.junyu33.me/2022/09/26/%E5%A4%A7%E7%89%A9%E7%AC%94%E8%AE%B0.html"/>
-    <id>https://blog.junyu33.me/2022/09/26/大物笔记.html</id>
-    <published>2022-09-26T13:00:00.000Z</published>
-    <updated>2023-03-13T13:48:28.253Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;大物上本质就是微积分，只不过对微分变量的选取更加讲究。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
     
   </entry>
   

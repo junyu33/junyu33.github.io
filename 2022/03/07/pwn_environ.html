@@ -130,10 +130,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8Eshell%E7%BE%8E%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">linux系统的搭建与shell美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%8E%A8%E8%8D%90"><span class="nav-number">1.1.</span> <span class="nav-text">方法一：使用虚拟机（推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BD%BF%E7%94%A8wslwsl2"><span class="nav-number">1.2.</span> <span class="nav-text">方法二：使用wsl&#x2F;wsl2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8wsl%E5%B9%B6%E4%B8%8B%E8%BD%BDlinux%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">启用wsl并下载linux子系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E5%B9%B6%E7%BE%8E%E5%8C%96linux%E7%BB%88%E7%AB%AF%E5%8F%AF%E9%80%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">更改并美化linux终端（可选）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.3.</span> <span class="nav-text">设置共享文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vmware"><span class="nav-number">1.3.1.</span> <span class="nav-text">vmware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wsl"><span class="nav-number">1.3.2.</span> <span class="nav-text">wsl</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8linux%E4%B8%AD%E9%85%8D%E7%BD%AEpwn%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">在linux中配置pwn环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99shellcode%E6%89%80%E9%9C%80%E5%B7%A5%E5%85%B7"><span class="nav-number">2.1.</span> <span class="nav-text">编写shellcode所需工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">2.2.</span> <span class="nav-text">调试工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEvscode%E8%BF%9C%E7%A8%8B%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">配置vscode远程链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8linux%E4%B8%8B%E9%85%8D%E7%BD%AEssh"><span class="nav-number">3.1.</span> <span class="nav-text">在linux下配置ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%AB%AF%E5%8F%A3%E5%8F%AF%E9%80%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">配置端口（可选）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8windows%E4%B8%8B%E9%85%8D%E7%BD%AEssh"><span class="nav-number">3.2.</span> <span class="nav-text">在windows下配置ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows%E7%8E%AF%E5%A2%83%E6%B5%8B%E8%AF%95"><span class="nav-number">3.2.1.</span> <span class="nav-text">windows环境测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEssh-key%E5%8F%AF%E9%80%89"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置SSH key（可选）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vscode-ssh%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">vscode ssh插件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%91%E7%82%B9%E4%B8%80bad-owner-or-permissions-on-.sshconfig"><span class="nav-number">3.3.1.</span> <span class="nav-text">坑点一——bad owner
-or permissions on &#x2F;.ssh&#x2F;config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%91%E7%82%B9%E4%BA%8Cvscode-server%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%A5%BD%E5%83%8F%E5%8D%A1%E4%BD%8F%E4%B8%8D%E5%8A%A8%E4%BA%86"><span class="nav-number">3.3.2.</span> <span class="nav-text">坑点二——vscode
-server安装过程中好像卡住不动了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8vscode-server%E4%B8%8A%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E5%8F%AF%E9%80%89"><span class="nav-number">3.3.3.</span> <span class="nav-text">在vscode
-server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98updated-on-3252022"><span class="nav-number">3.3.4.</span> <span class="nav-text">常见问题——updated on 3&#x2F;25&#x2F;2022</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vscode%E7%95%8C%E9%9D%A2%E5%BE%AE%E8%B0%83"><span class="nav-number">3.4.</span> <span class="nav-text">vscode界面微调</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8Eshell%E7%BE%8E%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">linux系统的搭建与shell美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%8E%A8%E8%8D%90"><span class="nav-number">1.1.</span> <span class="nav-text">方法一：使用虚拟机（推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BD%BF%E7%94%A8wslwsl2"><span class="nav-number">1.2.</span> <span class="nav-text">方法二：使用wsl&#x2F;wsl2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8wsl%E5%B9%B6%E4%B8%8B%E8%BD%BDlinux%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">启用wsl并下载linux子系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E5%B9%B6%E7%BE%8E%E5%8C%96linux%E7%BB%88%E7%AB%AF%E5%8F%AF%E9%80%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">更改并美化linux终端（可选）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.3.</span> <span class="nav-text">设置共享文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vmware"><span class="nav-number">1.3.1.</span> <span class="nav-text">vmware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wsl"><span class="nav-number">1.3.2.</span> <span class="nav-text">wsl</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8linux%E4%B8%AD%E9%85%8D%E7%BD%AEpwn%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">在linux中配置pwn环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-linux-%E4%B8%AD%E4%BD%BF%E7%94%A8-ida-pro-updated-on-4292023"><span class="nav-number">2.1.</span> <span class="nav-text">在 linux 中使用 IDA pro (updated on 4&#x2F;29&#x2F;2023)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99shellcode%E6%89%80%E9%9C%80%E5%B7%A5%E5%85%B7"><span class="nav-number">2.2.</span> <span class="nav-text">编写shellcode所需工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">2.3.</span> <span class="nav-text">调试工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEvscode%E8%BF%9C%E7%A8%8B%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">配置vscode远程链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8linux%E4%B8%8B%E9%85%8D%E7%BD%AEssh"><span class="nav-number">3.1.</span> <span class="nav-text">在linux下配置ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%AB%AF%E5%8F%A3%E5%8F%AF%E9%80%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">配置端口（可选）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8windows%E4%B8%8B%E9%85%8D%E7%BD%AEssh"><span class="nav-number">3.2.</span> <span class="nav-text">在windows下配置ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows%E7%8E%AF%E5%A2%83%E6%B5%8B%E8%AF%95"><span class="nav-number">3.2.1.</span> <span class="nav-text">windows环境测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEssh-key%E5%8F%AF%E9%80%89"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置SSH key（可选）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vscode-ssh%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">vscode ssh插件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%91%E7%82%B9%E4%B8%80bad-owner-or-permissions-on-.sshconfig"><span class="nav-number">3.3.1.</span> <span class="nav-text">坑点一——bad owner or permissions on &#x2F;.ssh&#x2F;config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%91%E7%82%B9%E4%BA%8Cvscode-server%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%A5%BD%E5%83%8F%E5%8D%A1%E4%BD%8F%E4%B8%8D%E5%8A%A8%E4%BA%86"><span class="nav-number">3.3.2.</span> <span class="nav-text">坑点二——vscode server安装过程中好像卡住不动了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8vscode-server%E4%B8%8A%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E5%8F%AF%E9%80%89"><span class="nav-number">3.3.3.</span> <span class="nav-text">在vscode server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98updated-on-3252022"><span class="nav-number">3.3.4.</span> <span class="nav-text">常见问题——updated on 3&#x2F;25&#x2F;2022</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vscode%E7%95%8C%E9%9D%A2%E5%BE%AE%E8%B0%83"><span class="nav-number">3.4.</span> <span class="nav-text">vscode界面微调</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -275,7 +272,7 @@ server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-12 10:46:06" itemprop="dateModified" datetime="2022-08-12T10:46:06+08:00">2022-08-12</time>
+      <time title="修改时间：2023-04-19 19:39:03" itemprop="dateModified" datetime="2023-04-19T19:39:03+08:00">2023-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,14 +291,14 @@ server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.2k</span>
+      <span>4.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -312,7 +309,7 @@ server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3
     
     
     <div class="post-body" itemprop="articleBody">
-        <link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>如果能把精力集中在shellcode的编写上，而不是一遍又一遍地在虚拟机和vscode中来回横跳，那是多么惬意的事情。</p>
+        <p>如果能把精力集中在shellcode的编写上，而不是一遍又一遍地在虚拟机和vscode中来回横跳，那是多么惬意的事情。</p>
 <p>我们假设读者刚刚装好了vscode，里面什么插件也没有，从零开始。</p>
 <p>整个过程大概需要花费半天到一天的时间。</p>
 <p>成果图：</p>
@@ -327,8 +324,7 @@ server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3
 <p>如果你的windows内部版本小于18362，那么我并不推荐你选择这种方法，因为之前的版本只能安装wsl，而且wsl不是真正的linux内核。具体一点，你不能运行32位程序。</p>
 <p>如果你的windows内部版本小于19041，那么安装wsl2会开启Hyper-V，会导致与Vmware虚拟机产生冲突，因此个人也不推荐。</p>
 <blockquote>
-<p>for experienced:
-如果你之前装了wsl，可以参考这篇升级指南：https://zhuanlan.zhihu.com/p/356397851</p>
+<p>for experienced: 如果你之前装了wsl，可以参考这篇升级指南：https://zhuanlan.zhihu.com/p/356397851</p>
 </blockquote>
 <p>我的系统内部版本是18363，因此安装了wsl，这里以安装wsl为例进行介绍。</p>
 <h3 id="启用wsl并下载linux子系统">启用wsl并下载linux子系统</h3>
@@ -358,6 +354,23 @@ server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3
 <h3 id="wsl">wsl</h3>
 <p>直接在<code>/mnt/</code>中就可以看到主机的所有盘符，无需共享。</p>
 <h1 id="在linux中配置pwn环境">在linux中配置pwn环境</h1>
+<h2 id="在-linux-中使用-ida-pro-updated-on-4292023">在 linux 中使用 IDA pro (updated on 4/29/2023)</h2>
+<blockquote>
+<p>如果有钱买 linux 正版可以略过此节。</p>
+<p>ref: https://www.debugwar.com/article/activate-IDAPython-with-wine-IDA-under-linux</p>
+</blockquote>
+<p>相信大部分读者应该有 IDA pro 7.7 的学习版，只不过是 Windows 版本。让 linux 环境跑起 IDA pro 的步骤如下（以 ubuntu 22.04.2 LTS为例）：</p>
+<ol type="1">
+<li>下载 <code>winehq</code>，选择<code>stable-branch</code>即可： https://wiki.winehq.org/Ubuntu</li>
+<li>使用 <code>wine</code> 运行一次 <code>ida.exe/ida64.exe</code>，此时 ida 会提示没有 python 环境。</li>
+<li>建议下载 <code>python3.8.10</code>的绿色包：<code>wget https://www.python.org/ftp/python/3.8.10/python-3.8.10-embed-amd64.zip</code>，并放置于 wine 对应 windows 分区的 <code>C:\Program Files\Python3</code>（即 linux 分区的 <code>~/.wine/drive_c/Program Files/Python3</code>）。</li>
+<li>在 windows 注册表中将3中路径添加到<code>PATH</code>中，即<code>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment</code>中的<code>PATH</code>键值。</li>
+<li>此时打开<code>IDA</code>应该可以用<code>IDAPython</code>，但是<code>yara keystone</code>相关插件仍会报错。这是因为我们没有用<code>pip</code>安装相关模块。</li>
+<li>执行 <code>pip</code> 安装脚本：<code>wine python https://bootstrap.pypa.io/get-pip.py</code>并在<code>Python3</code>目录中的<code>python38._pth</code>文件中添加一行<code>./Lib/site-packages</code>，此时执行<code>wine python.exe -m pip --version</code>应回显<code>pip</code>版本。</li>
+<li><code>wine python -m pip install yara-python keystone-engine six</code></li>
+<li>（可选）将<code>pip</code>加入<code>PATH</code>（<code>C:\Program Files\Python3\Scripts</code>），加入chatGPT插件<code>gepetto.py</code>（需安装<code>openai</code>模块），配置主题文件等。</li>
+<li>不要运行<code>idapyswitch.exe</code>，容易前功尽弃。</li>
+</ol>
 <h2 id="编写shellcode所需工具">编写shellcode所需工具</h2>
 <ol type="1">
 <li>安装python，版本建议在3.6~3.10之间。</li>
@@ -399,23 +412,18 @@ server上安装插件（可选）</span></a></li><li class="nav-item nav-level-3
 <p><code>ssh &lt;your name&gt;@localhost -p &lt;your modified port&gt;</code>（对于wsl）</p>
 <p>如果输入密码正确，进入了linux的终端，就代表配置成功了。</p>
 <h3 id="配置ssh-key可选">配置SSH key（可选）</h3>
-<p>如果你不想输密码，可以通过部署一对SSH
-key解决问题。（原理跟部署博客是一样的）</p>
+<p>如果你不想输密码，可以通过部署一对SSH key解决问题。（原理跟部署博客是一样的）</p>
 <p>可以参考这篇文章：https://blog.csdn.net/andriodhahaha/article/details/104809303</p>
 <h2 id="vscode-ssh插件配置">vscode ssh插件配置</h2>
 <p>搜索<code>remote - SSH</code>，安装后点击边上多出的<code>Remote Explorer</code>菜单。</p>
-<p>点击加号，把之前输入终端的ssh命令再输一遍，就可以坐等vscode在远端安卓vscode
-server了。</p>
-<h3 id="坑点一bad-owner-or-permissions-on-.sshconfig">坑点一——bad owner
-or permissions on /.ssh/config</h3>
+<p>点击加号，把之前输入终端的ssh命令再输一遍，就可以坐等vscode在远端安卓vscode server了。</p>
+<h3 id="坑点一bad-owner-or-permissions-on-.sshconfig">坑点一——bad owner or permissions on /.ssh/config</h3>
 <p>https://blog.csdn.net/chaoenhu/article/details/103698804</p>
-<h3 id="坑点二vscode-server安装过程中好像卡住不动了">坑点二——vscode
-server安装过程中好像卡住不动了</h3>
+<h3 id="坑点二vscode-server安装过程中好像卡住不动了">坑点二——vscode server安装过程中好像卡住不动了</h3>
 <p>类似于这样：</p>
 <p><img src="/2022/03/07/pwn_environ/fake_error.png"></p>
 <p>其实它并没有卡死，它早就安装完了。我们只需要点击右上角的加号，新建一个终端即可。</p>
-<h3 id="在vscode-server上安装插件可选">在vscode
-server上安装插件（可选）</h3>
+<h3 id="在vscode-server上安装插件可选">在vscode server上安装插件（可选）</h3>
 <p>跟在本地安插件的过程相仿，只是你需要点击的是<code>install on 192.168.xxx.xxx/127.0.0.1</code>，别安到本地去了。</p>
 <h3 id="常见问题updated-on-3252022">常见问题——updated on 3/25/2022</h3>
 <p>vscode的pylance插件可能识别不出pwntools中的一些函数而产生警告，可以采用以下步骤忽略警告：</p>
@@ -506,13 +514,13 @@ server上安装插件（可选）</h3>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">465k</span>
+    <span title="站点总字数">467k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:03</span>
+    <span title="站点阅读时长">7:05</span>
   </span>
 </div>
 <div class="busuanzi-count">

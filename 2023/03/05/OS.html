@@ -384,7 +384,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-25 16:02:12" itemprop="dateModified" datetime="2023-04-25T16:02:12+08:00">2023-04-25</time>
+      <time title="修改时间：2023-04-26 23:24:27" itemprop="dateModified" datetime="2023-04-26T23:24:27+08:00">2023-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -403,14 +403,14 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.6k</span>
+      <span>6.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -660,6 +660,7 @@ mjx-container[display="true"] + br {
 </blockquote>
 <p>一个进程在生命周期内占的内存位置可能不相同（压缩和交换技术）</p>
 <h2 id="伙伴系统">伙伴系统</h2>
+<p>类似于二叉树</p>
 <p>优于固定和动态分区，存在内部碎片</p>
 <h2 id="简单分页">简单分页</h2>
 <blockquote>
@@ -689,10 +690,20 @@ mjx-container[display="true"] + br {
 </ul>
 </blockquote>
 <h2 id="虚存分页">虚存分页</h2>
-<h2 id="虚存分段">虚存分段</h2>
+<p>简单来说就是把一部分内存放到硬盘里，等到需要的时候再加载到内存。</p>
+<p>如果读取的页位于磁盘，则产生一个缺页中断阻塞进程，等从磁盘加载到内存后再产生一个中断恢复执行。（因此一次缺页会产生两次中断，如果中断时间大于执行指令的时间就会产生“抖动”）</p>
+<p>对于32位4GB内存的分页，操作系统在内存保存一个4KB根页表（每项4字节，共有1024个页表项），该根页表中的每一项对应一个4KB的页表（每项4字节，共有1024个页表项，因此一共有1048576个页表项，共计4MB，可以保留在虚存），这4MB的虚存空间每一项对应一个长度12位的虚存（因此这1048576项就可以映射到4GB的虚存中）。</p>
 <blockquote>
-<p>作业：7.6 7.8 7.10</p>
+<p>for pwners: 这就是为什么地址ASLR的后三位不变，ASLR只会按页随机，不会随机页内部的偏移。</p>
 </blockquote>
+<p>将虚拟地址转化为物理地址的方法如下：首先用前10位作为根页表的偏移，查到对应的根页表项，接着判断该根页表项对应的用户页表（4MB那个）是否在内存。如果在，就用接下来10位查找对应的对应的用户页表项，并用该项的页框号和偏移得到物理地址；如果不在，就产生缺页中断。</p>
+<p><img src="/2023/03/05/OS/virtual_page.png"></p>
+<p>转换检测缓冲区可以可以缓存部分页号对应的页框号，从而减少中断，提高内存访问速度。</p>
+<p>页尺寸与缺页率的关系是先增后减（局部性原理、整个进程都在页当中），页框数和缺页率的关系是单调递减（如果页和页框都一一对应就没有缺页了）</p>
+<h2 id="虚存分段">虚存分段</h2>
+<p>虚拟地址由页号和偏移量组成。转化为物理地址的方式是，页号作为偏移在段表内寻找对应的段号，将该段的基地址与虚拟地址的偏移相加得到物理地址。</p>
+<p><img src="/2023/03/05/OS/virtual_segment.png"></p>
+<!-- 作业：7.6 7.8 7.10 -->
 
     </div>
 
@@ -763,13 +774,13 @@ mjx-container[display="true"] + br {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">482k</span>
+    <span title="站点总字数">483k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:18</span>
+    <span title="站点阅读时长">7:19</span>
   </span>
 </div>
 <div class="busuanzi-count">

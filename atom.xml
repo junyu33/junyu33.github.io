@@ -58,6 +58,25 @@
   </entry>
   
   <entry>
+    <title>三三——ChatGPT 再探</title>
+    <link href="https://blog.junyu33.me/2023/04/26/chatgpt2.html"/>
+    <id>https://blog.junyu33.me/2023/04/26/chatgpt2.html</id>
+    <published>2023-04-26T11:30:00.000Z</published>
+    <updated>2023-05-01T14:35:59.421Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;是时候看看GPT-4的威力了。&lt;/p&gt;
+&lt;p&gt;第一段注释为问题，正文为回答，下一段注释为评价。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>nand2tetris</title>
     <link href="https://blog.junyu33.me/2023/04/17/nand2tetris.html"/>
     <id>https://blog.junyu33.me/2023/04/17/nand2tetris.html</id>
@@ -415,26 +434,6 @@ extraordinary happened.&lt;/p&gt;
     
       <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>子文略略略题解</title>
-    <link href="https://blog.junyu33.me/2022/10/05/%E5%AD%90%E6%96%87%E7%95%A5%E7%95%A5%E7%95%A5%E9%A2%98%E8%A7%A3.html"/>
-    <id>https://blog.junyu33.me/2022/10/05/子文略略略题解.html</id>
-    <published>2022-10-05T09:30:00.000Z</published>
-    <updated>2022-10-05T10:25:42.347Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;为了响应学院领导“提高编程能力的号召”，最近大一新生程序设计课上多了一个刷题平台（于是它们有四项课后任务：课后习题、游戏项目、安全项目和编程训练，可真够累的）。本来这个刷题平台放的题目都是比较基础的语言类题目，可是yyx在其中加入了ds题和大模拟，让作业的难度陡然提升。我决定加一些思维题来平衡少年生在码力上的先天优势。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="OI" scheme="https://blog.junyu33.me/categories/OI/"/>
-    
-    
-      <category term="cpp" scheme="https://blog.junyu33.me/tags/cpp/"/>
     
   </entry>
   

@@ -99,6 +99,25 @@ https://www.sysgeek.cn/install-zsh-shell-ubuntu-18-04/
 
 # 在linux中配置pwn环境
 
+## 在 linux 中使用 IDA pro (updated on 4/29/2023)
+
+> 如果有钱买 linux 正版可以略过此节。
+>
+> ref: https://www.debugwar.com/article/activate-IDAPython-with-wine-IDA-under-linux
+
+相信大部分读者应该有 IDA pro 7.7 的学习版，只不过是 Windows 版本。让 linux 环境跑起 IDA pro 的步骤如下（以 ubuntu 22.04.2 LTS为例）：
+
+1. 下载 `winehq`，选择`stable-branch`即可： https://wiki.winehq.org/Ubuntu
+2. 使用 `wine` 运行一次 `ida.exe/ida64.exe`，此时 ida 会提示没有 python 环境。
+3. 建议下载 `python3.8.10`的绿色包：`wget https://www.python.org/ftp/python/3.8.10/python-3.8.10-embed-amd64.zip`，并放置于 wine 对应 windows 分区的 `C:\Program Files\Python3`（即 linux 分区的 `~/.wine/drive_c/Program Files/Python3`）。
+4. 在 windows 注册表中将3中路径添加到`PATH`中，即`HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment`中的`PATH`键值。
+5. 将`C:\Program Files\Python3\python38.dll`添加至`HKEY_CURRENT_USER\Software\Hex-Rays`中的`Python3TargetDLL`键值（如果没有就创建）
+6. 此时打开`IDA`应该可以用`IDAPython`，但是`yara keystone`相关插件仍会报错。这是因为我们没有用`pip`安装相关模块。
+7. 执行 `pip` 安装脚本：`wine python https://bootstrap.pypa.io/get-pip.py`并在`Python3`目录中的`python38._pth`文件中添加一行`./Lib/site-packages`，此时执行`wine python.exe -m pip --version`应回显`pip`版本。
+8. `wine python -m pip install yara-python keystone-engine six`
+9. （可选）将`pip`加入`PATH`（`C:\Program Files\Python3\Scripts`），加入chatGPT插件`gepetto.py`（需安装`openai`模块），配置主题文件等。
+10. 不要运行`idapyswitch.exe`，容易前功尽弃。
+
 ## 编写shellcode所需工具
 
 1. 安装python，版本建议在3.6~3.10之间。

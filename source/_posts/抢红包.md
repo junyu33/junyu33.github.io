@@ -4,7 +4,7 @@ author: junyu33
 mathjax: true
 tags: 
 
-- c++
+- cpp
 
 categories:
 

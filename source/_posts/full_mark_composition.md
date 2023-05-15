@@ -4,6 +4,8 @@ author: anonymous
 mathjax: true
 tags: 
 
+  - repost
+
 categories:
 
   - 随笔

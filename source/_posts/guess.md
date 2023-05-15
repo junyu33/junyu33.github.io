@@ -7,7 +7,7 @@ categories:
 
 tags:
 
-  - c++
+  - cpp
 
 date: 2021-8-27 20:00:00
 

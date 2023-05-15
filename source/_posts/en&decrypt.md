@@ -1,12 +1,13 @@
 layout: post
-title: （近期不更新）《加密与解密》学习笔记
+title: 《加密与解密》学习笔记
 author: junyu33
 mathjax: true
 tags: 
 
 - assembly
 - reverse
-- pwn
+- windows
+- C
 
 categories:
 
@@ -1040,3 +1041,338 @@ Miracl、FGInt、Crypto++、OpenSSL等等。
 - 从攻击者的角度审视自己设计的安全机制。
 - 在使用开源的密码箱算法库时，去掉对攻击者有用的信息提示。
 - 时常关注密码学算法的最新进展。
+
+# Windows 内核基础
+
+## 内核理论基础——1/4/2023
+
+- 用户态程序的虚拟内存是互相隔离的，内核态程序共用一块虚拟内存，因此如果内核驱动写崩了就会蓝屏。
+- 用户态程序无法访问内核态内存，反之可以。
+
+<img src = 'https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/images/userandkernelmode01.png'>
+
+- 用户态的程序权限级别为 R3，内核驱动为 R0（最高）。
+- 在 windows x64 中，用户态程序使用的虚拟内存范围为`0x000'00000000` 到 `0x7FFF'FFFFFFFF`。`0xffff800000000000`之后为内核态。
+- windows 驱动框架分为 NT 驱动、WDM 驱动与 KMDF 驱动。
+- 每个驱动对象会创建一个或多个设备对象，每个设备对象会有一个指针指向下一个设备对象，形成一个设备链。
+- windows 在称为*设备树*的树结构中整理设备，设备树中的节点称为“设备节点”，设备树的根节点称为“根设备节点”。通常根设备节点绘制在设备树的底部。
+- 设备栈中的设备对象通过*过滤设备对象*（Filter DO）、*函数设备对象*（FDO）与*物理设备对象*（PDO）相连接。第一个设备对象位于设备栈的底部，最后一个创建的设备对象位于设备栈的顶部。
+- R3 与 R0 通过 IRP 进行通信（联系网络通信的 packet），IRP 会沿着设备堆栈一路向下传递。
+- IRQL 级别定义如下（数值越大级别越高）：
+
+```C
+#if defined(_AMD64_) 
+//
+// Interrupt Request Level definitions
+//
+
+#define PASSIVE_LEVEL 0                 // Passive release level
+#define LOW_LEVEL 0                     // Lowest interrupt level
+#define APC_LEVEL 1                     // APC interrupt level
+#define DISPATCH_LEVEL 2                // Dispatcher level
+#define CMCI_LEVEL 5                    // CMCI handler level
+
+#define CLOCK_LEVEL 13                  // Interval clock level
+#define IPI_LEVEL 14                    // Interprocessor interrupt level
+#define DRS_LEVEL 14                    // Deferred Recovery Service level
+#define POWER_LEVEL 14                  // Power failure level
+#define PROFILE_LEVEL 15                // timer used for profiling.
+#define HIGH_LEVEL 15                   // Highest interrupt level
+
+#endif 
+```
+
+> 有一个蓝屏错误代码就是 `irql_not_less_or_equal`
+>
+> The IRQL_NOT_LESS_OR_EQUAL bug check has a value of 0x0000000A. This bug check indicates that Microsoft Windows or a kernel-mode driver accessed paged memory at an invalid address while at a raised interrupt request level (IRQL). The cause is typically a bad pointer or a pageability problem.
+
+## 内核重要数据结构——1/5/2023
+
+### 内核对象
+
+常见的有 Dispatcher 对象、I/O 对象、进程对象与线程对象。
+
+### SSDT
+
+> https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals/glimpse-into-ssdt-in-windows-x64-kernel#finding-address-of-all-ssdt-routines
+>
+> https://m0uk4.gitbook.io/notebooks/mouka/windowsinternal/ssdt-hook
+
+System Service Dispatch Table or SSDT, simply is an array of addresses to kernel routines for 32 bit operating systems or an array of relative offsets to the same routines for 64 bit operating systems. 
+
+SSDT is the first member of the Service Descriptor Table kernel memory structure as shown below:
+
+```c
+typedef struct tagSERVICE_DESCRIPTOR_TABLE {
+    SYSTEM_SERVICE_TABLE nt; //effectively a pointer to Service Dispatch Table (SSDT) itself
+    SYSTEM_SERVICE_TABLE win32k;
+    SYSTEM_SERVICE_TABLE sst3; //pointer to a memory address that contains how many routines are defined in the table
+    SYSTEM_SERVICE_TABLE sst4;
+} SERVICE_DESCRIPTOR_TABLE;
+```
+
+In x64, the relation between SSDT and its function address is shown below:
+
+`FuncAddr = ([KeServiceDescriptortable+index*4]>>4 + KeServiceDescriptortable)`
+
+SSDT lookup：
+
+```sh
+.foreach /ps 1 /pS 1 ( offset {dd /c 1 nt!KiServiceTable L poi(nt!KeServiceDescriptorTable+10)}){ r $t0 = ( offset >>> 4) + nt!KiServiceTable; .printf "%p - %y\n", $t0, $t0 }
+```
+
+SSDT(shadow) struct：
+
+```c
+struct SSDTStruct
+{
+    LONG* pServiceTable;
+    PVOID pCounterTable;
+#ifdef _WIN64
+    ULONGLONG NumberOfServices;
+#else
+    ULONG NumberOfServices;
+#endif
+    PCHAR pArgumentTable;
+};
+```
+
+Function Index to real function address:
+
+`readAddress = (ULONG_PTR)(ntTable[FunctionIndex] >> 4) + SSDT(Shadow)BaseAddress;`
+
+SSDT(shadow) lookup：
+
+> In x64 there is no symbols.
+
+```sh
+0: kd> !process 0 0 mspaint.exe
+PROCESS ffff850e48ee1080
+    SessionId: 1  Cid: 0adc    Peb: 219f280000  ParentCid: 12c8
+    DirBase: 28b00002  ObjectTable: ffffe5088ad08e80  HandleCount: 296.
+    Image: mspaint.exe
+
+0: kd> .process /p ffff850e48ee1080
+Implicit process is now ffff850e`48ee1080
+.cache forcedecodeuser done
+    
+0: kd> dps nt!KeServiceDescriptorTableShadow
+fffff806`451da980  fffff806`45095570 nt!KiServiceTable       # SSDT base address
+fffff806`451da988  00000000`00000000
+fffff806`451da990  00000000`000001cf
+fffff806`451da998  fffff806`45095cb0 nt!KiArgumentTable
+fffff806`451da9a0  fffff528`64b6b000 win32k!W32pServiceTable # SSDT Shadow base address
+fffff806`451da9a8  00000000`00000000
+fffff806`451da9b0  00000000`000004da
+fffff806`451da9b8  fffff528`64b6c84c win32k!W32pArgumentTable
+fffff806`451da9c0  00000000`00111311
+fffff806`451da9c8  00000000`00000000
+fffff806`451da9d0  ffffffff`80000010
+fffff806`451da9d8  00000000`00000000
+fffff806`451da9e0  00000000`00000000
+fffff806`451da9e8  00000000`00000000
+fffff806`451da9f0  00000000`00000000
+fffff806`451da9f8  00000000`00000000
+
+0: kd> dd /c 1 win32k!W32pServiceTable l10
+fffff528`64b6b000  ff972820                                  # GDI Function offset
+fffff528`64b6b004  ff972940
+fffff528`64b6b008  ff972a60
+fffff528`64b6b00c  ff972b80
+fffff528`64b6b010  ff972ca2
+fffff528`64b6b014  ff972dc0
+fffff528`64b6b018  ff972ee0
+fffff528`64b6b01c  ff973000
+fffff528`64b6b020  ff973120
+fffff528`64b6b024  ff973240
+fffff528`64b6b028  ff973363
+fffff528`64b6b02c  ff973487
+fffff528`64b6b030  ff9735a0
+fffff528`64b6b034  ff9736c0
+fffff528`64b6b038  ff9737e0
+fffff528`64b6b03c  ff973900
+```
+
+
+
+### TEB
+
+**TEB**（Thread Environment  Block，线程环境块）系统在此 TEB 中保存频繁使用的线程相关的数据。位于用户地址空间，在比 PEB 所在地址低的地方。进程中的每个线程都有自己的一个 TEB。一个进程的所有 TEB 都以堆栈的方式，存放在从`0x7FFDE000`开始的线性内存中，每 4KB 为一个完整的 TEB，不过该内存区域是向下扩展的。在用户模式下，当前线程的 TEB 位于独立的 4KB 段，可通过CPU的FS寄存器来访问该段，一般存储在`FS:[0]`。在用户态下 WinDbg 中可用命令`$thread`取得 TEB 地址。
+
+FS:[000] 指向SEH链指针
+FS:[004] 线程堆栈顶部
+FS:[008] 线程堆栈底部
+FS:[00C] SubSystemTib
+FS:[010] FiberData
+FS:[014] ArbitraryUserPointer
+FS:[018] 指向TEB自身
+FS:[020] 进程PID
+FS:[024] 线程ID
+FS:[02C] 指向线程局部存储指针
+FS:[030] PEB结构地址（进程结构）
+FS:[034] 上个错误号
+
+```c
+// Thread Environment Block (TEB)
+typedef struct _TEB
+{
+    NT_TIB Tib;                             /* 00h */
+    PVOID EnvironmentPointer;               /* 1Ch */
+    CLIENT_ID Cid;                          /* 20h */
+    PVOID ActiveRpcHandle;                  /* 28h */
+    PVOID ThreadLocalStoragePointer;        /* 2Ch */
+    struct _PEB *ProcessEnvironmentBlock;   /* 30h */
+    ULONG LastErrorValue;                   /* 34h */
+    ULONG CountOfOwnedCriticalSections;     /* 38h */
+    PVOID CsrClientThread;                  /* 3Ch */
+    struct _W32THREAD* Win32ThreadInfo;     /* 40h */
+    ULONG User32Reserved[0x1A];             /* 44h */
+    ULONG UserReserved[5];                  /* ACh */
+    PVOID WOW32Reserved;                    /* C0h */
+    LCID CurrentLocale;                     /* C4h */
+    ULONG FpSoftwareStatusRegister;         /* C8h */
+    PVOID SystemReserved1[0x36];            /* CCh */
+    LONG ExceptionCode;                     /* 1A4h */
+    struct _ACTIVATION_CONTEXT_STACK *ActivationContextStackPointer; /* 1A8h */
+    UCHAR SpareBytes1[0x28];                /* 1ACh */
+    GDI_TEB_BATCH GdiTebBatch;              /* 1D4h */
+    CLIENT_ID RealClientId;                 /* 6B4h */
+    PVOID GdiCachedProcessHandle;           /* 6BCh */
+    ULONG GdiClientPID;                     /* 6C0h */
+    ULONG GdiClientTID;                     /* 6C4h */
+    PVOID GdiThreadLocalInfo;               /* 6C8h */
+    ULONG Win32ClientInfo[62];              /* 6CCh */
+    PVOID glDispatchTable[0xE9];            /* 7C4h */
+    ULONG glReserved1[0x1D];                /* B68h */
+    PVOID glReserved2;                      /* BDCh */
+    PVOID glSectionInfo;                    /* BE0h */
+    PVOID glSection;                        /* BE4h */
+    PVOID glTable;                          /* BE8h */
+    PVOID glCurrentRC;                      /* BECh */
+    PVOID glContext;                        /* BF0h */
+    NTSTATUS LastStatusValue;               /* BF4h */
+    UNICODE_STRING StaticUnicodeString;     /* BF8h */
+    WCHAR StaticUnicodeBuffer[0x105];       /* C00h */
+    PVOID DeallocationStack;                /* E0Ch */
+    PVOID TlsSlots[0x40];                   /* E10h */
+    LIST_ENTRY TlsLinks;                    /* F10h */
+    PVOID Vdm;                              /* F18h */
+    PVOID ReservedForNtRpc;                 /* F1Ch */
+    PVOID DbgSsReserved[0x2];               /* F20h */
+    ULONG HardErrorDisabled;                /* F28h */
+    PVOID Instrumentation[14];              /* F2Ch */
+    PVOID SubProcessTag;                    /* F64h */
+    PVOID EtwTraceData;                     /* F68h */
+    PVOID WinSockData;                      /* F6Ch */
+    ULONG GdiBatchCount;                    /* F70h */
+    BOOLEAN InDbgPrint;                     /* F74h */
+    BOOLEAN FreeStackOnTermination;         /* F75h */
+    BOOLEAN HasFiberData;                   /* F76h */
+    UCHAR IdealProcessor;                   /* F77h */
+    ULONG GuaranteedStackBytes;             /* F78h */
+    PVOID ReservedForPerf;                  /* F7Ch */
+    PVOID ReservedForOle;                   /* F80h */
+    ULONG WaitingOnLoaderLock;              /* F84h */
+    ULONG SparePointer1;                    /* F88h */
+    ULONG SoftPatchPtr1;                    /* F8Ch */
+    ULONG SoftPatchPtr2;                    /* F90h */
+    PVOID *TlsExpansionSlots;               /* F94h */
+    ULONG ImpersionationLocale;             /* F98h */
+    ULONG IsImpersonating;                  /* F9Ch */
+    PVOID NlsCache;                         /* FA0h */
+    PVOID pShimData;                        /* FA4h */
+    ULONG HeapVirualAffinity;               /* FA8h */
+    PVOID CurrentTransactionHandle;         /* FACh */
+    PTEB_ACTIVE_FRAME ActiveFrame;          /* FB0h */
+    PVOID FlsData;                          /* FB4h */
+    UCHAR SafeThunkCall;                    /* FB8h */
+    UCHAR BooleanSpare[3];                  /* FB9h */
+} TEB, *PTEB;
+```
+
+### PEB
+
+> https://www.cnblogs.com/viwilla/p/5109966.html
+>
+> 内容已过时，目前Win10/Win11的PEB偏移已经变成了0x60。
+
+**PEB**（Process Environment  Block，进程环境块）存放进程信息，每个进程都有自己的PEB信息。位于用户地址空间。在Win 2000下，进程环境块的地址对于每个进程来说是固定的，在`0x7FFDF000`处，这是用户地址空间，所以程序能够直接访问。
+
+准确的 PEB 地址应从系统的`EPROCESS`结构的`0x1b0`偏移处获得，但由于`EPROCESS`在系统地址空间，访问这个结构需要有ring0的权限。
+
+还可以通过TEB结构的偏移0x30处获得PEB的位置，FS段寄存器指向当前的TEB结构：
+
+```assembly
+mov eax, dword ptr fs:[0x30]
+```
+
+或者通过TEB的指针获取：
+
+```assembly
+mov eax, dword ptr fs:[0x18] ;eax = *TEB
+mov eax, dword ptr [eax+0x30] ;eax = *PEB
+```
+
+在用户态下 WinDbg 中可用命令`$proc`取得 PEB 地址。
+
+```c
+//Process Environment Block
+typedef struct _PEB
+{
+    UCHAR InheritedAddressSpace; // 00h
+    UCHAR ReadImageFileExecOptions; // 01h
+    UCHAR BeingDebugged; // 02h
+    UCHAR Spare; // 03h
+    PVOID Mutant; // 04h
+    PVOID ImageBaseAddress; // 08h
+    PPEB_LDR_DATA Ldr; // 0Ch
+    PRTL_USER_PROCESS_PARAMETERS ProcessParameters; // 10h
+    PVOID SubSystemData; // 14h
+    PVOID ProcessHeap; // 18h
+    PVOID FastPebLock; // 1Ch
+    PPEBLOCKROUTINE FastPebLockRoutine; // 20h
+    PPEBLOCKROUTINE FastPebUnlockRoutine; // 24h
+    ULONG EnvironmentUpdateCount; // 28h
+    PVOID* KernelCallbackTable; // 2Ch
+    PVOID EventLogSection; // 30h
+    PVOID EventLog; // 34h
+    PPEB_FREE_BLOCK FreeList; // 38h
+    ULONG TlsExpansionCounter; // 3Ch
+    PVOID TlsBitmap; // 40h
+    ULONG TlsBitmapBits[0x2]; // 44h
+    PVOID ReadOnlySharedMemoryBase; // 4Ch
+    PVOID ReadOnlySharedMemoryHeap; // 50h
+    PVOID* ReadOnlyStaticServerData; // 54h
+    PVOID AnsiCodePageData; // 58h
+    PVOID OemCodePageData; // 5Ch
+    PVOID UnicodeCaseTableData; // 60h
+    ULONG NumberOfProcessors; // 64h
+    ULONG NtGlobalFlag; // 68h
+    UCHAR Spare2[0x4]; // 6Ch
+    LARGE_INTEGER CriticalSectionTimeout; // 70h
+    ULONG HeapSegmentReserve; // 78h
+    ULONG HeapSegmentCommit; // 7Ch
+    ULONG HeapDeCommitTotalFreeThreshold; // 80h
+    ULONG HeapDeCommitFreeBlockThreshold; // 84h
+    ULONG NumberOfHeaps; // 88h
+    ULONG MaximumNumberOfHeaps; // 8Ch
+    PVOID** ProcessHeaps; // 90h
+    PVOID GdiSharedHandleTable; // 94h
+    PVOID ProcessStarterHelper; // 98h
+    PVOID GdiDCAttributeList; // 9Ch
+    PVOID LoaderLock; // A0h
+    ULONG OSMajorVersion; // A4h
+    ULONG OSMinorVersion; // A8h
+    ULONG OSBuildNumber; // ACh
+    ULONG OSPlatformId; // B0h
+    ULONG ImageSubSystem; // B4h
+    ULONG ImageSubSystemMajorVersion; // B8h
+    ULONG ImageSubSystemMinorVersion; // C0h
+    ULONG GdiHandleBuffer[0x22]; // C4h
+    PVOID ProcessWindowStation; // ???
+} PEB, *PPEB;
+```
+
+## 内核调试基础——1/10/2023
+
+见链接： http://blog.junyu33.me/2023/01/10/winkernel_environ.html

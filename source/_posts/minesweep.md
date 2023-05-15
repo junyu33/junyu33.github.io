@@ -4,7 +4,8 @@ author: junyu33
 mathjax: false
 tags: 
 
-- c++
+- cpp
+- games
 
 categories:
 

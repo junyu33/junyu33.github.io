@@ -5,7 +5,7 @@
 # Site
 title: 现充|junyu33
 subtitle:
-description: 苍山负雪，明烛天南。
+description: flag{CU73_D3V1L}
 keywords:
 author: 丨junyu33丨
 language: zh-CN
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://junyu33.github.io
+url: https://blog.junyu33.me
 root: /
 permalink: :year/:month/:day/:title.html
 permalink_defaults:
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: nexT-new
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -116,11 +116,11 @@ aplayer:
 twikoo:
   enable: true
   visitor: false
-  envId: https://202182.vercel.app/
+  envId: https://twikoo-new.vercel.app/
 
 # 2d桌面live
 live2d:
-  enable: true
+  enable: false
   scriptFrom: local
   pluginRootPath: live2dw/
   pluginJsPath: lib/

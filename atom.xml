@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.junyu33.me/"/>
-  <updated>2022-12-28T14:39:14.710Z</updated>
+  <updated>2023-05-15T10:07:17.791Z</updated>
   <id>https://blog.junyu33.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.junyu33.me/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html"/>
     <id>https://blog.junyu33.me/2038/01/19/碎碎念.html</id>
     <published>2038-01-18T19:14:08.000Z</published>
-    <updated>2022-12-28T14:39:14.710Z</updated>
+    <updated>2023-05-15T10:07:17.791Z</updated>
     
     <summary type="html">
     
@@ -62,7 +62,7 @@
     <link href="https://blog.junyu33.me/2023/05/13/nju_pa.html"/>
     <id>https://blog.junyu33.me/2023/05/13/nju_pa.html</id>
     <published>2023-05-13T04:30:00.000Z</published>
-    <updated>2023-05-13T08:35:45.457Z</updated>
+    <updated>2023-05-15T06:55:12.721Z</updated>
     
     <summary type="html">
     
@@ -125,7 +125,7 @@
     <link href="https://blog.junyu33.me/2023/03/30/picoctf2023.html"/>
     <id>https://blog.junyu33.me/2023/03/30/picoctf2023.html</id>
     <published>2023-03-30T11:00:00.000Z</published>
-    <updated>2023-03-30T11:10:33.352Z</updated>
+    <updated>2023-05-15T06:55:12.722Z</updated>
     
     <summary type="html">
     
@@ -187,7 +187,7 @@
     <link href="https://blog.junyu33.me/2023/03/05/OS.html"/>
     <id>https://blog.junyu33.me/2023/03/05/OS.html</id>
     <published>2023-03-04T16:30:00.000Z</published>
-    <updated>2023-05-13T07:54:09.677Z</updated>
+    <updated>2023-05-15T06:55:09.964Z</updated>
     
     <summary type="html">
     
@@ -205,7 +205,7 @@
     <link href="https://blog.junyu33.me/2023/02/27/cryptology.html"/>
     <id>https://blog.junyu33.me/2023/02/27/cryptology.html</id>
     <published>2023-02-27T06:30:00.000Z</published>
-    <updated>2023-05-09T05:13:39.047Z</updated>
+    <updated>2023-05-15T08:16:48.298Z</updated>
     
     <summary type="html">
     
@@ -223,14 +223,12 @@
     <link href="https://blog.junyu33.me/2023/01/30/maintainance2.html"/>
     <id>https://blog.junyu33.me/2023/01/30/maintainance2.html</id>
     <published>2023-01-30T02:00:00.000Z</published>
-    <updated>2023-01-30T02:49:34.090Z</updated>
+    <updated>2023-05-15T06:55:12.700Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;由于 win 这边 node 版本过高，导致 hexo
-无法部署博客，昨天花了一下午时间维护了一下博客。&lt;/p&gt;
-&lt;p&gt;上次维护是为了部署 twikoo 评论区，将 nexT 版本从7升级到了
-8.1.0，好像挺折腾的，弄了不少时间。&lt;/p&gt;
+      &lt;p&gt;由于 win 这边 node 版本过高，导致 hexo 无法部署博客，昨天花了一下午时间维护了一下博客。&lt;/p&gt;
+&lt;p&gt;上次维护是为了部署 twikoo 评论区，将 nexT 版本从7升级到了 8.1.0，好像挺折腾的，弄了不少时间。&lt;/p&gt;
 &lt;p&gt;只能说经过了许多次配环境的考验，效率比以前提高了不少。&lt;/p&gt;
     
     </summary>
@@ -245,7 +243,7 @@
     <link href="https://blog.junyu33.me/2023/01/27/mystia.html"/>
     <id>https://blog.junyu33.me/2023/01/27/mystia.html</id>
     <published>2023-01-27T02:30:00.000Z</published>
-    <updated>2023-03-14T01:44:03.687Z</updated>
+    <updated>2023-05-15T06:55:12.704Z</updated>
     
     <summary type="html">
     
@@ -268,12 +266,11 @@
     <link href="https://blog.junyu33.me/2023/01/10/winkernel_environ.html"/>
     <id>https://blog.junyu33.me/2023/01/10/winkernel_environ.html</id>
     <published>2023-01-10T08:30:00.000Z</published>
-    <updated>2023-01-10T15:20:55.528Z</updated>
+    <updated>2023-05-15T06:55:12.941Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;在大创的压力下，开始学习 windows
-驱动开发&lt;del&gt;的环境配置&lt;/del&gt;。只能说：&lt;/p&gt;
+      &lt;p&gt;在大创的压力下，开始学习 windows 驱动开发&lt;del&gt;的环境配置&lt;/del&gt;。只能说：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;因为时效性，看网上的教程，不如老老实实看 MSDN（机翻的也行）。&lt;/li&gt;
 &lt;li&gt;&lt;del&gt;因为开源，做 windows 驱动开发，不如做 linux 。&lt;/del&gt;&lt;/li&gt;
@@ -294,12 +291,11 @@
     <link href="https://blog.junyu33.me/2022/12/28/bye2022.html"/>
     <id>https://blog.junyu33.me/2022/12/28/bye2022.html</id>
     <published>2022-12-28T09:00:00.000Z</published>
-    <updated>2022-12-29T08:53:16.715Z</updated>
+    <updated>2023-05-15T06:55:10.156Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;The year 2022 is mainly for accumulating basics. Nothing
-extraordinary happened.&lt;/p&gt;
+      &lt;p&gt;The year 2022 is mainly for accumulating basics. Nothing extraordinary happened.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/2022/12/28/bye2022/2022.png&quot;&gt;&lt;/p&gt;
     
     </summary>
@@ -314,7 +310,7 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/12/24/nazo_game_for_web.html"/>
     <id>https://blog.junyu33.me/2022/12/24/nazo_game_for_web.html</id>
     <published>2022-12-24T02:00:00.000Z</published>
-    <updated>2022-12-24T02:45:28.434Z</updated>
+    <updated>2023-05-15T06:55:12.707Z</updated>
     
     <summary type="html">
     
@@ -343,7 +339,7 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/12/12/chatgpt.html"/>
     <id>https://blog.junyu33.me/2022/12/12/chatgpt.html</id>
     <published>2022-12-12T13:30:00.000Z</published>
-    <updated>2023-04-26T10:59:24.431Z</updated>
+    <updated>2023-05-15T06:55:10.396Z</updated>
     
     <summary type="html">
     
@@ -362,7 +358,7 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/11/21/unctf2022.html"/>
     <id>https://blog.junyu33.me/2022/11/21/unctf2022.html</id>
     <published>2022-11-21T14:20:00.000Z</published>
-    <updated>2022-11-21T15:58:01.364Z</updated>
+    <updated>2023-05-15T06:55:12.939Z</updated>
     
     <summary type="html">
     
@@ -383,11 +379,11 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/10/17/%E8%AE%BA%E9%99%90%E4%BD%8D%E5%99%A8.html"/>
     <id>https://blog.junyu33.me/2022/10/17/论限位器.html</id>
     <published>2022-10-17T05:00:00.000Z</published>
-    <updated>2023-03-14T01:48:25.260Z</updated>
+    <updated>2023-05-15T06:55:13.367Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;原文地址：https://zhuanlan.zhihu.com/p/545571040&lt;/p&gt;
+      &lt;p&gt;原文地址：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/545571040&quot;&gt;https://zhuanlan.zhihu.com/p/545571040&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -403,7 +399,7 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/10/12/sagemath.html"/>
     <id>https://blog.junyu33.me/2022/10/12/sagemath.html</id>
     <published>2022-10-12T08:30:00.000Z</published>
-    <updated>2022-10-12T08:52:53.208Z</updated>
+    <updated>2023-05-15T06:55:12.795Z</updated>
     
     <summary type="html">
     
@@ -422,7 +418,7 @@ extraordinary happened.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2022/10/07/home_sheep_home.html"/>
     <id>https://blog.junyu33.me/2022/10/07/home_sheep_home.html</id>
     <published>2022-10-07T15:15:00.000Z</published>
-    <updated>2023-03-14T01:44:34.637Z</updated>
+    <updated>2023-05-15T06:55:12.289Z</updated>
     
     <summary type="html">
     

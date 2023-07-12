@@ -62,7 +62,7 @@
     <link href="https://blog.junyu33.me/2023/07/06/2nd_anni.html"/>
     <id>https://blog.junyu33.me/2023/07/06/2nd_anni.html</id>
     <published>2023-07-05T16:45:00.000Z</published>
-    <updated>2023-07-12T15:32:12.269Z</updated>
+    <updated>2023-07-12T15:35:31.133Z</updated>
     
     <summary type="html">
     
@@ -340,9 +340,9 @@
     
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
-      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
-    
       <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
+    
+      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
     
       <category term="javascript" scheme="https://blog.junyu33.me/tags/javascript/"/>
     

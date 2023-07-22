@@ -165,11 +165,11 @@ links_settings:
 
 links:
   #Title: https://example.com
-	# DeNeRATe: https://denerate.ink/
-	hash: https://land.master-hash.workers.dev/
-	Mivik: https://mivik.gitee.io/
-	sjfhsjfh: https://sjfhsjfh.gitee.io/
-	Xecades: https://blog.xecades.xyz/
+  # DeNeRATe: https://denerate.ink/
+  hash: https://land.master-hash.workers.dev/
+  Mivik: https://mivik.gitee.io/
+  sjfhsjfh: https://sjfhsjfh.gitee.io/
+  Xecades: https://blog.xecades.xyz/
   34r7hm4n: http://blog.bluesadi.cn/
   acheing: https://acheing.com/
   sh1kaku: https://sh1k4ku.github.io/
@@ -177,6 +177,7 @@ links:
   wudi: https://wuuuudle.com/
   tiger1218: https://tiger1218.com
   jackfromeast: https://jackfromeast.site/
+  Muel_Nova: https://n.ova.moe
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).

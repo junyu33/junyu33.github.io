@@ -1,13 +1,9 @@
 layout: post
-title: （转载）ChatGPT虚拟信用卡绑定
-author: Xfish
+title: 如何购买 ChatGPT Plus
+author: Xfish&junyu33
 categories: 
 
   - 笔记
-
-tags:
-
-  - repost
 
 date: 2023-3-22 13:00:00
 
@@ -93,3 +89,29 @@ Binance app上选择下面的“投资组合” → 提现 → TetherUS，在一
 Submit!
 
 Successful!!!
+
+# 使用苹果内购开通
+
+> requirements:
+>
+> - 苹果设备
+> - 美国地址生成器：https://www.meiguodizhi.com/usa-address/alaska
+> - 双币种信用卡（可选）
+> 
+
+鉴于目前有开 ChatGPT Plus 的需求，然而出于IP、虚拟信用卡~~以及失败次数太多~~等多方面的因素，一直没能成功过。
+
+今天偶然看到这篇文章：
+
+> https://zhuanlan.zhihu.com/p/634920483
+
+试了一下，确实成功了，而且相比于上文的方法节省了时间成本（不用等24小时）和金钱成本（手续费少了很多），步骤如下：
+
+1. 注册美区 Apple ID，可以使用大陆手机号验证。
+2. 在苹果官网购买礼品卡：https://www.apple.com/shop/buy-giftcard/giftcard （使用支付宝购买也可以，且无需信用卡，本人未尝试）
+3. 在你的 App Store 中登录美区 Apple ID 账户并输入礼品卡的激活码 PIN。
+4. 下载 Openai，这个时候一般会要求你进一步填一些诸如 first/last name, street, phone number 等信息，按照地址生成器上面填就行。（一般是能过的~
+5. 如果没有 shadowrocket，你还需要额外再花 3 刀解决魔法问题，也就是你的礼品卡面值至少是 23 刀。
+6. 解决问题之后登录进去，再开通 Plus 应该就没有问题了。这个 Plus 的服务是苹果设备和网页都互通的，包括历史记录。
+
+~~所以说，苹果就是神~~

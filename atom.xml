@@ -58,11 +58,37 @@
   </entry>
   
   <entry>
+    <title>一次给 grab app 抓包的经历</title>
+    <link href="https://blog.junyu33.me/2023/07/22/xp2.html"/>
+    <id>https://blog.junyu33.me/2023/07/22/xp2.html</id>
+    <published>2023-07-22T03:00:00.000Z</published>
+    <updated>2023-07-22T06:36:34.322Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在 Singapore 的那段时间，为了实现不用纸币，但我的全币种信用卡并不支持云闪付功能，我只能使用第三方平台对自己的银行卡进行绑定。&lt;/p&gt;
+&lt;p&gt;然后 grab 提供的大陆第三方平台只有 BOC，并且打开链接之后发现 BOC 的登录页面无法显示验证码。&lt;/p&gt;
+&lt;p&gt;我的任务就是尝试排查验证码无法显示的原因，最起码要把这个 URL 在电脑上复现出来。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
+    
+      <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>（不定期更新）三四——博客二周年祭 / NUS游记</title>
     <link href="https://blog.junyu33.me/2023/07/06/2nd_anni.html"/>
     <id>https://blog.junyu33.me/2023/07/06/2nd_anni.html</id>
     <published>2023-07-05T16:45:00.000Z</published>
-    <updated>2023-07-21T17:24:41.677Z</updated>
+    <updated>2023-07-22T06:32:35.199Z</updated>
     
     <summary type="html">
     
@@ -407,25 +433,6 @@
     
     
       <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>子域名calc.junyu33.me开张了</title>
-    <link href="https://blog.junyu33.me/2022/10/12/sagemath.html"/>
-    <id>https://blog.junyu33.me/2022/10/12/sagemath.html</id>
-    <published>2022-10-12T08:30:00.000Z</published>
-    <updated>2023-05-15T06:55:12.795Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;是一个sagemath的客户端，部署在腾讯云服务器的docker上。&lt;/p&gt;
-&lt;p&gt;密码见正文。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
     
   </entry>
   

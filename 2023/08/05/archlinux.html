@@ -269,7 +269,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-08-05 15:15:00 / 修改时间：18:56:17" itemprop="dateCreated datePublished" datetime="2023-08-05T15:15:00+08:00">2023-08-05</time>
+      <time title="创建时间：2023-08-05 15:15:00 / 修改时间：19:01:07" itemprop="dateCreated datePublished" datetime="2023-08-05T15:15:00+08:00">2023-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -361,7 +361,7 @@ protocol）的配置，也就是最后几行，应该是 neovim 取代 vscode
 <p>目前只打算使用查看定义和引用的功能，因此只安装了<a target="_blank" rel="noopener" href="https://github.com/rmagatti/goto-preview">goto-preview</a>插件，至于自动补全，由于有了Copilot的补全，反而显得不是那么重要了</p>
 <h2 id="configure-a-larger-c-project">configure a larger C project</h2>
 <p>对于一个大点的C项目，比如说<a target="_blank" rel="noopener" href="https://nju-projectn.github.io/ics-pa-gitbook/ics2022">nju-pa</a>，里面的函数定义、头文件的依赖关系比较复杂，如果直接打开会报一大堆错。vscode的解决方式就是使用<code>includepath</code>，这样做的缺陷一是比较难以列举所有的包含路径（也就是还会有零星错误，强迫症患者的灾难），二是搜索出来的definition可能与原文件没有任何关系</p>
-<p>clangd可以比较好的解决这个问题，他通过自下而上的寻找<code>compile_commands.json</code>来确定各个文件的依赖情况，从而可以覆盖到所有的<code>includepath</code>，与此同时寻找的definition准确性也会更高</p>
+<p><code>clangd</code>可以比较好的解决这个问题，他通过自下而上的寻找<code>compile_commands.json</code>来确定各个文件的依赖情况，从而可以覆盖到所有的<code>includepath</code>，与此同时寻找的definition准确性也会更高</p>
 <p>那么如何根据<code>make</code>来生成<code>compile_commands.json</code>呢，可以使用<a target="_blank" rel="noopener" href="https://github.com/rizsotto/Bear">bear</a>来完成这个任务。注意bear程序本身的运行指令似乎存在问题，正确的运行指令为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bear -- &lt;your-build-command&gt;</span><br></pre></td></tr></table></figure>
 <p>比如说对riscv32-nemu的编译，指令就是：</p>

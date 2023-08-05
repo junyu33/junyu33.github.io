@@ -257,7 +257,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -433,7 +433,8 @@ mjx-container[display="true"] + br {
 <p>(base32)</p>
 <p>836785678470123865086115895057116908657489849578481498668866989104125</p>
 <p>(ascii)</p>
-<p>83 67 85 67 84 70 123 86 50 86 115 89 50 57 116 90 86 57 48 98 49 57 84 81 49 86 68 86 69 89 104 125</p>
+<p>83 67 85 67 84 70 123 86 50 86 115 89 50 57 116 90 86 57 48 98 49 57
+84 81 49 86 68 86 69 89 104 125</p>
 <p>SCUCTF{V2VsY29tZV90b19TQ1VDVEYh}</p>
 <p>(base64)</p>
 <p>SCUCTF{Welcome_to_SCUCTF!}</p>
@@ -466,7 +467,8 @@ mjx-container[display="true"] + br {
 <p><a target="_blank" rel="noopener" href="https://github.com/ustclug/hackergame2019-writeups/blob/master/official/十次方根/README.md">https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E5%8D%81%E6%AC%A1%E6%96%B9%E6%A0%B9/README.md</a></p>
 <p><img src="/2021/11/23/ctf04/crypto5.png"></p>
 <h2 id="crypto-7elliptic-curve">Crypto-7:Elliptic Curve</h2>
-<p>椭圆曲线的入门题，与攻防世界的easy ECC相比，缺少了a,b两个参数。但是，有三个已知点，我们可以通过椭圆曲线的方程解出这两个未知数。</p>
+<p>椭圆曲线的入门题，与攻防世界的easy
+ECC相比，缺少了a,b两个参数。但是，有三个已知点，我们可以通过椭圆曲线的方程解出这两个未知数。</p>
 <p><img src="/2021/11/23/ctf04/crypto7.png"></p>
 <p>注意这两个值要在模p的情况下有意义，我们可以用gmpy2.invert函数求出对应的值。</p>
 <p>最后根据快速幂，我们可以写出以下代码：</p>
@@ -499,7 +501,8 @@ mjx-container[display="true"] + br {
 <p>Stegsolve打开，左右翻几下，二维码就出来了，扫一下就是flag。</p>
 <h2 id="stego-2baby_steg">Stego-2:Baby_Steg</h2>
 <p>那个提示就很劝退，看不懂，“秘密信息比特”机翻味儿十足。</p>
-<p>Stegsolve在调整到random color map的时候，细心的同学会发现左上角有串不规则的像素点，类似于这样：</p>
+<p>Stegsolve在调整到random color
+map的时候，细心的同学会发现左上角有串不规则的像素点，类似于这样：</p>
 <p><img src="/2021/11/23/ctf04/stego2.png"></p>
 <p>把像素点进行01编码，转成ascii，就可以得到flag。虽然中间有颜色的那段看不清楚，但是flag是有意义的，可以猜得到（我一次就猜中了）。</p>
 <h2 id="webvscodeserver">Web:vscodeServer</h2>
@@ -554,7 +557,8 @@ mjx-container[display="true"] + br {
 <p>我们查看反汇编：</p>
 <p><img src="/2021/11/23/ctf04/re4.png"></p>
 <p>密文就是那个v6数组，key就是THIS_IS_THE_KEYa，注意转换成int的时候要使用小端序。</p>
-<p>然后还要注意加密循环次数（32次），一个magic number（-0x61C88647，注意，是“负数“，这点比较坑）。其余的照葫芦画瓢即可。</p>
+<p>然后还要注意加密循环次数（32次），一个magic
+number（-0x61C88647，注意，是“负数“，这点比较坑）。其余的照葫芦画瓢即可。</p>
 <h2 id="re9plants_vs_zombies非预期解">Re9:Plants_Vs_Zombies（非预期解）</h2>
 <p><strong>（正解是与“天堂之门”有关的技术，当然我现在肯定不会。）</strong></p>
 <p>拿到游戏我先使用一些奇技淫巧，在半个小时以内的时间通关了（不要问我如何快速通关的），然而期望中的解密程序并没有出现。</p>
@@ -713,10 +717,10 @@ mjx-container[display="true"] + br {
 </div>
 
           <div class="post-tags">
+              <a href="/tags/pwn/" rel="tag"># pwn</a>
               <a href="/tags/reverse/" rel="tag"># reverse</a>
               <a href="/tags/crypto/" rel="tag"># crypto</a>
               <a href="/tags/misc/" rel="tag"># misc</a>
-              <a href="/tags/pwn/" rel="tag"># pwn</a>
               <a href="/tags/python/" rel="tag"># python</a>
               <a href="/tags/web/" rel="tag"># web</a>
               <a href="/tags/c/" rel="tag"># c</a>
@@ -766,13 +770,13 @@ mjx-container[display="true"] + br {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">521k</span>
+    <span title="站点总字数">526k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:54</span>
+    <span title="站点阅读时长">7:58</span>
   </span>
 </div>
 <div class="busuanzi-count">

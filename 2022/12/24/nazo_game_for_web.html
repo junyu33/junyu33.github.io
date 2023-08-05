@@ -257,7 +257,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -429,10 +429,14 @@ mjx-container[display="true"] + br {
 <span id="more"></span>
 <h1 id="项目简介">项目简介</h1>
 <p>本项目是一个简单的网页解谜游戏，玩家通过阅读关卡的要求，得出相应的答案并输入到网址，跳转到下一关。如果通过了所有的关卡，就会跳转到成功的页面。选择这个项目的原因是：</p>
-<p><strong>1、</strong> <strong>作为个人主页的一个重要组成部分。</strong></p>
-<p><strong>2、</strong> <strong>让玩家在解谜的同时复习本学期web知识。</strong></p>
-<p><strong>3、</strong> <strong>体验从构思题目、设计前端、开发后端、部署到服务器与维护的全过程。</strong></p>
-<p><strong>4、</strong> <strong>做一个从零开始，100%手写的项目。</strong></p>
+<p><strong>1、</strong>
+<strong>作为个人主页的一个重要组成部分。</strong></p>
+<p><strong>2、</strong>
+<strong>让玩家在解谜的同时复习本学期web知识。</strong></p>
+<p><strong>3、</strong>
+<strong>体验从构思题目、设计前端、开发后端、部署到服务器与维护的全过程。</strong></p>
+<p><strong>4、</strong>
+<strong>做一个从零开始，100%手写的项目。</strong></p>
 <h1 id="系统分析">系统分析</h1>
 <h2 id="业务分析">业务分析</h2>
 <p>前端：使用了bootstrap框架，在第10关使用了jQuery与ajax用于提交用户的输入。</p>
@@ -459,12 +463,14 @@ mjx-container[display="true"] + br {
 <h1 id="具体实现">具体实现</h1>
 <h2 id="个人主页模块junyu33.me">个人主页模块——junyu33.me</h2>
 <p>静态网页，纯html+css实现：</p>
-<p>用bootstrap把中间1/2的区域留出来填写内容。高度为90vh时将内容沿高度居中正好合适。上半部分写标题，中间图片用下boder-radius: 50%属性。然后<code>&lt;hr&gt;</code>分割，下半部分用bootstrap按钮写4个href子域名即可。</p>
+<p>用bootstrap把中间1/2的区域留出来填写内容。高度为90vh时将内容沿高度居中正好合适。上半部分写标题，中间图片用下boder-radius:
+50%属性。然后<code>&lt;hr&gt;</code>分割，下半部分用bootstrap按钮写4个href子域名即可。</p>
 <h2 id="解谜游戏模块nazo.junyu33.me">解谜游戏模块——nazo.junyu33.me</h2>
 <blockquote>
 <p>以下内容涉及部分思路解析，请谨慎观看！！</p>
 </blockquote>
-<p>Nazo game的含义是通过解决页面上的一个问题，将答案输入到域名后面来跳转到下一关，当完成了作者所有的关卡后可以访问到一个恭喜通关的页面。</p>
+<p>Nazo
+game的含义是通过解决页面上的一个问题，将答案输入到域名后面来跳转到下一关，当完成了作者所有的关卡后可以访问到一个恭喜通关的页面。</p>
 <p>完整的前后端结合项目，也是本课程设计的主体，运用了html，css，javascript，bootstrap，jQuery，ajax，node.js，flask，nginx，mysql等技术。</p>
 <h3 id="欢迎界面">欢迎界面</h3>
 <p>主要介绍游戏规则，页面布局与个人主页面差不多，bootstrap写的button用路由实现到第一关的链接。</p>
@@ -475,7 +481,8 @@ mjx-container[display="true"] + br {
 <h3 id="第三关">第三关</h3>
 <p>简单地考察了玩家对css内容的了解，需要查看css源代码以获得使用的字体。</p>
 <h3 id="第四关">第四关</h3>
-<p>考察对css hex RGB的理解<del>以及肉眼分辨颜色的能力</del>，可以使用开发者工具中的取色器来完成本题。这里采用了JavaScript弹窗的方式给出相应的提示。</p>
+<p>考察对css hex
+RGB的理解<del>以及肉眼分辨颜色的能力</del>，可以使用开发者工具中的取色器来完成本题。这里采用了JavaScript弹窗的方式给出相应的提示。</p>
 <h3 id="第五关">第五关</h3>
 <p>考察玩家对css定位的理解，仍旧采用了4选1的形式，没有什么特殊的地方。</p>
 <h3 id="第六关">第六关</h3>
@@ -488,7 +495,8 @@ mjx-container[display="true"] + br {
 <h3 id="第九关">第九关</h3>
 <p>考察玩家对web技术的了解以及信息搜集的能力。首先查看网页源码发现每个页面都使用了bootstrap5，进一步查看bootstrap5的css发现有大量flex的字样，由此C项即可排除。</p>
 <p>同时，查看第八关答案的源代码，可以看到有一句注释<code>my_server: node.js</code>。由此B项即可排除。</p>
-<p>由于response header的server是vercel，并且ping的结果也是vercel的ip地址，由此可以判断网站使用了反代技术，D项排除。</p>
+<p>由于response
+header的server是vercel，并且ping的结果也是vercel的ip地址，由此可以判断网站使用了反代技术，D项排除。</p>
 <h3 id="第十关">第十关</h3>
 <p>考察玩家基础的渗透测试能力，如果没有公网ip应该会比较麻烦。（具体过程在flask后端部分）</p>
 <p>这里的输入框使用了ajax与jQuery技术，将用户的命令与域名结合起来形成一个GET请求发送到服务器，并用alert函数接受服务器的范围内容。</p>
@@ -500,7 +508,8 @@ mjx-container[display="true"] + br {
 <p>采用express框架编写，将用户的输入路由通过中间件<code>body-parser</code>取出，通过连接到储存路由及对应文件的数据库来判断用户的输入是否为正确答案。如果在，就取出对应的html并写入到res，否则在header中写入404并返回<code>err.html</code>。对于第八关的post请求则专门用一个路由来处理。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> { readFileSync } = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">bodyParser</span>());</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mysql      = <span class="built_in">require</span>(<span class="string">'mysql'</span>);</span><br><span class="line"><span class="keyword">var</span> connection = mysql.<span class="title function_">createConnection</span>({</span><br><span class="line">  host     : <span class="string">'47.114.45.27'</span>,</span><br><span class="line">  user     : <span class="string">'root'</span>,</span><br><span class="line">  password : <span class="string">'******'</span>,</span><br><span class="line">  database : <span class="string">'nazo_answer'</span></span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">connection.<span class="title function_">connect</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">'/31337'</span>, <span class="keyword">function</span>(<span class="params">req, res</span>) {</span><br><span class="line">   <span class="keyword">if</span> ( req.<span class="property">body</span>.<span class="property">Go</span> != <span class="literal">undefined</span>) {</span><br><span class="line">      <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">"./answer.html"</span>);</span><br><span class="line">      res.<span class="title function_">end</span>(data);</span><br><span class="line">   } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">"./level8.html"</span>);</span><br><span class="line">      res.<span class="title function_">end</span>(data);</span><br><span class="line">   }</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">'*'</span>, <span class="keyword">function</span>(<span class="params">req, res</span>) {</span><br><span class="line">   <span class="keyword">var</span> route = req.<span class="property">params</span>[<span class="number">0</span>];</span><br><span class="line">   connection.<span class="title function_">query</span>(<span class="string">'SELECT `PATH` FROM `ANSWER` WHERE `ROUTE` = "'</span> + route + <span class="string">'"'</span>, <span class="keyword">function</span> (<span class="params">error, results, fields</span>) {</span><br><span class="line">      <span class="keyword">if</span> (error) <span class="keyword">throw</span> error;</span><br><span class="line">      <span class="keyword">if</span> (results.<span class="property">length</span> &gt; <span class="number">0</span>) {</span><br><span class="line">         <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">"./"</span> + results[<span class="number">0</span>].<span class="property">PATH</span>);</span><br><span class="line">         res.<span class="title function_">end</span>(data);</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">         res.<span class="title function_">writeHead</span>(<span class="number">404</span>, {<span class="string">'Content-Type'</span>: <span class="string">'text/html'</span>})</span><br><span class="line">         <span class="keyword">var</span> data = <span class="title function_">readFileSync</span>(<span class="string">"./err.html"</span>);</span><br><span class="line">         res.<span class="title function_">end</span>(data);</span><br><span class="line">      }</span><br><span class="line">   });</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="string">"80"</span>,<span class="function">()=&gt;</span>{</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"serv running on http://127.0.0.1:80"</span>);</span><br><span class="line">});</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="flask后端">flask后端</h3>
-<p>这里演示了一个ssrf vuln的应用，首先查看源码可以发现用户的输入没有过滤，因此可以构造特定的字符串拿到服务器的shell。然后可以发现date命令的特性会导致shell输出会过滤长度小于3的字母和数字，因此通过cat命令不能得到key。即使尝试转换成base64等其它编码并结合head、tail命令也很难拼凑出完整的编码串。</p>
+<p>这里演示了一个ssrf
+vuln的应用，首先查看源码可以发现用户的输入没有过滤，因此可以构造特定的字符串拿到服务器的shell。然后可以发现date命令的特性会导致shell输出会过滤长度小于3的字母和数字，因此通过cat命令不能得到key。即使尝试转换成base64等其它编码并结合head、tail命令也很难拼凑出完整的编码串。</p>
 <p>与此同时，shell的用户不是root，没有足够的权限来修改html文件，因此将key追加到html后面也不可行。</p>
 <blockquote>
 <p>现在放docker了，html根本不在docker里面，这个方法彻底失效。</p>
@@ -508,7 +517,11 @@ mjx-container[display="true"] + br {
 <p>可行的方式之一是反弹shell到公网ip（一般需要有自己的服务器），具体的过程这里就省略了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line"><span class="keyword">import</span> tempfile</span><br><span class="line"><span class="keyword">import</span> contextlib</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, session, redirect</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"></span><br><span class="line">level = <span class="number">10</span></span><br><span class="line">challenge_host = <span class="string">"localhost"</span></span><br><span class="line">hacker_host = <span class="string">"localhost"</span></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">level10</span>():</span><br><span class="line">    timezone = request.args.get(<span class="string">"timezone"</span>, <span class="string">"UTC"</span>)</span><br><span class="line">    <span class="keyword">return</span> subprocess.check_output(<span class="string">f"TZ=<span class="subst">{timezone}</span> date"</span>, shell=<span class="literal">True</span>, encoding=<span class="string">"latin"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">"/"</span>, methods=[<span class="string">"GET"</span>, <span class="string">"POST"</span>]</span>)</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">"/&lt;path:path&gt;"</span>, methods=[<span class="string">"GET"</span>, <span class="string">"POST"</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">catch_all</span>(<span class="params">path=<span class="string">""</span></span>):</span><br><span class="line">    challenge = <span class="built_in">globals</span>()[<span class="string">f"level<span class="subst">{level}</span>"</span>]</span><br><span class="line">    <span class="keyword">return</span> challenge()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">challenge</span>():</span><br><span class="line">    app.run(challenge_host, <span class="number">8080</span>)</span><br><span class="line"></span><br><span class="line">challenge()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="部署到服务器并实现域名与https">部署到服务器并实现域名与https</h2>
-<p>首先将代码上传到GitHub的私有仓库，在服务器pull下来，对于nodejs后端，由于先前执行了npm install xxx –save命令，服务器端只需npm install即可。而python后端也只需要安装flask flask-cors。最后使用sudo chmod对所有文件设为只读权限防止将key写入html，由于Python flask后端启动不需要 root权限，这样不会影响之后玩家的游戏体验。</p>
+<p>首先将代码上传到GitHub的私有仓库，在服务器pull下来，对于nodejs后端，由于先前执行了npm
+install xxx –save命令，服务器端只需npm
+install即可。而python后端也只需要安装flask flask-cors。最后使用sudo
+chmod对所有文件设为只读权限防止将key写入html，由于Python
+flask后端启动不需要 root权限，这样不会影响之后玩家的游戏体验。</p>
 <p>域名的部署与https相对比较困难。由于我的域名是凭github学生包在namecheap上免费获得的（一年），没有对域名进行备案，因此不能通过直接把dns的A记录映射到服务器的IP。这里只能使用反代的方式解决这个问题。</p>
 <p>反代的方式有两种，其一是nginx，但nginx需要有一个中间服务器，中间服务器必须备过案或者在国外（然而这就成了一个套娃的问题，因此不可行）；其二是通过第三方服务进行反代（比如说vercel），具体步骤如下：</p>
 <ol type="1">
@@ -529,7 +542,8 @@ mjx-container[display="true"] + br {
 <p>出于方便，我在ubuntu环境下重新运行了这个命令，不仅运行成功了，而且导出的镜像大小从5个G缩减到了900M，linux确实香啊。</p>
 <p>最后在服务器端启动了容器，进行了exp的测试，没有问题后把反代的json换了个端口，vercel部署了一下，就把原来的端口销毁了。</p>
 <h1 id="课程设计心得体会">课程设计心得体会</h1>
-<p>作为一个从零开始，100%手写的项目，走完一套从构思、前端、后端到部署和维护的过程还是颇费周折的。尤其是部署部分，开始我想把flask后端与node.js后端放在一个域名的不同端口，花费了一两天的时间都因为跨域与https的问题而毫无进展。不得已我只好将两个服务拆成两个域名，随着时间的推移，加在网站上的技术也越来越多。从先前简单的bootstrap+nodejs+本地服务器，到现在的bootstrap+express+flask+nginx+mysql+全站https+服务器权限管理，可以见得web开发是一个精心打磨的过程。希望游玩nazo game的同学能够玩得开心，巩固自己学到的web知识。</p>
+<p>作为一个从零开始，100%手写的项目，走完一套从构思、前端、后端到部署和维护的过程还是颇费周折的。尤其是部署部分，开始我想把flask后端与node.js后端放在一个域名的不同端口，花费了一两天的时间都因为跨域与https的问题而毫无进展。不得已我只好将两个服务拆成两个域名，随着时间的推移，加在网站上的技术也越来越多。从先前简单的bootstrap+nodejs+本地服务器，到现在的bootstrap+express+flask+nginx+mysql+全站https+服务器权限管理，可以见得web开发是一个精心打磨的过程。希望游玩nazo
+game的同学能够玩得开心，巩固自己学到的web知识。</p>
 <h1 id="项目完善说明">项目完善说明</h1>
 <ol type="1">
 <li><p><del>没有将服务部署到docker，移植困难且带有一定的安全隐患。</del></p></li>
@@ -613,13 +627,13 @@ mjx-container[display="true"] + br {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">521k</span>
+    <span title="站点总字数">526k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:54</span>
+    <span title="站点阅读时长">7:58</span>
   </span>
 </div>
 <div class="busuanzi-count">

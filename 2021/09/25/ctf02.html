@@ -257,7 +257,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -443,11 +443,13 @@ mjx-container[display="true"] + br {
 <h2 id="crypto2">3. Crypto2</h2>
 <p>给定：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">n1=<span class="number">20663949646446787716947370247427064802032290773674573417491154934657966734874241036307633567695175131014840617208051931753476223149652427133485160771068994073566431652969243962290116898345337189704974833817335135391974497754670322430159624252007005736522065638860351992074099453212550475552692645688800084354832716662142860413158369020005830095049988807931794736876563293916525328174812726514626029103506607813186690909585870115364600969148482617083817273910020722354923244093624032174432568413187131385994452769295894606345768596899824635672699945050103814681553981019917552667794514804359500108947102234376726009329</span></span><br><span class="line">n2=<span class="number">23260834024376640092536888922041147168387702014814910549469730354688848760379274203088716649609675449936234732528778557041701524981200368996310064584479657042098426164366286670115392015865853892816983885530312074073396422301009513106258655315791720535737587913264728919869055970993613641008348186263870234072422880033882864603438907070864271470483691729705421547143623305055532339107777314310976947392833395180922324243244784018964736826235018388498516438612962123562977736924674510730898077787055367234786519915374446506561992135856904927351307275140543635152771670410211235702283822782412971646092584646758107766061</span></span><br><span class="line">c1=<span class="number">20522772249591436865905796103232542494211695376973377722875606678999899690405480809231671346489821878050354380591999935960795888483664473952207298504196203830543208477229162177648586683957831016664569242538775928728009699300145355818417233892295367828930893733774091897666206696635744262884229680137381841581000794056156842812583057103472764486608022028638288161256424936523444974815727764620634174112474612238992061186937613171878635903455700636894570504376153482600057655480654731180740098435209814585459376319844315388048636156465832997913885636776523217188604040216732137108997444787157007665652718553013424347649</span></span><br><span class="line">c2=<span class="number">18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736</span></span><br><span class="line">e=<span class="number">65537</span></span><br></pre></td></tr></table></figure>
-<p>经检验得n1,n2不互质，可以参考 https://zhuanlan.zhihu.com/p/76228394 中的方法进行解密。</p>
+<p>经检验得n1,n2不互质，可以参考 https://zhuanlan.zhihu.com/p/76228394
+中的方法进行解密。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2  </span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes  </span><br><span class="line">c1 = ... </span><br><span class="line">c2 = ... </span><br><span class="line">n1 = ...</span><br><span class="line">n2 = ...</span><br><span class="line">e = <span class="number">65537</span>    </span><br><span class="line">p12 = gmpy2.gcd(n1, n2)  </span><br><span class="line"><span class="keyword">assert</span> (p12 != <span class="number">1</span>)  </span><br><span class="line">q1 = n1 / p12  </span><br><span class="line">q2 = n2 / p12  </span><br><span class="line">d1 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q1 - <span class="number">1</span>))  </span><br><span class="line">d2 = gmpy2.invert(e, (p12 - <span class="number">1</span>) * (q2 - <span class="number">1</span>))  </span><br><span class="line">m1 = <span class="built_in">pow</span>(c1, d1, n1)  </span><br><span class="line">m2 = <span class="built_in">pow</span>(c2, d2, n2)  </span><br><span class="line"><span class="built_in">print</span> long_to_bytes(m1)+long_to_bytes(m2)  </span><br></pre></td></tr></table></figure>
 <p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
 <h2 id="拼图">4. 拼图</h2>
-<p>或许可以写脚本做这道题，但是我不会，只能肉眼观察与众不同的图片，拼接成这样一幅图： （使用了PowerPoint编辑的）</p>
+<p>或许可以写脚本做这道题，但是我不会，只能肉眼观察与众不同的图片，拼接成这样一幅图：
+（使用了PowerPoint编辑的）</p>
 <p><img src="/2021/09/25/ctf02/b.png"></p>
 <p>做到这儿我就不大会了，然而此时名次大概在30+，离线下还差几名。而且我恰好卡在一个看上去马上要做出来的misc题上：</p>
 <p>于是我找到了那位安徽的同学（见超短裙子回忆录的第十二章，经过了一个暑假的磨练，他变强了许多），打算跟他做py交易。我把那道reverse的解法给他，他就给我了这道题的wp。</p>
@@ -556,13 +558,13 @@ mjx-container[display="true"] + br {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">521k</span>
+    <span title="站点总字数">526k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:54</span>
+    <span title="站点阅读时长">7:58</span>
   </span>
 </div>
 <div class="busuanzi-count">

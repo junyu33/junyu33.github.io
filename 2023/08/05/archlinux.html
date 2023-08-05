@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content=""><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://blog.junyu33.me/2023/08/05/archlinux.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.junyu33.me/2023/08/05/archlinux.html","path":"2023/08/05/archlinux.html","title":"记第二次 workflow 大换血——ubuntu2arch"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>记第二次 workflow 大换血——ubuntu2arch | 现充|junyu33</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">现充|junyu33</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rtfm"><span class="nav-number">2.2.</span> <span class="nav-text">RTFM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nvidia"><span class="nav-number">2.3.</span> <span class="nav-text">nvidia</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">开发环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lsp-clangd-goto-preview"><span class="nav-number">3.1.</span> <span class="nav-text">LSP + clangd + goto-preview</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helloworld@junyu33.me" title="E-Mail → mailto:helloworld@junyu33.me" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://tiger1218.com/" title="https:&#x2F;&#x2F;tiger1218.com" rel="noopener" target="_blank">tiger1218</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jackfromeast.site/" title="https:&#x2F;&#x2F;jackfromeast.site&#x2F;" rel="noopener" target="_blank">jackfromeast</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://n.ova.moe/" title="https:&#x2F;&#x2F;n.ova.moe" rel="noopener" target="_blank">Muel_Nova</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junyu33.me/2023/08/05/archlinux.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="记第二次 workflow 大换血——ubuntu2arch | 现充|junyu33">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记第二次 workflow 大换血——ubuntu2arch
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-08-05 15:15:00 / 修改时间：17:18:27" itemprop="dateCreated datePublished" datetime="2023-08-05T15:15:00+08:00">2023-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>前一次是去年4月份从 win11 + VS + vscode 迁移到 ubuntu 22.04 + vscode
++ neoVim，现在换到了 arch linux + neoVim</p>
+<p>之后大创结题可能还得重配 windows
+驱动开发的环境，可能会够我喝一壶了。</p>
+<span id="more"></span>
+<h1 id="前言">前言</h1>
+<p>由于在数月之前，由于dpkg的依赖问题（主要是qt的各种库）导致某些软件包无法更新，大概有20个左右。再加上<code>sudo apt upgrade</code>会默认更新linux内核，导致vmware的驱动需要重新编译，因此我便懒于更新。</p>
+<p>几天之前我尝试与某同学使用<code>pgp</code>进行安全通信，生成了一个自签名PGP
+key，从而使得<code>sudo apt upgrade</code>时出现大量签名错误，即使删除这个key也无济于事。经过stfw后决定重装<code>gpg</code>，然而并未奏效，甚至导致无法安装任何新的包，也就是——只能降级为LFS玩家的日常安装方式——编译安装。</p>
+<p>上文说过我是个懒人，编译安装这种get hands
+dirty的方法我是不想做的，于是我选择了包管理更为简单pacman，也就是arch系。</p>
+<h1 id="安装">安装</h1>
+<h2 id="分区">分区</h2>
+<p>在机械硬盘上安完 ubuntu 大概几个月后，我发现 firefox
+的速度不尽人意，并且先前给 ubuntu 分的 100G 空间捉襟见肘，于是我决定扬掉
+win11，把 root 扔给固态，而把剩下的机械空间留给
+home，从而形成了现在的分区状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; lsblk</span><br><span class="line">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS</span><br><span class="line">sda      8:0    0 111.8G  0 disk </span><br><span class="line">├─sda1   8:1    0   300M  0 part /boot                       <span class="comment"># ESP</span></span><br><span class="line">├─sda2   8:2    0   128M  0 part                             <span class="comment"># MSI</span></span><br><span class="line">└─sda3   8:3    0 111.4G  0 part /                           <span class="comment"># 原来的C盘</span></span><br><span class="line">sdb      8:16   0 931.5G  0 disk </span><br><span class="line">├─sdb1   8:17   0   300G  0 part                             <span class="comment"># 原来的D盘</span></span><br><span class="line">├─sdb2   8:18   0   300G  0 part /run/media/junyu33/software <span class="comment"># 原来的E盘</span></span><br><span class="line">├─sdb3   8:19   0 200.2G  0 part                             <span class="comment"># F盘割给ubuntu后剩下的部分</span></span><br><span class="line">└─sdb6   8:22   0 131.3G  0 part /home</span><br></pre></td></tr></table></figure>
+<p>因此安arch时只需要格一下<code>/dev/sda1</code>和<code>/dev/sda3</code>即可，<code>home</code>则保留</p>
+<h2 id="rtfm">RTFM</h2>
+<p>https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97</p>
+<p>https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB</p>
+<p>记得重启之前一定要记得装好<code>iwctl</code>（非intel系请寻找alternative）和<code>dhcpcd</code>，不然每次返工重启U盘，电脑的蜂鸣器声音还是有点吓人</p>
+<p>然后<code>systemctl enable iwd dhcpcd</code>应该就可以上网了，之后安装常用软件乃至GUI应该都很轻松了。</p>
+<h2 id="nvidia">nvidia</h2>
+<p>archlinux 是实用主义，因此即使 Linus 骂过
+nvidia，安装驱动还是一句<code>sudo pacman -S nvidia</code>了事</p>
+<p>只不过 nvidia 的耗电问题还是值得考虑的，于是我参照了<a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/NVIDIA_Optimus">这个文档</a>，打算使用<code>optimus-manager</code>切换使用的显卡</p>
+<blockquote>
+<p>由于之前一直是从终端键入<code>startxfce4</code>来进入GUI的，因此还得安个<code>lightdm</code>才能使得切换命令正常执行</p>
+</blockquote>
+<h1 id="开发环境配置">开发环境配置</h1>
+<p>之前在 ubuntu 上用的还是 vscode 1.67，没想到现在安上已经ver
+1.80了，有以下几点让我放弃了vscode：</p>
+<ul>
+<li>这个UI变化还是不太能让我接受，尤其是窗口顶部那个search
+bar，巨丑无比（虽然可以关）</li>
+<li>代码字体大小和shell相差太大，这让习惯左代码右shell布局（gdb调试养成的习惯）的我感觉很不协调，neovim
++ tmux 不存在此问题</li>
+<li>使用 Copilot ，登录巨硬账户时出现 key exchange error
+弹窗，且无法忽略，neovim 的 Copilot 插件不需要重新登录也可直接使用</li>
+<li>vscode 的 C/Cpp 插件在用户目录下产生了将近 10G
+的缓存文件，并且效果并不拔群</li>
+</ul>
+<p>于是我先改造了<code>~/.config/nvim/init.vim</code>，其中有部分来自jyy的<a target="_blank" rel="noopener" href="https://nju-projectn.github.io/ics-pa-gitbook/ics2022/0.4.html">nju-pa</a>对vim的配置，一部分来源于MIT的<a target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/2020/editors/">vim作业</a>，一部分来源于插件本身的安装配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">set nocompatible            &quot; disable compatibility to old-time vi</span><br><span class="line">set showmatch               &quot; show matching </span><br><span class="line">set ignorecase              &quot; case insensitive </span><br><span class="line">set mouse=v                 &quot; middle-click paste with </span><br><span class="line">set hlsearch                &quot; highlight search </span><br><span class="line">set incsearch               &quot; incremental search</span><br><span class="line">set tabstop=4               &quot; number of columns occupied by a tab </span><br><span class="line">set softtabstop=4           &quot; see multiple spaces as tabstops so &lt;BS&gt; does the right thing</span><br><span class="line">set expandtab               &quot; converts tabs to white space</span><br><span class="line">set shiftwidth=2            &quot; width for autoindents</span><br><span class="line">set autoindent              &quot; indent a new line the same amount as the line just typed</span><br><span class="line">set number                  &quot; add line numbers</span><br><span class="line">set wildmode=longest,list   &quot; get bash-like tab completions</span><br><span class="line">set cc=80                  &quot; set an 80 column border for good coding style</span><br><span class="line">filetype plugin indent on   &quot;allow auto-indenting depending on file type</span><br><span class="line">syntax on                   &quot; syntax highlighting</span><br><span class="line">set mouse=a                 &quot; enable mouse click</span><br><span class="line">set clipboard=unnamedplus   &quot; using system clipboard</span><br><span class="line">filetype plugin on</span><br><span class="line">set cursorline              &quot; highlight current cursorline</span><br><span class="line">set ttyfast                 &quot; Speed up scrolling in Vim</span><br><span class="line">&quot; set spell                 &quot; enable spell check (may need to download language package)</span><br><span class="line">&quot; set noswapfile            &quot; disable creating swap file</span><br><span class="line">&quot; set backupdir=~/.cache/vim &quot; Directory to store backup files.</span><br><span class="line"></span><br><span class="line">call plug#begin(&quot;~/.vim/plugged&quot;)</span><br><span class="line"> &quot; Plugin Section</span><br><span class="line">&quot;Plug &#x27;dracula/vim&#x27;</span><br><span class="line">&quot;Plug &#x27;ryanoasis/vim-devicons&#x27;</span><br><span class="line">&quot;Plug &#x27;SirVer/ultisnips&#x27;</span><br><span class="line">&quot;Plug &#x27;honza/vim-snippets&#x27;</span><br><span class="line"> Plug &#x27;scrooloose/nerdtree&#x27;</span><br><span class="line">&quot;Plug &#x27;preservim/nerdcommenter&#x27;</span><br><span class="line">&quot;Plug &#x27;mhinz/vim-startify&#x27;</span><br><span class="line"> Plug &#x27;neoclide/coc.nvim&#x27;, &#123;&#x27;branch&#x27;: &#x27;release&#x27;&#125;</span><br><span class="line"> </span><br><span class="line"> Plug &#x27;martinsione/darkplus.nvim&#x27;</span><br><span class="line"> Plug &#x27;github/copilot.vim&#x27;</span><br><span class="line"> Plug &#x27;pacha/vem-tabline&#x27;</span><br><span class="line"> Plug &#x27;nvim-lualine/lualine.nvim&#x27;</span><br><span class="line"> Plug &#x27;nvim-tree/nvim-web-devicons&#x27;</span><br><span class="line"> Plug &#x27;ctrlpvim/ctrlp.vim&#x27;</span><br><span class="line"> Plug &#x27;rmagatti/goto-preview&#x27;</span><br><span class="line"> Plug &#x27;williamboman/mason.nvim&#x27;</span><br><span class="line"> Plug &#x27;williamboman/mason-lspconfig.nvim&#x27;</span><br><span class="line"> Plug &#x27;neovim/nvim-lspconfig&#x27;</span><br><span class="line"> Plug &#x27;iamcco/markdown-preview.nvim&#x27;, &#123; &#x27;do&#x27;: &#x27;cd app &amp;&amp; yarn install&#x27; &#125;</span><br><span class="line"></span><br><span class="line">call plug#end()</span><br><span class="line"></span><br><span class="line">colorscheme darkplus</span><br><span class="line">let g:coc_global_extensions = [&#x27;coc-pyright&#x27;, &#x27;coc-snippets&#x27;]</span><br><span class="line">let g:ctrlp_map = &#x27;&lt;c-p&gt;&#x27;</span><br><span class="line"></span><br><span class="line">inoremap &lt;expr&gt; &lt;Tab&gt; pumvisible() ? &quot;\&lt;C-y&gt;&quot; : &quot;\&lt;Tab&gt;&quot;</span><br><span class="line">inoremap &lt;expr&gt; &lt;S-Tab&gt; pumvisible() ? &quot;\&lt;C-n&gt;&quot; : &quot;\&lt;S-Tab&gt;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lua &lt;&lt; END</span><br><span class="line">require(&#x27;lualine&#x27;).setup()</span><br><span class="line">require(&quot;mason&quot;).setup()</span><br><span class="line">require(&#x27;goto-preview&#x27;).setup &#123;</span><br><span class="line">  default_mappings = true;</span><br><span class="line">&#125;;</span><br><span class="line">require(&quot;mason-lspconfig&quot;).setup()</span><br><span class="line">require(&quot;lspconfig&quot;).clangd.setup &#123;&#125;</span><br><span class="line">require(&quot;lspconfig&quot;).pyright.setup &#123;&#125;</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+<p>其中，对于LSP（language server
+protocol）的配置，也就是最后几行，应该是 vim 取代 vscode 的关键部分</p>
+<h2 id="lsp-clangd-goto-preview">LSP + clangd + goto-preview</h2>
+<p>这里使用了<a target="_blank" rel="noopener" href="https://github.com/williamboman/mason.nvim">mason</a> 和 <a target="_blank" rel="noopener" href="https://github.com/williamboman/mason-lspconfig.nvim">mason-lspconfig</a>
+来构建LSP。由于本人目前只会经常用到<code>C</code>和<code>python3</code>，因此只安装了<code>clangd</code>和<code>pyright</code>两个语言服务器</p>
+<p>目前只打算使用查看定义和引用的功能，因此只安装了<a target="_blank" rel="noopener" href="https://github.com/rmagatti/goto-preview">goto-preview</a>插件，至于自动补全，由于有了Copilot的补全，反而显得不是那么重要了</p>
+<p>成果截图：</p>
+<p><img src="/2023/08/05/archlinux/res.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.junyu33.me/2023/08/05/archlinux.html" title="记第二次 workflow 大换血——ubuntu2arch">https://blog.junyu33.me/2023/08/05/archlinux.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/22/xp2.html" rel="prev" title="一次给 grab app 抓包的经历">
+                  <i class="fa fa-chevron-left"></i> 一次给 grab app 抓包的经历
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2032/07/03/pwn_college.html" rel="next" title="（置顶）pwncollege部分通关记录">
+                  （置顶）pwncollege部分通关记录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">526k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:58</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.4/busuanzi.pure.mini.js"></script>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-new.vercel.app/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>

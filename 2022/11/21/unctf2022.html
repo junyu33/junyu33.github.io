@@ -257,7 +257,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -467,11 +467,13 @@ mjx-container[display="true"] + br {
 <p>更重要的漏洞是没有限制idx的range。</p>
 <h3 id="freeshow操作">free&amp;show操作</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">delete</span><span class="params">(<span class="type">void</span> **a1)</span></span><br><span class="line">{</span><br><span class="line">  <span class="type">int</span> v2; <span class="comment">// [rsp+1Ch] [rbp-4h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"Index: "</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">"%u"</span>, &amp;v2);</span><br><span class="line">  <span class="keyword">if</span> ( !a1[v2] )</span><br><span class="line">    error();</span><br><span class="line">  <span class="built_in">puts</span>((<span class="type">const</span> <span class="type">char</span> *)a1[v2]);</span><br><span class="line">  <span class="built_in">free</span>(a1[v2]);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"Don't be far away from me."</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>没什么好说的uaf，没有办法编辑free后堆中的内容，再加上前面没有堆溢出，基本无法double free。</p>
+<p>没什么好说的uaf，没有办法编辑free后堆中的内容，再加上前面没有堆溢出，基本无法double
+free。</p>
 <h3 id="解法">解法</h3>
 <p>观察初始化函数，这里堆是可执行的。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">  <span class="type">int</span> v0; <span class="comment">// [rsp+14h] [rbp-Ch]</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 ptr; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stderr</span>, <span class="number">0LL</span>);</span><br><span class="line">  ptr = (<span class="type">unsigned</span> __int64)<span class="built_in">malloc</span>(<span class="number">0x1000</span>uLL);</span><br><span class="line">  v0 = sysconf(<span class="number">30</span>);</span><br><span class="line">  <span class="keyword">if</span> ( v0 == <span class="number">-1</span> )</span><br><span class="line">    perror(<span class="string">"[-] sysconf failed"</span>);</span><br><span class="line">  <span class="keyword">if</span> ( mprotect((<span class="type">void</span> *)(ptr &amp; <span class="number">0xFFFFFFFFFFFFF000</span>LL), v0, <span class="number">7</span>) &lt; <span class="number">0</span> )</span><br><span class="line">    perror(<span class="string">"[-] mprotect failed"</span>);</span><br><span class="line">  <span class="built_in">free</span>((<span class="type">void</span> *)ptr);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>通过动调后发现pointer struct距离ret处较近，可以考虑覆盖ret地址到一个写好shellcode的堆地址，然后退出即可。</p>
+<p>通过动调后发现pointer
+struct距离ret处较近，可以考虑覆盖ret地址到一个写好shellcode的堆地址，然后退出即可。</p>
 
     </div>
 
@@ -545,13 +547,13 @@ mjx-container[display="true"] + br {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">521k</span>
+    <span title="站点总字数">526k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:54</span>
+    <span title="站点阅读时长">7:58</span>
   </span>
 </div>
 <div class="busuanzi-count">

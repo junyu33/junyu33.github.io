@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -326,7 +326,8 @@
 <p>先看extract_message1:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> * <span class="title function_">extract_message1</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> stride)</span> &#123;</span><br><span class="line">   <span class="type">int</span> i, j, k;</span><br><span class="line">   <span class="type">int</span> done = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (i = <span class="number">0</span>, j = start + <span class="number">1</span>; ! done; j++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt; stride; k++, j++, i++) &#123;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> (*(((<span class="type">char</span> *) data) + j) == <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">            done = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">                      </span><br><span class="line">         message[i] = *(((<span class="type">char</span> *) data) + j);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   message[i] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">   <span class="keyword">return</span> message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>程序的含义是从start+1(包括)处开始，每将stride-1个数据转成字符串存到message后，跳过1个数据，一直循环，直到读到ASCII码为0结束。</p>
-<p>我们可以肉眼观察到，程序从第10个字符（注意我们数数是从0开始的）开始,每读2个跳一个刚好合适，组成了(From: Friend To: You…)这样的英语句子。因此我们可以确定start=9,stride=3.</p>
+<p>我们可以肉眼观察到，程序从第10个字符（注意我们数数是从0开始的）开始,每读2个跳一个刚好合适，组成了(From:
+Friend To: You…)这样的英语句子。因此我们可以确定start=9,stride=3.</p>
 <p>将代码改装一下，再运行，就得到了我们的第一个message.</p>
 <p><strong>可是,这才只是我们的第一步，我们还要把key1跟key2弄出来才行。</strong></p>
 <p>然后你会惊奇的发现：</p>
@@ -386,8 +387,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/crypto/" rel="tag"># crypto</a>
               <a href="/tags/pwn/" rel="tag"># pwn</a>
+              <a href="/tags/crypto/" rel="tag"># crypto</a>
           </div>
 
         
@@ -434,13 +435,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">521k</span>
+    <span title="站点总字数">526k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:54</span>
+    <span title="站点阅读时长">7:58</span>
   </span>
 </div>
 <div class="busuanzi-count">

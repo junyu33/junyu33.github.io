@@ -58,6 +58,28 @@
   </entry>
   
   <entry>
+    <title>LFS on a VM</title>
+    <link href="https://blog.junyu33.me/2023/08/27/LFS.html"/>
+    <id>https://blog.junyu33.me/2023/08/27/LFS.html</id>
+    <published>2023-08-27T01:10:00.000Z</published>
+    <updated>2023-08-27T02:24:39.392Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/2023/08/27/LFS/1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Just without &lt;code&gt;vmware-guest-additions&lt;/code&gt; support, so there is
+no Internet.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>记第二次 workflow 大换血——ubuntu2arch</title>
     <link href="https://blog.junyu33.me/2023/08/05/archlinux.html"/>
     <id>https://blog.junyu33.me/2023/08/05/archlinux.html</id>
@@ -424,27 +446,6 @@ extraordinary happened.&lt;/p&gt;
     
       <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>unctf2022pwn wp</title>
-    <link href="https://blog.junyu33.me/2022/11/21/unctf2022.html"/>
-    <id>https://blog.junyu33.me/2022/11/21/unctf2022.html</id>
-    <published>2022-11-21T14:20:00.000Z</published>
-    <updated>2023-05-15T06:55:12.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;虽然pwn AK了，但pwn手还是输麻了。&lt;/p&gt;
-&lt;p&gt;运维水平很是蛋疼，以后文件别放毒盘（&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
-    
-    
-      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
     
   </entry>
   

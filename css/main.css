@@ -2587,7 +2587,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #0dff05;
+  background: #f68bf1;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2645,7 +2645,7 @@ hr {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 body {
-  background: url("/images/background.jpg");
+  background: url("/images/background.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;

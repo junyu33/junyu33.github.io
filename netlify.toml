@@ -1,0 +1,14 @@
+[[headers]]
+
+  for = "/*"
+
+  [headers.values]
+
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Expect-CT = "max-age=86400; enforce"
+    Referrer-Policy = "no-referrer"
+    Content-Security-Policy = "default-src 'none'; form-action 'none'; frame-ancestors 'none'; report-uri https://junyu33.report-uri.com/r/d/csp/enforce"
+    Feature-Policy = "accelerometer 'none'; ambient-light-sensor 'none'; camera 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; payment 'none'; usb 'none'"
+    Permissions-Policy = "accelerometer=(); ambient-light-sensor=(); camera=(); gyroscope=(); magnetometer=(); microphone=(); payment=(); usb=()"

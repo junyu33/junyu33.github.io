@@ -58,6 +58,28 @@
   </entry>
   
   <entry>
+    <title></title>
+    <link href="https://blog.junyu33.me/2023/10/30/cmake.html"/>
+    <id>https://blog.junyu33.me/2023/10/30/cmake.html</id>
+    <published>2023-10-29T16:09:42.671Z</published>
+    <updated>2023-10-29T16:09:42.671Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>（转载）爱学习不爱科研，这是为什么？</title>
     <link href="https://blog.junyu33.me/2023/09/13/kashiwara.html"/>
     <id>https://blog.junyu33.me/2023/09/13/kashiwara.html</id>
@@ -425,35 +447,6 @@ extraordinary happened.&lt;/p&gt;
     
       <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>web项目之nazo game for web</title>
-    <link href="https://blog.junyu33.me/2022/12/24/nazo_game_for_web.html"/>
-    <id>https://blog.junyu33.me/2022/12/24/nazo_game_for_web.html</id>
-    <published>2022-12-24T02:00:00.000Z</published>
-    <updated>2023-05-15T06:55:12.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;web项目报告的截取，时机合适时开源。&lt;/p&gt;
-&lt;p&gt;为了保证安全性，在2022年12月23日，我将&lt;code&gt;babyweb.py&lt;/code&gt;重新用docker部署，替换了原来的nginx服务器。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
-    
-      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
-    
-      <category term="javascript" scheme="https://blog.junyu33.me/tags/javascript/"/>
-    
-      <category term="docker" scheme="https://blog.junyu33.me/tags/docker/"/>
     
   </entry>
   

@@ -593,7 +593,7 @@ mjx-container[display="true"] + br {
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-10-30 00:09:42" itemprop="dateCreated datePublished" datetime="2023-10-30T00:09:42+08:00">2023-10-30</time>
+      <time title="创建时间：2023-10-30 00:16:05" itemprop="dateCreated datePublished" datetime="2023-10-30T00:16:05+08:00">2023-10-30</time>
     </span>
 
   
@@ -637,191 +637,14 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>首先建立一个直觉：CMake是与平台无关的，你不会制定具体使用什么编译器与链接器，也不会编写shell命令。最好把它当成一种<strong>面向对象</strong>的<strong>新语言</strong>看待。</p>
 </blockquote>
-<h2 id="最小范例">最小范例</h2>
-<p>先看这个 minimum example:</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(Calculator LANGUAGES CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(calclib STATIC src/calclib.cpp <span class="keyword">include</span>/calc/lib.hpp)</span><br><span class="line"><span class="keyword">target_include_directories</span>(calclib PUBLIC <span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">target_compile_features</span>(calclib PUBLIC cxx_std_11)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(calc apps/calc.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(calc PUBLIC calclib)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里加粗字体表示必选项。</p>
-</blockquote>
-<ul>
-<li><strong><code>cmake_minimum_required(VERSION 3.8)</code></strong>
-<ul>
-<li>指定使用的 CMake 版本标准。</li>
-</ul></li>
-<li><strong><code>project(Calculator LANGUAGES CXX)</code></strong>
-<ul>
-<li>制定项目的属性，此处名称为<code>Calculator</code>，项目名称与目标文件没有关系。</li>
-<li>CMake大部分内建函数都有以下语法：<code>function([MODE ...] target ATTR1 val1 ATTR2 val2 ...)</code>，其中<code>val</code>可以是单个元素，也可以是一个列表（以空格或分号分割）</li>
-</ul></li>
-<li><code>add_library(calclib STATIC src/calclib.cpp include/calc/lib.hpp)</code>：
-<ul>
-<li>将<code>calclib.cpp</code>与<code>lib.hpp</code>以静态链接方式链接到<code>calclib</code>。（此时<code>calclib</code>是一个库）</li>
-</ul></li>
-<li><code>target_include_directories(calclib PUBLIC include)</code>
-<ul>
-<li>指定目标包含的库文件夹。（此处为项目路径的<code>include</code>）</li>
-</ul></li>
-<li><code>target_compile_features(calclib PUBLIC cxx_std_11)</code>
-<ul>
-<li>指定编译的选项。（此处为<code>--std=c++11</code>）</li>
-</ul></li>
-<li><strong><code>add_executable(calc apps/calc.cpp)</code></strong>
-<ul>
-<li>指定可执行文件，并使用<code>calc.cpp</code>编译。</li>
-</ul></li>
-<li><code>target_link_libraries(calc PUBLIC calclib)</code>
-<ul>
-<li>将<code>calclib</code>作为库链接到<code>calc</code>这个可执行文件。</li>
-</ul></li>
-</ul>
-<h2 id="miniob">miniob</h2>
-<p>这是一个具有嵌套关系的项目：</p>
-<ul>
-<li>minidb
-<ul>
-<li>benchmark</li>
-<li>deps/common</li>
-<li>src
-<ul>
-<li>obclient</li>
-<li>observer</li>
-</ul></li>
-<li>test/perf</li>
-<li>tools</li>
-<li>unittest
-<ul>
-<li>(a set of unit tests)</li>
-</ul></li>
-</ul></li>
-</ul>
-<p>这里只分析<code>minidb</code>与<code>observer</code>。</p>
-<h3 id="minidb-根项目">minidb (根项目)</h3>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(minidb)</span><br><span class="line"></span><br><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is Project source dir &quot;</span> <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is PROJECT_BINARY_DIR dir &quot;</span> <span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>/bin)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span>(CMAKE_MODULE_PATH <span class="variable">$&#123;CMAKE_MODULE_PATH&#125;</span> <span class="variable">$&#123;CMAKE_SOURCE_DIR&#125;</span>/cmake)</span><br><span class="line"></span><br><span class="line"><span class="keyword">OPTION</span>(ENABLE_ASAN <span class="string">&quot;Enable build with address sanitizer&quot;</span> <span class="keyword">ON</span>)</span><br><span class="line"><span class="keyword">OPTION</span>(WITH_UNIT_TESTS <span class="string">&quot;Compile miniob with unit tests&quot;</span> <span class="keyword">ON</span>)</span><br><span class="line"><span class="keyword">OPTION</span>(CONCURRENCY <span class="string">&quot;Support concurrency operations&quot;</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">OPTION</span>(STATIC_STDLIB <span class="string">&quot;Link std library static or dynamic, such as libgcc, libstdc++, libasan&quot;</span> <span class="keyword">OFF</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数名不区分大小写；函数内部提倡关键字用大写，变量用小写。</li>
-<li><code>set(CMAKE_CXX_STANDARD 20)</code>
-<ul>
-<li>相当于赋值语句。<code>CMAKE_CXX_STANDARD</code> = 20</li>
-<li>如果一个变量在先前没有出现，那么它应该是内建关键字，具体RTFM</li>
-</ul></li>
-<li><code>MESSAGE(STATUS "This is Project source dir " $&#123;PROJECT_SOURCE_DIR&#125;)</code>
-<ul>
-<li>打印指令</li>
-<li><code>$&#123;foobar&#125;</code> 表示解引用。 &gt;
-<code>[cmake] -- This is Project source dir /home/junyu33/Desktop/github/miniob</code></li>
-</ul></li>
-<li><code>OPTION(foobar "comment" ON/OFF)</code>
-<ul>
-<li>可以理解为对bool类型的<code>set</code></li>
-</ul></li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;HOME dir: $ENV&#123;HOME&#125;&quot;</span>)</span><br><span class="line"><span class="comment">#SET(ENV&#123;变量名&#125; 值)</span></span><br><span class="line"><span class="keyword">IF</span>(WIN32)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is windows.&quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DWIN32)</span><br><span class="line"><span class="keyword">ELSEIF</span>(WIN64)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is windows.&quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DWIN64)</span><br><span class="line"><span class="keyword">ELSEIF</span>(APPLE)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is apple&quot;</span>)</span><br><span class="line">    <span class="comment"># normally __MACH__ has already been defined</span></span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-D__MACH__ )</span><br><span class="line"><span class="keyword">ELSEIF</span>(UNIX)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is UNIX&quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DUNIX -DLINUX)</span><br><span class="line"><span class="keyword">ELSE</span>()</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is UNKNOW OS&quot;</span>)</span><br><span class="line"><span class="keyword">ENDIF</span>(WIN32)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意<code>$&#123;foobar&#125;</code>在引号里也可以解引用</li>
-<li>这里<code>WIN32 WIN64 APPLE</code>等都是内建关键字</li>
-<li><code>IF ELSEIF</code>中条件为真的有以下类型：
-<ul>
-<li><code>ON</code>, <code>YES</code>, <code>TRUE</code>,
-<code>Y</code>, or non zero number</li>
-</ul></li>
-<li>为假的有以下类型：
-<ul>
-<li><code>0</code>, <code>OFF</code>, <code>NO</code>,
-<code>FALSE</code>, <code>N</code>, <code>IGNORE</code>,
-<code>NOTFOUND</code>, <code>""</code>, or ends in
-<code>-NOTFOUND</code></li>
-</ul></li>
-<li><code>ADD_DEFINITIONS</code>：跟编译选项添加<code>-D</code>的语法一致</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is for clangd plugin for vscode</span></span><br><span class="line"><span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125; -Wall -Werror&quot;</span>)</span><br><span class="line"><span class="keyword">IF</span>(DEBUG)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;DEBUG has been set as TRUE $&#123;DEBUG&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG &quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DENABLE_DEBUG)</span><br><span class="line"><span class="keyword">ELSEIF</span>(<span class="keyword">NOT</span> <span class="keyword">DEFINED</span> ENV&#123;DEBUG&#125;)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;Disable debug&quot;</span>)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O2 -g &quot;</span>)</span><br><span class="line"><span class="keyword">ELSE</span>()</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;Enable debug&quot;</span>)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG&quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DENABLE_DEBUG)</span><br><span class="line"><span class="keyword">ENDIF</span>(DEBUG)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意<code>CMAKE_COMMON_FLAGS</code>是一个用户定义的变量，你可以发现这里的添加都是增量添加</li>
-<li><code>ENV</code>，取系统环境变量，<code>ENV&#123;foo&#125;</code>取环境变量<code>foo</code></li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">IF</span> (CONCURRENCY)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;CONCURRENCY is ON&quot;</span>)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125; -DCONCURRENCY&quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DCONCURRENCY)</span><br><span class="line"><span class="keyword">ENDIF</span> (CONCURRENCY)</span><br><span class="line"></span><br><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;CMAKE_CXX_COMPILER_ID is &quot;</span> <span class="variable">$&#123;CMAKE_CXX_COMPILER_ID&#125;</span>)</span><br><span class="line"><span class="keyword">IF</span> (<span class="string">&quot;$&#123;CMAKE_CXX_COMPILER_ID&#125;&quot;</span> <span class="keyword">STREQUAL</span> <span class="string">&quot;GNU&quot;</span> <span class="keyword">AND</span> <span class="variable">$&#123;STATIC_STDLIB&#125;</span>)</span><br><span class="line">    <span class="keyword">ADD_LINK_OPTIONS</span>(-static-libgcc -static-libstdc++)</span><br><span class="line"><span class="keyword">ENDIF</span>()</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>ADD_LINK_OPTIONS</code>，与前文所述的添加<code>DEFINITION</code>类似，这里指定链接选项</li>
-<li><code>STREQUAL</code>：即<code>==</code>，注意<code>STREQUAL</code>的优先级高于<code>AND</code></li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">IF</span> (ENABLE_ASAN)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125; -fno-omit-frame-pointer -fsanitize=address&quot;</span>)</span><br><span class="line">    <span class="keyword">IF</span> (<span class="string">&quot;$&#123;CMAKE_CXX_COMPILER_ID&#125;&quot;</span> <span class="keyword">STREQUAL</span> <span class="string">&quot;GNU&quot;</span> <span class="keyword">AND</span> <span class="variable">$&#123;STATIC_STDLIB&#125;</span>)</span><br><span class="line">        <span class="keyword">ADD_LINK_OPTIONS</span>(-static-libasan)</span><br><span class="line">    <span class="keyword">ENDIF</span>()</span><br><span class="line"><span class="keyword">ENDIF</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">IF</span> (CMAKE_INSTALL_PREFIX)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;CMAKE_INSTALL_PREFIX has been set as &quot;</span> <span class="variable">$&#123;CMAKE_INSTALL_PREFIX&#125;</span> )</span><br><span class="line"><span class="keyword">ELSEIF</span>(<span class="keyword">DEFINED</span> ENV&#123;CMAKE_INSTALL_PREFIX&#125;)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_INSTALL_PREFIX $ENV&#123;CMAKE_INSTALL_PREFIX&#125;)</span><br><span class="line"><span class="keyword">ELSE</span>()</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_INSTALL_PREFIX /tmp/<span class="variable">$&#123;PROJECT_NAME&#125;</span>)</span><br><span class="line"><span class="keyword">ENDIF</span>()</span><br><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;Install target dir is &quot;</span> <span class="variable">$&#123;CMAKE_INSTALL_PREFIX&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">IF</span> (<span class="keyword">DEFINED</span> ENV&#123;LD_LIBRARY_PATH&#125;)</span><br><span class="line">    <span class="keyword">SET</span>(LD_LIBRARY_PATH_STR $ENV&#123;LD_LIBRARY_PATH&#125;)</span><br><span class="line">    <span class="keyword">string</span>(REPLACE <span class="string">&quot;:&quot;</span> <span class="string">&quot;;&quot;</span> LD_LIBRARY_PATH_LIST <span class="variable">$&#123;LD_LIBRARY_PATH_STR&#125;</span>)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(<span class="string">&quot; Add LD_LIBRARY_PATH to -L flags &quot;</span> <span class="variable">$&#123;LD_LIBRARY_PATH_LIST&#125;</span>)</span><br><span class="line">    <span class="keyword">LINK_DIRECTORIES</span>(<span class="variable">$&#123;LD_LIBRARY_PATH_LIST&#125;</span>)</span><br><span class="line"><span class="keyword">ENDIF</span> ()</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>string(REPLACE srcStr dstStr dstVal srcVal)</code>，类似还有<code>REGEX REPLACE</code></li>
-<li><code>LINK_DIRECTORIES</code>，与<code>TARGET_LINK_DIRECTORIES</code>类似，不指定某个具体的目标。</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">IF</span> (<span class="keyword">EXISTS</span> /usr/local/lib)</span><br><span class="line">    <span class="keyword">LINK_DIRECTORIES</span> (/usr/local/lib)</span><br><span class="line"><span class="keyword">ENDIF</span> ()</span><br><span class="line"><span class="keyword">IF</span> (<span class="keyword">EXISTS</span> /usr/local/lib64)</span><br><span class="line">    <span class="keyword">LINK_DIRECTORIES</span> (/usr/local/lib64)</span><br><span class="line"><span class="keyword">ENDIF</span> ()</span><br><span class="line"></span><br><span class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(. <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/deps /usr/local/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ADD_SUBDIRECTORY(src bin)  bin 为目标目录， 可以省略</span></span><br><span class="line"><span class="keyword">ADD_SUBDIRECTORY</span>(deps)</span><br><span class="line"><span class="keyword">ADD_SUBDIRECTORY</span>(src/obclient)</span><br><span class="line"><span class="keyword">ADD_SUBDIRECTORY</span>(src/observer)</span><br><span class="line"><span class="keyword">ADD_SUBDIRECTORY</span>(<span class="keyword">test</span>/perf)</span><br><span class="line"><span class="keyword">ADD_SUBDIRECTORY</span>(benchmark)</span><br><span class="line"><span class="keyword">ADD_SUBDIRECTORY</span>(tools)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>EXISTS</code>： 检查路径是否存在</li>
-<li><code>INCLUDE_DIRECTORIES</code>：与<code>TARGET_INCLUDE_DIRECTORIES</code>，不针对具体目标</li>
-<li><code>ADD_SUBDIRECTORY</code>：如果子目录里有cmake项目（例如<code>CMakeLists.txt</code>），递归执行子目录中的项目</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">IF</span>(WITH_UNIT_TESTS)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125; -fprofile-arcs -ftest-coverage&quot;</span>)</span><br><span class="line">    <span class="keyword">enable_testing</span>()</span><br><span class="line">    <span class="keyword">ADD_SUBDIRECTORY</span>(unittest)</span><br><span class="line"><span class="keyword">ENDIF</span>(WITH_UNIT_TESTS)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span>(CMAKE_CXX_FLAGS <span class="variable">$&#123;CMAKE_COMMON_FLAGS&#125;</span>)</span><br><span class="line"><span class="keyword">SET</span>(CMAKE_C_FLAGS <span class="variable">$&#123;CMAKE_COMMON_FLAGS&#125;</span>)</span><br><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;CMAKE_CXX_FLAGS is &quot;</span> <span class="variable">$&#123;CMAKE_CXX_FLAGS&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSTALL</span>(DIRECTORY etc DESTINATION .</span><br><span class="line">		FILE_PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>enable_testing()</code>：内建命令，启用测试。
-<ul>
-<li>This command should be in the source directory root because ctest
-expects to find a test file in the build directory root. This command is
-automatically invoked when the CTest module is included, except if the
-BUILD_TESTING option is turned off.</li>
-</ul></li>
-<li><code>INSTALL</code>：对于<code>DIRECTORY</code>这个option，将<code>etc</code>里面的文件，以<code>OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ</code>的权限安装到当前目录。</li>
-</ul>
-<h3 id="observer">observer</h3>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is CMAKE_CURRENT_SOURCE_DIR dir &quot;</span> <span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">FILE</span>(GLOB_RECURSE ALL_SRC *.cpp *.c)</span><br><span class="line"><span class="keyword">SET</span>(MAIN_SRC main.cpp)</span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="string">&quot;MAIN SRC: &quot;</span> <span class="variable">$&#123;MAIN_SRC&#125;</span>)</span><br><span class="line"><span class="keyword">FOREACH</span> (F <span class="variable">$&#123;ALL_SRC&#125;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">IF</span> (<span class="keyword">NOT</span> <span class="variable">$&#123;F&#125;</span> <span class="keyword">STREQUAL</span> <span class="variable">$&#123;MAIN_SRC&#125;</span>)</span><br><span class="line">        <span class="keyword">SET</span>(LIB_SRC <span class="variable">$&#123;LIB_SRC&#125;</span> <span class="variable">$&#123;F&#125;</span>)</span><br><span class="line">    <span class="keyword">ENDIF</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">MESSAGE</span>(<span class="string">&quot;Use &quot;</span> <span class="variable">$&#123;F&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ENDFOREACH</span> (F)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span>(LIBEVENT_STATIC_LINK <span class="keyword">TRUE</span>)</span><br><span class="line"><span class="keyword">FIND_PACKAGE</span>(Libevent CONFIG REQUIRED)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>FILE(GLOB_RECURSE ...)</code>：<code>ALL_SRC = $(find . \( -name "*.c" -o -name "*.cpp" \))</code></li>
-<li><code>FOREACH</code>：<code>F</code>是循环变量，<code>$&#123;ALL_SRC&#125;</code>是循环集合。</li>
-<li><code>FIND_PACKAGE</code>：在<code>Libevent</code>的这个包里找配置文件，<code>REQUIRED</code>强调依赖性。</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span>(LIBRARIES common pthread dl libevent::core libevent::pthreads libjsoncpp.a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定目标文件位置</span></span><br><span class="line"><span class="keyword">SET</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>/bin)</span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="string">&quot;Binary directory:&quot;</span> <span class="variable">$&#123;EXECUTABLE_OUTPUT_PATH&#125;</span>)</span><br><span class="line"><span class="keyword">SET</span>(LIBRARY_OUTPUT_PATH <span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>/lib)</span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="string">&quot;Archive directory:&quot;</span> <span class="variable">$&#123;LIBRARY_OUTPUT_PATH&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD_EXECUTABLE</span>(observer <span class="variable">$&#123;MAIN_SRC&#125;</span>)</span><br><span class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(observer observer_static)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD_LIBRARY</span>(observer_static STATIC <span class="variable">$&#123;LIB_SRC&#125;</span>)</span><br><span class="line"><span class="keyword">INCLUDE</span> (readline)</span><br><span class="line">MINIOB_FIND_READLINE()</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>INCLUDE(foobar)</code>：包含该<code>camke</code>文件，如果文件不存在，在<code>CMAKE_MODULE_PATH</code>中搜索名为<code>foobar.cmake</code>的文件。</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># readline.cmake</span></span><br><span class="line"><span class="keyword">MACRO</span> (MINIOB_FIND_READLINE)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">FIND_PATH</span>(READLINE_INCLUDE_DIR readline.h PATH_SUFFIXES readline)</span><br><span class="line">  <span class="keyword">FIND_LIBRARY</span>(READLINE_LIBRARY NAMES readline)</span><br><span class="line">  <span class="keyword">IF</span> (READLINE_INCLUDE_DIR <span class="keyword">AND</span> READLINE_LIBRARY)</span><br><span class="line">    <span class="keyword">SET</span>(HAVE_READLINE <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">ELSE</span> ()</span><br><span class="line">    <span class="keyword">MESSAGE</span>(<span class="string">&quot;cannot find readline&quot;</span>)</span><br><span class="line">  <span class="keyword">ENDIF</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">ENDMACRO</span> (MINIOB_FIND_READLINE)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>MACRO</code> 宏定义</li>
-<li><code>find_path (&lt;VAR&gt; name1 [path1 path2 ...])</code>：
-在后缀为<code>readline</code>中的文件夹寻找包含<code>readline.h</code>的文件夹，并保存至<code>READLINE_INCLUDE_DIR</code></li>
-<li><code>find_library (&lt;VAR&gt; name1 [path1 path2 ...])</code>:查找名字为<code>readline</code>的库文件。
-&gt; Each library name given to the NAMES option is first considered as
-a library file name and then considered with platform-specific prefixes
-(e.g. lib) and suffixes (e.g. .so). Therefore one may specify library
-file names such as libfoo.a directly. This can be used to locate static
-libraries on UNIX-like systems.</li>
-</ul>
-<blockquote>
-<p><code>[cmake] readline include dir: /usr/include/readline</code>
-<code>[cmake] readline library: /usr/lib/libreadline.so</code></p>
-</blockquote>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">IF</span> (HAVE_READLINE)</span><br><span class="line">    <span class="keyword">TARGET_LINK_LIBRARIES</span>(observer_static <span class="variable">$&#123;READLINE_LIBRARY&#125;</span>)</span><br><span class="line">    <span class="keyword">TARGET_INCLUDE_DIRECTORIES</span>(observer_static PRIVATE <span class="variable">$&#123;READLINE_INCLUDE_DIR&#125;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DUSE_READLINE)</span><br><span class="line">    <span class="keyword">MESSAGE</span> (<span class="string">&quot;observer_static use readline&quot;</span>)</span><br><span class="line"><span class="keyword">ELSE</span> ()</span><br><span class="line">    <span class="keyword">MESSAGE</span> (<span class="string">&quot;readline is not found&quot;</span>)</span><br><span class="line"><span class="keyword">ENDIF</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET_TARGET_PROPERTIES</span>(observer_static PROPERTIES OUTPUT_NAME observer)</span><br><span class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(observer_static <span class="variable">$&#123;LIBRARIES&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Target 必须在定义 ADD_EXECUTABLE 之后， programs 不受这个限制</span></span><br><span class="line"><span class="comment"># TARGETS和PROGRAMS 的默认权限是OWNER_EXECUTE, GROUP_EXECUTE, 和WORLD_EXECUTE，即755权限， programs 都是处理脚本类</span></span><br><span class="line"><span class="comment"># 类型分为RUNTIME／LIBRARY／ARCHIVE, prog</span></span><br><span class="line"><span class="keyword">INSTALL</span>(TARGETS observer observer_static </span><br><span class="line">    RUNTIME DESTINATION bin</span><br><span class="line">    ARCHIVE DESTINATION lib)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>SET_TARGET_PROPERTIES</code>：给目标设置属性，这里将目标名称设置为<code>observer</code></li>
-<li><code>install(TARGETS &lt;target&gt;... [...])</code>：部署<code>observer</code>与<code>observer_static</code>这两个目标的运行路径为<code>bin</code>，存档文件路径为<code>lib</code>。</li>
-</ul>
-<h1 id="杂项问题">杂项问题</h1>
-<h2 id="cmake-究竟做了什么">Cmake 究竟做了什么？</h2>
-<p>个人看来，Cmake 做了一个与平台无关的抽象，而 Cmake 的 build
-过程相当于把它的语言“翻译”成平台相关的编译、链接命令，并组装为各种文件（在
-Linux 即 <code>Makefile</code> 与相关的依赖文件）。</p>
-<p>我们可以在 Cmake 的 build 目录找到相应的、机器生成的
-<code>Makefile</code>。</p>
-<h2 id="如何在-cmake-中实现类似于-make--b-或-make--n-的功能">如何在
-Cmake 中实现类似于 <code>make -B</code> 或 <code>make -n</code>
-的功能？</h2>
-<p><del>please RTFM</del></p>
-<p>对于前者，可以使用 <code>--fresh</code> 参数。</p>
-<p>对于后者，可以使用 <code>--trace</code> 实现。另外使用
-<code>make --trace-expand</code> 可以展开相应的变量。</p>
-<h2 id="以下代码中debug是从哪里来的">以下代码中，<code>DEBUG</code>是从哪里来的？</h2>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is for clangd plugin for vscode</span></span><br><span class="line"><span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125; -Wall -Werror&quot;</span>)</span><br><span class="line"><span class="keyword">IF</span>(DEBUG)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;DEBUG has been set as TRUE $&#123;DEBUG&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG &quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DENABLE_DEBUG)</span><br><span class="line"><span class="keyword">ELSEIF</span>(<span class="keyword">NOT</span> <span class="keyword">DEFINED</span> ENV&#123;DEBUG&#125;)</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;Disable debug&quot;</span>)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O2 -g &quot;</span>)</span><br><span class="line"><span class="keyword">ELSE</span>()</span><br><span class="line">    <span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;Enable debug&quot;</span>)</span><br><span class="line">    <span class="keyword">SET</span>(CMAKE_COMMON_FLAGS <span class="string">&quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG&quot;</span>)</span><br><span class="line">    <span class="keyword">ADD_DEFINITIONS</span>(-DENABLE_DEBUG)</span><br><span class="line"><span class="keyword">ENDIF</span>(DEBUG)</span><br></pre></td></tr></table></figure>
-<p>你没有查看<code>build.sh</code>：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> build</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">set</span> -- <span class="string">&quot;<span class="variable">$&#123;BUILD_ARGS[@]&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">case</span> <span class="string">&quot;x<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">    xrelease)</span><br><span class="line">      do_build <span class="string">&quot;<span class="variable">$@</span>&quot;</span> -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDEBUG=OFF</span><br><span class="line">      ;;</span><br><span class="line">    xdebug)</span><br><span class="line">      do_build <span class="string">&quot;<span class="variable">$@</span>&quot;</span> -DCMAKE_BUILD_TYPE=Debug -DDEBUG=ON</span><br><span class="line">      ;;</span><br><span class="line">    *)</span><br><span class="line">      BUILD_ARGS=(debug <span class="string">&quot;<span class="variable">$&#123;BUILD_ARGS[@]&#125;</span>&quot;</span>)</span><br><span class="line">      build</span><br><span class="line">      ;;</span><br><span class="line">  <span class="keyword">esac</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里面有一个编译选项<code>-DDEBUG=ON</code>，按照上文描述的方法
-trace，或者在相应的位置打个 log 即可确认 <code>DEBUG</code>
-这部变量来自于 <code>cmake</code> 的运行参数。</p>
-<h1 id="ref">Ref</h1>
-<p>https://modern-cmake-cn.github.io/Modern-CMake-zh_CN/</p>
-<p>https://cmake.org/cmake/help/latest/index.html</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/30/cmake.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

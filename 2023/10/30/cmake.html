@@ -270,7 +270,7 @@ Cmake 中实现类似于 make -B 或 make -n
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-10-30 00:09:42" itemprop="dateCreated datePublished" datetime="2023-10-30T00:09:42+08:00">2023-10-30</time>
+      <time title="创建时间：2023-10-30 00:16:05" itemprop="dateCreated datePublished" datetime="2023-10-30T00:16:05+08:00">2023-10-30</time>
     </span>
 
   
@@ -314,6 +314,7 @@ Cmake 中实现类似于 make -B 或 make -n
 <blockquote>
 <p>首先建立一个直觉：CMake是与平台无关的，你不会制定具体使用什么编译器与链接器，也不会编写shell命令。最好把它当成一种<strong>面向对象</strong>的<strong>新语言</strong>看待。</p>
 </blockquote>
+<span id="more"></span>
 <h2 id="最小范例">最小范例</h2>
 <p>先看这个 minimum example:</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(Calculator LANGUAGES CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(calclib STATIC src/calclib.cpp <span class="keyword">include</span>/calc/lib.hpp)</span><br><span class="line"><span class="keyword">target_include_directories</span>(calclib PUBLIC <span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">target_compile_features</span>(calclib PUBLIC cxx_std_11)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(calc apps/calc.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(calc PUBLIC calclib)</span><br></pre></td></tr></table></figure>

@@ -58,6 +58,30 @@
   </entry>
   
   <entry>
+    <title>三五——Android 14 彩蛋试玩</title>
+    <link href="https://blog.junyu33.me/2023/11/11/upsdcake.html"/>
+    <id>https://blog.junyu33.me/2023/11/11/upsdcake.html</id>
+    <published>2023-11-11T13:30:00.000Z</published>
+    <updated>2023-11-11T13:33:00.597Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上篇随笔提到我在 sgp 买了一部谷歌亲儿子 pixel 7a，前段时间 Android 14
+出了，我的手机也收到了更新推送，就升级了。&lt;/p&gt;
+&lt;p&gt;当然，升级过后的第一件事就是去看看彩蛋，&lt;del&gt;以确认升级是不是只换了个版本号&lt;/del&gt;。（其实手机已经升级快一个月了，百无聊赖之际，我才想起可以玩玩彩蛋这件事）&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
+    
+      <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>简易 CMake 入门（miniob 版本）</title>
     <link href="https://blog.junyu33.me/2023/10/30/cmake.html"/>
     <id>https://blog.junyu33.me/2023/10/30/cmake.html</id>
@@ -428,26 +452,6 @@ grade 96.8%.&lt;/p&gt;
     
     
       <category term="windows" scheme="https://blog.junyu33.me/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Thirty——my summary of year 2022</title>
-    <link href="https://blog.junyu33.me/2022/12/28/bye2022.html"/>
-    <id>https://blog.junyu33.me/2022/12/28/bye2022.html</id>
-    <published>2022-12-28T09:00:00.000Z</published>
-    <updated>2023-05-15T06:55:10.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;The year 2022 is mainly for accumulating basics. Nothing
-extraordinary happened.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2022/12/28/bye2022/2022.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

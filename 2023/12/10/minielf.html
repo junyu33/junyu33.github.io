@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content=""><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://blog.junyu33.me/2023/12/10/minielf.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.junyu33.me/2023/12/10/minielf.html","path":"2023/12/10/minielf.html","title":"MiniELF"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MiniELF | 现充|junyu33</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">现充|junyu33</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#minielf"><span class="nav-number">1.</span> <span class="nav-text">MiniELF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-b-problem"><span class="nav-number">1.1.</span> <span class="nav-text">A + B Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#context"><span class="nav-number">1.2.</span> <span class="nav-text">Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#score-compute"><span class="nav-number">1.3.</span> <span class="nav-text">score compute</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-number">1.4.</span> <span class="nav-text">solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#level-0c%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="nav-number">1.4.1.</span> <span class="nav-text">Level 0（C编译运行）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-1%E7%9B%B4%E6%8E%A5%E5%86%99%E6%B1%87%E7%BC%96"><span class="nav-number">1.4.2.</span> <span class="nav-text">Level 1（直接写汇编）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-2%E4%BF%AE%E6%94%B9start%E5%9C%B0%E5%9D%80"><span class="nav-number">1.4.3.</span> <span class="nav-text">Level 2（修改start地址）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-3%E8%A3%81%E5%89%AAelf-header-%E5%92%8C-footer"><span class="nav-number">1.4.4.</span> <span class="nav-text">Level 3（裁剪ELF header 和
+footer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-4%E8%BF%9B%E4%B8%80%E6%AD%A5%E8%A3%81%E5%89%AAheader"><span class="nav-number">1.4.5.</span> <span class="nav-text">LEVEL 4（进一步裁剪header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level5%E4%BF%AE%E6%94%B9%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.6.</span> <span class="nav-text">LEVEL5（修改算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level6%E6%8C%87%E4%BB%A4%E6%9B%BF%E6%8D%A2"><span class="nav-number">1.4.7.</span> <span class="nav-text">LEVEL6（指令替换）</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helloworld@junyu33.me" title="E-Mail → mailto:helloworld@junyu33.me" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://land.master-hash.workers.dev/" title="https:&#x2F;&#x2F;land.master-hash.workers.dev&#x2F;" rel="noopener" target="_blank">hash</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://mivik.gitee.io/" title="https:&#x2F;&#x2F;mivik.gitee.io&#x2F;" rel="noopener" target="_blank">Mivik</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://blog.bluesadi.cn/" title="http:&#x2F;&#x2F;blog.bluesadi.cn&#x2F;" rel="noopener" target="_blank">34r7hm4n</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wuuuudle.com/" title="https:&#x2F;&#x2F;wuuuudle.com&#x2F;" rel="noopener" target="_blank">wudi</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://tiger1218.com/" title="https:&#x2F;&#x2F;tiger1218.com" rel="noopener" target="_blank">tiger1218</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jackfromeast.site/" title="https:&#x2F;&#x2F;jackfromeast.site&#x2F;" rel="noopener" target="_blank">jackfromeast</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://n.ova.moe/" title="https:&#x2F;&#x2F;n.ova.moe" rel="noopener" target="_blank">Muel_Nova</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junyu33.me/2023/12/10/minielf.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MiniELF | 现充|junyu33">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MiniELF
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-10 00:00:00 / 修改时间：00:49:04" itemprop="dateCreated datePublished" datetime="2023-12-10T00:00:00+08:00">2023-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>尝试编写一个尽量小的ELF文件来完成 A + B
+problem，其中输入为<code>XX YY</code>的形式（<code>X</code>和<code>Y</code>都是0到9的数字），输出不含LF/CRLF。</p>
+<p>经过几天的努力，我成功把程序压缩到了 99 bytes。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; xxd addition-ver24</span><br><span class="line"><span class="number">00000000</span>: 7f45 4c46 <span class="number">0100</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0005</span>  .ELF............</span><br><span class="line"><span class="number">00000010</span>: <span class="number">0200</span> <span class="number">0300</span> <span class="number">1b00</span> <span class="number">0005</span> <span class="number">1b00</span> <span class="number">0005</span> <span class="number">0400</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000020</span>: <span class="number">4889</span> e1b2 <span class="number">05cd</span> <span class="number">8090</span> <span class="number">81e3</span> <span class="number">2000</span> <span class="number">0100</span> 8a01  H......... .....</span><br><span class="line"><span class="number">00000030</span>: 2c60 <span class="number">0241</span> <span class="number">0366</span> 6bc0 <span class="number">0a02</span> <span class="number">4101</span> <span class="number">0241</span> <span class="number">042c</span>  ,`.A.fk...A..A.,</span><br><span class="line"><span class="number">00000040</span>: <span class="number">60b2</span> <span class="number">03b3</span> 64f6 f304 <span class="number">3088</span> <span class="number">0141</span> c1e8 <span class="number">08b3</span>  `...d...<span class="number">0</span>..A....</span><br><span class="line"><span class="number">00000050</span>: <span class="number">0af6</span> f366 <span class="number">0530</span> <span class="number">3066</span> <span class="number">8901</span> <span class="number">4966</span> b804 <span class="number">00b3</span>  ...f.<span class="number">00f</span>..If....</span><br><span class="line"><span class="number">00000060</span>: <span class="number">01cd</span> <span class="number">80</span>                                  ...</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="minielf">MiniELF</h1>
+<h2 id="a-b-problem">A + B Problem</h2>
+<p>You need to read the two numbers from STDIN, and output them to
+STDOUT.</p>
+<p>The dataset ensures that both input integers are two-digit numbers
+with a space between them.</p>
+<p>Output number shoud <strong>not</strong> have extra CR/LF/CRLF.</p>
+<h2 id="context">Context</h2>
+<ul>
+<li>Linux v5.8+ kernel</li>
+<li>glibc v2.33+</li>
+<li>Support dynamic linking</li>
+<li>x86_64 architecure</li>
+</ul>
+<h2 id="score-compute">score compute</h2>
+<p>You get a guaranteed score as long as the metrics you get are higher
+than a certain BASELINE (<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="4.525ex" height="1.581ex" role="img" focusable="false" viewbox="0 -677 2000 699"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(1000,0)"/><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(1500,0)"/></g></g></g></svg></mjx-container></span>
+bytes). Otherwise, you get a score strictly equal to the following
+formula: (<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.02ex" height="1.025ex" role="img" focusable="false" viewbox="0 -442 451 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g></g></g></svg></mjx-container></span> indicates your ranking,
+<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.061ex" height="1.023ex" role="img" focusable="false" viewbox="0 -442 469 452"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g></g></g></svg></mjx-container></span> indicates your final score, <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.025ex" height="1.357ex" role="img" focusable="false" viewbox="0 -442 894.9 599.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g></g></g></g></svg></mjx-container></span> indicates the tasks overall core)</p>
+<p><span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.552ex;" xmlns="http://www.w3.org/2000/svg" width="9.139ex" height="4.588ex" role="img" focusable="false" viewbox="0 -1342 4039.4 2028"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mo" transform="translate(746.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="mfrac" transform="translate(1802.6,0)"><g data-mml-node="mn" transform="translate(421,676)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="msup" transform="translate(220,-686)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(533,289) scale(0.707)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g></g><rect width="1101.9" height="60" x="120" y="220"/></g><g data-mml-node="msub" transform="translate(3144.5,0)"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g></g></g></g></svg></mjx-container></span></p>
+<h2 id="solution">solution</h2>
+<h3 id="level-0c编译运行">Level 0（C编译运行）</h3>
+<p>一个显然的做法是用C语言写个A+B
+problem，然后gcc编译运行。这样做的话一般情况下大小在15～17KB，如果使用strip去掉符号表大概在14KB左右。</p>
+<p>其实在C代码的基础上还有一个优化的策略，那就是加壳，在某些情况下加壳除了有混淆代码的作用，还可以压缩程序的体积。例如使用upx对刚才去掉符号表的程序进行加壳，可以压缩到5KB左右。</p>
+<p><img src="/2023/12/10/minielf/1.png"></p>
+<h3 id="level-1直接写汇编">Level 1（直接写汇编）</h3>
+<p>当然，由于C语言在编译时会链接glibc的相关库（即使是动态链接，符号表、PLT、GOT等也会占据一定的空间），而我们用到的<code>scanf</code>和<code>printf</code>可以用<code>syscall read/write</code>代替，这点做二进制的同学应该都知道。</p>
+<p>因此，还不如直接写汇编来抛弃glibc带来的空间消耗。我当时直接让GPT4生成了相应的汇编代码，然后稍微做了点修改就跑通了题目。大小在4～5
+KB之间，但离 baseline 还差了一点。</p>
+<h3 id="level-2修改start地址">Level 2（修改start地址）</h3>
+<p>然后你会发现，即使使用汇编，生成了程序仍然有很多的空间没法利用。比如下图中从0x150开始的一堆零字节。</p>
+<p><img src="/2023/12/10/minielf/2.png"></p>
+<p>一个直接的方式是修改程序的起始地址，例如右图中从0x150开始，到0x1000都是0。可以把程序start地址修改为0x400150即可。具体的修改方式可以参考man
+elf，当然你瞎蒙，把所有的0x401000改完似乎也没问题。（其中一个在0x18处）</p>
+<p>我最后的大小是 652 byte，已经可以进 baseline 了。</p>
+<h3 id="level-3裁剪elf-header-和-footer">Level 3（裁剪ELF header 和
+footer）</h3>
+<p>然后这个时候，我看到了 stackoverflow 的<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/72930779/what-is-the-smallest-x86-64-hello-world-elf-binary">这篇回答</a>，发现其实
+ELF 的 header 仍然有裁剪的空间，并且 footer 是完全可以去掉的。</p>
+<p><img src="/2023/12/10/minielf/stk1.png"></p>
+<p>因此，我 copy 了回答的
+header，把start地址从0x78修改到0x74，然后把自己的机器码覆盖到0x74的位置，跑一跑，居然真的可以运行！</p>
+<p>于是，我的程序大小缩减到了273 byte。</p>
+<p><img src="/2023/12/10/minielf/3.png"></p>
+<h3 id="level-4进一步裁剪header">LEVEL 4（进一步裁剪header）</h3>
+<p>之后，我做了一些较为细碎的裁剪工作，从273 byte 裁剪到了235
+byte。此时，有人交了一发205 byte，这下没法了，ELF
+header还是得继续看。</p>
+<p>我又找到了<a target="_blank" rel="noopener" href="https://codegolf.stackexchange.com/questions/5696/shortest-elf-for-hello-world-n">这篇回答</a>，它把一个
+helloworld 压倒了惊人的 61 byte 的大小！</p>
+<p><img src="/2023/12/10/minielf/4.png"></p>
+<p>我仔细看了好一会儿，才理解了ELF读取文件时，哪些参数是不可或缺的，具体解释如下:</p>
+<ul>
+<li>读取文件开头的魔数<code>0x464c457f</code>，来判断是否为ELF文件。不能修改。</li>
+<li><code>0x4</code>是位数、<code>0x5</code>是alignment，<code>0x6</code>是version，<code>0x7</code>是OS/ABI，这些没办法修改。</li>
+<li><code>0x10</code>指示文件类型（可执行），<code>0x12</code>字节指示架构（x86），无法修改。</li>
+<li><code>0x18</code>~<code>0x1b</code> 指示entrypoint</li>
+<li><code>0x1c</code>~<code>0x1f</code> 指示 program
+段的起始地址，<code>0x2a</code>~<code>0x2b</code>指示 program
+段的大小，<code>0x2c</code>~<code>0x2d</code>指示 program
+段的个数。</li>
+</ul>
+<p>在program段中：</p>
+<ul>
+<li>前4字节是offset，<code>0x4</code>～<code>0x7</code>是虚拟地址，然后<code>0x8</code>～<code>0xb</code>是物理地址，<code>0xc</code>~<code>0xf</code>是文件大小，<code>0x10</code>～<code>0x13</code>是内存大小，剩下8字节是flag和align，不用管。</li>
+<li>需要保证虚拟地址加上代码段在文件的偏移对应的是entrypoint的地址。例如virt
+= <code>0x500000</code>, offset(code) = <code>0x1b</code>，那么
+entrypoint = <code>0x50001b</code></li>
+</ul>
+<p>总的来说，header中只有<code>0x20</code>到<code>0x29</code>，以及<code>0x2e</code>以后的字节是可以控制的。（当然上图通过构造一些指令，也成功利用上了<code>0x1b</code>到<code>0x1f</code>的空间，当然这是后话）</p>
+<p>为了处理 <code>0x2a</code> 到 <code>0x2d</code>
+这四个字节无法利用的问题，我选择了构造相关指令（或者选择使用跳转指令）。这两者都是充分利用了空间的选择。</p>
+<p>经过这样的操作后，我的程序压缩到了 138 byte。</p>
+<p><img src="/2023/12/10/minielf/4-res.png"></p>
+<h3 id="level5修改算法">LEVEL5（修改算法）</h3>
+<p>当然，故事仍然没有结束，我又裁剪了一下，把 138 byte 剪到了 131
+byte，然后刷了一下榜。</p>
+<p>但昨天（12月8日）上午，对手把这个数据更新到了 119
+byte，其实当时我是有 117 byte
+的存货。而当时我快到我汇编压缩的极限了，于是就没急着交。</p>
+<p>这是我先前让 GPT-4 生成的汇编代码（其实经过了一些优化）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">.section .text</span><br><span class="line">.globl _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    # Read the input string "xy zw"</span><br><span class="line">    add $3, %al           # syscall number for read</span><br><span class="line">    lea (%esp), %ecx     # buffer to store the input string</span><br><span class="line">    mov $5, %dl           # number of bytes to read ("xy zw")</span><br><span class="line">    int $0x80             # syscall</span><br><span class="line"></span><br><span class="line">    # Convert first number from ASCII to integer</span><br><span class="line">    movzbl (%ecx), %eax  # load first digit (x)</span><br><span class="line">    sub $'0', %al         # convert from ASCII to integer</span><br><span class="line">    imul $10, %eax        # multiply by 10</span><br><span class="line">    inc %ecx              # move to next digit</span><br><span class="line">    movzbl (%ecx), %edx  # load second digit (y)</span><br><span class="line">    sub $'0', %dl         # convert from ASCII to integer</span><br><span class="line">    add %edx, %eax        # add second digit to first digit</span><br><span class="line">    mov %eax, %esi</span><br><span class="line"></span><br><span class="line">    # Convert second number from ASCII to integer</span><br><span class="line">    inc %ecx              # move to next digit</span><br><span class="line">    inc %ecx              # move to next digit</span><br><span class="line">    movzbl (%ecx), %eax  # load third digit (z)</span><br><span class="line">    sub $'0', %al         # convert from ASCII to integer</span><br><span class="line">    imul $10, %eax          # multiply by 10</span><br><span class="line">    inc %ecx              # move to next digit</span><br><span class="line">    movzbl (%ecx), %edx  # load fourth digit (w)</span><br><span class="line">    sub $'0', %dl         # convert from ASCII to integer</span><br><span class="line">    add %edx, %eax        # add second digit to first digit</span><br><span class="line">    </span><br><span class="line">    # Add the two numbers</span><br><span class="line">    add %esi, %eax    # add num1 and num2</span><br><span class="line"></span><br><span class="line">    # Convert result to ASCII (max 3 digits)</span><br><span class="line">    mov $10, %bl          # divisor for conversion</span><br><span class="line">convert_loop:</span><br><span class="line">    xor %edx, %edx        # clear edx</span><br><span class="line">    div %ebx              # divide eax by 10, result in eax, remainder in edx</span><br><span class="line">    add $'0', %dl         # convert remainder to ASCII</span><br><span class="line">    dec %esp              # move stack pointer for next digit</span><br><span class="line">    inc %edi</span><br><span class="line">    mov %dl, (%esp)       # store ASCII character on stack</span><br><span class="line">    test %eax, %eax       # check if number is fully converted</span><br><span class="line">    jnz convert_loop      # if not zero, continue loop</span><br><span class="line"></span><br><span class="line">    # Prepare for write syscall</span><br><span class="line">    lea (%esp), %ecx      # pointer to the sum (on the stack)</span><br><span class="line">    mov %edi, %edx</span><br><span class="line">    mov $1, %bl</span><br><span class="line">    mov $4, %al          # syscall number for write</span><br><span class="line">    int $0x80             # syscall</span><br></pre></td></tr></table></figure>
+<p>然后感觉从代码层面的优化的空间已经不多了，于是重写了一下算法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">mov  ecx, esp</span><br><span class="line">mov  dl, 8</span><br><span class="line">mov  al, 3</span><br><span class="line">int  0x80</span><br><span class="line">mov  al, byte ptr [ecx]</span><br><span class="line">sub  al, 0x60</span><br><span class="line">add  al, byte ptr [ecx + 3]</span><br><span class="line">imul ax, ax, 0xa</span><br><span class="line">add  al, byte ptr [ecx + 1]</span><br><span class="line">add  al, byte ptr [ecx + 4]</span><br><span class="line">sub  al, 0x60</span><br><span class="line">mov  dl, 2</span><br><span class="line">cmp  al, 0x64</span><br><span class="line">add  dl, 1</span><br><span class="line">mov  bl, 0x64</span><br><span class="line">div  bl</span><br><span class="line">add  al, 0x30</span><br><span class="line">mov  byte ptr [ecx], al</span><br><span class="line">add  ecx, 1</span><br><span class="line">shr  eax, 8</span><br><span class="line">mov  bl, 0xa</span><br><span class="line">div  bl</span><br><span class="line">add  ax, 0x3030</span><br><span class="line">mov  word ptr [ecx], ax</span><br><span class="line">mov  ecx, esp</span><br><span class="line">mov  ax, 4</span><br><span class="line">mov  bl, 1</span><br><span class="line">int  0x80</span><br></pre></td></tr></table></figure>
+<p>这段代码前面很容易理解，就是低位加低位，高位加高位，然后通过减去0x30把ascii转成raw
+number。</p>
+<p>中间div指令稍微有点巧妙，通过gdb调试可以得知 div al
+会将商放在低8位，余数放在高8位。知道这一点后，代码就不难看懂了。</p>
+<p>有趣的一点是，之前代码是有用于循环的跳转指令的，但我在调试代码时不小心删掉了一条，导致输出的代码总是3位（如果位数不够会带前导零），但也能通过测试。于是就干脆把循环逻辑给去掉了。</p>
+<p>这样下来，程序已经压缩到了107 byte。</p>
+<p><img src="/2023/12/10/minielf/5.png"></p>
+<h3 id="level6指令替换">LEVEL6（指令替换）</h3>
+<p>这是x86汇编比较有趣的地方，由于x86汇编是不等长指令，一些语义相同的指令，用不同的方法实现，生成的机器码长度也不同。</p>
+<ul>
+<li>例如，加载立即数时，因为题目保证数据范围&lt;256，如果目的寄存器用的是al而不是eax，那么立即数可以省下3
+byte。</li>
+<li>例如，将 add eax, 1 替换成 inc eax，可以省下2 byte。</li>
+<li>例如，如果有多余的空闲寄存器，可以把存栈读栈的指令改成读寄存器，又可以省下至少2
+byte。</li>
+<li>例如，之前header中 05 04 00 00 00 其实反汇编是 add eax, 4，然后 dec
+eax 就可以实现 mov al, 3 的功能，又可以省下1 byte。</li>
+</ul>
+<p>在这道题上，我的操作如下，读者可以自行查询这些汇编指令的替换，可以节省多少字节的空间：</p>
+<p><img src="/2023/12/10/minielf/6.png"></p>
+<p>在这样一些“骚操作”之后，程序的大小从 107 byte 下降到了 99
+byte。这便是我的最终成果。</p>
+<p><img src="/2023/12/10/minielf/6-res.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.junyu33.me/2023/12/10/minielf.html" title="MiniELF">https://blog.junyu33.me/2023/12/10/minielf.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/misc/" rel="tag"># misc</a>
+              <a href="/tags/assembly/" rel="tag"># assembly</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/28/beijing.html" rel="prev" title="（转载）从北京城市建设看新中国的城市建设及时代背景">
+                  <i class="fa fa-chevron-left"></i> （转载）从北京城市建设看新中国的城市建设及时代背景
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2032/07/03/pwn_college.html" rel="next" title="（置顶）pwncollege部分通关记录">
+                  （置顶）pwncollege部分通关记录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">560k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">8:29</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.4/busuanzi.pure.mini.js"></script>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-new.vercel.app/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>

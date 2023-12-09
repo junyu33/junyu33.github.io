@@ -58,11 +58,36 @@
   </entry>
   
   <entry>
+    <title>MiniELF</title>
+    <link href="https://blog.junyu33.me/2023/12/10/minielf.html"/>
+    <id>https://blog.junyu33.me/2023/12/10/minielf.html</id>
+    <published>2023-12-09T16:00:00.000Z</published>
+    <updated>2023-12-09T16:49:04.092Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;尝试编写一个尽量小的ELF文件来完成 A + B
+problem，其中输入为&lt;code&gt;XX YY&lt;/code&gt;的形式（&lt;code&gt;X&lt;/code&gt;和&lt;code&gt;Y&lt;/code&gt;都是0到9的数字），输出不含LF/CRLF。&lt;/p&gt;
+&lt;p&gt;经过几天的努力，我成功把程序压缩到了 99 bytes。&lt;/p&gt;
+&lt;figure class=&quot;highlight maxima&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; xxd addition-ver24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000000&lt;/span&gt;: 7f45 4c46 &lt;span class=&quot;number&quot;&gt;0100&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0005&lt;/span&gt;  .ELF............&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000010&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;0200&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0300&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1b00&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0005&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1b00&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0005&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0400&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt;  ................&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000020&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;4889&lt;/span&gt; e1b2 &lt;span class=&quot;number&quot;&gt;05cd&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;8090&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;81e3&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0100&lt;/span&gt; 8a01  H......... .....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000030&lt;/span&gt;: 2c60 &lt;span class=&quot;number&quot;&gt;0241&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0366&lt;/span&gt; 6bc0 &lt;span class=&quot;number&quot;&gt;0a02&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;4101&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0241&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;042c&lt;/span&gt;  ,`.A.fk...A..A.,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000040&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;60b2&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;03b3&lt;/span&gt; 64f6 f304 &lt;span class=&quot;number&quot;&gt;3088&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0141&lt;/span&gt; c1e8 &lt;span class=&quot;number&quot;&gt;08b3&lt;/span&gt;  `...d...&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;..A....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000050&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;0af6&lt;/span&gt; f366 &lt;span class=&quot;number&quot;&gt;0530&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3066&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;8901&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;4966&lt;/span&gt; b804 &lt;span class=&quot;number&quot;&gt;00b3&lt;/span&gt;  ...f.&lt;span class=&quot;number&quot;&gt;00f&lt;/span&gt;..If....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000060&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;01cd&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;80&lt;/span&gt;                                  ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
+    
+    
+      <category term="misc" scheme="https://blog.junyu33.me/tags/misc/"/>
+    
+      <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
+    
+  </entry>
+  
+  <entry>
     <title>（转载）从北京城市建设看新中国的城市建设及时代背景</title>
     <link href="https://blog.junyu33.me/2023/11/28/beijing.html"/>
     <id>https://blog.junyu33.me/2023/11/28/beijing.html</id>
     <published>2023-11-28T07:00:00.000Z</published>
-    <updated>2023-11-28T06:51:06.067Z</updated>
+    <updated>2023-11-28T06:54:02.069Z</updated>
     
     <summary type="html">
     
@@ -428,29 +453,6 @@ grade 96.8%.&lt;/p&gt;
     
       <category term="test" scheme="https://blog.junyu33.me/categories/test/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>三一——杂谈《夜雀食堂》</title>
-    <link href="https://blog.junyu33.me/2023/01/27/mystia.html"/>
-    <id>https://blog.junyu33.me/2023/01/27/mystia.html</id>
-    <published>2023-01-27T02:30:00.000Z</published>
-    <updated>2023-05-15T06:55:12.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于时间和&lt;del&gt;财力&lt;/del&gt;的限制，本人只游玩了本体部分（那个电脑我也没有管）。&lt;/p&gt;
-&lt;p&gt;版本号为：&lt;code&gt;2.2.9d&lt;/code&gt;(BetaV86)&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="touhou" scheme="https://blog.junyu33.me/tags/touhou/"/>
-    
-      <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
     
   </entry>
   

@@ -58,11 +58,29 @@
   </entry>
   
   <entry>
+    <title>网络空间安全技术笔记</title>
+    <link href="https://blog.junyu33.me/2023/12/18/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF.html"/>
+    <id>https://blog.junyu33.me/2023/12/18/网络空间安全技术.html</id>
+    <published>2023-12-18T03:30:00.000Z</published>
+    <updated>2023-12-18T03:41:09.043Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;期末考试自用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>MiniELF</title>
     <link href="https://blog.junyu33.me/2023/12/10/minielf.html"/>
     <id>https://blog.junyu33.me/2023/12/10/minielf.html</id>
     <published>2023-12-09T16:00:00.000Z</published>
-    <updated>2023-12-09T16:49:04.092Z</updated>
+    <updated>2023-12-09T16:52:03.485Z</updated>
     
     <summary type="html">
     
@@ -430,28 +448,6 @@ grade 96.8%.&lt;/p&gt;
     </summary>
     
       <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>博客的第二次维护</title>
-    <link href="https://blog.junyu33.me/2023/01/30/maintainance2.html"/>
-    <id>https://blog.junyu33.me/2023/01/30/maintainance2.html</id>
-    <published>2023-01-30T02:00:00.000Z</published>
-    <updated>2023-05-15T06:55:12.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于 win 这边 node 版本过高，导致 hexo
-无法部署博客，昨天花了一下午时间维护了一下博客。&lt;/p&gt;
-&lt;p&gt;上次维护是为了部署 twikoo 评论区，将 nexT 版本从7升级到了
-8.1.0，好像挺折腾的，弄了不少时间。&lt;/p&gt;
-&lt;p&gt;只能说经过了许多次配环境的考验，效率比以前提高了不少。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="test" scheme="https://blog.junyu33.me/categories/test/"/>
     
     
   </entry>

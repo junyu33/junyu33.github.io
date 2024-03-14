@@ -58,6 +58,29 @@
   </entry>
   
   <entry>
+    <title>The hodgepodge of proxy configuration</title>
+    <link href="https://blog.junyu33.me/2024/03/14/proxy.html"/>
+    <id>https://blog.junyu33.me/2024/03/14/proxy.html</id>
+    <published>2024-03-14T15:30:00.000Z</published>
+    <updated>2024-03-14T16:06:06.923Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;My topic in a seminar at a ramdom time in the future.&lt;/p&gt;
+&lt;p&gt;Also, HAPPY PI DAY!&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="windows" scheme="https://blog.junyu33.me/tags/windows/"/>
+    
+  </entry>
+  
+  <entry>
     <title>三七——当词汇量20000的人在国内裸考雅思</title>
     <link href="https://blog.junyu33.me/2024/02/23/ielts.html"/>
     <id>https://blog.junyu33.me/2024/02/23/ielts.html</id>
@@ -430,24 +453,6 @@ grade 96.8%.&lt;/p&gt;
     
     
       <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何购买 ChatGPT Plus</title>
-    <link href="https://blog.junyu33.me/2023/03/22/depay.html"/>
-    <id>https://blog.junyu33.me/2023/03/22/depay.html</id>
-    <published>2023-03-22T05:00:00.000Z</published>
-    <updated>2023-06-14T16:38:26.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文地址：关键词太多，原作者的服务器又备案，所以我就代发了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
     
   </entry>
   

@@ -58,11 +58,31 @@
   </entry>
   
   <entry>
+    <title>从二选一OT到GMW协议的python实现</title>
+    <link href="https://blog.junyu33.me/2024/03/16/gmw.html"/>
+    <id>https://blog.junyu33.me/2024/03/16/gmw.html</id>
+    <published>2024-03-16T03:00:00.000Z</published>
+    <updated>2024-03-16T02:52:08.810Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;https://github.com/junyu33/GMW-python&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
     <title>The hodgepodge of proxy configuration</title>
     <link href="https://blog.junyu33.me/2024/03/14/proxy.html"/>
     <id>https://blog.junyu33.me/2024/03/14/proxy.html</id>
     <published>2024-03-14T15:30:00.000Z</published>
-    <updated>2024-03-14T16:06:06.923Z</updated>
+    <updated>2024-03-14T16:07:18.482Z</updated>
     
     <summary type="html">
     
@@ -433,26 +453,6 @@ grade 96.8%.&lt;/p&gt;
     
     
       <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PicoCTF 2023 pwn wp</title>
-    <link href="https://blog.junyu33.me/2023/03/30/picoctf2023.html"/>
-    <id>https://blog.junyu33.me/2023/03/30/picoctf2023.html</id>
-    <published>2023-03-30T11:00:00.000Z</published>
-    <updated>2023-05-15T06:55:12.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;比较简单，且不失趣味性。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
-    
-    
-      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
     
   </entry>
   

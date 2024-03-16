@@ -121,7 +121,7 @@ Occasionally I copied my code to another desktop `i7-6700 @ 3.40GHz` and run the
 
 The next problem is `AM_GPU_FBDRAW` module. First I finished it and it seems no problem in video test. However in `fceux-am` the graphics cannot display properly, just like this:
 
-<img src = './nju-pa/mario.png'>
+<img src = './nju_pa/mario.png'>
 
 To solve this problem, I enabled `differential testing`(difftest) and `ftrace`. The debug information shows the differs start at `memcpy` in my `AM_GPU_FBDRAW` function. However, the diff position varies when I run each time, which bothers me a lot. Occasionally, I deleted my original `memcpy` function
 
@@ -159,3 +159,20 @@ Although initialized `mstatus` to `0x1800`, `difftest` still not able to work. I
 ## 3.2
 
 Because I've RTFSC for several days in 3.1, finishing 3.2 is just a piece of cake. I just stuck at `printf` output for several hours (it only prints `H` for each line). Finally I found that I forgot to make the whole directory of `navy-apps`.
+
+## 3.3
+
+PA3.3 contains a lot of work, the workload is about 30% of the code you need to write from PA1 to PA3. Moreover, as the system getting more and more complex, the time of debugging also increases. Actually I took 17 days to finish this chapter.
+
+The work can be concluded in 3 parts: the VFS, NDL library, SDL library and corresponding applications. Here are some bugs that I struggled for a long time.
+
+- segmentation fault after `fclose` in `file-test`: first I thought there is something wrong in `_free_r`, however I'm not familiar with the code in system library. It is daunting to debugging this. So I tried to modify the `file-test.c` and observed segmentation fault has something to do with `fscanf`. I suspected there was a buffer overflow but without proof. At last I found the problem was in `_sbrk` which I written myself.
+- `menu` does not display correctly like `mario` before: this time I didn't make the `memcpy` mistake. However, I didn't figure out the relationship between `width` and `height` of `canvas` and `screen`. Also, I tackled the corner cases of SDL APIs incorrectly, which results jumbled output.
+- segmentation fault when entering the battle in `PAL`: I wanted to save time because using `ftrace` to find the backtrace is slow. So I used the traditional "print" method. Acutally the calling stack is a little longer than I expected (about 5 or 6 layers) and it took me even more time. Finally this call trace points to `SDL_FillRect` which written by myself again. And I found I didn't tackle the 8-bit color case (at first I added the fallback, but at sometime I think it was unnecessary and I deleted it) and the bound of pixel-copy procedure is incorrect, which caused my whole-day debugging.
+
+Here is a screenshot of PAL in battle mode (I didn't use riscv32-nemu to take a screenshot for its extremely slowness):
+
+<img src = './nju_pa/PAL.png'>
+
+
+

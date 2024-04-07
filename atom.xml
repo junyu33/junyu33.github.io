@@ -58,6 +58,26 @@
   </entry>
   
   <entry>
+    <title>Verilog - A Practice Approach</title>
+    <link href="https://blog.junyu33.me/2024/04/07/verilog.html"/>
+    <id>https://blog.junyu33.me/2024/04/07/verilog.html</id>
+    <published>2024-04-07T05:30:00.000Z</published>
+    <updated>2024-04-07T05:17:50.579Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Backup of talk on 3/22/2024 from https://ccsgeeks.github.io/&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="verilog" scheme="https://blog.junyu33.me/tags/verilog/"/>
+    
+  </entry>
+  
+  <entry>
     <title>multimod_fast 真的是对的吗？</title>
     <link href="https://blog.junyu33.me/2024/03/20/multimod.html"/>
     <id>https://blog.junyu33.me/2024/03/20/multimod.html</id>
@@ -422,7 +442,7 @@ no Internet.&lt;/p&gt;
     <link href="https://blog.junyu33.me/2023/05/13/nju_pa.html"/>
     <id>https://blog.junyu33.me/2023/05/13/nju_pa.html</id>
     <published>2023-05-13T04:30:00.000Z</published>
-    <updated>2023-09-26T14:49:15.375Z</updated>
+    <updated>2024-04-06T15:49:08.055Z</updated>
     
     <summary type="html">
     
@@ -436,25 +456,6 @@ no Internet.&lt;/p&gt;
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
       <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三三——ChatGPT 再探</title>
-    <link href="https://blog.junyu33.me/2023/04/26/chatgpt2.html"/>
-    <id>https://blog.junyu33.me/2023/04/26/chatgpt2.html</id>
-    <published>2023-04-26T11:30:00.000Z</published>
-    <updated>2023-05-15T06:55:10.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;是时候看看GPT-4的威力了。&lt;/p&gt;
-&lt;p&gt;第一段注释为问题，正文为回答，下一段注释为评价。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.junyu33.me/"/>
-  <updated>2023-05-15T10:07:17.000Z</updated>
+  <updated>2024-05-04T13:44:31.649Z</updated>
   <id>https://blog.junyu33.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.junyu33.me/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html"/>
     <id>https://blog.junyu33.me/2038/01/19/碎碎念.html</id>
     <published>2038-01-18T19:14:08.000Z</published>
-    <updated>2023-05-15T10:07:17.000Z</updated>
+    <updated>2024-05-04T13:44:31.649Z</updated>
     
     <summary type="html">
     
@@ -33,6 +33,30 @@
     
     
       <category term="encrypted" scheme="https://blog.junyu33.me/tags/encrypted/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>（置顶，已完结）nju-pa 心得</title>
+    <link href="https://blog.junyu33.me/2033/05/13/nju_pa.html"/>
+    <id>https://blog.junyu33.me/2033/05/13/nju_pa.html</id>
+    <published>2033-05-13T04:30:00.000Z</published>
+    <updated>2024-05-04T13:40:25.681Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2023/4/20 ~ 2024/5/4&lt;/p&gt;
+&lt;p&gt;6705 commits (2 commits per compilation and execution)&lt;/p&gt;
+&lt;p&gt;A year of persistence has finally come to an end.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
     
   </entry>
   
@@ -434,28 +458,6 @@ no Internet.&lt;/p&gt;
     
       <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>（近期不更新）nju-pa 心得</title>
-    <link href="https://blog.junyu33.me/2023/05/13/nju_pa.html"/>
-    <id>https://blog.junyu33.me/2023/05/13/nju_pa.html</id>
-    <published>2023-05-13T04:30:00.000Z</published>
-    <updated>2024-04-06T15:49:08.055Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;TODO: 其它专业课有思路再写。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-      <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
     
   </entry>
   

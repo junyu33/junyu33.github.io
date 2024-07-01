@@ -82,6 +82,28 @@
   </entry>
   
   <entry>
+    <title>有限域中乘法在 intel 指令集上的高性能实现</title>
+    <link href="https://blog.junyu33.me/2024/07/01/gfmul.html"/>
+    <id>https://blog.junyu33.me/2024/07/01/gfmul.html</id>
+    <published>2024-07-01T14:30:00.000Z</published>
+    <updated>2024-07-01T14:47:03.260Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/* multiplication in galois field with reduction */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;ifdef&lt;/span&gt; __x86_64__&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;__attribute__((target(&lt;span class=&quot;string&quot;&gt;&quot;sse2,pclmul&quot;&lt;/span&gt;)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;endif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;inline&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;gfmul&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(__m128i a, __m128i b, __m128i *res)&lt;/span&gt;{&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	__m128i tmp3, tmp6, tmp7, tmp8, tmp9, tmp10, tmp11, tmp12;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	__m128i XMMMASK = _mm_setr_epi32(&lt;span class=&quot;number&quot;&gt;0xffffffff&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0x0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0x0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0x0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	mul128(a, b, &amp;amp;tmp3, &amp;amp;tmp6);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp7 = _mm_srli_epi32(tmp6, &lt;span class=&quot;number&quot;&gt;31&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp8 = _mm_srli_epi32(tmp6, &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp9 = _mm_srli_epi32(tmp6, &lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp7 = _mm_xor_si128(tmp7, tmp8);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp7 = _mm_xor_si128(tmp7, tmp9);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp8 = _mm_shuffle_epi32(tmp7, &lt;span class=&quot;number&quot;&gt;147&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp7 = _mm_and_si128(XMMMASK, tmp8);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp8 = _mm_andnot_si128(XMMMASK, tmp8);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp3 = _mm_xor_si128(tmp3, tmp8);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp6 = _mm_xor_si128(tmp6, tmp7);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp10 = _mm_slli_epi32(tmp6, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp3 = _mm_xor_si128(tmp3, tmp10);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp11 = _mm_slli_epi32(tmp6, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp3 = _mm_xor_si128(tmp3, tmp11);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp12 = _mm_slli_epi32(tmp6, &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	tmp3 = _mm_xor_si128(tmp3, tmp12);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	*res = _mm_xor_si128(tmp3, tmp6);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
+    
+      <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Verilog - A Practice Approach</title>
     <link href="https://blog.junyu33.me/2024/04/07/verilog.html"/>
     <id>https://blog.junyu33.me/2024/04/07/verilog.html</id>
@@ -440,24 +462,6 @@ no Internet.&lt;/p&gt;
       <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
     
       <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三四——博客二周年祭 / NUS游记</title>
-    <link href="https://blog.junyu33.me/2023/07/06/2nd_anni.html"/>
-    <id>https://blog.junyu33.me/2023/07/06/2nd_anni.html</id>
-    <published>2023-07-05T16:45:00.000Z</published>
-    <updated>2023-08-15T10:56:43.109Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这么快又两周年了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

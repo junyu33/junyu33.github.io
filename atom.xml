@@ -82,6 +82,26 @@
   </entry>
   
   <entry>
+    <title>三八~四七——博客三周年祭 / 我不知道取什么题目</title>
+    <link href="https://blog.junyu33.me/2024/07/06/3rd_anni.html"/>
+    <id>https://blog.junyu33.me/2024/07/06/3rd_anni.html</id>
+    <published>2024-07-06T13:45:00.000Z</published>
+    <updated>2024-07-07T16:32:26.310Z</updated>
+    
+    <summary type="html">
+    
+      有东西被加密了, 请输入密码查看.
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="encrypted" scheme="https://blog.junyu33.me/tags/encrypted/"/>
+    
+  </entry>
+  
+  <entry>
     <title>有限域中乘法在 intel 指令集上的高性能实现</title>
     <link href="https://blog.junyu33.me/2024/07/01/gfmul.html"/>
     <id>https://blog.junyu33.me/2024/07/01/gfmul.html</id>
@@ -433,35 +453,6 @@ no Internet.&lt;/p&gt;
     
     
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一次给 grab app 抓包的经历</title>
-    <link href="https://blog.junyu33.me/2023/07/22/xp2.html"/>
-    <id>https://blog.junyu33.me/2023/07/22/xp2.html</id>
-    <published>2023-07-22T03:00:00.000Z</published>
-    <updated>2023-07-22T06:48:15.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在 Singapore
-的那段时间，为了实现不用纸币，但我的全币种信用卡并不支持云闪付功能，我只能使用第三方平台对自己的银行卡进行绑定。&lt;/p&gt;
-&lt;p&gt;然后 grab 提供的大陆第三方平台只有 BOC，并且打开链接之后发现 BOC
-的登录页面无法显示验证码。&lt;/p&gt;
-&lt;p&gt;我的任务就是尝试排查验证码无法显示的原因，最起码要把这个 URL
-在电脑上复现出来。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
-    
-      <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
     
   </entry>
   

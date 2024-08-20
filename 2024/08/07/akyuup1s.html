@@ -300,7 +300,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -327,7 +327,7 @@
 <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
 
-    <div id="aplayer-UGfKyRtc" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="12489798951" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555" data-loop="all" data-order="random"></div>
+    <div id="aplayer-RnjoleGP" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="12489798951" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555" data-loop="all" data-order="random"></div>
 <h2 id="网上的各种整活">网上的各种整活：</h2>
 <p>首先这是二设：https://thbwiki.cc/稗田阿求/二次设定#稗田阿求30岁诞辰</p>
 <p>2048 版本：https://akyuu.touhou.moe/</p>
@@ -359,7 +359,7 @@ game over
 <p>但是修改修改时间会麻烦一些，但也不是很难。</p>
 <p>首先，在 hexo 根目录中找到<code>db.json</code>文件，但是这个文件有
 20M 太大了，所以我们可以直接使用<code>sed</code>命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/2024-08-17/2024-08-17/g&#x27;</span> db.json</span><br><span class="line">sed -i <span class="string">&#x27;s/2024-08-17T[0-9]\&#123;2\&#125;:[0-9]\&#123;2\&#125;:[0-9]\&#123;2\&#125;\.[0-9]\&#123;3\&#125;Z/2024-08-16T16:00:00.000Z/g&#x27;</span> db.json </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/2024-08-20T[0-9]\&#123;2\&#125;:[0-9]\&#123;2\&#125;:[0-9]\&#123;2\&#125;\.[0-9]\&#123;3\&#125;Z/2024-08-16T16:00:00.000Z/g&#x27;</span> db.json </span><br></pre></td></tr></table></figure>
 <p>最后，修改这个文件的修改时间：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> -t 202408170000 akyuup1s.md</span><br></pre></td></tr></table></figure>
 <p>然后就可以部署了：</p>

@@ -61,23 +61,31 @@
   </entry>
   
   <entry>
-    <title>（置顶）pwncollege部分通关记录</title>
-    <link href="https://blog.junyu33.me/2032/07/03/pwn_college.html"/>
-    <id>https://blog.junyu33.me/2032/07/03/pwn_college.html</id>
-    <published>2032-07-03T10:00:00.000Z</published>
-    <updated>2023-05-15T06:55:12.000Z</updated>
+    <title>四八——稗田阿求30岁诞辰专题 - 博客内嵌音频测试</title>
+    <link href="https://blog.junyu33.me/2024/08/07/akyuup1s.html"/>
+    <id>https://blog.junyu33.me/2024/08/07/akyuup1s.html</id>
+    <published>2024-08-06T16:00:00.000Z</published>
+    <updated>2024-08-16T16:00:00.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;指 https://dojo.pwn.college/challenges&lt;/p&gt;
-&lt;p&gt;按照网站要求，这里只提供思路和前两题的exploit。&lt;/p&gt;
+      &lt;p&gt;天若有情天亦老 我为&lt;del&gt;牢&lt;/del&gt;阿求续一秒&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SagumeKishin https://thbwiki.cc/稗田阿求&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
-      <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
+      <category term="test" scheme="https://blog.junyu33.me/categories/test/"/>
     
     
-      <category term="pwn" scheme="https://blog.junyu33.me/tags/pwn/"/>
+      <category term="touhou" scheme="https://blog.junyu33.me/tags/touhou/"/>
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
+    
+      <category term="javascript" scheme="https://blog.junyu33.me/tags/javascript/"/>
     
   </entry>
   
@@ -124,6 +132,26 @@
   </entry>
   
   <entry>
+    <title>Clever Compilers - x86_64 assembly arithmetic analysis</title>
+    <link href="https://blog.junyu33.me/2024/04/25/asmmath.html"/>
+    <id>https://blog.junyu33.me/2024/04/25/asmmath.html</id>
+    <published>2024-04-25T08:00:00.000Z</published>
+    <updated>2024-08-19T02:20:40.318Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Backup of an unpublished talk on 4/25/2024.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Verilog - A Practice Approach</title>
     <link href="https://blog.junyu33.me/2024/04/07/verilog.html"/>
     <id>https://blog.junyu33.me/2024/04/07/verilog.html</id>
@@ -148,7 +176,7 @@
     <link href="https://blog.junyu33.me/2024/03/20/multimod.html"/>
     <id>https://blog.junyu33.me/2024/03/20/multimod.html</id>
     <published>2024-03-20T05:30:00.000Z</published>
-    <updated>2024-03-20T05:34:43.403Z</updated>
+    <updated>2024-08-19T02:06:41.927Z</updated>
     
     <summary type="html">
     
@@ -165,7 +193,7 @@
     
       <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
     
-      <category term="asm" scheme="https://blog.junyu33.me/tags/asm/"/>
+      <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
     
   </entry>
   
@@ -423,29 +451,6 @@ problem，其中输入为&lt;code&gt;XX YY&lt;/code&gt;的形式（&lt;code&gt;X
       &lt;p&gt;&lt;img src=&quot;/2023/08/27/LFS/1.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Just without &lt;code&gt;vmware-guest-additions&lt;/code&gt; support, so there is
 no Internet.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记第二次 workflow 大换血——ubuntu2arch</title>
-    <link href="https://blog.junyu33.me/2023/08/05/archlinux.html"/>
-    <id>https://blog.junyu33.me/2023/08/05/archlinux.html</id>
-    <published>2023-08-05T07:15:00.000Z</published>
-    <updated>2023-08-05T11:01:07.314Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前一次是去年4月份从 win11 + VS + vscode 迁移到 ubuntu 22.04 + vscode
-+ neoVim，现在换到了 arch linux + neoVim&lt;/p&gt;
-&lt;p&gt;之后大创结题可能还得重配 windows
-驱动开发的环境，可能会够我喝一壶了。&lt;/p&gt;
     
     </summary>
     

@@ -61,6 +61,30 @@
   </entry>
   
   <entry>
+    <title>雀魂麻将真的有恶调吗？</title>
+    <link href="https://blog.junyu33.me/2024/08/25/majsoul.html"/>
+    <id>https://blog.junyu33.me/2024/08/25/majsoul.html</id>
+    <published>2024-08-25T05:00:00.000Z</published>
+    <updated>2024-08-25T04:53:53.375Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇文章将通过几个小实验来验证雀魂的随机性与公平性。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
+    
+      <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
+    
+      <category term="c++" scheme="https://blog.junyu33.me/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
     <title>稗田阿求30岁诞辰专题 - 博客内嵌音频测试</title>
     <link href="https://blog.junyu33.me/2024/08/07/akyuup1s.html"/>
     <id>https://blog.junyu33.me/2024/08/07/akyuup1s.html</id>
@@ -436,28 +460,6 @@ problem，其中输入为&lt;code&gt;XX YY&lt;/code&gt;的形式（&lt;code&gt;X
     
     
       <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LFS on a VM</title>
-    <link href="https://blog.junyu33.me/2023/08/27/LFS.html"/>
-    <id>https://blog.junyu33.me/2023/08/27/LFS.html</id>
-    <published>2023-08-27T01:10:00.000Z</published>
-    <updated>2023-08-27T02:24:39.392Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;/2023/08/27/LFS/1.png&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Just without &lt;code&gt;vmware-guest-additions&lt;/code&gt; support, so there is
-no Internet.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
   </entry>
   

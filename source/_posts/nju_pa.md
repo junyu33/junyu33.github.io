@@ -1,5 +1,5 @@
 layout: post
-title: （近期不更新）nju-pa 心得
+title: （置顶，已完结）nju-pa 心得
 author: junyu33
 mathjax: true
 categories: 
@@ -11,11 +11,15 @@ tags:
   - c
   - linux
 
-date: 2023-5-13 12:30:00
+date: 2033-5-13 12:30:00
 
 ---
 
-TODO: 其它专业课有思路再写。
+2023/4/20 ~ 2024/5/4
+
+6705 commits (2 commits per compilation and execution)
+
+A year of persistence has finally come to an end.
 
 <!-- more -->
 
@@ -25,7 +29,7 @@ TODO: 其它专业课有思路再写。
 
 回想起一年前秦院对我说过，从用人单位的角度来看，本院的学子的编程水平不如隔壁电科。当时我还对这句话半信半疑，但从现在的课程设计角度来看，这的确是不争的事实（或者说是必然的结果）。学院也确实作出了一些改进，比如说`C`的在线OJ（只不过因为较为 aggressive 与排版问题饱受诟病），当然这还远远不够。
 
-从提升个人能力的角度来看，留给我的时间已经不多了，我必须摒弃一切与这个目标相悖的杂事（按优先级看依次是综测、大创、各种竞赛（包括低质量的 CTF ），最后是 GPA（自己的优势有时也是弱点）），以给自己留出尽可能多的时间来学习真正与我的方向相关的，或者是 fundamental 的东西（比如说 OS —— by `lotus`）。
+从提升个人能力的角度来看，留给我的时间已经不多了，我必须摒弃一切与这个目标相悖的杂事（按优先级看依次是综测、大创、各种竞赛（包括低质量的 CTF ），最后是 GPA（自己的优势有时也是弱点）），以给自己留出尽可能多的时间来学习真正与我的方向相关的，或者是 fundamental 的东西。
 
 关于 OS 这门课，学院的理论课只能说不算差，以应试为主。与此相比，实验课就处在一个十分尴尬的地位，具体理由如下：
 
@@ -174,5 +178,52 @@ Here is a screenshot of PAL in battle mode (I didn't use riscv32-nemu to take a 
 
 <img src = './nju_pa/PAL.png'>
 
+# pa4
 
+## 4.1
 
+According to ysyx, I need to finish `rt-thread` first. It took 9 days to finish it (from 11/28/2023 to 12/6/2023). After that I was preparing for the experiment for a paper and restarted to work on 4/2/2024. Finally finished pa4.1 on 4/6/2024.
+
+Here I just list some bugs I encountered:
+
+- `rt-thread` does not work: The problem is the migration of `abstract-machine`, I restored the compile environment of it and it works.
+- `rt-thread` on NPC: 
+    - I have to `fflush(stdout)` to make the output visible.
+    - Forgetting to modify `riscv.h` in `abstract-machine` to make context-switching work.
+- `execve` with args: The return value of declaration in `syscall.c` mistyped into `void`, the correct one should be `Context *`.
+- `execve` with args not working on `pal`: Forgetting to copy the `argv` and `envp` string to the user stack(Yes, only copy the pointer is not enough), which causes the content of `argv` and `envp` overwritten by the content of `pal`.
+
+## 4.2
+
+Between 4/9/2024 and 4/16/2024, I mainly spending time finishing my paper. After that, I continue to work on the rest of PA4. PA4.2 is mainly about paging mechanism, here are some points that worth mentioning:
+
+- You will need [RISCV manual (privileged version)](https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv/riscv-isa-manual/LatestRelease/priv-isa-asciidoc.pdf) to understand the paging mechanism in SV32 and the usage of `cpu.satp` register. The content in ChatGPT is not always reliable.
+- I forgot to dereference `as.area.end` pointer, which causes that some content of pages are overlapped and results in hard-to-resolve bugs.
+- Not having enough testing makes it more difficult to resolve bugs in PA4.3.
+
+I finished PA4.2 in 4/26/2024.
+
+## 4.3
+
+This holiday I made a promise to finish the whole PA4 before returning to school and I successfully achieved this. I first try to finish the preemptive process scheduling. However, I previously mentioned there are still some bugs in PA4.2 that hadn't been resolved. Of course, preemptive scheduling makes the system, finite state machine in essence, unpredictable and much harder to debug. Therefore, I temporarily gave up finishing this part and started to work on stack switching instead. Of course, I still came up with the same bugs as well. To exclude possible factors, I created a new branch in `git` to do controlled experiments for these factors. I finally found these bugs:
+
+- `mm_brk` does not verify whether the memory is virtual memory.
+- `mm_brk` is not fully aligned to the page.
+
+> A very useful debugging tip is that when you want to memset a range to raw memory, you'd better choose **a special value**. If the program crashes here later on, it is much easier to locate the bug, instead of being obsessed with a random address. 
+>
+> And I finally understand the reason why yzh says PA4.2 is the most difficult part. The answer is, there are really a bunch of details needed to care about. 
+
+Another bug is because of my carelessness when translating the pseudo C code into x86 assembly:
+
+- forgot to zero `mscratch` in `am_asm_trap`.
+
+After working out stack switching, the switching function of foreground program is easy to implement. I went back to finish the preemptive part. First, the program never reaches `IRQ_TIMER` part, the reason is 
+
+- I didn't assign `cpu.pc` to `cpu.mtvec` merely. 
+
+However the program still crashes after running for some time. And then I revised the exception handling procedure in PA3, and finally figured out 
+
+- I didn't assign `cpu.mepc` to `cpu.pc`, either. 
+
+After fixing, the problem is finally solved. And the story of whole PA finally came to an end in 5/4/2024. 

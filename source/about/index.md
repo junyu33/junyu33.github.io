@@ -19,4 +19,4 @@ comments: true
 
 - Student at Sichuan University
 - Pre OIer in [Chengdu No.7 High School](http://www.cdqz.net)
-- CTFer | PWNer
+- now a ~~CTFer & PWNer~~ researcher on (applied) cryptography with advisor [X. Lan](https://lanxiao123.github.io) (6/10/2024–)

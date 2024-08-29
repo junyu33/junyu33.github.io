@@ -1,5 +1,5 @@
 layout: post
-title: （置顶）pwncollege部分通关记录
+title: pwncollege部分通关记录
 author: junyu33
 mathjax: true
 tags: 
@@ -8,9 +8,9 @@ tags:
 
 categories:
 
-  - ctf
+- ctf
 
-date: 2032-7-3 18:00:00
+date: 2022-7-3 18:00:00
 
 ---
 

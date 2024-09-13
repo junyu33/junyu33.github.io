@@ -61,6 +61,26 @@
   </entry>
   
   <entry>
+    <title>(ex)gcd，逆元与其它</title>
+    <link href="https://blog.junyu33.me/2024/09/13/exgcd.html"/>
+    <id>https://blog.junyu33.me/2024/09/13/exgcd.html</id>
+    <published>2024-09-13T15:30:00.000Z</published>
+    <updated>2024-09-13T14:23:24.693Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Backup of an published talk on 9/13/2024.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
     <title>（转载）2024 年小米社区全国统一考试——解锁</title>
     <link href="https://blog.junyu33.me/2024/08/25/unlock-bl.html"/>
     <id>https://blog.junyu33.me/2024/08/25/unlock-bl.html</id>
@@ -432,29 +452,6 @@ problem，其中输入为&lt;code&gt;XX YY&lt;/code&gt;的形式（&lt;code&gt;X
       <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
     
       <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简易 CMake 入门（miniob 版本）</title>
-    <link href="https://blog.junyu33.me/2023/10/30/cmake.html"/>
-    <id>https://blog.junyu33.me/2023/10/30/cmake.html</id>
-    <published>2023-10-29T16:00:00.000Z</published>
-    <updated>2023-10-29T16:27:17.678Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;简易-cmake-入门&quot;&gt;简易 CMake 入门&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;首先建立一个直觉：CMake是与平台无关的，你不会制定具体使用什么编译器与链接器，也不会编写shell命令。最好把它当成一种&lt;strong&gt;面向对象&lt;/strong&gt;的&lt;strong&gt;新语言&lt;/strong&gt;看待。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="cmake" scheme="https://blog.junyu33.me/tags/cmake/"/>
     
   </entry>
   

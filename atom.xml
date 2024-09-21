@@ -61,6 +61,30 @@
   </entry>
   
   <entry>
+    <title>timeshift 使用 btrfs 懒人指南</title>
+    <link href="https://blog.junyu33.me/2024/09/21/timeshift.html"/>
+    <id>https://blog.junyu33.me/2024/09/21/timeshift.html</id>
+    <published>2024-09-21T08:30:00.000Z</published>
+    <updated>2024-09-21T10:40:37.233Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近到了新工位，有了一台新电脑以及两台显示器。我深知系统备份的重要性，但因为沉没成本，一直没有来得及完全实装
+btrfs
+的备份恢复功能。因为新系统啥都没有，所以我可以肆无忌惮地折腾。这里记录一下我是如何使用
+timeshift 的。&lt;/p&gt;
+&lt;p&gt;本文不涉及原理，以实用为主。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>(ex)gcd，逆元与其它</title>
     <link href="https://blog.junyu33.me/2024/09/13/exgcd.html"/>
     <id>https://blog.junyu33.me/2024/09/13/exgcd.html</id>
@@ -428,30 +452,6 @@ problem，其中输入为&lt;code&gt;XX YY&lt;/code&gt;的形式（&lt;code&gt;X
     
     
       <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三五——Android 14 彩蛋试玩</title>
-    <link href="https://blog.junyu33.me/2023/11/11/upsdcake.html"/>
-    <id>https://blog.junyu33.me/2023/11/11/upsdcake.html</id>
-    <published>2023-11-11T13:30:00.000Z</published>
-    <updated>2023-11-14T03:14:23.322Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;上篇随笔提到我在 sgp 买了一部谷歌亲儿子 pixel 7a，前段时间 Android 14
-出了，我的手机也收到了更新推送，就升级了。&lt;/p&gt;
-&lt;p&gt;当然，升级过后的第一件事就是去看看彩蛋，&lt;del&gt;以确认升级是不是只换了个版本号&lt;/del&gt;。（其实手机已经升级快一个月了，百无聊赖之际，我才想起可以玩玩彩蛋这件事）&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
-    
-      <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
     
   </entry>
   

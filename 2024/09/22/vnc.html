@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content=""><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://blog.junyu33.me/2024/09/22/vnc.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.junyu33.me/2024/09/22/vnc.html","path":"2024/09/22/vnc.html","title":"从零搭建一个又快又安全的 VNC 服务"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从零搭建一个又快又安全的 VNC 服务 | 现充|junyu33</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">现充|junyu33</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#prerequisites"><span class="nav-number">1.</span> <span class="nav-text">Prerequisites</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#steps"><span class="nav-number">2.</span> <span class="nav-text">Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B3%E8%AF%B7-ddns"><span class="nav-number">2.1.</span> <span class="nav-text">申请 DDNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-tigervnc-%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.2.</span> <span class="nav-text">安装 TigerVNC 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%88%90-certbot-dns-01-challenge-%E4%BB%A5%E8%8E%B7%E5%BE%97%E8%AF%81%E4%B9%A6"><span class="nav-number">2.3.</span> <span class="nav-text">完成 certbot DNS-01
+challenge 以获得证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-tigervnc-%E5%AE%89%E5%85%A8%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.4.</span> <span class="nav-text">配置 TigerVNC 安全连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#faq"><span class="nav-number">3.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E9%9B%B6%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.1.</span> <span class="nav-text">问题零（无法连接）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80unknown-authority%E6%97%A0-lets-encrypt"><span class="nav-number">3.2.</span> <span class="nav-text">问题一（unknown
+authority，无 Let&#39;s Encrypt）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%E5%9F%9F%E5%90%8D%E5%92%8C%E8%AF%81%E4%B9%A6%E4%B8%8D%E5%8C%B9%E9%85%8D"><span class="nav-number">3.3.</span> <span class="nav-text">问题二（域名和证书不匹配）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%89unknown-authority%E6%9C%89-lets-encrypt"><span class="nav-number">3.4.</span> <span class="nav-text">问题三（unknown
+authority，有 Let&#39;s Encrypt）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%9B%9Btls%E5%88%9D%E5%A7%8B%E5%8C%96%E9%94%99%E8%AF%AF"><span class="nav-number">3.5.</span> <span class="nav-text">问题四（TLS初始化错误）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%94tigervnc-%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98"><span class="nav-number">3.6.</span> <span class="nav-text">问题五（TigerVNC 启动问题）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%85%ADthe-authentication-mechanism-requested-cannot-be-provided-by-the-computer"><span class="nav-number">3.7.</span> <span class="nav-text">问题六（The
+authentication mechanism requested cannot be provided by the
+computer）：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helloworld@junyu33.me" title="E-Mail → mailto:helloworld@junyu33.me" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://land.hash.memorial/" title="https:&#x2F;&#x2F;land.hash.memorial&#x2F;" rel="noopener" target="_blank">hash</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://mivik.moe/" title="https:&#x2F;&#x2F;mivik.moe&#x2F;" rel="noopener" target="_blank">Mivik</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://tiger1218.com/" title="https:&#x2F;&#x2F;tiger1218.com" rel="noopener" target="_blank">tiger1218</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jackfromeast.site/" title="https:&#x2F;&#x2F;jackfromeast.site&#x2F;" rel="noopener" target="_blank">jackfromeast</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://n.ova.moe/" title="https:&#x2F;&#x2F;n.ova.moe" rel="noopener" target="_blank">Muel_Nova</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://marvoalou.github.io/" title="https:&#x2F;&#x2F;marvoalou.github.io" rel="noopener" target="_blank">zxman</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://whilebug.github.io/" title="https:&#x2F;&#x2F;whilebug.github.io&#x2F;" rel="noopener" target="_blank">WhileBug</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junyu33.me/2024/09/22/vnc.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从零搭建一个又快又安全的 VNC 服务 | 现充|junyu33">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从零搭建一个又快又安全的 VNC 服务
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-22 23:30:00" itemprop="dateCreated datePublished" datetime="2024-09-22T23:30:00+08:00">2024-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-23 09:17:16" itemprop="dateModified" datetime="2024-09-23T09:17:16+08:00">2024-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>因为笔者的寝室电脑有公网
+IP，而市面上的远程桌面软件因为使用中继服务器延迟较高，并且个人不信任它们的安全性，所以决定自己搭建一个
+VNC 服务。</p>
+<p>这样就可以从实验室低延迟的连回寝室电脑，并且保证一定的安全性。</p>
+<p>至少让 TigerVNC 觉得 “Connection is secure” without any
+exemption.</p>
+<span id="more"></span>
+<h1 id="prerequisites">Prerequisites</h1>
+<ul>
+<li>你自己的域名。</li>
+<li>公网 IP（理论上 IPv4 和 IPv6 均可，本文以 IPv4 为例）。</li>
+</ul>
+<h1 id="steps">Steps</h1>
+<h2 id="申请-ddns">申请 DDNS</h2>
+<p>我的域名是在 <a target="_blank" rel="noopener" href="https://www.namecheap.com/">Namecheap</a>
+买的，但我把自己的 DNS 服务托管给了 <a target="_blank" rel="noopener" href="https://www.netlify.com">Netlify</a>。如果你也是这样，那么你可以使用
+<a target="_blank" rel="noopener" href="https://github.com/oscartbeaumont/netlify-dynamic-dns">Netlify
+Dynamic DNS</a> 来自动化 DDNS 的流程。当然，如果你是 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/">Cloudflare</a>
+的用户，网上的教程应该更多，这里就不赘述了。以下是自己的代码：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configuration</span></span><br><span class="line">ACCESSTOKEN=<span class="string">&quot;&lt;access_token&gt;&quot;</span>                 <span class="comment"># Netlify API access token</span></span><br><span class="line">ZONE=<span class="string">&quot;example.com&quot;</span>                           <span class="comment"># Domain name (Netlify DNS zone)</span></span><br><span class="line">RECORD=<span class="string">&quot;subdomain&quot;</span>                           <span class="comment"># Subdomain (subdomain.example.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the current public IPv4 (without using proxy)</span></span><br><span class="line">IP=$(curl --noproxy <span class="string">&#x27;*&#x27;</span> -s http://ipv4.icanhazip.com)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable IPv6 updates and ensure no proxy for Netlify requests</span></span><br><span class="line">NDDNS_IPv6_ENABLED=<span class="literal">false</span> no_proxy=<span class="string">&quot;*.netlify.com&quot;</span> nddns_linux -accesstoken <span class="string">&quot;<span class="variable">$ACCESSTOKEN</span>&quot;</span> -zone <span class="string">&quot;<span class="variable">$ZONE</span>&quot;</span> -record <span class="string">&quot;<span class="variable">$RECORD</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Log the update</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="subst">$(date)</span>: Updated <span class="variable">$RECORD</span>.<span class="variable">$ZONE</span> to IP <span class="variable">$IP</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>然后在 systemd 启用定时任务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">~/Desktop/tmp                                                                                                                                                                 10m 8s 22:12:16</span><br><span class="line">&gt; <span class="built_in">cat</span> /etc/systemd/system/ddns-update.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Run DDNS update script</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">Environment=<span class="string">&quot;http_proxy=&lt;http_proxy&gt;&quot;</span>                 <span class="comment"># If you need proxy</span></span><br><span class="line">Environment=<span class="string">&quot;https_proxy=&lt;https_proxy&gt;&quot;</span>               <span class="comment"># If you need proxy</span></span><br><span class="line">ExecStart=/bin/bash /home/junyu33/Desktop/tmp/ddns.sh</span><br><span class="line"></span><br><span class="line">~/Desktop/tmp                                                                                                                                                                        22:12:42</span><br><span class="line">&gt; <span class="built_in">cat</span> /etc/systemd/system/ddns-update.timer  </span><br><span class="line">[Unit]</span><br><span class="line">Description=Run DDNS update script every 30 minutes</span><br><span class="line"></span><br><span class="line">[Timer]</span><br><span class="line">OnBootSec=5min</span><br><span class="line">OnUnitActiveSec=30min</span><br><span class="line">Persistent=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=timers.target</span><br></pre></td></tr></table></figure>
+<p>这样，你的域名就会多一条 TXT 记录，记录着你电脑的公网 IP。</p>
+<p>如果你的电脑此时开启了 sshd，你应该可以使用
+<code>ssh user@subdomain.example.com</code> 连上自己电脑了。</p>
+<h2 id="安装-tigervnc-服务">安装 TigerVNC 服务</h2>
+<p>参考这篇文章：https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04</p>
+<blockquote>
+<p>看到 Step 2 为止，虽然 Step 3 确实可以达到实际上的安全性，但是
+TigerVNC 的客户端会认为连接不安全。</p>
+</blockquote>
+<p>然后这篇文章只提到的 TigerVNC 的服务端安装，客户端在 xubuntu
+的安装命令为：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install tigervnc-viewer</span><br></pre></td></tr></table></figure>
+<h2 id="完成-certbot-dns-01-challenge-以获得证书">完成 certbot DNS-01
+challenge 以获得证书</h2>
+<p>xubuntu 的 certbot 包似乎有问题，我选择 conda 虚拟环境下的 certbot
+pip 包：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install certbot</span><br><span class="line">certbot certonly --manual --preferred-challenges dns --config-dir ~/Desktop/tmp --work-dir ~/Desktop/tmp --logs-dir ~/Desktop/tmp -d subdomain.example.com</span><br></pre></td></tr></table></figure>
+<p>然后按照提示添加 TXT 记录即可。</p>
+<p>完成后你会在
+<code>~/Desktop/tmp/archive/subdomain.example.com/</code>
+下看到证书文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; /bin/ls -al           </span><br><span class="line">total 16</span><br><span class="line">drwxrwxr-x 1 junyu33 junyu33   90 Sep 22 20:45 .</span><br><span class="line">drwx------ 1 junyu33 junyu33   48 Sep 22 20:45 ..</span><br><span class="line">-rw-rw-r-- 1 junyu33 junyu33 1273 Sep 22 20:45 cert1.pem</span><br><span class="line">-rw-rw-r-- 1 junyu33 junyu33 1566 Sep 22 20:45 chain1.pem</span><br><span class="line">-rw-rw-r-- 1 junyu33 junyu33 2839 Sep 22 20:45 fullchain1.pem</span><br><span class="line">-rw------- 1 junyu33 junyu33  241 Sep 22 20:45 privkey1.pem</span><br></pre></td></tr></table></figure>
+<h2 id="配置-tigervnc-安全连接">配置 TigerVNC 安全连接</h2>
+<p>将你的 certbot 证书复制到 <code>~/.vnc/</code> 下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器证书和私钥</span></span><br><span class="line"><span class="built_in">cp</span> ~/Desktop/tmp/archive/subdomain.example.com/cert1.pem ~/.vnc/subdomain.example.com-SrvCert.pem</span><br><span class="line"><span class="built_in">cp</span> ~/Desktop/tmp/archive/subdomain.example.com/privkey1.pem ~/.vnc/subdomain.example.com-SrvKey.pem</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里的 pem 文件前缀不一定是
+<code>subdomain.example.com</code>，但是之后
+TigerVNC启动时，必须要指定正确的 pem 文件。</p>
+</blockquote>
+<p>然后重启 TigerVNC 服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vncserver -<span class="built_in">kill</span> :2</span><br><span class="line">vncserver -SecurityTypes=X509Vnc -X509Cert=/home/junyu33/.vnc/subdomain.example.com-SrvCert.pem \</span><br><span class="line">          -X509Key=/home/junyu33/.vnc/subdomain.example.com-SrvKey.pem -localhost=no -geometry=1920x1080 :2</span><br></pre></td></tr></table></figure>
+<p>然后将 <code>chain1.pem</code> 复制到<strong>客户机</strong>的
+<code>~/.vnc/</code> 下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户机证书链</span></span><br><span class="line">scp ~/Desktop/tmp/archive/subdomain.example.com/chain1.pem user@client.com:~/.vnc/chain1.pem</span><br></pre></td></tr></table></figure>
+<p>并修改<strong>客户机</strong>的
+<code>~/.vnc/default.tigervnc</code>，确保这一行的值正确（没有就加一行）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X509CA=/home/junyu33/.vnc/chain1.pem</span><br></pre></td></tr></table></figure>
+<p>这个时候启动 TigerVNC，应该会直接看到 “Connection is secure”
+的字样并让你输入密码，大功告成。</p>
+<h1 id="faq">FAQ</h1>
+<h2 id="问题零无法连接">问题零（无法连接）：</h2>
+<p><img src="/2024/09/22/vnc/Screenshot_2024-09-22_23-00-47.png"></p>
+<ul>
+<li>看看你的 DDNS 挂了没。</li>
+<li>看看你的防火墙关了没。</li>
+<li>看看你的 TigerVNC 服务启动了没。</li>
+</ul>
+<h2 id="问题一unknown-authority无-lets-encrypt">问题一（unknown
+authority，无 Let's Encrypt）：</h2>
+<p><img src="/2024/09/22/vnc/Screenshot_2024-09-22_22-44-30.png"></p>
+<p>TigerVNC 使用了你系统的自签名证书，而不是 Let's Encrypt
+的证书。你可以在启动 log 中找到如下字段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">You will require a certificate to <span class="keyword">use</span> X509None, X509Vnc, <span class="keyword">or</span> X509Plain.</span><br><span class="line">I will <span class="keyword">generate</span> a self <span class="keyword">signed</span> certificate <span class="keyword">for</span> you in /home/junyu33/<span class="variable">.vnc</span>/&lt;hostname&gt;-SrvCert<span class="variable">.pem</span>.</span><br></pre></td></tr></table></figure>
+<p>可能是因为你敲重启 TigerVNC 命令的时候没有加 <code>-X509Key</code> 和
+<code>-X509Cert</code> 参数。</p>
+<h2 id="问题二域名和证书不匹配">问题二（域名和证书不匹配）：</h2>
+<p><img src="/2024/09/22/vnc/Screenshot_2024-09-22_22-43-45.png"></p>
+<p>原因大概跟上一个问题相同，敲重启 TigerVNC 命令的时候没有加
+<code>-X509Key</code> 和 <code>-X509Cert</code>
+参数。从而使用了你自签的证书，你电脑的 hostname
+自然和你连接的服务器不同。</p>
+<p>另一种原因是，你 certbot 申请的域名和你的 hostname
+不匹配。<strong>必须是完全一致的域名，父域名和子域名都要一致。</strong></p>
+<h2 id="问题三unknown-authority有-lets-encrypt">问题三（unknown
+authority，有 Let's Encrypt）：</h2>
+<p><img src="/2024/09/22/vnc/Screenshot_2024-09-22_21-42-35.png"></p>
+<p>你的 <code>.vnc</code> 目录下的 <code>chain1.pem</code>
+文件没有复制正确（或者在<strong>客户机</strong>不存在），或者你的
+<code>default.tigervnc</code> 文件没有配置正确。</p>
+<h2 id="问题四tls初始化错误">问题四（TLS初始化错误）：</h2>
+<p><img src="/2024/09/22/vnc/Screenshot_2024-09-22_22-57-33.png"></p>
+<p>检查一下拷贝证书和私钥的路径是否正确，是不是拷了两个证书或者两个私钥。</p>
+<h2 id="问题五tigervnc-启动问题">问题五（TigerVNC 启动问题）：</h2>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&gt; vncserver                                </span><br><span class="line"></span><br><span class="line">New Xtigervnc server <span class="string">&#x27;&lt;hostname&gt;:3 (junyu33)&#x27;</span> on port 5903 <span class="keyword">for</span> display :3.</span><br><span class="line">Use xtigervncviewer -SecurityTypes VncAuth -passwd /tmp/tigervnc.E2491i/passwd :3 to connect to the VNC server.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">=================== <span class="built_in">tail</span> /home/junyu33/.vnc/&lt;hostname&gt;:3.<span class="built_in">log</span> ===================</span><br><span class="line">The XKEYBOARD keymap compiler (xkbcomp) reports:</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86CameraAccessEnable</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86CameraAccessDisable</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86CameraAccessToggle</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86NextElement</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86PreviousElement</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86AutopilotEngageToggle</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86MarkWaypoint</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86Sos</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86NavChart</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86FishingChart</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86SingleRangeRadar</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86DualRangeRadar</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86RadarOverlay</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86TraditionalSonar</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86ClearvuSonar</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86SidevuSonar</span><br><span class="line">&gt; Warning:          Could not resolve keysym XF86NavInfo</span><br><span class="line">Errors from xkbcomp are not fatal to the X server</span><br><span class="line">X connection to :3 broken (explicit <span class="built_in">kill</span> or server shutdown).</span><br><span class="line"> ComparingUpdateTracker: 0 pixels <span class="keyword">in</span> / 0 pixels out</span><br><span class="line"> ComparingUpdateTracker: (1:-nan ratio)</span><br><span class="line">Killing Xtigervnc process ID 8172... success!</span><br><span class="line">=========================================================================</span><br><span class="line"></span><br><span class="line">Session startup via <span class="string">&#x27;/etc/X11/Xtigervnc-session&#x27;</span> cleanly exited too early (&lt; 3 seconds)!</span><br><span class="line"></span><br><span class="line">Maybe try something simple first, e.g.,</span><br><span class="line">	tigervncserver -xstartup /usr/bin/xterm</span><br><span class="line">The X session cleanly exited!</span><br><span class="line">The Xtigervnc server cleanly exited!</span><br></pre></td></tr></table></figure>
+<p>这个错误比较棘手，我也没找到根本原因。</p>
+<p>我的情况是 <code>/usr/bin/xterm</code> 可以正常运行，然后我在 debug
+的时候尝试让 TigerVNC 在 <code>:0</code> 上启动（一般是 <code>:1</code>
+和 <code>:2</code>)，导致 xfce4
+界面报错。我没有仔细看错误框，导致系统删除了任务栏的一些图标，而我并不会还原这些图标，干脆用
+btrfs 把 <code>/home</code> 回滚了。</p>
+<p>神奇的是，回滚 <code>/home</code> 后，这个问题就消失了。</p>
+<h2 id="问题六the-authentication-mechanism-requested-cannot-be-provided-by-the-computer">问题六（The
+authentication mechanism requested cannot be provided by the
+computer）：</h2>
+<p>这是在手机的 RVNC Viewer
+客户端中出现的错误。奇怪的是，如果不使用加密，手机客户端是可以连接的（当然也会报连接不安全的错误）。</p>
+<p>但其实，我基本上也不会在手机上使用 VNC，所以这个问题就不管了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.junyu33.me/2024/09/22/vnc.html" title="从零搭建一个又快又安全的 VNC 服务">https://blog.junyu33.me/2024/09/22/vnc.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/crypto/" rel="tag"># crypto</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/21/timeshift.html" rel="prev" title="timeshift 使用 btrfs 懒人指南">
+                  <i class="fa fa-chevron-left"></i> timeshift 使用 btrfs 懒人指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2033/05/13/nju_pa.html" rel="next" title="（置顶，已完结）nju-pa 心得">
+                  （置顶，已完结）nju-pa 心得 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">698k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-new.vercel.app/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>

@@ -61,6 +61,33 @@
   </entry>
   
   <entry>
+    <title>从零搭建一个又快又安全的 VNC 服务</title>
+    <link href="https://blog.junyu33.me/2024/09/22/vnc.html"/>
+    <id>https://blog.junyu33.me/2024/09/22/vnc.html</id>
+    <published>2024-09-22T15:30:00.000Z</published>
+    <updated>2024-09-23T01:17:16.701Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为笔者的寝室电脑有公网
+IP，而市面上的远程桌面软件因为使用中继服务器延迟较高，并且个人不信任它们的安全性，所以决定自己搭建一个
+VNC 服务。&lt;/p&gt;
+&lt;p&gt;这样就可以从实验室低延迟的连回寝室电脑，并且保证一定的安全性。&lt;/p&gt;
+&lt;p&gt;至少让 TigerVNC 觉得 “Connection is secure” without any
+exemption.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
     <title>timeshift 使用 btrfs 懒人指南</title>
     <link href="https://blog.junyu33.me/2024/09/21/timeshift.html"/>
     <id>https://blog.junyu33.me/2024/09/21/timeshift.html</id>
@@ -427,31 +454,6 @@ problem，其中输入为&lt;code&gt;XX YY&lt;/code&gt;的形式（&lt;code&gt;X
       <category term="misc" scheme="https://blog.junyu33.me/tags/misc/"/>
     
       <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>（转载）从北京城市建设看新中国的城市建设及时代背景</title>
-    <link href="https://blog.junyu33.me/2023/11/28/beijing.html"/>
-    <id>https://blog.junyu33.me/2023/11/28/beijing.html</id>
-    <published>2023-11-28T07:00:00.000Z</published>
-    <updated>2023-11-28T06:54:02.069Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-&lt;p&gt;北京是中国古都，拥有三千余年建城历史、八百六十余年建都史。北京城市建设与国运兴衰密不可分。&lt;/p&gt;
-&lt;p&gt;清末国家贫弱，城市建筑疏于维护。甚至北京城于第二次鸦片战争、八国联军侵华和日军侵华期间三次被攻破，城墙、城楼和圆明园等建筑遭到破坏。民国时期为发展交通，在城墙上开洞、拆豁口，但时局动荡，建设规模有限，波及不广。&lt;/p&gt;
-&lt;p&gt;新中国建立后，建设新中国成为全民的共同愿望，发展和保护的矛盾日趋尖锐。城墙被看作“旧社会辫子”、交通的阻碍，且无益于现代国防，开始大规模拆除。为彰显政治地位，天安门广场和长安街扩建，代表建筑如人民大会堂、人民英雄纪念碑；基于中苏交恶等恶劣的国际形势，北京城内开展大规模战备和人防建设。&lt;/p&gt;
-&lt;p&gt;改革开放后，经济发展成为第一任务，过去的国防设施转民用；随市场经济发展，长安街上商业金融建筑及写字楼增多，新建一大批风格各异的现代建筑；文化生活趋于丰富，文物保护意识逐渐增强，划定历史文化保护区，但有争议的“修缮工程”仍然存在；部分城楼重建，但限于空间难以恢复旧貌；随着大规模基建，建成区大幅度拓展，地铁逐渐覆盖远郊；城市布局“多中心”以缓解大城市病，疏解城市功能。&lt;/p&gt;
-&lt;p&gt;写给老师：我知道任务是写中国现代史，但现代史固然不能孤立于更早的城建史书写。我会控制好详略，以小见大。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
     
   </entry>
   

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content=""><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://blog.junyu33.me/2024/11/07/canmv.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.junyu33.me/2024/11/07/canmv.html","path":"2024/11/07/canmv.html","title":"Learn 内网穿透 the hard way (CanMV-K230 版)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Learn 内网穿透 the hard way (CanMV-K230 版) | 现充|junyu33</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">现充|junyu33</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E5%88%86%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">目标分解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91%E7%BB%8F%E5%8E%86"><span class="nav-number">3.</span> <span class="nav-text">踩坑经历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0-canmv-k230-%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-number">3.1.</span> <span class="nav-text">购买 CanMV-K230 开发板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E5%90%88%E9%80%82%E7%9A%84-sd-%E5%8D%A1%E5%B9%B6%E6%8F%92%E5%85%A5%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-number">3.2.</span> <span class="nav-text">购买合适的 SD 卡并插入开发板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E5%86%99%E5%AE%98%E6%96%B9%E6%8F%90%E4%BE%9B%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="nav-number">3.3.</span> <span class="nav-text">刷写官方提供的系统镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E6%9E%84%E9%80%A0%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="nav-number">3.4.</span> <span class="nav-text">自己构造系统镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9C%B0-hack"><span class="nav-number">3.4.1.</span> <span class="nav-text">原地 hack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91-sdk"><span class="nav-number">3.4.2.</span> <span class="nav-text">编译 SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA-debian.ext4"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">构建 debian.ext4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E7%94%9F%E6%88%90%E9%95%9C%E5%83%8F%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">3.4.2.2.</span> <span class="nav-text">找到生成镜像的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%89%A7%E8%A1%8C%E8%BF%99%E6%AE%B5%E4%BB%A3%E7%A0%81"><span class="nav-number">3.4.2.3.</span> <span class="nav-text">手动执行这段代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%8B%A8%E5%8F%B7"><span class="nav-number">3.5.</span> <span class="nav-text">测试拨号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9C%B0%E7%BC%96%E8%AF%91%E6%A8%A1%E5%9D%97"><span class="nav-number">3.5.1.</span> <span class="nav-text">原地编译模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="nav-number">3.5.2.</span> <span class="nav-text">编译内核</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">修改参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E7%94%9F%E6%88%90%E9%95%9C%E5%83%8F"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">编译生成镜像</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E6%AC%A1-hack-%E9%95%9C%E5%83%8F"><span class="nav-number">3.5.3.</span> <span class="nav-text">再次 hack 镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AB%AF%E8%B0%83%E8%AF%95"><span class="nav-number">3.5.4.</span> <span class="nav-text">用户端调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-ddns"><span class="nav-number">3.6.</span> <span class="nav-text">测试 ddns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-ssh-%E5%B9%B6%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">3.7.</span> <span class="nav-text">测试 ssh 并持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8-debian"><span class="nav-number">3.7.1.</span> <span class="nav-text">开机启动 debian</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8B%A8%E5%8F%B7"><span class="nav-number">3.7.2.</span> <span class="nav-text">开机自动拨号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8ddns"><span class="nav-number">3.7.3.</span> <span class="nav-text">开机自动ddns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%9D%BF%E8%84%B1%E7%A6%BB%E7%94%B5%E8%84%91%E8%BF%90%E8%A1%8C"><span class="nav-number">3.7.4.</span> <span class="nav-text">开发板脱离电脑运行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">踩坑总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helloworld@junyu33.me" title="E-Mail → mailto:helloworld@junyu33.me" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://land.hash.memorial/" title="https:&#x2F;&#x2F;land.hash.memorial&#x2F;" rel="noopener" target="_blank">hash</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://mivik.moe/" title="https:&#x2F;&#x2F;mivik.moe&#x2F;" rel="noopener" target="_blank">Mivik</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sjfhsjfh.gitee.io/" title="https:&#x2F;&#x2F;sjfhsjfh.gitee.io&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://acheing.com/" title="https:&#x2F;&#x2F;acheing.com&#x2F;" rel="noopener" target="_blank">acheing</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://tiger1218.com/" title="https:&#x2F;&#x2F;tiger1218.com" rel="noopener" target="_blank">tiger1218</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jackfromeast.site/" title="https:&#x2F;&#x2F;jackfromeast.site&#x2F;" rel="noopener" target="_blank">jackfromeast</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://n.ova.moe/" title="https:&#x2F;&#x2F;n.ova.moe" rel="noopener" target="_blank">Muel_Nova</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://marvoalou.github.io/" title="https:&#x2F;&#x2F;marvoalou.github.io" rel="noopener" target="_blank">zxman</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://whilebug.github.io/" title="https:&#x2F;&#x2F;whilebug.github.io&#x2F;" rel="noopener" target="_blank">WhileBug</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junyu33.me/2024/11/07/canmv.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Learn 内网穿透 the hard way (CanMV-K230 版) | 现充|junyu33">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Learn 内网穿透 the hard way (CanMV-K230 版)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-07 17:00:00" itemprop="dateCreated datePublished" datetime="2024-11-07T17:00:00+08:00">2024-11-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-08 10:41:16" itemprop="dateModified" datetime="2024-11-08T10:41:16+08:00">2024-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>32k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>29 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>请注意，这篇文章不是针对第一次接触内网穿透的读者的教学，而是《从零搭建一个又快又安全的
+VNC 服务》这篇文章的后续内容。</p>
+<span id="more"></span>
+<h1 id="问题引入">问题引入</h1>
+<p>如果你点进了这篇文章，你应该是可以借助通过公网服务器来进行内网穿透的。但是我白嫖的
+Azure
+服务器不在国内，即使能连接我的工位电脑，速度也有些影响使用体验。</p>
+<p>在前序文章《从零搭建一个又快又安全的 VNC
+服务》中我提到自己的寝室使用宽带拨号后，有动态公网IP，可以相当程度上解决使用云服务器连接工位速度慢的问题。但最近我通过询问读研的学长，得知研究生宿舍的网线并不支持公网IP，这就意味着我目前远程连接工位电脑的解决方案，将在我本科毕业之后完全失效——这怎么可以忍？但我当时并没有想出一个好的解决方案。</p>
+<p>这糟糕的现实，因近期科研需要购买支持 RVV 1.0 CPU
+的开发板，便有了一丝转机：我可以将我现在电脑作为 ssh
+跳板机的职能转移给刚买的开发板，并在我毕业之后将开发板交给自己的学弟，让他继续将开发板接入宽带，从而我得以继续实现“居家办公”的美好生活。</p>
+<h1 id="目标分解">目标分解</h1>
+<p>现在我们需要这样的一种开发板，我们需要让它完成以下四种功能：</p>
+<ol type="1">
+<li>开机自动启动系统。</li>
+<li>开机自动实现 PPPoE 拨号。</li>
+<li>开机自动运行先前写好的 ddns 脚本。</li>
+<li>我可以在开发板进行与 RVV 1.0 相关的开发。</li>
+</ol>
+<p>为了满足第四个需求，经过了几个小时的
+STFW，我排除了市面上绝大多数现成的开发板，我发现只有嘉楠的 CanMV-K230
+满足我的需求（虽然之后有人告诉我“进迭时空”也有一种型号支持 RVV
+1.0，但由于其面积太大并且价格太贵而排除）。再综合一下嘉楠的用户文档，我又梳理出一下具体的实现步骤：</p>
+<ol type="1">
+<li>购买 CanMV-K230 开发板。</li>
+<li>购买合适的 SD 卡并插入开发板。</li>
+<li>刷写官方提供的系统镜像。</li>
+<li>启动系统，将网线插入开发板，测试拨号是否正常。</li>
+<li>将主机的 ddns 脚本拷贝至开发板，测试 ddns 服务是否正常。</li>
+<li>从其他设备 ssh
+自己的域名，看看是否可以连接到开发板和自己的工位电脑。</li>
+</ol>
+<p>感觉似乎没那么难，但其实每一步都是坑。</p>
+<h1 id="踩坑经历">踩坑经历</h1>
+<h2 id="购买-canmv-k230-开发板">购买 CanMV-K230 开发板</h2>
+<p>首先的第一步当然就是买开发板了，我在淘宝上面搜索
+CanMV-K230，就跳出来一堆开发板。然后点了购买量最多的一个，是 01studio
+官方旗舰店，然后一看——诶，居然内存是1G，而不是官方所说的512M？太棒了，现在工艺升级换代这么快，赶紧买买买！于是，从打开淘宝开始，我花了不到两分钟就下单了，只是确认一下型号是不是
+K230，CPU的版本是不是 C908（支持 RVV 1.0）的版本而已。</p>
+<p>三天之后我收到货，商家也附带了一份 32G 的 SD
+卡。于是我开始按照嘉楠的文档刷写镜像，我首先选择了带 01studio
+字样的镜像去刷写，没遇到什么问题。然后接好电源，minicom
+一打开——诶？怎么是个 python 的 shell？我想敲
+<code>exit</code>，结果不支持这个命令，我想按<code>Ctrl+D</code>，怎么屏幕一闪又重启到python？难道我花了
+284 就是买了 python shell？</p>
+<p>我问了朋友，得知你看到的 python shell 其实是
+micropython，他尝试了一下
+jailbreak，但没有成功。然后我又试了一下嘉楠官网其他的镜像，发现除了带
+01studio
+字样的镜像，其他都不行。更为严重的问题是，这个开发板不带以太网接口，需要单独购买
+USB 转以太网的转接头。我当时就有了想退货的打算。</p>
+<p>在随后的几天，我尝试了手动编译嘉楠给 CanMV-K230 提供的 <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_sdk">K230-SDK</a> 和 <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_linux_sdk">K230-linux-SDK</a>
+并生成镜像，但无一例外要么就是启动不了，要么就是一打开就是讨厌的
+micropython 界面。我也问了淘宝客服，客服把皮球踢给 01studio 的交流群，01
+又踢给嘉楠，嘉楠最后让我尝试用 USB 编程器尝试连接 linux
+的调试串口，但我也没有成功。</p>
+<p>我寻思毕竟 01studio
+算是嘉楠的下游，而且他的主打客户是那批要炼丹的人（CanMV K230 AI
+开发板)，不是我。而且相比嘉楠官方的开发板这个东西“有点山寨”，继续调试可能有更多不受官方支持的问题。于是在串口调试失败的第二天，也就是收到货的第五天（因为七天无理由退货，只用交运费），我正式提出了退货申请。</p>
+<blockquote>
+<p>感觉现在啥东西都要扯个 AI 才有销量一般，感觉 AI
+是真成流量密码了。</p>
+</blockquote>
+<h2 id="购买合适的-sd-卡并插入开发板">购买合适的 SD 卡并插入开发板</h2>
+<p>在退款的当天，我又重新买了一个嘉楠官方的开发板，价格 283（原价
+323，不带 SD 卡），然后顺便也同时买了 64G 的 SD 卡，价格 17（原价
+25）。</p>
+<p>有经验的人应该发现 SD
+卡的价格不太对，也确实是这样。当时的我其实是信奉“好货不便宜，便宜无好货”这个准则的，于是开发板挑了价格贵的买，但
+SD
+卡就没想那么多了。因为我看好评比例很高，心想如果买到假货，退了然后附近马上买一个贵一点的，也不亏。</p>
+<p>然后神奇的是，SD
+卡这边的物流是实时更新的，而开发版那边物流就是：已发货、已揽件、派送中。然后过了整整三天也没有任何更新，而
+SD
+卡这边已经显示运到当地的转运中心了。我当时一度以为自己的开发板又买到假货了，便在第三天的早上给派送员打了个电话，结果派送员说也到了转运中心，我才放心了一点。</p>
+<p>到了第三天晚上，我的 SD
+卡到了，而开发板依旧没有任何动静，但我想现在已经是非工作时间，再去打扰配送员似乎不太好，于是我等到了第四天早上又问了一遍。结果派送员说已经到了，她告诉了我取件码。我当时就很疑惑——为什么东西到了淘宝都不说一声？但之后拆封一看，开发板确实跟嘉楠官网一模一样，我也没什么好气的。</p>
+<p>然后便是用我昨天到的 SD 卡装系统，用的是嘉楠官网的 debian 镜像。使用
+<code>dd</code> 烧录之后，首先用了 gparted 把 linux 分区从 1G 扩容到
+58G，然后我就从开发板启动 linux，接着就出现了这样的错误：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy-canmv:~$ sudo apt install net-tools                                                                                                               </span><br><span class="line">[sudo] password <span class="keyword">for</span> junyu33:              </span><br><span class="line">E: dpkg was interrupted, you must manually run <span class="string">&#x27;sudo dpkg --configure -a&#x27;</span> <span class="keyword">to</span> correct the problem. </span><br><span class="line">junyu33@zjy-canmv:~$ sudo dpkg --configure -a</span><br><span class="line">dpkg: error: parsing <span class="keyword">file</span> <span class="string">&#x27;/var/lib/dpkg/updates/0000&#x27;</span> <span class="keyword">near</span> line <span class="number">0</span>:</span><br><span class="line"> MSDOS <span class="keyword">end</span> <span class="keyword">of</span> <span class="keyword">file</span> (^Z) <span class="keyword">in</span> field <span class="keyword">name</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这个错误我之前没有见到过，于是我开始怀疑自己的 SD
+卡是不是坏了，把错误丢给了
+ChatGPT，它让我把<code>/var/lib/dpkg/updates/0000</code>
+删了。于是，就有了接下来的一幕：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy-canmv:<span class="symbol">~$ sudo rm /var/lib/dpkg/updates/*                                                                                                          </span></span><br><span class="line"><span class="symbol">[  151.617623] EXT4-fs error (device mmcblk1p3)</span>: ext4_lookup:<span class="number">1708</span>: inode <span class="meta">#13720: comm rm: deleted inode referenced: 6563</span></span><br><span class="line">[  <span class="number">151.631373</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode <span class="meta">#13720: comm rm: deleted inode referenced: 6563</span></span><br><span class="line">rm: cannot remove &#x27;/[  153.<span class="number">220073</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode #<span class="number">1372</span>0: comm rm: deleted inode referenced: <span class="number">6719</span></span><br><span class="line">var/lib/dpkg/updates/<span class="number">0007</span>&#x27;: Stru[  <span class="number">153.234325</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode <span class="meta">#13720: comm rm: deleted inode referenced: 6719</span></span><br><span class="line">cture needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/[  153.<span class="number">248629</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode #<span class="number">1372</span>0: comm rm: deleted inode referenced: <span class="number">8089</span></span><br><span class="line">var/lib/dpkg/updates/<span class="number">0008</span>&#x27;: Structure needs cleaning</span><br><span class="line">[  <span class="number">153.321093</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode <span class="meta">#13720: comm rm: deleted inode referenced: 8089</span></span><br><span class="line">rm: cannot remove &#x27;/[  153.<span class="number">334419</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode #<span class="number">1372</span>0: comm rm: deleted inode referenced: <span class="number">8144</span></span><br><span class="line">var/lib/dpkg/updates/<span class="number">0010</span>&#x27;: Stru[  <span class="number">153.348760</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode <span class="meta">#13720: comm rm: deleted inode referenced: 8144</span></span><br><span class="line">cture needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0011</span>&#x27;: Structure needs cleaning</span><br><span class="line">[  <span class="number">153.457330</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode <span class="meta">#13720: comm rm: deleted inode referenced: 6557</span></span><br><span class="line">[  <span class="number">153.470351</span>] EXT4-fs error (device mmcblk1p3): ext4_lookup:<span class="number">1708</span>: inode <span class="meta">#13720: comm rm: deleted inode referenced: 6557</span></span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0013</span>&#x27;: Structure needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0014</span>&#x27;: Structure needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0015</span>&#x27;: Structure needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0016</span>&#x27;: Structure needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0017</span>&#x27;: Structure needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0018</span>&#x27;: Structure needs cleaning</span><br><span class="line">rm: cannot remove &#x27;/var/lib/dpkg/updates/<span class="number">0019</span>&#x27;: Structure needs cleaning</span><br></pre></td></tr></table></figure>
+<p>当时我的想法就是想法就是：完犊子了，要准备退货了。但是我还是尝试用
+fsck
+修了一下，暂时没啥问题。结果之后装了一堆东西之后，重启了一下，又出现了“dpkg
+was interrupted”的错误。我心想，这下得准备检查 SD
+卡是否又被注水了（上次买到扩容的东西是在初中的时候，买了个 128G 的
+U盘，实际上只有 8G），去网上搜工具，然后找到了<a target="_blank" rel="noopener" href="https://4-x.tw/fake_sdcard/">这个链接</a>。</p>
+<p>我根据这个链接看了一下方法二，确实背面有个数字
+"08"，然后看了看品牌叫“Jinsudun”（没错，长得很像
+Kingston，但不是），这下绝对跑不掉了，马上找扩容软件开始测试。</p>
+<ul>
+<li>Windows 这边的话我看的链接说用 MyDiskTest，我用 Windows
+虚拟机测了一下，结果一测就闪退了，然后用室友的电脑测了一下，照样闪退。感觉是商家做了手脚，让这个软件运行不起来。</li>
+<li>Linux 这边我首先用 badblocks 扫了一遍（只读），没有问题。然后我又用
+f3 测了一遍，最后发现了问题，结果如下：</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">F3</span> read <span class="number">8</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">Copyright</span> (C) <span class="number">2010</span> Digirati Internet LTDA.</span><br><span class="line"><span class="attribute">This</span> is free software; see the source for copying conditions.</span><br><span class="line"></span><br><span class="line">                  <span class="attribute">SECTORS</span>      ok/corrupted/changed/overwritten</span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">1</span>.h2w ... <span class="number">2097152</span>/        <span class="number">0</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">2</span>.h2w ... <span class="number">2097152</span>/        <span class="number">0</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">3</span>.h2w ... <span class="number">2050304</span>/    <span class="number">46848</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">4</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">5</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">6</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">7</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">8</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">9</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">10</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">11</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">12</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">13</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">14</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">15</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">16</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">17</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">18</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">19</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">20</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">21</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">22</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">23</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">24</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">25</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">26</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">27</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">28</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">29</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">30</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">31</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">32</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">33</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">34</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">35</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">36</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">37</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">38</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">39</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">40</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">41</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">42</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">43</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">44</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">45</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">46</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">47</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">48</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">49</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">50</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">51</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">52</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">53</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">54</span>.h2w ...       <span class="number">0</span>/  <span class="number">2097152</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">55</span>.h2w ... <span class="number">1947392</span>/   <span class="number">149760</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">56</span>.h2w ... <span class="number">2097152</span>/        <span class="number">0</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">57</span>.h2w ... <span class="number">2097152</span>/        <span class="number">0</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">58</span>.h2w ... <span class="number">2097152</span>/        <span class="number">0</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"><span class="attribute">Validating</span> file <span class="number">59</span>.h2w ... <span class="number">1212160</span>/        <span class="number">0</span>/      <span class="number">0</span>/      <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="attribute">Data</span> OK: <span class="number">7</span>.<span class="number">48</span> GB (<span class="number">15695616</span> sectors)</span><br><span class="line"><span class="attribute">Data</span> LOST: <span class="number">51</span>.<span class="number">09</span> GB (<span class="number">107151360</span> sectors)</span><br><span class="line">	       <span class="attribute">Corrupted</span>: <span class="number">51</span>.<span class="number">09</span> GB (<span class="number">107151360</span> sectors)</span><br><span class="line">	<span class="attribute">Slightly</span> changed: <span class="number">0</span>.<span class="number">00</span> Byte (<span class="number">0</span> sectors)</span><br><span class="line">	     <span class="attribute">Overwritten</span>: <span class="number">0</span>.<span class="number">00</span> Byte (<span class="number">0</span> sectors)</span><br><span class="line"><span class="attribute">Average</span> reading speed: <span class="number">16</span>.<span class="number">12</span> MB/s</span><br></pre></td></tr></table></figure>
+<p>结果果然是 8G 的注水 SD 卡，只有前面 3G、后面 5G
+是可以用的。我马上把全额退款申请发过去（不退货），然后不到一分钟，我的
+17 块就回来了。</p>
+<p>另外，我顺便看了一下淘宝的评论，发现只有几十条差评（相对于几万条的好评确实挺少），并且差评内容都是说
+SD
+卡的质量问题，还有咒骂无良商家的。现在我终于明白我姐为什么说“在淘宝买东西只看差评”这句话了。</p>
+<blockquote>
+<p>在写作之日，我又看了一眼那个商品的评论区，结果连那几十个差评也找不到了，我不想多说什么。</p>
+</blockquote>
+<p>当然，虽然被假冒 SD
+卡折腾了半天，但我的任务还是要继续完成的。我寻思这种东西应该随处都能买得到，于是我又在第二天早上看了一下美团外卖，选了个大品牌（SanDisk），外卖不到半个小时就到了，但是我一看——诶，这个SD卡怎么这么大？我又上网搜了一下，原来我理解的“小SD卡”是TF卡（或者叫
+microSD 卡），所以我很不幸又买错了。</p>
+<p>我寻思店铺离我寝室就几百米，可能还是直接走路去退货比较方便，到了商家那里，我解释了自己把商品搞错了，她也很愿意给我退货。然后我问你们有没有
+TF 卡，她说不清楚，可以找找。最后她找到了，是 ThinkPlus
+的牌子，感觉虽然不如那些大品牌，但肯定是比什么 Jinsudun
+好得多的。商家说她这里只有 32G 和 128G 的，我想到时肯定要下载一堆
+toolchain，编译一堆东西，还是买个 128G 比较稳妥。</p>
+<blockquote>
+<p>然后一看商家那边的价格是 90 块，而我这边只要花 50
+出头就可以买到。不知道美团是哪里来的钱给这 40 块买单的。</p>
+</blockquote>
+<p>拿着 128G 的 TF 卡回去，我还是用 f3 测了前面
+5GB，没有问题。然后我就开始烧录镜像了，直到写作之日，依旧没有出现什么问题，注水的嫌疑基本上可以排除了。</p>
+<h2 id="刷写官方提供的系统镜像">刷写官方提供的系统镜像</h2>
+<p>如前文所说，官方有两种不同的镜像，一种是大核搭载 micropython 的
+RTOS，小核搭载 linux 的镜像。另一种是安装在基于 debian, ubuntu
+这两个发行版的镜像。当然，后者更满足我的需求，于是我还是将之前的 debian
+镜像烧到我的 TF 卡，我终于在 minicom 的输出中看到了 debian 的字样。</p>
+<p>就这样结束了吗？还早呢！</p>
+<p>然后，我就发现了一个致命的缺陷——这个 debian 系统没有 WiFi
+的接口（interface）！但是，根据嘉楠的文档，这个开发板是肯定有 WiFi
+硬件的。我又马上刷了一遍前者的镜像，进入小核的调试串口。结果我发现：</p>
+<ol type="1">
+<li>小核是基于 buildroot 的 linux</li>
+<li>小核有 WiFi 接口，并且可以正常连接 WiFi</li>
+<li>小核的内存只有 128M</li>
+</ol>
+<p>于是我们陷入了一种 dilemma：使用 micropython 镜像，你可以通过 WiFi
+ssh 来调试之后接入 PPPoE
+的过程，但是之后你就无法使用包管理器，并且手动编译 toolchain 就只能忍受
+128M 的内存；反之使用 debian 镜像，你可以比较舒服地进行开发，但调试
+PPPoE 的时候就只能抓瞎（因为你没法一边连接有线网络一边调试
+PPPoE）。所以我们应该选择哪一个镜像呢？答案是——只有小孩子才做选择。</p>
+<h2 id="自己构造系统镜像">自己构造系统镜像</h2>
+<p>根据前面的观察，我们可以排除硬件以及 linux
+驱动适配的问题，这就意味着，这个问题肯定是可以通过自己的力量解决的。也就是，我们可以通过恰当地“组装”
+micropython 镜像和 debian 镜像来解决这个问题。</p>
+<p>至于具体的解决方案，我尝试的路线有以下几点：</p>
+<ol type="1">
+<li>原地对这两个镜像进行 hack</li>
+<li>尝试修改镜像编译的 SDK 源码，企图得到满足自己需求的镜像</li>
+<li>尝试修改镜像编译的 SDK 源码，并对得到的镜像进行 hack</li>
+</ol>
+<h3 id="原地-hack">原地 hack</h3>
+<p>我们可以观察一下这两个镜像的结构：</p>
+<p>micropython 镜像：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; mmls CanMV-K230_sdcard_v1.8_nncase_v2.9.0.img </span><br><span class="line">GUID Partition Table (EFI)</span><br><span class="line">Offset Sector: 0</span><br><span class="line">Units are in 512-byte sectors</span><br><span class="line"></span><br><span class="line">      Slot      Start        End          Length       Description</span><br><span class="line">000:  Meta     <span class="number"> 0000000000 </span> <span class="number"> 0000000000 </span> <span class="number"> 0000000001 </span>  Safety Table</span><br><span class="line">001:  -------  <span class="number"> 0000000000 </span> <span class="number"> 0000020479 </span> <span class="number"> 0000020480 </span>  Unallocated</span><br><span class="line">002:  Meta     <span class="number"> 0000000001 </span> <span class="number"> 0000000001 </span> <span class="number"> 0000000001 </span>  GPT Header</span><br><span class="line">003:  Meta     <span class="number"> 0000000002 </span> <span class="number"> 0000000033 </span> <span class="number"> 0000000032 </span>  Partition Table</span><br><span class="line">004: <span class="number"> 000 </span>     <span class="number"> 0000020480 </span> <span class="number"> 0000061439 </span> <span class="number"> 0000040960 </span>  rtt</span><br><span class="line">005: <span class="number"> 001 </span>     <span class="number"> 0000061440 </span> <span class="number"> 0000163839 </span> <span class="number"> 0000102400 </span>  linux</span><br><span class="line">006:  -------  <span class="number"> 0000163840 </span> <span class="number"> 0000262143 </span> <span class="number"> 0000098304 </span>  Unallocated</span><br><span class="line">007: <span class="number"> 002 </span>     <span class="number"> 0000262144 </span> <span class="number"> 0000425983 </span> <span class="number"> 0000163840 </span>  rootfs</span><br><span class="line">008: <span class="number"> 003 </span>     <span class="number"> 0000425984 </span> <span class="number"> 0000950271 </span> <span class="number"> 0000524288 </span>  fat32appfs</span><br><span class="line">009:  -------  <span class="number"> 0000950272 </span> <span class="number"> 0000950304 </span> <span class="number"> 0000000033 </span>  Unallocated</span><br></pre></td></tr></table></figure>
+<p>debian 镜像：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; mmls CanMV-K230_debian_sdcard_sdk_1.3.img </span><br><span class="line">GUID Partition Table (EFI)</span><br><span class="line">Offset Sector: 0</span><br><span class="line">Units are in 512-byte sectors</span><br><span class="line"></span><br><span class="line">      Slot      Start        End          Length       Description</span><br><span class="line">000:  Meta     <span class="number"> 0000000000 </span> <span class="number"> 0000000000 </span> <span class="number"> 0000000001 </span>  Safety Table</span><br><span class="line">001:  -------  <span class="number"> 0000000000 </span> <span class="number"> 0000020479 </span> <span class="number"> 0000020480 </span>  Unallocated</span><br><span class="line">002:  Meta     <span class="number"> 0000000001 </span> <span class="number"> 0000000001 </span> <span class="number"> 0000000001 </span>  GPT Header</span><br><span class="line">003:  Meta     <span class="number"> 0000000002 </span> <span class="number"> 0000000033 </span> <span class="number"> 0000000032 </span>  Partition Table</span><br><span class="line">004: <span class="number"> 000 </span>     <span class="number"> 0000020480 </span> <span class="number"> 0000061439 </span> <span class="number"> 0000040960 </span>  rtt</span><br><span class="line">005: <span class="number"> 001 </span>     <span class="number"> 0000061440 </span> <span class="number"> 0000163839 </span> <span class="number"> 0000102400 </span>  linux</span><br><span class="line">006:  -------  <span class="number"> 0000163840 </span> <span class="number"> 0000262143 </span> <span class="number"> 0000098304 </span>  Unallocated</span><br><span class="line">007: <span class="number"> 002 </span>     <span class="number"> 0000262144 </span> <span class="number"> 0003515591 </span> <span class="number"> 0003253448 </span>  rootfs</span><br><span class="line">008:  -------  <span class="number"> 0003515592 </span> <span class="number"> 0003515624 </span> <span class="number"> 0000000033 </span>  Unallocated</span><br></pre></td></tr></table></figure>
+<p>所以我们可以发现，似乎只有 rootfs 分区大小不同，而 debian 镜像没有
+fat32appfs，通过先前的 research
+可以得知是用来放炼丹的应用的，这个跟我没有关系，不要也罢，所以也可以看作是
+rootfs
+的一部分。因此，两个镜像的结构完全相同，可以按照分区为单位来进行替换。</p>
+<p>根据先前的判断，在 micropython 镜像中 WiFi 可以正常使用，而 WiFi
+作为驱动的一部分，要么是由 linux kernel 加载的，要么是由 dkms 在
+<code>/lib/modules</code> 中加载的。保险起见，</p>
+<ul>
+<li>我挂载了 micropython 镜像的 rootfs 分区的 <code>/lib/modules</code>
+提取出来，写入到 debian 镜像的对应分区，大小不变。</li>
+<li>我将 micropython 镜像的 linux 分区原样 copy 到 debian
+镜像的对应分区。</li>
+</ul>
+<p>然后烧入 TF 卡，启动开发板。dmesg 报错缺少 WiFi 固件，内容有
+<code>/etc/firmware/config.txt</code>,
+<code>/etc/firmware/fw_bcm43438a1.bin</code> 和
+<code>/etc/firmware/nvram.txt</code>。我又在 micropython
+镜像中找到了对应的路径，拷贝过去，再次重新启动，又报错了：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">[  <span class="symbol">OK</span>  ] <span class="symbol">Started</span> <span class="symbol">NetworkManager</span>.service - <span class="symbol">Network</span> <span class="symbol">Manager</span>.</span><br><span class="line">[   <span class="number">32.925997</span>] [dhd] failed to power up <span class="symbol">DHD</span> generic adapter, <span class="number">0</span> retry left</span><br><span class="line">[  <span class="symbol">OK</span>  ] <span class="symbol">Started</span> <span class="symbol">NetworkManag</span>[   <span class="number">32.955283</span>] [dhd] wifi_platform_set_power = <span class="number">0</span>, delay: <span class="number">0</span> msec</span><br><span class="line">er-dispatcher.�[   <span class="number">32.961896</span>] [dhd] ======== <span class="symbol">PULL</span> <span class="symbol">WL_REG_ON</span>(<span class="number">1</span>) <span class="symbol">LOW</span>! ========</span><br><span class="line">� <span class="symbol">Manager</span> <span class="symbol">Sc</span>[   <span class="number">32.968726</span>] [dhd] wifi_platform_bus_enumerate device present <span class="number">0</span></span><br><span class="line">ript <span class="symbol">Dispatcher</span> [   <span class="number">32.975930</span>] [dhd] ======== <span class="symbol">Card</span> detection to remove <span class="symbol">SDIO</span> card! ========</span><br><span class="line"><span class="symbol">Service</span>.</span><br><span class="line">[   <span class="number">32.983935</span>] [dhd] failed to power up <span class="symbol">DHD</span> generic adapter, max retry reached**</span><br><span class="line">[   <span class="number">32.992006</span>] [dhd] unregister wifi platform drivers</span><br><span class="line">[   <span class="number">32.996807</span>] [dhd] wifi_platform_bus_enumerate device present <span class="number">0</span></span><br><span class="line">[   <span class="number">33.002648</span>] [dhd] ======== <span class="symbol">Card</span> detection to remove <span class="symbol">SDIO</span> card! ========</span><br><span class="line">[   <span class="number">33.009272</span>] [dhd] dhd_wlan_deinit_gpio: gpio_free(<span class="symbol">WL_REG_ON</span> <span class="number">1</span>)</span><br><span class="line">[   <span class="number">33.015121</span>] [dhd] <span class="symbol">_dhd_module_init</span>: <span class="symbol">Failed</span> to load the driver, try cnt <span class="number">0</span></span><br><span class="line">[   <span class="number">33.021848</span>] [dhd] <span class="symbol">_dhd_module_init</span>: <span class="symbol">Failed</span> to load driver max retry reached**</span><br><span class="line">[   <span class="number">33.028996</span>] [dhd] <span class="symbol">STATIC</span>-<span class="symbol">MSG</span>) dhd_static_buf_exit : <span class="symbol">Enter</span></span><br><span class="line">[   <span class="number">33.034468</span>] [dhd] <span class="symbol">_dhd_module_init</span>: <span class="symbol">Exit</span> err=<span class="number">-19</span></span><br><span class="line">[***   ] <span class="symbol">Job</span> ifupdown-pre.service/start running (<span class="number">23</span>s / <span class="number">3</span>min <span class="number">3</span>s)</span><br><span class="line">[   <span class="number">39.325657</span>] [dhd] <span class="symbol">_dhd_module_init</span>: in <span class="symbol">Dongle</span> <span class="symbol">Host</span> <span class="symbol">Driver</span>, version <span class="number">101.10</span><span class="number">.361</span><span class="number">.33</span> (wlan=r892223<span class="number">-20230607</span><span class="number">-2</span>)</span><br><span class="line">[   <span class="number">39.325657</span>] drivers/net/wireless/bcmdhd compiled on <span class="symbol">Aug</span> <span class="number">26</span> <span class="number">2024</span> at <span class="number">15</span>:<span class="number">28</span>:<span class="number">32</span></span><br><span class="line">[   <span class="number">39.325657</span>] </span><br><span class="line">[   <span class="number">39.343823</span>] [dhd] <span class="symbol">STATIC</span>-<span class="symbol">MSG</span>) dhd_static_buf_init : <span class="number">101.10</span><span class="number">.361</span><span class="number">.31</span> (wlan=r892223<span class="number">-20230427</span><span class="number">-1</span>)</span><br><span class="line">[   <span class="number">39.352249</span>] [dhd] <span class="symbol">STATIC</span>-<span class="symbol">MSG</span>) dhd_init_wlan_mem : prealloc ok for index <span class="number">0</span>: <span class="number">1100800</span>(<span class="number">1075</span><span class="symbol">K</span>)</span><br><span class="line">[   <span class="number">39.360468</span>] [dhd] ======== <span class="symbol">Get</span> <span class="symbol">GPIO</span> from <span class="symbol">DTS</span>(android,bcmdhd_wlan) ========</span><br><span class="line">[   <span class="number">39.367383</span>] of_get_named_gpiod_flags: parsed <span class="string">&#x27;gpio_wl_reg_on&#x27;</span> property of node <span class="string">&#x27;/soc/sdhci0@91580000/bcmdhd_wlan[0]&#x27;</span> - status (<span class="number">0</span>)</span><br><span class="line">[   <span class="number">39.379060</span>] [dhd] dhd_wlan_init_gpio: <span class="symbol">WL_REG_ON</span>=<span class="number">1</span></span><br><span class="line">[   <span class="number">39.383772</span>] [dhd] dhd_wifi_platform_load: <span class="symbol">Enter</span></span><br><span class="line">[   <span class="number">39.388309</span>] [dhd] <span class="symbol">Power</span>-up adapter <span class="string">&#x27;DHD generic adapter&#x27;</span></span><br><span class="line">[   <span class="number">39.395030</span>] dummy_sdmmc: probe of mmc0:<span class="number">0001</span>:<span class="number">1</span> failed with error <span class="number">-110</span></span><br><span class="line">[   <span class="number">39.401552</span>] dummy_sdmmc: probe of mmc0:<span class="number">0001</span>:<span class="number">2</span> failed with error <span class="number">-110</span></span><br><span class="line">[   <span class="number">39.408008</span>] [dhd] wifi_platform_set_power = <span class="number">1</span>, delay: <span class="number">200</span> msec</span><br><span class="line">[   <span class="number">39.413855</span>] [dhd] ======== <span class="symbol">PULL</span> <span class="symbol">WL_REG_ON</span>(<span class="number">1</span>) <span class="symbol">HIGH</span>! ========</span><br><span class="line">[   <span class="number">39.625906</span>] [dhd] wifi_platform_bus_enumerate device present <span class="number">1</span></span><br><span class="line">[     *] <span class="symbol">Job</span> ifupdown-pre.service/start running (<span class="number">25</span>s / <span class="number">3</span>min <span class="number">3</span>s)</span><br><span class="line">[   <span class="number">41.661915</span>] [dhd] failed to power up <span class="symbol">DHD</span> generic adapter, <span class="number">0</span> retry left</span><br><span class="line">[   <span class="number">41.685982</span>] [dhd] wifi_platform_set_power = <span class="number">0</span>, delay: <span class="number">0</span> msec</span><br><span class="line">[   <span class="number">41.691662</span>] [dhd] ======== <span class="symbol">PULL</span> <span class="symbol">WL_REG_ON</span>(<span class="number">1</span>) <span class="symbol">LOW</span>! ========</span><br><span class="line">[   <span class="number">41.697179</span>] [dhd] wifi_platform_bus_enumerate device present <span class="number">0</span></span><br><span class="line">[   <span class="number">41.703022</span>] [dhd] ======== <span class="symbol">Card</span> detection to remove <span class="symbol">SDIO</span> card! ========</span><br><span class="line">[   <span class="number">41.709653</span>] [dhd] failed to power up <span class="symbol">DHD</span> generic adapter, max retry reached**</span><br><span class="line">[   <span class="number">41.716795</span>] [dhd] unregister wifi platform drivers</span><br><span class="line">[   <span class="number">41.721592</span>] [dhd] wifi_platform_bus_enumerate device present <span class="number">0</span></span><br><span class="line">[   <span class="number">41.727435</span>] [dhd] ======== <span class="symbol">Card</span> detection to remove <span class="symbol">SDIO</span> card! ========</span><br><span class="line">[   <span class="number">41.734059</span>] [dhd] dhd_wlan_deinit_gpio: gpio_free(<span class="symbol">WL_REG_ON</span> <span class="number">1</span>)</span><br><span class="line">[   <span class="number">41.739903</span>] [dhd] <span class="symbol">_dhd_module_init</span>: <span class="symbol">Failed</span> to load the driver, try cnt <span class="number">0</span></span><br><span class="line">[   <span class="number">41.746641</span>] [dhd] <span class="symbol">Error</span> creating socket.</span><br><span class="line">[   <span class="number">41.750584</span>] [dhd] <span class="symbol">_dhd_module_init</span>: <span class="symbol">Failed</span> to load driver max retry reached**</span><br><span class="line">[   <span class="number">41.757732</span>] [dhd] <span class="symbol">STATIC</span>-<span class="symbol">MSG</span>) dhd_static_buf_exit : <span class="symbol">Enter</span></span><br><span class="line">[  <span class="symbol">OK</span>  ] <span class="symbol">Finished</span> ifupdown-pre.service - <span class="symbol">He</span>…o synchronize boot up for ifupdown.</span><br></pre></td></tr></table></figure>
+<p>上网搜了一下，没有找到合适的解决方案，并且还引发了一个新的问题：我的
+debian 的内存也变成了 128M！</p>
+<p>于是我又提取 linux 分区中的 dtb 文件，将其反编译为 dts
+文件，尝试去修改给 linux 配置的内存大小，然后又编译回去并嵌入到 linux
+分区中，重新写入 TF 卡，再次重启——sha256sum 又不对啦！</p>
+<p>要继续做下去的话，就要去读镜像的生成源码去理清 sha256
+的生成逻辑——既然都要读源码了，那还不如直接从 SDK
+重新编译一个！于是，我们来到了下一个方案：</p>
+<h3 id="编译-sdk">编译 SDK</h3>
+<p>前文说过，与我的需求相关的有 K230-SDK 和
+K230-linux-SDK。我尝试又编译了一遍，结果与官方镜像略微不同：一个可以生成可用
+512M 内存，但无法使用 WiFi 的 debian 镜像；另一个可以生成基于 buildroot
+的可以使用 WiFi，并且有 512M 内存的镜像。</p>
+<ul>
+<li>基于 K230-SDK 生成的 debian
+文档链接为：https://developer.canaan-creative.com/k230/dev/zh/03_other/K230_debian_ubuntu%E8%AF%B4%E6%98%8E.html</li>
+<li>基于 K230-linux-SDK 生成的 buildroot
+的文档链接为：https://developer.canaan-creative.com/k230_linux/dev/zh/01_software/K230_linux_sdk%E6%95%99%E7%A8%8B.html#sdk</li>
+</ul>
+<p>显然，这里又有两条路可以选择：</p>
+<ul>
+<li>去修改 K230-linux-SDK 中 rootfs 的构建过程，将 rootfs 替换为 debian
+镜像。</li>
+<li>去修改 K230-SDK 中 linux kernel 的构建过程，将 root 分区替换为支持
+WiFi 驱动的状态。</li>
+</ul>
+<p>显然，第一条路看上去需要调试的东西更少，事实上也的确如此。我们又可以把这个过程分为以下几个子步骤：</p>
+<ol type="1">
+<li>重新构建一个基于 debian 的 rootfs.ext4</li>
+<li>找到利用 rootfs.ext4 并生成 buildroot 镜像的代码</li>
+<li>手动执行这段代码，传入正确的参数与环境变量，使得生成了镜像使用了
+debian 的 rootfs，而不是 linux-SDK 本身的 buildroot</li>
+</ol>
+<h4 id="构建-debian.ext4">构建 debian.ext4</h4>
+<p>这一点 K230-SDK 的文档告诉了我们方法，贴一下构建的代码：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> -rf debian13</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring systemd-container rsync wget</span><br><span class="line">sudo debootstrap --<span class="built_in">arch</span>=riscv64  unstable debian13 https://mirrors.aliyun.com/debian/</span><br><span class="line">sudo <span class="built_in">chroot</span> debian13/</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;root:root&quot;</span> | chpasswd</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> &gt;&gt;/etc/network/interfaces &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">auto lo</span></span><br><span class="line"><span class="string">iface lo inet loopback</span></span><br><span class="line"><span class="string">auto eth0</span></span><br><span class="line"><span class="string">iface eth0 inet dhcp</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line">apt-get install -y  net-tools ntpdate</span><br><span class="line">ntpdate ntp.ntsc.ac.cn</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">sudo  mkfs.ext4 -d debian13  -r 1 -N 0 -m 1 -L <span class="string">&quot;rootfs&quot;</span> -O ^64bit debian13.ext4 1G</span><br></pre></td></tr></table></figure>
+<p>但注意不要忘记将之前 K230-linux-SDK 生成的镜像中的
+<code>/etc/firmware</code> 与 <code>/lib/modules</code> 文件夹拷贝到
+<code>debian13.ext4</code> 中。</p>
+<h4 id="找到生成镜像的代码">找到生成镜像的代码</h4>
+<p>尝试在 K230-linux-SDK 项目中寻找含有 <code>sysimage-sdcard.img</code>
+的字段：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; egrep -i --recursive <span class="string">&quot;sysimage-sdcard.img&quot;</span> .</span><br><span class="line">./.github/workflows/build.yml:          <span class="built_in">rm</span> -rf output/<span class="variable">$&#123;CONF&#125;</span>/images/sysimage-sdcard.img</span><br><span class="line">./.gitlab-ci.yml:  - <span class="built_in">rm</span> -rf output/<span class="variable">$&#123;CONF&#125;</span>/images/sysimage-sdcard.img</span><br><span class="line">./.gitlab-ci.yml:            sudo <span class="built_in">cp</span> -rf --sparse=always -L <span class="variable">$&#123;src_file&#125;</span> <span class="variable">$&#123;DST_DIR&#125;</span>/<span class="variable">$&#123;SUB_DIR&#125;</span>/sysimage-sdcard.img.gz;</span><br><span class="line">./.gitlab-ci.yml:            sysimage_md5=$(<span class="built_in">md5sum</span> <span class="variable">$&#123;DST_DIR&#125;</span>/<span class="variable">$&#123;SUB_DIR&#125;</span>/sysimage-sdcard.img.gz | awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>);</span><br><span class="line">./.gitlab-ci.yml:            <span class="built_in">echo</span> <span class="string">&quot;sysimage_path=<span class="variable">$&#123;DST_DIR&#125;</span>/<span class="variable">$&#123;SUB_DIR&#125;</span>/sysimage-sdcard.img.gz&quot;</span> &gt;&gt; <span class="variable">$CI_PROJECT_DIR</span>/build.env;</span><br><span class="line">./.gitlab-ci.yml:    - <span class="built_in">echo</span> <span class="string">&quot;sysimage-sdcard.img.gz md5 <span class="variable">$&#123;sysimage_md5&#125;</span>&quot;</span></span><br><span class="line">./README.md:output/k230d_canmv_defconfig/images/sysimage-sdcard.img.gz</span><br><span class="line">./buildroot-overlay/board/canaan/k230-soc/genimage.cfg:image sysimage-sdcard.img &#123;</span><br><span class="line">./buildroot-overlay/board/canaan/k230-soc/post-image.sh:        <span class="built_in">local</span> image_name=<span class="string">&quot;<span class="variable">$2</span>&quot;</span>; <span class="comment">#&quot;sysimage-sdcard.img&quot;</span></span><br><span class="line">./buildroot-overlay/board/canaan/k230-soc/post-image.sh:gen_image <span class="variable">$&#123;GENIMAGE_CFG_SD&#125;</span>   sysimage-sdcard.img</span><br><span class="line">./buildroot-overlay/boot/uboot/u-boot-2022.10-overlay/include/configs/k230_evb.h:       <span class="string">&quot;upsdimg=usb start; dhcp;  tftp 0x9000000 10.10.1.94:wjx/sysimage-sdcard.img.gz;gzwrite mmc 1 0x<span class="variable">$fileaddr</span>  0x<span class="variable">$filesize</span>; \0&quot;</span> \</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>可以发现，<code>./buildroot-overlay/board/canaan/k230-soc/post-image.sh</code>
+比较符合我们的需求，打开文件一看：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">tail</span> -n 10 ./buildroot-overlay/board/canaan/k230-soc/post-image.sh</span><br><span class="line">        <span class="variable">$&#123;UBOOT_BUILD_DIR&#125;</span>/tools/mkimage -A riscv -O linux -T kernel -C none -a 0 -e 0 -n linux -d <span class="variable">$&#123;BINARIES_DIR&#125;</span>/fw_jump.bin  boot/fw_jump_add_uboot_head.bin</span><br><span class="line">        <span class="built_in">rm</span> -rf boot.ext4 ;fakeroot mkfs.ext4 -d boot  -r 1 -N 0 -m 1 -L <span class="string">&quot;boot&quot;</span> -O ^64bit boot.ext4 45M</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gen_uboot_bin</span><br><span class="line">gen_env_bin</span><br><span class="line"><span class="comment">#gen_linux_bin;</span></span><br><span class="line">gen_boot_ext4</span><br><span class="line"></span><br><span class="line">gen_image <span class="variable">$&#123;GENIMAGE_CFG_SD&#125;</span>   sysimage-sdcard.img</span><br></pre></td></tr></table></figure>
+<p>顾名思义，那应该就是最终生成镜像的代码了。</p>
+<h4 id="手动执行这段代码">手动执行这段代码</h4>
+<p>当你阅读以下这个代码：</p>
+<blockquote>
+<p>代码篇幅还是太长了，想看可以去<a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_linux_sdk/blob/dev/buildroot-overlay/board/canaan/k230-soc/post-image.sh">仓库链接</a></p>
+</blockquote>
+<p>你会感觉整个人都不好了，首先这段代码的逻辑还是比较复杂的。细心看呢也没必要（毕竟我们只是想要将自己的
+debian.ext4 替换原先的
+rootfs.ext4）；直接运行呢又对某些参数和环境变量有依赖，脚本会果断报错。于是，这里只能进行手动插桩，具体修改为：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印运行的命令及所有参数</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;###########################################################################################&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Command: <span class="variable">$0</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;All Parameters: <span class="variable">$@</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印 PATH 环境变量</span></span><br><span class="line"><span class="built_in">printenv</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;###########################################################################################&quot;</span></span><br><span class="line"></span><br><span class="line">DTB=<span class="string">&quot;k230-canmv.dtb&quot;</span></span><br><span class="line">LINUX_DIR=<span class="variable">$&#123;BUILD_DIR&#125;</span>/linux-6.6.22</span><br><span class="line">rootfs_ext4_file=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">[ <span class="variable">$#</span> -ge 2 ] &amp;&amp; DTB=<span class="string">&quot;<span class="variable">$2</span>.dtb&quot;</span></span><br><span class="line">[ <span class="variable">$#</span> -ge 3 ] &amp;&amp; LINUX_DIR=<span class="string">&quot;<span class="variable">$3</span>&quot;</span></span><br><span class="line">[ <span class="variable">$#</span> -ge 4 ] &amp;&amp; rootfs_ext4_file=<span class="string">&quot;<span class="variable">$4</span>&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;###########################################################################################&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;DTB&#125;</span>, <span class="variable">$&#123;rootfs_ext4_file&#125;</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;###########################################################################################&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#BINARIES_DIR=/home/wangjianxin/k230_linux_sdk/output/k230_canmv_defconfig/images</span></span><br><span class="line">UBOOT_BUILD_DIR=<span class="variable">$&#123;BUILD_DIR&#125;</span>/uboot-2022.10</span><br><span class="line">K230_SDK_ROOT=$(<span class="built_in">dirname</span> $(<span class="built_in">dirname</span> <span class="variable">$&#123;BASE_DIR&#125;</span>))</span><br><span class="line">GENIMAGE_CFG_SD=$(<span class="built_in">dirname</span> $(<span class="built_in">realpath</span> <span class="string">&quot;<span class="variable">$0</span>&quot;</span>))/genimage.cfg</span><br><span class="line">env_dir=$(<span class="built_in">dirname</span> $(<span class="built_in">realpath</span> <span class="string">&quot;<span class="variable">$0</span>&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>然后我们重新运行一遍顶层的 Makefile，我们会得到类似这样的结果：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">###########################################################################################</span><br><span class="line">Command: board/canaan/k230-soc/post-image.sh</span><br><span class="line">All Parameters: /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux<span class="number">-3</span>c3f4061b727e6d0e2293357a7475b578d688d92</span><br><span class="line">SHELL=/bin/bash</span><br><span class="line">LSCOLORS=Gxfxcxdxbxegedabagacad</span><br><span class="line">BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config</span><br><span class="line">SESSION_MANAGER=local/zjy:@/tmp/.ICE-unix/<span class="number">2277</span>,unix/zjy:/tmp/.ICE-unix/<span class="number">2277</span></span><br><span class="line">WINDOWID=<span class="number">121634819</span></span><br><span class="line">QT_ACCESSIBILITY=<span class="number">1</span></span><br><span class="line">COLORTERM=truecolor</span><br><span class="line">XDG_CONFIG_DIRS=/etc/xdg/xdg-xfce:/etc/xdg</span><br><span class="line">PERL=/usr/bin/perl</span><br><span class="line">LESS=-R</span><br><span class="line">XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0</span><br><span class="line">XDG_MENU_PREFIX=xfce-</span><br><span class="line">TERM_PROGRAM_VERSION=<span class="number">3.4</span></span><br><span class="line">GTK_IM_MODULE=fcitx</span><br><span class="line">CONDA_EXE=/home/junyu33/anaconda3/bin/conda</span><br><span class="line">_CE_M=</span><br><span class="line">TMUX=/tmp/tmux<span class="number">-1000</span>/default,<span class="number">50921</span>,<span class="number">1</span></span><br><span class="line">LANGUAGE=en_US:en</span><br><span class="line">......</span><br><span class="line">HG=hg</span><br><span class="line">CONFIG_SHELL=/bin/bash</span><br><span class="line">LC_NUMERIC=en_US.UTF<span class="number">-8</span></span><br><span class="line">HOSTCXX_NOCCACHE=/usr/lib/ccache/g++</span><br><span class="line">OLDPWD=/home/junyu33/Desktop/github/k230_linux_sdk/buildroot-overlay</span><br><span class="line">TERM_PROGRAM=tmux</span><br><span class="line">_=/usr/bin/printenv</span><br><span class="line">###########################################################################################</span><br></pre></td></tr></table></figure>
+<p>我们可以看到传入参数有三个：images 路径、DTB文件名称和 linux kernel
+源码路径。稍微看一下源码就知道第四个参数是 rootfs.ext4 的文件路径。</p>
+<p>环境变量这边，先把所有的环境变量拿出来，保存为A；再以不运行脚本跑一次<code>printenv</code>，保存为B。把A、B的内容
+sort一下，再 diff
+一下，就能很清楚看到这个脚本引入了哪些新的环境变量。</p>
+<p>最终，我们就可以写出类似的命令（使用 root 用户运行）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4</span><br></pre></td></tr></table></figure>
+<p>把生成的镜像写入 TF 卡，启动开发板，这次开发板既能运行
+debian，也能使用 WiFi，甚至还有 512M 的内存，看上去非常完美！</p>
+<p>但实际上，故事还没有结束。</p>
+<h2 id="测试拨号">测试拨号</h2>
+<p>然后我尝试使用 nmcli 进行拨号，然而 nmcli 又报错了：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@zjy:/etc/NetworkManager/system-connections<span class="comment"># netplan apply</span></span><br><span class="line"></span><br><span class="line">** (generate:2357): WARNING **: 03:00:44.109: Permissions <span class="keyword">for</span> /etc/netplan/01-netcfg.yaml are too open. Netplan configuration should NOT be accessible by others.</span><br><span class="line">/etc/netplan/01-netcfg.yaml:8:3: Error <span class="keyword">in</span> network definition: unknown key <span class="string">&#x27;pppoe&#x27;</span></span><br><span class="line">  pppoe:</span><br></pre></td></tr></table></figure>
+<p>上网一搜，又没有搜到相似的问题，于是我从较低 level 的工具开始
+debug，比如测试 ppp 能否正常工作：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo pon</span><br><span class="line">Couldn<span class="string">&#x27;t open the /dev/ppp device: No such device or address</span></span><br><span class="line"><span class="string">/usr/sbin/pppd: Please load the ppp_generic kernel module.</span></span><br></pre></td></tr></table></figure>
+<p>看来又得折腾 linux kernel 了，这里又有两条路可以选择：</p>
+<ul>
+<li>原地编译 ppp/pppoe 模块，尝试 insmod 进去。</li>
+<li>修改内核配置，重新编译整个 linux kernel。</li>
+</ul>
+<h3 id="原地编译模块">原地编译模块</h3>
+<p>我又恶补了一下 linux kernel 编译的知识，kernel.org 有写：</p>
+<blockquote>
+<p>The command to build an external module is:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -C &lt;path_to_kernel_dir&gt; M=<span class="variable">$PWD</span></span><br></pre></td></tr></table></figure>
+<p>The kbuild system knows that an external module is being built due to
+the "M=&lt;dir&gt;" option given in the command.</p>
+</blockquote>
+<p>于是我如法炮制，我需要的 ppp 模块在 <code>drivers/net/ppp</code>
+中，于是在开发板有以下编译命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C /home/junyu33/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/ M=<span class="variable">$PWD</span></span><br></pre></td></tr></table></figure>
+<p>然而，它又报错了：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/home/</span>junyu33<span class="regexp">/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/M</span>akefile:<span class="number">1325</span>: warning: overriding recipe <span class="keyword">for</span> target <span class="string">&#x27;vdso_install&#x27;</span></span><br><span class="line">arch<span class="regexp">/riscv/M</span>akefile:<span class="number">144</span>: warning: ignoring old recipe <span class="keyword">for</span> target <span class="string">&#x27;vdso_install&#x27;</span></span><br><span class="line">  <span class="keyword">CALL</span>    scripts/checksyscalls.sh</span><br><span class="line">  LDS     arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>vdso.lds</span><br><span class="line">  VDSO32AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>rt_sigreturn-<span class="number">32</span>.o</span><br><span class="line">  VDSO32AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/g</span>etcpu-<span class="number">32</span>.o</span><br><span class="line">  VDSO32AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>flush_icache-<span class="number">32</span>.o</span><br><span class="line">  VDSO32AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>sys_hwprobe-<span class="number">32</span>.o</span><br><span class="line">  VDSO32AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>note-<span class="number">32</span>.o</span><br><span class="line">  VDSO32CC arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>hwprobe-<span class="number">32</span>.o</span><br><span class="line">  VDSO32LD  arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>vdso32.so.dbg</span><br><span class="line">  OBJCOPY arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>vdso32.so</span><br><span class="line">  VDSO32SYM <span class="keyword">include</span><span class="regexp">/generated/</span>vdso32-offsets.h</span><br><span class="line">  LDS     arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>vdso.lds</span><br><span class="line">  VDSO64AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>rt_sigreturn-<span class="number">64</span>.o</span><br><span class="line">  VDSO64AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/g</span>etcpu-<span class="number">64</span>.o</span><br><span class="line">  VDSO64AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>flush_icache-<span class="number">64</span>.o</span><br><span class="line">  VDSO64AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>sys_hwprobe-<span class="number">64</span>.o</span><br><span class="line">  VDSO64AS arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>note-<span class="number">64</span>.o</span><br><span class="line">  VDSO64CC arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>vgettimeofday-<span class="number">64</span>.o</span><br><span class="line">  VDSO64CC arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>hwprobe-<span class="number">64</span>.o</span><br><span class="line">  VDSO64LD  arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>vdso64.so.dbg</span><br><span class="line">  OBJCOPY arch<span class="regexp">/riscv/</span>kernel<span class="regexp">/vdso/</span>vdso64.so</span><br><span class="line">  VDSO64SYM <span class="keyword">include</span><span class="regexp">/generated/</span>vdso64-offsets.h</span><br><span class="line">  MODPOST Module.symvers</span><br><span class="line">ERROR: modpost: <span class="string">&quot;slhc_free&quot;</span> [drivers<span class="regexp">/net/</span>ppp/ppp_generic.ko] undefined!</span><br><span class="line">ERROR: modpost: <span class="string">&quot;slhc_uncompress&quot;</span> [drivers<span class="regexp">/net/</span>ppp/ppp_generic.ko] undefined!</span><br><span class="line">ERROR: modpost: <span class="string">&quot;slhc_toss&quot;</span> [drivers<span class="regexp">/net/</span>ppp/ppp_generic.ko] undefined!</span><br><span class="line">ERROR: modpost: <span class="string">&quot;slhc_remember&quot;</span> [drivers<span class="regexp">/net/</span>ppp/ppp_generic.ko] undefined!</span><br><span class="line">ERROR: modpost: <span class="string">&quot;slhc_compress&quot;</span> [drivers<span class="regexp">/net/</span>ppp/ppp_generic.ko] undefined!</span><br><span class="line">ERROR: modpost: <span class="string">&quot;slhc_init&quot;</span> [drivers<span class="regexp">/net/</span>ppp/ppp_generic.ko] undefined!</span><br><span class="line">make[<span class="number">2</span>]: *** [scripts/Makefile.modpost:<span class="number">145</span>: Module.symvers] Error <span class="number">1</span></span><br><span class="line">make[<span class="number">1</span>]: *** [<span class="regexp">/home/</span>junyu33<span class="regexp">/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/M</span>akefile:<span class="number">1903</span>: single_modules] Error <span class="number">2</span></span><br><span class="line">make: *** [Makefile:<span class="number">234</span>: __sub-make] Error <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>我尝试原地编译和在主机上交叉编译，编译这个路径和全部路径，都出现了这个错误（或者其它更多的错误）。通过
+LLM，我得知这是因为 ppp 的依赖 slhc 也没有编译进内核或成为模块，从而导致
+ppp 编译失败。</p>
+<p>我并没有又去寻找 slhc 在哪个位置，因为我担心编译 slhc
+时又冒出它又依赖某某模块，于是我觉得选择第二条道路。</p>
+<h3 id="编译内核">编译内核</h3>
+<p>最后，我还是来到了这操蛋的一步，我又面临了一系列的问题：</p>
+<ol type="1">
+<li>应当修改哪些参数？</li>
+<li>应当使用什么编译命令，编译的产物是什么？</li>
+<li>应当将产物放在 K230-linux-SDK 的什么位置？</li>
+</ol>
+<h4 id="修改参数">修改参数</h4>
+<p>既然我们要启用 ppp_generic 功能，那根据 <code>drivers/net/ppp</code>
+的 Makefile：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SPDX-License-Identifier: GPL-2.0</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Makefile for the Linux PPP network device drivers.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">obj-<span class="variable">$(CONFIG_PPP)</span> += ppp_generic.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPP_ASYNC)</span> += ppp_async.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPP_BSDCOMP)</span> += bsd_comp.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPP_DEFLATE)</span> += ppp_deflate.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPP_MPPE)</span> += ppp_mppe.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPP_SYNC_TTY)</span> += ppp_synctty.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPPOE)</span> += pppox.o pppoe.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPPOL2TP)</span> += pppox.o</span><br><span class="line">obj-<span class="variable">$(CONFIG_PPTP)</span> += pppox.o pptp.o</span><br></pre></td></tr></table></figure>
+<p>那当然是启用 <code>CONFIG\_PPP=y</code> 啦。</p>
+<p>其实，为了保险，我其实把这里提到的功能全都启用了。</p>
+<h4 id="编译生成镜像">编译生成镜像</h4>
+<p>然后，我们得了解 linux kernel 是从哪个地方读取这些 config
+的。通过相关资料的查阅，linux kernel 是从 <code>arch/riscv/config</code>
+读取相关开发板配置的。对于 CanMV-K230 开发板，读取的文件就是
+<code>arch/riscv/config/k230\_canmv\_defconfig</code>。</p>
+<p>另外，我想到了一个 trick 用于绕过第二个和第三个问题，原因是我在遍历
+K230-linux-SDK 的文件时意外发现了在某个 linux 目录有两个
+patch，其中一个内容如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">cat</span> 0003-driver-net-r8152-use-chip-ID-as-MAC-addr.patch </span><br><span class="line">From 588af5417c9b1fcc8e9d6d48b996656096d4c322 Mon Sep 17 00:00:00 2001</span><br><span class="line">From: =?UTF-8?q?=E9=BB=84=E5=AD=90=E6=87=BF?=</span><br><span class="line"> &lt;huangziyi@canaan-creative.com&gt;</span><br><span class="line">Date: Fri, 13 Sep 2024 14:57:10 +0800</span><br><span class="line">Subject: [PATCH] driver: net: r8152 use chip ID as MAC addr</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text/plain; charset=UTF-8</span><br><span class="line">Content-Transfer-Encoding: 8bit</span><br><span class="line"></span><br><span class="line">Signed-off-by: 黄子懿 &lt;huangziyi@canaan-creative.com&gt;</span><br><span class="line">---</span><br><span class="line"> drivers/net/usb/r8152.c | 13 +++++++++++--</span><br><span class="line"> 1 file changed, 11 insertions(+), 2 deletions(-)</span><br><span class="line"></span><br><span class="line">diff --git a/drivers/net/usb/r8152.c b/drivers/net/usb/r8152.c</span><br><span class="line">index 127b34dcc5b3..65bcef61b1ec 100644</span><br><span class="line">--- a/drivers/net/usb/r8152.c</span><br><span class="line">+++ b/drivers/net/usb/r8152.c</span><br><span class="line">@@ -1808,8 +1808,17 @@ static int determine_ethernet_addr(struct r8152 *tp, struct sockaddr *sa)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!is_valid_ether_addr(sa-&gt;sa_data)) &#123;</span><br><span class="line">                netif_err(tp, probe, dev, <span class="string">&quot;Invalid ether addr %pM\n&quot;</span>,</span><br><span class="line">                          sa-&gt;sa_data);</span><br><span class="line">-               eth_hw_addr_random(dev);</span><br><span class="line">-               ether_addr_copy(sa-&gt;sa_data, dev-&gt;dev_addr);</span><br><span class="line">+               void __iomem *trng_addr = ioremap(0x91213300, 0x100);</span><br><span class="line">+               unsigned int trng_data = readl(trng_addr);</span><br><span class="line">+               iounmap(trng_addr);</span><br><span class="line">+               char mac_addr_hex[6] = &#123;</span><br><span class="line">+                       0x00, 0xe0, 0x4c,</span><br><span class="line">+                       trng_data &amp; 0xff,</span><br><span class="line">+                       (trng_data&gt;&gt;8) &amp; 0xff,</span><br><span class="line">+                       (trng_data&gt;&gt;16) &amp; 0xff</span><br><span class="line">+               &#125;;</span><br><span class="line">+               // eth_hw_addr_random(dev);</span><br><span class="line">+               ether_addr_copy(sa-&gt;sa_data, mac_addr_hex);</span><br><span class="line">                netif_info(tp, probe, dev, <span class="string">&quot;Random ether addr %pM\n&quot;</span>,</span><br><span class="line">                           sa-&gt;sa_data);</span><br><span class="line">                <span class="built_in">return</span> 0;</span><br><span class="line">-- </span><br><span class="line">2.46.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>LLM 问了一下，它告诉我这是 git patch 格式，可以通过
+<code>git format-patch -1 \&lt;commit-hash\&gt;</code> 来生成，于是我将
+linux 单独拷贝了一份，也建了一个 git 仓库，并修改了
+<code>arch/riscv/config/k230\_canmv\_defconfig</code>，加入了那几个有关于
+PPP 的配置，然后 <code>git format-patch -1</code> 跑一波，结果如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">cat</span> 0002-add-ppp-for-canmv-k230.patch                  </span><br><span class="line">From 5613ac073bf8d9fcc140542458cb3d05c43228a0 Mon Sep 17 00:00:00 2001</span><br><span class="line">From: junyu33 &lt;2658799217@qq.com&gt;</span><br><span class="line">Date: Wed, 6 Nov 2024 19:07:02 +0800</span><br><span class="line">Subject: [PATCH] add ppp <span class="keyword">for</span> canmv k230</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"> <span class="built_in">arch</span>/riscv/configs/k230_defconfig | 11 +++++++++++</span><br><span class="line"> 1 file changed, 11 insertions(+)</span><br><span class="line"></span><br><span class="line">diff --git a/arch/riscv/configs/k230_defconfig b/arch/riscv/configs/k230_defconfig</span><br><span class="line">index 6e579f78c..f4c993f12 100644</span><br><span class="line">--- a/arch/riscv/configs/k230_defconfig</span><br><span class="line">+++ b/arch/riscv/configs/k230_defconfig</span><br><span class="line">@@ -303,3 +303,14 @@ CONFIG_CFG80211_WEXT=y</span><br><span class="line"> CONFIG_MAC80211=y</span><br><span class="line"> CONFIG_MEDIA_USB_SUPPORT=y</span><br><span class="line"> CONFIG_USB_VIDEO_CLASS=y</span><br><span class="line">+</span><br><span class="line">+CONFIG_PPP=y</span><br><span class="line">+CONFIG_PPP_BSDCOMP=y</span><br><span class="line">+CONFIG_PPP_DEFLATE=y</span><br><span class="line">+CONFIG_PPP_FILTER=y</span><br><span class="line">+CONFIG_PPP_MPPE=y</span><br><span class="line">+CONFIG_PPP_MULTILINK=y</span><br><span class="line">+CONFIG_PPPOE=y</span><br><span class="line">+CONFIG_PPPOE_HASH_BITS=4</span><br><span class="line">+CONFIG_PPP_ASYNC=y</span><br><span class="line">+CONFIG_PPP_SYNC_TTY=y</span><br><span class="line">-- </span><br><span class="line">2.43.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>感觉还挺像的，于是我将其命名为
+<code>0002-add-ppp-for-canmv-k230.patch</code>，并和其它 patch
+保存在一个路径中。然后把 K230-linux-SDK 下载的 linux
+删掉，重新跑一遍项目顶层的 Makefile，生成了镜像。</p>
+<h3 id="再次-hack-镜像">再次 hack 镜像</h3>
+<p>当然，毕竟之前在 debian 的 rootfs
+做了那么多工作，我是不太想把系统“恢复出厂设置的”。于是，我再一次提取了
+buildroot 镜像的 linux 分区，并覆盖了 debian
+镜像的对应分区，尝试启动。</p>
+<p>使用 <code>zcat</code> 的结果如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ zcat /proc/config.gz | grep CONFIG_PPP</span><br><span class="line">CONFIG_PPP=y</span><br><span class="line">CONFIG_PPP_BSDCOMP=y</span><br><span class="line">CONFIG_PPP_DEFLATE=y</span><br><span class="line">CONFIG_PPP_FILTER=y</span><br><span class="line">CONFIG_PPP_MPPE=y</span><br><span class="line">CONFIG_PPP_MULTILINK=y</span><br><span class="line">CONFIG_PPPOE=y</span><br><span class="line"><span class="comment"># CONFIG_PPPOE_HASH_BITS_1 is not set</span></span><br><span class="line"><span class="comment"># CONFIG_PPPOE_HASH_BITS_2 is not set</span></span><br><span class="line">CONFIG_PPPOE_HASH_BITS_4=y</span><br><span class="line"><span class="comment"># CONFIG_PPPOE_HASH_BITS_8 is not set</span></span><br><span class="line">CONFIG_PPPOE_HASH_BITS=4</span><br><span class="line">CONFIG_PPP_ASYNC=y</span><br><span class="line">CONFIG_PPP_SYNC_TTY=y</span><br></pre></td></tr></table></figure>
+<p>这证明我们之前对 linux 分区的修改是有效的.</p>
+<p><code>pppd</code> 也可以正常运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo pppd --version</span><br><span class="line">[sudo] password <span class="keyword">for</span> junyu33: </span><br><span class="line">pppd version 2.5.0</span><br></pre></td></tr></table></figure>
+<p>幸运的是，没有出现任何问题，看来这种 hack 是真的挺好用的。</p>
+<h3 id="用户端调试">用户端调试</h3>
+<p>通过以上层面的调试，我们在驱动层面解决了 PPPoE
+无法使用的问题，现在的问题只剩下用户配置了，难度降低了很多，并且接下来的步骤都是一本道，没什么有很多种路线可以选择的情况了。</p>
+<p>既然 NetworkManager 已经装好了，那么我们直接敲对应的命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nmcli connection add <span class="built_in">type</span> pppoe ifname enx00e04ca7c468 con-name mypppoe username <span class="string">&quot;&lt;username&gt;&quot;</span> password <span class="string">&quot;&lt;password&gt;&quot;</span></span><br><span class="line">sudo nmcli connection up mypppoe </span><br></pre></td></tr></table></figure>
+<p>嗯，连接还是失败了，然后看了一眼 <code>ifconfig</code>，发现自己的
+<code>enx00e04ca7c468</code> 并没有 ipv4
+地址。于是，我在连接命令前加了一句 DHCP。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dhclient enx00e04ca7c468</span><br><span class="line">sudo nmcli connection add <span class="built_in">type</span> pppoe ifname enx00e04ca7c468 con-name mypppoe username <span class="string">&quot;&lt;username&gt;&quot;</span> password <span class="string">&quot;&lt;password&gt;&quot;</span></span><br><span class="line">sudo nmcli connection up mypppoe </span><br></pre></td></tr></table></figure>
+<p>然后连接没有报错，再尝试用这个 ppp 接口去测试 ping，结果如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo ping -I ppp0 8.8.8.8</span><br><span class="line">PING 8.8.8.8 (8.8.8.8) from 220.167.40.175 ppp0: 56(84) bytes of data.</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=1 ttl=56 time=33.2 ms</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=2 ttl=56 time=33.4 ms</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=3 ttl=56 time=33.4 ms</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=4 ttl=56 time=33.0 ms</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=5 ttl=56 time=33.4 ms</span><br></pre></td></tr></table></figure>
+<p>拨号的问题总算是完全解决了。</p>
+<h2 id="测试-ddns">测试 ddns</h2>
+<p>先前我用于 ddns 的脚本已经上传到 <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynmaic-dns-py">github</a>。我在开发板中将其
+clone 下来，并写好配置文件，然后脚本一跑，告诉我没有装
+<code>curl</code>。我在想 <code>curl</code>
+难道不是很基本的工具吗，居然这都没有。</p>
+<p>然后是 python 的包依赖问题，因为 python3.12 限制在系统环境中使用 pip
+安装 package。而我并没有闲心在这个开发板中安装 anaconda 或者
+virtualenv，并且这个项目的 python 依赖只有
+<code>requests</code>，于是一行搞定：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-requests</span><br></pre></td></tr></table></figure>
+<p>然后启动脚本，没有报错，过了几分钟我就可以从主机 ssh
+我的域名到开发板了。</p>
+<h2 id="测试-ssh-并持久化">测试 ssh 并持久化</h2>
+<p>现在到了最重要也最关键的一步：因为学校寝室晚上会断电，因此我需要让其断电之后，在第二天早上六点来电之时自动恢复
+ddns 服务。具体而言，我们需要实现以下几点：</p>
+<ol type="1">
+<li>开机启动 debian。</li>
+<li>开机自动拨号。</li>
+<li>开机自动 ddns。</li>
+<li>使开发板脱离电脑运行。</li>
+</ol>
+<h3 id="开机启动-debian">开机启动 debian</h3>
+<p>这个不难，开机进一下 uboot，把等待时间从 3 改成 0 即可。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setenv bootdelay 0</span><br><span class="line">saveenv</span><br></pre></td></tr></table></figure>
+<p>这样做的后果是我再也不能进入 uboot
+了，但其实无所谓。真要想改，重新刷一遍 linux 分区即可。</p>
+<h3 id="开机自动拨号">开机自动拨号</h3>
+<p>写一个 systemd 服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo <span class="built_in">cat</span> /etc/systemd/system/pppoe-connection.service </span><br><span class="line">[sudo] password <span class="keyword">for</span> junyu33: </span><br><span class="line">[Unit]</span><br><span class="line">Description=Start PPPoE Connection mypppoe</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStartPre=dhclient enx00e04ca7c468</span><br><span class="line">ExecStart=/usr/bin/nmcli connection up mypppoe</span><br><span class="line">RemainAfterExit=<span class="built_in">yes</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>重启一下，发现 nmcli 没有权限拨号，于是将用户改成以 root 运行。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo <span class="built_in">cat</span> /etc/systemd/system/pppoe-connection.service </span><br><span class="line">[sudo] password <span class="keyword">for</span> junyu33: </span><br><span class="line">[Unit]</span><br><span class="line">Description=Start PPPoE Connection mypppoe</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">User=root</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStartPre=dhclient enx00e04ca7c468</span><br><span class="line">ExecStart=/usr/bin/nmcli connection up mypppoe</span><br><span class="line">RemainAfterExit=<span class="built_in">yes</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>然后重启拨号就正常了。</p>
+<h3 id="开机自动ddns">开机自动ddns</h3>
+<p>因为 IP
+可能会改变，首先保证开机一定更新一次，每半个小时更新一次：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo <span class="built_in">cat</span> /etc/systemd/system/ddns-update.timer </span><br><span class="line">[Unit]</span><br><span class="line">Description=Run DDNS update script every 30 minutes</span><br><span class="line"> </span><br><span class="line">[Timer]</span><br><span class="line">OnBootSec=5min</span><br><span class="line">OnUnitActiveSec=30min</span><br><span class="line">Persistent=<span class="literal">true</span></span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=timers.target</span><br></pre></td></tr></table></figure>
+<p>然后写出具体的 service 内容，这里需要注意：</p>
+<ul>
+<li>不能挂代理，否则获取公网 IP 就跑到代理那边去了</li>
+<li>写的脚本不兼容 sh 语法并且，所以必须用 <code>bash</code> 运行</li>
+<li>脚本中间有些地方用了相对路径，因此必须制定 PWD</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo <span class="built_in">cat</span> /etc/systemd/system/ddns-update.service </span><br><span class="line">[Unit]</span><br><span class="line">Description=Run DDNS update script</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">WorkingDirectory=/home/junyu33/netlify-dynamic-dns-py</span><br><span class="line">ExecStartPre=/usr/bin/env http_proxy= https_proxy=</span><br><span class="line">ExecStart=/bin/bash /home/junyu33/netlify-dynamic-dns-py/ddns.sh</span><br></pre></td></tr></table></figure>
+<h3 id="开发板脱离电脑运行">开发板脱离电脑运行</h3>
+<p>这个是唯一个比较抓瞎的过程，因为我的电源适配器比较紧缺，于是选了一个很久没用的。结果刚好那个适配器就可能有问题，导致虽然我的电源指示灯是亮的，但是
+debian 一直无法启动，也就导致我在主机这边等了半天也没 ssh 上。</p>
+<p>然后我又把开发板接回电脑，再一次
+ssh，又成功了，因此排除开发板系统问题。</p>
+<p>然后又换了我充耳机的电源适配器，成功了，因此确定是我之前用的旧适配器的问题。</p>
+<p>接着，我便把电源线和网线，接到了去北京实习的室友空闲不用的 USB
+充电插座和宽带接口上，又成功了。此时已经快到熄灯的时间，我便索性睡一觉，看看第二天能不能通过电脑
+ssh 到自己的开发板和工位电脑。</p>
+<p>第二天起床，我马上打开自己电脑试了一下，一切正常，于是：</p>
+<p>Congratulations，我终于再次实现了“居家办公”的美好生活！</p>
+<h1 id="踩坑总结">踩坑总结</h1>
+<ol type="1">
+<li>好货不便宜，便宜无好货。</li>
+<li>网购要看差评，不要看哪个买的人多就买哪个。</li>
+<li>一定要理清自己在做什么，否则很容易 lost in the woods。</li>
+<li>摆脱学生思维，不要为了学某个东西而去学某个东西，这样效率很低。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.junyu33.me/2024/11/07/canmv.html" title="Learn 内网穿透 the hard way (CanMV-K230 版)">https://blog.junyu33.me/2024/11/07/canmv.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/10/19/bye_stocks.html" rel="prev" title="四八——再见，中国股市">
+                  <i class="fa fa-chevron-left"></i> 四八——再见，中国股市
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2033/05/13/nju_pa.html" rel="next" title="（置顶，已完结）nju-pa 心得">
+                  （置顶，已完结）nju-pa 心得 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">737k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">11:10</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-new.vercel.app/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>

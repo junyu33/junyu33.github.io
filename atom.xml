@@ -61,6 +61,99 @@
   </entry>
   
   <entry>
+    <title>Learn 内网穿透 the hard way (CanMV-K230 版)</title>
+    <link href="https://blog.junyu33.me/2024/11/07/canmv.html"/>
+    <id>https://blog.junyu33.me/2024/11/07/canmv.html</id>
+    <published>2024-11-07T09:00:00.000Z</published>
+    <updated>2024-11-08T02:41:16.172Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;请注意，这篇文章不是针对第一次接触内网穿透的读者的教学，而是《从零搭建一个又快又安全的
+VNC 服务》这篇文章的后续内容。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>四八——再见，中国股市</title>
+    <link href="https://blog.junyu33.me/2024/10/19/bye_stocks.html"/>
+    <id>https://blog.junyu33.me/2024/10/19/bye_stocks.html</id>
+    <published>2024-10-19T09:00:00.000Z</published>
+    <updated>2024-10-19T08:35:32.949Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是我的第三篇“再见”系列，前两篇是 ACM 和 baidu。&lt;/p&gt;
+&lt;p&gt;客观记录这几年的理财经历与个人的一些感想。&lt;/p&gt;
+&lt;p&gt;这里“红色”为正，“绿色”为负。&lt;/p&gt;
+&lt;p&gt;本文的内容不构成任何投资建议，仅代表个人观点。股市有风险，入市需谨慎。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>从零搭建一个又快又安全的 VNC 服务</title>
+    <link href="https://blog.junyu33.me/2024/09/22/vnc.html"/>
+    <id>https://blog.junyu33.me/2024/09/22/vnc.html</id>
+    <published>2024-09-22T15:30:00.000Z</published>
+    <updated>2024-10-19T08:35:32.926Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为笔者的寝室电脑有公网
+IP，而市面上的远程桌面软件因为使用中继服务器延迟较高，并且个人不信任它们的安全性，所以决定自己搭建一个
+VNC 服务。&lt;/p&gt;
+&lt;p&gt;这样就可以从实验室低延迟的连回寝室电脑，并且保证一定的安全性。&lt;/p&gt;
+&lt;p&gt;至少让 TigerVNC 觉得 “Connection is secure” without any
+exemption.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>timeshift 使用 btrfs 懒人指南</title>
+    <link href="https://blog.junyu33.me/2024/09/21/timeshift.html"/>
+    <id>https://blog.junyu33.me/2024/09/21/timeshift.html</id>
+    <published>2024-09-21T08:30:00.000Z</published>
+    <updated>2024-10-19T08:35:32.758Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近到了新工位，有了一台新电脑以及两台显示器。我深知系统备份的重要性，但因为沉没成本，一直没有来得及完全实装
+btrfs
+的备份恢复功能。因为新系统啥都没有，所以我可以肆无忌惮地折腾。这里记录一下我是如何使用
+timeshift 的。&lt;/p&gt;
+&lt;p&gt;本文不涉及原理，以实用为主。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>(ex)gcd，逆元与其它</title>
     <link href="https://blog.junyu33.me/2024/09/13/exgcd.html"/>
     <id>https://blog.junyu33.me/2024/09/13/exgcd.html</id>
@@ -360,98 +453,6 @@ minutes.&lt;/p&gt;
     
       <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>网络空间安全技术笔记</title>
-    <link href="https://blog.junyu33.me/2023/12/18/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF.html"/>
-    <id>https://blog.junyu33.me/2023/12/18/网络空间安全技术.html</id>
-    <published>2023-12-18T03:30:00.000Z</published>
-    <updated>2024-01-08T16:55:49.905Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;期末考试自用。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MiniELF</title>
-    <link href="https://blog.junyu33.me/2023/12/10/minielf.html"/>
-    <id>https://blog.junyu33.me/2023/12/10/minielf.html</id>
-    <published>2023-12-09T16:00:00.000Z</published>
-    <updated>2023-12-09T16:52:03.485Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;尝试编写一个尽量小的ELF文件来完成 A + B
-problem，其中输入为&lt;code&gt;XX YY&lt;/code&gt;的形式（&lt;code&gt;X&lt;/code&gt;和&lt;code&gt;Y&lt;/code&gt;都是0到9的数字），输出不含LF/CRLF。&lt;/p&gt;
-&lt;p&gt;经过几天的努力，我成功把程序压缩到了 99 bytes。&lt;/p&gt;
-&lt;figure class=&quot;highlight maxima&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; xxd addition-ver24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000000&lt;/span&gt;: 7f45 4c46 &lt;span class=&quot;number&quot;&gt;0100&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0005&lt;/span&gt;  .ELF............&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000010&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;0200&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0300&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1b00&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0005&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1b00&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0005&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0400&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0000&lt;/span&gt;  ................&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000020&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;4889&lt;/span&gt; e1b2 &lt;span class=&quot;number&quot;&gt;05cd&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;8090&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;81e3&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2000&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0100&lt;/span&gt; 8a01  H......... .....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000030&lt;/span&gt;: 2c60 &lt;span class=&quot;number&quot;&gt;0241&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0366&lt;/span&gt; 6bc0 &lt;span class=&quot;number&quot;&gt;0a02&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;4101&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0241&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;042c&lt;/span&gt;  ,`.A.fk...A..A.,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000040&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;60b2&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;03b3&lt;/span&gt; 64f6 f304 &lt;span class=&quot;number&quot;&gt;3088&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0141&lt;/span&gt; c1e8 &lt;span class=&quot;number&quot;&gt;08b3&lt;/span&gt;  `...d...&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;..A....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000050&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;0af6&lt;/span&gt; f366 &lt;span class=&quot;number&quot;&gt;0530&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3066&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;8901&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;4966&lt;/span&gt; b804 &lt;span class=&quot;number&quot;&gt;00b3&lt;/span&gt;  ...f.&lt;span class=&quot;number&quot;&gt;00f&lt;/span&gt;..If....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;00000060&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;01cd&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;80&lt;/span&gt;                                  ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="ctf" scheme="https://blog.junyu33.me/categories/ctf/"/>
-    
-    
-      <category term="misc" scheme="https://blog.junyu33.me/tags/misc/"/>
-    
-      <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>（转载）从北京城市建设看新中国的城市建设及时代背景</title>
-    <link href="https://blog.junyu33.me/2023/11/28/beijing.html"/>
-    <id>https://blog.junyu33.me/2023/11/28/beijing.html</id>
-    <published>2023-11-28T07:00:00.000Z</published>
-    <updated>2023-11-28T06:54:02.069Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-&lt;p&gt;北京是中国古都，拥有三千余年建城历史、八百六十余年建都史。北京城市建设与国运兴衰密不可分。&lt;/p&gt;
-&lt;p&gt;清末国家贫弱，城市建筑疏于维护。甚至北京城于第二次鸦片战争、八国联军侵华和日军侵华期间三次被攻破，城墙、城楼和圆明园等建筑遭到破坏。民国时期为发展交通，在城墙上开洞、拆豁口，但时局动荡，建设规模有限，波及不广。&lt;/p&gt;
-&lt;p&gt;新中国建立后，建设新中国成为全民的共同愿望，发展和保护的矛盾日趋尖锐。城墙被看作“旧社会辫子”、交通的阻碍，且无益于现代国防，开始大规模拆除。为彰显政治地位，天安门广场和长安街扩建，代表建筑如人民大会堂、人民英雄纪念碑；基于中苏交恶等恶劣的国际形势，北京城内开展大规模战备和人防建设。&lt;/p&gt;
-&lt;p&gt;改革开放后，经济发展成为第一任务，过去的国防设施转民用；随市场经济发展，长安街上商业金融建筑及写字楼增多，新建一大批风格各异的现代建筑；文化生活趋于丰富，文物保护意识逐渐增强，划定历史文化保护区，但有争议的“修缮工程”仍然存在；部分城楼重建，但限于空间难以恢复旧貌；随着大规模基建，建成区大幅度拓展，地铁逐渐覆盖远郊；城市布局“多中心”以缓解大城市病，疏解城市功能。&lt;/p&gt;
-&lt;p&gt;写给老师：我知道任务是写中国现代史，但现代史固然不能孤立于更早的城建史书写。我会控制好详略，以小见大。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三五——Android 14 彩蛋试玩</title>
-    <link href="https://blog.junyu33.me/2023/11/11/upsdcake.html"/>
-    <id>https://blog.junyu33.me/2023/11/11/upsdcake.html</id>
-    <published>2023-11-11T13:30:00.000Z</published>
-    <updated>2023-11-14T03:14:23.322Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;上篇随笔提到我在 sgp 买了一部谷歌亲儿子 pixel 7a，前段时间 Android 14
-出了，我的手机也收到了更新推送，就升级了。&lt;/p&gt;
-&lt;p&gt;当然，升级过后的第一件事就是去看看彩蛋，&lt;del&gt;以确认升级是不是只换了个版本号&lt;/del&gt;。（其实手机已经升级快一个月了，百无聊赖之际，我才想起可以玩玩彩蛋这件事）&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
-    
-      <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
     
   </entry>
   

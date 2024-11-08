@@ -269,7 +269,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-11-08 11:00:00 / 修改时间：10:59:09" itemprop="dateCreated datePublished" datetime="2024-11-08T11:00:00+08:00">2024-11-08</time>
+      <time title="创建时间：2024-11-08 11:00:00 / 修改时间：11:12:53" itemprop="dateCreated datePublished" datetime="2024-11-08T11:00:00+08:00">2024-11-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -552,7 +552,7 @@ rootfs.ext4）；直接运行呢又对某些参数和环境变量有依赖，脚
 sort一下，再 diff
 一下，就能很清楚看到这个脚本引入了哪些新的环境变量。</p>
 <p>最终，我们就可以写出类似的命令（使用 root 用户运行）：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4</span><br></pre></td></tr></table></figure>
+<p><code>ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4</code></p>
 <p>把生成的镜像写入 TF 卡，启动开发板，这次开发板既能运行
 debian，也能使用 WiFi，甚至还有 512M 的内存，看上去非常完美！</p>
 <p>但实际上，故事还没有结束。</p>

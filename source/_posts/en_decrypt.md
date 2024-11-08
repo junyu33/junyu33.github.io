@@ -65,7 +65,7 @@ date: 2022-1-15 23:30:00
 
 常见的调用约定（VARARG指参数的个数不确定）：
 
-<img src = './en&decrypt/call_rule.png'>
+<img src = './en_decrypt/call_rule.png'>
 
 > ①：仅当平衡栈者为caller时适用。
 
@@ -119,13 +119,13 @@ date: 2022-1-15 23:30:00
 
 如果出现`mov ecx, FFFFFFFF`一句，代表程序很有可能获取字符串的长度，汇编代码如下。
 
-<img src="en&decrypt/strlen.png">
+<img src="en_decrypt/strlen.png">
 
 ### 指令修改技巧——1/24/2022
 
 感觉没什么好说的，直接贴图总结吧。
 
-<img src="en&decrypt/trick32.png">
+<img src="en_decrypt/trick32.png">
 
 ## 64位软件逆向技术——1/24/2022
 
@@ -242,7 +242,7 @@ date: 2022-1-15 23:30:00
   >
   >以$n = 2$为例：
   >
-  ><img src="en&decrypt/mod.png">
+  ><img src="en_decrypt/mod.png">
   >
   >观察可知，当`x < 0`时，第二行中的第$c$列元素，是第三行中第$c+3$列元素减$3$的值，故由此推广可得出上述公式。
 
@@ -256,7 +256,7 @@ date: 2022-1-15 23:30:00
 
 - 单个对象的内存布局：
 
-  <img src="en&decrypt/object.png">
+  <img src="en_decrypt/object.png">
 
 - 构造函数的调用顺序（**可作为还原类继承层次的一个依据**）：
 
@@ -275,13 +275,13 @@ date: 2022-1-15 23:30:00
 
 - 单重继承对象内存布局：
 
-  <img src="en&decrypt/mono_derived.png" style="zoom: 80%;" >
+  <img src="en_decrypt/mono_derived.png" style="zoom: 80%;" >
 
 - 多重继承的特点是构造函数会有**两次构造初始化虚表**的操作。
 
 - 多重继承对象内存布局：
 
-  <img src="en&decrypt/meta_derived.png" style="zoom:67%;">
+  <img src="en_decrypt/meta_derived.png" style="zoom:67%;">
 
 - 菱形继承为了防止base类的内存冗余，会使用虚继承(virtual public: \<class name\>)。具体实现方式是在构造函数中**多传入一个参数**，用来表示是否调用虚基类的构造。
 
@@ -291,7 +291,7 @@ date: 2022-1-15 23:30:00
 
 - 菱形继承对象内存布局~~（内心逐渐崩溃）~~：
 
-  <img src="en&decrypt/diamond_derived.png" style="zoom: 80%;" >
+  <img src="en_decrypt/diamond_derived.png" style="zoom: 80%;" >
 
 - 在IDA中，`vftable`表示虚表，而`vbtable`表示虚基类偏移表。甚至IDA可以自动指出某个`vftable/vbtable`地址指向了哪一个类，还是很智能的。
 
@@ -347,7 +347,7 @@ int DialogBoxParam(
 
 - 相关函数：
 
-  <img src="en&decrypt/file_api.png" style="zoom:67%;" >
+  <img src="en_decrypt/file_api.png" style="zoom:67%;" >
 
 - lods指令：`lods byte ptr [esi]`，将[esi]指向的一字节数据放入eax中，同时esi++。
 
@@ -517,7 +517,7 @@ int DialogBoxParam(
 
 掌握Win32编程技巧还是很重要滴！
 
-<img src="en&decrypt/breakpoint.png">
+<img src="en_decrypt/breakpoint.png">
 
 # 加密算法
 
@@ -549,7 +549,7 @@ SHA-1的160位的初始化消息摘要`67452301h`,`efcdab89h`,`98badcfeh`,`10325
 
 SHA-256、SHA384、SHA512的初始化消息摘要：
 
-<img src="en&decrypt/sha.png">
+<img src="en_decrypt/sha.png">
 
 ### SM3
 
@@ -701,9 +701,9 @@ P数组（取Pi的小数部分）：
 
 S盒：
 
-<img src="en&decrypt/aes_sbox_1.png" style="zoom:67%;" >
+<img src="en_decrypt/aes_sbox_1.png" style="zoom:67%;" >
 
-<img src="en&decrypt/aes_sbox_2.png" style="zoom:67%;" >
+<img src="en_decrypt/aes_sbox_2.png" style="zoom:67%;" >
 
 ~~网上的解密网站都只能解自己的，解不了别人的。~~
 
@@ -779,7 +779,7 @@ S盒：
 
 如果用于不同明文加密的$k$和私钥$x$相同，那么有特殊的攻击方法。
 
-<img src="en&decrypt/elg_hack.png">
+<img src="en_decrypt/elg_hack.png">
 
 ### DSA——3/2/2022
 
@@ -1007,7 +1007,7 @@ int main()
 
 举例如下图：
 
-<img src="en&decrypt/base64.png">
+<img src="en_decrypt/base64.png">
 
 核心代码：
 

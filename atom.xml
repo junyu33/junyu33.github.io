@@ -61,6 +61,26 @@
   </entry>
   
   <entry>
+    <title>The Missing Lecture of Your Cryptography</title>
+    <link href="https://blog.junyu33.me/2024/11/15/danboneh.html"/>
+    <id>https://blog.junyu33.me/2024/11/15/danboneh.html</id>
+    <published>2024-11-15T05:00:00.000Z</published>
+    <updated>2024-11-15T04:55:30.871Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Notes from Dan Boneh&#39;s online cryptography course.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Learn 内网穿透 the hard way (CanMV-K230 版)</title>
     <link href="https://blog.junyu33.me/2024/11/08/canmv.html"/>
     <id>https://blog.junyu33.me/2024/11/08/canmv.html</id>
@@ -434,24 +454,6 @@ minutes.&lt;/p&gt;
     </summary>
     
       <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>网络攻防技术笔记</title>
-    <link href="https://blog.junyu33.me/2023/12/19/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF.html"/>
-    <id>https://blog.junyu33.me/2023/12/19/网络攻防技术.html</id>
-    <published>2023-12-19T11:30:00.000Z</published>
-    <updated>2024-01-07T14:09:37.698Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;内容摘自老师的PPT，除修改部分明显事实错误（例如将&lt;code&gt;/etc/password&lt;/code&gt;修改成&lt;code&gt;/etc/passwd&lt;/code&gt;）外，不代表个人观点。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
   </entry>

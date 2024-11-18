@@ -36,17 +36,13 @@ module.exports = function(path, text, options = {}) {
     }
   }
 
-  if (attrs.class && Array.isArray(attrs.class)) {
-    attrs.class = attrs.class.join(' ');
-  }
-
   // If it's external link, rewrite attributes.
   if (data.protocol && data.hostname !== siteHost) {
     attrs.external = null;
 
     if (!theme.exturl) {
       // Only for simple link need to rewrite/add attributes.
-      attrs.rel = 'noopener';
+      attrs.rel = attrs.rel || 'noopener';
       attrs.target = '_blank';
     } else {
       // Remove rel attributes for `exturl` in main menu.

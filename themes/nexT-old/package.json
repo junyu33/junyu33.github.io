@@ -35,5 +35,8 @@
     "hooks": {
       "pre-commit": "npm run eslint && npm test"
     }
+  },
+  "dependencies": {
+    "highlight.js": "^11.7.0"
   }
 }

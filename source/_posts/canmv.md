@@ -12,7 +12,7 @@ categories:
 
 - develop
 
-date: 2024-11-7 17:00:00
+date: 2024-11-8 11:00:00
 
 ---
 
@@ -506,9 +506,7 @@ _=/usr/bin/printenv
 
 最终，我们就可以写出类似的命令（使用 root 用户运行）：
 
-```sh
-ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4
-```
+`ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4`
 
 把生成的镜像写入 TF 卡，启动开发板，这次开发板既能运行 debian，也能使用 WiFi，甚至还有 512M 的内存，看上去非常完美！
 
@@ -629,13 +627,13 @@ obj-$(CONFIG_PPPOL2TP) += pppox.o
 obj-$(CONFIG_PPTP) += pppox.o pptp.o
 ```
 
-那当然是启用 `CONFIG\_PPP=y` 啦。
+那当然是启用 `CONFIG_PPP=y` 啦。
 
 其实，为了保险，我其实把这里提到的功能全都启用了。
 
 #### 编译生成镜像
 
-然后，我们得了解 linux kernel 是从哪个地方读取这些 config 的。通过相关资料的查阅，linux kernel 是从 `arch/riscv/config` 读取相关开发板配置的。对于 CanMV-K230 开发板，读取的文件就是 `arch/riscv/config/k230\_canmv\_defconfig`。
+然后，我们得了解 linux kernel 是从哪个地方读取这些 config 的。通过相关资料的查阅，linux kernel 是从 `arch/riscv/config` 读取相关开发板配置的。对于 CanMV-K230 开发板，读取的文件就是 `arch/riscv/config/k230_canmv_defconfig`。
 
 另外，我想到了一个 trick 用于绕过第二个和第三个问题，原因是我在遍历 K230-linux-SDK 的文件时意外发现了在某个 linux 目录有两个 patch，其中一个内容如下：
 
@@ -684,7 +682,7 @@ index 127b34dcc5b3..65bcef61b1ec 100644
 
 ```
 
-LLM 问了一下，它告诉我这是 git patch 格式，可以通过 `git format-patch -1 \<commit-hash\>` 来生成，于是我将 linux 单独拷贝了一份，也建了一个 git 仓库，并修改了 `arch/riscv/config/k230\_canmv\_defconfig`，加入了那几个有关于 PPP 的配置，然后 `git format-patch -1` 跑一波，结果如下：
+LLM 问了一下，它告诉我这是 git patch 格式，可以通过 `git format-patch -1 <commit-hash>` 来生成，于是我将 linux 单独拷贝了一份，也建了一个 git 仓库，并修改了 `arch/riscv/config/k230_canmv_defconfig`，加入了那几个有关于 PPP 的配置，然后 `git format-patch -1` 跑一波，结果如下：
 
 ```sh
 > cat 0002-add-ppp-for-canmv-k230.patch                  
@@ -757,7 +755,7 @@ junyu33@zjy:~$ sudo pppd --version
 pppd version 2.5.0
 ```
 
-幸运的是，没有出现任何问题，看来这种 hack 是真的挺好用的。 
+没有出现任何问题，看来这种 hack 是真的挺好用的。 
 
 ### 用户端调试
 
@@ -794,7 +792,7 @@ PING 8.8.8.8 (8.8.8.8) from 220.167.40.175 ppp0: 56(84) bytes of data.
 
 ## 测试 ddns
 
-先前我用于 ddns 的脚本已经上传到 [github](https://github.com/junyu33/netlify-dynmaic-dns-py)。我在开发板中将其 clone 下来，并写好配置文件，然后脚本一跑，告诉我没有装 `curl`。我在想 `curl` 难道不是很基本的工具吗，居然这都没有。
+先前我用于 ddns 的脚本已经上传到 [github](https://github.com/junyu33/netlify-dynamic-dns-py)。我在开发板中将其 clone 下来，并写好配置文件，然后脚本一跑，告诉我没有装 `curl`。我在想 `curl` 难道不是很基本的工具吗，居然这都没有。
 
 然后是 python 的包依赖问题，因为 python3.12 限制在系统环境中使用 pip 安装 package。而我并没有闲心在这个开发板中安装 anaconda 或者 virtualenv，并且这个项目的 python 依赖只有 `requests`，于是一行搞定：
 
@@ -889,7 +887,7 @@ WantedBy=timers.target
 然后写出具体的 service 内容，这里需要注意：
 
 - 不能挂代理，否则获取公网 IP 就跑到代理那边去了
-- 写的脚本不兼容 sh 语法并且，所以必须用 `bash` 运行
+- 写的脚本不兼容 sh 语法，所以必须用 `bash` 运行
 - 脚本中间有些地方用了相对路径，因此必须制定 PWD
 
 ```sh

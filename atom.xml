@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.junyu33.me/"/>
-  <updated>2024-05-04T13:44:31.649Z</updated>
+  <updated>2024-11-18T13:31:54.836Z</updated>
   <id>https://blog.junyu33.me/</id>
   
   <author>
@@ -17,22 +17,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>（置顶）碎碎念</title>
+    <title>（置顶）博客元信息一览</title>
     <link href="https://blog.junyu33.me/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5.html"/>
     <id>https://blog.junyu33.me/2038/01/19/碎碎念.html</id>
     <published>2038-01-18T19:14:08.000Z</published>
-    <updated>2024-05-04T13:44:31.649Z</updated>
+    <updated>2024-11-18T13:31:54.836Z</updated>
     
     <summary type="html">
     
-      有东西被加密了, 请输入密码查看.
+      &lt;p&gt;列出一些与博客本身相关的元信息，以便于查阅。&lt;/p&gt;
     
     </summary>
     
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="test" scheme="https://blog.junyu33.me/categories/test/"/>
     
-    
-      <category term="encrypted" scheme="https://blog.junyu33.me/tags/encrypted/"/>
     
   </entry>
   

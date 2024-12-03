@@ -18,6 +18,7 @@
 > «NexT» 是一款风格优雅的高质量 [Hexo](https://hexo.io) 主题，自点点滴滴中用爱雕琢而成。
 
 [![NPM version](https://img.shields.io/npm/v/hexo-theme-next?color=red&logo=npm&style=flat-square)](https://www.npmjs.com/package/hexo-theme-next)
+[![NPM Downloads](https://img.shields.io/npm/dm/hexo-theme-next?logo=npm&style=flat-square)](https://www.npmjs.com/package/hexo-theme-next)
 [![Required Hexo version](https://img.shields.io/badge/hexo-%3E=5.3.0-blue?style=flat-square&logo=hexo)](https://hexo.io)
 [![License](https://img.shields.io/badge/license-%20AGPL-orange?style=flat-square&logo=gnu)](https://github.com/next-theme/hexo-theme-next/blob/master/LICENSE.md)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/next-theme/hexo-theme-next/linter.yml?branch=master&label=test&logo=github&style=flat-square)](https://github.com/next-theme/hexo-theme-next/actions?query=workflow%3ALinter)
@@ -38,15 +39,15 @@
 如果你在使用 Hexo 5.0 或更新版本，最简单的安装方式是通过 npm：
 
 ```sh
-$ cd hexo-site
-$ npm install hexo-theme-next
+cd hexo-site
+npm install hexo-theme-next
 ```
 
 你也可以直接克隆整个仓库：
 
 ```sh
-$ cd hexo-site
-$ git clone https://github.com/next-theme/hexo-theme-next themes/next
+cd hexo-site
+git clone https://github.com/next-theme/hexo-theme-next themes/next
 ```
 
 此外，如果你想要使用其他方式，请参见[详细安装步骤][docs-installation-url]。
@@ -96,15 +97,15 @@ NexT 每个月都会发布新版本。请在更新前阅读[更新说明][docs-r
 通过 npm 安装最新版本：
 
 ```sh
-$ cd hexo-site
-$ npm install hexo-theme-next@latest
+cd hexo-site
+npm install hexo-theme-next@latest
 ```
 
 或者通过 git 更新到最新的 master 分支：
 
 ```sh
-$ cd themes/next
-$ git pull
+cd themes/next
+git pull
 ```
 
 **如果你想要从 v5.x / v7.x 更新到最新版本，阅读[这篇文档][docs-upgrade-url]。**
@@ -146,7 +147,13 @@ $ git pull
 
 > Netlify 容许我们发布文档。
 
-<a href="https://crowdin.com"><img height="40" src="https://support.crowdin.com/assets/logos/crowdin-logo-small-black.svg"></a>
+<a href="https://crowdin.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" height="40" srcset="https://support.crowdin.com/assets/logos/core-logo/svg/crowdin-core-logo-cWhite.svg">
+    <source media="(prefers-color-scheme: light)" height="40" srcset="https://support.crowdin.com/assets/logos/core-logo/svg/crowdin-core-logo-cDark.svg">
+    <img alt="Netlify Logo" height="40" src="https://support.crowdin.com/assets/logos/core-logo/svg/crowdin-core-logo-cDark.svg">
+  </picture>
+</a>
 
 > Crowdin 容许我们方便地翻译文档。
 
@@ -168,7 +175,7 @@ $ git pull
 
 [awesome-next-url]: https://github.com/next-theme/awesome-next
 [discussions-url]: https://github.com/next-theme/hexo-theme-next/discussions
-[gitter-url]: https://gitter.im/hexo-next
+[gitter-url]: https://app.gitter.im/#/room/#next:gitter.im
 [i18n-url]: https://crowdin.com/project/hexo-theme-next
 
 [issues-bug-url]: https://github.com/next-theme/hexo-theme-next/issues/new?assignees=&labels=Bug&template=bug-report.md

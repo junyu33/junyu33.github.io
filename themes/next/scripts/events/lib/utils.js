@@ -2,13 +2,18 @@
 
 const fs = require('fs');
 const path = require('path');
-const css = require('css');
+let css;
+try {
+  css = require('@adobe/css-tools');
+} catch {
+  css = require('css');
+}
 
 function resolve(name, file = '') {
   let dir;
   try {
     dir = path.dirname(require.resolve(`${name}/package.json`));
-  } catch (error) {
+  } catch {
     return '';
   }
   return `${dir}/${file}`;
@@ -63,6 +68,7 @@ const points = {
     'header',
     'sidebar',
     'postMeta',
+    'postBodyStart',
     'postBodyEnd',
     'footer',
     'bodyEnd',

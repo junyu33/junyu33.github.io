@@ -9,7 +9,7 @@ const { getVendors } = require('./utils');
 let internal;
 try {
   internal = require('@next-theme/plugins');
-} catch (error) {
+} catch {
 }
 const vendorsFile = fs.readFileSync(path.join(__dirname, '../../../_vendors.yml'));
 const dependencies = yaml.load(vendorsFile);
@@ -18,6 +18,12 @@ module.exports = hexo => {
   const { vendors, creative_commons, pace } = hexo.theme.config;
   if (typeof internal === 'function') {
     internal(hexo, dependencies);
+  }
+  let { plugins = 'cdnjs' } = vendors;
+  if (plugins === 'local' && typeof internal === 'undefined') {
+    hexo.log.warn('Dependencies for `plugins: local` not found. The default CDN provider CDNJS is used instead.');
+    hexo.log.warn('Run `npm install @next-theme/plugins` in Hexo site root directory to install the plugin.');
+    plugins = 'cdnjs';
   }
   for (const [key, value] of Object.entries(dependencies)) {
     // This script will be executed repeatedly when Hexo listens file changes
@@ -41,12 +47,6 @@ module.exports = hexo => {
       local   : url_for.call(hexo, `lib/${name}/${file}`),
       custom  : vendors.custom_cdn_url
     });
-    let { plugins = 'cdnjs' } = vendors;
-    if (plugins === 'local' && typeof internal === 'undefined') {
-      hexo.log.warn('Dependencies for `plugins: local` not found. The default CDN provider CDNJS is used instead.');
-      hexo.log.warn('Run `npm install @next-theme/plugins` in Hexo site root directory to install the plugin.');
-      plugins = 'cdnjs';
-    }
     vendors[key] = {
       url      : links[plugins] || links.cdnjs,
       integrity: value.integrity

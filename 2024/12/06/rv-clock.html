@@ -271,7 +271,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-12-06 17:00:00 / 修改时间：16:51:36" itemprop="dateCreated datePublished" datetime="2024-12-06T17:00:00+08:00">2024-12-06</time>
+      <time title="创建时间：2024-12-06 17:00:00 / 修改时间：22:20:24" itemprop="dateCreated datePublished" datetime="2024-12-06T17:00:00+08:00">2024-12-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -330,7 +330,7 @@ GHz）中，而我之前强调是在小核（800 MHz），想让我看一看。<
 获取当前时间，然后中间运行一定数量级的指令来减小测量误差：</p>
 <figure class="highlight wren"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define NUM_INSTRUCTIONS (1000000000)</span></span><br><span class="line"></span><br><span class="line">asm <span class="title function_">volatile</span> (</span><br><span class="line">    <span class="string">&quot;1:<span class="char escape_">\n</span>&quot;</span></span><br><span class="line">    <span class="string">&quot;   nop<span class="char escape_">\n</span>&quot;</span></span><br><span class="line">    <span class="string">&quot;   addi %[counter], %[counter], -1<span class="char escape_">\n</span>&quot;</span></span><br><span class="line">    <span class="string">&quot;   bnez %[counter], 1b<span class="char escape_">\n</span>&quot;</span> </span><br><span class="line">    : </span><br><span class="line">    : [<span class="variable">counter</span>] <span class="string">&quot;r&quot;</span>(<span class="variable">NUM_INSTRUCTIONS</span>)  </span><br><span class="line">    : <span class="string">&quot;memory&quot;</span>  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>代码的含义是从 1e9 开始，先执行一个 <code>nop</code> 指令（实际上为
-<code>addi x0, 0</code>)，然后将计数器自减，最后判断计数器是否为零。</p>
+<code>addi x0, x0, 0</code>)，然后将计数器自减，最后判断计数器是否为零。</p>
 <p>我们简单计算一下指令条数，<code>addi</code> 与 <code>bnez</code>
 都是一个时钟周期。当然，考虑到现代 CPU
 会执行分支预测与乱序执行，<code>bnez</code>

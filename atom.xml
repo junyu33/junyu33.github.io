@@ -59,6 +59,36 @@
   </entry>
   
   <entry>
+    <title>四九——ChatGPT 三探</title>
+    <link href="https://blog.junyu33.me/2024/12/07/chatgpt3.html"/>
+    <id>https://blog.junyu33.me/2024/12/07/chatgpt3.html</id>
+    <published>2024-12-06T18:00:00.000Z</published>
+    <updated>2024-12-06T18:13:45.855Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们恭喜，chatgpt o1 正式版，终于迈出了历史性的一步。&lt;/p&gt;
+&lt;p&gt;算对了 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msqrt&gt;&lt;mrow&gt;&lt;mi&gt;tan&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;/msqrt&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;&#92;sqrt{&#92;tan x}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:1.04em;vertical-align:-0.14746000000000004em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord sqrt&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.89254em;&quot;&gt;&lt;span class=&quot;svg-align&quot; style=&quot;top:-3em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot; style=&quot;padding-left:0.833em;&quot;&gt;&lt;span class=&quot;mop&quot;&gt;tan&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.16666666666666666em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;x&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-2.85254em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hide-tail&quot; style=&quot;min-width:0.853em;height:1.08em;&quot;&gt;&lt;svg width=&quot;400em&quot; height=&quot;1.08em&quot; viewbox=&quot;0 0 400000 1080&quot; preserveaspectratio=&quot;xMinYMin slice&quot;&gt;&lt;path d=&quot;M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.14746000000000004em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 的不定积分，and more。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>如何手动测量 Risc-V 处理器的 CPU 频率</title>
     <link href="https://blog.junyu33.me/2024/12/06/rv-clock.html"/>
     <id>https://blog.junyu33.me/2024/12/06/rv-clock.html</id>
@@ -436,25 +466,6 @@ timeshift 的。&lt;/p&gt;
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
       <category term="windows" scheme="https://blog.junyu33.me/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三七——当词汇量20000的人在国内裸考雅思</title>
-    <link href="https://blog.junyu33.me/2024/02/23/ielts.html"/>
-    <id>https://blog.junyu33.me/2024/02/23/ielts.html</id>
-    <published>2024-02-22T16:00:00.000Z</published>
-    <updated>2024-02-22T16:04:33.103Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最后总分7分，听8.0，读7.5，写6.5，说6.0。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2024/02/23/ielts/result.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   

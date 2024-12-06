@@ -59,6 +59,28 @@
   </entry>
   
   <entry>
+    <title>如何手动测量 Risc-V 处理器的 CPU 频率</title>
+    <link href="https://blog.junyu33.me/2024/12/06/rv-clock.html"/>
+    <id>https://blog.junyu33.me/2024/12/06/rv-clock.html</id>
+    <published>2024-12-06T09:00:00.000Z</published>
+    <updated>2024-12-06T08:51:36.191Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前长文章写起来有些累，现在写一篇短的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
+    
+  </entry>
+  
+  <entry>
     <title>The Missing Lecture of Your Cryptography</title>
     <link href="https://blog.junyu33.me/2024/11/15/danboneh.html"/>
     <id>https://blog.junyu33.me/2024/11/15/danboneh.html</id>
@@ -428,26 +450,6 @@ timeshift 的。&lt;/p&gt;
     
       &lt;p&gt;最后总分7分，听8.0，读7.5，写6.5，说6.0。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/2024/02/23/ielts/result.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Thirty-six——my summary of year 2023</title>
-    <link href="https://blog.junyu33.me/2023/12/31/bye2023.html"/>
-    <id>https://blog.junyu33.me/2023/12/31/bye2023.html</id>
-    <published>2023-12-31T15:30:00.000Z</published>
-    <updated>2023-12-31T16:16:48.110Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;I find that I&#39;ve nearly forgot to write this summary. So, in
-accordance with IELTS writing requirements, I&#39;ll try to write this in 40
-minutes.&lt;/p&gt;
     
     </summary>
     

@@ -1,7 +1,6 @@
 .DS_Store
 Thumbs.db
 *.log
-db.json
 node_modules/
 public/
 .deploy*/

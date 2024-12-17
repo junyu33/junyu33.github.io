@@ -335,6 +335,9 @@ mjx-container[display="true"] + br {
             <li class="links-of-blogroll-item">
               <a href="https://whilebug.github.io/" title="https:&#x2F;&#x2F;whilebug.github.io&#x2F;" rel="noopener" target="_blank">WhileBug</a>
             </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.kika233.tech/" title="https:&#x2F;&#x2F;www.kika233.tech" rel="noopener" target="_blank">kika</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -382,9 +385,15 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-12-13 21:00:00 / 修改时间：23:46:46" itemprop="dateCreated datePublished" datetime="2024-12-13T21:00:00+08:00">2024-12-13</time>
+      <time title="创建时间：2024-12-13 21:00:00" itemprop="dateCreated datePublished" datetime="2024-12-13T21:00:00+08:00">2024-12-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-14 18:40:08" itemprop="dateModified" datetime="2024-12-14T18:40:08+08:00">2024-12-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -410,7 +419,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.7k</span>
+      <span>5.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -498,7 +507,7 @@ sqrt 型甚至 log 型好很多。</p>
 <p>通过图片观察和残差计算，结论是指数分布稍微要准确一点。</p>
 <h2 id="文章标签分布统计">文章标签分布统计</h2>
 <p>虽然博客页面已经展示了所有标签，并用大小直观展示了其出现的频率，但我更加关心每一年出现的标签频率变化。</p>
-<p>首先还是通过正则表达式搜索标签和日期，前者可以用，后者前文已经提到，结果如下：</p>
+<p>首先还是通过正则表达式搜索标签和日期，结果如下：</p>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Tags:</span> ['mma'], Date: 2021<span class="string">-8</span><span class="string">-2</span> 18:20:00</span><br><span class="line"><span class="keyword">Tags:</span> ['encrypted'], Date: 2024<span class="string">-7</span><span class="string">-6</span> 21:45:00</span><br><span class="line"><span class="keyword">Tags:</span> ['touhou', 'repost'], Date: 2023<span class="string">-3</span><span class="string">-14</span> 10:00:00</span><br><span class="line"><span class="keyword">Tags:</span> ['touhou', 'javascript', 'linux', 'games'], Date: 2024<span class="string">-8</span><span class="string">-7</span> 00:00:00</span><br><span class="line"><span class="keyword">Tags:</span> ['linux'], Date: 2023<span class="string">-8</span><span class="string">-5</span> 15:15:00</span><br><span class="line">......</span><br><span class="line"><span class="keyword">Tags:</span> ['repost'], Date: 2022<span class="string">-10</span><span class="string">-17</span> 13:00:00</span><br><span class="line"><span class="keyword">Tags:</span> ['repost'], Date: 2021<span class="string">-7</span><span class="string">-11</span> 22:50:00</span><br><span class="line"><span class="keyword">Tags:</span> ['encrypted'], Date: 2021<span class="string">-7</span><span class="string">-6</span> 21:50:00</span><br></pre></td></tr></table></figure>
 <p>一共 68 行，也就是差不多 2/3 的博客是带了标签的，符合我的预期。</p>
 <p>首先给出总排名：</p>

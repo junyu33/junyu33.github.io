@@ -380,7 +380,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-12-24 21:30:00 / 修改时间：21:14:07" itemprop="dateCreated datePublished" datetime="2024-12-24T21:30:00+08:00">2024-12-24</time>
+      <time title="创建时间：2024-12-24 21:30:00 / 修改时间：21:24:29" itemprop="dateCreated datePublished" datetime="2024-12-24T21:30:00+08:00">2024-12-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -425,7 +425,7 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
         <p>临近年底了，我突然想起 2024 年，其实也是 2048
-这个红极一时的游戏发售的十周年了。</p>
+这个红极一时的游戏上线的十周年了。</p>
 <p>但可能鲜有人知道，2048 这个游戏，实际上是真正烧脑游戏 Threes! 的
 copycat。</p>
 <span id="more"></span>
@@ -478,10 +478,7 @@ Threes 一次滑动最多只能滑动一格。</li>
 </ol>
 <p>就是因为这三点规则的不同（尤其是第三点），导致这两个游戏难度的显著差别。我每开一局
 2048，基本上可以保证 10 分钟内通关，并且成功率在 90% 以上。</p>
-<figure>
-<img src="/2024/12/24/threes/image.png" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/image.png"></p>
 <blockquote>
 <p>于是我刚刚又开了一局，打开这个网页是下午 3 点 21
 分，截屏完看了一眼时间是 3 点 30 分。</p>
@@ -489,10 +486,7 @@ Threes 一次滑动最多只能滑动一格。</li>
 <p>但是 Threes! 呢？我们来看这个刚打出 6144
 的玩家的分数分布。可以发现，即使已经打出 6144
 的高阶玩家，TA的平均成绩依旧在 384 到 768 之间。</p>
-<figure>
-<img src="/2024/12/24/threes/3.png" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/3.png" width="50%"></p>
 <blockquote>
 <p>来源知乎，用户名“梦说东西”，时间 2024 年 6 月 25 日</p>
 <p>https://www.zhihu.com/question/22722456/answer/106174512</p>
@@ -516,18 +510,12 @@ Threes 一次滑动最多只能滑动一格。</li>
 <p>第一点很容易理解，这就是 S
 形排列的另一种表述形式，这里不过多解释。</p>
 <p>第二点的话这里简单画一个图加以解释：</p>
-<figure>
-<img src="/2024/12/24/threes/image-1.png" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/image-1.png" width="50%"></p>
 <p>显然，此时无论你朝右移动还是朝上移动，1024
 都会脱离原先的角位，从而违反策略的第一点。玩过 2048
 的人都知道，一旦高分块脱离了角部，你就很难将其复原到原来的角部，从而导致游戏失败的风险增加。为了避免这一现象发生，在刚刚合成了一个新的高块后，需要立即使用2，4等低块来固定最下面一排的的相对位置，这就是所谓的“卡位”。</p>
 <p>第三点的话通常是游戏局势变坏（2x4）或者结束的前兆（3x4），形如下图：</p>
-<figure>
-<img src="/2024/12/24/threes/image-2.png" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/image-2.png" width="50%"></p>
 <p>这个时候你不得不向上，从而打破之前组成的 S
 形排列，不仅如此，如果之后的处理不当，很有可能导致游戏结束。因此要极力避免这种情况的发生。</p>
 <p>但其实 2048 的难点就这些，只要多加训练，通关其实并不困难。</p>
@@ -541,10 +529,7 @@ Threes 一次滑动最多只能滑动一格。</li>
 <p>对于第一点，部分熟悉 2048 的读者可能会感到惊讶——难道传说中的 S
 形战术不管用了？我个人认为是这样的，甚至更为激进的玩家还提出了所谓的“靠边策略”以提升灵活性（见
 [6]）。而我会选择介于这两者之间的策略——高分块尽量靠在角落，但也保证一定程度的灵活，例如下图：</p>
-<figure>
-<img src="/2024/12/24/threes/Screenshot_20241224_162610.jpg" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/Screenshot_20241224_162610.jpg" width="50%"></p>
 <p>也就是类似于将高分块组成一个三角形的样子，为什么会这样呢？主要是因为
 Threes! 与 2048 的第二点和第三点区别导致的。</p>
 <ul>
@@ -552,10 +537,7 @@ Threes! 与 2048 的第二点和第三点区别导致的。</p>
 1/8
 的较高块，你通常很难将这个块移动到第二排与第一排对应的块合并（例如下图）。而组成类似于三角形的高分块排列方式，就会好处理很多。</li>
 </ul>
-<figure>
-<img src="/2024/12/24/threes/image-3.png" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/image-3.png" width="50%"></p>
 <blockquote>
 <p>是不是看到头皮就开始发麻，感觉这一局又要行将就木了？</p>
 </blockquote>
@@ -580,26 +562,17 @@ volatile（容易在一次不相关的移动后，消除链不复存在，例如
 post 写完了就去体验一下）。</p>
 <p>如果你仔细观察了 Threes!
 图片中的方块，你会发现每一个方块都对应了不同的角色，你还可以在第一次解锁该方块的时候，或者在主菜单查看这些角色对应的简介，例如：</p>
-<figure>
-<img src="/2024/12/24/threes/Screenshot_20241224_204122.jpg" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/Screenshot_20241224_204122.jpg" width="50%"></p>
 <p>游戏的彩蛋有以下几点：</p>
 <ol type="1">
 <li>当你解锁 6144 方块时，可以在主界面偶尔看到 12288
 方块的影子，例如：</li>
 </ol>
-<figure>
-<img src="/2024/12/24/threes/Screenshot_20241224_204022.jpg" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/Screenshot_20241224_204022.jpg" width="50%"></p>
 <ol start="2" type="1">
 <li>在游戏的“特别感谢”界面往右翻，可以看到这12个角色的抽象画：</li>
 </ol>
-<figure>
-<img src="/2024/12/24/threes/Screenshot_20241224_204713.jpg" alt="alt text">
-<figcaption aria-hidden="true">alt text</figcaption>
-</figure>
+<p><img src="/2024/12/24/threes/Screenshot_20241224_204713.jpg" width="50%"></p>
 <ol start="3" type="1">
 <li>当你真正通关这个游戏（合成到 12288
 后），会有一段彩蛋视频，并显示你游玩的总时间。视频具体长什么样，这里我就不剧透了哈。你可以通过老实游玩，查看别人的通关视频或者<del>修改内存</del>达成这一目的。</li>

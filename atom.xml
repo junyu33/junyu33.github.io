@@ -59,6 +59,29 @@
   </entry>
   
   <entry>
+    <title>五十——都知道 2048，那 Threes! 呢？</title>
+    <link href="https://blog.junyu33.me/2024/12/24/threes.html"/>
+    <id>https://blog.junyu33.me/2024/12/24/threes.html</id>
+    <published>2024-12-24T13:30:00.000Z</published>
+    <updated>2024-12-24T13:14:07.929Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;临近年底了，我突然想起 2024 年，其实也是 2048
+这个红极一时的游戏发售的十周年了。&lt;/p&gt;
+&lt;p&gt;但可能鲜有人知道，2048 这个游戏，实际上是真正烧脑游戏 Threes! 的
+copycat。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
+    
+  </entry>
+  
+  <entry>
     <title>第一百篇博客</title>
     <link href="https://blog.junyu33.me/2024/12/13/%E7%AC%AC%E4%B8%80%E7%99%BE%E7%AF%87%E5%8D%9A%E5%AE%A2.html"/>
     <id>https://blog.junyu33.me/2024/12/13/第一百篇博客.html</id>
@@ -437,26 +460,6 @@ timeshift 的。&lt;/p&gt;
       <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
     
       <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从二选一OT到GMW协议的python实现</title>
-    <link href="https://blog.junyu33.me/2024/03/16/gmw.html"/>
-    <id>https://blog.junyu33.me/2024/03/16/gmw.html</id>
-    <published>2024-03-16T03:00:00.000Z</published>
-    <updated>2024-03-19T06:56:22.605Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;https://github.com/junyu33/GMW-python&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
     
   </entry>
   

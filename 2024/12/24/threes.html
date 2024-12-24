@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content=""><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://blog.junyu33.me/2024/12/24/threes.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.junyu33.me/2024/12/24/threes.html","path":"2024/12/24/threes.html","title":"五十——都知道 2048，那 Threes! 呢？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>五十——都知道 2048，那 Threes! 呢？ | 现充|junyu33</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">现充|junyu33</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/CodeByZach/pace@1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2"><span class="nav-number">1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E5%88%99%E4%B8%8E%E9%9A%BE%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">规则与难度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E7%AD%96%E7%95%A5"><span class="nav-number">3.</span> <span class="nav-text">游戏策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#section"><span class="nav-number">3.1.</span> <span class="nav-text">2048</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#threes"><span class="nav-number">3.2.</span> <span class="nav-text">Threes!</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%8E%E6%9C%AF%E9%9F%B3%E4%B9%90%E4%B8%8E%E5%BD%A9%E8%9B%8B"><span class="nav-number">4.</span> <span class="nav-text">美术、音乐与彩蛋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E6%83%B3"><span class="nav-number">5.</span> <span class="nav-text">感想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helloworld@junyu33.me" title="E-Mail → mailto:helloworld@junyu33.me" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://land.hash.memorial/" title="https:&#x2F;&#x2F;land.hash.memorial&#x2F;" rel="noopener" target="_blank">hash</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://mivik.moe/" title="https:&#x2F;&#x2F;mivik.moe&#x2F;" rel="noopener" target="_blank">Mivik</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sjfh.top/" title="https:&#x2F;&#x2F;sjfh.top&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jackfromeast.site/" title="https:&#x2F;&#x2F;jackfromeast.site&#x2F;" rel="noopener" target="_blank">jackfromeast</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://nova.gal/" title="https:&#x2F;&#x2F;nova.gal" rel="noopener" target="_blank">Muel_Nova</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://marvoalou.github.io/" title="https:&#x2F;&#x2F;marvoalou.github.io" rel="noopener" target="_blank">zxman</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://whilebug.github.io/" title="https:&#x2F;&#x2F;whilebug.github.io&#x2F;" rel="noopener" target="_blank">WhileBug</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.kika233.tech/" title="https:&#x2F;&#x2F;www.kika233.tech" rel="noopener" target="_blank">kika</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junyu33.me/2024/12/24/threes.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="五十——都知道 2048，那 Threes! 呢？ | 现充|junyu33">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          五十——都知道 2048，那 Threes! 呢？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-12-24 21:30:00 / 修改时间：21:14:07" itemprop="dateCreated datePublished" datetime="2024-12-24T21:30:00+08:00">2024-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>临近年底了，我突然想起 2024 年，其实也是 2048
+这个红极一时的游戏发售的十周年了。</p>
+<p>但可能鲜有人知道，2048 这个游戏，实际上是真正烧脑游戏 Threes! 的
+copycat。</p>
+<span id="more"></span>
+<h2 id="历史">历史</h2>
+<p>在具体介绍 Threes!
+（中译名《小三传奇》）这个游戏的具体玩法之前，我们先回顾一下 2048
+是如何成为真正的“小三”，抢了 Threes! 的风头，赢得众人青睐的。</p>
+<p>首先原配 Threes! 的 idea 从 2013
+年就开始有所构思。虽然原型只花了一晚上就构思完成，但随后开发者 Asher
+Vollmer 和 Greg Wohlwend 却花了半年时间逐渐迭代他们的想法。在经过 14
+个月的开发周期后，Threes! 最终于 2014 年 2 月 6 日在 iOS 首发，售价 1.99
+刀（现因为通货膨胀涨价至 5.99 刀）。</p>
+<blockquote>
+<p>虽然当时个人并没有支付能力，但我有一台已经 jailbreak 的 iPad
+2，因此可以白嫖到这个游戏（之后我在 Google Play
+上面通过淘宝礼品卡入正了，算是给这两位开发者贡献了一杯咖啡吧）。</p>
+</blockquote>
+<p>但好景不长，因为游戏逻辑十分简单，导致仿制的成本也较为低廉，在当年的
+2 月 19 日，一位开发者成功将 Threes!
+移植到了浏览器[2]，从而使得玩家不必支付 1.99
+刀也可以享受这两位开发者的创意。</p>
+<p>随后，在 2 月 27 日，开发者 Xun Yang 在 App Store 上架
+1024!，其宣传标语为"No need to pay for
+Threes"，随后该版本也被移植于浏览器。</p>
+<p>2014 年 3 月 9 日，开发者 Gabriele Cirulli 开发了网页版游戏 2048
+[3]，并在 GitHub 上开放了源码，协议为 MIT[4]。然后，你们都知道，2048
+就火了。Threes 的开发团队对 2048
+的流行“感到疑惑”，因为这些开发者并没有声明 Threes! 的 idea
+就为己所用，他们尝试批评 2048 的游戏设计，并写了一篇四万五千字的 post
+来阐述他们 14 个月的开发过程。甚至，Vollmer 还尝试过想要移除在 App Store
+的这些 clone，但最后并没有成功。</p>
+<p>当然，原配 Threes! 最后还是获得了属于她的名誉，包括但不限于 [5]：</p>
+<ul>
+<li>Apple Game of the Year 2014!!</li>
+<li>Apple Design Award 2014 Winner</li>
+<li>The top 10 games of the generation (Eurogamer)</li>
+<li>The 30 best games of the decade (Tom's guide)</li>
+</ul>
+<h2 id="规则与难度">规则与难度</h2>
+<p>这里我从 2048 为角度，来介绍 Threes! 的规则与 2048
+的不同点——其实最为核心的区别只有三条：</p>
+<ol type="1">
+<li>2048 的算术规则为 2 + 2 = 4，4 + 4 = 8，以此类推；而 Threes! 却是 1
++ 2 = 3（或者 2 + 1 = 3），3 + 3 = 6，6 + 6 = 12，以此类推。</li>
+<li>2048
+的一次滑动，方块要么碰到另一个无法合并的方块，要么碰到墙，否则它会一直朝那个方向滑动；而
+Threes 一次滑动最多只能滑动一格。</li>
+<li>2048 的新生成块只会是 2 或者 4；而 Threes 的新生成块从 1 到 最大块的
+1/8 都有可能，并会在屏幕上方给出下一张块的提示。</li>
+</ol>
+<p>就是因为这三点规则的不同（尤其是第三点），导致这两个游戏难度的显著差别。我每开一局
+2048，基本上可以保证 10 分钟内通关，并且成功率在 90% 以上。</p>
+<figure>
+<img src="/2024/12/24/threes/image.png" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<blockquote>
+<p>于是我刚刚又开了一局，打开这个网页是下午 3 点 21
+分，截屏完看了一眼时间是 3 点 30 分。</p>
+</blockquote>
+<p>但是 Threes! 呢？我们来看这个刚打出 6144
+的玩家的分数分布。可以发现，即使已经打出 6144
+的高阶玩家，TA的平均成绩依旧在 384 到 768 之间。</p>
+<figure>
+<img src="/2024/12/24/threes/3.png" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<blockquote>
+<p>来源知乎，用户名“梦说东西”，时间 2024 年 6 月 25 日</p>
+<p>https://www.zhihu.com/question/22722456/answer/106174512</p>
+</blockquote>
+<p>我本人的话在这 10 年间开了大概几百局，拿到过两次
+6144，刚才也开了一局成绩是
+1536，算是我近期的平均发挥。而稍微了解一点规则后，我们便可以将 2048
+通关与 Threes! 的 1536 对应起来。</p>
+<p>显然，成功率 90%
+以上的难度肯定是比“平均发挥”要低很多的，因此我们可以得知 Threes!
+的难度要显著高于 2048。</p>
+<h2 id="游戏策略">游戏策略</h2>
+<h3 id="section">2048</h3>
+<p>这里还是先说 2048，我认为，2048 的唯一诀窍就是将高分块从大到小沿着 S
+形排列。为了做到这一点，我们有以下几种措施：</p>
+<ol type="1">
+<li>高分聚集在角落。</li>
+<li>最后一排注意卡位。</li>
+<li>避免构成 2x4 或者 3x4 的形状。</li>
+</ol>
+<p>第一点很容易理解，这就是 S
+形排列的另一种表述形式，这里不过多解释。</p>
+<p>第二点的话这里简单画一个图加以解释：</p>
+<figure>
+<img src="/2024/12/24/threes/image-1.png" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<p>显然，此时无论你朝右移动还是朝上移动，1024
+都会脱离原先的角位，从而违反策略的第一点。玩过 2048
+的人都知道，一旦高分块脱离了角部，你就很难将其复原到原来的角部，从而导致游戏失败的风险增加。为了避免这一现象发生，在刚刚合成了一个新的高块后，需要立即使用2，4等低块来固定最下面一排的的相对位置，这就是所谓的“卡位”。</p>
+<p>第三点的话通常是游戏局势变坏（2x4）或者结束的前兆（3x4），形如下图：</p>
+<figure>
+<img src="/2024/12/24/threes/image-2.png" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<p>这个时候你不得不向上，从而打破之前组成的 S
+形排列，不仅如此，如果之后的处理不当，很有可能导致游戏结束。因此要极力避免这种情况的发生。</p>
+<p>但其实 2048 的难点就这些，只要多加训练，通关其实并不困难。</p>
+<h3 id="threes">Threes!</h3>
+<p>现在来说说 Threes!
+了，这就是另外一番风景了。需要注意的地方有以下两点：</p>
+<ol type="1">
+<li>S 形策略并不是最优的，但高分块仍然需要向角部集中。</li>
+<li>处理好1块2块的合并与其他块合并的 tradeoff。</li>
+</ol>
+<p>对于第一点，部分熟悉 2048 的读者可能会感到惊讶——难道传说中的 S
+形战术不管用了？我个人认为是这样的，甚至更为激进的玩家还提出了所谓的“靠边策略”以提升灵活性（见
+[6]）。而我会选择介于这两者之间的策略——高分块尽量靠在角落，但也保证一定程度的灵活，例如下图：</p>
+<figure>
+<img src="/2024/12/24/threes/Screenshot_20241224_162610.jpg" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<p>也就是类似于将高分块组成一个三角形的样子，为什么会这样呢？主要是因为
+Threes! 与 2048 的第二点和第三点区别导致的。</p>
+<ul>
+<li>最明显的，S形策略不太好处理随机产生的高分块。因为如果你采用S形策略，第一排与第二排通常较为固定，如果这个时候出现一个值为最高块
+1/8
+的较高块，你通常很难将这个块移动到第二排与第一排对应的块合并（例如下图）。而组成类似于三角形的高分块排列方式，就会好处理很多。</li>
+</ul>
+<figure>
+<img src="/2024/12/24/threes/image-3.png" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<blockquote>
+<p>是不是看到头皮就开始发麻，感觉这一局又要行将就木了？</p>
+</blockquote>
+<ul>
+<li>其次，还有一个不成文的规则也使得三角形策略优于 S
+形策略——新的方块一定出现于滑动方向的对侧空闲的空格之一（例如你如果向左滑动，新的方块一定会出现在右侧空出的位置中）。这样的话，如果你认为足够大的方块即将出现，可以很快的将这个方块“融入”于之前的三角形阵中，而不会出现
+S 形策略的尴尬情况，从而提高了这种情况的存活几率。</li>
+</ul>
+<p>对于第二点，我没有什么太多的可以用文字表述的经验，但个人的感觉是优先处理
+1 与 2
+的合成，这样有助于避免"相互错开"的局面（即较大的方块被分数较低的块所隔开，这种现象通常是被
+1 和 2 隔开居多）。但有一种情况例外，就是 3
+以上的消除链比较长（例如涉及到 4 个即以上元素，例如
+3-&gt;3-&gt;6-&gt;12）且
+volatile（容易在一次不相关的移动后，消除链不复存在，例如
+3-&gt;3-&gt;6-&gt;12 变为
+3-&gt;1-&gt;6-&gt;12）。具体的细节处理方面，只能通过一定数量的练习达成所谓的“感觉”，从而帮助你的判断。</p>
+<h2 id="美术音乐与彩蛋">美术、音乐与彩蛋</h2>
+<p>作为一个耗时 14 个月制作的游戏，Threes!
+自然是在游戏之外也下了不少功夫，例如游戏自带日间和夜间模式（那可是 2014
+年啊），配乐也是百听不厌，甚至在今年还添加了夜间模式的配乐（我写作的时候才知道这个消息，马上把这篇
+post 写完了就去体验一下）。</p>
+<p>如果你仔细观察了 Threes!
+图片中的方块，你会发现每一个方块都对应了不同的角色，你还可以在第一次解锁该方块的时候，或者在主菜单查看这些角色对应的简介，例如：</p>
+<figure>
+<img src="/2024/12/24/threes/Screenshot_20241224_204122.jpg" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<p>游戏的彩蛋有以下几点：</p>
+<ol type="1">
+<li>当你解锁 6144 方块时，可以在主界面偶尔看到 12288
+方块的影子，例如：</li>
+</ol>
+<figure>
+<img src="/2024/12/24/threes/Screenshot_20241224_204022.jpg" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<ol start="2" type="1">
+<li>在游戏的“特别感谢”界面往右翻，可以看到这12个角色的抽象画：</li>
+</ol>
+<figure>
+<img src="/2024/12/24/threes/Screenshot_20241224_204713.jpg" alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<ol start="3" type="1">
+<li>当你真正通关这个游戏（合成到 12288
+后），会有一段彩蛋视频，并显示你游玩的总时间。视频具体长什么样，这里我就不剧透了哈。你可以通过老实游玩，查看别人的通关视频或者<del>修改内存</del>达成这一目的。</li>
+</ol>
+<h2 id="感想">感想</h2>
+<p>就如 Threes! 作者本身所说："Threes grows with you and you’ll grow
+with Threes"，我觉得这个游戏算是很好地做到了这一点，感谢 Threes!
+这款游戏给我的童年以及青春时光增添了一些颜色，我以后如果有空，还是会努力朝着
+12288 这个目标而继续努力的。</p>
+<p>与此同时，我也对这种 idea
+遭到借鉴而被抢了风头这种现象感到惋惜而又无能为力——这也是我编写这篇 post
+的另一个原因。十年之后的今天，这样的现象依旧存在，并且在可预见的未来会继续存在。但尽管如此，仍然需要一些文字来提醒人们，她在这个世界上至少存在过。</p>
+<p>能够耐心读到这里的你，或许也应该知道，我的心意了吧。</p>
+<p>——Merry Christmas</p>
+<h2 id="参考资料">参考资料</h2>
+<ol type="1">
+<li>https://en.wikipedia.org/wiki/Threes</li>
+<li>https://gamezone.com/news/you-can-now-play-threes-from-your-pc-browser/</li>
+<li>https://en.wikipedia.org/wiki/2048_(video_game)</li>
+<li>https://github.com/gabrielecirulli/2048</li>
+<li>https://apps.apple.com/us/app/threes/id779157948</li>
+<li>https://bk.sspai.com/post/24729</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.junyu33.me/2024/12/24/threes.html" title="五十——都知道 2048，那 Threes! 呢？">https://blog.junyu33.me/2024/12/24/threes.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/games/" rel="tag"># games</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/12/13/%E7%AC%AC%E4%B8%80%E7%99%BE%E7%AF%87%E5%8D%9A%E5%AE%A2.html" rel="prev" title="第一百篇博客">
+                  <i class="fa fa-chevron-left"></i> 第一百篇博客
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2033/05/13/nju_pa.html" rel="next" title="（置顶，已完结）nju-pa 心得">
+                  （置顶，已完结）nju-pa 心得 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">762k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">11:33</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-new.vercel.app/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

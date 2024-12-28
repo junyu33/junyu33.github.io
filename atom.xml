@@ -59,6 +59,26 @@
   </entry>
   
   <entry>
+    <title>（转载）五一——跳房子</title>
+    <link href="https://blog.junyu33.me/2024/12/28/%E8%B7%B3%E6%88%BF%E5%AD%90.html"/>
+    <id>https://blog.junyu33.me/2024/12/28/跳房子.html</id>
+    <published>2024-12-28T11:00:00.000Z</published>
+    <updated>2024-12-28T11:01:55.877Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;选自《儿童文学》第 599 期（2014 年 3 月号）。&lt;/p&gt;
+&lt;p&gt;上一次读这篇文章是十年前，现在又找到了。&lt;/p&gt;
+&lt;p&gt;不要问我是怎么找到的，因为互联网是没有记忆的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>五十——都知道 2048，那 Threes! 呢？</title>
     <link href="https://blog.junyu33.me/2024/12/24/threes.html"/>
     <id>https://blog.junyu33.me/2024/12/24/threes.html</id>
@@ -434,32 +454,6 @@ timeshift 的。&lt;/p&gt;
     
     
       <category term="verilog" scheme="https://blog.junyu33.me/tags/verilog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>multimod_fast 真的是对的吗？</title>
-    <link href="https://blog.junyu33.me/2024/03/20/multimod.html"/>
-    <id>https://blog.junyu33.me/2024/03/20/multimod.html</id>
-    <published>2024-03-20T05:30:00.000Z</published>
-    <updated>2024-08-19T02:06:41.927Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;事情要从这段代码说起：&lt;/p&gt;
-&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// gcc test.c -o test -fwrapv&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;int64_t&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;multimod_fast&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int64_t&lt;/span&gt; a, &lt;span class=&quot;type&quot;&gt;int64_t&lt;/span&gt; b, &lt;span class=&quot;type&quot;&gt;int64_t&lt;/span&gt; m)&lt;/span&gt; {&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;int64_t&lt;/span&gt; t = (a * b - (&lt;span class=&quot;type&quot;&gt;int64_t&lt;/span&gt;)((&lt;span class=&quot;type&quot;&gt;double&lt;/span&gt;)a * b / m) * m) % m;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; t &amp;lt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; ? t + m : t;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;昨天晚上，有人给我发了这段据说可以替代快速乘的代码，让我解释这段代码的正确性。这段代码可以把时间复杂度从&lt;span class=&quot;math inline&quot;&gt;&lt;mjx-container class=&quot;MathJax&quot; jax=&quot;SVG&quot;&gt;&lt;svg style=&quot;vertical-align: -0.566ex;&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;9.495ex&quot; height=&quot;2.262ex&quot; role=&quot;img&quot; focusable=&quot;false&quot; viewbox=&quot;0 -750 4197 1000&quot;&gt;&lt;g stroke=&quot;currentColor&quot; fill=&quot;currentColor&quot; stroke-width=&quot;0&quot; transform=&quot;scale(1,-1)&quot;&gt;&lt;g data-mml-node=&quot;math&quot;&gt;&lt;g data-mml-node=&quot;mi&quot;&gt;&lt;path data-c=&quot;1D442&quot; d=&quot;M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(763,0)&quot;&gt;&lt;path data-c=&quot;28&quot; d=&quot;M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(1152,0)&quot;&gt;&lt;path data-c=&quot;6C&quot; d=&quot;M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z&quot;/&gt;&lt;path data-c=&quot;6F&quot; d=&quot;M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z&quot; transform=&quot;translate(278,0)&quot;/&gt;&lt;path data-c=&quot;67&quot; d=&quot;M329 409Q373 453 429 453Q459 453 472 434T485 396Q485 382 476 371T449 360Q416 360 412 390Q410 404 415 411Q415 412 416 414V415Q388 412 363 393Q355 388 355 386Q355 385 359 381T368 369T379 351T388 325T392 292Q392 230 343 187T222 143Q172 143 123 171Q112 153 112 133Q112 98 138 81Q147 75 155 75T227 73Q311 72 335 67Q396 58 431 26Q470 -13 470 -72Q470 -139 392 -175Q332 -206 250 -206Q167 -206 107 -175Q29 -140 29 -75Q29 -39 50 -15T92 18L103 24Q67 55 67 108Q67 155 96 193Q52 237 52 292Q52 355 102 398T223 442Q274 442 318 416L329 409ZM299 343Q294 371 273 387T221 404Q192 404 171 388T145 343Q142 326 142 292Q142 248 149 227T179 192Q196 182 222 182Q244 182 260 189T283 207T294 227T299 242Q302 258 302 292T299 343ZM403 -75Q403 -50 389 -34T348 -11T299 -2T245 0H218Q151 0 138 -6Q118 -15 107 -34T95 -74Q95 -84 101 -97T122 -127T170 -155T250 -167Q319 -167 361 -139T403 -75Z&quot; transform=&quot;translate(778,0)&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(2430,0)&quot;&gt;&lt;path data-c=&quot;2061&quot; d=&quot;&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(2430,0)&quot;&gt;&lt;path data-c=&quot;28&quot; d=&quot;M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(2819,0)&quot;&gt;&lt;path data-c=&quot;1D45B&quot; d=&quot;M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(3419,0)&quot;&gt;&lt;path data-c=&quot;29&quot; d=&quot;M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(3808,0)&quot;&gt;&lt;path data-c=&quot;29&quot; d=&quot;M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/mjx-container&gt;&lt;/span&gt;降到&lt;span class=&quot;math inline&quot;&gt;&lt;mjx-container class=&quot;MathJax&quot; jax=&quot;SVG&quot;&gt;&lt;svg style=&quot;vertical-align: -0.566ex;&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;4.618ex&quot; height=&quot;2.262ex&quot; role=&quot;img&quot; focusable=&quot;false&quot; viewbox=&quot;0 -750 2041 1000&quot;&gt;&lt;g stroke=&quot;currentColor&quot; fill=&quot;currentColor&quot; stroke-width=&quot;0&quot; transform=&quot;scale(1,-1)&quot;&gt;&lt;g data-mml-node=&quot;math&quot;&gt;&lt;g data-mml-node=&quot;mi&quot;&gt;&lt;path data-c=&quot;1D442&quot; d=&quot;M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(763,0)&quot;&gt;&lt;path data-c=&quot;28&quot; d=&quot;M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mn&quot; transform=&quot;translate(1152,0)&quot;&gt;&lt;path data-c=&quot;31&quot; d=&quot;M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z&quot;/&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(1652,0)&quot;&gt;&lt;path data-c=&quot;29&quot; d=&quot;M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/mjx-container&gt;&lt;/span&gt;。显然，我们都知道&lt;code&gt;int64_t&lt;/code&gt;与&lt;code&gt;double&lt;/code&gt;之间的强制转换会丢失精度，因此我对这段代码的正确性产生了怀疑。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
-    
-      <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
-    
-      <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
     
   </entry>
   

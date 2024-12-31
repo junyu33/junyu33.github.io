@@ -59,6 +59,25 @@
   </entry>
   
   <entry>
+    <title>五二——我的 2024</title>
+    <link href="https://blog.junyu33.me/2024/12/31/bye2024.html"/>
+    <id>https://blog.junyu33.me/2024/12/31/bye2024.html</id>
+    <published>2024-12-31T03:30:00.000Z</published>
+    <updated>2024-12-31T03:28:36.370Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2023 年立的 flag 中，好像除了考过了 IELTS，其他全部都非预期了。&lt;/p&gt;
+&lt;p&gt;以下按月来叙述 2024 年发生的事情。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>（转载）五一——跳房子</title>
     <link href="https://blog.junyu33.me/2024/12/28/%E8%B7%B3%E6%88%BF%E5%AD%90.html"/>
     <id>https://blog.junyu33.me/2024/12/28/跳房子.html</id>
@@ -434,26 +453,6 @@ timeshift 的。&lt;/p&gt;
     
     
       <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Verilog - A Practice Approach</title>
-    <link href="https://blog.junyu33.me/2024/04/07/verilog.html"/>
-    <id>https://blog.junyu33.me/2024/04/07/verilog.html</id>
-    <published>2024-04-07T05:30:00.000Z</published>
-    <updated>2024-04-07T05:17:50.579Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Backup of talk on 3/22/2024 from https://ccsgeeks.github.io/&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="verilog" scheme="https://blog.junyu33.me/tags/verilog/"/>
     
   </entry>
   

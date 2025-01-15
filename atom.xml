@@ -59,6 +59,26 @@
   </entry>
   
   <entry>
+    <title>（转载）漫话骗子的故事</title>
+    <link href="https://blog.junyu33.me/2025/01/16/%E6%BC%AB%E8%AF%9D%E9%AA%97%E5%AD%90%E7%9A%84%E6%95%85%E4%BA%8B.html"/>
+    <id>https://blog.junyu33.me/2025/01/16/漫话骗子的故事.html</id>
+    <published>2025-01-15T16:00:00.000Z</published>
+    <updated>2025-01-15T16:03:14.625Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原作者：Master-Hash&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
+    
+  </entry>
+  
+  <entry>
     <title>五二——我的 2024</title>
     <link href="https://blog.junyu33.me/2024/12/31/bye2024.html"/>
     <id>https://blog.junyu33.me/2024/12/31/bye2024.html</id>
@@ -433,26 +453,6 @@ timeshift 的。&lt;/p&gt;
       <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
     
       <category term="c" scheme="https://blog.junyu33.me/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Clever Compilers - x86_64 assembly arithmetic analysis</title>
-    <link href="https://blog.junyu33.me/2024/04/25/asmmath.html"/>
-    <id>https://blog.junyu33.me/2024/04/25/asmmath.html</id>
-    <published>2024-04-25T08:00:00.000Z</published>
-    <updated>2024-08-19T02:20:40.318Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Backup of an unpublished talk on 4/25/2024.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
     
   </entry>
   

@@ -219,6 +219,9 @@
             <li class="links-of-blogroll-item">
               <a href="https://www.kika233.tech/" title="https:&#x2F;&#x2F;www.kika233.tech" rel="noopener" target="_blank">kika</a>
             </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://compiled-thoughts.fyi/" title="https:&#x2F;&#x2F;compiled-thoughts.fyi&#x2F;" rel="noopener" target="_blank">compiled-thoughts</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -274,7 +277,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-14 00:20:08" itemprop="dateModified" datetime="2024-12-14T00:20:08+08:00">2024-12-14</time>
+      <time title="修改时间：2025-02-05 10:46:27" itemprop="dateModified" datetime="2025-02-05T10:46:27+08:00">2025-02-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -692,7 +695,7 @@ ddns 服务。具体而言，我们需要实现以下几点：</p>
 <ul>
 <li>不能挂代理，否则获取公网 IP 就跑到代理那边去了</li>
 <li>写的脚本不兼容 sh 语法，所以必须用 <code>bash</code> 运行</li>
-<li>脚本中间有些地方用了相对路径，因此必须制定 PWD</li>
+<li>脚本中间有些地方用了相对路径，因此必须指定 PWD</li>
 </ul>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">junyu33@zjy:~$ sudo <span class="built_in">cat</span> /etc/systemd/system/ddns-update.service </span><br><span class="line">[Unit]</span><br><span class="line">Description=Run DDNS update script</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">WorkingDirectory=/home/junyu33/netlify-dynamic-dns-py</span><br><span class="line">ExecStartPre=/usr/bin/env http_proxy= https_proxy=</span><br><span class="line">ExecStart=/bin/bash /home/junyu33/netlify-dynamic-dns-py/ddns.sh</span><br></pre></td></tr></table></figure>
 <h3 id="开发板脱离电脑运行">开发板脱离电脑运行</h3>

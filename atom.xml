@@ -59,6 +59,37 @@
   </entry>
   
   <entry>
+    <title>内网穿透搭建 overleaf 服务器</title>
+    <link href="https://blog.junyu33.me/2025/02/27/overleaf.html"/>
+    <id>https://blog.junyu33.me/2025/02/27/overleaf.html</id>
+    <published>2025-02-27T14:30:00.000Z</published>
+    <updated>2025-02-27T14:44:43.560Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;introduction&quot;&gt;introduction&lt;/h1&gt;
+&lt;p&gt;在前序文章《从零搭建一个又快又安全的 VNC
+服务》中，我们实现了从非公网机器连接到使用了 ddns
+的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the
+hard way》中，我们使用了 ddns
+的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建
+web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89
+订阅费用的目的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
+    
+      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
+    
+      <category term="docker" scheme="https://blog.junyu33.me/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
     <title>五三——警惕 LLM 成为下一个“做题家”</title>
     <link href="https://blog.junyu33.me/2025/02/01/chatgpt4.html"/>
     <id>https://blog.junyu33.me/2025/02/01/chatgpt4.html</id>
@@ -436,26 +467,6 @@ timeshift 的。&lt;/p&gt;
       <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
     
       <category term="javascript" scheme="https://blog.junyu33.me/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三八~四七——博客三周年祭 / 出发</title>
-    <link href="https://blog.junyu33.me/2024/07/06/3rd_anni.html"/>
-    <id>https://blog.junyu33.me/2024/07/06/3rd_anni.html</id>
-    <published>2024-07-06T13:45:00.000Z</published>
-    <updated>2024-08-16T16:00:00.000Z</updated>
-    
-    <summary type="html">
-    
-      有东西被加密了, 请输入密码查看.
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="encrypted" scheme="https://blog.junyu33.me/tags/encrypted/"/>
     
   </entry>
   

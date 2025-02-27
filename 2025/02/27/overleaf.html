@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content=""><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.junyu33.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://blog.junyu33.me/2025/02/27/overleaf.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.junyu33.me/2025/02/27/overleaf.html","path":"2025/02/27/overleaf.html","title":"内网穿透搭建 overleaf 服务器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>内网穿透搭建 overleaf 服务器 | 现充|junyu33</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">现充|junyu33</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/CodeByZach/pace@1.0.2/themes/pink/pace-theme-bounce.css" rel="stylesheet">
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#prerequisites"><span class="nav-number">2.</span> <span class="nav-text">prerequisites</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#steps"><span class="nav-number">3.</span> <span class="nav-text">steps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E4%BF%9D%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84-overleaf-%E6%AD%A3%E5%B8%B8%E8%BF%90%E8%A1%8C"><span class="nav-number">3.1.</span> <span class="nav-text">先保证服务器的 overleaf
+正常运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%88%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%88%B0%E8%B7%B3%E6%9D%BF%E6%9C%BA"><span class="nav-number">3.2.</span> <span class="nav-text">服务器先内网穿透到跳板机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lets-encrypt-%E8%8E%B7%E5%8F%96%E5%9F%9F%E5%90%8D%E8%AF%81%E4%B9%A6%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89"><span class="nav-number">3.3.</span> <span class="nav-text">let&#39;s encrypt
+获取域名证书（如果没有）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-%E8%BD%AC-https"><span class="nav-number">3.4.</span> <span class="nav-text">http 转 https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87%E6%9C%AA%E5%A4%87%E6%A1%88%E9%99%90%E5%88%B6"><span class="nav-number">3.5.</span> <span class="nav-text">绕过未备案限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE"><span class="nav-number">3.6.</span> <span class="nav-text">用户配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#faq"><span class="nav-number">4.</span> <span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="丨junyu33丨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">丨junyu33丨</p>
+  <div class="site-description" itemprop="description">flag{CU73_D3V1L}</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/junyu33" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;junyu33" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helloworld@junyu33.me" title="E-Mail → mailto:helloworld@junyu33.me" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=2658799217&Site=&menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;2658799217&amp;Site&#x3D;&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://land.hash.memorial/" title="https:&#x2F;&#x2F;land.hash.memorial&#x2F;" rel="noopener" target="_blank">hash</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://mivik.moe/" title="https:&#x2F;&#x2F;mivik.moe&#x2F;" rel="noopener" target="_blank">Mivik</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sjfh.top/" title="https:&#x2F;&#x2F;sjfh.top&#x2F;" rel="noopener" target="_blank">sjfhsjfh</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.xecades.xyz/" title="https:&#x2F;&#x2F;blog.xecades.xyz&#x2F;" rel="noopener" target="_blank">Xecades</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://sh1k4ku.github.io/" title="https:&#x2F;&#x2F;sh1k4ku.github.io&#x2F;" rel="noopener" target="_blank">sh1kaku</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://herbidog.cc/" title="https:&#x2F;&#x2F;herbidog.cc&#x2F;" rel="noopener" target="_blank">Xfish</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jackfromeast.site/" title="https:&#x2F;&#x2F;jackfromeast.site&#x2F;" rel="noopener" target="_blank">jackfromeast</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://nova.gal/" title="https:&#x2F;&#x2F;nova.gal" rel="noopener" target="_blank">Muel_Nova</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://marvoalou.github.io/" title="https:&#x2F;&#x2F;marvoalou.github.io" rel="noopener" target="_blank">zxman</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://whilebug.github.io/" title="https:&#x2F;&#x2F;whilebug.github.io&#x2F;" rel="noopener" target="_blank">WhileBug</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.kika233.tech/" title="https:&#x2F;&#x2F;www.kika233.tech" rel="noopener" target="_blank">kika</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://compiled-thoughts.fyi/" title="https:&#x2F;&#x2F;compiled-thoughts.fyi&#x2F;" rel="noopener" target="_blank">compiled-thoughts</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junyu33.me/2025/02/27/overleaf.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="丨junyu33丨">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="现充|junyu33">
+      <meta itemprop="description" content="flag{CU73_D3V1L}">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="内网穿透搭建 overleaf 服务器 | 现充|junyu33">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          内网穿透搭建 overleaf 服务器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-27 22:30:00 / 修改时间：22:44:43" itemprop="dateCreated datePublished" datetime="2025-02-27T22:30:00+08:00">2025-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="introduction">introduction</h1>
+<p>在前序文章《从零搭建一个又快又安全的 VNC
+服务》中，我们实现了从非公网机器连接到使用了 ddns
+的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the
+hard way》中，我们使用了 ddns
+的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建
+web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89
+订阅费用的目的。</p>
+<span id="more"></span>
+<h1 id="prerequisites">prerequisites</h1>
+<ul>
+<li>一台可以连上公网的跳板机（我这里仍然是中序文章中支持 RVV1.0
+的开发板）</li>
+<li>较高性能的，用来安装 overleaf 社区版的 linux 服务器</li>
+<li>确保主机、服务器、跳板机可以互相 ssh 连接</li>
+<li>确保跳板机有对应的域名</li>
+</ul>
+<h1 id="steps">steps</h1>
+<h2 id="先保证服务器的-overleaf-正常运行">先保证服务器的 overleaf
+正常运行</h2>
+<p>可以参考<a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf">这篇博客</a>或者<a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">官方文档</a>，但还是贴一下步骤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/overleaf/toolkit.git ./overleaf-toolkit</span><br><span class="line"><span class="built_in">cd</span> ./overleaf-toolkit</span><br><span class="line">sudo bin/init</span><br></pre></td></tr></table></figure>
+<p>修改一下 <code>./config/overleaf.rc</code>：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">OVERLEAF_LISTEN_IP</span>=<span class="number">0.0</span>.<span class="number">0.0</span> <span class="comment"># 监听所有的IP，默认只能本地访问</span></span><br><span class="line"><span class="attr">OVERLEAF_PORT</span>=<span class="number">9999</span> <span class="comment"># 默认是80端口,但可能会被占用</span></span><br></pre></td></tr></table></figure>
+<p>然后启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo bin/up -d</span><br><span class="line">sudo bin/down <span class="comment"># 关闭</span></span><br></pre></td></tr></table></figure>
+<p>如果 docker-compose 代理不好使，可以设置换源：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;https://docker.m.daocloud.io&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.imgdb.de&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker-0.unsee.tech&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.hlmirror.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.lms.run&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://func.ink&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://lispy.org&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.xiaogenban1993.com&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p>curl 一下 http://localhost:9999 能否正常显示页面，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">unset</span> http_proxy &amp;&amp; curl http://localhost:9999/</span><br><span class="line">Found. Redirecting to /login%</span><br></pre></td></tr></table></figure>
+<p>如果没有问题证明服务端本身工作正常，进入下一步。</p>
+<h2 id="服务器先内网穿透到跳板机">服务器先内网穿透到跳板机</h2>
+<p>可以参考<a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">这个文档</a>。</p>
+<p>下载同一个版本的 <code>frpc</code> 与
+<code>frps</code>（笔者使用<code>0.61.0</code>），客户端（也就是
+overleaf 服务器）修改 <code>frpc.toml</code>：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">serverAddr</span> = &lt;frps server domain name or IP&gt;</span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">transport.protocol</span> = <span class="string">&quot;quic&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;web&quot;</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">&quot;http&quot;</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">9999</span> <span class="comment"># 对应你的 overleaf 服务器本地端口</span></span><br><span class="line"><span class="attr">customDomains</span> = &lt;frps server domain name&gt;</span><br></pre></td></tr></table></figure>
+<p>然后到 frps 服务端（也就是跳板机）修改 <code>frps.toml</code>：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bindPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">quicBindPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">vhostHTTPPort</span> = &lt;the mapped port in jump server&gt;</span><br></pre></td></tr></table></figure>
+<p>之后启动客户端的 <code>frpc</code>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c frpc.toml</span><br></pre></td></tr></table></figure>
+<p>与服务端的 <code>frps</code>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c frps.toml</span><br></pre></td></tr></table></figure>
+<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射 http
+端口的值为<code>8080</code>，在跳板机 curl 一下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">unset</span> http_proxy &amp;&amp; curl http://foo.example.com:8080</span><br><span class="line">Found. Redirecting to /login</span><br></pre></td></tr></table></figure>
+<p>如果成功，代表 frp 工作正常。如果你只需在 HTTP
+环境访问，并且域名已备案，使用 <code>http://foo.example.com:8080</code>
+来访问已经没有问题，否则进行下一步。</p>
+<blockquote>
+<p>建议将 frps 与 frpc 加入 systemctl 以方便开机启动，例如：</p>
+</blockquote>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### /etc/systemd/system/frps.service</span></span><br><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=frps</span><br><span class="line"><span class="attr">After</span>=network.target syslog.target</span><br><span class="line"><span class="attr">Wants</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/frps -c /usr/local/bin/frps.toml</span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<h2 id="lets-encrypt-获取域名证书如果没有">let's encrypt
+获取域名证书（如果没有）</h2>
+<p>let's encrypt 使用 certbot 进行域名所有权验证，证书有效期为 90
+天。但默认参数允许自动续期，在配置好 nginx
+的情况只需要一行命令，中间选择第一个选项即可。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo certbot certonly <span class="comment">--preferred-challenges dns -d &lt;frps server domain name&gt;</span></span><br><span class="line"></span><br><span class="line">How would you like <span class="built_in">to</span> authenticate <span class="keyword">with</span> <span class="keyword">the</span> ACME CA?</span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line"><span class="number">1</span>: Nginx Web Server plugin (nginx)</span><br><span class="line"><span class="number">2</span>: Runs <span class="keyword">an</span> HTTP server locally which serves <span class="keyword">the</span> necessary validation <span class="built_in">files</span> under</span><br><span class="line"><span class="keyword">the</span> /.well-known/acme-challenge/ request path. Suitable <span class="keyword">if</span> there is no HTTP</span><br><span class="line">server already running. HTTP challenge only (wildcards <span class="keyword">not</span> supported).</span><br><span class="line">(standalone)</span><br><span class="line"><span class="number">3</span>: Saves <span class="keyword">the</span> necessary validation <span class="built_in">files</span> <span class="built_in">to</span> <span class="keyword">a</span> .well-known/acme-challenge/</span><br><span class="line"><span class="built_in">directory</span> <span class="keyword">within</span> <span class="keyword">the</span> nominated webroot path. A seperate HTTP server must be</span><br><span class="line">running <span class="keyword">and</span> serving <span class="built_in">files</span> <span class="built_in">from</span> <span class="keyword">the</span> webroot path. HTTP challenge only (wildcards</span><br><span class="line"><span class="keyword">not</span> supported). (webroot)</span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line">Select <span class="keyword">the</span> appropriate <span class="built_in">number</span> [<span class="number">1</span><span class="number">-3</span>] <span class="keyword">then</span> [enter] (press <span class="string">&#x27;c&#x27;</span> <span class="built_in">to</span> <span class="built_in">cancel</span>): <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>或者你认为这是一个套娃问题，你可以使用手动获取，再配好 nginx
+后转为自动续期。手动获取需要在你的 DNS provider 编辑两个 TXT
+字段，这里就不赘述过程了。</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">sudo certbot certonly</span> <span class="literal">--</span><span class="comment">manual</span> <span class="literal">--</span><span class="comment">preferred</span><span class="literal">-</span><span class="comment">challenges dns</span> <span class="literal">-</span><span class="comment">d</span> &lt;<span class="comment">frps server domain name</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>验证成功后，certbot 将证书存放于
+<code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/fullchain.pem</code>，私钥存放于
+<code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/privkey.pem</code>。</p>
+<h2 id="http-转-https">http 转 https</h2>
+<p>除了文档中所述“结合 https2http 插件来实现将本地的 HTTP 服务以 HTTPS
+协议暴露出去”之外，也可以使用 nginx 来达到这一点。</p>
+<p>安装 nginx 后，编辑
+<code>/etc/nginx/sites-available/default</code>：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> &lt;https port&gt; ssl;</span><br><span class="line">    <span class="attribute">server_name</span> &lt;frps server domain name&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> &lt;your cert&gt;;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> &lt;your cert key&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">50M</span>;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://&lt;frps server domain name&gt;:&lt;the mapped port in jump server&gt;;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>&lt;https port&gt;</code>正常情况（即已备案条件下）为
+443，<code>&lt;frps server domain name&gt;</code>为你的跳板机域名，<code>&lt;your cert&gt;</code>与<code>&lt;your cert key&gt;</code>是先前通过
+let's encrypt
+来获取的证书与私钥，<code>&lt;the mapped port in jump server&gt;</code>即先前
+frp 映射的 http 协议服务端（也就是跳板机）端口。</p>
+<p>填写好参数后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart nginx</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> nginx</span><br></pre></td></tr></table></figure>
+<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射
+https 端口的值为<code>443</code>，在跳板机 curl 一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">unset</span> http_proxy &amp;&amp; curl https://foo.example.com</span><br><span class="line">Found. Redirecting to /login</span><br></pre></td></tr></table></figure>
+<p>代表 nginx 服务正常，如果此时你的跳板机域名已经备案，在本地访问这个
+URL 应该可以正常打开页面了。</p>
+<h2 id="绕过未备案限制">绕过未备案限制</h2>
+<p>一句话，https 端口不要用常用端口，应该可以绕过，但不保证稳定性。</p>
+<p>之后本地访问的时候，域名后面加上你自己设置的端口应该就可以了。</p>
+<h2 id="用户配置">用户配置</h2>
+<p>访问 https://foo.example.com/launchpad
+设置管理员账号与添加账号（如果没有设置邮箱服务器，可以让管理员账户在后台添加用户，后台会给出一个注册成功的修改密码的链接，把那个链接发给注册用户就好了）。</p>
+<p>然后访问 https://foo.example.com/
+自己登录刚注册的账号然后使用。完结撒花。</p>
+<h1 id="faq">FAQ</h1>
+<blockquote>
+<p>launchpad 界面中 websocket 检测超时怎么办？</p>
+</blockquote>
+<p>ignore it，目前看来并不影响使用。</p>
+<blockquote>
+<p>进入项目时提示 connection error？</p>
+</blockquote>
+<p>ignore it，等几秒就进去了。</p>
+<blockquote>
+<p>为什么我只能上传最大 1M 的文件？</p>
+</blockquote>
+<p>见<a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">此issue</a>，原因是
+nginx 配置的问题，有可能是 docker 内部的 nginx 配置，也可能是跳板机中的
+nginx 配置（但笔者已经在这里加了
+<code>client_max_body_size 50M</code>，因此可以排除后者原因）。</p>
+<blockquote>
+<p>不使用 HTTPS 可以吗？</p>
+</blockquote>
+<p>至少在本机最新版 Microsoft Edge 会直接提示 connection not
+secure，并且无法 proceed。其他情况没有测试。</p>
+<blockquote>
+<p>HTTPS 使用自签名证书可以吗？（例如使用 openssl 自己生成一对）</p>
+</blockquote>
+<p>同上。</p>
+<h1 id="参考资料">参考资料</h1>
+<p>https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</p>
+<p>https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757</p>
+<p>https://jinli.io/p/%E8%87%AA%E5%BB%BA%E5%9C%A8%E7%BA%BFlatex%E7%BC%96%E8%AF%91%E9%A2%84%E8%A7%88%E6%9C%8D%E5%8A%A1overleaf%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%E7%89%88/</p>
+<p>https://gofrp.org/zh-cn/docs/examples/vhost-http/</p>
+<p>https://github.com/overleaf/docker-image/issues/20</p>
+<p>https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx</p>
+<p>https://chat.deepseek.com/</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>junyu33
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.junyu33.me/2025/02/27/overleaf.html" title="内网穿透搭建 overleaf 服务器">https://blog.junyu33.me/2025/02/27/overleaf.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/01/chatgpt4.html" rel="prev" title="五三——警惕 LLM 成为下一个“做题家”">
+                  <i class="fa fa-chevron-left"></i> 五三——警惕 LLM 成为下一个“做题家”
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2033/05/13/nju_pa.html" rel="next" title="（置顶，已完结）nju-pa 心得">
+                  （置顶，已完结）nju-pa 心得 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丨junyu33丨</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">810k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">12:16</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-new.vercel.app/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>

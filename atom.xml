@@ -59,6 +59,29 @@
   </entry>
   
   <entry>
+    <title>如何笔算开平方根</title>
+    <link href="https://blog.junyu33.me/2025/03/09/sqrt.html"/>
+    <id>https://blog.junyu33.me/2025/03/09/sqrt.html</id>
+    <published>2025-03-09T15:00:00.000Z</published>
+    <updated>2025-03-09T09:28:03.851Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数学标签的第一篇文章。&lt;/p&gt;
+&lt;p&gt;小学的时候家父给我炫耀他上学的时候学过手算开平方根，说以后在朋友间炫耀可能有用。当时我可能学会了，但之后这个方法似乎在数学教材中绝版了，只记得“二十倍初商加次商”这个口诀。这篇文章的主要目的就是叙述，我如何回忆起来的过程。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
+    
+      <category term="math" scheme="https://blog.junyu33.me/tags/math/"/>
+    
+  </entry>
+  
+  <entry>
     <title>内网穿透搭建 overleaf 服务器</title>
     <link href="https://blog.junyu33.me/2025/02/27/overleaf.html"/>
     <id>https://blog.junyu33.me/2025/02/27/overleaf.html</id>
@@ -438,35 +461,6 @@ timeshift 的。&lt;/p&gt;
       <category term="cpp" scheme="https://blog.junyu33.me/tags/cpp/"/>
     
       <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>稗田阿求30岁诞辰专题 - 博客内嵌音频测试</title>
-    <link href="https://blog.junyu33.me/2024/08/07/akyuup1s.html"/>
-    <id>https://blog.junyu33.me/2024/08/07/akyuup1s.html</id>
-    <published>2024-08-06T16:00:00.000Z</published>
-    <updated>2024-08-16T16:00:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;天若有情天亦老 我为&lt;del&gt;牢&lt;/del&gt;阿求续一秒&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SagumeKishin https://thbwiki.cc/稗田阿求&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="test" scheme="https://blog.junyu33.me/categories/test/"/>
-    
-    
-      <category term="touhou" scheme="https://blog.junyu33.me/tags/touhou/"/>
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-      <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
-    
-      <category term="javascript" scheme="https://blog.junyu33.me/tags/javascript/"/>
     
   </entry>
   

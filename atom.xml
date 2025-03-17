@@ -59,11 +59,32 @@
   </entry>
   
   <entry>
+    <title>Happy Tau Day 2025</title>
+    <link href="https://blog.junyu33.me/2025/06/28/tau.html"/>
+    <id>https://blog.junyu33.me/2025/06/28/tau.html</id>
+    <published>2025-06-27T16:00:00.000Z</published>
+    <updated>2025-03-17T09:23:54.460Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;《tau-manifesto》的 tldr 版本。&lt;/p&gt;
+&lt;p&gt;原文定义 &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;tau=2&#92;pi=6.283&#92;cdots&#92;)&lt;/span&gt;，以取代现有圆周率&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;pi&#92;)&lt;/span&gt;的地位，并列举了一些理由。除此之外，我也另外添加一个理由。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="math" scheme="https://blog.junyu33.me/tags/math/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Happy Pi Day</title>
     <link href="https://blog.junyu33.me/2025/03/14/pi.html"/>
     <id>https://blog.junyu33.me/2025/03/14/pi.html</id>
     <published>2025-03-14T15:59:00.000Z</published>
-    <updated>2025-03-14T15:59:05.693Z</updated>
+    <updated>2025-03-17T05:59:24.912Z</updated>
     
     <summary type="html">
     
@@ -440,28 +461,6 @@ timeshift 的。&lt;/p&gt;
     
     
       <category term="math" scheme="https://blog.junyu33.me/tags/math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>（转载）2024 年小米社区全国统一考试——解锁</title>
-    <link href="https://blog.junyu33.me/2024/08/25/unlock-bl.html"/>
-    <id>https://blog.junyu33.me/2024/08/25/unlock-bl.html</id>
-    <published>2024-08-25T15:30:00.000Z</published>
-    <updated>2024-08-25T15:19:47.397Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;出处：https://github.com/MlgmXyysd/Xiaomi-BootLoader-Questionnaire/discussions/196&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
-    
-      <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
     
   </entry>
   

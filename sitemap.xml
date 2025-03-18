@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.junyu33.me/2025/02/27/overleaf.html</loc>
+    <loc>https://blog.junyu33.me/2025/03/18/pollard_rho.html</loc>
     
     <lastmod>2025-03-18</lastmod>
     
@@ -13,7 +13,16 @@
   <url>
     <loc>https://blog.junyu33.me/2025/03/14/pi.html</loc>
     
-    <lastmod>2025-03-17</lastmod>
+    <lastmod>2025-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.junyu33.me/2025/02/27/overleaf.html</loc>
+    
+    <lastmod>2025-03-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

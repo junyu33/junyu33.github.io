@@ -80,6 +80,30 @@
   </entry>
   
   <entry>
+    <title>calculate weil-pairing from 0 to 1</title>
+    <link href="https://blog.junyu33.me/2025/04/18/weil.html"/>
+    <id>https://blog.junyu33.me/2025/04/18/weil.html</id>
+    <published>2025-04-18T07:00:00.000Z</published>
+    <updated>2025-04-18T06:50:29.654Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为了更好理解 weil-pairing 以及 miller 算法，这里使用 python 从 0 开始实现了一遍。&lt;/p&gt;
+&lt;p&gt;用到的依赖只有 &lt;code&gt;pow&lt;/code&gt; 函数，&lt;code&gt;math.inf&lt;/code&gt; 和深拷贝函数 &lt;code&gt;copy.deepcopy&lt;/code&gt;，且使用了本人并不顺手的 OOP 编程范式。&lt;/p&gt;
+&lt;p&gt;虽然写了之后对 weil-pairing 和 OOP 的理解同时加深了（&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
+    
+      <category term="math" scheme="https://blog.junyu33.me/tags/math/"/>
+    
+  </entry>
+  
+  <entry>
     <title>从一道 leetcode 题到离散对数求解算法</title>
     <link href="https://blog.junyu33.me/2025/03/18/pollard_rho.html"/>
     <id>https://blog.junyu33.me/2025/03/18/pollard_rho.html</id>
@@ -442,30 +466,6 @@ exemption.&lt;/p&gt;
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
       <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>timeshift 使用 btrfs 懒人指南</title>
-    <link href="https://blog.junyu33.me/2024/09/21/timeshift.html"/>
-    <id>https://blog.junyu33.me/2024/09/21/timeshift.html</id>
-    <published>2024-09-21T08:30:00.000Z</published>
-    <updated>2024-09-21T10:40:37.233Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近到了新工位，有了一台新电脑以及两台显示器。我深知系统备份的重要性，但因为沉没成本，一直没有来得及完全实装
-btrfs
-的备份恢复功能。因为新系统啥都没有，所以我可以肆无忌惮地折腾。这里记录一下我是如何使用
-timeshift 的。&lt;/p&gt;
-&lt;p&gt;本文不涉及原理，以实用为主。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
   </entry>
   

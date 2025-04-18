@@ -84,7 +84,7 @@
     <link href="https://blog.junyu33.me/2025/04/18/weil.html"/>
     <id>https://blog.junyu33.me/2025/04/18/weil.html</id>
     <published>2025-04-18T07:00:00.000Z</published>
-    <updated>2025-04-18T06:50:29.654Z</updated>
+    <updated>2025-04-18T06:57:27.542Z</updated>
     
     <summary type="html">
     
@@ -127,30 +127,6 @@
       <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
     
       <category term="math" scheme="https://blog.junyu33.me/tags/math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Happy Pi Day</title>
-    <link href="https://blog.junyu33.me/2025/03/14/pi.html"/>
-    <id>https://blog.junyu33.me/2025/03/14/pi.html</id>
-    <published>2025-03-14T15:59:00.000Z</published>
-    <updated>2025-03-18T04:21:43.936Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;&#92;assets&#92;css&#92;APlayer.min.css&quot;&gt;&lt;script src=&quot;&#92;assets&#92;js&#92;APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   
@@ -466,6 +442,30 @@ exemption.&lt;/p&gt;
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
       <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>timeshift 使用 btrfs 懒人指南</title>
+    <link href="https://blog.junyu33.me/2024/09/21/timeshift.html"/>
+    <id>https://blog.junyu33.me/2024/09/21/timeshift.html</id>
+    <published>2024-09-21T08:30:00.000Z</published>
+    <updated>2024-09-21T10:40:37.233Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近到了新工位，有了一台新电脑以及两台显示器。我深知系统备份的重要性，但因为沉没成本，一直没有来得及完全实装
+btrfs
+的备份恢复功能。因为新系统啥都没有，所以我可以肆无忌惮地折腾。这里记录一下我是如何使用
+timeshift 的。&lt;/p&gt;
+&lt;p&gt;本文不涉及原理，以实用为主。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
   </entry>
   

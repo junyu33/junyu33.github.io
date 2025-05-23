@@ -383,7 +383,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-05-23 12:30:00 / 修改时间：12:27:42" itemprop="dateCreated datePublished" datetime="2025-05-23T12:30:00+08:00">2025-05-23</time>
+      <time title="创建时间：2025-05-23 12:30:00 / 修改时间：12:37:25" itemprop="dateCreated datePublished" datetime="2025-05-23T12:30:00+08:00">2025-05-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -409,7 +409,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.3k</span>
+      <span>6.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -543,12 +543,13 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <p>思路还是建图+拓扑排序+策梅洛定理的状态转移。类似于上一节，这里给出所有节点的胜负情况，并做成一个表。</p>
 <table>
 <colgroup>
-<col style="width: 11%">
-<col style="width: 17%">
-<col style="width: 17%">
+<col style="width: 10%">
 <col style="width: 15%">
 <col style="width: 15%">
-<col style="width: 21%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 12%">
 </colgroup>
 <thead>
 <tr>
@@ -558,9 +559,19 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <th>1（小赢）</th>
 <th>2（大赢）</th>
 <th>None（无胜负）</th>
+<th>最终结果</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>-</td>
+<td>胜</td>
+</tr>
 <tr>
 <td>3</td>
 <td>7</td>
@@ -568,6 +579,7 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <td>11</td>
 <td>8</td>
 <td>-</td>
+<td>负</td>
 </tr>
 <tr>
 <td>4</td>
@@ -576,6 +588,7 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <td>51</td>
 <td>32</td>
 <td>-</td>
+<td>胜</td>
 </tr>
 <tr>
 <td>5</td>
@@ -584,6 +597,7 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <td>139</td>
 <td>66</td>
 <td>-</td>
+<td>负</td>
 </tr>
 <tr>
 <td>6</td>
@@ -592,6 +606,7 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <td>279</td>
 <td>122</td>
 <td>-</td>
+<td>负</td>
 </tr>
 <tr>
 <td>7</td>
@@ -600,6 +615,7 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <td>522</td>
 <td>213</td>
 <td>-</td>
+<td>胜</td>
 </tr>
 <tr>
 <td>8</td>
@@ -608,6 +624,7 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <td>680</td>
 <td>264</td>
 <td>468</td>
+<td>-</td>
 </tr>
 <tr>
 <td>9</td>
@@ -616,6 +633,7 @@ Bob，他作为当前轮次方并且节点值为 -1，因此 Bob 负，Alice 胜
 <td>1223</td>
 <td>378</td>
 <td>574</td>
+<td>负</td>
 </tr>
 </tbody>
 </table>

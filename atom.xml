@@ -80,6 +80,40 @@
   </entry>
   
   <entry>
+    <title>（转载）凑8游戏——图论分析</title>
+    <link href="https://blog.junyu33.me/2025/05/23/eights.html"/>
+    <id>https://blog.junyu33.me/2025/05/23/eights.html</id>
+    <published>2025-05-23T04:30:00.000Z</published>
+    <updated>2025-05-23T04:27:42.335Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;凑8游戏由
+Max，也就是创办这个网站的人，于初一军训期间介绍给笔者。规则如下：&lt;/p&gt;
+&lt;p&gt;开局时，两个人两只手都是1，双方轮流，每轮玩家可以将自己手上的一个数字的值变为该数字和对方手上某个数字的和（只准加，不准加自己），如果超过7，一律变为1，如果为8，则撤手，两只手都撤下为赢。&lt;/p&gt;
+&lt;p&gt;此游戏有无数变种（正因此随机找一个人很有可能因不认同规则而玩不起来），但
+Max
+的变种最吸引笔者，因为可以靠自己变7乃至双7限制对方的选择，给纯粹随波逐流的游戏增添了策略。高中时，笔者就试图分析此游戏的策略，无奈学艺不精，半途而废。4年后，笔者受室友影响，沉迷上了国际象棋，对求解器的原理颇好奇，于是一鼓作气，将其解出。&lt;/p&gt;
+&lt;p&gt;笔者目前的编程功底不能说比往年高了多少，至今仍然几乎是高一用 Python
+刷洛谷攒下的功底，换任何一门语言都不能习惯——即使是类型系统严谨很多的
+Rust 和目前最熟悉的 TypeScript。能写出来，也许要感谢 ChatGPT 和 Copilot
+吧。&lt;/p&gt;
+&lt;p&gt;本文写给无博弈论基础者。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="repost" scheme="https://blog.junyu33.me/tags/repost/"/>
+    
+      <category term="python" scheme="https://blog.junyu33.me/tags/python/"/>
+    
+      <category term="games" scheme="https://blog.junyu33.me/tags/games/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Diophantine equations and elliptic curves</title>
     <link href="https://blog.junyu33.me/2025/04/27/diophantine.html"/>
     <id>https://blog.junyu33.me/2025/04/27/diophantine.html</id>
@@ -441,33 +475,6 @@ VNC 服务》这篇文章的后续内容。&lt;/p&gt;
     
       <category term="随笔" scheme="https://blog.junyu33.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>从零搭建一个又快又安全的 VNC 服务</title>
-    <link href="https://blog.junyu33.me/2024/09/22/vnc.html"/>
-    <id>https://blog.junyu33.me/2024/09/22/vnc.html</id>
-    <published>2024-09-22T15:30:00.000Z</published>
-    <updated>2024-09-23T01:17:16.701Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;因为笔者的寝室电脑有公网
-IP，而市面上的远程桌面软件因为使用中继服务器延迟较高，并且个人不信任它们的安全性，所以决定自己搭建一个
-VNC 服务。&lt;/p&gt;
-&lt;p&gt;这样就可以从实验室低延迟的连回寝室电脑，并且保证一定的安全性。&lt;/p&gt;
-&lt;p&gt;至少让 TigerVNC 觉得 “Connection is secure” without any
-exemption.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
-    
-    
-      <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
-    
-      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
     
   </entry>
   

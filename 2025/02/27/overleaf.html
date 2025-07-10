@@ -132,7 +132,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#prerequisites"><span class="nav-number">2.</span> <span class="nav-text">prerequisites</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#steps"><span class="nav-number">3.</span> <span class="nav-text">steps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E4%BF%9D%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84-overleaf-%E6%AD%A3%E5%B8%B8%E8%BF%90%E8%A1%8C"><span class="nav-number">3.1.</span> <span class="nav-text">先保证服务器的 overleaf 正常运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%88%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%88%B0%E8%B7%B3%E6%9D%BF%E6%9C%BA"><span class="nav-number">3.2.</span> <span class="nav-text">服务器先内网穿透到跳板机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let%E2%80%99s-encrypt-%E8%8E%B7%E5%8F%96%E5%9F%9F%E5%90%8D%E8%AF%81%E4%B9%A6%EF%BC%88%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">let’s encrypt 获取域名证书（如果没有）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-%E8%BD%AC-https"><span class="nav-number">3.4.</span> <span class="nav-text">http 转 https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87%E6%9C%AA%E5%A4%87%E6%A1%88%E9%99%90%E5%88%B6"><span class="nav-number">3.5.</span> <span class="nav-text">绕过未备案限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE"><span class="nav-number">3.6.</span> <span class="nav-text">用户配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Updated-on-Mar-18th-2025"><span class="nav-number">4.</span> <span class="nav-text">Updated on Mar 18th, 2025</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp-https2http-%E6%8F%92%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">frp https2http 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#certbot-%E6%89%8B%E5%8A%A8-hook"><span class="nav-number">4.2.</span> <span class="nav-text">certbot 手动 hook</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FAQ"><span class="nav-number">5.</span> <span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#prerequisites"><span class="nav-number">2.</span> <span class="nav-text">prerequisites</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#steps"><span class="nav-number">3.</span> <span class="nav-text">steps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E4%BF%9D%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84-overleaf-%E6%AD%A3%E5%B8%B8%E8%BF%90%E8%A1%8C"><span class="nav-number">3.1.</span> <span class="nav-text">先保证服务器的 overleaf
+正常运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%88%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%88%B0%E8%B7%B3%E6%9D%BF%E6%9C%BA"><span class="nav-number">3.2.</span> <span class="nav-text">服务器先内网穿透到跳板机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lets-encrypt-%E8%8E%B7%E5%8F%96%E5%9F%9F%E5%90%8D%E8%AF%81%E4%B9%A6%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89"><span class="nav-number">3.3.</span> <span class="nav-text">let&#39;s encrypt
+获取域名证书（如果没有）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-%E8%BD%AC-https"><span class="nav-number">3.4.</span> <span class="nav-text">http 转 https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87%E6%9C%AA%E5%A4%87%E6%A1%88%E9%99%90%E5%88%B6"><span class="nav-number">3.5.</span> <span class="nav-text">绕过未备案限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE"><span class="nav-number">3.6.</span> <span class="nav-text">用户配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#updated-on-mar-18th-2025"><span class="nav-number">4.</span> <span class="nav-text">Updated on Mar 18th, 2025</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp-https2http-%E6%8F%92%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">frp https2http 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#certbot-%E6%89%8B%E5%8A%A8-hook"><span class="nav-number">4.2.</span> <span class="nav-text">certbot 手动 hook</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#faq"><span class="nav-number">5.</span> <span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -147,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -277,7 +279,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-06-10 21:55:38" itemprop="dateModified" datetime="2025-06-10T21:55:38+08:00">2025-06-10</time>
+      <time title="修改时间：2025-07-09 22:50:58" itemprop="dateModified" datetime="2025-07-09T22:50:58+08:00">2025-07-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,7 +287,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+          <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
         </span>
     </span>
 
@@ -321,15 +323,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><p>在前序文章《从零搭建一个又快又安全的 VNC 服务》中，我们实现了从非公网机器连接到使用了 ddns 的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the hard way》中，我们使用了 ddns 的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建 web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89 订阅费用的目的。</p>
+        <h1 id="introduction">introduction</h1>
+<p>在前序文章《从零搭建一个又快又安全的 VNC
+服务》中，我们实现了从非公网机器连接到使用了 ddns
+的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the
+hard way》中，我们使用了 ddns
+的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建
+web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89
+订阅费用的目的。</p>
 <span id="more"></span>
-<h1 id="prerequisites"><a href="#prerequisites" class="headerlink" title="prerequisites"></a>prerequisites</h1><ul>
-<li>一台可以连上公网的跳板机（我这里仍然是中序文章中支持 RVV1.0 的开发板）</li>
+<h1 id="prerequisites">prerequisites</h1>
+<ul>
+<li>一台可以连上公网的跳板机（我这里仍然是中序文章中支持 RVV1.0
+的开发板）</li>
 <li>较高性能的，用来安装 overleaf 社区版的 linux 服务器</li>
 <li>确保主机、服务器、跳板机可以互相 ssh 连接</li>
 <li>确保跳板机有对应的域名</li>
 </ul>
-<h1 id="steps"><a href="#steps" class="headerlink" title="steps"></a>steps</h1><h2 id="先保证服务器的-overleaf-正常运行"><a href="#先保证服务器的-overleaf-正常运行" class="headerlink" title="先保证服务器的 overleaf 正常运行"></a>先保证服务器的 overleaf 正常运行</h2><p>可以参考<a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf">这篇博客</a>或者<a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">官方文档</a>，但还是贴一下步骤：</p>
+<h1 id="steps">steps</h1>
+<h2 id="先保证服务器的-overleaf-正常运行">先保证服务器的 overleaf
+正常运行</h2>
+<p>可以参考<a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf">这篇博客</a>或者<a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">官方文档</a>，但还是贴一下步骤：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/overleaf/toolkit.git ./overleaf-toolkit</span><br><span class="line"><span class="built_in">cd</span> ./overleaf-toolkit</span><br><span class="line">sudo bin/init</span><br></pre></td></tr></table></figure>
 <p>修改一下 <code>./config/overleaf.rc</code>：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">OVERLEAF_LISTEN_IP</span>=<span class="number">0.0</span>.<span class="number">0.0</span> <span class="comment"># 监听所有的IP，默认只能本地访问</span></span><br><span class="line"><span class="attr">OVERLEAF_PORT</span>=<span class="number">9999</span> <span class="comment"># 默认是80端口,但可能会被占用</span></span><br></pre></td></tr></table></figure>
@@ -337,11 +351,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo bin/up -d</span><br><span class="line">sudo bin/down <span class="comment"># 关闭</span></span><br></pre></td></tr></table></figure>
 <p>如果 docker-compose 代理不好使，可以设置换源：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;https://docker.m.daocloud.io&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.imgdb.de&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker-0.unsee.tech&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.hlmirror.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.lms.run&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://func.ink&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://lispy.org&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.xiaogenban1993.com&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<p>curl 一下 <a target="_blank" rel="noopener" href="http://localhost:9999">http://localhost:9999</a> 能否正常显示页面，例如：</p>
+<p>curl 一下 http://localhost:9999 能否正常显示页面，例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">unset</span> http_proxy &amp;&amp; curl http://localhost:9999/</span><br><span class="line">Found. Redirecting to /login%</span><br></pre></td></tr></table></figure>
 <p>如果没有问题证明服务端本身工作正常，进入下一步。</p>
-<h2 id="服务器先内网穿透到跳板机"><a href="#服务器先内网穿透到跳板机" class="headerlink" title="服务器先内网穿透到跳板机"></a>服务器先内网穿透到跳板机</h2><p>可以参考<a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">这个文档</a>。</p>
-<p>下载同一个版本的 <code>frpc</code> 与 <code>frps</code>（笔者使用<code>0.61.0</code>），客户端（也就是 overleaf 服务器）修改 <code>frpc.toml</code>：</p>
+<h2 id="服务器先内网穿透到跳板机">服务器先内网穿透到跳板机</h2>
+<p>可以参考<a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">这个文档</a>。</p>
+<p>下载同一个版本的 <code>frpc</code> 与
+<code>frps</code>（笔者使用<code>0.61.0</code>），客户端（也就是
+overleaf 服务器）修改 <code>frpc.toml</code>：</p>
 <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">serverAddr</span> = &lt;frps server domain name or IP&gt;</span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">transport.protocol</span> = <span class="string">&quot;quic&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;web&quot;</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">&quot;http&quot;</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">9999</span> <span class="comment"># 对应你的 overleaf 服务器本地端口</span></span><br><span class="line"><span class="attr">customDomains</span> = &lt;frps server domain name&gt;</span><br></pre></td></tr></table></figure>
 <p>然后到 frps 服务端（也就是跳板机）修改 <code>frps.toml</code>：</p>
 <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bindPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">quicBindPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">vhostHTTPPort</span> = &lt;the mapped port in jump server&gt;</span><br></pre></td></tr></table></figure>
@@ -349,32 +366,59 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c frpc.toml</span><br></pre></td></tr></table></figure>
 <p>与服务端的 <code>frps</code>：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c frps.toml</span><br></pre></td></tr></table></figure>
-<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射 http 端口的值为<code>8080</code>，在跳板机 curl 一下：</p>
+<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射 http
+端口的值为<code>8080</code>，在跳板机 curl 一下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">unset</span> http_proxy &amp;&amp; curl http://foo.example.com:8080</span><br><span class="line">Found. Redirecting to /login</span><br></pre></td></tr></table></figure>
-<p>如果成功，代表 frp 工作正常。如果你只需在 HTTP 环境访问，并且域名已备案，使用 <code>http://foo.example.com:8080</code> 来访问已经没有问题，否则进行下一步。</p>
+<p>如果成功，代表 frp 工作正常。如果你只需在 HTTP
+环境访问，并且域名已备案，使用 <code>http://foo.example.com:8080</code>
+来访问已经没有问题，否则进行下一步。</p>
 <blockquote>
 <p>建议将 frps 与 frpc 加入 systemctl 以方便开机启动，例如：</p>
 </blockquote>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### /etc/systemd/system/frps.service</span></span><br><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=frps</span><br><span class="line"><span class="attr">After</span>=network.target syslog.target</span><br><span class="line"><span class="attr">Wants</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/frps -c /usr/local/bin/frps.toml</span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
-<h2 id="let’s-encrypt-获取域名证书（如果没有）"><a href="#let’s-encrypt-获取域名证书（如果没有）" class="headerlink" title="let’s encrypt 获取域名证书（如果没有）"></a>let’s encrypt 获取域名证书（如果没有）</h2><p>let’s encrypt 使用 certbot 进行域名所有权验证，证书有效期为 90 天。但默认参数允许自动续期，在配置好 nginx 的情况只需要一行命令，中间选择第一个选项即可。</p>
+<h2 id="lets-encrypt-获取域名证书如果没有">let's encrypt
+获取域名证书（如果没有）</h2>
+<p>let's encrypt 使用 certbot 进行域名所有权验证，证书有效期为 90
+天。但默认参数允许自动续期，在配置好 nginx
+的情况只需要一行命令，中间选择第一个选项即可。</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo certbot certonly <span class="comment">--preferred-challenges dns -d &lt;frps server domain name&gt;</span></span><br><span class="line"></span><br><span class="line">How would you like <span class="built_in">to</span> authenticate <span class="keyword">with</span> <span class="keyword">the</span> ACME CA?</span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line"><span class="number">1</span>: Nginx Web Server plugin (nginx)</span><br><span class="line"><span class="number">2</span>: Runs <span class="keyword">an</span> HTTP server locally which serves <span class="keyword">the</span> necessary validation <span class="built_in">files</span> under</span><br><span class="line"><span class="keyword">the</span> /.well-known/acme-challenge/ request path. Suitable <span class="keyword">if</span> there is no HTTP</span><br><span class="line">server already running. HTTP challenge only (wildcards <span class="keyword">not</span> supported).</span><br><span class="line">(standalone)</span><br><span class="line"><span class="number">3</span>: Saves <span class="keyword">the</span> necessary validation <span class="built_in">files</span> <span class="built_in">to</span> <span class="keyword">a</span> .well-known/acme-challenge/</span><br><span class="line"><span class="built_in">directory</span> <span class="keyword">within</span> <span class="keyword">the</span> nominated webroot path. A seperate HTTP server must be</span><br><span class="line">running <span class="keyword">and</span> serving <span class="built_in">files</span> <span class="built_in">from</span> <span class="keyword">the</span> webroot path. HTTP challenge only (wildcards</span><br><span class="line"><span class="keyword">not</span> supported). (webroot)</span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line">Select <span class="keyword">the</span> appropriate <span class="built_in">number</span> [<span class="number">1</span><span class="number">-3</span>] <span class="keyword">then</span> [enter] (press <span class="string">&#x27;c&#x27;</span> <span class="built_in">to</span> <span class="built_in">cancel</span>): <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>或者你认为这是一个套娃问题，你可以使用手动获取，再配好 nginx 后转为自动续期。手动获取需要在你的 DNS provider 编辑两个 TXT 字段，这里就不赘述过程了。</p>
+<p>或者你认为这是一个套娃问题，你可以使用手动获取，再配好 nginx
+后转为自动续期。手动获取需要在你的 DNS provider 编辑两个 TXT
+字段，这里就不赘述过程了。</p>
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">sudo certbot certonly</span> <span class="literal">--</span><span class="comment">manual</span> <span class="literal">--</span><span class="comment">preferred</span><span class="literal">-</span><span class="comment">challenges dns</span> <span class="literal">-</span><span class="comment">d</span> &lt;<span class="comment">frps server domain name</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>验证成功后，certbot 将证书存放于 <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/fullchain.pem</code>，私钥存放于 <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/privkey.pem</code>。</p>
-<h2 id="http-转-https"><a href="#http-转-https" class="headerlink" title="http 转 https"></a>http 转 https</h2><p>除了文档中所述“结合 https2http 插件来实现将本地的 HTTP 服务以 HTTPS 协议暴露出去”之外，也可以使用 nginx 来达到这一点。</p>
-<p>安装 nginx 后，编辑 <code>/etc/nginx/sites-available/default</code>：</p>
+<p>验证成功后，certbot 将证书存放于
+<code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/fullchain.pem</code>，私钥存放于
+<code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/privkey.pem</code>。</p>
+<h2 id="http-转-https">http 转 https</h2>
+<p>除了文档中所述“结合 https2http 插件来实现将本地的 HTTP 服务以 HTTPS
+协议暴露出去”之外，也可以使用 nginx 来达到这一点。</p>
+<p>安装 nginx 后，编辑
+<code>/etc/nginx/sites-available/default</code>：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> &lt;https port&gt; ssl;</span><br><span class="line">    <span class="attribute">server_name</span> &lt;frps server domain name&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> &lt;your cert&gt;;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> &lt;your cert key&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">50M</span>;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://&lt;frps server domain name&gt;:&lt;the mapped port in jump server&gt;;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中<code>&lt;https port&gt;</code>正常情况（即已备案条件下）为 443，<code>&lt;frps server domain name&gt;</code>为你的跳板机域名，<code>&lt;your cert&gt;</code>与<code>&lt;your cert key&gt;</code>是先前通过 let’s encrypt 来获取的证书与私钥，<code>&lt;the mapped port in jump server&gt;</code>即先前 frp 映射的 http 协议服务端（也就是跳板机）端口。 </p>
+<p>其中<code>&lt;https port&gt;</code>正常情况（即已备案条件下）为
+443，<code>&lt;frps server domain name&gt;</code>为你的跳板机域名，<code>&lt;your cert&gt;</code>与<code>&lt;your cert key&gt;</code>是先前通过
+let's encrypt
+来获取的证书与私钥，<code>&lt;the mapped port in jump server&gt;</code>即先前
+frp 映射的 http 协议服务端（也就是跳板机）端口。</p>
 <p>填写好参数后：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart nginx</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> nginx</span><br></pre></td></tr></table></figure>
-<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射 https 端口的值为<code>443</code>，在跳板机 curl 一下：</p>
+<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射
+https 端口的值为<code>443</code>，在跳板机 curl 一下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">unset</span> http_proxy &amp;&amp; curl https://foo.example.com</span><br><span class="line">Found. Redirecting to /login</span><br></pre></td></tr></table></figure>
-<p>代表 nginx 服务正常，如果此时你的跳板机域名已经备案，在本地访问这个 URL 应该可以正常打开页面了。</p>
-<h2 id="绕过未备案限制"><a href="#绕过未备案限制" class="headerlink" title="绕过未备案限制"></a>绕过未备案限制</h2><p>一句话，https 端口不要用常用端口，应该可以绕过，但不保证稳定性。</p>
+<p>代表 nginx 服务正常，如果此时你的跳板机域名已经备案，在本地访问这个
+URL 应该可以正常打开页面了。</p>
+<h2 id="绕过未备案限制">绕过未备案限制</h2>
+<p>一句话，https 端口不要用常用端口，应该可以绕过，但不保证稳定性。</p>
 <p>之后本地访问的时候，域名后面加上你自己设置的端口应该就可以了。</p>
-<h2 id="用户配置"><a href="#用户配置" class="headerlink" title="用户配置"></a>用户配置</h2><p>访问 <a target="_blank" rel="noopener" href="https://foo.example.com/launchpad">https://foo.example.com/launchpad</a> 设置管理员账号与添加账号（如果没有设置邮箱服务器，可以让管理员账户在后台添加用户，后台会给出一个注册成功的修改密码的链接，把那个链接发给注册用户就好了）。</p>
-<p>然后访问 <a target="_blank" rel="noopener" href="https://foo.example.com/">https://foo.example.com/</a> 自己登录刚注册的账号然后使用。完结撒花。</p>
-<h1 id="Updated-on-Mar-18th-2025"><a href="#Updated-on-Mar-18th-2025" class="headerlink" title="Updated on Mar 18th, 2025"></a>Updated on Mar 18th, 2025</h1><h2 id="frp-https2http-插件"><a href="#frp-https2http-插件" class="headerlink" title="frp https2http 插件"></a>frp https2http 插件</h2><p>使用 frp https2http 插件可以在本地将 overleaf 的 http 连接转为 https，省去了跳板机配置nginx的麻烦，并同时解决了FAQ中的websocket连接超时的问题。</p>
+<h2 id="用户配置">用户配置</h2>
+<p>访问 https://foo.example.com/launchpad
+设置管理员账号与添加账号（如果没有设置邮箱服务器，可以让管理员账户在后台添加用户，后台会给出一个注册成功的修改密码的链接，把那个链接发给注册用户就好了）。</p>
+<p>然后访问 https://foo.example.com/
+自己登录刚注册的账号然后使用。完结撒花。</p>
+<h1 id="updated-on-mar-18th-2025">Updated on Mar 18th, 2025</h1>
+<h2 id="frp-https2http-插件">frp https2http 插件</h2>
+<p>使用 frp https2http 插件可以在本地将 overleaf 的 http 连接转为
+https，省去了跳板机配置nginx的麻烦，并同时解决了FAQ中的websocket连接超时的问题。</p>
 <ul>
 <li>client</li>
 </ul>
@@ -383,20 +427,35 @@
 <li>server</li>
 </ul>
 <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bindPort</span> = <span class="number">7001</span></span><br><span class="line"><span class="attr">quicBindPort</span> = <span class="number">7001</span>                      <span class="comment"># optional</span></span><br><span class="line"><span class="attr">vhostHTTPSPort</span> = &lt;https port&gt;                   </span><br><span class="line"><span class="attr">auth.method</span> = <span class="string">&quot;token&quot;</span>                    <span class="comment"># optional</span></span><br><span class="line"><span class="attr">auth.token</span> = &lt;your secret token&gt;         <span class="comment"># optional</span></span><br></pre></td></tr></table></figure>
-<p>你甚至可以再套一层 netlify 的 cdn 反代把这个 <code>&lt;https port&gt;</code> 变成默认的 443。</p>
-<h2 id="certbot-手动-hook"><a href="#certbot-手动-hook" class="headerlink" title="certbot 手动 hook"></a>certbot 手动 hook</h2><p>使用以下指令可以手动模拟对<code>example.com</code>域名的 dns 订阅/续订，并使用<code>foo.sh</code>脚本：</p>
+<p>你甚至可以再套一层 netlify 的 cdn 反代把这个
+<code>&lt;https port&gt;</code> 变成默认的 443。</p>
+<h2 id="certbot-手动-hook">certbot 手动 hook</h2>
+<p>使用以下指令可以手动模拟对<code>example.com</code>域名的 dns
+订阅/续订，并使用<code>foo.sh</code>脚本：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo certbot certonly \</span><br><span class="line">  --manual \</span><br><span class="line">  --preferred-challenges dns \</span><br><span class="line">  --manual-auth-hook /path/to/foo.sh \</span><br><span class="line">  --dry-run \</span><br><span class="line">  -d example.com</span><br></pre></td></tr></table></figure>
 <p>certbot 会给 <code>foo.sh</code> 传递两个参数：</p>
 <ul>
 <li><code>$CERTBOT_DOMAIN</code>：你要续订的域名。</li>
 <li><code>$CERTBOT_VALIDATION</code>：验证字符串。</li>
 </ul>
-<p>这个脚本要做的内容是在你的 dns provider 中插入一行名为 <code>_acme-challenge. + $CERTBOT_DOMAIN</code>，值为 <code>$CERTBOT_VALIDATION</code> 的 TXT 记录。如果你使用 netlify 作为 dns，这一点我在 <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynamic-dns-py">https://github.com/junyu33/netlify-dynamic-dns-py</a> 中的 <code>dns-auth.sh</code> 和 <code>renew.py</code> 中做了一个自动化的实现。只需将 <code>/path/to/foo.sh</code> 替换为 <code>dns-auth.sh</code> 的绝对路径即可，例如 <code>/home/junyu33/netlify-dynamic-dns-py/dns-auth.sh</code>。</p>
-<p>如果运行成功，就可以把 <code>--dry-run</code> 这个参数去掉以执行真正的自动续订。如果续订成功，certbot 会设置一个计划任务，在证书即将到期时再次调用这个脚本进行续订，所以需要保持你的 hook 脚本始终在该路径存在。</p>
-<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><blockquote>
+<p>这个脚本要做的内容是在你的 dns provider 中插入一行名为
+<code>_acme-challenge. + $CERTBOT_DOMAIN</code>，值为
+<code>$CERTBOT_VALIDATION</code> 的 TXT 记录。如果你使用 netlify 作为
+dns，这一点我在 https://github.com/junyu33/netlify-dynamic-dns-py 中的
+<code>dns-auth.sh</code> 和 <code>renew.py</code>
+中做了一个自动化的实现。只需将 <code>/path/to/foo.sh</code> 替换为
+<code>dns-auth.sh</code> 的绝对路径即可，例如
+<code>/home/junyu33/netlify-dynamic-dns-py/dns-auth.sh</code>。</p>
+<p>如果运行成功，就可以把 <code>--dry-run</code>
+这个参数去掉以执行真正的自动续订。如果续订成功，certbot
+会设置一个计划任务，在证书即将到期时再次调用这个脚本进行续订，所以需要保持你的
+hook 脚本始终在该路径存在。</p>
+<h1 id="faq">FAQ</h1>
+<blockquote>
 <p>launchpad 界面中 websocket 检测超时怎么办？</p>
 </blockquote>
-<p>ignore it（目前看来并不影响使用），或者使用 frp 的 https2http 插件。</p>
+<p>ignore it（目前看来并不影响使用），或者使用 frp 的 https2http
+插件。</p>
 <blockquote>
 <p>进入项目时提示 connection error？</p>
 </blockquote>
@@ -404,23 +463,28 @@
 <blockquote>
 <p>为什么我只能上传最大 1M 的文件？</p>
 </blockquote>
-<p>见<a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">此issue</a>，原因是 nginx 配置的问题，有可能是 docker 内部的 nginx 配置，也可能是跳板机中的 nginx 配置（但笔者已经在这里加了 <code>client_max_body_size 50M</code>，因此可以排除后者原因）。</p>
+<p>见<a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">此issue</a>，原因是
+nginx 配置的问题，有可能是 docker 内部的 nginx 配置，也可能是跳板机中的
+nginx 配置（但笔者已经在这里加了
+<code>client_max_body_size 50M</code>，因此可以排除后者原因）。</p>
 <blockquote>
 <p>不使用 HTTPS 可以吗？</p>
 </blockquote>
-<p>至少在本机最新版 Microsoft Edge 会直接提示 connection not secure，并且无法 proceed。其他情况没有测试。</p>
+<p>至少在本机最新版 Microsoft Edge 会直接提示 connection not
+secure，并且无法 proceed。其他情况没有测试。</p>
 <blockquote>
 <p>HTTPS 使用自签名证书可以吗？（例如使用 openssl 自己生成一对）</p>
 </blockquote>
 <p>同上。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</a></p>
-<p><a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757">https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757</a></p>
-<p><a target="_blank" rel="noopener" href="https://jinli.io/p/%E8%87%AA%E5%BB%BA%E5%9C%A8%E7%BA%BFlatex%E7%BC%96%E8%AF%91%E9%A2%84%E8%A7%88%E6%9C%8D%E5%8A%A1overleaf%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%E7%89%88/">https://jinli.io/p/%E8%87%AA%E5%BB%BA%E5%9C%A8%E7%BA%BFlatex%E7%BC%96%E8%AF%91%E9%A2%84%E8%A7%88%E6%9C%8D%E5%8A%A1overleaf%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%E7%89%88/</a></p>
-<p><a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">https://gofrp.org/zh-cn/docs/examples/vhost-http/</a></p>
-<p><a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/https2http/">https://gofrp.org/zh-cn/docs/examples/https2http/</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">https://github.com/overleaf/docker-image/issues/20</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx">https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx</a></p>
-<p><a target="_blank" rel="noopener" href="https://chat.deepseek.com/">https://chat.deepseek.com/</a></p>
+<h1 id="参考资料">参考资料</h1>
+<p>https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</p>
+<p>https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757</p>
+<p>https://jinli.io/p/%E8%87%AA%E5%BB%BA%E5%9C%A8%E7%BA%BFlatex%E7%BC%96%E8%AF%91%E9%A2%84%E8%A7%88%E6%9C%8D%E5%8A%A1overleaf%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%E7%89%88/</p>
+<p>https://gofrp.org/zh-cn/docs/examples/vhost-http/</p>
+<p>https://gofrp.org/zh-cn/docs/examples/https2http/</p>
+<p>https://github.com/overleaf/docker-image/issues/20</p>
+<p>https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx</p>
+<p>https://chat.deepseek.com/</p>
 
     </div>
 
@@ -496,13 +560,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">875k</span>
+    <span title="站点总字数">883k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:16</span>
+    <span title="站点阅读时长">13:23</span>
   </span>
 </div>
 <div class="busuanzi-count">

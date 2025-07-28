@@ -59,11 +59,35 @@
   </entry>
   
   <entry>
+    <title>HG6143D1 型号路由器获得超级管理员密码</title>
+    <link href="https://blog.junyu33.me/2025/07/28/router.html"/>
+    <id>https://blog.junyu33.me/2025/07/28/router.html</id>
+    <published>2025-07-28T02:30:00.000Z</published>
+    <updated>2025-07-28T02:33:20.697Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为嫌未满18岁的外甥外放抖音太吵，并且打网游上瘾，我决定在力所能及的范围内采取一些措施。&lt;/p&gt;
+&lt;p&gt;例如尝试编辑电信路由器的防火墙，将游戏对应的域名设为禁止访问。&lt;/p&gt;
+&lt;p&gt;这里写一下探索的过程，正解会放在最后一节。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="develop" scheme="https://blog.junyu33.me/categories/develop/"/>
+    
+    
+      <category term="web" scheme="https://blog.junyu33.me/tags/web/"/>
+    
+      <category term="android" scheme="https://blog.junyu33.me/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>五五——谈谈过去十五年接受的教育</title>
     <link href="https://blog.junyu33.me/2025/07/06/4th_anni.html"/>
     <id>https://blog.junyu33.me/2025/07/06/4th_anni.html</id>
     <published>2025-07-06T15:30:00.000Z</published>
-    <updated>2025-07-10T15:59:08.561Z</updated>
+    <updated>2025-07-27T13:56:51.699Z</updated>
     
     <summary type="html">
     
@@ -459,26 +483,6 @@ copycat。&lt;/p&gt;
       <category term="linux" scheme="https://blog.junyu33.me/tags/linux/"/>
     
       <category term="assembly" scheme="https://blog.junyu33.me/tags/assembly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The Missing Lecture of Your Cryptography</title>
-    <link href="https://blog.junyu33.me/2024/11/15/danboneh.html"/>
-    <id>https://blog.junyu33.me/2024/11/15/danboneh.html</id>
-    <published>2024-11-15T05:00:00.000Z</published>
-    <updated>2024-12-13T16:20:08.502Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Notes from Dan Boneh&#39;s online cryptography course.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://blog.junyu33.me/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="crypto" scheme="https://blog.junyu33.me/tags/crypto/"/>
     
   </entry>
   

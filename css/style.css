@@ -268,6 +268,15 @@ body {
   .lang-pill:hover { background: rgba(255,255,255,.09); }
 }
 
+/* === 统一中英文代码块字体 === */
+.main code,
+.main pre,
+.main kbd,
+.main samp {
+  font-family: "Fira Code", "Source Code Pro", "Consolas", "Courier New", monospace, "Microsoft YaHei Mono", "PingFang SC";
+  font-size: 0.95em;
+  letter-spacing: 0;
+}
 
 .main .post-item {
   margin-bottom: 35px;

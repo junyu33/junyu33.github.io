@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>My Blog (zh)</title>
+  <link href="https://blog.junyu33.me/zh/atom.xml" rel="self"/>
+  <link href="https://blog.junyu33.me/"/>
+  <updated>2025-08-13T15:58:51.679Z</updated>
+  <id>https://blog.junyu33.me/</id>
+  <entry>
+    <title>（置顶）博客元信息一览</title>
+    <link href="https://blog.junyu33.me/zh/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    <id>https://blog.junyu33.me/zh/2038/01/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
+    <updated>2025-08-13T10:52:15.931Z</updated>
+    <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>（置顶，已完结）nju-pa 心得</title>
+    <link href="https://blog.junyu33.me/zh/2033/05/13/nju_pa/"/>
+    <id>https://blog.junyu33.me/zh/2033/05/13/nju_pa/</id>
+    <updated>2025-08-13T04:58:06.057Z</updated>
+    <summary type="html"><![CDATA[<p>2023/4/20 ~ 2024/5/4</p>
+<p>6705 commits (2 commits per compilation and execution)</p>
+<p>A year of persistence has finally come to an end.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>为什么椭圆曲线点加满足结合律</title>
+    <link href="https://blog.junyu33.me/zh/2025/08/10/cayley/"/>
+    <id>https://blog.junyu33.me/zh/2025/08/10/cayley/</id>
+    <updated>2025-08-13T04:58:04.994Z</updated>
+    <summary type="html"><![CDATA[<p>这篇文章介绍椭圆曲线点加结合律的证明，以及更强的 9-points theorem。另外，也会涉及到该定理的三种推论：pascal 定理、pappus 定理，以及圆锥曲线极点极线的配极原则。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>HG6143D1 型号路由器获得超级管理员密码</title>
+    <link href="https://blog.junyu33.me/zh/2025/07/28/router/"/>
+    <id>https://blog.junyu33.me/zh/2025/07/28/router/</id>
+    <updated>2025-08-13T04:58:06.250Z</updated>
+    <summary type="html"><![CDATA[<p>因为嫌未满18岁的外甥外放抖音太吵，并且打网游上瘾，我决定在力所能及的范围内采取一些措施。</p>
+<p>例如尝试编辑电信路由器的防火墙，将游戏对应的域名设为禁止访问。</p>
+<p>这里写一下探索的过程，正解会放在最后一节。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>五五——谈谈过去十五年接受的教育</title>
+    <link href="https://blog.junyu33.me/zh/2025/07/06/4th_anni/"/>
+    <id>https://blog.junyu33.me/zh/2025/07/06/4th_anni/</id>
+    <updated>2025-08-13T10:52:49.502Z</updated>
+    <summary type="html"><![CDATA[<p>博客四周年了。今年也是我本科毕业的日子，于是这周年的主题是谈一谈目前陪伴了我十五年的国内教育。</p>
+<p>这是一个沉重的话题，但我不想做大段的论述。于是我选择一个较为轻松的方式：通过评价我从小学到大学接触的老师，来给我视角下的教育，勾勒一个大致的轮廓。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Happy Tau Day 2025</title>
+    <link href="https://blog.junyu33.me/zh/2025/06/28/tau/"/>
+    <id>https://blog.junyu33.me/zh/2025/06/28/tau/</id>
+    <updated>2025-08-13T04:58:06.381Z</updated>
+    <summary type="html"><![CDATA[<p>《tau-manifesto》的 tldr 版本。</p>
+<p>原文定义 <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="17.807ex" height="1.692ex" role="img" focusable="false" viewBox="0 -666 7870.8 748" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D70F" d="M39 284Q18 284 18 294Q18 301 45 338T99 398Q134 425 164 429Q170 431 332 431Q492 431 497 429Q517 424 517 402Q517 388 508 376T485 360Q479 358 389 358T299 356Q298 355 283 274T251 109T233 20Q228 5 215 -4T186 -13Q153 -13 153 20V30L203 192Q214 228 227 272T248 336L254 357Q254 358 208 358Q206 358 197 358T183 359Q105 359 61 295Q56 287 53 286T39 284Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(794.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1850.6,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(2350.6,0)"><path data-c="1D70B" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(3198.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(4254.1,0)"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" style="stroke-width: 3;"/><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(778,0)" style="stroke-width: 3;"/><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1278,0)" style="stroke-width: 3;"/><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(1778,0)" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(6698.8,0)"><path data-c="22EF" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250ZM525 250Q525 274 542 292T585 310Q609 310 627 294T646 251Q646 226 629 208T586 190T543 207T525 250ZM972 250Q972 274 989 292T1032 310Q1056 310 1074 294T1093 251Q1093 226 1076 208T1033 190T990 207T972 250Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>τ</mi><mo>=</mo><mn>2</mn><mi>π</mi><mo>=</mo><mn>6.283</mn><mo>⋯</mo></math></mjx-assistive-mml></mjx-container>，以取代现有圆周率<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.29ex" height="1ex" role="img" focusable="false" viewBox="0 -431 570 442" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D70B" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>π</mi></math></mjx-assistive-mml></mjx-container>的地位，并列举了一些理由。除此之外，我也另外添加一个理由。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>（转载）五四——做自己喜欢的事</title>
+    <link href="https://blog.junyu33.me/zh/2025/05/23/%E5%81%9A%E8%87%AA%E5%B7%B1%E5%96%9C%E6%AC%A2%E7%9A%84%E4%BA%8B/"/>
+    <id>https://blog.junyu33.me/zh/2025/05/23/%E5%81%9A%E8%87%AA%E5%B7%B1%E5%96%9C%E6%AC%A2%E7%9A%84%E4%BA%8B/</id>
+    <updated>2025-08-13T04:58:06.640Z</updated>
+    <summary type="html"><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/36610511">https://zhuanlan.zhihu.com/p/36610511</a></p>
+<p>这么老生常谈的东西还要拿来讲吗？ 是的，确实是老生常谈，但是那些所谓的“常谈”从来都没有真正地开始谈。虽然它们常常出现在各类名人演讲和成功学的鸡汤里面，却没有任何实在的内容，只是一个没有内容的标签。“做自己喜欢的事”就是这样一个没有内容的标签或废话。仿佛别人一说，我们就会了一样。</p>
+<p>就像所有的大道理和名人名言一样，也许在其创立之初，由立言者亲身示范，还可以带给他的门徒以鲜活生动的体验，由此成为真正有生命的活物。即使在立言者逝去之后，其伟大的人格和他的教导一样，仍然真实不虚地震荡着追随者的心灵。但是如果没有系统性和理论性的文字流传下来，那些曾经充满活力和行动力的思想，或微言大义的只言片语，都将随着追随者的逝去，而不复存在。 即使留下了联篇累牍的文字，如果没有不断鲜活的呈现和与时俱进的发展，在时间无情的洗刷之下，它们只会变成冰冷的教条和毫无生机的死物。就像那些我们在小学和中学就早已熟知的各种名言、套路和八股，我十分确信我中学能背下来的大道理，比我现在所知道的要多很多。</p>
+<p>本文并不奢望一劳永逸地解决什么问题。只是希望通过对这个冰冷的标签的解读，使得它在读者心中变得鲜活和生动起来，变成一个我们可以时时把玩、常想常新的主题。我们追求的不是面面俱到和滴水不漏，而是以一种相对过激的方式展现矛盾的另一面，希望引起大家的思考和争论。另一个更直接的目的是，我希望对我组里学习数学物理的同学有所帮助，特别是因为数学物理是一个非常容易迷失方向的领域。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>（转载）凑8游戏——图论分析</title>
+    <link href="https://blog.junyu33.me/zh/2025/05/23/eights/"/>
+    <id>https://blog.junyu33.me/zh/2025/05/23/eights/</id>
+    <updated>2025-08-13T04:58:05.528Z</updated>
+    <summary type="html"><![CDATA[<p>原作者：Master-Hash</p>
+<p>凑8游戏由 Max，也就是创办这个网站的人，于初一军训期间介绍给笔者。规则如下：</p>
+<p>开局时，两个人两只手都是1，双方轮流，每轮玩家可以将自己手上的一个数字的值变为该数字和对方手上某个数字的和（只准加，不准加自己），如果超过7，一律变为1，如果为8，则撤手，两只手都撤下为赢。</p>
+<p>此游戏有无数变种（正因此随机找一个人很有可能因不认同规则而玩不起来），但 Max 的变种最吸引笔者，因为可以靠自己变7乃至双7限制对方的选择，给纯粹随波逐流的游戏增添了策略。高中时，笔者就试图分析此游戏的策略，无奈学艺不精，半途而废。4年后，笔者受室友影响，沉迷上了国际象棋，对求解器的原理颇好奇，于是一鼓作气，将其解出。</p>
+<p>笔者目前的编程功底不能说比往年高了多少，至今仍然几乎是高一用 Python 刷洛谷攒下的功底，换任何一门语言都不能习惯——即使是类型系统严谨很多的 Rust 和目前最熟悉的 TypeScript。能写出来，也许要感谢 ChatGPT 和 Copilot 吧。</p>
+<p>本文写给无博弈论基础者。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Diophantine equations and elliptic curves</title>
+    <link href="https://blog.junyu33.me/zh/2025/04/27/diophantine/"/>
+    <id>https://blog.junyu33.me/zh/2025/04/27/diophantine/</id>
+    <updated>2025-08-13T06:31:56.928Z</updated>
+    <summary type="html"><![CDATA[<p>在上一篇 post 中，我们介绍了在椭圆曲线上的 weil pairing 和 tate pairing。在这一篇中我们考虑椭圆曲线在丢番图方程上的一些应用。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>calculate weil-pairing from 0 to 1</title>
+    <link href="https://blog.junyu33.me/zh/2025/04/18/weil/"/>
+    <id>https://blog.junyu33.me/zh/2025/04/18/weil/</id>
+    <updated>2025-08-13T06:32:06.836Z</updated>
+    <summary type="html"><![CDATA[<p>为了更好理解 weil-pairing 以及 miller 算法，这里使用 python 从 0 开始实现了一遍。</p>
+<p>用到的依赖只有 <code>pow</code> 函数，<code>math.inf</code> 和深拷贝函数 <code>copy.deepcopy</code>，且使用了本人并不顺手的 OOP 编程范式。</p>
+<p>虽然写了之后对 weil-pairing 和 OOP 的理解同时加深了（</p>]]></summary>
+  </entry>
+  <entry>
+    <title>从一道 leetcode 题到离散对数求解算法</title>
+    <link href="https://blog.junyu33.me/zh/2025/03/18/pollard_rho/"/>
+    <id>https://blog.junyu33.me/zh/2025/03/18/pollard_rho/</id>
+    <updated>2025-08-13T06:37:41.064Z</updated>
+    <summary type="html"><![CDATA[<p>我们先来看题面，点进去之前可以先思考一下：</p>
+<blockquote>
+<p>Given an array of integers <code>nums</code> containing <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="5.254ex" height="1.692ex" role="img" focusable="false" viewBox="0 -666 2322.4 748" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(822.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1822.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>+</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container> integers where each integer is in the range <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.753ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2100.7 1000" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(278,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(778,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1222.7,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1822.7,0)"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mi>n</mi><mo stretchy="false">]</mo></math></mjx-assistive-mml></mjx-container> inclusive, <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.312ex;" xmlns="http://www.w3.org/2000/svg" width="7.625ex" height="2.267ex" role="img" focusable="false" viewBox="0 -864 3370.1 1002" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(877.8,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(1933.6,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>≤</mo><msup><mn>10</mn><mn>5</mn></msup></math></mjx-assistive-mml></mjx-container>.</p>
+<p>There is <strong>only one repeated number</strong> in <code>nums</code>, return this repeated number.</p>
+<p>You must solve the problem <strong>without modifying the array</strong> and using only <strong>constant extra space</strong>.</p>
+</blockquote>]]></summary>
+  </entry>
+  <entry>
+    <title>如何笔算开平方根</title>
+    <link href="https://blog.junyu33.me/zh/2025/03/09/sqrt/"/>
+    <id>https://blog.junyu33.me/zh/2025/03/09/sqrt/</id>
+    <updated>2025-08-13T06:32:59.154Z</updated>
+    <summary type="html"><![CDATA[<p>小学的时候家父给我炫耀他上学的时候学过手算开平方根，说以后在朋友间炫耀可能有用。当时我可能学会了，但之后这个方法似乎在数学教材中绝版了，只记得“二十倍初商加次商”这个口诀。这篇文章的主要目的就是叙述，我如何回忆起来的过程。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>内网穿透搭建 overleaf 服务器</title>
+    <link href="https://blog.junyu33.me/zh/2025/02/27/overleaf/"/>
+    <id>https://blog.junyu33.me/zh/2025/02/27/overleaf/</id>
+    <updated>2025-08-13T04:58:06.114Z</updated>
+    <summary type="html"><![CDATA[<h1>introduction</h1>
+<p>在前序文章《从零搭建一个又快又安全的 VNC 服务》中，我们实现了从非公网机器连接到使用了 ddns 的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the hard way》中，我们使用了 ddns 的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建 web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89 订阅费用的目的。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>五三——警惕 LLM 成为下一个“做题家”</title>
+    <link href="https://blog.junyu33.me/zh/2025/02/01/chatgpt4/"/>
+    <id>https://blog.junyu33.me/zh/2025/02/01/chatgpt4/</id>
+    <updated>2025-08-13T04:58:05.126Z</updated>
+    <summary type="html"><![CDATA[<p>随着 deepseek 与 chatGPT o3-mini 的出炉，我们欣喜地看到 LLM 正不断朝着“降本”抑或“增效”的方向而不断努力。但毕竟 LLM 训练也带着 paper-oriented 的特性，我们需要警惕，再朝着这样的方向进行下去，LLM 有可能变成下一个“做题家”。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>（转载）漫话骗子的故事</title>
+    <link href="https://blog.junyu33.me/zh/2025/01/16/%E6%BC%AB%E8%AF%9D%E9%AA%97%E5%AD%90%E7%9A%84%E6%95%85%E4%BA%8B/"/>
+    <id>https://blog.junyu33.me/zh/2025/01/16/%E6%BC%AB%E8%AF%9D%E9%AA%97%E5%AD%90%E7%9A%84%E6%95%85%E4%BA%8B/</id>
+    <updated>2025-08-13T04:58:06.753Z</updated>
+    <summary type="html"><![CDATA[<p>原作者：Master-Hash</p>]]></summary>
+  </entry>
+  <entry>
+    <title>五二——我的 2024</title>
+    <link href="https://blog.junyu33.me/zh/2024/12/31/bye2024/"/>
+    <id>https://blog.junyu33.me/zh/2024/12/31/bye2024/</id>
+    <updated>2025-08-13T04:58:04.853Z</updated>
+    <summary type="html"><![CDATA[<p>2023 年立的 flag 中，好像除了考过了 IELTS，其他全部都非预期了。</p>
+<p>以下按月来叙述 2024 年发生的事情。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>（转载）五一——跳房子</title>
+    <link href="https://blog.junyu33.me/zh/2024/12/28/%E8%B7%B3%E6%88%BF%E5%AD%90/"/>
+    <id>https://blog.junyu33.me/zh/2024/12/28/%E8%B7%B3%E6%88%BF%E5%AD%90/</id>
+    <updated>2025-08-13T04:58:06.859Z</updated>
+    <summary type="html"><![CDATA[<p>选自《儿童文学》第 599 期（2014 年 3 月号）。</p>
+<p>上一次读这篇文章是十年前，现在又找到了。</p>
+<p>不要问我是怎么找到的，因为互联网是没有记忆的。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>五十——都知道 2048，那 Threes! 呢？</title>
+    <link href="https://blog.junyu33.me/zh/2024/12/24/threes/"/>
+    <id>https://blog.junyu33.me/zh/2024/12/24/threes/</id>
+    <updated>2025-08-13T04:58:06.409Z</updated>
+    <summary type="html"><![CDATA[<p>临近年底了，我突然想起 2024 年，其实也是 2048 这个红极一时的游戏上线的十周年了。</p>
+<p>但可能鲜有人知道，2048 这个游戏，实际上是真正烧脑游戏 Threes! 的 copycat。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>第一百篇博客</title>
+    <link href="https://blog.junyu33.me/zh/2024/12/13/%E7%AC%AC%E4%B8%80%E7%99%BE%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://blog.junyu33.me/zh/2024/12/13/%E7%AC%AC%E4%B8%80%E7%99%BE%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
+    <updated>2025-08-13T04:58:06.788Z</updated>
+    <summary type="html"><![CDATA[<p>在三年前的七月份，我写下第一篇博客开始。我立下了希望能在本科结束之前，写下 100 篇文章的目标。没想到我居然提前大概半年的时间，完成了这个目标。</p>
+<p>既然“一百”算是一个特殊的数字，那么我觉得这个博客的内容也应该是与博客本身相关的，不然就不能体现出这篇文章的“特殊”程度了。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>四九——ChatGPT 三探</title>
+    <link href="https://blog.junyu33.me/zh/2024/12/07/chatgpt3/"/>
+    <id>https://blog.junyu33.me/zh/2024/12/07/chatgpt3/</id>
+    <updated>2025-08-13T06:38:57.001Z</updated>
+    <summary type="html"><![CDATA[<p>我们恭喜，chatgpt o1 正式版，终于迈出了历史性的一步。</p>
+<p>算对了 <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.295ex;" xmlns="http://www.w3.org/2000/svg" width="6.87ex" height="2.398ex" role="img" focusable="false" viewBox="0 -929.5 3036.7 1060" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msqrt"><g transform="translate(853,0)"><g data-mml-node="mi"><path data-c="74" d="M27 422Q80 426 109 478T141 600V615H181V431H316V385H181V241Q182 116 182 100T189 68Q203 29 238 29Q282 29 292 100Q293 108 293 146V181H333V146V134Q333 57 291 17Q264 -10 221 -10Q187 -10 162 2T124 33T105 68T98 100Q97 107 97 248V385H18V422H27Z" style="stroke-width: 3;"/><path data-c="61" d="M137 305T115 305T78 320T63 359Q63 394 97 421T218 448Q291 448 336 416T396 340Q401 326 401 309T402 194V124Q402 76 407 58T428 40Q443 40 448 56T453 109V145H493V106Q492 66 490 59Q481 29 455 12T400 -6T353 12T329 54V58L327 55Q325 52 322 49T314 40T302 29T287 17T269 6T247 -2T221 -8T190 -11Q130 -11 82 20T34 107Q34 128 41 147T68 188T116 225T194 253T304 268H318V290Q318 324 312 340Q290 411 215 411Q197 411 181 410T156 406T148 403Q170 388 170 359Q170 334 154 320ZM126 106Q126 75 150 51T209 26Q247 26 276 49T315 109Q317 116 318 175Q318 233 317 233Q309 233 296 232T251 223T193 203T147 166T126 106Z" transform="translate(389,0)" style="stroke-width: 3;"/><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(889,0)" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1445,0)"><path data-c="2061" d="" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1611.7,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(0,69.5)"><path data-c="221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z" style="stroke-width: 3;"/></g><rect width="2183.7" height="60" x="853" y="809.5"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msqrt><mi>tan</mi><mo data-mjx-texclass="NONE">⁡</mo><mi>x</mi></msqrt></math></mjx-assistive-mml></mjx-container> 的不定积分，and more。</p>]]></summary>
+  </entry>
+</feed>

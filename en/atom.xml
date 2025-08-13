@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>My Blog (en)</title>
+  <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
+  <link href="https://blog.junyu33.me/"/>
+  <updated>2025-08-13T15:58:51.679Z</updated>
+  <id>https://blog.junyu33.me/</id>
+  <entry>
+    <title>(Sticky) Meta Information</title>
+    <link href="https://blog.junyu33.me/en/2038/01/19/meta/"/>
+    <id>https://blog.junyu33.me/en/2038/01/19/meta/</id>
+    <updated>2025-08-13T10:52:25.599Z</updated>
+    <summary type="html"><![CDATA[<p>Lists some meta information related to the blog itself for easy reference.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Number guessing game</title>
+    <link href="https://blog.junyu33.me/en/2021/08/27/guess/"/>
+    <id>https://blog.junyu33.me/en/2021/08/27/guess/</id>
+    <updated>2025-08-13T15:22:03.173Z</updated>
+    <summary type="html"><![CDATA[<p>It was a free day again, so I dug out the number guessing game code that I wrote during the high school. I didn't improve it, but combined the popular online version with elementary school mathematics to form the following code.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>The 1st blog</title>
+    <link href="https://blog.junyu33.me/en/2018/11/30/1st_blog/"/>
+    <id>https://blog.junyu33.me/en/2018/11/30/1st_blog/</id>
+    <updated>2025-08-13T15:21:48.083Z</updated>
+    <summary type="html"><![CDATA[<h2 id="First-meeting">First meeting</h2>
+<p>Hello, classmate! Welcome to the blogging system based on the Next theme built with Hexo.</p>
+<h2 id="About-Markdown">About Markdown</h2>
+<p>By the time you're able to access this page, you're already aware that blog posts will be written using Markdown s]]></summary>
+  </entry>
+</feed>

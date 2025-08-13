@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 
   
-    <link rel="alternate" hreflang="en" href="/en/2021/08/17/guess/">
+    <link rel="alternate" hreflang="zh" href="/zh/2021/08/17/guess/">
   
 
 <head>
@@ -61,15 +61,15 @@
 		</a>
 		<div class="right">
 			
-				<a href="/zh">首页</a>
-				<a href="/zh/archives">归档</a>
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
 				
-					<a href="/zh/categories">Categories</a>
+					<a href="/categories">Categories</a>
 				
 				
-					<a href="/zh/tags">Tags</a>
+					<a href="/tags">Tags</a>
 				
-				<a href="/">English</a>
+				<a href="/zh">中文站</a>
 			
 		</div>
 	</div>
@@ -81,16 +81,16 @@
       <nav class="lang-switch" role="navigation" aria-label="Language switch">
         
           <a class="lang-pill"
-             href="/en/2021/08/17/guess/"
-             hreflang="en">
-            <span class="lang-label">English</span>
+             href="/zh/2021/08/17/guess/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
           </a>
         
       </nav>
     
 
 	<h1>猜数游戏</h1>
-	<p>又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。</p>
+	<p>It was a free day again, so I dug out the number guessing game code that I wrote during the high school. I didn't improve it, but combined the popular online version with elementary school mathematics to form the following code.</p>
 <span id="more"></span>
 <pre><code class="language-c++">//created by junyu33 in Feb. 3rd, 2020
 #include &lt;bits/stdc++.h&gt;
@@ -215,18 +215,18 @@ int main()
     &#125;
 &#125;
 </code></pre>
-<p>游戏的规则嘤文说得很清楚，这里简要阐述一下：</p>
+<p>The rule is said in the comment, but I'll still give an example：</p>
 <blockquote>
-<p>变化规则：2 -&gt; 5,5 -&gt; 2</p>
-<p>原式：2*2</p>
-<p>第一次变：5*5</p>
-<p>结果为：25</p>
-<p>第二次变：52</p>
+<p>change rule: 2 -&gt; 5,5 -&gt; 2</p>
+<p>begin: 2*2</p>
+<p>change the operands：5*5</p>
+<p>inital result：25</p>
+<p>change the digits again: 52</p>
 </blockquote>
-<p>其实我是编写了加减乘除四种函数，但减法会有负数变为0的<strong>特性</strong>，除法只有取整，在实际猜数的过程中应用价值不高。于是我就吓唬没拿到源码的人，让他们只用加与乘来规避bug的出现。</p>
-<p>操作示例：（再按任意键继续就关了）</p>
+<p>I actually wrote four functions: addition, subtraction, multiplication, and division. However, subtraction had a <strong>feature</strong> where negative numbers would be converted to zero, and division only truncated to the integer part, making them of little use in actual number guessing. So I tricked people who didn't have the source code into using only addition and multiplication to avoid the bug.</p>
+<p>Live example:</p>
 <img src="https://img.junyu33.me/blog/guess/1.png" style="zoom:60%;" />
-<p>希望各位能享受这款有点小烧脑的原创作品！</p>
+<p>I hope you enjoy this slightly mind-bending original work!</p>
 
 </div>
 

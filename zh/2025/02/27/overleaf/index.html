@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>内网穿透搭建 overleaf 服务器</h1>
+	<h1>introduction</h1>
+<p>在前序文章《从零搭建一个又快又安全的 VNC 服务》中，我们实现了从非公网机器连接到使用了 ddns 的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the hard way》中，我们使用了 ddns 的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建 web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89 订阅费用的目的。</p>
+<span id="more"></span>
+<h1>prerequisites</h1>
+<ul>
+<li>一台可以连上公网的跳板机（我这里仍然是中序文章中支持 RVV1.0 的开发板）</li>
+<li>较高性能的，用来安装 overleaf 社区版的 linux 服务器</li>
+<li>确保主机、服务器、跳板机可以互相 ssh 连接</li>
+<li>确保跳板机有对应的域名</li>
+</ul>
+<h1>steps</h1>
+<h2 id="先保证服务器的-overleaf-正常运行">先保证服务器的 overleaf 正常运行</h2>
+<p>可以参考<a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf">这篇博客</a>或者<a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">官方文档</a>，但还是贴一下步骤：</p>
+<pre><code class="language-bash">git clone https://github.com/overleaf/toolkit.git ./overleaf-toolkit
+cd ./overleaf-toolkit
+sudo bin/init
+</code></pre>
+<p>修改一下 <code>./config/overleaf.rc</code>：</p>
+<pre><code>OVERLEAF_LISTEN_IP=0.0.0.0 # 监听所有的IP，默认只能本地访问
+OVERLEAF_PORT=9999 # 默认是80端口,但可能会被占用
+</code></pre>
+<p>然后启动：</p>
+<pre><code class="language-bash">sudo bin/up -d
+sudo bin/down # 关闭
+</code></pre>
+<p>如果 docker-compose 代理不好使，可以设置换源：</p>
+<pre><code class="language-json">sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+&#123;
+    &quot;registry-mirrors&quot;: [
+    &quot;https://docker.m.daocloud.io&quot;,
+    &quot;https://docker.imgdb.de&quot;,
+    &quot;https://docker-0.unsee.tech&quot;,
+    &quot;https://docker.hlmirror.com&quot;,
+    &quot;https://docker.lms.run&quot;,
+    &quot;https://func.ink&quot;,
+    &quot;https://lispy.org&quot;,
+    &quot;https://docker.xiaogenban1993.com&quot;
+    ]
+&#125;
+EOF
+</code></pre>
+<p>curl 一下 <a target="_blank" rel="noopener" href="http://localhost:9999">http://localhost:9999</a> 能否正常显示页面，例如：</p>
+<pre><code class="language-bash">&gt; unset http_proxy &amp;&amp; curl http://localhost:9999/
+Found. Redirecting to /login%
+</code></pre>
+<p>如果没有问题证明服务端本身工作正常，进入下一步。</p>
+<h2 id="服务器先内网穿透到跳板机">服务器先内网穿透到跳板机</h2>
+<p>可以参考<a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">这个文档</a>。</p>
+<p>下载同一个版本的 <code>frpc</code> 与 <code>frps</code>（笔者使用<code>0.61.0</code>），客户端（也就是 overleaf 服务器）修改 <code>frpc.toml</code>：</p>
+<pre><code class="language-toml">serverAddr = &lt;frps server domain name or IP&gt;
+serverPort = 7000
+transport.protocol = &quot;quic&quot;
+
+[[proxies]]
+name = &quot;web&quot;
+type = &quot;http&quot;
+localPort = 9999 # 对应你的 overleaf 服务器本地端口
+customDomains = &lt;frps server domain name&gt;
+</code></pre>
+<p>然后到 frps 服务端（也就是跳板机）修改 <code>frps.toml</code>：</p>
+<pre><code class="language-toml">bindPort = 7000
+quicBindPort = 7000
+vhostHTTPPort = &lt;the mapped port in jump server&gt;
+</code></pre>
+<p>之后启动客户端的 <code>frpc</code>：</p>
+<pre><code class="language-sh">./frpc -c frpc.toml
+</code></pre>
+<p>与服务端的 <code>frps</code>：</p>
+<pre><code class="language-sh">./frps -c frps.toml
+</code></pre>
+<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射 http 端口的值为<code>8080</code>，在跳板机 curl 一下：</p>
+<pre><code class="language-sh">&gt; unset http_proxy &amp;&amp; curl http://foo.example.com:8080
+Found. Redirecting to /login
+</code></pre>
+<p>如果成功，代表 frp 工作正常。如果你只需在 HTTP 环境访问，并且域名已备案，使用 <code>http://foo.example.com:8080</code> 来访问已经没有问题，否则进行下一步。</p>
+<blockquote>
+<p>建议将 frps 与 frpc 加入 systemctl 以方便开机启动，例如：</p>
+</blockquote>
+<pre><code>### /etc/systemd/system/frps.service
+[Unit]
+Description=frps
+After=network.target syslog.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/frps -c /usr/local/bin/frps.toml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<h2 id="let-s-encrypt-获取域名证书（如果没有）">let's encrypt 获取域名证书（如果没有）</h2>
+<p>let's encrypt 使用 certbot 进行域名所有权验证，证书有效期为 90 天。但默认参数允许自动续期，在配置好 nginx 的情况只需要一行命令，中间选择第一个选项即可。</p>
+<pre><code>&gt; sudo certbot certonly --preferred-challenges dns -d &lt;frps server domain name&gt;
+
+How would you like to authenticate with the ACME CA?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: Nginx Web Server plugin (nginx)
+2: Runs an HTTP server locally which serves the necessary validation files under
+the /.well-known/acme-challenge/ request path. Suitable if there is no HTTP
+server already running. HTTP challenge only (wildcards not supported).
+(standalone)
+3: Saves the necessary validation files to a .well-known/acme-challenge/
+directory within the nominated webroot path. A seperate HTTP server must be
+running and serving files from the webroot path. HTTP challenge only (wildcards
+not supported). (webroot)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-3] then [enter] (press 'c' to cancel): 1
+</code></pre>
+<p>或者你认为这是一个套娃问题，你可以使用手动获取，再配好 nginx 后转为自动续期。手动获取需要在你的 DNS provider 编辑两个 TXT 字段，这里就不赘述过程了。</p>
+<pre><code>sudo certbot certonly --manual --preferred-challenges dns -d &lt;frps server domain name&gt;
+</code></pre>
+<p>验证成功后，certbot 将证书存放于 <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/fullchain.pem</code>，私钥存放于 <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/privkey.pem</code>。</p>
+<h2 id="http-转-https">http 转 https</h2>
+<p>除了文档中所述“结合 https2http 插件来实现将本地的 HTTP 服务以 HTTPS 协议暴露出去”之外，也可以使用 nginx 来达到这一点。</p>
+<p>安装 nginx 后，编辑 <code>/etc/nginx/sites-available/default</code>：</p>
+<pre><code>server &#123;
+    listen &lt;https port&gt; ssl;
+    server_name &lt;frps server domain name&gt;;
+
+    ssl_certificate &lt;your cert&gt;;
+    ssl_certificate_key &lt;your cert key&gt;;
+
+    client_max_body_size 50M;
+
+    location / &#123;
+        proxy_pass http://&lt;frps server domain name&gt;:&lt;the mapped port in jump server&gt;;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    &#125;
+&#125;
+</code></pre>
+<p>其中<code>&lt;https port&gt;</code>正常情况（即已备案条件下）为 443，<code>&lt;frps server domain name&gt;</code>为你的跳板机域名，<code>&lt;your cert&gt;</code>与<code>&lt;your cert key&gt;</code>是先前通过 let's encrypt 来获取的证书与私钥，<code>&lt;the mapped port in jump server&gt;</code>即先前 frp 映射的 http 协议服务端（也就是跳板机）端口。</p>
+<p>填写好参数后：</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+</code></pre>
+<p>假设你服务器的域名是<code>foo.example.com</code>，并且跳板机映射 https 端口的值为<code>443</code>，在跳板机 curl 一下：</p>
+<pre><code class="language-bash">&gt; unset http_proxy &amp;&amp; curl https://foo.example.com
+Found. Redirecting to /login
+</code></pre>
+<p>代表 nginx 服务正常，如果此时你的跳板机域名已经备案，在本地访问这个 URL 应该可以正常打开页面了。</p>
+<h2 id="绕过未备案限制">绕过未备案限制</h2>
+<p>一句话，https 端口不要用常用端口，应该可以绕过，但不保证稳定性。</p>
+<p>之后本地访问的时候，域名后面加上你自己设置的端口应该就可以了。</p>
+<h2 id="用户配置">用户配置</h2>
+<p>访问 <a target="_blank" rel="noopener" href="https://foo.example.com/launchpad">https://foo.example.com/launchpad</a> 设置管理员账号与添加账号（如果没有设置邮箱服务器，可以让管理员账户在后台添加用户，后台会给出一个注册成功的修改密码的链接，把那个链接发给注册用户就好了）。</p>
+<p>然后访问 <a target="_blank" rel="noopener" href="https://foo.example.com/">https://foo.example.com/</a> 自己登录刚注册的账号然后使用。完结撒花。</p>
+<h1>Updated on Mar 18th, 2025</h1>
+<h2 id="frp-https2http-插件">frp https2http 插件</h2>
+<p>使用 frp https2http 插件可以在本地将 overleaf 的 http 连接转为 https，省去了跳板机配置nginx的麻烦，并同时解决了FAQ中的websocket连接超时的问题。</p>
+<ul>
+<li>client</li>
+</ul>
+<pre><code class="language-toml">serverAddr = &lt;frps server domain name&gt;
+serverPort = 7001
+transport.protocol = &quot;quic&quot;              # optional
+auth.method = &quot;token&quot;                    # optional
+auth.token = &lt;your secret token&gt;         # optional 
+
+[[proxies]]
+name = &quot;test_htts2http&quot;                  # any name is ok
+type = &quot;https&quot;
+customDomains = &lt;frps server domain name&gt;
+
+[proxies.plugin]
+type = &quot;https2http&quot;
+# port correspond to overleaf config's local port
+localAddr = &quot;127.0.0.1:9999&quot;   
+
+# HTTPS 证书相关的配置
+# use &lt;frps server domain name&gt; registered from certbot
+crtPath = &quot;./server.crt&quot;   
+keyPath = &quot;./server.key&quot;
+hostHeaderRewrite = &quot;127.0.0.1&quot;
+requestHeaders.set.x-from-where = &quot;frp&quot;
+</code></pre>
+<ul>
+<li>server</li>
+</ul>
+<pre><code class="language-toml">bindPort = 7001
+quicBindPort = 7001                      # optional
+vhostHTTPSPort = &lt;https port&gt;                   
+auth.method = &quot;token&quot;                    # optional
+auth.token = &lt;your secret token&gt;         # optional
+</code></pre>
+<p>你甚至可以再套一层 netlify 的 cdn 反代把这个 <code>&lt;https port&gt;</code> 变成默认的 443。</p>
+<h2 id="certbot-手动-hook">certbot 手动 hook</h2>
+<p>使用以下指令可以手动模拟对<code>example.com</code>域名的 dns 订阅/续订，并使用<code>foo.sh</code>脚本：</p>
+<pre><code class="language-sh">sudo certbot certonly \
+  --manual \
+  --preferred-challenges dns \
+  --manual-auth-hook /path/to/foo.sh \
+  --dry-run \
+  -d example.com
+</code></pre>
+<p>certbot 会给 <code>foo.sh</code> 传递两个参数：</p>
+<ul>
+<li><code>$CERTBOT_DOMAIN</code>：你要续订的域名。</li>
+<li><code>$CERTBOT_VALIDATION</code>：验证字符串。</li>
+</ul>
+<p>这个脚本要做的内容是在你的 dns provider 中插入一行名为 <code>_acme-challenge. + $CERTBOT_DOMAIN</code>，值为 <code>$CERTBOT_VALIDATION</code> 的 TXT 记录。如果你使用 netlify 作为 dns，这一点我在 <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynamic-dns-py">https://github.com/junyu33/netlify-dynamic-dns-py</a> 中的 <code>dns-auth.sh</code> 和 <code>renew.py</code> 中做了一个自动化的实现。只需将 <code>/path/to/foo.sh</code> 替换为 <code>dns-auth.sh</code> 的绝对路径即可，例如 <code>/home/junyu33/netlify-dynamic-dns-py/dns-auth.sh</code>。</p>
+<p>如果运行成功，就可以把 <code>--dry-run</code> 这个参数去掉以执行真正的自动续订。如果续订成功，certbot 会设置一个计划任务，在证书即将到期时再次调用这个脚本进行续订，所以需要保持你的 hook 脚本始终在该路径存在。</p>
+<h1>FAQ</h1>
+<blockquote>
+<p>launchpad 界面中 websocket 检测超时怎么办？</p>
+</blockquote>
+<p>ignore it（目前看来并不影响使用），或者使用 frp 的 https2http 插件。</p>
+<blockquote>
+<p>进入项目时提示 connection error？</p>
+</blockquote>
+<p>原因就是 websocket 连接超时，解决方案同上。</p>
+<blockquote>
+<p>为什么我只能上传最大 1M 的文件？</p>
+</blockquote>
+<p>见<a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">此issue</a>，原因是 nginx 配置的问题，有可能是 docker 内部的 nginx 配置，也可能是跳板机中的 nginx 配置（但笔者已经在这里加了 <code>client_max_body_size 50M</code>，因此可以排除后者原因）。</p>
+<blockquote>
+<p>不使用 HTTPS 可以吗？</p>
+</blockquote>
+<p>至少在本机最新版 Microsoft Edge 会直接提示 connection not secure，并且无法 proceed。其他情况没有测试。</p>
+<blockquote>
+<p>HTTPS 使用自签名证书可以吗？（例如使用 openssl 自己生成一对）</p>
+</blockquote>
+<p>同上。</p>
+<h1>参考资料</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</a></p>
+<p><a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757">https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757</a></p>
+<p><a target="_blank" rel="noopener" href="https://jinli.io/p/%E8%87%AA%E5%BB%BA%E5%9C%A8%E7%BA%BFlatex%E7%BC%96%E8%AF%91%E9%A2%84%E8%A7%88%E6%9C%8D%E5%8A%A1overleaf%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%E7%89%88/">https://jinli.io/p/自建在线latex编译预览服务overleaf开源社区版/</a></p>
+<p><a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">https://gofrp.org/zh-cn/docs/examples/vhost-http/</a></p>
+<p><a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/https2http/">https://gofrp.org/zh-cn/docs/examples/https2http/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">https://github.com/overleaf/docker-image/issues/20</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx">https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx</a></p>
+<p><a target="_blank" rel="noopener" href="https://chat.deepseek.com/">https://chat.deepseek.com/</a></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

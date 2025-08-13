@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>bandit通关记录</h1>
+	<p>一个练习Linux基础命令的网站，属于overthewire.org关卡系列中的基础部分。</p>
+<p>本文中的level指的是网站的guide<code>level n -&gt; level (n+1)</code>中的后者。</p>
+<p>网站链接：<a target="_blank" rel="noopener" href="https://overthewire.org/wargames/bandit/">https://overthewire.org/wargames/bandit/</a></p>
+<span id="more"></span>
+<h1>level1、level14</h1>
+<h2 id="SSH的使用">SSH的使用</h2>
+<blockquote>
+<p>你无法回忆起你学过的任何算法或者 OI 知识。你无法回忆起一切。你无法回忆起你叫什么名字。</p>
+<p>你能回忆起…… <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="12.443ex" height="1.581ex" role="img" focusable="false" viewBox="0 -677 5500 699" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" style="stroke-width: 3;"/><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(1000,0)" style="stroke-width: 3;"/><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(1500,0)" style="stroke-width: 3;"/><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(2000,0)" style="stroke-width: 3;"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(2500,0)" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(3000,0)" style="stroke-width: 3;"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(3500,0)" style="stroke-width: 3;"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(4000,0)" style="stroke-width: 3;"/><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z" transform="translate(4500,0)" style="stroke-width: 3;"/><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(5000,0)" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>49233121176</mn></math></mjx-assistive-mml></mjx-container>，或者再具体一点是 <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.781ex;" xmlns="http://www.w3.org/2000/svg" width="10.239ex" height="2.755ex" role="img" focusable="false" viewBox="0 -872.7 4525.7 1217.7" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mn" transform="translate(220,394) scale(0.707)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" style="stroke-width: 3;"/><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(1000,0)" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(1278,0)" style="stroke-width: 3;"/><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(1778,0)" style="stroke-width: 3;"/><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(2278,0)" style="stroke-width: 3;"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(2778,0)" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(3278,0)" style="stroke-width: 3;"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(3778,0)" style="stroke-width: 3;"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(4278,0)" style="stroke-width: 3;"/><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z" transform="translate(4778,0)" style="stroke-width: 3;"/><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(5278,0)" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1909.3,-345) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)" style="stroke-width: 3;"/></g><rect width="4285.7" height="60" x="120" y="220"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mn>49.233121176</mn><mn>22</mn></mfrac></math></mjx-assistive-mml></mjx-container>。你能回忆起第 <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 1000 666" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>22</mn></math></mjx-assistive-mml></mjx-container> 号港口通往三山海。三山海是你向往的目的地，你一定要到达这里。</p>
+</blockquote>
+<p>考察了ssh的基本使用：</p>
+<p>网站说了用户名和密码都是bandit0</p>
+<pre><code class="language-shell">ssh bandit0@bandit.labs.overthewire.org -p 2220
+</code></pre>
+<p>如果只有密钥，没有密码的话：</p>
+<pre><code class="language-bash">ssh bandit14@bandit.labs.overthewire.org -p 2220 -i ./bandit14.sshkey
+</code></pre>
+<h1>level2~level5</h1>
+<h2 id="基本的路径跳转和文件查看">基本的路径跳转和文件查看</h2>
+<p><code>ls -a</code>查看隐藏文件。</p>
+<p><code>ls -l</code>查看文件的详细信息，包括权限、属于的用户和组、 文件大小、修改时间等等。</p>
+<p><code>cd ../</code>返回上一级。</p>
+<p><code>cd '&lt;dir&gt;'</code>可以跳转到包含空格或者特殊字符（比如<code>-</code>）的路径。</p>
+<h1>level6、level7</h1>
+<h2 id="按照大小查找文件">按照大小查找文件</h2>
+<pre><code class="language-bash">find -size 1033c
+</code></pre>
+<p>查找大小为1033字节的文件。</p>
+<pre><code class="language-bash">find -size +5k -size -99k
+</code></pre>
+<p>查找大小基于5k~99k的文件。</p>
+<p>常用的储存单位为<code>c</code>,<code>k</code>,<code>M</code>,和<code>G</code>.不要问我为什么前两个小写，后两个大写。</p>
+<h2 id="按照用户和组查找文件">按照用户和组查找文件</h2>
+<p>与上文类似：<code>-user</code>,<code>-group</code>.</p>
+<h1>level8、level9、level18</h1>
+<h2 id="查找指定字串">查找指定字串</h2>
+<pre><code class="language-bash">grep millionth &lt; data.txt
+</code></pre>
+<p>其中<code>&lt;</code>是文件输入流，类似也有<code>&gt;</code>作为输出流。</p>
+<h2 id="查找文本中唯一出现的字串">查找文本中唯一出现的字串</h2>
+<pre><code class="language-bash">sort data.txt | uniq -c
+</code></pre>
+<p>其中<code>sort</code>会将文本中的字符串按照字典序排序。</p>
+<p><code>|</code>是管道符，用来将前一个命令的输出作为后一个命令的输入。</p>
+<p>uniq是文本去重命令，它会将文本中重复出现的行压缩至一行。而<code>-c</code>参数的含义是显示该串重复出现的次数，这样我们就可以方便找到那个只出现一次的串。</p>
+<h2 id="文件比较">文件比较</h2>
+<pre><code class="language-bash">diff &lt;dir_1&gt; &lt;dir_2&gt;
+</code></pre>
+<h1>level10~level12</h1>
+<h2 id="编码的考察">编码的考察</h2>
+<p>举了ascii，base64和rot13。</p>
+<p>其实不一定要使用Linux内置的命令，上网找在线转换器或者编写脚本都是可以的。</p>
+<h1>level13</h1>
+<blockquote>
+<p>13果然不是一个好数字。正如这道题的解题过程一样令人恶心。</p>
+</blockquote>
+<h2 id="16进制文本与二进制文件的转换">16进制文本与二进制文件的转换</h2>
+<p><code>xxd</code>将二进制文件转换为16进制文本。</p>
+<p><code>xxd -r</code>逆向操作。</p>
+<h2 id="复制、移动文件和重命名">复制、移动文件和重命名</h2>
+<p>这关需要对文件进行操作，受权限限制，需要将文件移动到临时目录。</p>
+<p><code>cp &lt;src_dir&gt; &lt;dst_dir&gt;</code>将文件从原路径复制到目的路径。</p>
+<p><code>mv &lt;src_dir&gt; &lt;dst_dir&gt;</code>将文件从原路径移动到目的路径。</p>
+<p>重命名可以通过<code>mv &lt;old_name&gt; &lt;new_name&gt;</code>来实现。</p>
+<h2 id="文件类型判断">文件类型判断</h2>
+<p>使用file命令即可，不会受扩展名影响。</p>
+<p>因为Linux本身就没有“扩展名”这种说法，所谓的“扩展名”是为了方便人类识别才有的。</p>
+<h2 id="解压文件">解压文件</h2>
+<h3 id="gunzip">gunzip</h3>
+<p>解压：首先确保其后缀为<code>.gz</code>，解压命令为：<code>gzip -d &lt;filename&gt;</code></p>
+<p>压缩：<code>gzip &lt;filename&gt;</code></p>
+<h3 id="bzip2">bzip2</h3>
+<p>解压：<code>bzip2 -d &lt;filename&gt;</code></p>
+<p>压缩：<code>bzip2 &lt;filename&gt;</code></p>
+<h3 id="tar">tar</h3>
+<p>解压：<code>tar -xvf &lt;filename&gt;</code></p>
+<p>打包：<code>tar -cvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>tar</code>作为后缀。</p>
+<p>使用<code>gzip</code>压缩：<code>tar -zcvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>tar.gz</code>或<code>tgz</code>作为后缀。</p>
+<p>使用<code>bzip2</code>压缩：<code>tar -jcvf &lt;dst_name&gt; &lt;src_name&gt;</code>，建议<code>&lt;dst_name&gt;</code>以<code>bz2</code>作为后缀。</p>
+<h1>level15~level17</h1>
+<blockquote>
+<p>网络部分我是一窍不通。</p>
+</blockquote>
+<h2 id="nc连接某个地址并发送数据。">nc连接某个地址并发送数据。</h2>
+<pre><code class="language-bash">echo &lt;your text&gt; | nc localhost 30000
+</code></pre>
+<p>其中<code>localhost</code>即本地<code>127.0.0.1</code>，而<code>30000</code>是端口号。</p>
+<h2 id="telnet连接某个地址并发送数据">telnet连接某个地址并发送数据</h2>
+<pre><code class="language-bash">telnet localhost 30000
+#之后你可以输入数据并回车，以进行发送
+</code></pre>
+<h2 id="ssl连接某个地址并发送加密数据">ssl连接某个地址并发送加密数据</h2>
+<pre><code class="language-bash">openssl s_client -ign_eof -connect localhost:30001
+#之后你可以输入数据并回车，以进行发送
+#ps: 似乎 -ign_eof 这个参数不是必须的
+</code></pre>
+<h2 id="nmap扫描端口">nmap扫描端口</h2>
+<pre><code class="language-bash">nmap -p 31000-32000 localhost
+</code></pre>
+<p>在31000~32000端口扫描活动的端口。</p>
+<p><s>平时不要乱扫，小心进局子</s></p>
+<h1>bandit19~bandit21</h1>
+<blockquote>
+<p>总之，这几关让我运行了一些奇奇怪怪的程序。</p>
+</blockquote>
+<h2 id="从自动退出的终端中运行命令">从自动退出的终端中运行命令</h2>
+<pre><code class="language-bash">ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+</code></pre>
+<h2 id="linux执行后台命令">linux执行后台命令</h2>
+<pre><code class="language-bash">cat /etc/bandit_pass/bandit20 | nc -l 50000 &amp;
+</code></pre>
+<p>其中<code>&amp;</code>表示让命令在后台运行，这样当你之后<code>nc</code>到<code>50000</code>这个端口时，就会自动返回这个pass。</p>
+<h1>bandit22~bandit24</h1>
+<p>cron相当于windows的任务计划程序。</p>
+<p>只不过这几关不是让你创建计划任务，而是让你读别人脚本和自己写一个脚本。</p>
+<p><s>第二十四关的权限过滤不是很严格，我不仅看到了别人的脚本，还<code>rm -rf</code>了一部分。目测玩过这个游戏的不超过100个人？</s></p>
+<p>记得脚本第一行要写<code>#!/bin/bash</code></p>
+<h1>level25</h1>
+<h2 id="brute-forcing">brute-forcing</h2>
+<p>其实我是用c脚本生成一万行指令，轰炸进去。如果密码正确连接会中断。</p>
+<p>我们可以大致确定密码的范围，然后缩减指令行数，重新轰炸。</p>
+<p>这个时候，再翻一翻前面的爆破记录，应该能看到密码。</p>
+<p>当然，优雅的做法是——python脚本（网上抄的）。</p>
+<pre><code class="language-python">#!/usr/bin/python
+from pwn import *
+from multiprocessing import Process
+
+def brute(nrOne,nrTwo):
+    for pin in range(nrOne,nrTwo):
+        pin = str(pin).zfill(4)
+
+        r = remote('127.0.0.1', 30002)
+        r.recv()
+        r.send('UoMYxxxxxxxxxxxxxxxxxxxxxxxxxxxx ' + pin + '\n')
+
+        if 'Wrong' not in r.recvline():
+            print '[+] Successful -&gt; ' + pin
+            print r.recvline()
+            r.close()
+        else:
+            if int(pin) % 100 == 0:
+                print '[!] Failed -&gt; ' + pin
+            r.close()
+
+if __name__=='__main__':
+    p1 = Process(target = brute, args = (0,2500,))
+    p2 = Process(target = brute, args = (2500,5000,))
+    p3 = Process(target = brute, args = (5000,7500,))
+    p4 = Process(target = brute, args = (7500,10000,))
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
+
+</code></pre>
+<h1>level26、level27</h1>
+<blockquote>
+<p>令人脑洞大开的两关。</p>
+</blockquote>
+<h2 id="查看系统使用了什么终端">查看系统使用了什么终端</h2>
+<p>只需<code>cat /etc/passwd</code>即可，最后一个就是默认终端。</p>
+<h2 id="如何从showtext程序进入vim">如何从showtext程序进入vim</h2>
+<p>将终端的窗口缩小，使文件显示不完，这个时候会有一个<code>more</code>的提示，敲<code>v</code>即可进入vim。</p>
+<h2 id="如何使用vim修改终端并进入bash">如何使用vim修改终端并进入bash</h2>
+<p>在vim的命令模式中输入以下两行：</p>
+<p><code>:set shell=/bin/bash</code></p>
+<p><code>:shell</code></p>
+<h1>level28~level32</h1>
+<h2 id="git的各种操作">git的各种操作</h2>
+<p>克隆：<code>git clone &lt;git_address&gt;</code></p>
+<p>拉取：<code>git pull</code></p>
+<p>上传：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;&lt;your_description&gt;&quot;
+git push origin master
+</code></pre>
+<p>回退一步：<code>git reset --hard HEAD^</code></p>
+<p>查看历史版本：<code>git log --pretty=oneline</code></p>
+<p>回退到指定版本：<code>git reset &lt;commit_id&gt;</code></p>
+<p>查看分支：<code>git branch -a</code></p>
+<p>选择分支：<code>git checkout &lt;branch&gt;</code></p>
+<p>查看标签：<code>git tag</code></p>
+<p>创建标签：<code>git tag -a v1.4 -m 'my version 1.4'</code>.其中<code>-a</code>是“带附注”的意思。</p>
+<h1>level33</h1>
+<blockquote>
+<p>一个将小写字母自动转成大写的SHELL——也就是看上去什么也运行不了。</p>
+<p>但是输个$0就进入正常的shell了，特别迷。</p>
+<p>能解释的发下评论区。</p>
+</blockquote>
+<h2 id="介绍-0-1-2-的含义">介绍 <code>$0 $1 $2 $# $@ $* $?</code> 的含义</h2>
+<p>参见：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021435389">https://segmentfault.com/a/1190000021435389</a></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

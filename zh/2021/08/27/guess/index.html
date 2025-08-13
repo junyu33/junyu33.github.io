@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>猜数游戏</h1>
+	<p>又是闲来无事，我扒出了竞赛时自己亲手编写的猜数游戏代码，并未对其进行改良，将网上流行的版本与小学数学结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<pre><code class="language-c++">//created by junyu33 in Feb. 3rd, 2020
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int ipt[10];
+bool used[10];
+void f(int a, char b, int c)
+&#123;
+    int x = 0, z = 0, pa = a, pc = c;
+    if (a == 0)
+        x = ipt[a];
+    else
+        while (a)
+        &#123;
+            int t = a % 10;
+            x += ipt[t] * pow(10, z);
+            z++;
+            a /= 10;
+        &#125;
+
+    cout &lt;&lt; pa;
+
+    int y = 0;
+    z = 0;
+    if (c == 0)
+        y = ipt[a];
+    while (c)
+    &#123;
+        int t = c % 10;
+        y += ipt[t] * pow(10, z);
+        z++;
+        c /= 10;
+    &#125;
+    int preans;
+    if (b == '+')
+        preans = x + y;
+    if (b == '*')
+        preans = x * y;
+    if (b == '-')
+        preans = x - y;
+    if (b == '/')
+        preans = x / y;
+
+    cout &lt;&lt; b;
+    cout &lt;&lt; pc;
+
+    int ans = 0;
+    z = 0;
+    if (preans == 0)
+        y = ipt[a];
+    while (preans)
+    &#123;
+        int t = preans % 10;
+        ans += ipt[t] * pow(10, z);
+        z++;
+        preans /= 10;
+    &#125;
+    cout &lt;&lt; &quot;=&quot; &lt;&lt; ans &lt;&lt; endl;
+&#125;
+void show()
+&#123;
+    for (int i = 0; i &lt;= 9; i++)
+        if (ipt[i] != i)
+            cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; ipt[i] &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    exit(0);
+&#125;
+int main()
+&#123;
+    srand((unsigned)time(NULL));
+    cout &lt;&lt; &quot;the meanings of some numbers have been changed, enter expressions to find changes&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;for example, if 2 turns to be 5 and 5 turns to be 2,then 2*2=52&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;to increase difficulty, you could only use \&quot;A+B\&quot; or \&quot;A*B\&quot;&quot; &lt;&lt; endl;
+    int n;
+    cout &lt;&lt; &quot;input the number of changes from 0 to 10&quot; &lt;&lt; endl;
+    cin &gt;&gt; n;
+    memset(ipt, -1, sizeof(ipt));
+    for (int p = 0; p &lt; n;)
+    &#123;
+        int a = rand()%10, b = rand()%10;
+        if (a != b &amp;&amp; !used[a])
+        &#123;
+            p++;
+            used[a] = 1;
+            ipt[a] = b;
+        &#125;
+    &#125;
+    for (int i = 0; i &lt;= 9; i++)
+        if (ipt[i] == -1)
+            ipt[i] = i;
+    int cnt=0;
+    while (1)
+    &#123;
+        again:;
+        cnt++;
+        cout &lt;&lt; &quot;input expression, pay attention that negative results will be replaced by 0&quot; &lt;&lt; endl;
+        int a, c;char b;
+        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
+        f(a, b, c);
+        cout &lt;&lt; &quot;have an answer? input all changes, or input -1 to continue, or input -2 to show answer&quot; &lt;&lt; endl;
+        int flag = 0;
+        for (int i = 1; i &lt;= n; i++)
+        &#123;
+            int in, out;
+            cin &gt;&gt; in;
+            if (in == -1)
+                goto again;
+            if (in == -2)
+                show();
+            cin &gt;&gt; out;
+            if (ipt[in] == out)
+                flag++;
+        &#125;
+        if (flag == n)
+        &#123;
+            cout &lt;&lt; &quot;well done, you have finished it in &quot; &lt;&lt; cnt &lt;&lt; &quot; steps&quot; &lt;&lt;endl; 
+            system(&quot;pause&quot;);
+            return 0;
+        &#125;
+        else
+            cout &lt;&lt; &quot;WA&quot; &lt;&lt; endl;
+    &#125;
+&#125;
+</code></pre>
+<p>游戏的规则嘤文说得很清楚，这里简要阐述一下：</p>
+<blockquote>
+<p>变化规则：2 -&gt; 5,5 -&gt; 2</p>
+<p>原式：2*2</p>
+<p>第一次变：5*5</p>
+<p>结果为：25</p>
+<p>第二次变：52</p>
+</blockquote>
+<p>其实我是编写了加减乘除四种函数，但减法会有负数变为0的__特性__，除法只有取整，在实际猜数的过程中应用价值不高。于是我就吓唬没拿到源码的人，让他们只用加与乘来规避bug的出现。</p>
+<p>操作示例：（再按任意键继续就关了）</p>
+<img src="https://img.junyu33.me/blog/guess/1.png" style="zoom:60%;" />
+<p>希望各位能享受这款有点小烧脑的原创作品！</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

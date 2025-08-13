@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>pwncollege部分通关记录</h1>
+	<p>指 <a target="_blank" rel="noopener" href="https://dojo.pwn.college/challenges">https://dojo.pwn.college/challenges</a></p>
+<p>按照网站要求，这里只提供思路和前两题的exploit。</p>
+<span id="more"></span>
+<h1>heap</h1>
+<h2 id="babyheap1-0-2-1——uaf">babyheap1.0~2.1——uaf</h2>
+<pre><code class="language-python">def exploit():
+   malloc(flag_size)
+   free()
+   read_flag()
+   puts()
+</code></pre>
+<h2 id="babyheap3-0-3-1——uaf2-0">babyheap3.0~3.1——uaf2.0</h2>
+<p>注意tcache是LIFO结构</p>
+<h2 id="babyheap4-0-4-1——tcache-double-free">babyheap4.0&amp;4.1——tcache double free</h2>
+<p>第一次独立写出堆题，虽然是最简单的那种<code>tcache double free</code>。</p>
+<h2 id="babyheap5-0-5-1——unsorted-bin-attack">babyheap5.0&amp;5.1——unsorted bin attack</h2>
+<p>libc 2.23-&gt;libc 2.31</p>
+<p>通过耗尽所有的tcache来触发small bin和unsorted bin，进而修改chunk。</p>
+<h2 id="babyheap6-0-6-1——tcache-poisoning">babyheap6.0&amp;6.1——tcache poisoning</h2>
+<p>简单的tcache poisoning</p>
+<p><a target="_blank" rel="noopener" href="https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31">https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31</a></p>
+<h2 id="babyheap7-0-7-1——tcache-poisoning2-0">babyheap7.0&amp;7.1——tcache poisoning2.0</h2>
+<p>由于flag不会变化，secret后半部分，只需将sec_addr+=8，重新运行即可。</p>
+<h2 id="babyheap8-0-8-1——brute-force">babyheap8.0&amp;8.1——brute force</h2>
+<p>通过先前的方法可以泄露出secret的后12位，前4位可以通过暴力枚举实现。</p>
+<p>脚本跑了一节课才跑出来。</p>
+<h2 id="babyheap9-0——tcache-double-free">babyheap9.0——tcache double free</h2>
+<p>由于允许uaf，第一次free过后将next指针置0，即可double free。</p>
+<p>此时如果将next改成<code>0x42b321</code>就可在给出的堆信息中看到key。</p>
+<h2 id="babyheap9-1——tcache-double-free-perthread-corruption">babyheap9.1——tcache double free | perthread corruption</h2>
+<p>接着上一关的步骤，接着malloc两次，虽然题目禁止你读取key附近的指针，但malloc操作还是进行了。</p>
+<p>由于<code>tcache</code>的链表特性，<code>addr+8</code>处会被清零。再进行一次这样的操作后，可以输入16个<code>\0</code>通过验证。</p>
+<p>通过修改地址到perthread struct读取在链表头的8字节key理论上可行，就没试了。</p>
+<h2 id="babyheap10-0-10-1——heap-on-stack">babyheap10.0&amp;10.1——heap on stack</h2>
+<p>给出了栈地址与elf地址，因此直接把堆放到栈上，修改retn地址即可。</p>
+<h2 id="babyheap11-0-11-1——free-hook-arbitary-read">babyheap11.0&amp;11.1——free_hook+arbitary read</h2>
+<p>由于不知道elf地址和栈地址，首先我覆盖<code>free_hook</code>（注意写free_hook的时候size位最好是<code>\x7f</code>）成为<code>system_plt</code>拿到了shell，但是并没有权限。</p>
+<p>然后发现执行echo函数后会多开辟一个堆空间，里面有elf与stack相关的地址，而且echo函数没有限制偏移大小，因此可以拿到这些地址。</p>
+<p>由于我已经可以写<code>free_hook</code>，直接将<code>free_hook</code>覆盖成<code>win</code>即可。</p>
+<h2 id="babyheap12-0-12-1——modify-size">babyheap12.0&amp;12.1——modify size</h2>
+<p>由于<code>tcache</code>的机制，修改栈上堆的<code>size</code>即可绕过合法性检测。</p>
+<h2 id="babyheap13-0——tcache-double-free">babyheap13.0——tcache double free</h2>
+<p>类似于babyheap9.1的做法，分配到<code>sec</code>附近，然后输入一堆<code>\0</code>覆盖<code>key</code>。</p>
+<h2 id="babyheap13-1——modify-size">babyheap13.1——modify size</h2>
+<p>由于sec与堆的偏移不超过一个字节，修改栈上堆的<code>size</code>之后，使用<code>malloc</code>分配一个稍微大点的堆填充数据即可。</p>
+<h2 id="babyheap14-0-14-1——modify-size-leak-elf-canary">babyheap14.0&amp;14.1——modify size+leak elf&amp;canary</h2>
+<p>在level13的基础上，用<code>echo</code>泄露<code>elf</code>地址与<code>canary</code>地址，然后在堆上进行栈溢出。</p>
+<p>对于14.1，注意<code>\x09</code>不可输入，建议换一个靠后的地址。</p>
+<h2 id="babyheap15-0-15-1——leak-elf-stack-unlink">babyheap15.0&amp;15.1——leak elf&amp;stack+unlink</h2>
+<p>这个题有点tricky，我把elf、stack、libc、heap泄露完了才发现uaf已经没了。</p>
+<p>任意写的方式除了double free就是unlink了，我懒得去想多么巧妙的堆风水，干脆直接unlink结束战斗。</p>
+<blockquote>
+<p>以下的程序的libc从2.31升级到2.35.</p>
+<p>glibc 2.35与2.31有以下不同之处：</p>
+<ul>
+<li>safe-linking——实际地址为加密值本身与前一项右移12位后异或的值（2.32）。</li>
+<li>malloc对齐检查——地址必须与0x10对齐（2.33）。</li>
+<li>删除了<code>__malloc_hook</code>,<code>__free_hook</code>等一系列钩子（2.34）。</li>
+</ul>
+</blockquote>
+<h2 id="babyheap16-0——tcache-double-free-safe-linking">babyheap16.0——tcache double free+safe-linking</h2>
+<p>逻辑和level 9相同，只需在修改next指针时做一次异或操作即可。</p>
+<h2 id="babyheap16-1——tcache-perthread-corruption-safe-linking">babyheap16.1——tcache perthread corruption+safe-linking</h2>
+<p>由于进行了对齐检测，没有办法对addr处清零。这里只能使用tcache perthread corruption，刚好把chunk分配到key的位置进行读取。</p>
+<p>另外读取的值也要异或一下才是最终的key。</p>
+<h2 id="babyheap17-0——canary-leak">babyheap17.0——canary leak</h2>
+<p>把堆分配到<code>rbp-0x10</code>的位置，从打印信息中获得canary，然后栈溢出即可。</p>
+<h2 id="babyheap17-1——off-by-null-unlink">babyheap17.1——off by null+unlink</h2>
+<p>通过scanf末尾置0的特性，把<code>next_chunk_size</code>从<code>0x101</code>置为<code>0x100</code>，从而实现unlink。</p>
+<p>之后把<code>ptr</code>指针数组一项覆盖为返回地址，把返回地址<code>scanf</code>为<code>win</code>函数。</p>
+<h2 id="babyheap18-0——off-by-null-unlink">babyheap18.0——off by null+unlink</h2>
+<p>思路类似，unlink后直接puts读sec数组。</p>
+<h2 id="babyheap18-1——fake-chunk">babyheap18.1——fake chunk</h2>
+<p>伪造堆块，直接覆盖sec数组。</p>
+<h2 id="babyheap19-0-19-1——chunk-overlapping">babyheap19.0&amp;19.1——chunk overlapping</h2>
+<p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/chunk-extend-overlapping/#1inusefastbinextend">https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/chunk-extend-overlapping/#1inusefastbinextend</a></p>
+<h2 id="babyheap20-0-20-1——safe-linking-libc-environ-orw-rop">babyheap20.0&amp;20.1——safe-linking+libc.environ+orw rop</h2>
+<p>通过unsorted bin获取libc地址，通过堆溢出获取heap地址。</p>
+<p>分配四个chunk，第一个chunk溢出到第二个，改变size为原来3倍。通过打印泄漏key指针，对第二个chunk进行溢出，维持第三个chunk不变，修改第四个next指针（根据safe-linking特性，这样才能修改第三个chunk的next指针）为<code>libc.environ ^ (heap_base &gt;&gt; 12)</code>。然后两次<code>malloc</code>打印即可获得<code>libc.environ</code>.</p>
+<p>通过<code>libc.environ</code>获取栈地址进行unlink。</p>
+<p>由于直接拿shell读不了flag，这里使用orw rop读取。</p>
+<h1>kernel</h1>
+<h2 id="babykernel1-0-6-1——basic-definition">babykernel1.0~6.1——basic definition</h2>
+<p>参照这篇博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/crybaby/p/14431651.html">https://www.cnblogs.com/crybaby/p/14431651.html</a></p>
+<p>kernel shellcode着实有点麻人。</p>
+<blockquote>
+<p>注：如何查看有没有kaslr？</p>
+<p>进入kernel后，<code>demsg</code>查看第二行最后有没有<code>nokaslr</code></p>
+</blockquote>
+<h2 id="babykernel7-0-7-1——struct-debug">babykernel7.0~7.1——struct&amp;debug</h2>
+<p>需要传入一个类似于这样的结构体：</p>
+<pre><code class="language-c">struct shellcode&#123;
+    unsigned long length;
+    char shellcode[0x1000];
+    unsigned long* shellcode_addr;
+&#125;
+</code></pre>
+<p>注意以下几点：</p>
+<ul>
+<li>shellcode必须包含ret语句（ret2usr）。</li>
+<li>shellcode_addr可以通过动调得到，位置固定。</li>
+</ul>
+<h2 id="babykernel8-0-8-1——shellcode-in-shellcode">babykernel8.0~8.1——shellcode in shellcode</h2>
+<p>一句话——在shellcode里写shellcode</p>
+<p>第一次进内核来一遍<code>commit_creds(prepare_kernel_cred(0))</code>，<code>ret2usr</code>后变成root shell。再进入一次<code>run_cmd /bin/chmod 777 /flag</code>即可修改flag权限。（注意在内核态里起shell没有任何作用）</p>
+<h2 id="babykernel9-0-9-1——run-cmd">babykernel9.0~9.1——run_cmd</h2>
+<p>直接把<code>printk</code>指针改为<code>run_cmd</code>，然后<code>rdi</code>是输入处，写入<code>/bin/chmod 777 /flag</code>即可。</p>
+<h2 id="babykernel10-0——kaslr-leak">babykernel10.0——kaslr leak</h2>
+<p>注意kaslr只有在kernel重启之后才会重新随机，所以重新运行程序，原有的kernel函数地址不会变。</p>
+<p>与userland的aslr类似，kaslr的低5位都是固定的。写入256字节使得<code>printk</code>的地址被泄露，从而找到<code>run_cmd</code>的地址。</p>
+<h2 id="babykernel10-1——partial-overwrite">babykernel10.1——partial overwrite</h2>
+<p>由于该驱动不会打印自己的输入，这里采取重写<code>printk</code>的后3字节，也就是得爆破<code>run_cmd</code>的倒数第六位。</p>
+<h2 id="babykernel11-0-12-1——memory-scanning">babykernel11.0~12.1——memory scanning</h2>
+<p>程序将flag加载到内存里，然后删掉了flag文件，因此flag只能在内存里面找。</p>
+<p>通过discord的spoiler可以得知应该从<code>0xffff888000000000</code>开始扫内存（即宏<code>phys_to_virt(0)</code>的值，也是<a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/v5.4/source/arch/x86/include/asm/page_64_types.h#L41">源码</a>中<code>__PAGE_OFFSET_BASE_L4</code>一行的值），然后<code>dmesg</code>找一下flag即可。</p>
+<p>注意以下几点：</p>
+<ul>
+<li>如果用<a target="_blank" rel="noopener" href="https://shell-storm.org/online/Online-Assembler-and-Disassembler/">这个网站</a>将汇编转成字节码，务必把字节码转成汇编验证一下是否漏掉了指令。</li>
+<li>为了减少输出，建议将地址的值与<code>pwn.coll</code>（或类似的64位字符串）比较一下再打印到控制台。</li>
+<li>python很耗费内存，可能起一遍python，flag那部分的内存就被重新分配了。所以建议把shellcode输出到文件再进行文件流输入。</li>
+</ul>
+<h1>file</h1>
+<blockquote>
+<p>根据linux哲学，一切皆文件，所以<code>stdin(0), stdout(1), stderr(2)</code>等都是文件。</p>
+</blockquote>
+<h2 id="babyfile-level1——arbitrary-write-to-file">babyfile_level1——arbitrary write to file</h2>
+<p>如果你什么也不做，断在fwrite后，FILE结构体会是这样的：</p>
+<pre><code class="language-C">pwndbg&gt; x/30gx 0x18203b0
+0x18203b0:      0x00000000fbad2c84      0x0000000001820590
+0x18203c0:      0x0000000001820590      0x0000000001820590
+0x18203d0:      0x0000000001820590      0x0000000001820690
+0x18203e0:      0x0000000001821590      0x0000000001820590
+0x18203f0:      0x0000000001821590      0x0000000000000000
+0x1820400:      0x0000000000000000      0x0000000000000000
+0x1820410:      0x0000000000000000      0x00007fb7069655c0
+0x1820420:      0x0000000000000004      0x0000000000000000
+0x1820430:      0x0000000000000000      0x0000000001820490
+0x1820440:      0xffffffffffffffff      0x0000000000000000
+0x1820450:      0x00000000018204a0      0x0000000000000000
+0x1820460:      0x0000000000000000      0x0000000000000000
+0x1820470:      0x00000000ffffffff      0x0000000000000000
+0x1820480:      0x0000000000000000      0x00007fb7069614a0
+0x1820490:      0x0000000000000000      0x0000000000000000
+</code></pre>
+<p>所以只需要修改<code>file+8</code>到<code>file+0x48</code>的值到想要写的位置即可。</p>
+<p>其中，<code>0xfbad2c00</code>是magic number。</p>
+<pre><code class="language-python">def exploit():
+   fake_file = p64(0xfbad2c00) + p64(0x4040e0)*4 + p64(0x4041e0) + p64(0x4050e0) + p64(0x4040e0) + p64(0x4050e0)
+   io.send(fake_file)
+</code></pre>
+<p>最后<code>cat /tmp/babyfile.txt</code></p>
+<h2 id="babyfile-level2——arbitrary-read-from-file">babyfile_level2——arbitrary read from file</h2>
+<p>这次是任意读：</p>
+<pre><code class="language-c">pwndbg&gt; x/30gx 0x6483b0
+0x6483b0:       0x00000000fbad0230      0x0000000000000000
+0x6483c0:       0x0000000000000000      0x0000000000648590
+0x6483d0:       0x0000000000000000      0x0000000000000000
+0x6483e0:       0x0000000000000000      0x0000000000648590
+0x6483f0:       0x0000000000649590      0x0000000000000000
+0x648400:       0x0000000000000000      0x0000000000000000
+0x648410:       0x0000000000000000      0x00007fc110d2e5c0
+0x648420:       0x0000000000000003      0x0000000000000000
+0x648430:       0x0000000000000000      0x0000000000648490
+0x648440:       0xffffffffffffffff      0x0000000000000000
+0x648450:       0x00000000006484a0      0x0000000000000000
+0x648460:       0x0000000000000000      0x0000000000000000
+0x648470:       0x00000000ffffffff      0x0000000000000000
+0x648480:       0x0000000000000000      0x00007fc110d2a4a0
+0x648490:       0x0000000000000000      0x0000000000000000
+</code></pre>
+<p>其中，<code>0xfbad000</code>是magic number。</p>
+<p>注意<code>_IO_buf_end - _IO_buf_base</code>的大小需要<strong>大于</strong>（不能等于）缓存区的大小。</p>
+<pre><code class="language-python">def exploit():
+   fake_file = p64(0xfbad0000) + p64(0)*2 + p64(0x4041f8) + p64(0)*3 + p64(0x4041f8) + p64(0x4051f8)
+   io.send(fake_file)
+</code></pre>
+<h2 id="babyfile-level3——fileno-redirect">babyfile_level3——fileno redirect</h2>
+<p>直接修改<code>_fileno</code>为标准输出<code>1</code>即可。</p>
+<h2 id="babyfile-level4——fileno-redirect">babyfile_level4——fileno redirect</h2>
+<p>没有开PIE，重定向到输入，输入<code>win</code>地址。</p>
+<h2 id="babyfile-level5——arbitrary-write-to-file">babyfile_level5——arbitrary write to file</h2>
+<p>同level1.</p>
+<h2 id="babyfile-level5——arbitrary-read-from-file">babyfile_level5——arbitrary read from file</h2>
+<p>同level2.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

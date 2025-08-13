@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>安全项目第三题解答及思路分析</h1>
+	<h1>解答</h1>
+<img src="https://img.junyu33.me/blog/security03/res.png">
+<p>一道不错的逆向题，7个小题的难度是逐渐攀升的，很适合新手。</p>
+<span id="more"></span>
+<h1>思路分析</h1>
+<p>以下过程均基于IDA 7.5完成，相信有兴趣看这道题的手头都有IDA吧。</p>
+<p>（当然作者的原意是想让你看汇编，gdb调试，那就很秃头了）</p>
+<p>main函数的逻辑很简单，程序提供了文件输入功能（带参数1）和标准输入（参数为空）。接下来你需要回答6个问题（phase），任何一个问题回答错误，炸弹都会爆。</p>
+<p>下面我将逐phase进行分析。</p>
+<h2 id="phase-1">phase_1</h2>
+<pre><code class="language-c">int __cdecl phase_1(int a1)
+&#123;
+  int result; // eax
+
+  result = strings_not_equal((_BYTE *)a1, &quot;Public speaking is very easy.&quot;);
+  if ( result )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>字符串比较，直接输入<code>Public speaking is very easy.</code>即可。</p>
+<h2 id="phase-2">phase_2</h2>
+<pre><code class="language-c">int __cdecl phase_2(char *s)
+&#123;
+  int i; // ebx
+  int result; // eax
+  int v3[6]; // [esp+10h] [ebp-18h] BYREF
+
+  read_six_numbers(s, (int)v3);
+  if ( v3[0] != 1 )
+    explode_bomb();
+  for ( i = 1; i &lt;= 5; ++i )
+  &#123;
+    result = v3[i - 1] * (i + 1);
+    if ( v3[i] != result )
+      explode_bomb();
+  &#125;
+  return result;
+&#125;
+</code></pre>
+<p>读入六个数，然后判断<code> v3[i] == v3[i - 1] * (i + 1)</code> ，即简单的阶乘函数。</p>
+<h2 id="phase-3">phase_3</h2>
+<pre><code class="language-c">int __cdecl phase_3(char *s)
+&#123;
+  int result; // eax
+  char v2; // bl
+  int v3; // [esp+Ch] [ebp-Ch] BYREF
+  char v4; // [esp+13h] [ebp-5h] BYREF
+  int v5; // [esp+14h] [ebp-4h] BYREF
+
+  if ( sscanf(s, &quot;%d %c %d&quot;, &amp;v3, &amp;v4, &amp;v5) &lt;= 2 )
+    explode_bomb();
+  result = v3;
+  switch ( v3 )
+  &#123;
+    case 0:
+      v2 = 'q';
+      if ( v5 != 777 )
+        explode_bomb();
+      return result;
+    case 1:
+      v2 = 'b';
+      if ( v5 != 214 )
+        explode_bomb();
+      return result;
+    case 2:
+      v2 = 'b';
+      if ( v5 != 755 )
+        explode_bomb();
+      return result;
+    case 3:
+      v2 = 'k';
+      if ( v5 != 251 )
+        explode_bomb();
+      return result;
+    case 4:
+      v2 = 'o';
+      if ( v5 != 160 )
+        explode_bomb();
+      return result;
+    case 5:
+      v2 = 't';
+      if ( v5 != 458 )
+        explode_bomb();
+      return result;
+    case 6:
+      v2 = 'v';
+      if ( v5 != 780 )
+        explode_bomb();
+      return result;
+    case 7:
+      v2 = 'b';
+      if ( v5 != 524 )
+        explode_bomb();
+      return result;
+    default:
+      explode_bomb();
+  &#125;
+  if ( v2 != v4 )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>这里有8个选项供你选择，选择任何一个选项都是可以defuse的。</p>
+<p>（提示：如果你的v2显示的是数字，你可以右键这个数字或者按r把它转成ASCII字符）</p>
+<p>以case 0为例，有<code>v3 == 0</code>,<code>v2 == v4</code>,<code>v5 == 777</code>这三个条件，因此输入0、q、777即可。</p>
+<p>剩下的case同理。</p>
+<h2 id="phase-4">phase_4</h2>
+<pre><code class="language-c">int __cdecl func4(int a1)
+&#123;
+  int v1; // esi
+
+  if ( a1 &lt;= 1 )
+    return 1;
+  v1 = func4(a1 - 1);
+  return v1 + func4(a1 - 2);
+&#125;
+
+
+int __cdecl phase_4(char *s)
+&#123;
+  int result; // eax
+  int v2; // [esp+14h] [ebp-4h] BYREF
+
+  if ( sscanf(s, &quot;%d&quot;, &amp;v2) != 1 || v2 &lt;= 0 )
+    explode_bomb();
+  result = func4(v2);
+  if ( result != 55 )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>学过一点递归的同学都知道，<code>func4</code> 实现了求兔子数列的第n项（但是这种递归算法效率很低，复杂度是指数级的）。</p>
+<p>这里定义的兔子数列是<code>1 2 3 5 8 13 21 34 55 89 144 ...</code>，因此答案是9.</p>
+<p>另外，下发的说明中有这样一段话：</p>
+<blockquote>
+<pre><code>Phases get progressively harder. There is also a &quot;secret phase&quot; that
+only appears if students append a certain string to the solution to
+Phase 4. 
+</code></pre>
+</blockquote>
+<p>我们打开<code>phase_defused</code>函数：</p>
+<pre><code class="language-c">void phase_defused()
+&#123;
+  char v0; // [esp+14h] [ebp-54h] BYREF
+  char v1[80]; // [esp+18h] [ebp-50h] BYREF
+
+  if ( num_input_strings == 6 )
+  &#123;
+    if ( sscanf(s, &quot;%d %s&quot;, &amp;v0, v1) == 2 &amp;&amp; !strings_not_equal(v1, &quot;austinpowers&quot;) )
+    &#123;
+      printf(&quot;Curses, you've found the secret phase!\n&quot;);
+      printf(&quot;But finding it and solving it are quite different...\n&quot;);
+      secret_phase();
+    &#125;
+    printf(&quot;Congratulations! You've defused the bomb!\n&quot;);
+  &#125;
+&#125;
+</code></pre>
+<p>因此我们需要在9后面追加一句<code>austinpowers</code>，然后到<code>num_input_strings == 6</code>，即六题都答对后才能看到隐藏关卡。</p>
+<h2 id="phase-5">phase_5</h2>
+<pre><code class="language-c">int __cdecl phase_5(_BYTE *a1)
+&#123;
+  int i; // edx
+  int result; // eax
+  char v3[8]; // [esp+10h] [ebp-8h] BYREF
+
+  if ( string_length(a1) != 6 )
+    explode_bomb();
+  for ( i = 0; i &lt;= 5; ++i )
+    v3[i] = array_123[a1[i] &amp; 0xF];
+  v3[6] = 0;
+  result = strings_not_equal(v3, &quot;giants&quot;);
+  if ( result )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>题目逐渐开始有了一点难度，这道题的难度相当于新生赛reverse的第二题。</p>
+<p>我们对输入的字符串按字节与15进行与运算（相当于mod 16），带入到<code>array_123</code>这个“字典”，生成的值与<code>giants</code>进行比较。</p>
+<p>查看<code>array_123</code>的值，发现它是一组ASCII串，我们可以编写脚本求解a1数组。</p>
+<img src="https://img.junyu33.me/blog/security03/array123.png">
+<pre><code class="language-C">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+unsigned char array_123[] =
+&#123;
+  0x69, 0x73, 0x72, 0x76, 0x65, 0x61, 0x77, 0x68, 0x6F, 0x62, 
+  0x70, 0x6E, 0x75, 0x74, 0x66, 0x67
+&#125;;
+char s[]=&quot;giants&quot;;
+int sol[10];
+int main()&#123;
+   for(int i=0;i&lt;6;i++)
+   &#123;
+      for(int j=0;j&lt;16;j++)
+         if(array_123[j]==s[i])
+         &#123;
+            sol[i]=j;
+            break;
+         &#125;
+   &#125;
+   for(int i=0;i&lt;6;i++)
+      printf(&quot;%d &quot;,sol[i]);
+   return 0;
+&#125;
+</code></pre>
+<p>输出的结果是<code>15 0 5 11 13 1</code>.</p>
+<p>但是题目要求我们输入字符串，而小于16的输入都是不可见的字符，我们需要把它们都加上16的倍数。我这里选择加上96，得到的答案是o`ekma</p>
+<h2 id="phase-6">phase_6</h2>
+<pre><code class="language-c">int __cdecl phase_6(char *s)
+&#123;
+  int i; // edi
+  int j; // ebx
+  int k; // edi
+  _DWORD *v4; // esi
+  int l; // ebx
+  int *v6; // esi
+  int m; // edi
+  int *v8; // eax
+  int *v9; // esi
+  int n; // edi
+  int result; // eax
+  int *v12; // [esp+24h] [ebp-34h]
+  int v13[6]; // [esp+28h] [ebp-30h]
+  int input[6]; // [esp+40h] [ebp-18h] BYREF
+
+  read_six_numbers(s, (int)input);
+  for ( i = 0; i &lt;= 5; ++i )
+  &#123;
+    if ( (unsigned int)(input[i] - 1) &gt; 5 )
+      explode_bomb();
+    for ( j = i + 1; j &lt;= 5; ++j )
+    &#123;
+      if ( input[i] == input[j] )
+        explode_bomb();
+    &#125;
+  &#125;
+  for ( k = 0; k &lt;= 5; ++k )
+  &#123;
+    v4 = &amp;node1;
+    for ( l = 1; l &lt; input[k]; ++l )
+      v4 = (_DWORD *)v4[2];
+    v13[k] = (int)v4;
+  &#125;
+  v6 = (int *)v13[0];
+  v12 = (int *)v13[0];
+  for ( m = 1; m &lt;= 5; ++m )
+  &#123;
+    v8 = (int *)v13[m];
+    v6[2] = (int)v8;
+    v6 = v8;
+  &#125;
+  v8[2] = 0;
+  v9 = v12;
+  for ( n = 0; n &lt;= 4; ++n )
+  &#123;
+    result = *v9;
+    if ( *v9 &lt; *(_DWORD *)v9[2] )
+      explode_bomb();
+    v9 = (int *)v9[2];
+  &#125;
+  return result;
+&#125;
+</code></pre>
+<p>比较麻烦的一道题，涉及到链表的操作与修改，而且指针的运用也比较多，代码和数据可读性也一般。</p>
+<p>题目的大致意思是输入1~6的一种排列，然后用这个排列给<code>node</code>结构体进行排序，重建了一个叫做<code>v13</code>的结构体，然后用<code>v9</code>遍历这个结构体，看看里面的关键字是不是降序的。</p>
+<p>查看node1这个地址，发现是一堆raw data（IDA还没能强大到识别结构体的程度）。根据说明文件的描述：</p>
+<blockquote>
+<pre><code>Each bomb phase tests a different aspect of machine language programs:
+  Phase 1: string comparison
+  Phase 2: loops
+  Phase 3: conditionals/switches
+  Phase 4: recursive calls and the stack discipline
+  Phase 5: pointers
+  Phase 6: linked lists/pointers/structs
+</code></pre>
+</blockquote>
+<p>我们可以猜想<code>node</code>结构体是链表，通过对那堆raw data进行处理，转成int后：</p>
+<img src="https://img.junyu33.me/blog/security03/link.png">
+<p><code>node</code>的第一个值是关键字，第二个值是链表中的位置，第三个是next数组。因此我们可以确信它是个链表。</p>
+<p>对关键字按照从大到小排序后，得到的顺序就是<code>4 2 6 3 1 5</code>.</p>
+<p>当然，如果你没有读懂这个结构体，你也可以使用暴力解决这个问题（出题人表示：”每一次错误的尝试，将会从你的总成绩中扣除0.5分。“但因为我们是离线做题，因此暴力也是可以滴！）。这里附上暴力求解的代码，有兴趣的同学可以尝试一下：</p>
+<pre><code class="language-python">from pwn import *
+import itertools
+num = ['1','2','3','4','5','6']
+for num in itertools.permutations(num,6):
+	io = process('./bomb')
+	io.sendline('Public speaking is very easy.')
+	io.sendline('1 2 6 24 120 720')
+	io.sendline('0 q 777')
+	io.sendline('9')
+	io.sendline('o`ekma')
+	a = num[0] + ' ' + num[1] + ' ' + num[2] + ' ' + num[3] + ' ' + num[4] + ' ' + num[5]
+	print(a)
+	io.sendline(a)
+	for i in range (10):
+		s = io.recvline()
+		print(s)
+	io.close()
+# 4 2 6 3 1 5
+</code></pre>
+<h2 id="secret-phase">secret_phase</h2>
+<pre><code class="language-c">int __cdecl fun7(_DWORD *a1, int a2)
+&#123;
+  if ( !a1 )
+    return -1;
+  if ( a2 &lt; *a1 )
+    return 2 * fun7((_DWORD *)a1[1], a2);
+  if ( a2 == *a1 )
+    return 0;
+  return 2 * fun7((_DWORD *)a1[2], a2) + 1;
+&#125;
+
+void secret_phase()
+&#123;
+  const char *v0; // eax
+  int v1; // ebx
+
+  v0 = (const char *)read_line();
+  v1 = __strtol_internal(v0, 0, 10, 0);
+  if ( (unsigned int)(v1 - 1) &gt; 0x3E8 )
+    explode_bomb();
+  if ( fun7(n1, v1) != 7 )
+    explode_bomb();
+  printf(&quot;Wow! You've defused the secret stage!\n&quot;);
+  phase_defused();
+&#125;
+</code></pre>
+<p>很不幸，代码中的<code>n1</code>又是raw data，我们又得手动解码一下。</p>
+<img src="https://img.junyu33.me/blog/security03/data.png">
+<p>学过数据结构的同学可以敏锐地发现这像一颗binary tree，如果动动手把它画出来，你还会发现它是棵BST。</p>
+<img src="https://img.junyu33.me/blog/security03/bst.jpg">
+<p><code>fun7</code>的意思是如果你是从右子树回溯的，那么值×2+1；反之×2，而任何一个叶节点的值是0。</p>
+<p>手推一下就可以得知只有最右下角的数3E9h，也就是1001才能使树根的值为7。</p>
+<h1>总结</h1>
+<p>lab3确实比lab2简单（从10号晚上9点开始到11号早上9点半做完secret_phase），但是也不是我之前想象得那么简单，随便开开IDA就能做出来的。</p>
+<p>建议给下一届同学安全项目必做lab1、lab3，选做lab2。lab2的前置知识太多了，同学们吃不消，穿插在学期中的过于碎片化的提示势必会对将来堆栈的系统学习带来影响。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

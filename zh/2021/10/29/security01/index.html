@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>安全项目第一题解答及思路分析</h1>
+	<h1>解答（四个key及message）：</h1>
+  <img src="https://img.junyu33.me/blog/security01/1.png">         
+<p>（注意：这个key在不同的系统，甚至同一个系统的不同IDE得到的结果都不同，因此答案仅供参考）。</p>
+<span id="more"></span>
+<h1>思路分析：</h1>
+<p>​    先贴上源代码:</p>
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int prologue [] = &#123;
+   0x5920453A, 0x54756F0A, 0x6F6F470A, 0x21643A6F,
+   0x6E617920, 0x680A6474, 0x6F697661, 0x20646E69,
+   0x63636363, 0x63636363, 0x72464663, 0x6F6D6F72,
+   0x63636363, 0x63636363, 0x72464663, 0x6F6D6F72,
+   0x2C336573, 0x7420346E, 0x20216F74, 0x726F5966,
+   0x7565636F, 0x20206120, 0x6C616763, 0x74206C6F,
+   0x20206F74, 0x74786565, 0x65617276, 0x32727463,
+   0x594E2020, 0x206F776F, 0x79727574, 0x4563200A
+&#125;;
+
+int data [] = &#123;
+   0x63636363, 0x63636363, 0x72464663, 0x6F6D6F72,
+   0x466D203A, 0x65693A72, 0x43646E20, 0x6F54540A,
+   0x5920453A, 0x54756F0A, 0x6F6F470A, 0x21643A6F,
+   0x594E2020, 0x206F776F, 0x79727574, 0x4563200A,
+   0x6F786F68, 0x6E696373, 0x6C206765, 0x796C656B,
+   0x2C336573, 0x7420346E, 0x20216F74, 0x726F5966,
+   0x7565636F, 0x20206120, 0x6C616763, 0x74206C6F,
+   0x20206F74, 0x74786565, 0x65617276, 0x32727463,
+   0x6E617920, 0x680A6474, 0x6F697661, 0x20646E69,
+   0x21687467, 0x63002065, 0x6C6C7861, 0x78742078,
+   0x6578206F, 0x72747878, 0x78636178, 0x00783174
+&#125;;
+
+int epilogue [] = &#123;
+   0x594E2020, 0x206F776F, 0x79727574, 0x4563200A,
+   0x6E617920, 0x680A6474, 0x6F697661, 0x20646E69,
+   0x7565636F, 0x20206120, 0x6C616763, 0x74206C6F,
+   0x2C336573, 0x7420346E, 0x20216F74, 0x726F5966,
+   0x20206F74, 0x74786565, 0x65617276, 0x32727463
+&#125;;
+
+char message[100];
+
+void usage_and_exit(char * program_name) &#123;
+   fprintf(stderr, &quot;USAGE: %s key1 key2 key3 key4\n&quot;, program_name);
+   exit(1);
+&#125;
+
+void process_keys12 (int * key1, int * key2) &#123;
+   
+   *((int *) (key1 + *key1)) = *key2;
+&#125;
+
+void process_keys34 (int * key3, int * key4) &#123;
+
+   *(((int *)&amp;key3) + *key3) += *key4;
+&#125;
+
+char * extract_message1(int start, int stride) &#123;
+   int i, j, k;
+   int done = 0;
+
+   for (i = 0, j = start + 1; ! done; j++) &#123;
+      for (k = 1; k &lt; stride; k++, j++, i++) &#123;
+
+         if (*(((char *) data) + j) == '\0') &#123;
+            done = 1;
+            break;
+         &#125;
+                      
+         message[i] = *(((char *) data) + j);
+      &#125;
+   &#125;
+   message[i] = '\0';
+   return message;
+&#125;
+
+char * extract_message2(int start, int stride) &#123;
+   int i, j;
+
+   for (i = 0, j = start; 
+       *(((char *) data) + j) != '\0';
+       i++, j += stride) 
+       &#123;
+          message[i] = *(((char *) data) + j);
+       &#125;
+   message[i] = '\0';
+   return message;
+&#125;
+
+int main (int argc, char *argv[])
+&#123;
+   int dummy = 1;
+   int start, stride;
+   int key1, key2, key3, key4;
+   char * msg1, * msg2;
+
+   key3 = key4 = 0;
+   if (argc &lt; 3) &#123;
+      usage_and_exit(argv[0]);
+   &#125;
+   key1 = strtol(argv[1], NULL, 0);
+   key2 = strtol(argv[2], NULL, 0);
+   if (argc &gt; 3) key3 = strtol(argv[3], NULL, 0);
+   if (argc &gt; 4) key4 = strtol(argv[4], NULL, 0);
+
+   process_keys12(&amp;key1, &amp;key2);
+
+   start = (int)(*(((char *) &amp;dummy)));
+   stride = (int)(*(((char *) &amp;dummy) + 1));
+
+   if (key3 != 0 &amp;&amp; key4 != 0) &#123;
+      process_keys34(&amp;key3, &amp;key4);
+   &#125;
+
+   msg1 = extract_message1(start, stride);
+
+   if (*msg1 == '\0') &#123;
+      process_keys34(&amp;key3, &amp;key4);
+      msg2 = extract_message2(start, stride);
+      printf(&quot;%s\n&quot;, msg2);
+   &#125;
+   else &#123;
+      printf(&quot;%s\n&quot;, msg1);
+   &#125;
+
+   return 0;
+&#125;
+
+
+</code></pre>
+<p>程序并没有用到prologue和epilogue这两个数组,因此我们忽略它.</p>
+<p>对data里面的数值转成字符串，得到：</p>
+<pre><code class="language-C">cccccccccFFrromo
+: mFr:ie ndC.TTo
+:E Y.ouT.Gooo:d!
+  NYowo tury. cE
+hoxoscineg lkely
+se3,n4 tto! fYor
+oceu a  cgalol t
+to  eextvraectr2
+ yantd.havioind 
+gth!e .caxllx tx
+o xexxtrxacxt1x.
+
+</code></pre>
+<p>我们可以隐隐约约地看到明文的影子(比如说from,friend,good之类的单词)，但是我们还需要观察解密函数来确定它。</p>
+<p>先看extract_message1:</p>
+<pre><code class="language-C">char * extract_message1(int start, int stride) &#123;
+   int i, j, k;
+   int done = 0;
+
+   for (i = 0, j = start + 1; ! done; j++) &#123;
+      for (k = 1; k &lt; stride; k++, j++, i++) &#123;
+
+         if (*(((char *) data) + j) == '\0') &#123;
+            done = 1;
+            break;
+         &#125;
+                      
+         message[i] = *(((char *) data) + j);
+      &#125;
+   &#125;
+   message[i] = '\0';
+   return message;
+&#125;
+
+</code></pre>
+<p>程序的含义是从start+1(包括)处开始，每将stride-1个数据转成字符串存到message后，跳过1个数据，一直循环，直到读到ASCII码为0结束。</p>
+<p>我们可以肉眼观察到，程序从第10个字符（注意我们数数是从0开始的）开始,每读2个跳一个刚好合适，组成了(From: Friend To: You…)这样的英语句子。因此我们可以确定start=9,stride=3.</p>
+<p>将代码改装一下，再运行，就得到了我们的第一个message.</p>
+<p><strong>可是,这才只是我们的第一步，我们还要把key1跟key2弄出来才行。</strong></p>
+<p>然后你会惊奇的发现：</p>
+<p><strong>我们输入的key1,key2跟start,stride这两个变量没有半毛钱关系是不是?</strong></p>
+<p>start，stride这两个变量都跟dummy这个变量有关系，我们必须设法通过输入来改变dummy的值，进而改变start和stride。</p>
+<p><strong>这就是C语言指针的妙用之处了。</strong></p>
+<p>关注process_keys12这个函数：</p>
+<pre><code class="language-C">void process_keys12 (int * key1, int * key2) &#123;
+
+  
+
+  *((int *) (key1 + *key1)) = *key2;
+
+&#125;
+</code></pre>
+<p>代码的意思是将储存在（<strong>地址</strong>key1+key1的值）作为一个新的地址，把key2的值赋值到这个新地址的值里。（这个没点指针功底还真玩不转）</p>
+<p>通过调试,我们可以发现dummy的地址是0x61fe04，而key1的地址是0x61fe00，而学过计导的同学都知道，一个int类型占据四个字节的空间所以key1的值应该取1才正确。</p>
+<p>我们的下一个问题是dummy应该赋什么值。看过csapp的同学都知道，我们的数据是小段存放的，也就是小地址存放低位，大地址存放高位。显然start属于低地址，而stride输入高地址，且相差一个sizeof(char)也就是一字节，一字节对应两个16进制位。因此key2是0x309，转化成十进制是777.</p>
+<p>然后key3和key4就比较恼火了，先看message1给出的提示是：</p>
+<p><strong>“选择一组key3，key4来绕过extract1，并强制调用extract2.”</strong></p>
+<p>先来分析extract2这个函数：</p>
+<pre><code class="language-C">char * extract_message2(int start, int stride) &#123;
+   int i, j;
+
+   for (i = 0, j = start; 
+       *(((char *) data) + j) != '\0';
+       i++, j += stride) 
+       &#123;
+          message[i] = *(((char *) data) + j);
+       &#125;
+   message[i] = '\0';
+   return message;
+&#125;
+
+</code></pre>
+<p>意思是从start开始，步长为stride去读字符。碰到ASCII码为0就结束。</p>
+<p>我们仍然可以肉眼观察到，当start=9，stride=3时可以解密出运行截图中的message2.</p>
+<p>现在的问题又回到的传参上面，当时我一直不明白为什么要<strong>绕过</strong>extract1.待我仔细分析程序结构后，才发现：</p>
+<p>首先，你不能改变start和stride的值，否则你咋解密？</p>
+<p>但是如果你不改变，那么就一定能解出开头不为0的message1，这似乎很矛盾，我们得换个思路。</p>
+<p><em>网上为数不多的题解的思路是通过修改返回地址，来跳转到那个恼人的判断里面去。而因为一些不明原因，我即使按照它的思路成功跳转，绕过了if判断，然而main程序的返回值却不为0（可能是因为栈溢出触发了编译器的安全机制，因此有时候安全也是件坏事），从而无法回显message2。</em></p>
+<p>我的想法是尝试<strong>在process_key34中修改data的值</strong>，我们来查看一下这个函数：</p>
+<pre><code class="language-C">void process_keys34 (int * key3, int * key4) &#123;
+
+   *(((int *)&amp;key3) + *key3) += *key4;
+&#125;
+
+</code></pre>
+<p>其实跟process_keys12差不多，只是中间的“+”变成了&quot;+=&quot;。</p>
+<p>因为message1读取的第一个字符是(*char)data[10]（data[2]=0x72<strong>46</strong>4663中加粗的部分，永远不要忘了小端序），我们只需要把data[2]变成0x72004663就可以使message1为空串。</p>
+<p>接下来的事情就是要将(int*)&amp;key3的地址通过key3的值偏移到data[2]中。</p>
+<img src="https://img.junyu33.me/blog/security01/2.png">
+<p>（注意这些地址每次启动程序都会有变化，因此截图仅供参考）</p>
+<p>通过调试我们可以看到(int*)&amp;key3是0x61fdd0，而data[2]的地址是0x4030a8，这些数据都占四个字节的空间，因此偏移为(0x4030a8-0x61fdd0)/4=-553802，这就是key3的值。</p>
+<p>key4就很好说了，我们要把0x72464663变为0x72004663，因此只需加上-0x460000即可，转换成十进制就是-4587520，也就是key4的值。</p>
+<p><strong>解题完毕</strong></p>
+<h1>评价：</h1>
+<p>作为一个pwn手，完成这道题并写完这篇思路也花费了我三个晚上的时间。在我看来，这道题涉及的知识点有一点超出了教材的范围（毕竟C语言的精华之所在哪里是教材三言两语说得清的）。如果让一个才学完课程，勉强搞得清&amp;与*这两个符号的同学去做这道题，实在是强人所难。<strong>但是我也不得不承认，如果是自己独立完成了这道题的解答</strong>（其实我也借鉴了求解key1、key2的思路）<strong>，那么你的C语言的水平就迈上了一个新的台阶（甚至比普通的OIer都还要强），也可以去朝着CTF的二进制方向发展了。</strong></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>网络攻防技术笔记</h1>
+	<p>内容摘自老师的PPT，除修改部分明显事实错误（例如将<code>/etc/password</code>修改成<code>/etc/passwd</code>）外，不代表个人观点。</p>
+<span id="more"></span>
+<h1>网络攻击技术</h1>
+<h2 id="（重点）攻击的分类的标准及类别">（重点）攻击的分类的标准及类别</h2>
+<p>标准：互斥性、完备性、非二义性、可重复性、可接受性、实用性。</p>
+<p>类别：从攻击者的角度可以分为物理（本地）攻击、主动攻击、被动攻击和中间人攻击。</p>
+<h2 id="（重点）攻击步骤与方法，每个步骤的详细理解">（重点）攻击步骤与方法，每个步骤的详细理解</h2>
+<p>攻击步骤：</p>
+<ul>
+<li>信息收集（尽可能多地收集目标的相关信息，为后续的“精确”攻击建立基础）</li>
+<li>权限获取（获取目标系统的RWX等权限）</li>
+<li>安装后门（在目标系统中安装后门程序，以更加方便、更加隐藏的方式对目标系统进行监控）</li>
+<li>扩大影响（以目标系统为“跳板”，对目标所属的网络的其它主机进行攻击，最大程度地扩大攻击的效果）</li>
+<li>清除痕迹（清除攻击的痕迹，以尽可能长久地对目标进行控制，并防止被识别、追踪）</li>
+</ul>
+<h2 id="物理攻击与社会工程学">物理攻击与社会工程学</h2>
+<p>物理攻击定义：通过各种技术手段绕开物理安全防护体系，从而进入受保护的设施场所或设备资源内，获取或破坏信息系统物理媒体中受保护信息的攻击方式。</p>
+<p>社会工程学定义：利用人类的愚蠢，操纵他人执行预期的动作或泄露机密信息的一门艺术与学问。</p>
+<h1>信息收集技术</h1>
+<h2 id="公开信息收集的定义、内容、分类及必要性">公开信息收集的定义、内容、分类及必要性</h2>
+<p>信息收集：指黑客<strong>为了更加有效地实施攻击</strong>而在<strong>攻击前</strong>或<strong>攻击过程中</strong>对目标的所有探测活动。</p>
+<p>内容：域名和IP、安全防范措施、内部网络结构、域组织、用户email、OS类型、端口、系统架构、敏感文件和目录、应用程序类型等</p>
+<p>必要性：攻击者（先手优势，攻击目标信息收集），防御者（对攻击者实施信息收集，归因溯源）</p>
+<p>分类：主动（直接访问，可以获取更多信息，可能记录操作），被动（借助第三方服务进行访问，收集信息相对较少，行动不会被发现）</p>
+<h2 id="（重点）网络扫描的类型（主机、端口、系统类型扫描）、原理">（重点）网络扫描的类型（主机、端口、系统类型扫描）、原理</h2>
+<p>扫描类型：</p>
+<ul>
+<li>主机扫描：使用ping命令，向目标主机发送ICMP Echo Request（type 8）数据包，等待恢复的ICMP Echo Reply包（type 0）。</li>
+<li>端口扫描：TCP SYN、TCP null、Xmas、TCP Window、TCP ACK、FTP Proxy、idle、IP分段扫描等。</li>
+<li>系统类型扫描：特定的打开端口，应用程序banner，TCP/IP协议栈指纹等。</li>
+</ul>
+<h2 id="漏洞扫描的目的、原理、组件及方法">漏洞扫描的目的、原理、组件及方法</h2>
+<p>漏洞检测就是对重要计算机信息系统进行检查，发现其中可被黑客利用的漏洞。该技术通常采用两种策略，即被动式策略和主动式策略。</p>
+<ul>
+<li>被动式策略是基于主机的检测，对系统中不合适的设置、脆弱的口令以及其他同安全规则相抵触的对象进行检查；</li>
+<li>主动式策略是基于网络的检测，通过执行一些脚本文件对系统进行攻击，并记录它的反应，从而发现其中的漏洞。</li>
+</ul>
+<p>漏洞检测的主要方法：直接测试、推断和带凭证的测试。</p>
+<h2 id="网络拓扑探测（拓扑探测、网络设备识别、网络实体IP地理位置定位）">网络拓扑探测（拓扑探测、网络设备识别、网络实体IP地理位置定位）</h2>
+<p>拓扑探测：traceroute、SNMP</p>
+<p>设备识别：shodan、zoomeye，FTP、ssh、telnet、http</p>
+<p>IP定位：基于查询信息的定位、基于网络测量的定位</p>
+<h1>口令攻击</h1>
+<h2 id="口令的定义及作用（操作系统口令）">口令的定义及作用（操作系统口令）</h2>
+<p>口令是一个通常由文字、数字或符号组成的代码或短语，用于识别和验证个体或系统的身份。主要作用包括：认证身份、安全性、隐私保护、数据加密、访问控制</p>
+<h2 id="针对口令强度的攻击方法">针对口令强度的攻击方法</h2>
+<p>字典、强力、组合、撞库、彩虹表</p>
+<h2 id="存储方法">存储方法</h2>
+<p>Linux:</p>
+<ul>
+<li>基础口令<code>/etc/passwd</code></li>
+<li>散列口令文件<code>/etc/shadow</code></li>
+<li>密码字段包含3个部分（使用的算法、salt、密码哈希）</li>
+</ul>
+<p>Windows:</p>
+<ul>
+<li><code>%systemroot%\system32\config</code>目录下</li>
+<li><code>%SystemRoot%\repair</code>目录下的<code>SAM._</code>文件</li>
+<li>注册表<code>HKEY_LOCAL_MACHINE\SAM</code>键</li>
+<li><code>Winlogon.exe</code>的内存块中</li>
+<li>锁定、隐藏、不可读；使用NTLM认证协议</li>
+</ul>
+<h2 id="传输方法">传输方法</h2>
+<ul>
+<li>嗅探攻击（网卡使用混杂模式）</li>
+<li>键盘记录</li>
+<li>网络钓鱼</li>
+<li>重放攻击</li>
+</ul>
+<h2 id="口令攻击的防范方法">口令攻击的防范方法</h2>
+<ul>
+<li>选择安全密码</li>
+<li>防止口令猜测攻击</li>
+<li>设置安全策略</li>
+</ul>
+<h1>软件漏洞</h1>
+<h2 id="漏洞的定义">漏洞的定义</h2>
+<p>指信息系统硬件、软件、操作系统、网络协议、数据库等在设计上、实现上出现的可以被攻击者利用的错误、缺陷和疏漏。</p>
+<p>通俗一点说，漏洞就是可以被攻击利用的系统弱点。</p>
+<h2 id="典型漏洞类型">典型漏洞类型</h2>
+<p>典型漏洞类型：</p>
+<ul>
+<li>栈溢出（Stack Overflow，CWE-121）</li>
+<li>堆溢出（Heap Overflow，CWE-122）</li>
+<li>格式化串（Format String，CWE-134）</li>
+<li>整形溢出（Integer Overflow，CWE-190）</li>
+<li>释放再使用（Use after Free，CWE-416）</li>
+</ul>
+<h2 id="（重点）栈溢出漏洞利用原理（内存分布、漏洞利用内存变化、压栈-出栈、栈溢出原理）">（重点）栈溢出漏洞利用原理（内存分布、漏洞利用内存变化、压栈/出栈、栈溢出原理）</h2>
+<p>PPT内容不好概括，使用 GPT-4 简要概括如下：</p>
+<p>栈溢出是当数据超出分配给栈的内存空间时发生的。在内存中，栈负责存储局部变量和函数调用信息。当压栈（添加数据）过多，超过栈的界限，会覆盖相邻内存区域。这种溢出可以被利用，篡改栈的控制信息（如返回地址），导致程序执行非预期代码。</p>
+<p>具体步骤看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25816426">这篇文章</a>，看完shellcode即可。</p>
+<h2 id="（重点）溢出漏洞利用原理（基本流程、关键技术（溢出点定位、覆盖执行控制地址、覆盖异常处理结构、跳转地址的确定、Shellcode定位和跳转）">（重点）溢出漏洞利用原理（基本流程、关键技术（溢出点定位、覆盖执行控制地址、覆盖异常处理结构、跳转地址的确定、Shellcode定位和跳转）)</h2>
+<p>基本流程：在哪里注入“溢出”数据？数据要多长才能覆盖返回地址？使用什么内容覆盖返回地址？执行什么样的攻击代码？</p>
+<ul>
+<li>溢出点定位：探测法（在pwndbg中可以使用<code>cyclic</code>和<code>cyclic_find</code>）、反汇编分析。</li>
+<li>执行控制地址包括：覆盖返回地址、覆盖函数指针变量、覆盖异常处理结构。</li>
+<li>跳转地址的确定：指令选取（jmp call）、指令搜索范围（用户空间、系统dll、进程代码段、PEB、TEB）</li>
+<li>shellcode的定位和跳转：<code>nop sled + decoder + real_shellcode</code></li>
+</ul>
+<h2 id="Shellcode的定义、作用、如何编写步骤、需要注意事项、通用shellcode编写方法">Shellcode的定义、作用、如何编写步骤、需要注意事项、通用shellcode编写方法</h2>
+<p>定义：shellcode就是一段能够完成一定功能、可直接由计算机执行的机器代码，通常以16进制的形式存在。</p>
+<p>作用：发起反向连接、上传（下载）木马病毒并运行等。</p>
+<p>编写步骤：通常使用汇编编写</p>
+<p>注意事项：需正常退出、处理null字节、加载dll</p>
+<p>通用shellcode编写方法：将每个版本的 Windows 操作系统对应的函数地址列出来，然后针对不同版本的操作系统使用不同的地址。动态定位函数地址（即使用<code>GetProcAddress</code>和<code>LoadLibrary</code>函数动态获取其他函数的地址）的步骤如下：</p>
+<ul>
+<li>先动态获得<code>GetProcAddress</code>的地址（暴力搜索、使用PEB获取、SEH获取kernel基址、HASH查找所有函数地址）</li>
+<li>通过<code>GetProcAddress</code>获得其他函数的地址（例如<code>LoadLibrary</code>，<code>socket</code>）</li>
+<li>再调用其他函数的地址</li>
+</ul>
+<h2 id="环境变量攻击的原理、Set-UID概念、攻击案例分析">环境变量攻击的原理、Set-UID概念、攻击案例分析</h2>
+<p>原理：环境变量隐藏使用是危险的，由于用户可以设置环境变量，因此它们将成为Set-UID程序的攻击面的一部分。</p>
+<p>Set-UID概念：允许用户<strong>临时</strong>以程序所有者的（提升）权限运行程序。</p>
+<p>案例分析：</p>
+<ul>
+<li>动态连接器（<code>LD_PRELOAD</code>，<code>LD_LIBRARY_PATH</code>，<code>DYLD_PRINT_TO_FILE</code>）</li>
+<li>外部程序（<code>exec</code>函数家族，<code>system</code>）</li>
+<li>外部库（<code>locale</code>，<code>gettext</code>，<code>catopen</code>等）</li>
+<li>应用程序代码</li>
+</ul>
+<h1>Web 应用攻击</h1>
+<h2 id="Web应用基础（架构、基本内容）">Web应用基础（架构、基本内容）</h2>
+<p>Web服务器（Web网页、数据库）、Web客户端、HTTP协议</p>
+<ul>
+<li>Web网页位于Web服务器上，用于展示信息，一般采用HTML语言（Hypertext Markup Language）编写。</li>
+<li>Web服务器：apache、IIS、tomcat、nginx等</li>
+<li>Web前端（浏览器）：chrome，firefox，ie（edge）等</li>
+<li>HTTP协议：请求报文格式与响应报文格式（自行查询）</li>
+</ul>
+<h2 id="（重点）XSS攻击（定义、同源策略、危害、代码漏洞分析及利用方法、类型、防范措施）">（重点）XSS攻击（定义、同源策略、危害、代码漏洞分析及利用方法、类型、防范措施）</h2>
+<p>定义：XSS攻击是由于Web应用程序对用户输入过滤不足而产生的，使得攻击者输入的特定数据变成了JavaScript脚本或HTML代码。</p>
+<p>同源策略：它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页&quot;同源&quot;。所谓&quot;同源&quot;指的是&quot;三个相同&quot;（协议相同、域名相同、端口相同）。</p>
+<p>危害：钓鱼、提取客户端信息、DDoS、提权、传播蠕虫等。</p>
+<p>类型：反射型（非持久、参数、附加到URL）、存储型（持久型、留言、数据库）、DOM XSS（基于js，不需要与服务端交互）等。</p>
+<p>防范措施：httpOnly、安全编码</p>
+<h2 id="SQL注入攻击（定义、类型、注入步骤、提权方法、暴库定义、防范措施）">SQL注入攻击（定义、类型、注入步骤、提权方法、暴库定义、防范措施）</h2>
+<p>定义：就是向网站提交精心构造的SQL查询语句，导致网站将关键数据信息返回。</p>
+<p>攻击类型：字符、数字、报错、盲注</p>
+<p>注入步骤：发现注入点、数据库类型、猜表名、猜字段名、猜内容、进入管理页面传马。</p>
+<p>提权方法：例如pcanywhere破解cif文件、利用servu提权（本地溢出、vbs脚本）。</p>
+<p>暴库定义：通过一些技术手段或者程序漏洞得到数据库的地址，并将数据非法下载到本地。</p>
+<p>防范措施：特殊字符转义、输入验证和过滤、参数化方法</p>
+<h2 id="HTTP会话攻击及防御（预测会话ID、窃取会话ID、控制会话ID、CSRF攻击、防范措施）">HTTP会话攻击及防御（预测会话ID、窃取会话ID、控制会话ID、CSRF攻击、防范措施）</h2>
+<p>为防范预测会话ID号攻击，建议采用编程语言内置的会话管理机制，如PHP语言、JAVA语言的会话管理机制等。</p>
+<p>针对窃取会话ID号攻击，需要根据不同的窃取会话ID号方法，采取不同的防范措施，如基于XSS攻击实施的会话ID号窃取攻击，可以采用HttpOnly属性的方法来防范。</p>
+<p>针对会话ID固定攻击，尽可能的采用非会话采纳的Web环境或对会话采纳方式进行防范。</p>
+<p>针对会话保持攻击，主要的防范措施就是不能让会话ID号长期有效，如采用强制销毁措施或用户登录后更改会话ID号等。</p>
+<p>针对CSRF攻击，可以：</p>
+<ul>
+<li>使用POST替代GET</li>
+<li>检验HTTP referer</li>
+<li>验证码</li>
+<li>使用token</li>
+</ul>
+<h1>假消息攻击</h1>
+<h2 id="（重点）包嗅探与欺骗的原理及攻击思路（TCP通信代码及流程、IP欺骗攻击及防范）">（重点）包嗅探与欺骗的原理及攻击思路（TCP通信代码及流程、IP欺骗攻击及防范）</h2>
+<p>包的嗅探可以使用原始套接字接收（创建原始套接字、捕获所有类型数据包、启用混杂模式、等待数据包），也可以使用pcap API和scapy进行数据包嗅探。</p>
+<p>当数据包中的某些关键信息被伪造时，我们称之为数据包欺骗，数据包欺骗有两个主要步骤：构造数据包（填写ICMP头和IP头）、把包发送出去。</p>
+<h2 id="（重点）什么是TCP协议、TCP协议的工作原理、SYN-flooding攻击原理及步骤、TCP重置攻击原理及步骤、TCP会话劫持攻击原理及步骤">（重点）什么是TCP协议、TCP协议的工作原理、SYN flooding攻击原理及步骤、TCP重置攻击原理及步骤、TCP会话劫持攻击原理及步骤</h2>
+<p>传输控制协议（TCP）是Internet协议套件的核心协议，位于IP层的顶部——传输层。为应用程序提供主机到主机的通信服务。存在两个传输层协议：TCP（有连接、可靠）和UDP（无连接、不可靠、开销较低）。</p>
+<p>TCP协议的工作原理：SYN SYNACK ACK</p>
+<ul>
+<li>当服务器接收到初始SYN数据包时，它使用TCB（传输控制块）存储有关连接的信息。</li>
+<li>这称为半开放连接，因为只确认了客户端-服务器连接。</li>
+<li>服务器将TCB存储在仅用于半开放连接的队列中。</li>
+<li>在服务器获得ACK数据包后，它将把这个TCB从队列中取出并存储在另一个地方。</li>
+<li>如果ACK没有到达，服务器将重新发送SYN+ACK数据包。一段时间后，TCB最终将被丢弃。</li>
+</ul>
+<p>SYN flooding 攻击原理：为了填充存储半开放连接的队列，以便没有空间为任何新的半开放连接存储TCB，基本上服务器不能接受任何新的SYN数据包。</p>
+<p>SYN flooding 实现步骤：持续向服务器发送大量SYN数据包。这会通过插入TCB记录来消耗队列中的空间，不完成握手的第三步。</p>
+<p>TCP重置攻击原理：目标是断开A和B之间的TCP连接。伪造RST数据包，需正确设置源IP地址、源端口、目标地址、目标端口和seqnum（在接受器窗口内）。</p>
+<p>TCP重置攻击步骤：在攻击者机器上使用wireshark嗅探流量，检索目标端口、源端口号和序列号。</p>
+<p>TCP会话劫持攻击原理：目标是在已建立连接中注入数据。伪造TCP数据包，设置的内容与重置攻击一致。</p>
+<p>TCP会话劫持攻击步骤：与TCP重置攻击相同。</p>
+<h2 id="（重点）DNS攻击（域名结构、查询过程、DNS攻击类型及原理（本地DNS缓存中毒攻击、远程DNS缓存中毒攻击、恶意DNS服务器回复伪造攻击）、防范措施）">（重点）DNS攻击（域名结构、查询过程、DNS攻击类型及原理（本地DNS缓存中毒攻击、远程DNS缓存中毒攻击、恶意DNS服务器回复伪造攻击）、防范措施）</h2>
+<p>域名结构：根域名、顶级域名、权威域名等</p>
+<p>查询过程：迭代查询和递归查询</p>
+<p>DNS攻击类型及原理：</p>
+<ul>
+<li>本地DNS缓存中毒攻击：本地DNS缓存中毒攻击利用DNS服务器的信任机制，攻击者在看到来自本地DNS的查询后伪造DNS应答即可。</li>
+<li>远程DNS缓存中毒攻击：远程DNS缓存中毒攻击与本地不同的是，远程DNS攻击需要猜测<strong>源端口号</strong>与<strong>事务ID</strong>，只不过后者可以通过每次询问不同（不存在）的子域名来防止答案缓存。在授权部分提供伪造答案。</li>
+<li>恶意DNS缓存中毒攻击：当用户访问网站（<a target="_blank" rel="noopener" href="http://xn--attacker32-lv8r.com">如attacker32.com</a>）时，DNS查询最终将到达attacker32.com域的权威名称服务器。除了在响应的应答部分提供IP地址外，DNS服务器还可以在授权和其他部分提供信息。攻击者可以使用这些部分提供欺诈信息。</li>
+</ul>
+<p>防范措施：DNSSEC对DNS数据提供身份验证和完整性检查，来自DNSSEC保护区的所有答案都经过数字签名，通过检查数字签名，DNS解析器能够检查信息是否真实。DNS缓存中毒将被此机制击败，因为将检测到任何虚假数据，因为它们将无法通过签名检查。（好浓的机翻味）</p>
+<h1>熔断与幽灵攻击</h1>
+<h2 id="CPU缓存原理">CPU缓存原理</h2>
+<p>根据局部性原理（计算机程序倾向于在短时间内重复访问相同的数据和指令集），因为缓存的访问速度比内存更快，采用缓存可以显著地提高程序的平均执行性能。</p>
+<h2 id="（重点）侧信道攻击原理">（重点）侧信道攻击原理</h2>
+<p>然而，如果CPU访问Cache中并不存在的数据时，将会产生时间延迟，因此此时目标数据必须重新从内存加载到Cache中。测量这种时间延迟有可能让攻击者确定出Cache访问失败的发生和频率。</p>
+<h2 id="（重点）熔断攻击思路">（重点）熔断攻击思路</h2>
+<p>熔断攻击利用现代处理器的乱序执行来绕过内存隔离，由于某些内存地址本不应该被读取，但却因为乱序执行储存在cache中，当程序再次访问该地址时其时间会明显缩短，因此可以通过这个地址推断原先内存地址值。</p>
+<h2 id="（重点）幽灵攻击思路">（重点）幽灵攻击思路</h2>
+<p>幽灵攻击除了利用的是现代处理器的分支预测功能之外，其余思路与熔断攻击相似。</p>
+<h1>追踪溯源技术</h1>
+<h2 id="追踪溯源概述">追踪溯源概述</h2>
+<p>目标：探知攻击者身份、攻击点位置及攻击路径等信息。</p>
+<p>按追踪溯源深度可分为：攻击主机追踪溯源、控制主机追踪溯源、攻击者追踪溯源和攻击组织追踪溯源</p>
+<p>典型场景：域内、跨域。</p>
+<h2 id="追踪溯源面临的挑战">追踪溯源面临的挑战</h2>
+<p>挑战有：</p>
+<ul>
+<li>发送者匿名，使用跳板</li>
+<li>匿名通信系统本身对双方身份信息进行隐藏</li>
+<li>TCP/IP协议本身没有验证机制以及Internet基础设施的无状态性</li>
+<li>个人隐私保护和法律法规不健全</li>
+<li>新技术的出现（VPN、NAT等）</li>
+</ul>
+<h2 id="追踪溯源典型技术">追踪溯源典型技术</h2>
+<p>典型技术有：</p>
+<ul>
+<li>IP追踪技术</li>
+<li>跳板攻击溯源技术</li>
+<li>匿名通信系统的追踪溯源技术</li>
+</ul>
+<h2 id="追踪溯源技术发展趋势">追踪溯源技术发展趋势</h2>
+<p>发展趋势有：</p>
+<ul>
+<li>大尺度网络中的传播源定位技术</li>
+<li>基于软件基因的网络攻击追踪溯源技术</li>
+<li>基于网络大数据的网络攻击追踪溯源技术</li>
+<li>多手段融合的追踪溯源技术</li>
+</ul>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

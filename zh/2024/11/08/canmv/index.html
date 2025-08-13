@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>Learn 内网穿透 the hard way (CanMV-K230 版)</h1>
+	<p>请注意，这篇文章不是针对第一次接触内网穿透的读者的教学，而是《从零搭建一个又快又安全的 VNC 服务》这篇文章的后续内容。</p>
+<span id="more"></span>
+<h1>问题引入</h1>
+<p>如果你点进了这篇文章，你应该是可以借助通过公网服务器来进行内网穿透的。但是我白嫖的 Azure 服务器不在国内，即使能连接我的工位电脑，速度也有些影响使用体验。</p>
+<p>在前序文章《从零搭建一个又快又安全的 VNC 服务》中我提到自己的寝室使用宽带拨号后，有动态公网IP，可以相当程度上解决使用云服务器连接工位速度慢的问题。但最近我通过询问读研的学长，得知研究生宿舍的网线并不支持公网IP，这就意味着我目前远程连接工位电脑的解决方案，将在我本科毕业之后完全失效——这怎么可以忍？但我当时并没有想出一个好的解决方案。</p>
+<p>这糟糕的现实，因近期科研需要购买支持 RVV 1.0 CPU 的开发板，便有了一丝转机：我可以将我现在电脑作为 ssh 跳板机的职能转移给刚买的开发板，并在我毕业之后将开发板交给自己的学弟，让他继续将开发板接入宽带，从而我得以继续实现“居家办公”的美好生活。</p>
+<h1>目标分解</h1>
+<p>现在我们需要这样的一种开发板，我们需要让它完成以下四种功能：</p>
+<ol>
+<li>开机自动启动系统。</li>
+<li>开机自动实现 PPPoE 拨号。</li>
+<li>开机自动运行先前写好的 ddns 脚本。</li>
+<li>我可以在开发板进行与 RVV 1.0 相关的开发。</li>
+</ol>
+<p>为了满足第四个需求，经过了几个小时的 STFW，我排除了市面上绝大多数现成的开发板，我发现只有嘉楠的 CanMV-K230 满足我的需求（虽然之后有人告诉我“进迭时空”也有一种型号支持 RVV 1.0，但由于其面积太大并且价格太贵而排除）。再综合一下嘉楠的用户文档，我又梳理出一下具体的实现步骤：</p>
+<ol>
+<li>购买 CanMV-K230 开发板。</li>
+<li>购买合适的 SD 卡并插入开发板。</li>
+<li>刷写官方提供的系统镜像。</li>
+<li>启动系统，将网线插入开发板，测试拨号是否正常。</li>
+<li>将主机的 ddns 脚本拷贝至开发板，测试 ddns 服务是否正常。</li>
+<li>从其他设备 ssh 自己的域名，看看是否可以连接到开发板和自己的工位电脑。</li>
+</ol>
+<p>感觉似乎没那么难，但其实每一步都是坑。</p>
+<h1>踩坑经历</h1>
+<h2 id="购买-CanMV-K230-开发板">购买 CanMV-K230 开发板</h2>
+<p>首先的第一步当然就是买开发板了，我在淘宝上面搜索 CanMV-K230，就跳出来一堆开发板。然后点了购买量最多的一个，是 01studio 官方旗舰店，然后一看——诶，居然内存是1G，而不是官方所说的512M？太棒了，现在工艺升级换代这么快，赶紧买买买！于是，从打开淘宝开始，我花了不到两分钟就下单了，只是确认一下型号是不是 K230，CPU的版本是不是 C908（支持 RVV 1.0）的版本而已。</p>
+<p>三天之后我收到货，商家也附带了一份 32G 的 SD 卡。于是我开始按照嘉楠的文档刷写镜像，我首先选择了带 01studio 字样的镜像去刷写，没遇到什么问题。然后接好电源，minicom 一打开——诶？怎么是个 python 的 shell？我想敲 <code>exit</code>，结果不支持这个命令，我想按<code>Ctrl+D</code>，怎么屏幕一闪又重启到python？难道我花了 284 就是买了 python shell？</p>
+<p>我问了朋友，得知你看到的 python shell 其实是 micropython，他尝试了一下 jailbreak，但没有成功。然后我又试了一下嘉楠官网其他的镜像，发现除了带 01studio 字样的镜像，其他都不行。更为严重的问题是，这个开发板不带以太网接口，需要单独购买 USB 转以太网的转接头。我当时就有了想退货的打算。</p>
+<p>在随后的几天，我尝试了手动编译嘉楠给 CanMV-K230 提供的 <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_sdk">K230-SDK</a> 和 <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_linux_sdk">K230-linux-SDK</a> 并生成镜像，但无一例外要么就是启动不了，要么就是一打开就是讨厌的 micropython 界面。我也问了淘宝客服，客服把皮球踢给 01studio 的交流群，01 又踢给嘉楠，嘉楠最后让我尝试用 USB 编程器尝试连接 linux 的调试串口，但我也没有成功。</p>
+<p>我寻思毕竟 01studio 算是嘉楠的下游，而且他的主打客户是那批要炼丹的人（CanMV K230 AI 开发板)，不是我。而且相比嘉楠官方的开发板这个东西“有点山寨”，继续调试可能有更多不受官方支持的问题。于是在串口调试失败的第二天，也就是收到货的第五天（因为七天无理由退货，只用交运费），我正式提出了退货申请。</p>
+<blockquote>
+<p>感觉现在啥东西都要扯个 AI 才有销量一般，感觉 AI 是真成流量密码了。</p>
+</blockquote>
+<h2 id="购买合适的-SD-卡并插入开发板">购买合适的 SD 卡并插入开发板</h2>
+<p>在退款的当天，我又重新买了一个嘉楠官方的开发板，价格 283（原价 323，不带 SD 卡），然后顺便也同时买了 64G 的 SD 卡，价格 17（原价 25）。</p>
+<p>有经验的人应该发现 SD 卡的价格不太对，也确实是这样。当时的我其实是信奉“好货不便宜，便宜无好货”这个准则的，于是开发板挑了价格贵的买，但 SD 卡就没想那么多了。因为我看好评比例很高，心想如果买到假货，退了然后附近马上买一个贵一点的，也不亏。</p>
+<p>然后神奇的是，SD 卡这边的物流是实时更新的，而开发版那边物流就是：已发货、已揽件、派送中。然后过了整整三天也没有任何更新，而 SD 卡这边已经显示运到当地的转运中心了。我当时一度以为自己的开发板又买到假货了，便在第三天的早上给派送员打了个电话，结果派送员说也到了转运中心，我才放心了一点。</p>
+<p>到了第三天晚上，我的 SD 卡到了，而开发板依旧没有任何动静，但我想现在已经是非工作时间，再去打扰配送员似乎不太好，于是我等到了第四天早上又问了一遍。结果派送员说已经到了，她告诉了我取件码。我当时就很疑惑——为什么东西到了淘宝都不说一声？但之后拆封一看，开发板确实跟嘉楠官网一模一样，我也没什么好气的。</p>
+<p>然后便是用我昨天到的 SD 卡装系统，用的是嘉楠官网的 debian 镜像。使用 <code>dd</code> 烧录之后，首先用了 gparted 把 linux 分区从 1G 扩容到 58G，然后我就从开发板启动 linux，接着就出现了这样的错误：</p>
+<pre><code>junyu33@zjy-canmv:~$ sudo apt install net-tools                                                                                                               
+[sudo] password for junyu33:              
+E: dpkg was interrupted, you must manually run 'sudo dpkg --configure -a' to correct the problem. 
+junyu33@zjy-canmv:~$ sudo dpkg --configure -a
+dpkg: error: parsing file '/var/lib/dpkg/updates/0000' near line 0:
+ MSDOS end of file (^Z) in field name ''
+</code></pre>
+<p>这个错误我之前没有见到过，于是我开始怀疑自己的 SD 卡是不是坏了，把错误丢给了 ChatGPT，它让我把<code>/var/lib/dpkg/updates/0000</code> 删了。于是，就有了接下来的一幕：</p>
+<pre><code>junyu33@zjy-canmv:~$ sudo rm /var/lib/dpkg/updates/*                                                                                                          
+[  151.617623] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6563
+[  151.631373] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6563
+rm: cannot remove '/[  153.220073] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6719
+var/lib/dpkg/updates/0007': Stru[  153.234325] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6719
+cture needs cleaning
+rm: cannot remove '/[  153.248629] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8089
+var/lib/dpkg/updates/0008': Structure needs cleaning
+[  153.321093] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8089
+rm: cannot remove '/[  153.334419] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8144
+var/lib/dpkg/updates/0010': Stru[  153.348760] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8144
+cture needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0011': Structure needs cleaning
+[  153.457330] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6557
+[  153.470351] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6557
+rm: cannot remove '/var/lib/dpkg/updates/0013': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0014': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0015': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0016': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0017': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0018': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0019': Structure needs cleaning
+</code></pre>
+<p>当时我的想法就是想法就是：完犊子了，要准备退货了。但是我还是尝试用 fsck 修了一下，暂时没啥问题。结果之后装了一堆东西之后，重启了一下，又出现了“dpkg was interrupted”的错误。我心想，这下得准备检查 SD 卡是否又被注水了（上次买到扩容的东西是在初中的时候，买了个 128G 的 U盘，实际上只有 8G），去网上搜工具，然后找到了<a target="_blank" rel="noopener" href="https://4-x.tw/fake_sdcard/">这个链接</a>。</p>
+<p>我根据这个链接看了一下方法二，确实背面有个数字 &quot;08&quot;，然后看了看品牌叫“Jinsudun”（没错，长得很像 Kingston，但不是），这下绝对跑不掉了，马上找扩容软件开始测试。</p>
+<ul>
+<li>Windows 这边的话我看的链接说用 MyDiskTest，我用 Windows 虚拟机测了一下，结果一测就闪退了，然后用室友的电脑测了一下，照样闪退。感觉是商家做了手脚，让这个软件运行不起来。</li>
+<li>Linux 这边我首先用 badblocks 扫了一遍（只读），没有问题。然后我又用 f3 测了一遍，最后发现了问题，结果如下：</li>
+</ul>
+<pre><code>F3 read 8.0
+Copyright (C) 2010 Digirati Internet LTDA.
+This is free software; see the source for copying conditions.
+
+                  SECTORS      ok/corrupted/changed/overwritten
+Validating file 1.h2w ... 2097152/        0/      0/      0
+Validating file 2.h2w ... 2097152/        0/      0/      0
+Validating file 3.h2w ... 2050304/    46848/      0/      0
+Validating file 4.h2w ...       0/  2097152/      0/      0
+Validating file 5.h2w ...       0/  2097152/      0/      0
+Validating file 6.h2w ...       0/  2097152/      0/      0
+Validating file 7.h2w ...       0/  2097152/      0/      0
+Validating file 8.h2w ...       0/  2097152/      0/      0
+Validating file 9.h2w ...       0/  2097152/      0/      0
+Validating file 10.h2w ...       0/  2097152/      0/      0
+Validating file 11.h2w ...       0/  2097152/      0/      0
+Validating file 12.h2w ...       0/  2097152/      0/      0
+Validating file 13.h2w ...       0/  2097152/      0/      0
+Validating file 14.h2w ...       0/  2097152/      0/      0
+Validating file 15.h2w ...       0/  2097152/      0/      0
+Validating file 16.h2w ...       0/  2097152/      0/      0
+Validating file 17.h2w ...       0/  2097152/      0/      0
+Validating file 18.h2w ...       0/  2097152/      0/      0
+Validating file 19.h2w ...       0/  2097152/      0/      0
+Validating file 20.h2w ...       0/  2097152/      0/      0
+Validating file 21.h2w ...       0/  2097152/      0/      0
+Validating file 22.h2w ...       0/  2097152/      0/      0
+Validating file 23.h2w ...       0/  2097152/      0/      0
+Validating file 24.h2w ...       0/  2097152/      0/      0
+Validating file 25.h2w ...       0/  2097152/      0/      0
+Validating file 26.h2w ...       0/  2097152/      0/      0
+Validating file 27.h2w ...       0/  2097152/      0/      0
+Validating file 28.h2w ...       0/  2097152/      0/      0
+Validating file 29.h2w ...       0/  2097152/      0/      0
+Validating file 30.h2w ...       0/  2097152/      0/      0
+Validating file 31.h2w ...       0/  2097152/      0/      0
+Validating file 32.h2w ...       0/  2097152/      0/      0
+Validating file 33.h2w ...       0/  2097152/      0/      0
+Validating file 34.h2w ...       0/  2097152/      0/      0
+Validating file 35.h2w ...       0/  2097152/      0/      0
+Validating file 36.h2w ...       0/  2097152/      0/      0
+Validating file 37.h2w ...       0/  2097152/      0/      0
+Validating file 38.h2w ...       0/  2097152/      0/      0
+Validating file 39.h2w ...       0/  2097152/      0/      0
+Validating file 40.h2w ...       0/  2097152/      0/      0
+Validating file 41.h2w ...       0/  2097152/      0/      0
+Validating file 42.h2w ...       0/  2097152/      0/      0
+Validating file 43.h2w ...       0/  2097152/      0/      0
+Validating file 44.h2w ...       0/  2097152/      0/      0
+Validating file 45.h2w ...       0/  2097152/      0/      0
+Validating file 46.h2w ...       0/  2097152/      0/      0
+Validating file 47.h2w ...       0/  2097152/      0/      0
+Validating file 48.h2w ...       0/  2097152/      0/      0
+Validating file 49.h2w ...       0/  2097152/      0/      0
+Validating file 50.h2w ...       0/  2097152/      0/      0
+Validating file 51.h2w ...       0/  2097152/      0/      0
+Validating file 52.h2w ...       0/  2097152/      0/      0
+Validating file 53.h2w ...       0/  2097152/      0/      0
+Validating file 54.h2w ...       0/  2097152/      0/      0
+Validating file 55.h2w ... 1947392/   149760/      0/      0
+Validating file 56.h2w ... 2097152/        0/      0/      0
+Validating file 57.h2w ... 2097152/        0/      0/      0
+Validating file 58.h2w ... 2097152/        0/      0/      0
+Validating file 59.h2w ... 1212160/        0/      0/      0
+
+  Data OK: 7.48 GB (15695616 sectors)
+Data LOST: 51.09 GB (107151360 sectors)
+	       Corrupted: 51.09 GB (107151360 sectors)
+	Slightly changed: 0.00 Byte (0 sectors)
+	     Overwritten: 0.00 Byte (0 sectors)
+Average reading speed: 16.12 MB/s
+</code></pre>
+<p>结果果然是 8G 的注水 SD 卡，只有前面 3G、后面 5G 是可以用的。我马上把全额退款申请发过去（不退货），然后不到一分钟，我的 17 块就回来了。</p>
+<p>另外，我顺便看了一下淘宝的评论，发现只有几十条差评（相对于几万条的好评确实挺少），并且差评内容都是说 SD 卡的质量问题，还有咒骂无良商家的。现在我终于明白我姐为什么说“在淘宝买东西只看差评”这句话了。</p>
+<blockquote>
+<p>在写作之日，我又看了一眼那个商品的评论区，结果连那几十个差评也找不到了，我不想多说什么。</p>
+</blockquote>
+<p>当然，虽然被假冒 SD 卡折腾了半天，但我的任务还是要继续完成的。我寻思这种东西应该随处都能买得到，于是我又在第二天早上看了一下美团外卖，选了个大品牌（SanDisk），外卖不到半个小时就到了，但是我一看——诶，这个SD卡怎么这么大？我又上网搜了一下，原来我理解的“小SD卡”是TF卡（或者叫 microSD 卡），所以我很不幸又买错了。</p>
+<p>我寻思店铺离我寝室就几百米，可能还是直接走路去退货比较方便，到了商家那里，我解释了自己把商品搞错了，她也很愿意给我退货。然后我问你们有没有 TF 卡，她说不清楚，可以找找。最后她找到了，是 ThinkPlus 的牌子，感觉虽然不如那些大品牌，但肯定是比什么 Jinsudun 好得多的。商家说她这里只有 32G 和 128G 的，我想到时肯定要下载一堆 toolchain，编译一堆东西，还是买个 128G 比较稳妥。</p>
+<blockquote>
+<p>然后一看商家那边的价格是 90 块，而我这边只要花 50 出头就可以买到。不知道美团是哪里来的钱给这 40 块买单的。</p>
+</blockquote>
+<p>拿着 128G 的 TF 卡回去，我还是用 f3 测了前面 5GB，没有问题。然后我就开始烧录镜像了，直到写作之日，依旧没有出现什么问题，注水的嫌疑基本上可以排除了。</p>
+<h2 id="刷写官方提供的系统镜像">刷写官方提供的系统镜像</h2>
+<p>如前文所说，官方有两种不同的镜像，一种是大核搭载 micropython 的 RTOS，小核搭载 linux 的镜像。另一种是安装在基于 debian, ubuntu 这两个发行版的镜像。当然，后者更满足我的需求，于是我还是将之前的 debian 镜像烧到我的 TF 卡，我终于在 minicom 的输出中看到了 debian 的字样。</p>
+<p>就这样结束了吗？还早呢！</p>
+<p>然后，我就发现了一个致命的缺陷——这个 debian 系统没有 WiFi 的接口（interface）！但是，根据嘉楠的文档，这个开发板是肯定有 WiFi 硬件的。我又马上刷了一遍前者的镜像，进入小核的调试串口。结果我发现：</p>
+<ol>
+<li>小核是基于 buildroot 的 linux</li>
+<li>小核有 WiFi 接口，并且可以正常连接 WiFi</li>
+<li>小核的内存只有 128M</li>
+</ol>
+<p>于是我们陷入了一种 dilemma：使用 micropython 镜像，你可以通过 WiFi ssh 来调试之后接入 PPPoE 的过程，但是之后你就无法使用包管理器，并且手动编译 toolchain 就只能忍受 128M 的内存；反之使用 debian 镜像，你可以比较舒服地进行开发，但调试 PPPoE 的时候就只能抓瞎（因为你没法一边连接有线网络一边调试 PPPoE）。所以我们应该选择哪一个镜像呢？答案是——只有小孩子才做选择。</p>
+<h2 id="自己构造系统镜像">自己构造系统镜像</h2>
+<p>根据前面的观察，我们可以排除硬件以及 linux 驱动适配的问题，这就意味着，这个问题肯定是可以通过自己的力量解决的。也就是，我们可以通过恰当地“组装” micropython 镜像和 debian 镜像来解决这个问题。</p>
+<p>至于具体的解决方案，我尝试的路线有以下几点：</p>
+<ol>
+<li>原地对这两个镜像进行 hack</li>
+<li>尝试修改镜像编译的 SDK 源码，企图得到满足自己需求的镜像</li>
+<li>尝试修改镜像编译的 SDK 源码，并对得到的镜像进行 hack</li>
+</ol>
+<h3 id="原地-hack">原地 hack</h3>
+<p>我们可以观察一下这两个镜像的结构：</p>
+<p>micropython 镜像：</p>
+<pre><code>&gt; mmls CanMV-K230_sdcard_v1.8_nncase_v2.9.0.img 
+GUID Partition Table (EFI)
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Safety Table
+001:  -------   0000000000   0000020479   0000020480   Unallocated
+002:  Meta      0000000001   0000000001   0000000001   GPT Header
+003:  Meta      0000000002   0000000033   0000000032   Partition Table
+004:  000       0000020480   0000061439   0000040960   rtt
+005:  001       0000061440   0000163839   0000102400   linux
+006:  -------   0000163840   0000262143   0000098304   Unallocated
+007:  002       0000262144   0000425983   0000163840   rootfs
+008:  003       0000425984   0000950271   0000524288   fat32appfs
+009:  -------   0000950272   0000950304   0000000033   Unallocated
+</code></pre>
+<p>debian 镜像：</p>
+<pre><code>&gt; mmls CanMV-K230_debian_sdcard_sdk_1.3.img 
+GUID Partition Table (EFI)
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Safety Table
+001:  -------   0000000000   0000020479   0000020480   Unallocated
+002:  Meta      0000000001   0000000001   0000000001   GPT Header
+003:  Meta      0000000002   0000000033   0000000032   Partition Table
+004:  000       0000020480   0000061439   0000040960   rtt
+005:  001       0000061440   0000163839   0000102400   linux
+006:  -------   0000163840   0000262143   0000098304   Unallocated
+007:  002       0000262144   0003515591   0003253448   rootfs
+008:  -------   0003515592   0003515624   0000000033   Unallocated
+</code></pre>
+<p>所以我们可以发现，似乎只有 rootfs 分区大小不同，而 debian 镜像没有 fat32appfs，通过先前的 research 可以得知是用来放炼丹的应用的，这个跟我没有关系，不要也罢，所以也可以看作是 rootfs 的一部分。因此，两个镜像的结构完全相同，可以按照分区为单位来进行替换。</p>
+<p>根据先前的判断，在 micropython 镜像中 WiFi 可以正常使用，而 WiFi 作为驱动的一部分，要么是由 linux kernel 加载的，要么是由 dkms 在 <code>/lib/modules</code> 中加载的。保险起见，</p>
+<ul>
+<li>我挂载了 micropython 镜像的 rootfs 分区的 <code>/lib/modules</code> 提取出来，写入到 debian 镜像的对应分区，大小不变。</li>
+<li>我将 micropython 镜像的 linux 分区原样 copy 到 debian 镜像的对应分区。</li>
+</ul>
+<p>然后烧入 TF 卡，启动开发板。dmesg 报错缺少 WiFi 固件，内容有 <code>/etc/firmware/config.txt</code>, <code>/etc/firmware/fw_bcm43438a1.bin</code> 和 <code>/etc/firmware/nvram.txt</code>。我又在 micropython 镜像中找到了对应的路径，拷贝过去，再次重新启动，又报错了：</p>
+<pre><code>[  OK  ] Started NetworkManager.service - Network Manager.
+[   32.925997] [dhd] failed to power up DHD generic adapter, 0 retry left
+[  OK  ] Started NetworkManag[   32.955283] [dhd] wifi_platform_set_power = 0, delay: 0 msec
+er-dispatcher.�[   32.961896] [dhd] ======== PULL WL_REG_ON(1) LOW! ========
+� Manager Sc[   32.968726] [dhd] wifi_platform_bus_enumerate device present 0
+ript Dispatcher [   32.975930] [dhd] ======== Card detection to remove SDIO card! ========
+Service.
+[   32.983935] [dhd] failed to power up DHD generic adapter, max retry reached**
+[   32.992006] [dhd] unregister wifi platform drivers
+[   32.996807] [dhd] wifi_platform_bus_enumerate device present 0
+[   33.002648] [dhd] ======== Card detection to remove SDIO card! ========
+[   33.009272] [dhd] dhd_wlan_deinit_gpio: gpio_free(WL_REG_ON 1)
+[   33.015121] [dhd] _dhd_module_init: Failed to load the driver, try cnt 0
+[   33.021848] [dhd] _dhd_module_init: Failed to load driver max retry reached**
+[   33.028996] [dhd] STATIC-MSG) dhd_static_buf_exit : Enter
+[   33.034468] [dhd] _dhd_module_init: Exit err=-19
+[***   ] Job ifupdown-pre.service/start running (23s / 3min 3s)
+[   39.325657] [dhd] _dhd_module_init: in Dongle Host Driver, version 101.10.361.33 (wlan=r892223-20230607-2)
+[   39.325657] drivers/net/wireless/bcmdhd compiled on Aug 26 2024 at 15:28:32
+[   39.325657] 
+[   39.343823] [dhd] STATIC-MSG) dhd_static_buf_init : 101.10.361.31 (wlan=r892223-20230427-1)
+[   39.352249] [dhd] STATIC-MSG) dhd_init_wlan_mem : prealloc ok for index 0: 1100800(1075K)
+[   39.360468] [dhd] ======== Get GPIO from DTS(android,bcmdhd_wlan) ========
+[   39.367383] of_get_named_gpiod_flags: parsed 'gpio_wl_reg_on' property of node '/soc/sdhci0@91580000/bcmdhd_wlan[0]' - status (0)
+[   39.379060] [dhd] dhd_wlan_init_gpio: WL_REG_ON=1
+[   39.383772] [dhd] dhd_wifi_platform_load: Enter
+[   39.388309] [dhd] Power-up adapter 'DHD generic adapter'
+[   39.395030] dummy_sdmmc: probe of mmc0:0001:1 failed with error -110
+[   39.401552] dummy_sdmmc: probe of mmc0:0001:2 failed with error -110
+[   39.408008] [dhd] wifi_platform_set_power = 1, delay: 200 msec
+[   39.413855] [dhd] ======== PULL WL_REG_ON(1) HIGH! ========
+[   39.625906] [dhd] wifi_platform_bus_enumerate device present 1
+[     *] Job ifupdown-pre.service/start running (25s / 3min 3s)
+[   41.661915] [dhd] failed to power up DHD generic adapter, 0 retry left
+[   41.685982] [dhd] wifi_platform_set_power = 0, delay: 0 msec
+[   41.691662] [dhd] ======== PULL WL_REG_ON(1) LOW! ========
+[   41.697179] [dhd] wifi_platform_bus_enumerate device present 0
+[   41.703022] [dhd] ======== Card detection to remove SDIO card! ========
+[   41.709653] [dhd] failed to power up DHD generic adapter, max retry reached**
+[   41.716795] [dhd] unregister wifi platform drivers
+[   41.721592] [dhd] wifi_platform_bus_enumerate device present 0
+[   41.727435] [dhd] ======== Card detection to remove SDIO card! ========
+[   41.734059] [dhd] dhd_wlan_deinit_gpio: gpio_free(WL_REG_ON 1)
+[   41.739903] [dhd] _dhd_module_init: Failed to load the driver, try cnt 0
+[   41.746641] [dhd] Error creating socket.
+[   41.750584] [dhd] _dhd_module_init: Failed to load driver max retry reached**
+[   41.757732] [dhd] STATIC-MSG) dhd_static_buf_exit : Enter
+[  OK  ] Finished ifupdown-pre.service - He…o synchronize boot up for ifupdown.
+</code></pre>
+<p>上网搜了一下，没有找到合适的解决方案，并且还引发了一个新的问题：我的 debian 的内存也变成了 128M！</p>
+<p>于是我又提取 linux 分区中的 dtb 文件，将其反编译为 dts 文件，尝试去修改给 linux 配置的内存大小，然后又编译回去并嵌入到 linux 分区中，重新写入 TF 卡，再次重启——sha256sum 又不对啦！</p>
+<p>要继续做下去的话，就要去读镜像的生成源码去理清 sha256 的生成逻辑——既然都要读源码了，那还不如直接从 SDK 重新编译一个！于是，我们来到了下一个方案：</p>
+<h3 id="编译-SDK">编译 SDK</h3>
+<p>前文说过，与我的需求相关的有 K230-SDK 和 K230-linux-SDK。我尝试又编译了一遍，结果与官方镜像略微不同：一个可以生成可用 512M 内存，但无法使用 WiFi 的 debian 镜像；另一个可以生成基于 buildroot 的可以使用 WiFi，并且有 512M 内存的镜像。</p>
+<ul>
+<li>基于 K230-SDK 生成的 debian 文档链接为：<a target="_blank" rel="noopener" href="https://developer.canaan-creative.com/k230/dev/zh/03_other/K230_debian_ubuntu%E8%AF%B4%E6%98%8E.html">https://developer.canaan-creative.com/k230/dev/zh/03_other/K230_debian_ubuntu说明.html</a></li>
+<li>基于 K230-linux-SDK 生成的 buildroot 的文档链接为：<a target="_blank" rel="noopener" href="https://developer.canaan-creative.com/k230_linux/dev/zh/01_software/K230_linux_sdk%E6%95%99%E7%A8%8B.html#sdk">https://developer.canaan-creative.com/k230_linux/dev/zh/01_software/K230_linux_sdk教程.html#sdk</a></li>
+</ul>
+<p>显然，这里又有两条路可以选择：</p>
+<ul>
+<li>去修改 K230-linux-SDK 中 rootfs 的构建过程，将 rootfs 替换为 debian 镜像。</li>
+<li>去修改 K230-SDK 中 linux kernel 的构建过程，将 root 分区替换为支持 WiFi 驱动的状态。</li>
+</ul>
+<p>显然，第一条路看上去需要调试的东西更少，事实上也的确如此。我们又可以把这个过程分为以下几个子步骤：</p>
+<ol>
+<li>重新构建一个基于 debian 的 rootfs.ext4</li>
+<li>找到利用 rootfs.ext4 并生成 buildroot 镜像的代码</li>
+<li>手动执行这段代码，传入正确的参数与环境变量，使得生成了镜像使用了 debian 的 rootfs，而不是 linux-SDK 本身的 buildroot</li>
+</ol>
+<h4 id="构建-debian-ext4">构建 debian.ext4</h4>
+<p>这一点 K230-SDK 的文档告诉了我们方法，贴一下构建的代码：</p>
+<pre><code class="language-sh">sudo rm -rf debian13
+sudo apt-get update
+sudo apt install qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring systemd-container rsync wget
+sudo debootstrap --arch=riscv64  unstable debian13 https://mirrors.aliyun.com/debian/
+sudo chroot debian13/
+echo &quot;root:root&quot; | chpasswd
+
+cat &gt;&gt;/etc/network/interfaces &lt;&lt;EOF
+auto lo
+iface lo inet loopback
+auto eth0
+iface eth0 inet dhcp
+EOF
+apt-get install -y  net-tools ntpdate
+ntpdate ntp.ntsc.ac.cn
+exit
+sudo  mkfs.ext4 -d debian13  -r 1 -N 0 -m 1 -L &quot;rootfs&quot; -O ^64bit debian13.ext4 1G
+</code></pre>
+<p>但注意不要忘记将之前 K230-linux-SDK 生成的镜像中的 <code>/etc/firmware</code> 与 <code>/lib/modules</code> 文件夹拷贝到 <code>debian13.ext4</code> 中。</p>
+<h4 id="找到生成镜像的代码">找到生成镜像的代码</h4>
+<p>尝试在 K230-linux-SDK 项目中寻找含有 <code>sysimage-sdcard.img</code> 的字段：</p>
+<pre><code class="language-sh">&gt; egrep -i --recursive &quot;sysimage-sdcard.img&quot; .
+./.github/workflows/build.yml:          rm -rf output/$&#123;CONF&#125;/images/sysimage-sdcard.img
+./.gitlab-ci.yml:  - rm -rf output/$&#123;CONF&#125;/images/sysimage-sdcard.img
+./.gitlab-ci.yml:            sudo cp -rf --sparse=always -L $&#123;src_file&#125; $&#123;DST_DIR&#125;/$&#123;SUB_DIR&#125;/sysimage-sdcard.img.gz;
+./.gitlab-ci.yml:            sysimage_md5=$(md5sum $&#123;DST_DIR&#125;/$&#123;SUB_DIR&#125;/sysimage-sdcard.img.gz | awk '&#123;print $1&#125;');
+./.gitlab-ci.yml:            echo &quot;sysimage_path=$&#123;DST_DIR&#125;/$&#123;SUB_DIR&#125;/sysimage-sdcard.img.gz&quot; &gt;&gt; $CI_PROJECT_DIR/build.env;
+./.gitlab-ci.yml:    - echo &quot;sysimage-sdcard.img.gz md5 $&#123;sysimage_md5&#125;&quot;
+./README.md:output/k230d_canmv_defconfig/images/sysimage-sdcard.img.gz
+./buildroot-overlay/board/canaan/k230-soc/genimage.cfg:image sysimage-sdcard.img &#123;
+./buildroot-overlay/board/canaan/k230-soc/post-image.sh:        local image_name=&quot;$2&quot;; #&quot;sysimage-sdcard.img&quot;
+./buildroot-overlay/board/canaan/k230-soc/post-image.sh:gen_image $&#123;GENIMAGE_CFG_SD&#125;   sysimage-sdcard.img
+./buildroot-overlay/boot/uboot/u-boot-2022.10-overlay/include/configs/k230_evb.h:       &quot;upsdimg=usb start; dhcp;  tftp 0x9000000 10.10.1.94:wjx/sysimage-sdcard.img.gz;gzwrite mmc 1 0x$fileaddr  0x$filesize; \0&quot; \
+......
+</code></pre>
+<p>可以发现，<code>./buildroot-overlay/board/canaan/k230-soc/post-image.sh</code> 比较符合我们的需求，打开文件一看：</p>
+<pre><code class="language-sh">&gt; tail -n 10 ./buildroot-overlay/board/canaan/k230-soc/post-image.sh
+        $&#123;UBOOT_BUILD_DIR&#125;/tools/mkimage -A riscv -O linux -T kernel -C none -a 0 -e 0 -n linux -d $&#123;BINARIES_DIR&#125;/fw_jump.bin  boot/fw_jump_add_uboot_head.bin
+        rm -rf boot.ext4 ;fakeroot mkfs.ext4 -d boot  -r 1 -N 0 -m 1 -L &quot;boot&quot; -O ^64bit boot.ext4 45M
+&#125;
+
+gen_uboot_bin
+gen_env_bin
+#gen_linux_bin;
+gen_boot_ext4
+
+gen_image $&#123;GENIMAGE_CFG_SD&#125;   sysimage-sdcard.img
+</code></pre>
+<p>顾名思义，那应该就是最终生成镜像的代码了。</p>
+<h4 id="手动执行这段代码">手动执行这段代码</h4>
+<p>当你阅读以下这个代码：</p>
+<blockquote>
+<p>代码篇幅还是太长了，想看可以去<a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_linux_sdk/blob/dev/buildroot-overlay/board/canaan/k230-soc/post-image.sh">仓库链接</a></p>
+</blockquote>
+<p>你会感觉整个人都不好了，首先这段代码的逻辑还是比较复杂的。细心看呢也没必要（毕竟我们只是想要将自己的 debian.ext4 替换原先的 rootfs.ext4）；直接运行呢又对某些参数和环境变量有依赖，脚本会果断报错。于是，这里只能进行手动插桩，具体修改为：</p>
+<pre><code class="language-sh">#!/bin/bash
+set -e
+
+# 打印运行的命令及所有参数
+echo &quot;###########################################################################################&quot;
+echo &quot;Command: $0&quot;
+echo &quot;All Parameters: $@&quot;
+
+# 打印 PATH 环境变量
+printenv
+echo &quot;###########################################################################################&quot;
+
+DTB=&quot;k230-canmv.dtb&quot;
+LINUX_DIR=$&#123;BUILD_DIR&#125;/linux-6.6.22
+rootfs_ext4_file=&quot;&quot;
+
+[ $# -ge 2 ] &amp;&amp; DTB=&quot;$2.dtb&quot;
+[ $# -ge 3 ] &amp;&amp; LINUX_DIR=&quot;$3&quot;
+[ $# -ge 4 ] &amp;&amp; rootfs_ext4_file=&quot;$4&quot;
+
+
+echo &quot;###########################################################################################&quot;
+echo &quot;$&#123;DTB&#125;, $&#123;rootfs_ext4_file&#125;&quot;
+echo &quot;###########################################################################################&quot;
+
+#BINARIES_DIR=/home/wangjianxin/k230_linux_sdk/output/k230_canmv_defconfig/images
+UBOOT_BUILD_DIR=$&#123;BUILD_DIR&#125;/uboot-2022.10
+K230_SDK_ROOT=$(dirname $(dirname $&#123;BASE_DIR&#125;))
+GENIMAGE_CFG_SD=$(dirname $(realpath &quot;$0&quot;))/genimage.cfg
+env_dir=$(dirname $(realpath &quot;$0&quot;))
+</code></pre>
+<p>然后我们重新运行一遍顶层的 Makefile，我们会得到类似这样的结果：</p>
+<pre><code>###########################################################################################
+Command: board/canaan/k230-soc/post-image.sh
+All Parameters: /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92
+SHELL=/bin/bash
+LSCOLORS=Gxfxcxdxbxegedabagacad
+BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config
+SESSION_MANAGER=local/zjy:@/tmp/.ICE-unix/2277,unix/zjy:/tmp/.ICE-unix/2277
+WINDOWID=121634819
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+XDG_CONFIG_DIRS=/etc/xdg/xdg-xfce:/etc/xdg
+PERL=/usr/bin/perl
+LESS=-R
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+XDG_MENU_PREFIX=xfce-
+TERM_PROGRAM_VERSION=3.4
+GTK_IM_MODULE=fcitx
+CONDA_EXE=/home/junyu33/anaconda3/bin/conda
+_CE_M=
+TMUX=/tmp/tmux-1000/default,50921,1
+LANGUAGE=en_US:en
+......
+HG=hg
+CONFIG_SHELL=/bin/bash
+LC_NUMERIC=en_US.UTF-8
+HOSTCXX_NOCCACHE=/usr/lib/ccache/g++
+OLDPWD=/home/junyu33/Desktop/github/k230_linux_sdk/buildroot-overlay
+TERM_PROGRAM=tmux
+_=/usr/bin/printenv
+###########################################################################################
+</code></pre>
+<p>我们可以看到传入参数有三个：images 路径、DTB文件名称和 linux kernel 源码路径。稍微看一下源码就知道第四个参数是 rootfs.ext4 的文件路径。</p>
+<p>环境变量这边，先把所有的环境变量拿出来，保存为A；再以不运行脚本跑一次<code>printenv</code>，保存为B。把A、B的内容 sort一下，再 diff 一下，就能很清楚看到这个脚本引入了哪些新的环境变量。</p>
+<p>最终，我们就可以写出类似的命令（使用 root 用户运行）：</p>
+<p><code>ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4</code></p>
+<p>把生成的镜像写入 TF 卡，启动开发板，这次开发板既能运行 debian，也能使用 WiFi，甚至还有 512M 的内存，看上去非常完美！</p>
+<p>但实际上，故事还没有结束。</p>
+<h2 id="测试拨号">测试拨号</h2>
+<p>然后我尝试使用 nmcli 进行拨号，然而 nmcli 又报错了：</p>
+<pre><code class="language-sh">root@zjy:/etc/NetworkManager/system-connections# netplan apply
+
+** (generate:2357): WARNING **: 03:00:44.109: Permissions for /etc/netplan/01-netcfg.yaml are too open. Netplan configuration should NOT be accessible by others.
+/etc/netplan/01-netcfg.yaml:8:3: Error in network definition: unknown key 'pppoe'
+  pppoe:
+</code></pre>
+<p>上网一搜，又没有搜到相似的问题，于是我从较低 level 的工具开始 debug，比如测试 ppp 能否正常工作：</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo pon
+Couldn't open the /dev/ppp device: No such device or address
+/usr/sbin/pppd: Please load the ppp_generic kernel module.
+</code></pre>
+<p>看来又得折腾 linux kernel 了，这里又有两条路可以选择：</p>
+<ul>
+<li>原地编译 ppp/pppoe 模块，尝试 insmod 进去。</li>
+<li>修改内核配置，重新编译整个 linux kernel。</li>
+</ul>
+<h3 id="原地编译模块">原地编译模块</h3>
+<p>我又恶补了一下 linux kernel 编译的知识，<a target="_blank" rel="noopener" href="http://kernel.org">kernel.org</a> 有写：</p>
+<blockquote>
+<p>The command to build an external module is:</p>
+<pre><code class="language-sh">$ make -C &lt;path_to_kernel_dir&gt; M=$PWD
+</code></pre>
+<p>The kbuild system knows that an external module is being built due to the &quot;M=&lt;dir&gt;&quot; option given in the command.</p>
+</blockquote>
+<p>于是我如法炮制，我需要的 ppp 模块在 <code>drivers/net/ppp</code> 中，于是在开发板有以下编译命令：</p>
+<pre><code class="language-sh">make -C /home/junyu33/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/ M=$PWD
+</code></pre>
+<p>然而，它又报错了：</p>
+<pre><code>/home/junyu33/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/Makefile:1325: warning: overriding recipe for target 'vdso_install'
+arch/riscv/Makefile:144: warning: ignoring old recipe for target 'vdso_install'
+  CALL    scripts/checksyscalls.sh
+  LDS     arch/riscv/kernel/vdso/vdso.lds
+  VDSO32AS arch/riscv/kernel/vdso/rt_sigreturn-32.o
+  VDSO32AS arch/riscv/kernel/vdso/getcpu-32.o
+  VDSO32AS arch/riscv/kernel/vdso/flush_icache-32.o
+  VDSO32AS arch/riscv/kernel/vdso/sys_hwprobe-32.o
+  VDSO32AS arch/riscv/kernel/vdso/note-32.o
+  VDSO32CC arch/riscv/kernel/vdso/hwprobe-32.o
+  VDSO32LD  arch/riscv/kernel/vdso/vdso32.so.dbg
+  OBJCOPY arch/riscv/kernel/vdso/vdso32.so
+  VDSO32SYM include/generated/vdso32-offsets.h
+  LDS     arch/riscv/kernel/vdso/vdso.lds
+  VDSO64AS arch/riscv/kernel/vdso/rt_sigreturn-64.o
+  VDSO64AS arch/riscv/kernel/vdso/getcpu-64.o
+  VDSO64AS arch/riscv/kernel/vdso/flush_icache-64.o
+  VDSO64AS arch/riscv/kernel/vdso/sys_hwprobe-64.o
+  VDSO64AS arch/riscv/kernel/vdso/note-64.o
+  VDSO64CC arch/riscv/kernel/vdso/vgettimeofday-64.o
+  VDSO64CC arch/riscv/kernel/vdso/hwprobe-64.o
+  VDSO64LD  arch/riscv/kernel/vdso/vdso64.so.dbg
+  OBJCOPY arch/riscv/kernel/vdso/vdso64.so
+  VDSO64SYM include/generated/vdso64-offsets.h
+  MODPOST Module.symvers
+ERROR: modpost: &quot;slhc_free&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_uncompress&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_toss&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_remember&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_compress&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_init&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+make[2]: *** [scripts/Makefile.modpost:145: Module.symvers] Error 1
+make[1]: *** [/home/junyu33/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/Makefile:1903: single_modules] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+</code></pre>
+<p>我尝试原地编译和在主机上交叉编译，编译这个路径和全部路径，都出现了这个错误（或者其它更多的错误）。通过 LLM，我得知这是因为 ppp 的依赖 slhc 也没有编译进内核或成为模块，从而导致 ppp 编译失败。</p>
+<p>我并没有又去寻找 slhc 在哪个位置，因为我担心编译 slhc 时又冒出它又依赖某某模块，于是我觉得选择第二条道路。</p>
+<h3 id="编译内核">编译内核</h3>
+<p>最后，我还是来到了这操蛋的一步，我又面临了一系列的问题：</p>
+<ol>
+<li>应当修改哪些参数？</li>
+<li>应当使用什么编译命令，编译的产物是什么？</li>
+<li>应当将产物放在 K230-linux-SDK 的什么位置？</li>
+</ol>
+<h4 id="修改参数">修改参数</h4>
+<p>既然我们要启用 ppp_generic 功能，那根据 <code>drivers/net/ppp</code> 的 Makefile：</p>
+<pre><code class="language-makefile"># SPDX-License-Identifier: GPL-2.0
+#
+# Makefile for the Linux PPP network device drivers.
+#
+
+obj-$(CONFIG_PPP) += ppp_generic.o
+obj-$(CONFIG_PPP_ASYNC) += ppp_async.o
+obj-$(CONFIG_PPP_BSDCOMP) += bsd_comp.o
+obj-$(CONFIG_PPP_DEFLATE) += ppp_deflate.o
+obj-$(CONFIG_PPP_MPPE) += ppp_mppe.o
+obj-$(CONFIG_PPP_SYNC_TTY) += ppp_synctty.o
+obj-$(CONFIG_PPPOE) += pppox.o pppoe.o
+obj-$(CONFIG_PPPOL2TP) += pppox.o
+obj-$(CONFIG_PPTP) += pppox.o pptp.o
+</code></pre>
+<p>那当然是启用 <code>CONFIG_PPP=y</code> 啦。</p>
+<p>其实，为了保险，我其实把这里提到的功能全都启用了。</p>
+<h4 id="编译生成镜像">编译生成镜像</h4>
+<p>然后，我们得了解 linux kernel 是从哪个地方读取这些 config 的。通过相关资料的查阅，linux kernel 是从 <code>arch/riscv/config</code> 读取相关开发板配置的。对于 CanMV-K230 开发板，读取的文件就是 <code>arch/riscv/config/k230_canmv_defconfig</code>。</p>
+<p>另外，我想到了一个 trick 用于绕过第二个和第三个问题，原因是我在遍历 K230-linux-SDK 的文件时意外发现了在某个 linux 目录有两个 patch，其中一个内容如下：</p>
+<pre><code class="language-sh">&gt; cat 0003-driver-net-r8152-use-chip-ID-as-MAC-addr.patch 
+From 588af5417c9b1fcc8e9d6d48b996656096d4c322 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E9=BB=84=E5=AD=90=E6=87=BF?=
+ &lt;huangziyi@canaan-creative.com&gt;
+Date: Fri, 13 Sep 2024 14:57:10 +0800
+Subject: [PATCH] driver: net: r8152 use chip ID as MAC addr
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: 黄子懿 &lt;huangziyi@canaan-creative.com&gt;
+---
+ drivers/net/usb/r8152.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/usb/r8152.c b/drivers/net/usb/r8152.c
+index 127b34dcc5b3..65bcef61b1ec 100644
+--- a/drivers/net/usb/r8152.c
++++ b/drivers/net/usb/r8152.c
+@@ -1808,8 +1808,17 @@ static int determine_ethernet_addr(struct r8152 *tp, struct sockaddr *sa)
+        &#125; else if (!is_valid_ether_addr(sa-&gt;sa_data)) &#123;
+                netif_err(tp, probe, dev, &quot;Invalid ether addr %pM\n&quot;,
+                          sa-&gt;sa_data);
+-               eth_hw_addr_random(dev);
+-               ether_addr_copy(sa-&gt;sa_data, dev-&gt;dev_addr);
++               void __iomem *trng_addr = ioremap(0x91213300, 0x100);
++               unsigned int trng_data = readl(trng_addr);
++               iounmap(trng_addr);
++               char mac_addr_hex[6] = &#123;
++                       0x00, 0xe0, 0x4c,
++                       trng_data &amp; 0xff,
++                       (trng_data&gt;&gt;8) &amp; 0xff,
++                       (trng_data&gt;&gt;16) &amp; 0xff
++               &#125;;
++               // eth_hw_addr_random(dev);
++               ether_addr_copy(sa-&gt;sa_data, mac_addr_hex);
+                netif_info(tp, probe, dev, &quot;Random ether addr %pM\n&quot;,
+                           sa-&gt;sa_data);
+                return 0;
+-- 
+2.46.0
+
+</code></pre>
+<p>LLM 问了一下，它告诉我这是 git patch 格式，可以通过 <code>git format-patch -1 &lt;commit-hash&gt;</code> 来生成，于是我将 linux 单独拷贝了一份，也建了一个 git 仓库，并修改了 <code>arch/riscv/config/k230_canmv_defconfig</code>，加入了那几个有关于 PPP 的配置，然后 <code>git format-patch -1</code> 跑一波，结果如下：</p>
+<pre><code class="language-sh">&gt; cat 0002-add-ppp-for-canmv-k230.patch                  
+From 5613ac073bf8d9fcc140542458cb3d05c43228a0 Mon Sep 17 00:00:00 2001
+From: junyu33 &lt;2658799217@qq.com&gt;
+Date: Wed, 6 Nov 2024 19:07:02 +0800
+Subject: [PATCH] add ppp for canmv k230
+
+---
+ arch/riscv/configs/k230_defconfig | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/riscv/configs/k230_defconfig b/arch/riscv/configs/k230_defconfig
+index 6e579f78c..f4c993f12 100644
+--- a/arch/riscv/configs/k230_defconfig
++++ b/arch/riscv/configs/k230_defconfig
+@@ -303,3 +303,14 @@ CONFIG_CFG80211_WEXT=y
+ CONFIG_MAC80211=y
+ CONFIG_MEDIA_USB_SUPPORT=y
+ CONFIG_USB_VIDEO_CLASS=y
++
++CONFIG_PPP=y
++CONFIG_PPP_BSDCOMP=y
++CONFIG_PPP_DEFLATE=y
++CONFIG_PPP_FILTER=y
++CONFIG_PPP_MPPE=y
++CONFIG_PPP_MULTILINK=y
++CONFIG_PPPOE=y
++CONFIG_PPPOE_HASH_BITS=4
++CONFIG_PPP_ASYNC=y
++CONFIG_PPP_SYNC_TTY=y
+-- 
+2.43.0
+
+</code></pre>
+<p>感觉还挺像的，于是我将其命名为 <code>0002-add-ppp-for-canmv-k230.patch</code>，并和其它 patch 保存在一个路径中。然后把 K230-linux-SDK 下载的 linux 删掉，重新跑一遍项目顶层的 Makefile，生成了镜像。</p>
+<h3 id="再次-hack-镜像">再次 hack 镜像</h3>
+<p>当然，毕竟之前在 debian 的 rootfs 做了那么多工作，我是不太想把系统“恢复出厂设置的”。于是，我再一次提取了 buildroot 镜像的 linux 分区，并覆盖了 debian 镜像的对应分区，尝试启动。</p>
+<p>使用 <code>zcat</code> 的结果如下：</p>
+<pre><code class="language-sh">junyu33@zjy:~$ zcat /proc/config.gz | grep CONFIG_PPP
+CONFIG_PPP=y
+CONFIG_PPP_BSDCOMP=y
+CONFIG_PPP_DEFLATE=y
+CONFIG_PPP_FILTER=y
+CONFIG_PPP_MPPE=y
+CONFIG_PPP_MULTILINK=y
+CONFIG_PPPOE=y
+# CONFIG_PPPOE_HASH_BITS_1 is not set
+# CONFIG_PPPOE_HASH_BITS_2 is not set
+CONFIG_PPPOE_HASH_BITS_4=y
+# CONFIG_PPPOE_HASH_BITS_8 is not set
+CONFIG_PPPOE_HASH_BITS=4
+CONFIG_PPP_ASYNC=y
+CONFIG_PPP_SYNC_TTY=y
+</code></pre>
+<p>这证明我们之前对 linux 分区的修改是有效的.</p>
+<p><code>pppd</code> 也可以正常运行：</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo pppd --version
+[sudo] password for junyu33: 
+pppd version 2.5.0
+</code></pre>
+<p>没有出现任何问题，看来这种 hack 是真的挺好用的。</p>
+<h3 id="用户端调试">用户端调试</h3>
+<p>通过以上层面的调试，我们在驱动层面解决了 PPPoE 无法使用的问题，现在的问题只剩下用户配置了，难度降低了很多，并且接下来的步骤都是一本道，没什么有很多种路线可以选择的情况了。</p>
+<p>既然 NetworkManager 已经装好了，那么我们直接敲对应的命令：</p>
+<pre><code class="language-sh">sudo nmcli connection add type pppoe ifname enx00e04ca7c468 con-name mypppoe username &quot;&lt;username&gt;&quot; password &quot;&lt;password&gt;&quot;
+sudo nmcli connection up mypppoe 
+</code></pre>
+<p>嗯，连接还是失败了，然后看了一眼 <code>ifconfig</code>，发现自己的 <code>enx00e04ca7c468</code> 并没有 ipv4 地址。于是，我在连接命令前加了一句 DHCP。</p>
+<pre><code class="language-sh">sudo dhclient enx00e04ca7c468
+sudo nmcli connection add type pppoe ifname enx00e04ca7c468 con-name mypppoe username &quot;&lt;username&gt;&quot; password &quot;&lt;password&gt;&quot;
+sudo nmcli connection up mypppoe 
+</code></pre>
+<p>然后连接没有报错，再尝试用这个 ppp 接口去测试 ping，结果如下：</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo ping -I ppp0 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) from 220.167.40.175 ppp0: 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=56 time=33.2 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=56 time=33.4 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=56 time=33.4 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=56 time=33.0 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=56 time=33.4 ms
+</code></pre>
+<p>拨号的问题总算是完全解决了。</p>
+<h2 id="测试-ddns">测试 ddns</h2>
+<p>先前我用于 ddns 的脚本已经上传到 <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynamic-dns-py">github</a>。我在开发板中将其 clone 下来，并写好配置文件，然后脚本一跑，告诉我没有装 <code>curl</code>。我在想 <code>curl</code> 难道不是很基本的工具吗，居然这都没有。</p>
+<p>然后是 python 的包依赖问题，因为 python3.12 限制在系统环境中使用 pip 安装 package。而我并没有闲心在这个开发板中安装 anaconda 或者 virtualenv，并且这个项目的 python 依赖只有 <code>requests</code>，于是一行搞定：</p>
+<pre><code class="language-sh">sudo apt install python3-requests
+</code></pre>
+<p>然后启动脚本，没有报错，过了几分钟我就可以从主机 ssh 我的域名到开发板了。</p>
+<h2 id="测试-ssh-并持久化">测试 ssh 并持久化</h2>
+<p>现在到了最重要也最关键的一步：因为学校寝室晚上会断电，因此我需要让其断电之后，在第二天早上六点来电之时自动恢复 ddns 服务。具体而言，我们需要实现以下几点：</p>
+<ol>
+<li>开机启动 debian。</li>
+<li>开机自动拨号。</li>
+<li>开机自动 ddns。</li>
+<li>使开发板脱离电脑运行。</li>
+</ol>
+<h3 id="开机启动-debian">开机启动 debian</h3>
+<p>这个不难，开机进一下 uboot，把等待时间从 3 改成 0 即可。</p>
+<pre><code class="language-sh">setenv bootdelay 0
+saveenv
+</code></pre>
+<p>这样做的后果是我再也不能进入 uboot 了，但其实无所谓。真要想改，重新刷一遍 linux 分区即可。</p>
+<h3 id="开机自动拨号">开机自动拨号</h3>
+<p>写一个 systemd 服务：</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/pppoe-connection.service 
+[sudo] password for junyu33: 
+[Unit]
+Description=Start PPPoE Connection mypppoe
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStartPre=dhclient enx00e04ca7c468
+ExecStart=/usr/bin/nmcli connection up mypppoe
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>重启一下，发现 nmcli 没有权限拨号，于是将用户改成以 root 运行。</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/pppoe-connection.service 
+[sudo] password for junyu33: 
+[Unit]
+Description=Start PPPoE Connection mypppoe
+After=network.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStartPre=dhclient enx00e04ca7c468
+ExecStart=/usr/bin/nmcli connection up mypppoe
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>然后重启拨号就正常了。</p>
+<h3 id="开机自动ddns">开机自动ddns</h3>
+<p>因为 IP 可能会改变，首先保证开机一定更新一次，每半个小时更新一次：</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/ddns-update.timer 
+[Unit]
+Description=Run DDNS update script every 30 minutes
+ 
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+Persistent=true
+ 
+[Install]
+WantedBy=timers.target
+</code></pre>
+<p>然后写出具体的 service 内容，这里需要注意：</p>
+<ul>
+<li>不能挂代理，否则获取公网 IP 就跑到代理那边去了</li>
+<li>写的脚本不兼容 sh 语法，所以必须用 <code>bash</code> 运行</li>
+<li>脚本中间有些地方用了相对路径，因此必须指定 PWD</li>
+</ul>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/ddns-update.service 
+[Unit]
+Description=Run DDNS update script
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/junyu33/netlify-dynamic-dns-py
+ExecStartPre=/usr/bin/env http_proxy= https_proxy=
+ExecStart=/bin/bash /home/junyu33/netlify-dynamic-dns-py/ddns.sh
+</code></pre>
+<h3 id="开发板脱离电脑运行">开发板脱离电脑运行</h3>
+<p>这个是唯一个比较抓瞎的过程，因为我的电源适配器比较紧缺，于是选了一个很久没用的。结果刚好那个适配器就可能有问题，导致虽然我的电源指示灯是亮的，但是 debian 一直无法启动，也就导致我在主机这边等了半天也没 ssh 上。</p>
+<p>然后我又把开发板接回电脑，再一次 ssh，又成功了，因此排除开发板系统问题。</p>
+<p>然后又换了我充耳机的电源适配器，成功了，因此确定是我之前用的旧适配器的问题。</p>
+<p>接着，我便把电源线和网线，接到了去北京实习的室友空闲不用的 USB 充电插座和宽带接口上，又成功了。此时已经快到熄灯的时间，我便索性睡一觉，看看第二天能不能通过电脑 ssh 到自己的开发板和工位电脑。</p>
+<p>第二天起床，我马上打开自己电脑试了一下，一切正常，于是：</p>
+<p>Congratulations，我终于再次实现了“居家办公”的美好生活！</p>
+<h1>踩坑总结</h1>
+<ol>
+<li>好货不便宜，便宜无好货。</li>
+<li>网购要看差评，不要看哪个买的人多就买哪个。</li>
+<li>一定要理清自己在做什么，否则很容易 lost in the woods。</li>
+<li>摆脱学生思维，不要为了学某个东西而去学某个东西，这样效率很低。</li>
+</ol>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

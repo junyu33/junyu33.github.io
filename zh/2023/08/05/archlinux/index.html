@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>记第二次 workflow 大换血——ubuntu2arch</h1>
+	<p>前一次是去年4月份从 win11 + VS + vscode 迁移到 ubuntu 22.04 + vscode + neoVim，现在换到了 arch linux + neoVim</p>
+<p>之后大创结题可能还得重配 windows 驱动开发的环境，可能会够我喝一壶了。</p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>由于在数月之前，由于dpkg的依赖问题（主要是qt的各种库）导致某些软件包无法更新，大概有20个左右。再加上<code>sudo apt upgrade</code>会默认更新linux内核，导致vmware的驱动需要重新编译，因此我便懒于更新。</p>
+<p>几天之前我尝试与某同学使用<code>pgp</code>进行安全通信，生成了一个自签名PGP key，从而使得<code>sudo apt upgrade</code>时出现大量签名错误，即使删除这个key也无济于事。经过stfw后决定重装<code>gpg</code>，然而并未奏效，甚至导致无法安装任何新的包，也就是——只能降级为LFS玩家的日常安装方式——编译安装。</p>
+<p>上文说过我是个懒人，编译安装这种get hands dirty的方法我是不想做的，于是我选择了包管理更为简单pacman，也就是arch系。</p>
+<h1>安装</h1>
+<h2 id="分区">分区</h2>
+<p>在机械硬盘上安完 ubuntu 大概几个月后，我发现 firefox 的速度不尽人意，并且先前给 ubuntu 分的 100G 空间捉襟见肘，于是我决定扬掉 win11，把 root 扔给固态，而把剩下的机械空间留给 home，从而形成了现在的分区状态：</p>
+<pre><code class="language-bash">&gt; lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda      8:0    0 111.8G  0 disk 
+├─sda1   8:1    0   300M  0 part /boot                       # ESP
+├─sda2   8:2    0   128M  0 part                             # MSI
+└─sda3   8:3    0 111.4G  0 part /                           # 原来的C盘
+sdb      8:16   0 931.5G  0 disk 
+├─sdb1   8:17   0   300G  0 part                             # 原来的D盘
+├─sdb2   8:18   0   300G  0 part /run/media/junyu33/software # 原来的E盘
+├─sdb3   8:19   0 200.2G  0 part                             # F盘割给ubuntu后剩下的部分
+└─sdb6   8:22   0 131.3G  0 part /home
+</code></pre>
+<p>因此安arch时只需要格一下<code>/dev/sda1</code>和<code>/dev/sda3</code>即可，<code>home</code>则保留</p>
+<h2 id="RTFM">RTFM</h2>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97">https://wiki.archlinuxcn.org/wiki/安装指南</a></p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB">https://wiki.archlinuxcn.org/wiki/建议阅读</a></p>
+<p>记得重启之前一定要记得装好<code>iwctl</code>（非intel系请寻找alternative）和<code>dhcpcd</code>，不然每次返工重启U盘，电脑的蜂鸣器声音还是有点吓人</p>
+<p>然后<code>systemctl enable iwd dhcpcd</code>应该就可以上网了，之后安装常用软件乃至GUI应该都很轻松了。</p>
+<h2 id="nvidia">nvidia</h2>
+<p>archlinux 是实用主义，因此即使 Linus 骂过 nvidia，安装驱动还是一句<code>sudo pacman -S nvidia</code>了事</p>
+<p>只不过 nvidia 的耗电问题还是值得考虑的，于是我参照了<a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/NVIDIA_Optimus">这个文档</a>，打算使用<code>optimus-manager</code>切换使用的显卡</p>
+<blockquote>
+<p>由于之前一直是从终端键入<code>startxfce4</code>来进入GUI的，因此还得安个<code>lightdm</code>才能使得切换命令正常执行</p>
+</blockquote>
+<h1>开发环境配置</h1>
+<p>之前在 ubuntu 上用的还是 vscode 1.67，没想到现在安上已经ver 1.80了，有以下几点让我放弃了vscode：</p>
+<ul>
+<li>这个UI变化还是不太能让我接受，尤其是窗口顶部那个search bar，巨丑无比（虽然可以关）</li>
+<li>代码字体大小和shell相差太大，这让习惯左代码右shell布局（gdb调试养成的习惯）的我感觉很不协调，neovim + tmux 不存在此问题</li>
+<li>使用 Copilot ，登录巨硬账户时出现 key exchange error 弹窗，且无法忽略，neovim 的 Copilot 插件不需要重新登录也可直接使用</li>
+<li>vscode 的 C/Cpp 插件在用户目录下产生了将近 10G 的缓存文件，并且效果并不拔群</li>
+</ul>
+<p>于是我先改造了<code>~/.config/nvim/init.vim</code>，其中有部分来自jyy的<a target="_blank" rel="noopener" href="https://nju-projectn.github.io/ics-pa-gitbook/ics2022/0.4.html">nju-pa</a>对vim的配置，一部分来源于MIT的<a target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/2020/editors/">vim作业</a>，一部分来源于插件本身的安装配置：</p>
+<pre><code class="language-nvim">set nocompatible            &quot; disable compatibility to old-time vi
+set showmatch               &quot; show matching 
+set ignorecase              &quot; case insensitive 
+set mouse=v                 &quot; middle-click paste with 
+set hlsearch                &quot; highlight search 
+set incsearch               &quot; incremental search
+set tabstop=4               &quot; number of columns occupied by a tab 
+set softtabstop=4           &quot; see multiple spaces as tabstops so &lt;BS&gt; does the right thing
+set expandtab               &quot; converts tabs to white space
+set shiftwidth=2            &quot; width for autoindents
+set autoindent              &quot; indent a new line the same amount as the line just typed
+set number                  &quot; add line numbers
+set wildmode=longest,list   &quot; get bash-like tab completions
+set cc=80                  &quot; set an 80 column border for good coding style
+filetype plugin indent on   &quot;allow auto-indenting depending on file type
+syntax on                   &quot; syntax highlighting
+set mouse=a                 &quot; enable mouse click
+set clipboard=unnamedplus   &quot; using system clipboard
+filetype plugin on
+set cursorline              &quot; highlight current cursorline
+set ttyfast                 &quot; Speed up scrolling in Vim
+&quot; set spell                 &quot; enable spell check (may need to download language package)
+&quot; set noswapfile            &quot; disable creating swap file
+&quot; set backupdir=~/.cache/vim &quot; Directory to store backup files.
+
+call plug#begin(&quot;~/.vim/plugged&quot;)
+ &quot; Plugin Section
+&quot;Plug 'dracula/vim'
+&quot;Plug 'ryanoasis/vim-devicons'
+&quot;Plug 'SirVer/ultisnips'
+&quot;Plug 'honza/vim-snippets'
+ Plug 'scrooloose/nerdtree'
+&quot;Plug 'preservim/nerdcommenter'
+&quot;Plug 'mhinz/vim-startify'
+ Plug 'neoclide/coc.nvim', &#123;'branch': 'release'&#125;
+ 
+ Plug 'martinsione/darkplus.nvim'
+ Plug 'github/copilot.vim'
+ Plug 'pacha/vem-tabline'
+ Plug 'nvim-lualine/lualine.nvim'
+ Plug 'nvim-tree/nvim-web-devicons'
+ Plug 'ctrlpvim/ctrlp.vim'
+ Plug 'rmagatti/goto-preview'
+ Plug 'williamboman/mason.nvim'
+ Plug 'williamboman/mason-lspconfig.nvim'
+ Plug 'neovim/nvim-lspconfig'
+ Plug 'iamcco/markdown-preview.nvim', &#123; 'do': 'cd app &amp;&amp; yarn install' &#125;
+
+call plug#end()
+
+colorscheme darkplus
+let g:coc_global_extensions = ['coc-pyright', 'coc-snippets']
+let g:ctrlp_map = '&lt;c-p&gt;'
+
+inoremap &lt;expr&gt; &lt;Tab&gt; pumvisible() ? &quot;\&lt;C-y&gt;&quot; : &quot;\&lt;Tab&gt;&quot;
+inoremap &lt;expr&gt; &lt;S-Tab&gt; pumvisible() ? &quot;\&lt;C-n&gt;&quot; : &quot;\&lt;S-Tab&gt;&quot;
+
+
+
+lua &lt;&lt; END
+require('lualine').setup()
+require(&quot;mason&quot;).setup()
+require('goto-preview').setup &#123;
+  default_mappings = true;
+&#125;;
+require(&quot;mason-lspconfig&quot;).setup()
+require(&quot;lspconfig&quot;).clangd.setup &#123;&#125;
+require(&quot;lspconfig&quot;).pyright.setup &#123;&#125;
+END
+</code></pre>
+<p>其中，对于LSP（language server protocol）的配置，也就是最后几行，应该是 neovim 取代 vscode 的关键部分</p>
+<h2 id="LSP-clangd-goto-preview">LSP + clangd + goto-preview</h2>
+<p>这里使用了<a target="_blank" rel="noopener" href="https://github.com/williamboman/mason.nvim">mason</a> 和 <a target="_blank" rel="noopener" href="https://github.com/williamboman/mason-lspconfig.nvim">mason-lspconfig</a> 来构建LSP。由于本人目前只会经常用到<code>C</code>和<code>python3</code>，因此只安装了<code>clangd</code>和<code>pyright</code>两个语言服务器</p>
+<p>目前只打算使用查看定义和引用的功能，因此只安装了<a target="_blank" rel="noopener" href="https://github.com/rmagatti/goto-preview">goto-preview</a>插件，至于自动补全，由于有了Copilot的补全，反而显得不是那么重要了</p>
+<h2 id="configure-a-larger-C-project">configure a larger C project</h2>
+<p>对于一个大点的C项目，比如说<a target="_blank" rel="noopener" href="https://nju-projectn.github.io/ics-pa-gitbook/ics2022">nju-pa</a>，里面的函数定义、头文件的依赖关系比较复杂，如果直接打开会报一大堆错。vscode的解决方式就是使用<code>includepath</code>，这样做的缺陷一是比较难以列举所有的包含路径（也就是还会有零星错误，强迫症患者的灾难），二是搜索出来的definition可能与原文件没有任何关系</p>
+<p><code>clangd</code>可以比较好的解决这个问题，他通过自下而上的寻找<code>compile_commands.json</code>来确定各个文件的依赖情况，从而可以覆盖到所有的<code>includepath</code>，与此同时寻找的definition准确性也会更高</p>
+<p>那么如何根据<code>make</code>来生成<code>compile_commands.json</code>呢，可以使用<a target="_blank" rel="noopener" href="https://github.com/rizsotto/Bear">bear</a>来完成这个任务。注意bear程序本身的运行指令似乎存在问题，正确的运行指令为：</p>
+<pre><code class="language-bash">bear -- &lt;your-build-command&gt;
+</code></pre>
+<p>比如说对riscv32-nemu的编译，指令就是：</p>
+<pre><code class="language-bash">bear -- make ARCH=riscv32-nemu
+</code></pre>
+<p>运行之后就会在当前目录生成<code>compile_commands.json</code>，这个时候再用 neovim 打开源码就应该不会有“错误”的错误，也能实现定义和引用的查询了</p>
+<blockquote>
+<p>对于<code>cmake</code>项目，可以参考这个链接：<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html">https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html</a></p>
+</blockquote>
+<p>成果截图：</p>
+<img src='https://img.junyu33.me/blog/archlinux/res.png'>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

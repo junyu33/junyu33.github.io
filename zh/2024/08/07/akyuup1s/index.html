@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>稗田阿求30岁诞辰专题 - 博客内嵌音频测试</h1>
+	<p>天若有情天亦老 我为<s>牢</s>阿求续一秒</p>
+<blockquote>
+<p>SagumeKishin <a target="_blank" rel="noopener" href="https://thbwiki.cc/%E7%A8%97%E7%94%B0%E9%98%BF%E6%B1%82">https://thbwiki.cc/稗田阿求</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="网上的各种整活：">网上的各种整活：</h2>
+<p>首先这是二设：<a target="_blank" rel="noopener" href="https://thbwiki.cc/%E7%A8%97%E7%94%B0%E9%98%BF%E6%B1%82/%E4%BA%8C%E6%AC%A1%E8%AE%BE%E5%AE%9A#%E7%A8%97%E7%94%B0%E9%98%BF%E6%B1%8230%E5%B2%81%E8%AF%9E%E8%BE%B0">https://thbwiki.cc/稗田阿求/二次设定#稗田阿求30岁诞辰</a></p>
+<p>2048 版本：<a target="_blank" rel="noopener" href="https://akyuu.touhou.moe/">https://akyuu.touhou.moe/</a></p>
+<p>牢大和续一秒版本：<a target="_blank" rel="noopener" href="https://akyuu.rip/">https://akyuu.rip/</a></p>
+<p>Bilibili: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av112915076088666/">https://www.bilibili.com/video/av112915076088666/</a></p>
+<h2 id="然后我玩了一下-2048">然后我玩了一下 2048</h2>
+<p>我首先玩到了2048：</p>
+<img src='https://img.junyu33.me/blog/akyuup1s/2048.png' width='50%'>
+<p>然后发现没有 &quot;You win&quot; 的提示，于是继续玩，玩到了4096：</p>
+<img src='https://img.junyu33.me/blog/akyuup1s/4096.png' width='50%'>
+<p>然后依然没有提示，我觉得无聊了，于是就查看了一下源代码，发现了这个：</p>
+<blockquote>
+<p>view-source:<a target="_blank" rel="noopener" href="https://akyuu.touhou.moe/akyuu.js">https://akyuu.touhou.moe/akyuu.js</a></p>
+</blockquote>
+<pre><code class="language-javascript">HTMLActuator.prototype.tileHTML = [
+	&quot;九代降临&quot;, // 1
+	&quot;编撰缘起&quot;, // 2
+	&quot;游历访问&quot;, // 4
+	&quot;记忆审查&quot;, // 8
+	&quot;成书公开&quot;, // 16
+	&quot;三方会谈&quot;, // 32
+	&quot;瓜田李下&quot;, // 64
+	&quot;拳击高手&quot;, // 128
+	&quot;力能扛鼎&quot;, // 256
+	&quot;祭石长姬&quot;, // 512
+	&quot;克里斯Ｑ&quot;, // 1024
+	&quot;幻想书记&quot;, // 2048
+	&quot;怪谈祭典&quot;, // 4096
+	&quot;狸猫著书&quot;, // 8192
+	&quot;今昔幻想&quot;, // 16384
+	&quot;阿礼转生&quot;, // 32768
+	&quot;稗田阿十&quot;, // 65536
+	&quot;地狱深渊&quot;, // 131072
+];
+</code></pre>
+<p>好家伙，这个 2048 居然是从 1 开始的，理论上你是玩不到“地域深渊”的。</p>
+<blockquote>
+<p>BTW，网上流行的 2048 实现都有一个通病，就是如果你复制这个标签页，然后在新标签页中继续玩，如果你 game over 了，你可以在原来的标签页中继续玩，这样就可以极大节省冲击高分的成本。这个版本也是如此。</p>
+<p>当然，我是一次性玩到了 4096 的。</p>
+</blockquote>
+<h2 id="修改发表时间和修改时间">修改发表时间和修改时间</h2>
+<p>为了表达对阿求和长者的敬意，我决定同时修改这篇博客的发表时间和修改时间。</p>
+<p>众所周知，博客的发表时间是可以修改的，只要修改 markdown 文件的 date 行即可。</p>
+<p>但是修改修改时间会麻烦一些，但也不是很难。</p>
+<p>首先，在 hexo 根目录中找到<code>db.json</code>文件，但是这个文件有 20M 太大了，所以我们可以直接使用<code>sed</code>命令：</p>
+<pre><code class="language-bash">sed -i 's/2024-08-20T[0-9]\&#123;2\&#125;:[0-9]\&#123;2\&#125;:[0-9]\&#123;2\&#125;\.[0-9]\&#123;3\&#125;Z/2024-08-16T16:00:00.000Z/g' db.json 
+</code></pre>
+<p>最后，修改这个文件的修改时间：</p>
+<pre><code class="language-bash">touch -t 202408170000 akyuup1s.md
+</code></pre>
+<p>然后就可以部署了：</p>
+<pre><code class="language-bash">hexo g -d
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

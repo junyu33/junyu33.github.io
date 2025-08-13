@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>如何打造一个究极舒适的pwn环境（第二季）</h1>
+	<p>现在的问题是，如果你临时回家，没有带电脑。但你又想操纵位于学校的电脑，又该怎么办呢？</p>
+<p>成果图：</p>
+<img src="https://img.junyu33.me/blog/pwn_environ2/res.png" style="zoom:33%;" >
+<p>我们假设读者已经完成的上一季的配置，并确保自己拥有公网ip。</p>
+<span id="more"></span>
+<h1>方法一——使用ddns</h1>
+<p>每一个设备，都拥有自己唯一的ip地址。理论上如果你要访问一个设备，你只需要访问它的ip地址就可以了。</p>
+<p>然而，在当今ipv4资源稀缺的情况下（世界人口大于70亿，而理论可用的ipv4地址只有<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)" style="stroke-width: 3;"/></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mn>32</mn></mrow></msup></math></mjx-assistive-mml></mjx-container>个），部分运营商会将一个公网ip通过NAT转换成多个内网ip，以缓解资源不足的压力。<strong>而只有公网里的ip，才可以互相访问。</strong></p>
+<blockquote>
+<p>如何查看自己是不是公网ip呢，在命令行中输入<code>ipconfig</code>查看ip，并和搜索引擎的结果进行对比，如果相同便是公网ip，反之就是内网ip。</p>
+</blockquote>
+<p>即便你的设备很幸运，是公网ip，但对于访问该设备来说，仍然存在一个问题——一般情况下，设备的ISP分配的ip地址是动态变化的。短则几小时，长则半个月。如果你连接断线或者重启设备，相应的ip也会变化。</p>
+<p>而ddns就解决的是后一个问题——它将设备变化的ip映射到一个固定的域名。用户只需要访问这个域名就可以连接到该设备。</p>
+<p>我使用的是花生壳ddns，在<a target="_blank" rel="noopener" href="https://hsk.oray.com/">官网</a>下载并注册后，系统会自动给你分配一个域名。你在其他设备上用ssh访问这个域名就可以连接了。</p>
+<p>存在的问题：</p>
+<ul>
+<li>开机启动的应用又增加了一个。</li>
+<li>不能使用代理。</li>
+<li>某些情况下使用ddns会导致宽带断线，且无法重连。</li>
+</ul>
+<h1>方法二——使用ip检测脚本，并发送到邮箱</h1>
+<p>另外一种思路是使用脚本在ip查询网站，查询自己的ip地址。如果脚本发现ip发生了变化，就向自己的邮箱发送新的ip地址。</p>
+<p>这个思路看上去简单明了，但是实际操作并非如此。</p>
+<p>首先，我复制了一份实现以上功能的python脚本（还是有点长的）：</p>
+<pre><code class="language-python">import json
+from urllib.request import urlopen
+
+import os
+import time
+
+import smtplib
+from email.header import Header
+from email.mime.text import MIMEText
+
+# 两个获取ip地址的网站
+ip_url_1 = 'https://api.ipify.org/?format=json'
+ip_url_2 = 'http://jsonip.com'
+
+# 配置文件名
+config_file_name = '.global_ip.json'
+
+# 第三方 SMTP 服务
+mail_host = &quot;smtp.qq.com&quot;      # SMTP服务器
+mail_user = &quot;2658799217&quot;      # 用户名
+mail_pass = &quot;&lt;thisisasecret&gt;&quot;  # 授权密码，非登录密码，相信大家都知道怎么获取授权码吧，要给腾讯发短信。
+
+sender = '2658799217@qq.com'    		# 发件人邮箱(最好写全, 不然会失败)
+receivers = ['2658799217@qq.com']  	# 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+
+title = 'update_addr'  			# 邮件主题
+content = ''    				# 邮件内容
+
+# 检查配置文件及其权限
+def check_configfile_exist():
+    file_exist = os.access(config_file_name, os.F_OK)
+    file_read  = os.access(config_file_name, os.R_OK)
+    file_write = os.access(config_file_name, os.W_OK)
+    return&#123;'file_exist':file_exist,'file_read':file_read,'file_write':file_write&#125;
+
+def generate_configfile(ip_addr):
+    config_construct = &#123;
+        &quot;ip_addr&quot;: ip_addr
+    &#125;
+    with open(config_file_name, &quot;w&quot;, encoding='utf8') as fp:
+        fp.write(json.dumps(config_construct,indent=4, ensure_ascii=False))
+    fp.close()
+
+def sendEmail():
+
+    message = MIMEText(content, 'plain', 'utf-8')  # 内容, 格式, 编码
+    message['From'] = &quot;&#123;&#125;&quot;.format(sender)
+    message['To'] = &quot;,&quot;.join(receivers)
+    message['Subject'] = title
+
+    try:
+        smtpObj = smtplib.SMTP_SSL(mail_host, 465)  # 启用SSL发信, 端口一般是465
+        smtpObj.login(mail_user, mail_pass)  # 登录验证
+        smtpObj.sendmail(sender, receivers, message.as_string())  # 发送
+        print(&quot;mail has been send successfully.&quot;)
+    except smtplib.SMTPException as e:
+        print(e)
+
+def send_email2(SMTP_host, from_account, from_passwd, to_account, subject, content):
+    email_client = smtplib.SMTP(SMTP_host)
+    email_client.login(from_account, from_passwd)
+    # create msg
+    msg = MIMEText(content, 'plain', 'utf-8')
+    msg['Subject'] = Header(subject, 'utf-8')  # subject
+    msg['From'] = from_account
+    msg['To'] = to_account
+    email_client.sendmail(from_account, to_account, msg.as_string())
+    email_client.quit()
+
+
+
+localtime = time.localtime(time.time()) # 打印本地时间
+print(&quot;\n&quot; + time.asctime(localtime))
+
+# 通过两个网站获取ip地址
+my_ip_1 = str(json.load(urlopen(ip_url_1))['ip'])
+my_ip_2 = str(json.load(urlopen(ip_url_2))['ip'])
+
+if (my_ip_1 == my_ip_2):
+    ip_addr = my_ip_1
+else:
+    ip_addr = &quot;ip_1 :&quot; + my_ip_1 + &quot;\n&quot; + &quot;ip_2 :&quot; + my_ip_2
+
+if(check_configfile_exist()['file_exist'] &amp; check_configfile_exist()['file_write']):
+    config_file = open(config_file_name,'r')
+    read_context = json.load(config_file)
+    old_ip = read_context['ip_addr']
+    config_file.close()
+    if (old_ip == ip_addr):
+        print(&quot;ip address is up-to-date&quot;)
+    else:
+        content = &quot;old ip address is : &quot; + old_ip + '\n' + &quot;new ip address is : &quot; + ip_addr
+        sendEmail()
+        generate_configfile(ip_addr)
+else:
+    generate_configfile(ip_addr)
+    content = &quot;new ip address is : &quot; + ip_addr
+    sendEmail()
+
+
+</code></pre>
+<p>当然，只凭借这个脚本，确实可以实现上述功能。但是要是在无人值守的情况下，我们又该怎么办呢？</p>
+<p>凭借高中写对拍脚本学到的微不足道的语法，我写了一个bat，它首先检测设备有没有联网，如果没有联网就间隔10秒再检测，否则就调用这个脚本并暂停10分钟。</p>
+<pre><code class="language-bat">@echo off
+    
+:start
+ping -n 2 114.114.114.114 | find &quot;TTL=&quot; &gt;nul
+if errorlevel 1 (
+TIMEOUT 10
+goto:start
+) else (
+pythonw D:/tmp1/tmp/test.py ::这里使用pythonw是为了防止弹出窗口，这在打游戏的时候非常重要。
+)
+TIMEOUT 600
+goto:start
+</code></pre>
+<p>但是又存在一个新问题——这个脚本本身也要弹出窗口啊？是不是很套娃呢？</p>
+<p>于是，我上网查阅资料发现：vbs脚本在运行的时候不会有任何提示（除了命令出错的时候），可以解决这个问题。</p>
+<p>我又从网上嫖到了使用vbs脚本运行命令和bat文件的代码：</p>
+<pre><code class="language-vbscript">CreateObject(&quot;WScript.Shell&quot;).run&quot;Rasdial 123 &lt;telephone&gt; &lt;passwd&gt;&quot;,0
+set ws=wscript.createobject(&quot;wscript.shell&quot;) 
+   ws.run &quot;D:/tmp1/tmp/start.bat /start&quot;,0
+</code></pre>
+<p>这个vbs做了两件事，一是自动拨号上网，二是调用之前的bat文件。</p>
+<p>我亲自断网，并实际运行了一下，发现拨号成功了，也收到了梦寐以求的ip更换的邮件。</p>
+<p>还剩下最后一个问题——如何定时运行这个脚本？</p>
+<h2 id="子方法一——在vbs脚本里写代码，让其定时运行">子方法一——在vbs脚本里写代码，让其定时运行</h2>
+<p><s>还没学会vbs语法呢ლ(╹◡╹ლ)——暂时填坑。</s></p>
+<h2 id="子方法二——使用任务计划程序">子方法二——使用任务计划程序</h2>
+<p>我在任务计划里添加了这个vbs脚本，设置了系统启动和用户登录时运行它，甚至让他每隔十分钟触发一次，如图所示：</p>
+<img src="https://img.junyu33.me/blog/pwn_environ2/task.png">
+<p>然而，在系统启动时，系统确实可以帮我自动拨号，但是我没有收到更改ip的邮件。只有当我手动运行了这个vbs后，它才能做到发邮件的功能。</p>
+<p>存在的问题：</p>
+<ul>
+<li>开机只能拨号，不能发邮件。</li>
+<li>不能使用代理。</li>
+<li>操作略显麻烦。</li>
+</ul>
+<h1>windows默认终端设置</h1>
+<p>老朽的cmd用着非常不方便，没有语法高亮，cd不同盘符的路径还得多敲一句命令，太麻烦了。</p>
+<p>在powershell中运行下面这句命令，可以将设备的默认终端更换为powershell：</p>
+<pre><code class="language-powershell">New-ItemProperty -Path &quot;HKLM:\SOFTWARE\OpenSSH&quot; -Name DefaultShell -Value &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -PropertyType String -Force
+</code></pre>
+<p>我为什么不用cmder呢？我试了，ssh调用cmder要闪退，具体不知道什么原因。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

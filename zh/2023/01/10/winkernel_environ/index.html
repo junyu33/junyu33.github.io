@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>windows 驱动开发环境搭建</h1>
+	<p>在大创的压力下，开始学习 windows 驱动开发<s>的环境配置</s>。只能说：</p>
+<ul>
+<li>因为时效性，看网上的教程，不如老老实实看 MSDN（机翻的也行）。</li>
+<li><s>因为开源，做 windows 驱动开发，不如做 linux 。</s></li>
+</ul>
+<img src='https://img.junyu33.me/blog/winkernel_environ/congrats.png'>
+<span id="more"></span>
+<h1>Prerequisite</h1>
+<ul>
+<li>host: win11.</li>
+<li>disk space: at least 20GB, SSD recommended.</li>
+</ul>
+<h1>Steps</h1>
+<h2 id="install-vs2022">install vs2022</h2>
+<p>Ensure <strong>Desktop development with C++</strong> and <strong>MSVC v143 - VS 2022 C++ x64/x86 build tools (Latest)</strong> are ticked.</p>
+<h2 id="install-win11-SDK-WDK-for-22H2">install win11 SDK&amp;WDK for 22H2</h2>
+<p>Use default, just install.</p>
+<h2 id="install-win10-on-your-vm">install win10 on your vm</h2>
+<p>Quite easy.</p>
+<h2 id="install-WDK-for-vm">install WDK  for vm</h2>
+<p>The avg download speed is 200KB/s, although the proxy/VPN is turned on, time for touching fish.</p>
+<h2 id="run-the-WDK-Test-Target-Setup">run the WDK Test Target Setup</h2>
+<p>Easy, search <code>WDK Test Target Setup x64-x64_en-us.msi</code>. Copy&amp;paste.</p>
+<h2 id="ensure-host-guest-can-ping-each-other">ensure host&amp;guest can ping each other</h2>
+<p>If you use vmware, I suggest using NAT so the host IP is the item of <code>vmnet8</code> when running <code>ipconfig</code>, the guest IP is the only one IPv4 when running <code>ipconfig</code>. Usually the network segment is the same (i.e. the first three numbers).</p>
+<h2 id="Write-build-your-first-driver">Write&amp;build your first driver</h2>
+<h3 id="create-a-project">create a project</h3>
+<p>Follow steps from MSDN directly.</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#create-and-build-a-driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#create-and-build-a-driver</a></p>
+<h3 id="write-a-sample-code">write a sample code</h3>
+<ul>
+<li>because inline asm is deprecated on x64 platform, we use this tutorial instead: <a target="_blank" rel="noopener" href="https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/#toc-heading-19">https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/#toc-heading-19</a></li>
+</ul>
+<h4 id="Driver-c">Driver.c</h4>
+<pre><code class="language-c">// https://bbs.kanxue.com/thread-254041.htm
+#include &lt;ntddk.h&gt;
+#include &quot;Header.h&quot;
+
+VOID DriverUnload(PDRIVER_OBJECT driver)
+&#123;
+    DbgPrint(&quot;first: Our driver is unloading…\r\n&quot;);
+&#125;
+
+NTSTATUS DriverEntry(PDRIVER_OBJECT driver, PUNICODE_STRING reg_path)
+&#123;
+#if DBG
+    int_3();
+#endif
+
+    DbgPrint(&quot;first: Hello world!\r\n&quot;);
+
+    driver-&gt;DriverUnload = DriverUnload;
+
+    return STATUS_SUCCESS;
+&#125;
+</code></pre>
+<h4 id="fun-asm">fun.asm</h4>
+<pre><code class="language-assembly">.CODE
+
+int_3 PROC
+	int 3
+	ret
+int_3 ENDP
+
+END
+</code></pre>
+<h4 id="Header-h">Header.h</h4>
+<pre><code class="language-c">#pragma once
+void int_3(void);
+</code></pre>
+<h3 id="build-project">build project</h3>
+<p>Before compiling the program, you also need to set the project properties:</p>
+<ul>
+<li>
+<p>Right click - Properties - C/C++</p>
+<ul>
+<li>
+<p>Set warning level to level 3 (/W3)</p>
+</li>
+<li>
+<p>Change Warnings as errors to No (/WX-)</p>
+</li>
+<li>
+<p>Code Generation - Security Checks changed to Disable Security Checks (/GS-)</p>
+</li>
+<li>
+<p>Code Generation - Spectre Mitigation to Disabled</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Right click - properties - linker</p>
+<ul>
+<li>Treat linker warnings as errors to No (/WX:NO)</li>
+</ul>
+</li>
+<li>
+<p>Right-click-Properties-Driver Settings</p>
+<ul>
+<li>
+<p>Change Target OS Version to Windows 10 or higher</p>
+</li>
+<li>
+<p>Change Target Platform to Desktop</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Right-click-Properties-Inf2Cat</p>
+<ul>
+<li>Change Use local time to Yes (/uselocaltime)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-254041.htm">https://bbs.kanxue.com/thread-254041.htm</a></p>
+</blockquote>
+<h2 id="Provision-test-computer">Provision test computer</h2>
+<p>Extensions &gt; Driver &gt; Test &gt; Configure Devices &gt; Add a new device</p>
+<p>Enter your IP of <strong>test computer</strong> as <code>host name</code> and choose <code>Provision device and choose debugger settings</code></p>
+<p>In the next page, choose <code>Network</code>, the <code>Host IP</code> should be IP of <strong>host computer (vmnet8)</strong>.</p>
+<p>Wait for provisioning. Maybe the <code>TAEF service</code> will fail to install, just ignore it.</p>
+<h2 id="install-the-driver">install the driver</h2>
+<p>Just follow the MSDN</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#install-the-driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#install-the-driver</a></p>
+<h2 id="debug-the-driver">debug the driver</h2>
+<p>here are two ways:</p>
+<h3 id="using-winDbg-winDbg-preview-more-steps">using winDbg/winDbg preview (more steps)</h3>
+<ul>
+<li>
+<p>if the deploy (right click your project &gt; deploy) process is successful, then your driver will be placed in your system drive in your test computer. Otherwise you need to copy the output file in your host computer to the test computer.</p>
+</li>
+<li>
+<p>Download <code>INSTDRV.EXE</code> and copy to your test computer.</p>
+</li>
+<li>
+<p>Open <code>INSTDRV.EXE</code> <strong>as Administrator</strong> and it's time to open your winDbg/winDbg preview, attach the kernel as the step shown in <strong>Provision test computer</strong>.</p>
+</li>
+<li>
+<p>Create a snapshot in your vm. (IMPORTANT)</p>
+</li>
+<li>
+<p>First <strong>install</strong> the driver <code>kmdfHelloWorld.sys</code> then <strong>start</strong> it. If everything works, your winDbg instance will stuck at <code>fun.asm</code> finally. Then you can restore to your snapshot if something unpleasant happened (e.g. bluescreen).</p>
+</li>
+</ul>
+<h3 id="using-VS2022-not-always-works">using VS2022 (not always works)</h3>
+<ul>
+<li>Restore to your (successfully configured) snapshot.</li>
+<li>Right-click-Properties &gt; Configuration Properties &gt; Debugging &gt; Debugger to launch &gt; Kernel Debugger</li>
+<li>F5. If everything works, your VS2022 instance will stuck at <code>fun.asm</code> finally, but there would be no highlights when debugging, just like the picture I placed in preface.</li>
+</ul>
+<h1>References</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver</a></li>
+<li><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-254041.htm">https://bbs.kanxue.com/thread-254041.htm</a></li>
+<li><a target="_blank" rel="noopener" href="https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/">https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/</a></li>
+<li>《加密与解密》（第四版）</li>
+</ul>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,12 @@
+/zh/*           /zh/:splat          200
+/en/*           /en/:splat          200
+/css/*          /css/:splat         200
+/js/*           /js/:splat          200
+/images/*       /images/:splat      200
+/fonts/*        /fonts/:splat       200
+/favicon.ico    /favicon.ico        200
+/atom.xml       /atom.xml           200
+/sitemap.xml    /sitemap.xml        200
+/               /index.html         200
+
+/*              /zh/:splat          301!

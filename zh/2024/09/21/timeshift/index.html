@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>timeshift 使用 btrfs 懒人指南</h1>
+	<p>最近到了新工位，有了一台新电脑以及两台显示器。我深知系统备份的重要性，但因为沉没成本，一直没有来得及完全实装 btrfs 的备份恢复功能。因为新系统啥都没有，所以我可以肆无忌惮地折腾。这里记录一下我是如何使用 timeshift 的。</p>
+<p>本文不涉及原理，以实用为主。</p>
+<span id="more"></span>
+<h1>创建 btrfs 分区</h1>
+<p>对于一个新硬盘（笔者为 <code>/dev/nvme0n1</code>）：</p>
+<ul>
+<li>你需要先创建一个 EFI 分区（512M），挂载到 <code>/boot/efi</code></li>
+<li>如果 RAM 小于 16G，建议创建一个 swap 分区（8G）。（但笔者的新电脑有 32G 内存，所以没有创建 swap 分区）</li>
+<li>剩下的空间全部分给 btrfs</li>
+</ul>
+<p>对应的命令为：</p>
+<pre><code class="language-bash">sudo fdisk /dev/nvme0n1
+
+# 创建 GPT 分区表
+g
+
+# 创建 EFI 分区
+n
+# 分区号
+&lt;enter&gt;
+# 开始位置
+&lt;enter&gt;
+# 结束位置
++512M
+# 分区类型
+t
+1
+# remove signature
+y
+
+# 创建 btrfs 分区
+n
+# 分区号
+&lt;enter&gt;
+# 开始位置
+&lt;enter&gt;
+# 结束位置
+&lt;enter&gt;
+# remove signature
+y
+
+# 写入
+w
+</code></pre>
+<h1>格式化</h1>
+<p>现在有两个分区，一个 EFI 分区 <code>/dev/nvme0n1p1</code>，一个 btrfs 分区 <code>/dev/nvme0n1p2</code>。我们需要格式化这两个分区：</p>
+<pre><code class="language-bash">sudo mkfs.fat -F32 /dev/nvme0n1p1
+sudo mkfs.btrfs -L arch /dev/nvme0n1p2
+</code></pre>
+<h1>btrfs 创建子卷（重要）</h1>
+<p>为了使 timeshift 可以正常工作，我们要达成以下效果：</p>
+<pre><code class="language-bash">&gt; sudo btrfs subvolume list /
+[sudo] password for junyu33: 
+ID 256 gen 3073 top level 5 path @
+ID 257 gen 3073 top level 5 path @home
+</code></pre>
+<p>具体的命令为：</p>
+<pre><code class="language-bash">sudo mount /dev/nvme0n1p2 /mnt
+sudo btrfs subvolume create /mnt/@
+sudo btrfs subvolume create /mnt/@home
+sudo umount /mnt
+sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt
+sudo mkdir /mnt/home
+sudo mount -o subvol=@home /dev/nvme0n1p2 /mnt/home
+sudo mkdir -p /mnt/boot/efi
+sudo mount /dev/nvme0n1p1 /mnt/boot/efi
+</code></pre>
+<h1>安装系统</h1>
+<p>我不确定 xubuntu 是否会格式化 btrfs 分区（刚刚测试过，应该是，无法取消），如果是的话，我前面的步骤就白做了。所以我选择了 archlinux。安装过程就不赘述了，可以参考 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Installation_guide">archlinux 安装指南</a>。</p>
+<p>当你做到这一步时：</p>
+<blockquote>
+<p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
+</blockquote>
+<p>看一看 <code>fstab</code> 文件的内容，并结合 <code>blkid</code> 的输出，确保 EFI 分区和 btrfs 的子卷（subvol）都被正确挂载，我的类似于：</p>
+<pre><code class="language-txt"># Static information about the filesystems.
+# See fstab(5) for details.
+
+# &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;
+# /dev/nvme0n1p2 LABEL=arch
+UUID=d6806b41-d69c-4f72-ba9f-a00a197729ab	/         	btrfs     	rw,relatime,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@	0 0
+
+# /dev/nvme0n1p2 LABEL=arch
+UUID=d6806b41-d69c-4f72-ba9f-a00a197729ab	/home     	btrfs     	rw,relatime,ssd,discard=async,space_cache=v2,subvolid=257,subvol=/@home	0 0
+
+# /dev/nvme0n1p1
+UUID=EB74-8512      	/boot/efi 	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+</code></pre>
+<p>此时你的 <code>/mnt</code> 目录应该类似于正常 Linux 的根目录，而不是 <code>@</code> 和 <code>@home</code>。</p>
+<p>然后添加引导：</p>
+<pre><code class="language-bash">arch-chroot /mnt
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+<p>然后退出 chroot，重启进入新系统。</p>
+<h1>安装 timeshift 并配置</h1>
+<pre><code class="language-bash"># 安装 cronie 并启用 cron 服务
+sudo pacman -S cronie
+sudo systemctl enable cronie
+# 安装 timeshift 及 grub-btrfs 插件
+sudo pacman -S timeshift grub-btrfs
+yay -S timeshift-systemd-timer
+# 使 grub-btrfs 与 timeshift 配合
+sudo systemctl edit --full grub-btrfsd
+# 将 `grub-btrfsd --syslog /.snapshots` 修改为 `grub-btrfsd --syslog -t`
+</code></pre>
+<p>启动 <code>timeshift</code> 配置一下，搞定。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

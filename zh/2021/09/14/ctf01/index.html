@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>陇剑杯入土记</h1>
+	<p>刚进校不久，我们就被老师鼓励去打首届陇剑杯，当我看到比赛说明的考纲范围时，就发现考察范围与我学习的知识毫无交集。</p>
+<span id="more"></span>
+<p>结果让我没想到的是，赛题居然比我想象的还要离谱。比赛时间从上午10点到下午6点，8个小时，我就只做出来3道题，而且分值都不高。</p>
+<p>最神奇的是我好不容易找到一个高分值的题目，读取了内存文件，通过网上的工具搞到了系统密码的哈希值，然后死也解不出原文，光这点尝试就花了我两三个小时，在得到答案前的最后一步江郎才尽。</p>
+<p>最后成绩出来，yyx1080分，yjp310分，我280分，我又自闭了。只不过战队总分排位838名，总共有3020名，我们占前30%，还是一个尚可的成绩。</p>
+<h1>本队的WriteUp</h1>
+<img src="https://img.junyu33.me/blog/ctf01/a.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/b.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/c.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/d.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/e.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/f.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/g.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/h.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/i.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/j.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/k.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/l.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/m.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/n.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/o.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/p.jpg" />
+<img src="https://img.junyu33.me/blog/ctf01/q.jpg" />
+<h1>updated on 9，25</h1>
+<p>今天去看了内存第一题的wp，然后我发现有一份的wp得到哈希值后，就马上把flag搬了出来。<s>（原来我与200pts的距离似乎这样近，又似乎那么远......)</s> 因为那个flag比较长，又不是很正常的单词，用彩虹表基本上不可能。由此我判断：</p>
+<img src="https://img.junyu33.me/blog/ctf01/r.jpg" />
+<p><strong>这个wp一定是假wp，该队肯定跟其他队有py交易！</strong>（想打别人一拳.jpg）</p>
+<p>然后我又找到了一个正常的wp，发现<strong>我使用了一模一样的工具，但是却采用了所有的错误方法</strong>，完美绕过了正确答案。</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
+<img src="https://img.junyu33.me/blog/ctf01/s.png" />
+<img src="https://img.junyu33.me/blog/ctf01/t.png" />
+<img src="https://img.junyu33.me/blog/ctf01/u.png" />
+<p>此刻我的内心就像这样：</p>
+<blockquote>
+<p>比赛时用mimikatz本体<strong>疯狂报错</strong>，麻了。<strong>win10，我的垃圾</strong></p>
+<p>............</p>
+</blockquote>
+<h1>彩蛋</h1>
+<blockquote>
+<p>比赛前:</p>
+<p>宣传！规模！代言！历史上CTF之巅峰！NB!</p>
+<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>比赛后:</p>
+<p>比赛办的好啊，会办能不能多办点啊，我好多兄弟代打钱还没赚够呢！比赛结束前5分钟11，5分钟后50+是，牛啊牛啊，这比赛怎么会有py是吧，都是企业自己的努力呀！</p>
+<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>这比赛可办的太好啦！我真谢谢你主办方啊，推动了整个ctf圈子的良好习俗之PY(此PY非比PY，自己体会)风气的成长，将PY产业化，更加符合法律法规，建议加大力度，继续保持，直接推动社会经济文化的发展！</p>
+<p>另外赛题也令人耳目一新！尤其是里面的选择题！立案深刻，十分符合我国当代社会主义核心价值观！要不是你不说16:00不做，有多少战队要措施错失了明明有全部答案但是不能交的苦恼，真的是民心所望，办比赛办到人民心坎里啦！我替国家和人民谢谢你呀！</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
+</blockquote>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>如何手动测量 Risc-V 处理器的 CPU 频率</h1>
+	<p>之前长文章写起来有些累，现在写一篇短的。</p>
+<span id="more"></span>
+<h1>background</h1>
+<p>由于我之前在给 Risc-V 开发板配跳板机环境时，在相关论坛上留下了自己的联系方式。于是今天有人找到我，他认为 ubuntu 镜像是在 CanMV-K230 的大核（1.6 GHz）中，而我之前强调是在小核（800 MHz），想让我看一看。</p>
+<p>首先 <code>lscpu</code>，<code>cat /proc/cpuinfo</code> 肯定是用不了的。同时 <code>/sys/bus/cpu/devices/cpu0/cpufreq/</code> 也不存在，因此只能尝试手写代码衡量 CPU 频率。</p>
+<h1>solution</h1>
+<p>一个简单的解决方式是通过 Linux 系统调用 <code>clock_gettime</code> 获取当前时间，然后中间运行一定数量级的指令来减小测量误差：</p>
+<pre><code>#define NUM_INSTRUCTIONS (1000000000)
+
+asm volatile (
+    &quot;1:\n&quot;
+    &quot;   nop\n&quot;
+    &quot;   addi %[counter], %[counter], -1\n&quot;
+    &quot;   bnez %[counter], 1b\n&quot; 
+    : 
+    : [counter] &quot;r&quot;(NUM_INSTRUCTIONS)  
+    : &quot;memory&quot;  
+);
+</code></pre>
+<p>代码的含义是从 1e9 开始，先执行一个 <code>nop</code> 指令（实际上为 <code>addi x0, x0, 0</code>)，然后将计数器自减，最后判断计数器是否为零。</p>
+<p>我们简单计算一下指令条数，<code>addi</code> 与 <code>bnez</code> 都是一个时钟周期。当然，考虑到现代 CPU 会执行分支预测与乱序执行，<code>bnez</code> 在大多数情况下会直接跳过。因此实际上这段循环在理想情况下（例如反复多次运行）会耗费两个时钟周期。</p>
+<p>因此，这段代码，再加上循环前后的两个系统调用花费的时间，实际上会耗费略多于 2e9 个时钟周期。当然这点误差应该对于判断是 1.6GHz 还是 800 MHz 是完全可以忽略的。</p>
+<p>最后就可以直接用 2e9 除以运行的时间，就可以获得以 GHz 为单位的结果了。</p>
+<p>最终代码如下：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+#define NUM_INSTRUCTIONS (1 * 1000000000)
+
+int main() &#123;
+    struct timespec start, end;
+    clock_gettime(CLOCK_REALTIME, &amp;start);
+
+    asm volatile (
+        &quot;1:\n&quot;
+                                &quot;               nop\n&quot;
+        &quot;   addi %[counter], %[counter], -1\n&quot;
+        &quot;   bnez %[counter], 1b\n&quot;
+        :
+        : [counter] &quot;r&quot;(NUM_INSTRUCTIONS)
+        : &quot;memory&quot;
+    );
+
+    clock_gettime(CLOCK_REALTIME, &amp;end);
+
+    long long start_time_ns = start.tv_sec * 1000000000 + start.tv_nsec;
+    long long end_time_ns = end.tv_sec * 1000000000 + end.tv_nsec;
+    long long elapsed_time_ns = end_time_ns - start_time_ns;
+
+    printf(&quot;Elapsed time: %lld ns\n&quot;, elapsed_time_ns);
+                printf(&quot;Elapsed Freq: %.3f GHz\n&quot;, 2e9 / elapsed_time_ns);
+
+    return 0;
+&#125;
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-sh">junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1296113478 ns
+Elapsed Freq: 1.543 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1297572988 ns
+Elapsed Freq: 1.541 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1294495232 ns
+Elapsed Freq: 1.545 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1294133798 ns
+Elapsed Freq: 1.545 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1294905847 ns
+Elapsed Freq: 1.545 GHz
+</code></pre>
+<h1>summary</h1>
+<p>那位朋友最后也用了我的代码给他的开发板做了测试，结果是 1.598 GHz。因此，他是对的。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

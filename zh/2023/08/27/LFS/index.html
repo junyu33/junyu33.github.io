@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>LFS on a VM</h1>
+	<img src='https://img.junyu33.me/blog/LFS/1.png'>
+<p>Just without <code>vmware-guest-additions</code> support, so there is no Internet.</p>
+<span id="more"></span>
+<h1>FAQs &amp; tips</h1>
+<h2 id="I-m-lazy-I-don-t-want-to-create-any-other-partition-including-home-boot-or-create-swap">I'm lazy, I don't want to create any other partition including <code>/home</code>, <code>/boot</code> or create <code>swap</code>.</h2>
+<p>Yes, you can expand your VM disk by 20 GB and allocate it to your LFS root directory. Using the <code>/boot</code> directory from your host distro is acceptable (even it's not in a seperate partition).</p>
+<h2 id="sed-can-t-read-gcc-config-i386-t-linux64-No-such-file-or-directory">sed: can't read gcc/config/i386/t-linux64: No such file or directory</h2>
+<p><a target="_blank" rel="noopener" href="https://www.linuxquestions.org/questions/linux-from-scratch-13/sed-can%27t-read-gcc-config-i386-t-linux64-no-such-file-or-directory-4175694927/">https://www.linuxquestions.org/questions/linux-from-scratch-13/sed-can't-read-gcc-config-i386-t-linux64-no-such-file-or-directory-4175694927/</a></p>
+<p>You didn't extract the tarball and enter the gcc directory, the LFS guide omitted these first two steps every page.</p>
+<h2 id="VMware-Workstation-has-paused-this-virtual-machine-because-the-disk-on-which-the-virtual-machine-is-stored-is-almost-full">VMware Workstation has paused this virtual machine because the disk on which the virtual machine is stored is almost full</h2>
+<p>Read the warning carefully, it says:</p>
+<blockquote>
+<p>VMware Workstation has paused this virtual machine because <strong>the disk on which the virtual machine is stored</strong> is almost full.</p>
+</blockquote>
+<p>So it's the time to clean your <strong>host</strong> disk space, instead of insufficient space of your VM, especially you've taken too many snapshots.</p>
+<h2 id="The-system-has-no-more-ptys-Ask-your-system-administrator-to-create-more">The system has no more ptys.  Ask your system administrator to create more.</h2>
+<p>Make sure if you've done <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/chapter07/kernfs.html">chapter 7.3</a> and <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/chapter07/chroot.html">chapter 7.4</a> correctly. You can save the script below in your VM, reboot and run it <strong>with root privilege</strong>.</p>
+<pre><code class="language-prepare.sh">mkdir -pv $LFS/&#123;dev,proc,sys,run&#125;
+mount -v --bind /dev $LFS/dev
+mount -v --bind /dev/pts $LFS/dev/pts
+mount -vt proc proc $LFS/proc
+mount -vt sysfs sysfs $LFS/sys
+mount -vt tmpfs tmpfs $LFS/run
+if [ -h $LFS/dev/shm ]; then
+  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+else
+  mount -t tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
+fi
+</code></pre>
+<pre><code class="language-chroot.sh">chroot &quot;$LFS&quot; /usr/bin/env -i   \
+    HOME=/root                  \
+    TERM=&quot;$TERM&quot;                \
+    PS1='(lfs chroot) \u:\w\$ ' \
+    PATH=/usr/bin:/usr/sbin     \
+    /bin/bash --login
+</code></pre>
+<h2 id="The-terminal-looks-frozen-when-running-make-check-in-gcc-of-chroot-environ">The terminal looks frozen when running <code>make check</code> in gcc of chroot environ</h2>
+<p>That's normal. The guide says it takes around 43 SBU to finish the whole process. For me it cost about 10 hours without pipelining, some of checks like <code>asan.exp</code> in g++ tests, <code>comformance.exp</code> in libstdc++ tests cost 2 to 3 hours (yes, for one check file).</p>
+<p>You can type <code>su tester -c &quot;PATH=$PATH make -k check -j4&quot;</code> to speed up a bit.</p>
+<h2 id="Make-failure-in-gcc-of-chroot-environ">Make failure in gcc of chroot environ</h2>
+<p>Try <code>make</code> again (without -B).</p>
+<h2 id="Too-many-make-check-failures-thousands-of-in-gcc-of-chroot-environ">Too many make check failures (thousands of) in gcc of chroot environ</h2>
+<p>It's maybe caused by the source, download again in <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/chapter03/packages.html">All Packages</a> and redo the process if you want to wait another couple of hours.</p>
+<p>If you didn't see any error in <code>make</code>, ignore the <code>make check</code> process is also an option.</p>
+<h2 id="Can-I-use-grub-mkconfig-in-my-host-distro-to-generate-boot-config">Can I use <code>grub-mkconfig</code> in my host distro to generate boot config</h2>
+<p>Yes, it works. The only flaw is that the grub boot menu entry will be <code>unknown Linux distribution on /dev/sdaX</code> instead of our favorite <code>Linux From Scratch</code>.</p>
+<h2 id="Can-t-boot-into-LFS-saying-something-including-available-partitions-0b00-1048575-sr0-driver-sr">Can't boot into LFS, saying something including <code>available partitions: 0b00 1048575 sr0 driver: sr</code></h2>
+<p>The Linux kernel you built doesn't include the VMware disk driver. You can search options in <code>make menuconfig</code> which contains string <code>VMWARE</code> and add them manually in <code>.config</code> in kernel source root.</p>
+<p>Here are the search results of my machine:</p>
+<pre><code>INFINIBAND_VMWARE_PVRDMA
+drivers/infiniband/hw/vmw_pvrdma/Kconfig
+VMWARE_BALLOON
+drivers/misc/Kconfig
+VMWARE_PVSCSI
+drivers/scsi/Kconfig
+VMWARE_VMCI
+drivers/misc/vmw_vmci/Kconfig
+VMWARE_VMCI_VSOCKETS
+net/vmw_vsock/Kconfig
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alphainf/p/16720497.html">This blog</a> may also help (additional options you need to check):</p>
+<pre><code>Device Drivers ---&gt;
+   Generic Driver Options ---&gt;
+      [*] Maintain a devtmpfs filesystem to mount at /dev
+   [*]Network device support ---&gt;
+      [*]Ethernet Driver support ---&gt;
+         [*] AMD PCnet32 PCI support
+   [*]Fusion MPT device support ---&gt;
+      &lt;*&gt; Fusion MPT ScsiHost drivers for SAS
+      &lt;*&gt; Fusion MPT misc device (ioctl) driver  
+      [*] Fusion MPT logging facility 
+   SCSI device support ---&gt;
+      [*] SCSI low-level drivers
+File Systems ---&gt;
+    [*] Ext3 Journaling file system support
+</code></pre>
+<h1>Summary</h1>
+<p>It tooks me about 9 days, the kernel config is not as hard as I thought before. The most difficult part is the patience.</p>
+<p>BTW, the <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/partintro/toolchaintechnotes.html">technical guide</a> explained before looks still kind of abstract even though I've finished the whole process. Maybe that's the most educational part in the whole LFS journey.</p>
+<p>In the future, maybe I'll go to the BLFS part, such as installing <code>vmware-guest-additions</code> and configuring the network, ssh, programming, DE, etc. Of course this is time-cosuming, <s>so maybe I'll give up here.</s></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

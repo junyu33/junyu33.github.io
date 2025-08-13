@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>（置顶，已完结）nju-pa 心得</h1>
+	<p>2023/4/20 ~ 2024/5/4</p>
+<p>6705 commits (2 commits per compilation and execution)</p>
+<p>A year of persistence has finally come to an end.</p>
+<span id="more"></span>
+<h1>背景（个人吐槽，可skip）</h1>
+<p>鉴于本校的专业课并不能让我学到多少东西，我开始思索自己与非科班的同学的技术水平是否还存在着区别（抑或是他们可能已经通过报班的方式已经超越了我们？例如<code>Java</code>），而我自己的优势又在哪里。</p>
+<p>回想起一年前秦院对我说过，从用人单位的角度来看，本院的学子的编程水平不如隔壁电科。当时我还对这句话半信半疑，但从现在的课程设计角度来看，这的确是不争的事实（或者说是必然的结果）。学院也确实作出了一些改进，比如说<code>C</code>的在线OJ（只不过因为较为 aggressive 与排版问题饱受诟病），当然这还远远不够。</p>
+<p>从提升个人能力的角度来看，留给我的时间已经不多了，我必须摒弃一切与这个目标相悖的杂事（按优先级看依次是综测、大创、各种竞赛（包括低质量的 CTF ），最后是 GPA（自己的优势有时也是弱点）），以给自己留出尽可能多的时间来学习真正与我的方向相关的，或者是 fundamental 的东西。</p>
+<p>关于 OS 这门课，学院的理论课只能说不算差，以应试为主。与此相比，实验课就处在一个十分尴尬的地位，具体理由如下：</p>
+<ul>
+<li>没有先导课程：缺少对 <code>linux</code> 基础的讲授和 <code>git</code> 的使用教程，这些东西在我完成 <code>nachOS</code> 实验的过程中极大地提升了工作效率。为什么这么说呢，因为肯定有同学还是在通过注释之前几个 lab 代码的方式（或者重新 copy 原始的 source ）来写当前 lab 的代码，懂的都懂。</li>
+<li>过分降低了难度：目前 OS 实验课的方式是结合了 PPT 讲义与演示视频的形式，其中演示视频不可避免的会展示一些 <code>source code</code>，而同学用手机拍摄/录制这段内容是无法避免的，从而实验的难度降格为在不同的 source 中补全部分代码，我们便丧失了 <code>RTFSC</code> 的能力。这样做的后果就是：轻则不理解 <code>nachOS</code> 的整体架构，重则无法回答梁刚老师在 <code>lab8</code> 提出的那几个稍微 <code>RTFSC</code> 就能回答的问题。</li>
+<li>抄袭问题严重：人都是有惰性的，<code>nachOS</code> 是一个陈旧的项目，其中许多 lab 的答案随便一搜就能找到，我其实也抄过。</li>
+</ul>
+<h1>why do I want to be a masochist (by doing PA)</h1>
+<p><s>simple, because I enjoy this</s></p>
+<ul>
+<li>
+<p>Being introduced by <code>Tiger1218</code>, <code>nju_pa</code> is absolutely a great course. In compare with <code>nand2tetris</code> I previously finished, it is more hard-core but a more smooth learning curve.</p>
+</li>
+<li>
+<p>I have no more time, I need to acquire more information in a rather short period of time. High information density means high difficulty. Therefore, keeping in touch with something challenging is unavoidable.</p>
+</li>
+<li>
+<p>In academia, having a deeper understanding of ISA &amp; OS benefits to further research. In engineering, praticing coding skills makes me more competent in both major or non-major students in CS field.</p>
+</li>
+</ul>
+<h1>pa0</h1>
+<p>I've already used Linux and built workflow for some time. So I just installed <code>neovim</code> and clone the source.</p>
+<p>Learned some useful git commands like <code>git branch</code>, <code>git checkout</code>.</p>
+<p><a target="_blank" rel="noopener" href="https://missing.csail.mit.edu/">The Missing Semester of Your CS Education</a> is a good course, bookmarked.</p>
+<h1>pa1</h1>
+<h2 id="1-1">1.1</h2>
+<p>At first I was dumbfounded. Copilot gives some code suggestions, which makes me quickly understand what I need to do. Actually, it is quite easy.</p>
+<h2 id="1-2">1.2</h2>
+<p>Several months ago I learned regex and I forgot it. It took me 30min to learn it again. Actually the <code>tokenize</code> step is much easier than compiler section of <code>nand2tetris</code>.</p>
+<p>Copilot helped me quickly finished the structure of <code>eval</code> function, but it made a mistake when finding the dominant operator and I spent several hours debugging this.</p>
+<p>When it comes to modifying <code>sdb.c</code> to test a batch of expressions. I mistyped the path to my input file (btw, copilot suggested the path of <code>yzh</code>'s project, which is a privacy issue). At first I don't know I can enable debug info in <code>menuconfig</code>, and <code>static</code> functions increased the difficulty analyzing the assembly instructions when using <code>gdb</code>. Therefore, it took me nearly an hour to debug this.</p>
+<p>Also, I had a hard time tackling the floating point exception (div by 0) in expression generator. My idea is compile and run it, while redirecting exceptions to stderr. If <code>grep exception stderr_file</code> doesn't return <code>0</code>, we think the expression is valid. However there are still some exceptions printed in my <code>stdout_file</code>, finally I've to use another command to filter the output.</p>
+<pre><code class="language-bash">perl -pe 's/Floating\ point\ exception\n//g' stdout_file &gt; final_input
+</code></pre>
+<h2 id="1-3">1.3</h2>
+<p>Expanding the <code>eval</code> function is not very hard, one important point is to change a condition to tackle unary operator (like <code>*</code> and <code>-</code>).</p>
+<p>Implementing watchpoint pool is just some basic linklist operations, copilot did a good job.</p>
+<p>However, copilot made a big mistake implementing watchpoint itself, it messed the return value of <code>check_wp</code>. I spent several hours again debugging this.</p>
+<h1>pa2</h1>
+<h2 id="2-1">2.1</h2>
+<p>Understanding the design of risc-v is tough at first, copilot even decreased my proficiency by 20%, but when I found a book named <code>RISC-V-Reader-Chinese-v2p1.pdf</code>, things got better. It is actually just some repetitive work.</p>
+<p>However there are still something requires patiece and you need to be careful especially when tackling opcodes which entail type conversion. It took me about an hour to debug again.</p>
+<h2 id="2-2">2.2</h2>
+<p>It's all about fundamental utilities again.</p>
+<p><code>iringbuf</code>, <code>mtrace</code> is quite easy, but <code>ftrace</code> takes a very long time, including these steps:</p>
+<ul>
+<li>spend a little time to parse args, but failed to find a way to add this new feature to <code>Makefile</code></li>
+<li>spend some time to RTFM  <code>man 5 elf</code></li>
+<li>spend a lot of time to distinguish <code>call</code> and <code>ret</code> step from <code>jal</code> and <code>jalr</code> opcodes, especially to acertain if I did it correctly because difftesting this is not a easy task. (finally I think it is not very important, maybe a waste of time?)</li>
+</ul>
+<p>Successfully find some bugs in <code>strcpy</code> and <code>sprintf</code> by testcases from <code>Copilot X</code>.</p>
+<p>Writing differential testing is easy and returns a lot, not quite understand why it isn't compulsory.</p>
+<p>There is a correspondence in <strong>batch tests</strong> from a chapter ago:</p>
+<blockquote>
+<p>通过批处理模式运行NEMU</p>
+<p>我们知道, 大部分同学很可能会这么想: 反正我不阅读Makefile, 老师助教也不知道, 总觉得不看也无所谓.</p>
+<p>所以在这里我们加一道必做题: 我们之前启动NEMU的时候, 每次都需要手动键入c才能运行客户程序. 但如果不是为了使用NEMU中的sdb, 我们其实可以节省c的键入. NEMU中实现了一个批处理模式, 可以在启动NEMU之后直接运行客户程序. 请你阅读NEMU的代码并合适地修改Makefile, 使得通过AM的Makefile可以默认启动批处理模式的NEMU.</p>
+<p>你现在仍然可以跳过这道必做题, 但很快你就会感到不那么方便了.</p>
+</blockquote>
+<p>Actually I found it not convenient here, so I get back to this chapter and add it :(</p>
+<h2 id="2-3">2.3</h2>
+<p>The most painful step is debug the problem of system clock. After finishing <code>AM_TIMER_UPTIME</code>, first I use my laptop <code>i7-6700HQ @ 2.60GHz</code> to run performance test. However, it runs extremely slow (for <code>microbench</code>, it took <strong>over an hour</strong> to finish and only got 12 points). So first I try to find out why it runs in such a low efficiency for 2 or 3 days without success.</p>
+<p>Occasionally I copied my code to another desktop <code>i7-6700 @ 3.40GHz</code> and run the performance test again. This time there is a floating point exception. I checked the formula for performance score and found the problem is <code>AM_TIMER_UPTIME</code> register hasn't been updated for each iteration. With knowing this, I quickly fixed the bug puzzled me for serveral days.</p>
+<p>The next problem is <code>AM_GPU_FBDRAW</code> module. First I finished it and it seems no problem in video test. However in <code>fceux-am</code> the graphics cannot display properly, just like this:</p>
+<img src = 'https://img.junyu33.me/blog/nju_pa/mario.png'>
+<p>To solve this problem, I enabled <code>differential testing</code>(difftest) and <code>ftrace</code>. The debug information shows the differs start at <code>memcpy</code> in my <code>AM_GPU_FBDRAW</code> function. However, the diff position varies when I run each time, which bothers me a lot. Occasionally, I deleted my original <code>memcpy</code> function</p>
+<pre><code class="language-c">memcpy(&amp;fb[(y + i) * W + x], ctl-&gt;pixels + i * w, w * 4);
+</code></pre>
+<p>to this:</p>
+<pre><code class="language-c">memcpy(&amp;fb[(y + i) * W + x], ctl-&gt;pixels, w * 4);
+</code></pre>
+<p>The graphics turn to whole blue. This assures me this bug relies on the second argument of this function. With the help of <code>tiger1218</code> (I feel so sorry about that, I could solve this problem all by myself), I realized that <code>ctl-&gt;pixels</code> is a <code>void</code> pointer, it should address in <strong>bytes</strong>, not in <strong>DWORD</strong>, which solves it.</p>
+<p>This story hasn't come to an end. After fixing this bug, the <code>difftest</code> problem still exists. I tried to run other tests in order to find some information helpful for debugging. During this period, I also fixed some other minor bugs such as blackscreen of <code>slider</code> (due to the boundary isn't set properly in <code>AM_GPU_FBDRAW</code>), program crashes when showing help message in <code>am-tests</code> (because <code>%c</code> is not implemented in my own library).</p>
+<p>The real solution comes when I give up to work on pa3. I run <code>nanos-lite</code> and the program crashes again. This time I manually set <code>panic</code> breakpoint in different parts of <code>main.c</code> and found it crashes when printing the logo. I quickly realized the problem lies that the buffer is not big enough (1024 failed, 16384 is maybe enough), which also solves <code>difftest</code> problem.</p>
+<p>I also wanted to work on sound driver. However, this requires cross-compilation of SDL2 library. I spent half an afternoon on this and failed. <code>Tiger1218</code> tried to help me but quickly lost interest. He thinks this part is not very essential to whole PA. Maybe I'll finish sound driver when I have more time.</p>
+<p>However, <code>difftest</code> failed to work after adjusting the buffer of <code>print</code> several days later, and I haven't fixed it again till now.</p>
+<h1>pa3</h1>
+<h2 id="3-1">3.1</h2>
+<p>After the final exam, I continued to work out pa3.1.</p>
+<p>I stuck at <code>yield()</code> for some days, for I have to read RISCV-manual, figure out execption trace and where to implement <code>isa_raise_intr()</code>. However if you did it, the rest tasks are much easier.</p>
+<p>Although initialized <code>mstatus</code> to <code>0x1800</code>, <code>difftest</code> still not able to work. I feel like giving up using it.</p>
+<h2 id="3-2">3.2</h2>
+<p>Because I've RTFSC for several days in 3.1, finishing 3.2 is just a piece of cake. I just stuck at <code>printf</code> output for several hours (it only prints <code>H</code> for each line). Finally I found that I forgot to make the whole directory of <code>navy-apps</code>.</p>
+<h2 id="3-3">3.3</h2>
+<p>PA3.3 contains a lot of work, the workload is about 30% of the code you need to write from PA1 to PA3. Moreover, as the system getting more and more complex, the time of debugging also increases. Actually I took 17 days to finish this chapter.</p>
+<p>The work can be concluded in 3 parts: the VFS, NDL library, SDL library and corresponding applications. Here are some bugs that I struggled for a long time.</p>
+<ul>
+<li>segmentation fault after <code>fclose</code> in <code>file-test</code>: first I thought there is something wrong in <code>_free_r</code>, however I'm not familiar with the code in system library. It is daunting to debugging this. So I tried to modify the <code>file-test.c</code> and observed segmentation fault has something to do with <code>fscanf</code>. I suspected there was a buffer overflow but without proof. At last I found the problem was in <code>_sbrk</code> which I written myself.</li>
+<li><code>menu</code> does not display correctly like <code>mario</code> before: this time I didn't make the <code>memcpy</code> mistake. However, I didn't figure out the relationship between <code>width</code> and <code>height</code> of <code>canvas</code> and <code>screen</code>. Also, I tackled the corner cases of SDL APIs incorrectly, which results jumbled output.</li>
+<li>segmentation fault when entering the battle in <code>PAL</code>: I wanted to save time because using <code>ftrace</code> to find the backtrace is slow. So I used the traditional &quot;print&quot; method. Acutally the calling stack is a little longer than I expected (about 5 or 6 layers) and it took me even more time. Finally this call trace points to <code>SDL_FillRect</code> which written by myself again. And I found I didn't tackle the 8-bit color case (at first I added the fallback, but at sometime I think it was unnecessary and I deleted it) and the bound of pixel-copy procedure is incorrect, which caused my whole-day debugging.</li>
+</ul>
+<p>Here is a screenshot of PAL in battle mode (I didn't use riscv32-nemu to take a screenshot for its extremely slowness):</p>
+<img src = 'https://img.junyu33.me/blog/nju_pa/PAL.png'>
+<h1>pa4</h1>
+<h2 id="4-1">4.1</h2>
+<p>According to ysyx, I need to finish <code>rt-thread</code> first. It took 9 days to finish it (from 11/28/2023 to 12/6/2023). After that I was preparing for the experiment for a paper and restarted to work on 4/2/2024. Finally finished pa4.1 on 4/6/2024.</p>
+<p>Here I just list some bugs I encountered:</p>
+<ul>
+<li><code>rt-thread</code> does not work: The problem is the migration of <code>abstract-machine</code>, I restored the compile environment of it and it works.</li>
+<li><code>rt-thread</code> on NPC:
+<ul>
+<li>I have to <code>fflush(stdout)</code> to make the output visible.</li>
+<li>Forgetting to modify <code>riscv.h</code> in <code>abstract-machine</code> to make context-switching work.</li>
+</ul>
+</li>
+<li><code>execve</code> with args: The return value of declaration in <code>syscall.c</code> mistyped into <code>void</code>, the correct one should be <code>Context *</code>.</li>
+<li><code>execve</code> with args not working on <code>pal</code>: Forgetting to copy the <code>argv</code> and <code>envp</code> string to the user stack(Yes, only copy the pointer is not enough), which causes the content of <code>argv</code> and <code>envp</code> overwritten by the content of <code>pal</code>.</li>
+</ul>
+<h2 id="4-2">4.2</h2>
+<p>Between 4/9/2024 and 4/16/2024, I mainly spending time finishing my paper. After that, I continue to work on the rest of PA4. PA4.2 is mainly about paging mechanism, here are some points that worth mentioning:</p>
+<ul>
+<li>You will need <a target="_blank" rel="noopener" href="https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv/riscv-isa-manual/LatestRelease/priv-isa-asciidoc.pdf">RISCV manual (privileged version)</a> to understand the paging mechanism in SV32 and the usage of <code>cpu.satp</code> register. The content in ChatGPT is not always reliable.</li>
+<li>I forgot to dereference <code>as.area.end</code> pointer, which causes that some content of pages are overlapped and results in hard-to-resolve bugs.</li>
+<li>Not having enough testing makes it more difficult to resolve bugs in PA4.3.</li>
+</ul>
+<p>I finished PA4.2 in 4/26/2024.</p>
+<h2 id="4-3">4.3</h2>
+<p>This holiday I made a promise to finish the whole PA4 before returning to school and I successfully achieved this. I first try to finish the preemptive process scheduling. However, I previously mentioned there are still some bugs in PA4.2 that hadn't been resolved. Of course, preemptive scheduling makes the system, finite state machine in essence, unpredictable and much harder to debug. Therefore, I temporarily gave up finishing this part and started to work on stack switching instead. Of course, I still came up with the same bugs as well. To exclude possible factors, I created a new branch in <code>git</code> to do controlled experiments for these factors. I finally found these bugs:</p>
+<ul>
+<li><code>mm_brk</code> does not verify whether the memory is virtual memory.</li>
+<li><code>mm_brk</code> is not fully aligned to the page.</li>
+</ul>
+<blockquote>
+<p>A very useful debugging tip is that when you want to memset a range to raw memory, you'd better choose <strong>a special value</strong>. If the program crashes here later on, it is much easier to locate the bug, instead of being obsessed with a random address.</p>
+<p>And I finally understand the reason why yzh says PA4.2 is the most difficult part. The answer is, there are really a bunch of details needed to care about.</p>
+</blockquote>
+<p>Another bug is because of my carelessness when translating the pseudo C code into x86 assembly:</p>
+<ul>
+<li>forgot to zero <code>mscratch</code> in <code>am_asm_trap</code>.</li>
+</ul>
+<p>After working out stack switching, the switching function of foreground program is easy to implement. I went back to finish the preemptive part. First, the program never reaches <code>IRQ_TIMER</code> part, the reason is</p>
+<ul>
+<li>I didn't assign <code>cpu.pc</code> to <code>cpu.mtvec</code> merely.</li>
+</ul>
+<p>However the program still crashes after running for some time. And then I revised the exception handling procedure in PA3, and finally figured out</p>
+<ul>
+<li>I didn't assign <code>cpu.mepc</code> to <code>cpu.pc</code>, either.</li>
+</ul>
+<p>After fixing, the problem is finally solved. And the story of whole PA finally came to an end in 5/4/2024.</p>
+<h1>“一生一芯”C阶段项目感言（Updated on 2025/1/13）</h1>
+<p>博客中有写，我是从 2023 年的 4 月 20 号，也就是大二下学期开始有了 PA 的 第一行 git log，其实那个时候我就知道我们学校的专业课并不能让自己学到多少东西，便开始思索自己与非科班的同学差别在哪里。与此同时，周围的同学开始逐渐进入实验室并开始进行科研训练。而我始终坚信一个原则：本科是用来探索自己兴趣、提升能力、开阔自己眼界的阶段，其实没有太多必要马上就接触到学科的前沿开始进行 trial and error 的活动。</p>
+<p>当然，我也理解“那些早早进入实验室的同学”的目的——或许有真正对科研感兴趣的，但大多数还是保研/留学 oriented behavior。这也是大环境“味道”逐渐变坏所导致的必然现象，因此我虽然在学校的成绩可以排在前5%左右，但有时也会被领导“发一篇C会就跑到你前面去了”这样的言论所影响，导致自己并不能全身心地沉下来写好每一行代码。尽管如此，我还是顶着升学的压力，继续在让我的 git log 延续下去。</p>
+<p>最坏的事情发生在大三下学期，我的一位同学 L 拉着我和另一位同学 W 参加 OS 内核挑战赛，尽管我们最后拿到了全国三等奖的好成绩。这本来是一件令我高兴的事情，但我被 W 同学极强的架构能力所折服（他从零开始，在没有任何参考资料的情况下手搓了一个满足比赛条件的 OS），虽然我在大学期间一直没有荒废自己从高中开始锻炼的代码能力，但毕竟自己经过了四五年的训练，却还是连望其项背都做不到，这给我带来了不小的打击。</p>
+<p>但其实自己也不是完全没有进步，作为一名高二退役的OI选手，在大学刚开始时根本没怎么用 python 写过程序。而在大三下学期被逼参加信息安全作品赛时，也能在一个月写出几千行的 python 代码，甚至在 7 天之内写出一篇对应的论文用于“交差了事”。</p>
+<p>虽然，这篇论文最后被拒了，原因是 writing 太烂，但这也至少证明了自己具有了“中等水平”同学的能力，不是吗？而且之后还有再投的机会。随后就是我们的密码学老师再课上讲了一遍 GMW 协议的执行流程，我因为对此感兴趣，便花了两三天的时间将这个流程用代码实现了一遍，这位老师很赏识我的代码，而我也觉得她的性格人品也很不错——于是她成为了我的研究生导师。</p>
+<p>于是，我慢慢思考出了文章开头那个问题“与非科班的同学差别在哪里”的答案——你是一个人，而不是工具。我是时候应该从锻炼能力的阶段，逐渐过渡到用自己现有的能力，去为自己兴趣而奋斗的阶段了。另外，我大概也知道自己更加适合 research，而不是 engineering。</p>
+<p>时隔一年之后，再次拾起自己所写的代码——感觉自己怎么写得这么烂？但毕竟自己是个单线程的人，为了追求兴趣，也许不得不放下一些执念。为了一个特定的目标去完成一些事情只能使我更加焦躁，从而会在屎山上堆上更多的屎。</p>
+<p>所以，可能以后，有缘再会吧。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

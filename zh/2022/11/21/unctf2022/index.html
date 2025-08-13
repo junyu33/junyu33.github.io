@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>unctf2022pwn wp</h1>
+	<p>虽然pwn AK了，但pwn手还是输麻了。</p>
+<p>运维水平很是蛋疼，以后文件别放毒盘（</p>
+<span id="more"></span>
+<h1>pwn</h1>
+<h2 id="welcomeUNCTF2022">welcomeUNCTF2022</h2>
+<pre><code class="language-c">int func()
+&#123;
+  char s2[11]; // [esp+Ch] [ebp-1Ch] BYREF
+  char s[13]; // [esp+17h] [ebp-11h] BYREF
+
+  strcpy(s2, &quot;UNCTF&amp;2022&quot;);
+  puts(&quot;Welcome to UNCTF2022 Please enter the password:&quot;);
+  gets(s);
+  if ( !strcmp(s, s2) )
+    return system(&quot;cat /flag&quot;);
+  else
+    return puts(&quot;wrong!!!&quot;);
+&#125;
+</code></pre>
+<p>简单判断，测试nc是否正常工作<s>与靶机状态</s>。</p>
+<h2 id="石头剪刀布">石头剪刀布</h2>
+<p>main部分</p>
+<pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
+&#123;
+  char v4; // [rsp+1Fh] [rbp-1h] BYREF
+
+  setvbuf(stdin, 0LL, 2, 0LL);
+  setvbuf(stdout, 0LL, 2, 0LL);
+  setvbuf(stderr, 0LL, 2, 0LL);
+  srand(0xAu);
+  puts(&quot;Do you know \x1B[1;36m\&quot;rand()\&quot;\x1B[0m ?&quot;);
+  puts(&quot;In order to help you,I can tell you a secert!!!But you need to answer my question&quot;);
+  puts(&quot;Will you learn about something of pwn later?(y/n)&quot;);
+  __isoc99_scanf(&quot;%c&quot;, &amp;v4);
+  if ( v4 != 0x79 )
+  &#123;
+    puts(&quot;lazy dog,you can't know my secret and get out!!!&quot;);
+    exit(0);
+  &#125;
+  puts(&quot;good boy,I trust you&quot;);
+  puts(&quot;the secert is:&quot;);
+  puts(&quot;I have set a seed for \x1B[1;36m\&quot;srand()\&quot;?\x1B[0m&quot;);
+  puts(&quot;I'm so happy.Come and play games with me&quot;);
+  playgame(&quot;I'm so happy.Come and play games with me&quot;);
+  return 0;
+&#125;
+</code></pre>
+<p>游戏部分</p>
+<pre><code class="language-c">__int64 playgame()
+&#123;
+  int v1; // [rsp+4h] [rbp-Ch]
+  int v2; // [rsp+8h] [rbp-8h]
+  int i; // [rsp+Ch] [rbp-4h]
+
+  rules();
+  for ( i = 1; i &lt;= 100; ++i )
+  &#123;
+    printf(&quot;\x1B[1;31mround[%d]\x1B[0m\n&quot;, (unsigned int)i);
+    v2 = input();
+    v1 = rand() % 3;
+    if ( !v2 &amp;&amp; v1 != 1 || v2 == 1 &amp;&amp; v1 != 2 || v2 == 2 &amp;&amp; v1 )
+      gameover();
+    puts(&quot;success!!!&quot;);
+  &#125;
+  return backdoor();
+&#125;
+</code></pre>
+<p>给定了随机种子，只需在Linux环境下写个对应种子的随机数序列，再按照赢的方式输入即可。</p>
+<h2 id="move-your-heart">move your heart</h2>
+<p>main函数跟第二题思路相同，略去。</p>
+<pre><code class="language-c">ssize_t back()
+&#123;
+  char buf[32]; // [rsp+0h] [rbp-20h] BYREF
+
+  printf(&quot;gift:%p\n&quot;, buf);
+  return read(0, buf, 0x30uLL);
+&#125;
+</code></pre>
+<p>这里是栈迁移。payload大概是</p>
+<p><code>p64(pop_rdi)+p64(buf+0x18)+p64(system_plt)+b'/bin/sh\0'+p64(buf)+p64(leave_ret)</code></p>
+<p>刚刚够用。</p>
+<h2 id="checkin">checkin</h2>
+<p>比较有意思，考了整数溢出与异常处理。</p>
+<h3 id="int-overflow">int overflow</h3>
+<pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
+&#123;
+  char nptr[32]; // [rsp+0h] [rbp-50h] BYREF
+  char buf[44]; // [rsp+20h] [rbp-30h] BYREF
+  size_t nbytes; // [rsp+4Ch] [rbp-4h]
+
+  in1t(argc, argv, envp);
+  puts(&quot;name: &quot;);
+  read(0, buf, 0x10uLL);
+  buf[16] = 0;
+  puts(&quot;Please input size: &quot;);
+  read(0, nptr, 8uLL);
+  if ( atoi(nptr) &gt; 32 || nptr[0] == '-' )
+  &#123;
+    puts(&quot;No!!Hacker&quot;);
+    exit(0);
+  &#125;
+  LODWORD(nbytes) = atoi(nptr);
+  read(0, nptr, (unsigned int)nbytes);
+  return 0;
+&#125;
+</code></pre>
+<p>buf这个没什么用，暂时不管它。</p>
+<p>注意到倒数第二行这里把字节转成了无符号类型，而<code>atoi</code>是转成<code>int</code>，考虑到有一个整数溢出。</p>
+<p>而第0位不能是符号，可以加一个空格来绕过，不影响<code>atoi</code>的结果。</p>
+<h3 id="sigsegv">sigsegv</h3>
+<p>此时我们可以读入无限制长度的数据，可以使用rop等方式解决。</p>
+<p>但注意到<code>1nit</code>函数里有一个<code>sigsegv_handler</code>，意思是<code>SIGSEGV</code>后直接吐flag。</p>
+<pre><code class="language-c">void __noreturn sigsegv_handler()
+&#123;
+  fprintf(stderr, &quot;%s\n&quot;, flag);
+  fflush(stderr);
+  exit(1);
+&#125;
+</code></pre>
+<p>因此只需乱输一通爆栈即可。</p>
+<h2 id="int-0x80">int_0x80</h2>
+<pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
+&#123;
+  int i; // [rsp+Ch] [rbp-124h]
+  char buf[264]; // [rsp+10h] [rbp-120h] BYREF
+  unsigned __int64 v6; // [rsp+118h] [rbp-18h]
+
+  v6 = __readfsqword(0x28u);
+  initial(argc, argv, envp);
+  mmap((void *)0x10000, 0x1000uLL, 7, 34, -1, 0LL);
+  puts(&quot;hello pwn&quot;);
+  read(0, buf, 0x100uLL);
+  for ( i = 0; i &lt; strlen(buf) - 1; ++i )
+  &#123;
+    if ( ((*__ctype_b_loc())[buf[i]] &amp; 0x4000) == 0 )
+      exit(0);
+  &#125;
+  strcpy((char *)0x10000, buf);
+  MEMORY[0x10000]();
+  return 0;
+&#125;
+</code></pre>
+<p>alphanumeric shellcode</p>
+<p>可以使用AE64库，记得设一下参数为rsi。</p>
+<h2 id="fakehero">fakehero</h2>
+<p><s>建议改名为fakeheap</s>（顾名思义，一个伪堆题）。</p>
+<h3 id="add操作">add操作</h3>
+<pre><code class="language-c">__int64 __fastcall add(void **a1)
+&#123;
+  void **v1; // rbx
+  int v3; // [rsp+1Ch] [rbp-124h] BYREF
+  char buf[268]; // [rsp+20h] [rbp-120h] BYREF
+  __int64 size[2]; // [rsp+12Ch] [rbp-14h] BYREF
+
+  v3 = 0;
+  puts(&quot;Hi! Welcome to UNCTF!&quot;);
+  puts(&quot;index: &quot;);
+  __isoc99_scanf(&quot;%u&quot;, &amp;v3);
+  puts(&quot;Size: &quot;);
+  __isoc99_scanf(&quot;%u&quot;, size);
+  if ( LODWORD(size[0]) &gt; 0x100 )
+    error();
+  v1 = &amp;a1[v3];
+  *v1 = malloc(LODWORD(size[0]));
+  puts(&quot;Content: &quot;);
+  read(0, buf, 0x100uLL);
+  memcpy(a1[v3], buf, LODWORD(size[0]));
+  return 0LL;
+&#125;
+</code></pre>
+<p>注意这里的buf是从栈上直接copy，并且没有清零，因此可以泄露libc和elf地址。<s>但这并没有什么作用</s></p>
+<p>更重要的漏洞是没有限制idx的range。</p>
+<h3 id="free-show操作">free&amp;show操作</h3>
+<pre><code class="language-c">__int64 __fastcall delete(void **a1)
+&#123;
+  int v2; // [rsp+1Ch] [rbp-4h] BYREF
+
+  puts(&quot;Index: &quot;);
+  __isoc99_scanf(&quot;%u&quot;, &amp;v2);
+  if ( !a1[v2] )
+    error();
+  puts((const char *)a1[v2]);
+  free(a1[v2]);
+  puts(&quot;Don't be far away from me.&quot;);
+  return 0LL;
+&#125;
+</code></pre>
+<p>没什么好说的uaf，没有办法编辑free后堆中的内容，再加上前面没有堆溢出，基本无法double free。</p>
+<h3 id="解法">解法</h3>
+<p>观察初始化函数，这里堆是可执行的。</p>
+<pre><code class="language-c">void init()
+&#123;
+  int v0; // [rsp+14h] [rbp-Ch]
+  unsigned __int64 ptr; // [rsp+18h] [rbp-8h]
+
+  setbuf(stdin, 0LL);
+  setbuf(stdout, 0LL);
+  setbuf(stderr, 0LL);
+  ptr = (unsigned __int64)malloc(0x1000uLL);
+  v0 = sysconf(30);
+  if ( v0 == -1 )
+    perror(&quot;[-] sysconf failed&quot;);
+  if ( mprotect((void *)(ptr &amp; 0xFFFFFFFFFFFFF000LL), v0, 7) &lt; 0 )
+    perror(&quot;[-] mprotect failed&quot;);
+  free((void *)ptr);
+&#125;
+</code></pre>
+<p>通过动调后发现pointer struct距离ret处较近，可以考虑覆盖ret地址到一个写好shellcode的堆地址，然后退出即可。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

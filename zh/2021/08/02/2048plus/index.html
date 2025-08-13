@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>2048的又一次改良</h1>
+	<p>闲来无事，我扒出了十年前在网上复制粘贴的mma2048代码，并对其进行了改良，将2048与Threes!结合起来，形成了如下代码。</p>
+<span id="more"></span>
+<p>（由于涉及键盘操作，网页版的编译器无法操作，请自行下载mma8.0及以上版本运行）</p>
+<pre><code class="language-mathematica">挪[左] = # //. &#123;&#123;x___, 1, a_ /; a > 1, y___&#125; :> &#123;x, a, 1, y&#125;, &#123;x___, 
+        a_ /; a > 1, a_, y___&#125; :> &#123;x, 2 抓住[a], 1, y&#125;&#125; /. 抓住[a_] :&gt; a &amp;;
+挪[上] = Composition[Transpose, 挪[左], Transpose];
+挪[下] = Composition[Reverse, 挪[上], Reverse];
+挪[右] = Composition[Transpose, 挪[下], Transpose];
+加块瓦 = ReplacePart[#, RandomChoice@Position[#, 1] -&gt; RandomChoice[&#123;2, 3&#125;]] &amp;;
+按键 = If[格子 != 挪[#][格子], 格子 = 加块瓦[挪[#][格子]]; 总分 = Total[Total[格子]];
+    Which[And @@ (格子 == 挪[#][格子] &amp; /@ &#123;左, 右, 上, 下&#125;), 
+     状态 = &quot;你的得分为&quot; ToString[总分]]] &amp;;
+格子 = 加块瓦[ConstantArray[1, &#123;5, 5&#125;]];
+状态 = &quot;&quot;;
+EventHandler[
+ Dynamic[ArrayPlot[Log2@格子/17, ColorFunction -&gt; Hue, 
+   ColorFunctionScaling -&gt; False, Mesh -&gt; All, 
+   Epilog -&gt; &#123;MapIndexed[
+      Text[If[#1 == 1, &quot;&quot;, Style[#1, &quot;Section&quot;]], #2 - &#123;0.5, 0.5&#125;] &amp;, 
+      Transpose@Reverse@格子, &#123;2&#125;], 
+     Text[Style[状态, Blue, 24], &#123;2.5, 2&#125;]&#125;]], &#123;&quot;LeftArrowKeyDown&quot; :&gt; 
+   按键[左], &quot;RightArrowKeyDown&quot; :&gt; 按键[右], &quot;UpArrowKeyDown&quot; :&gt; 按键[上], 
+  &quot;DownArrowKeyDown&quot; :&gt; 按键[下]&#125;]
+</code></pre>
+<p>计分方式就是所有数字的和，不是2048合成就加分的方式，因此得分会缩水50%左右。</p>
+<p>感觉这个版本的难度增加了不少，目前最高分621，我太菜了，有能力的可以在评论区晒分截图。</p>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+</head>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

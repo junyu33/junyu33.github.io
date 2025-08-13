@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>MiniELF</h1>
+	<p>尝试编写一个尽量小的ELF文件来完成 A + B problem，其中输入为<code>XX YY</code>的形式（<code>X</code>和<code>Y</code>都是0到9的数字），输出不含LF/CRLF。</p>
+<p>经过几天的努力，我成功把程序压缩到了 99 bytes。</p>
+<pre><code>&gt; xxd addition-ver24
+00000000: 7f45 4c46 0100 0000 0000 0000 0000 0005  .ELF............
+00000010: 0200 0300 1b00 0005 1b00 0005 0400 0000  ................
+00000020: 4889 e1b2 05cd 8090 81e3 2000 0100 8a01  H......... .....
+00000030: 2c60 0241 0366 6bc0 0a02 4101 0241 042c  ,`.A.fk...A..A.,
+00000040: 60b2 03b3 64f6 f304 3088 0141 c1e8 08b3  `...d...0..A....
+00000050: 0af6 f366 0530 3066 8901 4966 b804 00b3  ...f.00f..If....
+00000060: 01cd 80                                  ...
+</code></pre>
+<span id="more"></span>
+<h1>MiniELF</h1>
+<h2 id="A-B-Problem">A + B Problem</h2>
+<p>You need to read the two numbers from STDIN, and output them to STDOUT.</p>
+<p>The dataset ensures that both input integers are two-digit numbers with a space between them.</p>
+<p>Output number shoud <strong>not</strong> have extra CR/LF/CRLF.</p>
+<h2 id="Context">Context</h2>
+<ul>
+<li>Linux v5.8+ kernel</li>
+<li>glibc v2.33+</li>
+<li>Support dynamic linking</li>
+<li>x86_64 architecure</li>
+</ul>
+<h2 id="score-compute">score compute</h2>
+<p>You get a guaranteed score as long as the metrics you get are higher than a certain BASELINE (<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="4.525ex" height="1.581ex" role="img" focusable="false" viewBox="0 -677 2000 699" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" style="stroke-width: 3;"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(1000,0)" style="stroke-width: 3;"/><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(1500,0)" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>4096</mn></math></mjx-assistive-mml></mjx-container> bytes). Otherwise, you get a score strictly equal to the following formula: (<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.02ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 451 453" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>r</mi></math></mjx-assistive-mml></mjx-container> indicates your ranking, <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.061ex" height="1.023ex" role="img" focusable="false" viewBox="0 -442 469 452" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>s</mi></math></mjx-assistive-mml></mjx-container> indicates your final score, <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.025ex" height="1.357ex" role="img" focusable="false" viewBox="0 -442 894.9 599.8" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>s</mi><mi>o</mi></msub></math></mjx-assistive-mml></mjx-container> indicates the tasks overall core)</p>
+<mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -1.552ex;" xmlns="http://www.w3.org/2000/svg" width="9.139ex" height="4.588ex" role="img" focusable="false" viewBox="0 -1342 4039.4 2028" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(746.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mfrac" transform="translate(1802.6,0)"><g data-mml-node="mn" transform="translate(421,676)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(220,-686)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(533,289) scale(0.707)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><rect width="1101.9" height="60" x="120" y="220"/></g><g data-mml-node="msub" transform="translate(3144.5,0)"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>s</mi><mo>=</mo><mfrac><mn>2</mn><msup><mn>2</mn><mi>r</mi></msup></mfrac><msub><mi>s</mi><mi>o</mi></msub></math></mjx-assistive-mml></mjx-container><h2 id="solution">solution</h2>
+<h3 id="Level-0（C编译运行）">Level 0（C编译运行）</h3>
+<p>一个显然的做法是用C语言写个A+B problem，然后gcc编译运行。这样做的话一般情况下大小在15～17KB，如果使用strip去掉符号表大概在14KB左右。</p>
+<p>其实在C代码的基础上还有一个优化的策略，那就是加壳，在某些情况下加壳除了有混淆代码的作用，还可以压缩程序的体积。例如使用upx对刚才去掉符号表的程序进行加壳，可以压缩到5KB左右。</p>
+<img src="https://img.junyu33.me/blog/minielf/1.png">
+<h3 id="Level-1（直接写汇编）">Level 1（直接写汇编）</h3>
+<p>当然，由于C语言在编译时会链接glibc的相关库（即使是动态链接，符号表、PLT、GOT等也会占据一定的空间），而我们用到的<code>scanf</code>和<code>printf</code>可以用<code>syscall read/write</code>代替，这点做二进制的同学应该都知道。</p>
+<p>因此，还不如直接写汇编来抛弃glibc带来的空间消耗。我当时直接让GPT4生成了相应的汇编代码，然后稍微做了点修改就跑通了题目。大小在4～5 KB之间，但离 baseline 还差了一点。</p>
+<h3 id="Level-2（修改start地址）">Level 2（修改start地址）</h3>
+<p>然后你会发现，即使使用汇编，生成了程序仍然有很多的空间没法利用。比如下图中从<code>0x150</code>开始的一堆零字节。</p>
+<img src="https://img.junyu33.me/blog/minielf/2.png">
+<p>一个直接的方式是修改程序的起始地址，例如右图中从<code>0x150</code>开始，到<code>0x1000</code>都是0。可以把程序start地址修改为<code>0x400150</code>即可。具体的修改方式可以参考man elf，当然你瞎蒙，把所有的<code>0x401000</code>改完似乎也没问题。（其中一个在<code>0x18</code>处）</p>
+<p>我最后的大小是 652 byte，已经可以进 baseline 了。</p>
+<h3 id="Level-3（裁剪ELF-header-和-footer）">Level 3（裁剪ELF header 和 footer）</h3>
+<p>然后这个时候，我看到了 stackoverflow 的<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/72930779/what-is-the-smallest-x86-64-hello-world-elf-binary">这篇回答</a>，发现其实 ELF 的 header 仍然有裁剪的空间，并且 footer 是完全可以去掉的。</p>
+<img src="https://img.junyu33.me/blog/minielf/stk1.png">
+<p>因此，我 copy 了回答的 header，把start地址从<code>0x78</code>修改到<code>0x74</code>，然后把自己的机器码覆盖到<code>0x74</code>的位置，跑一跑，居然真的可以运行！</p>
+<p>于是，我的程序大小缩减到了273 byte。</p>
+<img src="https://img.junyu33.me/blog/minielf/3.png">
+<h3 id="LEVEL-4（进一步裁剪header）">LEVEL 4（进一步裁剪header）</h3>
+<p>之后，我做了一些较为细碎的裁剪工作，从273 byte 裁剪到了235 byte。此时，有人交了一发205 byte，这下没法了，ELF header还是得继续看。</p>
+<p>我又找到了<a target="_blank" rel="noopener" href="https://codegolf.stackexchange.com/questions/5696/shortest-elf-for-hello-world-n">这篇回答</a>，它把一个 helloworld 压倒了惊人的 61 byte 的大小！</p>
+<img src="https://img.junyu33.me/blog/minielf/4.png">
+<p>我仔细看了好一会儿，才理解了ELF读取文件时，哪些参数是不可或缺的，具体解释如下:</p>
+<ul>
+<li>读取文件开头的魔数<code>0x464c457f</code>，来判断是否为ELF文件。不能修改。</li>
+<li><code>0x4</code>是位数、<code>0x5</code>是alignment，<code>0x6</code>是version，<code>0x7</code>是OS/ABI，这些没办法修改。</li>
+<li><code>0x10</code>指示文件类型（可执行），<code>0x12</code>字节指示架构（x86），无法修改。</li>
+<li><code>0x18</code>~<code>0x1b</code> 指示entrypoint</li>
+<li><code>0x1c</code>~<code>0x1f</code> 指示 program 段的起始地址，<code>0x2a</code>~<code>0x2b</code>指示 program 段的大小，<code>0x2c</code>~<code>0x2d</code>指示 program 段的个数。</li>
+</ul>
+<p>在program段中：</p>
+<ul>
+<li>前4字节是offset，<code>0x4</code>～<code>0x7</code>是虚拟地址，然后<code>0x8</code>～<code>0xb</code>是物理地址，<code>0xc</code>~<code>0xf</code>是文件大小，<code>0x10</code>～<code>0x13</code>是内存大小，剩下8字节是flag和align，不用管。</li>
+<li>需要保证虚拟地址加上代码段在文件的偏移对应的是entrypoint的地址。例如virt = <code>0x500000</code>, offset(code) = <code>0x1b</code>，那么 entrypoint = <code>0x50001b</code></li>
+</ul>
+<p>总的来说，header中只有<code>0x20</code>到<code>0x29</code>，以及<code>0x2e</code>以后的字节是可以控制的。（当然上图通过构造一些指令，也成功利用上了<code>0x1b</code>到<code>0x1f</code>的空间，当然这是后话）</p>
+<p>为了处理 <code>0x2a</code> 到 <code>0x2d</code> 这四个字节无法利用的问题，我选择了构造相关指令（或者选择使用跳转指令）。这两者都是充分利用了空间的选择。</p>
+<p>经过这样的操作后，我的程序压缩到了 138 byte。</p>
+<img src="https://img.junyu33.me/blog/minielf/4-res.png">
+<h3 id="LEVEL5（修改算法）">LEVEL5（修改算法）</h3>
+<p>当然，故事仍然没有结束，我又裁剪了一下，把 138 byte 剪到了 131 byte，然后刷了一下榜。</p>
+<p>但昨天（12月8日）上午，对手把这个数据更新到了 119 byte，其实当时我是有 117 byte 的存货。而当时我快到我汇编压缩的极限了，于是就没急着交。</p>
+<p>这是我先前让 GPT-4 生成的汇编代码（其实经过了一些优化）：</p>
+<pre><code class="language-asm">.section .text
+.globl _start
+
+_start:
+    # Read the input string &quot;xy zw&quot;
+    add $3, %al           # syscall number for read
+    lea (%esp), %ecx     # buffer to store the input string
+    mov $5, %dl           # number of bytes to read (&quot;xy zw&quot;)
+    int $0x80             # syscall
+
+    # Convert first number from ASCII to integer
+    movzbl (%ecx), %eax  # load first digit (x)
+    sub $'0', %al         # convert from ASCII to integer
+    imul $10, %eax        # multiply by 10
+    inc %ecx              # move to next digit
+    movzbl (%ecx), %edx  # load second digit (y)
+    sub $'0', %dl         # convert from ASCII to integer
+    add %edx, %eax        # add second digit to first digit
+    mov %eax, %esi
+
+    # Convert second number from ASCII to integer
+    inc %ecx              # move to next digit
+    inc %ecx              # move to next digit
+    movzbl (%ecx), %eax  # load third digit (z)
+    sub $'0', %al         # convert from ASCII to integer
+    imul $10, %eax          # multiply by 10
+    inc %ecx              # move to next digit
+    movzbl (%ecx), %edx  # load fourth digit (w)
+    sub $'0', %dl         # convert from ASCII to integer
+    add %edx, %eax        # add second digit to first digit
+    
+    # Add the two numbers
+    add %esi, %eax    # add num1 and num2
+
+    # Convert result to ASCII (max 3 digits)
+    mov $10, %bl          # divisor for conversion
+convert_loop:
+    xor %edx, %edx        # clear edx
+    div %ebx              # divide eax by 10, result in eax, remainder in edx
+    add $'0', %dl         # convert remainder to ASCII
+    dec %esp              # move stack pointer for next digit
+    inc %edi
+    mov %dl, (%esp)       # store ASCII character on stack
+    test %eax, %eax       # check if number is fully converted
+    jnz convert_loop      # if not zero, continue loop
+
+    # Prepare for write syscall
+    lea (%esp), %ecx      # pointer to the sum (on the stack)
+    mov %edi, %edx
+    mov $1, %bl
+    mov $4, %al          # syscall number for write
+    int $0x80             # syscall
+</code></pre>
+<p>然后感觉从代码层面的优化的空间已经不多了，于是重写了一下算法：</p>
+<pre><code class="language-asm"> mov  ecx, esp
+ mov  dl, 8
+ mov  al, 3
+ int  0x80
+ mov  al, byte ptr [ecx]
+ sub  al, 0x60
+ add  al, byte ptr [ecx + 3]
+ imul ax, ax, 0xa
+ add  al, byte ptr [ecx + 1]
+ add  al, byte ptr [ecx + 4]
+ sub  al, 0x60
+ mov  dl, 2
+ cmp  al, 0x64
+ add  dl, 1
+ mov  bl, 0x64
+ div  bl
+ add  al, 0x30
+ mov  byte ptr [ecx], al
+ add  ecx, 1
+ shr  eax, 8
+ mov  bl, 0xa
+ div  bl
+ add  ax, 0x3030
+ mov  word ptr [ecx], ax
+ mov  ecx, esp
+ mov  ax, 4
+ mov  bl, 1
+ int  0x80
+</code></pre>
+<p>这段代码前面很容易理解，就是低位加低位，高位加高位，然后通过减去0x30把ascii转成raw number。</p>
+<p>中间div指令稍微有点巧妙，通过gdb调试可以得知 div al 会将商放在低8位，余数放在高8位。知道这一点后，代码就不难看懂了。</p>
+<p>有趣的一点是，之前代码是有用于循环的跳转指令的，但我在调试代码时不小心删掉了一条，导致输出的代码总是3位（如果位数不够会带前导零），但也能通过测试。于是就干脆把循环逻辑给去掉了。</p>
+<p>这样下来，程序已经压缩到了107 byte。</p>
+<img src="https://img.junyu33.me/blog/minielf/5.png">
+<h3 id="LEVEL6（指令替换）">LEVEL6（指令替换）</h3>
+<p>这是x86汇编比较有趣的地方，由于x86汇编是不等长指令，一些语义相同的指令，用不同的方法实现，生成的机器码长度也不同。</p>
+<ul>
+<li>例如，加载立即数时，因为题目保证数据范围&lt;256，如果目的寄存器用的是al而不是eax，那么立即数可以省下3 byte。</li>
+<li>例如，将 add eax, 1 替换成 inc eax，可以省下2 byte。</li>
+<li>例如，如果有多余的空闲寄存器，可以把存栈读栈的指令改成读寄存器，又可以省下至少2 byte。</li>
+<li>例如，之前header中 05 04 00 00 00 其实反汇编是 add eax, 4，然后 dec eax 就可以实现 mov al, 3 的功能，又可以省下1 byte。</li>
+</ul>
+<p>在这道题上，我的操作如下，读者可以自行查询这些汇编指令的替换，可以节省多少字节的空间：</p>
+<img src="https://img.junyu33.me/blog/minielf/6.png">
+<p>在这样一些“骚操作”之后，程序的大小从 107 byte 下降到了 99 byte。这便是我的最终成果。</p>
+<img src="https://img.junyu33.me/blog/minielf/6-res.png">
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

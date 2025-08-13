@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>游戏项目之简易扫雷</h1>
+	<p>本项目是程序设计课程中的游戏项目。</p>
+<p>github链接：<a target="_blank" rel="noopener" href="https://github.com/junyu33/MineSweep/">https://github.com/junyu33/MineSweep/</a></p>
+<p>欢迎大家提issue和pull request</p>
+<span id="more"></span>
+<h1>简要介绍</h1>
+<p>1）本项目是一个基于EGE图形库的扫雷游戏。</p>
+<p>2）本项目的功能说明：</p>
+<p>①简单、普通、困难、自定义四种模式</p>
+<p>②前三种模式的时间排行榜（文件归档）</p>
+<p>③快速扫雷与快速插旗</p>
+<p>④同时支持鼠标和键盘操作</p>
+<p>⑤游戏背景音乐的播放和控制</p>
+<p>3）本项目的开发环境和工具</p>
+<p>开发环境：vscode mingw 8.1.0</p>
+<p>工具：ege20.08</p>
+<h2 id="游戏截图">游戏截图</h2>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/TnFiAe"><img src="https://s4.ax1x.com/2021/12/20/TnFiAe.png" alt="TnFiAe.png" style="zoom: 67%;" /></a></p>
+<h1>Changelog</h1>
+<pre><code>1.0
+(source code)
+2.0
+configuration interface (ok)
+mine-generating xp-&gt;win7 mode (ok)
+basic keyboard support (ok)
+2.1
+timing (ok)
+minecnt (ok)
+2.2
+winning interface with personal things (ok)
+fast-sweeping keyboard support (ok)
+highlight numbers (ok)
+small changes about lastx,lasty (ok)
+3.0
+leaderboard (ok)
+three modes (ok)
+3.1
+quit in menu (ok)
+add fast-flaggging (keyboard only) (ok)
+lowlight blanks (keyboard only) (ok)
+3.2
+add colors to numbers (ok)
+random block to start (ok)
+</code></pre>
+<h1>模块划分</h1>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/TrfvL9"><img src="https://s4.ax1x.com/2021/12/28/TrfvL9.png" alt="TrfvL9.png"></a></p>
+<h1>函数调用关系</h1>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/TrfzZR"><img src="https://s4.ax1x.com/2021/12/28/TrfzZR.png" alt="TrfzZR.png"></a></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

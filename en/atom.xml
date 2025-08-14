@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-13T15:58:51.679Z</updated>
+  <updated>2025-08-14T05:47:30.791Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
@@ -16,8 +16,16 @@
     <title>Number guessing game</title>
     <link href="https://blog.junyu33.me/en/2021/08/27/guess/"/>
     <id>https://blog.junyu33.me/en/2021/08/27/guess/</id>
-    <updated>2025-08-13T15:22:03.173Z</updated>
+    <updated>2025-08-14T04:57:06.306Z</updated>
     <summary type="html"><![CDATA[<p>It was a free day again, so I dug out the number guessing game code that I wrote during the high school. I didn't improve it, but combined the popular online version with elementary school mathematics to form the following code.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>2048 and Threes! written in mathematica</title>
+    <link href="https://blog.junyu33.me/en/2021/08/02/2048plus/"/>
+    <id>https://blog.junyu33.me/en/2021/08/02/2048plus/</id>
+    <updated>2025-08-14T05:46:44.665Z</updated>
+    <summary type="html"><![CDATA[<p>With some free time, I dug out the 2048 code written in mathematica that I copied and pasted from the internet ten years ago and modified it, combining 2048 with Threes!:</p>
+<p>(Due to keyboard manipulation, the web-based compiler won't work. Please download mathematica version 8.0 or higher.)</p>]]></summary>
   </entry>
   <entry>
     <title>The 1st blog</title>

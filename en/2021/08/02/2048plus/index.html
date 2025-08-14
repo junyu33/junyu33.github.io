@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2021/08/02/2048plus/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$",  right: "$",  display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false,   // 避免个别符号导致整段失败
+        macros: {
+          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
+        }
+      });
+    });
+  </script> -->
+    <!-- <script>
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          tags: 'ams'
+        },
+        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
+      };
+    </script>
+    <script async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2021/08/02/2048plus/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>2048 and Threes! written in mathematica</h1>
+	<p>With some free time, I dug out the 2048 code written in mathematica that I copied and pasted from the internet ten years ago and modified it, combining 2048 with Threes!:</p>
+<p>(Due to keyboard manipulation, the web-based compiler won't work. Please download mathematica version 8.0 or higher.)</p>
+<span id="more"></span>
+<p>Here is the original implementation of 2048 using wolfram language (mathematica):</p>
+<pre><code class="language-mathematica">MOVE[LEFT] = # //. &#123;&#123;x___, 1, a_ /; a > 1, y___&#125; :> &#123;x, a, 1, y&#125;, &#123;x___, 
+        a_ /; a > 1, a_, y___&#125; :> &#123;x, 2 HOLD[a], 1, y&#125;&#125; /. HOLD[a_] :&gt; a &amp;;
+MOVE[UP] = Composition[Transpose, MOVE[LEFT], Transpose];
+MOVE[DOWN] = Composition[Reverse, MOVE[UP], Reverse];
+MOVE[RIGHT] = Composition[Transpose, MOVE[DOWN], Transpose];
+ADDBLOCK = ReplacePart[#, 
+    RandomChoice@Position[#, 1] -&gt; RandomChoice[&#123;2, 4&#125;]] &amp;;
+KEY = If[BLOCK != MOVE[#][BLOCK], BLOCK = ADDBLOCK[MOVE[#][BLOCK]]; SCORE = Total[Total[BLOCK]];
+    Which[And @@ (BLOCK == MOVE[#][BLOCK] &amp; /@ &#123;LEFT, RIGHT, UP, DOWN&#125;), 
+     STATE = &quot;Your score is &quot; ToString[SCORE]]] &amp;;
+BLOCK = ADDBLOCK[ConstantArray[1, &#123;4, 4&#125;]];
+STATE = &quot;&quot;;
+EventHandler[
+ Dynamic[ArrayPlot[Log2@BLOCK/17, ColorFunction -&gt; Hue, 
+   ColorFunctionScaling -&gt; False, Mesh -&gt; All, 
+   Epilog -&gt; &#123;MapIndexed[
+      Text[If[#1 == 1, &quot;&quot;, Style[#1, &quot;Section&quot;]], #2 - &#123;0.5, 0.5&#125;] &amp;, 
+      Transpose@Reverse@BLOCK, &#123;2&#125;], 
+     Text[Style[STATE, Blue, 24], &#123;2, 2&#125;]&#125;]], &#123;&quot;LeftArrowKeyDown&quot; :&gt; 
+   KEY[LEFT], &quot;RightArrowKeyDown&quot; :&gt; KEY[RIGHT], &quot;UpArrowKeyDown&quot; :&gt; KEY[UP], 
+  &quot;DownArrowKeyDown&quot; :&gt; KEY[DOWN]&#125;]
+</code></pre>
+<p>I've incorporated the rules of Threes!:</p>
+<ul>
+<li>Here, 1 can only merge with 2, and 2 can only merge with 1. However, 3 + 3 = 6, and 6 + 6 = 12, just like the rules of 2048.</li>
+<li>The code randomly generates blocks of 1, 2, or 3 with equal probability.</li>
+<li>The final scoring rule is to score blocks equal or greater than 3 with 3, 9, 27 ... and then sum them up.</li>
+</ul>
+<p>The difference from the original Threes! is that:</p>
+<ul>
+<li>The movement rule is not one block at a time, it is still the rule from 2048.</li>
+<li>There is no random generation of high-scoring blocks.</li>
+</ul>
+<p>The modified code is as follows:</p>
+<pre><code class="language-mathematica">MOVE[LEFT] = # //. &#123;&#123;x___, 1, a_ /; a > 1, y___&#125; :> &#123;x, a, 1, 
+       y&#125;, &#123;x___, 2, 4, y___&#125; :> &#123;x, 6, 1, y&#125;, &#123;x___, 4, 2, 
+       y___&#125; :> &#123;x, 6, 1, y&#125;, &#123;x___, a_ /; a >= 6 && EvenQ[a], a_, 
+       y___&#125; :> &#123;x, 2 a, 1, y&#125;&#125; &amp;;
+MOVE[UP] = Composition[Transpose, MOVE[LEFT], Transpose];
+MOVE[DOWN] = Composition[Reverse, MOVE[UP], Reverse];
+MOVE[RIGHT] = Composition[Transpose, MOVE[DOWN], Transpose];
+ADDBLOCK = 
+  ReplacePart[#, 
+    RandomChoice@Position[#, 1] -&gt; RandomChoice[&#123;2, 4, 6&#125;]] &amp;;
+CALCULATESCORE = Total[If[# &gt;= 6, 3^Log2[#/3], 0] &amp; /@ Flatten[#]] &amp;;
+KEY = If[BLOCK != MOVE[#][BLOCK], BLOCK = ADDBLOCK[MOVE[#][BLOCK]];
+    SCORE = CALCULATESCORE[BLOCK];
+    Which[And @@ (BLOCK == MOVE[#][BLOCK] &amp; /@ &#123;LEFT, RIGHT, UP, DOWN&#125;),
+      STATE = &quot;Game over! Score: &quot; &lt;&gt; ToString[SCORE]]] &amp;;
+BLOCK = ADDBLOCK[ConstantArray[1, &#123;4, 4&#125;]];
+STATE = &quot;&quot;;
+EventHandler[
+ Dynamic[ArrayPlot[Log2@BLOCK/17, ColorFunction -&gt; Hue, 
+   ColorFunctionScaling -&gt; False, Mesh -&gt; All, 
+   Epilog -&gt; &#123;MapIndexed[
+      Text[If[#1 == 1, &quot;&quot;, Style[#1/2, &quot;Section&quot;]], #2 - &#123;0.5, 0.5&#125;] &amp;,
+       Transpose@Reverse@BLOCK, &#123;2&#125;], 
+     Text[Style[STATE, Blue, 20], &#123;2, 2&#125;]&#125;]], &#123;&quot;LeftArrowKeyDown&quot; :&gt; 
+   KEY[LEFT], &quot;RightArrowKeyDown&quot; :&gt; KEY[RIGHT], 
+  &quot;UpArrowKeyDown&quot; :&gt; KEY[UP], &quot;DownArrowKeyDown&quot; :&gt; KEY[DOWN]&#125;]
+</code></pre>
+<p>I played casually and scored 3078 points. I feel that it is playable indeed.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

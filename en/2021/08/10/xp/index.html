@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 
   
-    <link rel="alternate" hreflang="en" href="/en/2021/08/10/xp/">
+    <link rel="alternate" hreflang="zh" href="/zh/2021/08/10/xp/">
   
 
 <head>
@@ -61,15 +61,15 @@
 		</a>
 		<div class="right">
 			
-				<a href="/zh">首页</a>
-				<a href="/zh/archives">归档</a>
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
 				
-					<a href="/zh/categories">Categories</a>
+					<a href="/categories">Categories</a>
 				
 				
-					<a href="/zh/tags">Tags</a>
+					<a href="/tags">Tags</a>
 				
-				<a href="/">English</a>
+				<a href="/zh">中文站</a>
 			
 		</div>
 	</div>
@@ -81,32 +81,32 @@
       <nav class="lang-switch" role="navigation" aria-label="Language switch">
         
           <a class="lang-pill"
-             href="/en/2021/08/10/xp/"
-             hreflang="en">
-            <span class="lang-label">English</span>
+             href="/zh/2021/08/10/xp/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
           </a>
         
       </nav>
     
 
-	<h1>Xposed——从入门到放弃</h1>
-	<p>换新手机后，经过两天的不懈努力（与50元解bootloader锁的智商税？）我终于让华为的手机成了我的手机。</p>
+	<h1>Xposed, from beginner to quitter</h1>
+	<p>After getting a new phone, after two days of disdainful efforts (and the stupidity tax of 50 yuan to unlock the bootloader?), I finally gained full control of my Huawei phone.</p>
 <span id="more"></span>
 <img src="https://img.junyu33.me/blog/xp/1.png" style="zoom: 33%;" />
-<p>目前还没发现有什么特别的用处，等以后<strong>有技术了</strong>再来填坑。</p>
+<p>I haven't found any special use for it yet, I'll update the post when I have the ability in the future.</p>
 <h2 id="updated-on-2024-8-17">updated on 2024-8-17</h2>
-<p>这段时间比较空闲，于是我终于有时间来填坑了。</p>
-<p>首先我要说的是，我感觉 root 后能做的事情比我想象得少很多。毕竟这个手机的安卓版本是 7.0，已经被时代给抛弃了。</p>
-<p>以下的事情有些不用 root 也能搞定，但比较 hack 的操作我也会写在下面。</p>
-<h3 id="卸载系统应用（成功）">卸载系统应用（成功）</h3>
-<p>首先使用 <a target="_blank" rel="noopener" href="https://www.myandroidtools.com/">MyAndroidTools</a> 并不能正常卸载（即使拿到了 root 权限），原因未知。</p>
-<p>正确的做法是拿到包名后使用 root 权限进入 shell，然后键入以下命令：</p>
+<p>I've had some free time lately, so I finally have time to update.</p>
+<p>First and foremost, I feel like rooting can do much less than I expected. After all, this phone is running Android 7.0, which is already outdated.</p>
+<p>Some of the following tasks can be done without rooting, but I'll also include the more hacky ones.</p>
+<h3 id="uninstall-system-apps-success">uninstall system apps (success)</h3>
+<p>First, using <a target="_blank" rel="noopener" href="https://www.myandroidtools.com/">MyAndroidTools</a> cannot uninstall normally (even if with root access). The reason is unknown.</p>
+<p>The correct way is to get the package name, enter the shell with root privileges, and then enter the following command:</p>
 <pre><code class="language-sh">adb shell pm uninstall --user 0 &lt;package_name&gt;
 </code></pre>
-<p>笔者通过对比 MyAndroidTools 前后应用的列表差别，确认这个是永久卸载，而不是高版本 Android 只在当前用户删除。</p>
-<h3 id="System-RW（失败）">System RW（失败）</h3>
-<p>笔者在新国大坐牢，曾经在 Ubuntu 笔记本搞 Waydroid 的时候，意外地发现了 SystemRW （<a target="_blank" rel="noopener" href="http://www.systemrw.com">www.systemrw.com</a>，不用点，已经挂了）这个工具。我曾使用这个工具成功使我的 Waydroid 的 system 分区可写，从而有了愉快的网络抓包经历。</p>
-<p>如今，这个工具的官网已经挂了，但它的解压文件还乖乖躺在了我的电脑里。于是我熟练的将它 push 到了手机上，然后运行了它。结果如下：</p>
+<p>By comparing the application lists before and after using MyAndroidTools, I confirmed that it permanently uninstalls the app, rather than just removing it for the current user, which often happens on newer versions of Android.</p>
+<h3 id="System-RW-failed">System RW (failed)</h3>
+<p>While I was at NUS, I stumbled upon the tool SystemRW (<a target="_blank" rel="noopener" href="http://www.systemrw.com">www.systemrw.com</a>, don't click, it's down) while exploring Waydroid on an Ubuntu laptop. I used it to successfully make my Waydroid's system partition writable, which allowed me to enjoy network packet capture.</p>
+<p>The tool's official website is now down, but the unzipped file is still sitting on my computer. So, I expertly pushed it to my phone and ran it. Here's the result:</p>
 <pre><code class="language-sh">HWSTF:/data/local/tmp/sysrw_1.41 # ./sysrw
 
  ---------------------------------------------------
@@ -161,26 +161,26 @@ sysrw: Current device architecture: aarch64
 sysrw: Please install Android 10 or newer and try again
 </code></pre>
 <blockquote>
-<p>这个 developer 还是有点中二的，你说对不对？</p>
+<p>The developer is still a bit chuunibyou, don't you think so?</p>
 </blockquote>
-<p>很不幸，这个工具只支持 Android 10 以上的版本。我之前也尝试进 fastboot 模式刷了一个 Android 13 的 ROM，但是这个 ROM 有点问题，导致我无法进入系统。所以这个方法暂时不可行。</p>
-<h3 id="尝试将-magisk-root-方法换成-kernelSU（失败）">尝试将 magisk root 方法换成 kernelSU（失败）</h3>
-<p>显然，我认为 kernelSU 是一个更加 advanced 的 root 方法。或许可以解决 /system 分区不可写的问题。</p>
-<p>然而：</p>
+<p>Unfortunately, this tool only supports Android 10 and above. I previously tried to flash an Android 13 ROM in fastboot mode, but there were some issues with that ROM that prevented me from booting into the system. So this method is not feasible for the time being.</p>
+<h3 id="Trying-replace-magisk-root-method-by-kernelSU-failed">Trying replace magisk root method by kernelSU (failed)</h3>
+<p>Obviously, I think kernelSU is a more advanced root method. Maybe it can solve the problem of <code>/system</code> partition not being writable.</p>
+<p>However:</p>
 <blockquote>
 <p>KernelSU officially supports Android GKI 2.0 devices (kernel 5.10+). Older kernels (4.14+) are also compatible, but the kernel will have to be built manually.</p>
 </blockquote>
 <pre><code class="language-sh">HWSTF:/ # uname -a
 Linux localhost 4.1.18-g7bd0d96 #1 SMP PREEMPT Fri Oct 12 10:15:13 CST 2018 aarch64
 </code></pre>
-<p>显然，我的手机的内核版本是 4.1.18，所以这个方法也不可行。</p>
-<h3 id="将我的-shizuku-更换为-sui（失败）">将我的 shizuku 更换为 sui（失败）</h3>
-<p>shizuku 在它的应用里说 sui 将最终取代 shizuku，于是我尝试安装 sui。</p>
-<p>但是，我试了 github 诸多版本的 sui（zygisk），它们的安装包在我的的手机上都无法解析。个人猜测应该是 Android 版本问题。只好作罢。</p>
-<h3 id="安装-Ubuntu（成功）">安装 Ubuntu（成功）</h3>
-<p>最理想的情况是直接裸机安装 Ubuntu，但据 misane 的说法，ubuntu touch 支持的手机型号很少。另外，手机的驱动是闭源的，而且不一定在 Linux 内核层，有可能在安卓 HAL 层，所以就难办。</p>
-<p>于是我只好退而求其次，在 Termux 上安装 Ubuntu。最新版的 Termux 在我的设备上无法安装，我找到的可用于 7.0 的版本是 0.88。</p>
-<p>然后，我参照<a target="_blank" rel="noopener" href="https://blog.csdn.net/xyzAriel/article/details/104698491">这个教程</a>在 Termux 上配置好环境并安装了 Ubuntu，其实感觉功能并不比 Termux 本身强多少。</p>
+<p>Apparently, my phone's kernel version is 4.1.18, so this method doesn't work either.</p>
+<h3 id="Trying-to-replace-shizuku-by-sui-failed">Trying to replace shizuku by sui (failed)</h3>
+<p>Shizuku said in its app that Sui would eventually replace Shizuku, so I tried installing Sui.</p>
+<p>However, I tried various versions of Sui (Zygisk) from GitHub, but none of their installers worked on my phone. I suspect it was an issue with the Android version. So, I gave up.</p>
+<h3 id="Install-Ubuntu-success">Install Ubuntu (success)</h3>
+<p>Ideally, I'd install Ubuntu directly on my device, but according to <em>misane</em>, Ubuntu Touch supports very few phone models. Furthermore, the phone drivers are closed source and not necessarily in the Linux kernel, but likely in the Android HAL layer, making this difficult.</p>
+<p>So I had to settle for the next best thing: installing Ubuntu on Termux. The latest version of Termux wouldn't install on my device; the only version I could find that works with Android 7.0 is 0.88.</p>
+<p>Then, I set up Ubuntu on Termux following <a target="_blank" rel="noopener" href="https://blog.csdn.net/xyzAriel/article/details/104698491">this tutorial</a>, but its functionality isn't much stronger than Termux itself.</p>
 <pre><code class="language-sh">apt-get update
 apt-get upgrade -y
 apt-get install wget proot git -y
@@ -193,26 +193,26 @@ chmod +x ubuntu.sh
 ./startubuntu.sh
 </code></pre>
 <blockquote>
-<p>另外这里的清华源地址有错，正确的 Termux 源是 <code>deb https://mirrors.tuna.tsinghua.edu.cn/termux/apt/termux-main stable main</code>。</p>
-<p>另外，安装也不需要几个小时，开了代理，最多一分钟。</p>
+<p>The mirror source from the tutorial is outdated，the correct mirror for Termux (now) is <code>deb https://mirrors.tuna.tsinghua.edu.cn/termux/apt/termux-main stable main</code>。</p>
+<p>In addition, the installation does not take several hours (said in the post), and with the proxy enabled, it only takes a minute at most.</p>
 </blockquote>
-<p>BTW，用手机敲命令真的很难受，于是我在手机上装了个 openssh，从电脑端来操作。</p>
+<p>BTW, typing commands on my phone is really painful, so I installed OpenSSH on it and operate from my computer.</p>
 <blockquote>
-<p>这里启动 sshd 服务不需要 systemctl 那一套，直接 <code>sshd</code> 就行。</p>
+<p>Here, starting the SSHD service doesn't require the whole <code>systemctl</code> setup; just running <code>sshd</code> does the work.</p>
 </blockquote>
-<h3 id="防止杀后台（成功）">防止杀后台（成功）</h3>
-<p>我问了下 ChatGPT，他推荐了 App Systemizer，看了下 GitHub，这个工具最后一次更新还是7年前，支持 Magisk v14（我的版本是 27）。GitHub 没有提供安装包，而 Magisk 目前也不提供搜索模块的功能。于是我只能去 <a target="_blank" rel="noopener" href="https://xdaforums.com/t/module-terminal-app-systemizer-v17-3-1.3585851/">XDA</a> 找到最新版本的压缩包（2019年），往 Magisk 里一丢，安装成功。</p>
-<p>至于 Magisk 怎么安装离线 zip 包，这里简单讲一下：模块 -&gt; 从本地安装 -&gt; 选择 RE/MT 文件管理器 -&gt; 选择 zip 包即可。至于使用方法参考 XDA 链接里的 youtube 视频即可。</p>
-<p>另外，我也可以通过使屏幕保持常亮来防止后台被杀，但因为未知原因，设置里面的休眠选项是灰色的，无法更改。根据 ChatGPT 的回答，它说你可以使用 ADB 或 root 权限直接修改安卓系统的 settings 数据库，来调整休眠时间。具体命令如下：</p>
+<h3 id="Prevent-killing-the-background-process-success">Prevent killing the background process (success)</h3>
+<p>I asked ChatGPT and it recommended <strong>App Systemizer</strong>. I checked its GitHub page and found that the tool was last updated <strong>seven years ago</strong> and only supports <strong>Magisk v14</strong> (my version is 27). GitHub doesn't provide an installation package, and Magisk currently doesn't support searching for modules either. So I had to go to <a target="_blank" rel="noopener" href="https://xdaforums.com/t/module-terminal-app-systemizer-v17-3-1.3585851/">XDA</a> to find the latest compressed package (2019), drop it into Magisk, and it installed successfully.</p>
+<p>As for installing an offline Magisk zip, here's a quick guide: <strong>Modules → Install from storage → select RE/MT file manager → choose the zip package</strong>. For usage instructions, refer to the YouTube video linked in the XDA thread.</p>
+<p>Additionally, I can keep the screen always on to prevent the background process from being killed. However, for some unknown reason, the <strong>Sleep</strong> option in Settings is greyed out and cannot be changed. According to ChatGPT, you can modify the Android system <code>settings</code> database directly via <strong>ADB</strong> or <strong>root access</strong> to adjust the sleep timeout. The specific commands are as follows:</p>
 <pre><code class="language-sh">adb shell settings put system screen_off_timeout 2147483647
 </code></pre>
-<p>我试了下，确实管用。设置这边这个值变成“永不”了。于是，这个旧手机离变成树莓派已经不远了。</p>
-<h3 id="hack-系统主题（成功）">hack 系统主题（成功）</h3>
-<p>我觉得我旧手机的系统主题挺好看的，想迁移到自己现在的主力机上。我在旧手机的主题商店得知这个主题的名字叫“再见时光”，然后在主力机上一搜，找不到这个主题。</p>
-<p>于是我参考了<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av340138233/">这个链接</a>得知华为的主题包后缀名是<code>hwt</code>，但路径与视频中的不同，于是我选择：</p>
+<p>I tried it, and it really works. The setting is now set to &quot;Never.&quot; With this, my old phone isn't far from becoming a Raspberry Pi.</p>
+<h3 id="hack-system-theme-success">hack system theme (success)</h3>
+<p>I really like the system theme on my old phone and want to transfer it to my current main device. I found out the theme's name is <em>再见时光</em> (<em>Goodbye Time</em>) from the theme store on my old phone, but when I searched for it on my main phone, it couldn't be found.</p>
+<p>So I referred to <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av340138233/">this link</a> and learned that Huawei theme packages have the <code>.hwt</code> extension. However, the path on my phone was different from the one in the video, so I decided to:</p>
 <pre><code class="language-sh">find / -name &quot;*.hwt&quot; 2&gt;/dev/null
 </code></pre>
-<p>部分输出如下：</p>
+<p>Part of the output is as follows：</p>
 <pre><code>./system/emui/china/themes/Droidsansfallback.hwt                                              
 ./system/emui/china/themes/FZLT.hwt                                                           
 ./system/emui/china/themes/FZLTH.hwt                                                          
@@ -239,7 +239,7 @@ chmod +x ubuntu.sh
 ./storage/emulated/0/HWThemes/b7e06a7ad1d2468082d4bcf11f1d158f.hwt                             
 ./storage/emulated/0/HWThemes/628834ba702c488ebde3a43777795a7d.hwt
 </code></pre>
-<p>于是主题的路径是<code>/storage/emulated/0/HWThemes</code>，然后查看<code>.cache</code>目录，ls 一下：</p>
+<p>So the theme's path is <code>/storage/emulated/0/HWThemes</code>. Then, check the <code>.cache</code> directory and run <code>ls</code>:</p>
 <pre><code class="language-sh">HWSTF:/storage/emulated/0/HWThemes/.cache # ls
 20170331163957.18140689.hwt          Flow.hwt     Waltz.hwt                            
 628834ba702c488ebde3a43777795a7d.hwt Memento.hwt  b7e06a7ad1d2468082d4bcf11f1d158f.hwt 
@@ -247,7 +247,7 @@ Droidsansfallback.hwt                Rhapsody.hwt cover
 FZLT.hwt                             Serenade.hwt diycache                             
 FZLTH.hwt                            Symphony.hwt themecache
 </code></pre>
-<p>这里面每一个都是文件夹，内部都有一个名为<code>description.xml</code>的文件，查看这个文件就可以得知主题的名称，例如：</p>
+<p>Inside, each item is a folder, and each folder contains a file named <code>description.xml</code>. By looking at this file, you can find out the name of the theme.</p>
 <pre><code class="language-sh">HWSTF:/storage/emulated/0/HWThemes/.cache # cat b7e06a7ad1d2468082d4bcf11f1d158f.hwt/description.xml
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 
@@ -270,27 +270,27 @@ FZLTH.hwt                            Symphony.hwt themecache
 
 HWSTF:/storage/emulated/0/HWThemes/.cache # 
 </code></pre>
-<p>于是我们得知，应该将 <code>b7e06a7ad1d2468082d4bcf11f1d158f.hwt</code> 这个文件夹 pull 出来，这就算成功一半了。</p>
-<p>接着，我应该将<code>HWThemes</code>目录的这个<code>hwt</code>文件拷贝到主力机上，自然，路径跟旧手机肯定又不一样。我们知道，此时的华为主题商店已经变成了荣耀主题商店，于是对应的路径是<code>/storage/emulated/0/Honor/Themes</code>，里面有<code>themecache</code>这个文件夹，因此可以基本确定把<code>hwt</code>文件放在这个路径下就可以了。</p>
-<p>我如法炮制，打开主力机的荣耀主题商店，“我的主题”里面果然就有了这个，甚至还能看这个主题的用户评论。</p>
+<p>So we found that we should pull out the folder <code>b7e06a7ad1d2468082d4bcf11f1d158f.hwt</code>—that's already half the battle won.</p>
+<p>Next, I needed to copy this <code>.hwt</code> file from the <code>HWThemes</code> directory to my main device. Naturally, the path would be different from the old phone. By now, the Huawei Theme Store had become the Honor Theme Store, so the corresponding path is <code>/storage/emulated/0/Honor/Themes</code>, which contains a folder called <code>themecache</code>. Therefore, it was fairly certain that placing the <code>.hwt</code> file in this path would work.</p>
+<p>I followed the same procedure, opened the Honor Theme Store on my main device, and indeed, the theme appeared under &quot;My Themes.&quot; I could even see the user comments for this theme.</p>
 <blockquote>
-<p>看来华为荣耀还是没有彻底分家啊。</p>
+<p>Looks like Huawei and Honor haven't completely gone their separate ways yet.</p>
 </blockquote>
-<p>可能是因为屏幕长宽比不同，这个主题适配到主力机上锁屏界面有点瑕疵，短信界面也无法显示背景。但除此之外还是挺完美的。</p>
-<h3 id="绿色守护（成功）">绿色守护（成功）</h3>
-<p>针对 Android 7 能用的旧版本绿色守护是在<a target="_blank" rel="noopener" href="http://shouyou.kuai8.com/game/60585.html">这里</a>找到的。我启用了 root 功能，但工作模式中的 Xposed 模式不能选择，原因未知。</p>
-<p>出于隐私保护，我休眠了除 NCalc+ 和 termux 外所有的联网应用，除此之外我没有做其他操作。</p>
-<h3 id="frida-初探（成功）">frida 初探（成功）</h3>
-<p>首先我在 GitHub 上找到了 magisk-frida，在 Xposed 安装了 zip 包。然后在我的 Ubuntu 主机配置 frida client，步骤如下：</p>
+<p>Perhaps due to the different screen aspect ratio, the theme's lock screen on the main device had some minor issues, and the messaging interface couldn't display the background. But aside from that, it worked quite perfectly.</p>
+<h3 id="Greenify-Success">Greenify (Success)</h3>
+<p>I found an older version of Greenify that works on Android 7 <a target="_blank" rel="noopener" href="http://shouyou.kuai8.com/game/60585.html">here</a>. I enabled root access, but the Xposed mode in Work Mode couldn't be selected for some unknown reason.</p>
+<p>For privacy reasons, I put all network-enabled apps to sleep except for <strong>NCalc+</strong> and <strong>Termux</strong>. Other than that, I didn't make any further changes.</p>
+<h3 id="Exploring-Frida-Success">Exploring Frida (Success)</h3>
+<p>First, I found <strong>magisk-frida</strong> on GitHub and installed the zip package via Xposed. Then, I set up the Frida client on my Ubuntu host with the following steps:</p>
 <pre><code class="language-sh">conda create -n frida python=3.11
 conda activate frida
 pip3 install frida frida-tools
 </code></pre>
-<p>然后运行：</p>
+<p>Next, run:</p>
 <pre><code class="language-sh">adb forward tcp:27042 tcp:27042
 frida-ps -U
 </code></pre>
-<p>可以看到手机上的进程。</p>
+<p>This allows you to see the processes running on the phone.</p>
 <pre><code class="language-sh">  PID  Name
 -----  ------------------------------------------
 12346  Clash Meta for Android
@@ -332,8 +332,8 @@ frida-ps -U
 ...
 </code></pre>
 <h4 id="com-bidau-nkngl">com.bidau.nkngl</h4>
-<p>这里有一个叫<code>com.bidau.nkngl</code>的进程，我觉得这个进程很可疑，通过手机的 MyAndroidTools 得知这个应用的名字叫<code>SystemStars</code>，Apk路径为<code>/system/app/MTExMSxodW/MTExMSxodWF3ZWktc3RmLWFsMDAsNjU1OTUsMQ==.apk</code>，base64解一下得到<code>1111,hu/1111,huawei-stf-al00,65595,1</code>，感觉没什么意思。于是我又决定用 frida 来看看这个应用的行为，具体的我还是查看与网络相关的行为：</p>
-<p>首先枚举与网络相关的类：</p>
+<p>There's a process called <code>com.bidau.nkngl</code> that seemed suspicious to me. Using <strong>MyAndroidTools</strong> on the phone, I found that the app's name is <strong>SystemStars</strong>, and the APK path is <code>/system/app/MTExMSxodW/MTExMSxodWF3ZWktc3RmLWFsMDAsNjU1OTUsMQ==.apk</code>. Decoding the Base64 gives <code>1111,hu/1111,huawei-stf-al00,65595,1</code>, which didn't seem meaningful. So I decided to use <strong>Frida</strong> to inspect the app's behavior, focusing specifically on network-related activity:</p>
+<p>First enumerate classes related to network activity:</p>
 <pre><code class="language-javascript">Java.perform(function() &#123;
     Java.enumerateLoadedClasses(&#123;
         onMatch: function(className) &#123;
@@ -347,7 +347,7 @@ frida-ps -U
     &#125;);
 &#125;);
 </code></pre>
-<p>结果如下：</p>
+<p>Here is the result:</p>
 <pre><code>Attaching...                                                                                                                                                                16:15:52 [120/187]
 Loaded class: org.apache.http.HttpEntityEnclosingRequest
 Loaded class: org.apache.http.ProtocolVersion
@@ -489,7 +489,7 @@ Loaded class: [Lcom.android.okhttp.TlsVersion;
 Loaded class: [Lcom.android.okhttp.CipherSuite;
 Class enumeration complete.
 </code></pre>
-<p>可见其用了 <code>org.apache.http</code> 和 <code>com.android.okhttp</code> 这两个库，于是我们可以编写 hook 代码，这里以 <code>OkHttp</code> 的 <code>Request</code> 和 <code>Response</code> 为例：</p>
+<p>It can be seen that it uses the <code>org.apache.http</code> and <code>com.android.okhttp</code> libraries. Therefore, we can write hook code—for example, using <strong>OkHttp</strong>'s <code>Request</code> and <code>Response</code>:</p>
 <pre><code class="language-javascript">Java.perform(function() &#123;
     var OkHttpRequestBuilder = Java.use('com.android.okhttp.Request$Builder');
 
@@ -514,15 +514,15 @@ Class enumeration complete.
     &#125;;
 &#125;);
 </code></pre>
-<p>然后运行：</p>
+<p>Then run:</p>
 <pre><code class="language-sh">frida -U -n com.bidau.nkngl -l monitor_network.js
 </code></pre>
-<p>然后发现报错了，<code>frida-server</code>并没有在运行。于是我只好乖乖地去GitHub上下载了一份对应版本的<code>frida-server</code>，然后 push 到手机上，再启动服务端。</p>
+<p>Then I found an error: <code>frida-server</code> wasn't running. So I had to download the corresponding version of <code>frida-server</code> from GitHub, push it to the phone, and then start the server.</p>
 <pre><code class="language-sh">HWSTF:/data/local/tmp # ./frida-server-16.4.8-android-arm64 
 unable to stat file for the executable &quot;/memfd:frida-helper-32 (deleted)&quot;: No such file or directory
 ^CHWSTF:/data/local/tmp # 
 </code></pre>
-<p>这次再运行脚本，登了一段时间，并没有任何输出：</p>
+<p>This time, running the script again, it ran for a while but produced no output:</p>
 <pre><code class="language-sh">&gt; frida -U -n com.bidau.nkngl -l monitor_network.js
 
      ____
@@ -539,7 +539,7 @@ unable to stat file for the executable &quot;/memfd:frida-helper-32 (deleted)&qu
                                                                                 
 [STF AL10::com.bidau.nkngl ]-&gt;
 </code></pre>
-<p>于是我选择了速度更快的静态分析，使用 jadx-gui 打开 apk 文件，根据今年六月份的实训经验，java 代码的业务逻辑基本都在<code>service</code>这个类中，于是我打开<code>com.nantu.nengl.service.MyLocalService</code>，找到了如下一段代码：</p>
+<p>So I opted for faster static analysis, using <strong>jadx-gui</strong> to open the APK file. Based on the practical training experience from June this year, most of the business logic in the Java code is usually in the <code>service</code> class. I opened <code>com.nantu.nengl.service.MyLocalService</code> and found the following code:</p>
 <pre><code class="language-java">    public boolean a(List&lt;com.nantu.nengl.a.b&gt; list) &#123;
         if (list == null || list.size() == 0) &#123;
             return true;
@@ -578,10 +578,10 @@ unable to stat file for the executable &quot;/memfd:frida-helper-32 (deleted)&qu
         &#125;
     &#125;
 </code></pre>
-<p>原来这是我之前给手机安装的一个名为“奇兔刷机”的应用，这个应用现在都还躺在我的recovery分区里，感觉应该是没什么问题的。</p>
+<p>It turns out this was an app I had previously installed on the phone called <em>奇兔刷机</em>. The app is still sitting in my recovery partition, so it seems there's probably no issue.</p>
 <h4 id="com-android-vending">com.android.vending</h4>
-<p>但是我总得通过什么东西来证明 frida 的能力对吧，于是我选择了 play 商店，包名是 <code>com.android.vending</code>，hook脚本不变。</p>
-<p>但这次运行却出错了：</p>
+<p>But I still needed something to demonstrate Frida's capabilities, so I chose the Play Store, with the package name <code>com.android.vending</code>, keeping the hook script the same.</p>
+<p>However, this time running it resulted in an error:</p>
 <pre><code class="language-sh">&gt; frida -U -n com.android.vending -l monitor_network.js
 
      ____
@@ -597,7 +597,7 @@ unable to stat file for the executable &quot;/memfd:frida-helper-32 (deleted)&qu
    . . . .   Connected to STF AL10 (id=xxx)
 Failed to spawn: unable to find process with name 'com.android.vending'
 </code></pre>
-<p>这个问题其实也不难解决，只需要拿到 play 商店的 pid，然后用 pid 进行 hook 也未尝不可，然后在 play 商店随便刷新几下就有结果了：</p>
+<p>This problem isn't actually hard to solve. You can simply get the Play Store's PID and use it for hooking. After refreshing the Play Store a few times, you'll see the results:</p>
 <pre><code class="language-sh">&gt; frida -U -p 19507 -l monitor_network.js
 
      ____
@@ -623,9 +623,9 @@ Failed to spawn: unable to find process with name 'com.android.vending'
 [OkHttp] Header: Authorization: Bearer ya29.m.CpYCAdJUhWdHMq07ko1_QNsNqX0-6Z-sSqLuep-11xDbDzGwmbv40T_07xA6gzicGOdtIRL6BdTI5JroLxax1-PsRCElhVFFthKPXEmG2AR12LAVPlHI8JmLjVh5mxng7oEE2qQroDGusu5RruzqkIFOQu06qFBCr......................................................................................................................................................0SWQyTtdD0blEqv--9e6-yV3gR6vGOXROTIRWhCCdS2LF7phuO84eAXRjx6kkM-YSDwgBEgcKAQQQjeoEGMHNBBogVmnWzORig8HgDXTx0_LY_IwnqMpxpyfFd9kGW0AYE_IiAggBKithQ2dZS0FTQVNBUk1TRlFIR1gyTWlaT25kXzQ0anJwSjZHaklHMUxtSFBB
 ...
 </code></pre>
-<p>完结撒花。</p>
+<p>And that's a wrap! 🎉</p>
 <h2 id="updated-on-2025-7-28">updated on 2025-7-28</h2>
-<p>又过了将近一年，我的旧手机终于在尝试给app抓包时起到了作用——然并没有解决我遇到的问题，具体内容见<a href="https://blog.junyu33.me/2025/07/28/router.html">此链接</a>。</p>
+<p>Nearly a year later, my old phone finally came in handy when I tried to capture traffic from an app—though it didn't actually solve the problem I was facing. For details, see <a href="https://blog.junyu33.me/2025/07/28/router.html">this link</a>.</p>
 
 </div>
 

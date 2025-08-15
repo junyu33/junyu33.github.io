@@ -106,7 +106,7 @@
 <p>By comparing the application lists before and after using MyAndroidTools, I confirmed that it permanently uninstalls the app, rather than just removing it for the current user, which often happens on newer versions of Android.</p>
 <h3 id="System-RW-failed">System RW (failed)</h3>
 <p>While I was at NUS, I stumbled upon the tool SystemRW (<a target="_blank" rel="noopener" href="http://www.systemrw.com">www.systemrw.com</a>, don't click, it's down) while exploring Waydroid on an Ubuntu laptop. I used it to successfully make my Waydroid's system partition writable, which allowed me to enjoy network packet capture.</p>
-<p>The tool's official website is now down, but the unzipped file is still sitting on my computer. So, I expertly pushed it to my phone and ran it. Here's the result:</p>
+<p>The tool's official website is now down, but the unzipped file is still sitting on my computer. So, I skillfully pushed it to my phone and ran it. Here's the result:</p>
 <pre><code class="language-sh">HWSTF:/data/local/tmp/sysrw_1.41 # ./sysrw
 
  ---------------------------------------------------
@@ -201,9 +201,9 @@ chmod +x ubuntu.sh
 <p>Here, starting the SSHD service doesn't require the whole <code>systemctl</code> setup; just running <code>sshd</code> does the work.</p>
 </blockquote>
 <h3 id="Prevent-killing-the-background-process-success">Prevent killing the background process (success)</h3>
-<p>I asked ChatGPT and it recommended <strong>App Systemizer</strong>. I checked its GitHub page and found that the tool was last updated <strong>seven years ago</strong> and only supports <strong>Magisk v14</strong> (my version is 27). GitHub doesn't provide an installation package, and Magisk currently doesn't support searching for modules either. So I had to go to <a target="_blank" rel="noopener" href="https://xdaforums.com/t/module-terminal-app-systemizer-v17-3-1.3585851/">XDA</a> to find the latest compressed package (2019), drop it into Magisk, and it installed successfully.</p>
-<p>As for installing an offline Magisk zip, here's a quick guide: <strong>Modules → Install from storage → select RE/MT file manager → choose the zip package</strong>. For usage instructions, refer to the YouTube video linked in the XDA thread.</p>
-<p>Additionally, I can keep the screen always on to prevent the background process from being killed. However, for some unknown reason, the <strong>Sleep</strong> option in Settings is greyed out and cannot be changed. According to ChatGPT, you can modify the Android system <code>settings</code> database directly via <strong>ADB</strong> or <strong>root access</strong> to adjust the sleep timeout. The specific commands are as follows:</p>
+<p>I asked ChatGPT and it recommended App Systemizer. I checked its GitHub page and found that the tool was last updated seven years ago and only supports Magisk v14 (my version is 27). GitHub doesn't provide an installation package, and Magisk currently doesn't support searching for modules either. So I had to go to <a target="_blank" rel="noopener" href="https://xdaforums.com/t/module-terminal-app-systemizer-v17-3-1.3585851/">XDA</a> to find the latest compressed package (2019), drop it into Magisk, and it installed successfully.</p>
+<p>As for installing an offline Magisk zip, here's a quick guide: Modules → Install from storage → select RE/MT file manager → choose the zip package. For usage instructions, refer to the YouTube video linked in the XDA thread.</p>
+<p>Additionally, I can keep the screen always on to prevent the background process from being killed. However, for some unknown reason, the Sleep option in Settings is greyed out and cannot be changed. According to ChatGPT, you can modify the Android system <code>settings</code> database directly via ADB or root access to adjust the sleep timeout. The specific commands are as follows:</p>
 <pre><code class="language-sh">adb shell settings put system screen_off_timeout 2147483647
 </code></pre>
 <p>I tried it, and it really works. The setting is now set to &quot;Never.&quot; With this, my old phone isn't far from becoming a Raspberry Pi.</p>
@@ -278,9 +278,9 @@ HWSTF:/storage/emulated/0/HWThemes/.cache #
 <p>Perhaps due to the different screen aspect ratio, the theme's lock screen on the main device had some minor issues, and the messaging interface couldn't display the background. But aside from that, it worked quite perfectly.</p>
 <h3 id="Greenify-Success">Greenify (Success)</h3>
 <p>I found an older version of Greenify that works on Android 7 <a target="_blank" rel="noopener" href="http://shouyou.kuai8.com/game/60585.html">here</a>. I enabled root access, but the Xposed mode in Work Mode couldn't be selected for some unknown reason.</p>
-<p>For privacy reasons, I put all network-enabled apps to sleep except for <strong>NCalc+</strong> and <strong>Termux</strong>. Other than that, I didn't make any further changes.</p>
+<p>For privacy reasons, I put all network-enabled apps to sleep except for NCalc+ and Termux. Other than that, I didn't make any further changes.</p>
 <h3 id="Exploring-Frida-Success">Exploring Frida (Success)</h3>
-<p>First, I found <strong>magisk-frida</strong> on GitHub and installed the zip package via Xposed. Then, I set up the Frida client on my Ubuntu host with the following steps:</p>
+<p>First, I found magisk-frida on GitHub and installed the zip package via Xposed. Then, I set up the Frida client on my Ubuntu host with the following steps:</p>
 <pre><code class="language-sh">conda create -n frida python=3.11
 conda activate frida
 pip3 install frida frida-tools
@@ -331,7 +331,7 @@ frida-ps -U
 ...
 </code></pre>
 <h4 id="com-bidau-nkngl">com.bidau.nkngl</h4>
-<p>There's a process called <code>com.bidau.nkngl</code> that seemed suspicious to me. Using <strong>MyAndroidTools</strong> on the phone, I found that the app's name is <strong>SystemStars</strong>, and the APK path is <code>/system/app/MTExMSxodW/MTExMSxodWF3ZWktc3RmLWFsMDAsNjU1OTUsMQ==.apk</code>. Decoding the Base64 gives <code>1111,hu/1111,huawei-stf-al00,65595,1</code>, which didn't seem meaningful. So I decided to use <strong>Frida</strong> to inspect the app's behavior, focusing specifically on network-related activity:</p>
+<p>There's a process called <code>com.bidau.nkngl</code> that seemed suspicious to me. Using MyAndroidTools on the phone, I found that the app's name is SystemStars, and the APK path is <code>/system/app/MTExMSxodW/MTExMSxodWF3ZWktc3RmLWFsMDAsNjU1OTUsMQ==.apk</code>. Decoding the Base64 gives <code>1111,hu/1111,huawei-stf-al00,65595,1</code>, which didn't seem meaningful. So I decided to use Frida to inspect the app's behavior, focusing specifically on network-related activity:</p>
 <p>First enumerate classes related to network activity:</p>
 <pre><code class="language-javascript">Java.perform(function() &#123;
     Java.enumerateLoadedClasses(&#123;
@@ -488,7 +488,7 @@ Loaded class: [Lcom.android.okhttp.TlsVersion;
 Loaded class: [Lcom.android.okhttp.CipherSuite;
 Class enumeration complete.
 </code></pre>
-<p>It can be seen that it uses the <code>org.apache.http</code> and <code>com.android.okhttp</code> libraries. Therefore, we can write hook code—for example, using <strong>OkHttp</strong>'s <code>Request</code> and <code>Response</code>:</p>
+<p>It can be seen that it uses the <code>org.apache.http</code> and <code>com.android.okhttp</code> libraries. Therefore, we can write hook code—for example, using OkHttp's <code>Request</code> and <code>Response</code>:</p>
 <pre><code class="language-javascript">Java.perform(function() &#123;
     var OkHttpRequestBuilder = Java.use('com.android.okhttp.Request$Builder');
 
@@ -538,7 +538,7 @@ unable to stat file for the executable &quot;/memfd:frida-helper-32 (deleted)&qu
                                                                                 
 [STF AL10::com.bidau.nkngl ]-&gt;
 </code></pre>
-<p>So I opted for faster static analysis, using <strong>jadx-gui</strong> to open the APK file. Based on the practical training experience from June this year, most of the business logic in the Java code is usually in the <code>service</code> class. I opened <code>com.nantu.nengl.service.MyLocalService</code> and found the following code:</p>
+<p>So I opted for faster static analysis, using jadx-gui to open the APK file. Based on the practical training experience from June this year, most of the business logic in the Java code is usually in the <code>service</code> class. I opened <code>com.nantu.nengl.service.MyLocalService</code> and found the following code:</p>
 <pre><code class="language-java">    public boolean a(List&lt;com.nantu.nengl.a.b&gt; list) &#123;
         if (list == null || list.size() == 0) &#123;
             return true;

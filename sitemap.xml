@@ -305,6 +305,7 @@
   <url>
     <loc>https://blog.junyu33.me/zh/2021/08/12/kaiche/</loc>
     <lastmod>2025-08-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/08/12/kaiche/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/08/12/kaiche/" />
   </url>
   <url>
@@ -615,5 +616,11 @@
     <lastmod>2025-08-15</lastmod>
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/08/10/xp/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/08/10/xp/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2021/08/12/kaiche/</loc>
+    <lastmod>2025-08-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/08/12/kaiche/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/08/12/kaiche/" />
   </url>
 </urlset>

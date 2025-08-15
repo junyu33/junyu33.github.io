@@ -196,7 +196,7 @@ chmod +x ubuntu.sh
 <p>The mirror source from the tutorial is outdated, the correct mirror for Termux is <code>deb https://mirrors.tuna.tsinghua.edu.cn/termux/apt/termux-main stable main</code>。</p>
 <p>In addition, the installation does not take several hours (said in the tutorial), and with the proxy enabled, it only takes a minute at most.</p>
 </blockquote>
-<p>BTW, typing commands on my phone is really painful, so I installed OpenSSH on it and operate from my computer.</p>
+<p>BTW, typing commands on my phone is really painful, so I installed <strong>OpenSSH</strong> on it and operate from my computer.</p>
 <blockquote>
 <p>Here, starting the SSHD service doesn't require the whole <code>systemctl</code> setup; just running <code>sshd</code> does the work.</p>
 </blockquote>
@@ -270,16 +270,16 @@ FZLTH.hwt                            Symphony.hwt themecache
 HWSTF:/storage/emulated/0/HWThemes/.cache # 
 </code></pre>
 <p>So we found that we should pull out the folder <code>b7e06a7ad1d2468082d4bcf11f1d158f.hwt</code>—that's already half the battle won.</p>
-<p>Next, I needed to copy this <code>.hwt</code> file from the <code>HWThemes</code> directory to my main device. Naturally, the path would be different from the old phone. By now, the Huawei Theme Store had become the Honor Theme Store, so the corresponding path is <code>/storage/emulated/0/Honor/Themes</code>, which contains a folder called <code>themecache</code>. Therefore, it was fairly certain that placing the <code>.hwt</code> file in this path would work.</p>
-<p>I followed the same procedure, opened the Honor Theme Store on my main device, and indeed, the theme appeared under &quot;My Themes.&quot; I could even see the user comments for this theme.</p>
+<p>Next, I needed to copy this <code>.hwt</code> file from the <code>HWThemes</code> directory to my main device. Naturally, the path would be different from the old phone. By now, the <strong>Huawei Theme Store</strong> had become the <strong>Honor Theme Store</strong>, so the corresponding path is <code>/storage/emulated/0/Honor/Themes</code>, which contains a folder called <code>themecache</code>. Therefore, it was fairly certain that placing the <code>.hwt</code> file in this path would work.</p>
+<p>I followed the same procedure, opened the <strong>Honor Theme Store</strong> on my main device, and indeed, the theme appeared under &quot;My Themes.&quot; I could even see the user comments for this theme.</p>
 <blockquote>
 <p>Looks like Huawei and Honor haven't completely gone their separate ways yet.</p>
 </blockquote>
 <p>Perhaps due to the different screen aspect ratio, the theme's lock screen on the main device had some minor issues, and the messaging interface couldn't display the background. But aside from that, it worked quite perfectly.</p>
-<h3 id="Greenify-Success">Greenify (Success)</h3>
-<p>I found an older version of Greenify that works on Android 7 <a target="_blank" rel="noopener" href="http://shouyou.kuai8.com/game/60585.html">here</a>. I enabled root access, but the Xposed mode in Work Mode couldn't be selected for some unknown reason.</p>
+<h3 id="Greenify-success">Greenify (success)</h3>
+<p>I found an older version of <strong>Greenify</strong> that works on Android 7 <a target="_blank" rel="noopener" href="http://shouyou.kuai8.com/game/60585.html">here</a>. I enabled root access, but the Xposed mode in Work Mode couldn't be selected for some unknown reason.</p>
 <p>For privacy reasons, I put all network-enabled apps to sleep except for <strong>NCalc+</strong> and <strong>Termux</strong>. Other than that, I didn't make any further changes.</p>
-<h3 id="Exploring-Frida-Success">Exploring Frida (Success)</h3>
+<h3 id="Exploring-Frida-success">Exploring Frida (success)</h3>
 <p>First, I found <strong>magisk-frida</strong> on GitHub and installed the zip package via Xposed. Then, I set up the Frida client on my Ubuntu host with the following steps:</p>
 <pre><code class="language-sh">conda create -n frida python=3.11
 conda activate frida

@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-15T01:17:32.223Z</updated>
+  <updated>2025-08-15T04:11:17.957Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
@@ -20,10 +20,17 @@
     <summary type="html"><![CDATA[<p>It was a free day again, so I dug out the number guessing game code that I wrote during the high school. I didn't improve it, but combined the popular online version with elementary school mathematics to form the following code.</p>]]></summary>
   </entry>
   <entry>
+    <title>Twenty——C2 Driving License Journey</title>
+    <link href="https://blog.junyu33.me/en/2021/08/12/kaiche/"/>
+    <id>https://blog.junyu33.me/en/2021/08/12/kaiche/</id>
+    <updated>2025-08-15T04:02:11.767Z</updated>
+    <summary type="html"><![CDATA[<p>From <strong>June 26</strong>, when I registered at the driving school, to <strong>August 12</strong>, when I got my license, learning to drive basically spanned my entire summer vacation. Except for a business trip that delayed me for nearly ten days, it took me almost 40 days in total to complete the training. Overall, the process went quite smoothly—I passed all the exams on the first try—and the enjoyable summer driving experience has now become a sweet memory.</p>]]></summary>
+  </entry>
+  <entry>
     <title>Xposed, from beginner to quitter</title>
     <link href="https://blog.junyu33.me/en/2021/08/10/xp/"/>
     <id>https://blog.junyu33.me/en/2021/08/10/xp/</id>
-    <updated>2025-08-15T01:13:37.315Z</updated>
+    <updated>2025-08-15T02:44:30.173Z</updated>
     <summary type="html"><![CDATA[<p>After getting a new phone, after two days of disdainful efforts (and the stupidity tax of 50 yuan to unlock the bootloader?), I finally gained full control of my Huawei phone.</p>]]></summary>
   </entry>
   <entry>

@@ -165,7 +165,7 @@ sysrw: Please install Android 10 or newer and try again
 </blockquote>
 <p>很不幸，这个工具只支持 Android 10 以上的版本。我之前也尝试进 fastboot 模式刷了一个 Android 13 的 ROM，但是这个 ROM 有点问题，导致我无法进入系统。所以这个方法暂时不可行。</p>
 <h3 id="尝试将-magisk-root-方法换成-kernelSU（失败）">尝试将 magisk root 方法换成 kernelSU（失败）</h3>
-<p>显然，我认为 kernelSU 是一个更加 advanced 的 root 方法。或许可以解决 /system 分区不可写的问题。</p>
+<p>显然，我认为 kernelSU 是一个更加 advanced 的 root 方法。或许可以解决 <code>/system</code> 分区不可写的问题。</p>
 <p>然而：</p>
 <blockquote>
 <p>KernelSU officially supports Android GKI 2.0 devices (kernel 5.10+). Older kernels (4.14+) are also compatible, but the kernel will have to be built manually.</p>
@@ -196,7 +196,7 @@ chmod +x ubuntu.sh
 <p>另外这里的清华源地址有错，正确的 Termux 源是 <code>deb https://mirrors.tuna.tsinghua.edu.cn/termux/apt/termux-main stable main</code>。</p>
 <p>另外，安装也不需要几个小时，开了代理，最多一分钟。</p>
 </blockquote>
-<p>BTW，用手机敲命令真的很难受，于是我在手机上装了个 openssh，从电脑端来操作。</p>
+<p>BTW，用手机敲命令真的很难受，于是我在手机上装了个 OpenSSH，从电脑端来操作。</p>
 <blockquote>
 <p>这里启动 sshd 服务不需要 systemctl 那一套，直接 <code>sshd</code> 就行。</p>
 </blockquote>

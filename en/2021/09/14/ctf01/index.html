@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2021/09/14/ctf01/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2021/09/14/ctf01/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>The Failure of the Longjian Cup</h1>
+	<p>Not long after entering school, we were encouraged by our teacher to participate in the <strong>first Longjian Cup</strong>. When I saw the exam scope described in the contest guidelines, I realized the coverage had <strong>no overlap at all</strong> with the knowledge I had studied.</p>
+<span id="more"></span>
+<p>What surprised me even more was that the problems turned out to be <strong>even more ridiculous</strong> than I had imagined. The contest ran from 10 a.m. to 6 p.m., a total of 8 hours, and I only solved <strong>three problems</strong>, none of which had high point values.</p>
+<p>The most bizarre part was that I finally found a high-value problem. I managed to read a memory file, obtained the system password hash using online tools, but still could not crack the original password. That last step drained me completely, and I wasted <strong>two to three hours</strong> on just this attempt, only to fail right before the final answer.</p>
+<p>When the final results came out, yyx had 1080 points, yjp had 310 points, and I only had <strong>280 points</strong>, which left me frustrated again. But our team's total ranking was <strong>838 out of 3020</strong>, meaning we landed in the <strong>top 30%</strong>, which was at least a somewhat decent result.</p>
+<h1>updated on 9/25</h1>
+<p>Today I checked the write-up for the first memory problem, and I discovered that in one version of the write-up, after obtaining the hash, they immediately extracted the <strong>flag</strong>. <s>(So it turns out my distance from those <strong>200 points</strong> felt both so close yet so far...)</s> Since that flag was quite long and not a normal word, it would have been basically impossible to crack it with a rainbow table. From this I concluded:</p>
+<img src="https://img.junyu33.me/blog/ctf01/r.jpg" />  
+<p><strong>This write-up must be fake, and that team definitely had some shady deal with another team!</strong> (Wanted to punch someone.jpg)</p>
+<p>Then I found a more legitimate write-up and realized that although I had used <strong>exactly the same tool</strong>, I somehow managed to apply <strong>every wrong method possible</strong>, perfectly circling around the correct solution.</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7c0bea9ff458">https://www.jianshu.com/p/7c0bea9ff458</a></p>
+<img src="https://img.junyu33.me/blog/ctf01/s.png" />  
+<img src="https://img.junyu33.me/blog/ctf01/t.png" />  
+<img src="https://img.junyu33.me/blog/ctf01/u.png" />  
+<p>At that moment, my heart felt like this:</p>
+<blockquote>
+<p>During the contest, using the actual mimikatz kept throwing <strong>crazy errors</strong>, I was done.
+<strong>Windows 10, you trash.</strong></p>
+<p>............</p>
+</blockquote>
+<h1>Easter Egg</h1>
+<blockquote>
+<p>Before the contest:</p>
+<p>Publicity! Scale! Endorsements! The <strong>pinnacle of CTF in history! Amazing!</strong></p>
+<p><img src="https://pic2.zhimg.com/50/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"><img src="https://pic2.zhimg.com/80/v2-70227f23029ae7dcbcd09fbb24cbcffa_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>After the contest:</p>
+<p><strong>What a great contest!</strong> Can we have more of these, please? Many of my friends still haven't made enough money proxy-playing for others! 5 minutes before the contest ends there are 11 submissions, 5 minutes later there are 50+. Wow, wow, wow, how could this contest possibly have <strong>backdoor deals</strong>, right? It's all just the companies' own hard work!</p>
+<p><img src="https://pic1.zhimg.com/50/v2-137ace222ee43a40c2f04d7d2f9b394d_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>This contest was just <strong>so well organized!</strong> I really thank you, the organizers, for <strong>promoting the fine tradition of CTF backdoor dealings</strong> and industrializing it, making it more compliant with laws and regulations. I suggest you scale it up, keep it going, and directly push the development of social, economic, and cultural progress!</p>
+<p>Also, the problems were <strong>refreshingly new!</strong> Especially the multiple-choice ones! Profoundly designed, in full alignment with the <strong>core socialist values of our country!</strong> If you hadn't said “no more submissions after 16:00,” how many teams would have suffered the heartbreak of having all the answers but not being allowed to submit them? Truly in line with public sentiment, organizing a contest that goes straight to the hearts of the people! On behalf of the nation and the people, I thank you!</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/486768971/answer/2120838902">https://www.zhihu.com/question/486768971/answer/2120838902</a></p>
+</blockquote>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

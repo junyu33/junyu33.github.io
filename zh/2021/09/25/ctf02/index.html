@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 
+  
+    <link rel="alternate" hreflang="en" href="/en/2021/09/25/ctf02/">
+  
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,39 +13,6 @@
   <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
-
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      renderMathInElement(document.body, {
-        delimiters: [
-          {left: "$$", right: "$$", display: true},
-          {left: "\\[", right: "\\]", display: true},
-          {left: "$",  right: "$",  display: false},
-          {left: "\\(", right: "\\)", display: false}
-        ],
-        throwOnError: false,   // 避免个别符号导致整段失败
-        macros: {
-          "\\sgn": "\\operatorname{sgn}"  // 你文中用到的 sgn，统一为运算符
-        }
-      });
-    });
-  </script> -->
-    <!-- <script>
-      window.MathJax = {
-        tex: {
-          packages: {'[+]': ['ams']},   // cases / aligned 需要 ams
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$','$$'], ['\\[','\\]']],
-          tags: 'ams'
-        },
-        options: { skipHtmlTags: ['script','style','textarea','pre','code'] }
-      };
-    </script>
-    <script async id="MathJax-script"
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -74,6 +45,16 @@
   <div class="main">
     <div class="post">
     
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2021/09/25/ctf02/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
 
 	<h1>强网杯出土记</h1>
 	<p>经过上次的失败经历后，我相信即将到来的强网杯青少年赛会阳间许多，而事实却并不是这样。</p>
@@ -82,7 +63,7 @@
 <h2 id="1-签到">1. 签到</h2>
 <p>打开exe可以直接看到flag（<strong>很开心拿到一血</strong>）</p>
 <p><strong>flag{鲸鱼带你进入鲸奇世界}</strong></p>
-<h2 id="2-Lihua’s-for">2. Lihua’s for</h2>
+<h2 id="2-Lihua-s-for">2. Lihua's for</h2>
 <p>第一步查壳：</p>
 <img src="https://img.junyu33.me/blog/ctf02/a.png" />
 <p>第二步打开64位ida，定位到主函数</p>
@@ -168,7 +149,7 @@ c1=20522772249591436865905796103232542494211695376973377722875606678999899690405
 c2=18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736
 e=65537
 </code></pre>
-<p>经检验得n1,n2不互质，可以参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76228394">https://zhuanlan.zhihu.com/p/76228394</a> 中的方法进行解密。</p>
+<p>经检验得n1,n2不互质，可以 <s>参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76228394">https://zhuanlan.zhihu.com/p/76228394</a> 中的方法</s> 使用共因子攻击进行解密。</p>
 <pre><code class="language-python">import gmpy2  
 from Crypto.Util.number import long_to_bytes  
 c1 = ... 
@@ -274,7 +255,7 @@ print flag
 <img src="https://img.junyu33.me/blog/ctf02/c.png"/>
 <p><s>希望前面踢掉一个。</s></p>
 <h2 id="7-等re2与misc2出来再补">7. 等re2与misc2出来再补</h2>
-<h2 id="8-updated-on-10-2">8. (updated on 10.2)</h2>
+<h2 id="8-updated-on-10-2">8. (updated on 10/2)</h2>
 <p>好家伙，我居然进线下赛了。</p>
 <p>本来以为是因为前面有人没写wp或者py被发现，被踢了。结果是因为23~26名分数都一样，于是就都进了。</p>
 <p>比赛时间10.16~10.17，刚好可以逃掉寝室文化节的大寝表演，快哉快哉！</p>

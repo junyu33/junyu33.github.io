@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-15T04:18:11.828Z</updated>
+  <updated>2025-08-18T13:57:56.357Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
@@ -11,6 +11,23 @@
     <id>https://blog.junyu33.me/en/2038/01/19/meta/</id>
     <updated>2025-08-13T10:52:25.599Z</updated>
     <summary type="html"><![CDATA[<p>Lists some meta information related to the blog itself for easy reference.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>The Success of the Qiangwang Cup</title>
+    <link href="https://blog.junyu33.me/en/2021/09/25/ctf02/"/>
+    <id>https://blog.junyu33.me/en/2021/09/25/ctf02/</id>
+    <updated>2025-08-18T13:54:41.325Z</updated>
+    <summary type="html"><![CDATA[<p>After the last failed experience, I expected the upcoming <strong>Qiangwang Cup Youth CTF</strong> to be much more straightforward, but reality proved otherwise.</p>
+<p>Below is the write-up in the order I solved the problems (this time, I was the only one to solve them, not bad!):</p>
+<hr>
+<h2 i]]></summary>
+  </entry>
+  <entry>
+    <title>The Failure of the Longjian Cup</title>
+    <link href="https://blog.junyu33.me/en/2021/09/14/ctf01/"/>
+    <id>https://blog.junyu33.me/en/2021/09/14/ctf01/</id>
+    <updated>2025-08-18T13:56:48.762Z</updated>
+    <summary type="html"><![CDATA[<p>Not long after entering school, we were encouraged by our teacher to participate in the <strong>first Longjian Cup</strong>. When I saw the exam scope described in the contest guidelines, I realized the coverage had <strong>no overlap at all</strong> with the knowledge I had studied.</p>]]></summary>
   </entry>
   <entry>
     <title>Number guessing game</title>

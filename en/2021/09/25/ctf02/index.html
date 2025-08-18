@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2021/09/25/ctf02/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2021/09/25/ctf02/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>The Success of the Qiangwang Cup</h1>
+	<p>After the last failed experience, I expected the upcoming <strong>Qiangwang Cup Youth CTF</strong> to be much more straightforward, but reality proved otherwise.</p>
+<p>Below is the write-up in the order I solved the problems (this time, I was the only one to solve them, not bad!):</p>
+<hr>
+<h2 id="1-Check-in">1. Check-in</h2>
+<p>Opening the <strong>exe</strong> immediately revealed the <strong>flag</strong> (<strong>super happy to get the first blood</strong>):</p>
+<p><strong>flag{鲸鱼带你进入鲸奇世界}</strong></p>
+<h2 id="2-Lihua-s-for">2. Lihua's for</h2>
+<p><strong>Step 1: Unpacking:</strong></p>
+<img src="https://img.junyu33.me/blog/ctf02/a.png" />  
+<p><strong>Step 2: Open the 64-bit IDA and locate the main function</strong></p>
+<pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
+&#123;
+  char flag[42]; // [rsp+20h] [rbp-60h] BYREF
+  int a[42]; // [rsp+50h] [rbp-30h] BYREF
+  int b[42]; // [rsp+100h] [rbp+80h]
+  int i_0; // [rsp+1B4h] [rbp+134h]
+  int i; // [rsp+1B8h] [rbp+138h]
+  int good; // [rsp+1BCh] [rbp+13Ch]
+
+  _main();
+  qmemcpy(a, &amp;unk_403040, sizeof(a));
+  puts(&quot;input flag&quot;);
+  scanf(&quot;%s&quot;, flag);
+  puts(flag);
+  for ( i = 0; i &lt;= 41; ++i )
+    b[i] = i ^ flag[i];
+  for ( i_0 = 0; i_0 &lt;= 41; ++i_0 )
+  &#123;
+    if ( a[i_0] != b[i_0] )
+    &#123;
+      good = 0;
+      break;
+    &#125;
+    good = 1;
+  &#125;
+  if ( good == 1 )
+    printf(&quot;good~&quot;);
+  else
+    printf(&quot;error!&quot;);
+  return 0;
+&#125;
+</code></pre>
+<p>It can be observed that the program works by <strong>XOR-ing each user input <code>flag[i]</code> with <code>i</code> and then comparing it to <code>a[i]</code>.</strong></p>
+<p><strong>Step 3:</strong> Simply dump the values of <code>a[i]</code> and write an <strong>exploit</strong> to recover the <strong>flag.</strong></p>
+<p>(Another quick reverse-engineering check-in problem solved.)</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n,m;
+int a[] =
+&#123;
+  0x66, 0x00, 0x00, 0x00, 0x6D, 0x00, 0x00, 0x00, 0x63, 0x00, 
+  0x00, 0x00, 0x64, 0x00, 0x00, 0x00, 0x7F, 0x00, 0x00, 0x00, 
+  0x64, 0x00, 0x00, 0x00, 0x32, 0x00, 0x00, 0x00, 0x36, 0x00, 
+  0x00, 0x00, 0x6A, 0x00, 0x00, 0x00, 0x6C, 0x00, 0x00, 0x00, 
+  0x3E, 0x00, 0x00, 0x00, 0x3D, 0x00, 0x00, 0x00, 0x39, 0x00, 
+  0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x6F, 0x00, 0x00, 0x00, 
+  0x3A, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x77, 0x00, 
+  0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x27, 0x00, 0x00, 0x00, 
+  0x25, 0x00, 0x00, 0x00, 0x27, 0x00, 0x00, 0x00, 0x22, 0x00, 
+  0x00, 0x00, 0x3A, 0x00, 0x00, 0x00, 0x7A, 0x00, 0x00, 0x00, 
+  0x2E, 0x00, 0x00, 0x00, 0x78, 0x00, 0x00, 0x00, 0x7A, 0x00, 
+  0x00, 0x00, 0x31, 0x00, 0x00, 0x00, 0x2F, 0x00, 0x00, 0x00, 
+  0x29, 0x00, 0x00, 0x00, 0x29, 0x00, 0x00, 0x00, 0x16, 0x00, 
+  0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x44, 0x00, 0x00, 0x00, 
+  0x45, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x47, 0x00, 
+  0x00, 0x00, 0x47, 0x00, 0x00, 0x00, 0x41, 0x00, 0x00, 0x00, 
+  0x1A, 0x00, 0x00, 0x00, 0x54, 0x00, 0x00, 0x00, 0x00, 0x00, 
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+&#125;;
+int main()
+&#123;
+   for(int i=0;i&lt;42;i++)
+   &#123;
+      for(int t=1;t&lt;255;t++)
+      &#123;
+         if((i^t)==a[i*4])
+            &#123;cout&lt;&lt;char(t);break;&#125;
+      &#125;
+   &#125;
+   return 0;
+&#125;
+</code></pre>
+<p><strong>flag{a41be465-a50f-4124-b7ba-2766aff6baf2}</strong></p>
+<h2 id="3-Crypto2">3. Crypto2</h2>
+<p>Give that：</p>
+<pre><code class="language-python">n1=20663949646446787716947370247427064802032290773674573417491154934657966734874241036307633567695175131014840617208051931753476223149652427133485160771068994073566431652969243962290116898345337189704974833817335135391974497754670322430159624252007005736522065638860351992074099453212550475552692645688800084354832716662142860413158369020005830095049988807931794736876563293916525328174812726514626029103506607813186690909585870115364600969148482617083817273910020722354923244093624032174432568413187131385994452769295894606345768596899824635672699945050103814681553981019917552667794514804359500108947102234376726009329
+n2=23260834024376640092536888922041147168387702014814910549469730354688848760379274203088716649609675449936234732528778557041701524981200368996310064584479657042098426164366286670115392015865853892816983885530312074073396422301009513106258655315791720535737587913264728919869055970993613641008348186263870234072422880033882864603438907070864271470483691729705421547143623305055532339107777314310976947392833395180922324243244784018964736826235018388498516438612962123562977736924674510730898077787055367234786519915374446506561992135856904927351307275140543635152771670410211235702283822782412971646092584646758107766061
+c1=20522772249591436865905796103232542494211695376973377722875606678999899690405480809231671346489821878050354380591999935960795888483664473952207298504196203830543208477229162177648586683957831016664569242538775928728009699300145355818417233892295367828930893733774091897666206696635744262884229680137381841581000794056156842812583057103472764486608022028638288161256424936523444974815727764620634174112474612238992061186937613171878635903455700636894570504376153482600057655480654731180740098435209814585459376319844315388048636156465832997913885636776523217188604040216732137108997444787157007665652718553013424347649
+c2=18715009944766815149492560645051626329204114049927707292306481018724323433701970253541495090244787378826569549885480491764057526828531429033378143426272248940256432423939977805246742287886281853484696625486522535042794403288199393432900065504766428665320682811338887618389589263597065738414638013423594446322359052784842619755053094028050245325637698678444632860097510081832077842610716042473697478416213915805481704537884611126069907812621750817901278803326304784057145916721693930579344441283586458621033705530309835431139751025999089707480829034535026967779441379062426254038310930863215188888662357133997908688736
+e=65537
+</code></pre>
+<p>Upon inspection, <strong>n1</strong> and <strong>n2</strong> are not coprime. You can <s>refer to <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76228394">this method</a></s> use a <strong>common factor attack</strong> to perform the decryption.</p>
+<pre><code class="language-python">import gmpy2  
+from Crypto.Util.number import long_to_bytes  
+c1 = ... 
+c2 = ... 
+n1 = ...
+n2 = ...
+e = 65537    
+p12 = gmpy2.gcd(n1, n2)  
+assert (p12 != 1)  
+q1 = n1 / p12  
+q2 = n2 / p12  
+d1 = gmpy2.invert(e, (p12 - 1) * (q1 - 1))  
+d2 = gmpy2.invert(e, (p12 - 1) * (q2 - 1))  
+m1 = pow(c1, d1, n1)  
+m2 = pow(c2, d2, n2)  
+print long_to_bytes(m1)+long_to_bytes(m2)  
+</code></pre>
+<p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
+<h2 id="4-Jigsaw-Puzzle">4. Jigsaw Puzzle</h2>
+<p>I could maybe write a script to solve this challenge, but I couldn't, so I had to <strong>visually inspect the unusual images</strong> and piece them together into a single image:
+(edited using <strong>PowerPoint</strong>)</p>
+<img src="https://img.junyu33.me/blog/ctf02/b.png"/>  
+<p>At this point, I was stuck, but my rank was around <strong>30+</strong>, just a few spots away from the offline cutoff. And I happened to be blocked on a <strong>misc</strong> problem that seemed solvable:</p>
+<p>So I reached out to that student from Anhui (see Chapter 12 of the <em>Super Short Skirt Memoirs</em>—after a summer of practice, he had improved a lot) to do a <strong>write-up trade</strong>. I gave him the solution for a <strong>reverse</strong> challenge, and he gave me the <strong>write-up</strong> for this problem.</p>
+<blockquote>
+<p>I submitted <strong>flag{Hamsters_are_so_cute}</strong>, but it was incorrect.
+Considering that there was no closing brace immediately after <em>cute</em>, it suggested that some punctuation might be occupying that space.
+Easily overlooked punctuation includes <strong>'!'</strong> and <strong>'|'</strong>, because they could be confused with the braces and cause a wrong submission.
+By adding <strong>1–5 '!' or '|'</strong> after <em>cute</em>, I finally got the correct <strong>flag</strong>:</p>
+</blockquote>
+<p><strong>flag{Hamsters_are_so_cute!!!}</strong></p>
+<p>Who would have thought of that!!!</p>
+<h2 id="5-Crypto1">5. Crypto1</h2>
+<p>With only 20 minutes left before the competition ended, I was sitting at <strong>rk22</strong>. Based on the pattern from the last contest, the final ranking would surely drop quickly, so I had to <strong>AC one more problem</strong> to secure my spot in the onsite competition.</p>
+<blockquote>
+<p>So we have：</p>
+</blockquote>
+<pre><code class="language-python">n=96722669749951212913756678234358651184134068407812470434435916603156818917545841439779031943800634250032106764154804309935557678512858630048212204696471487762160744924838010746445510979202735123140536599975731157563069594497905809587369126155476201977830809090473053692189364335223367147692962090288185113654598050169422517553085833257142179937154768657039042632343562454149914801329414293361879935460883633117988279426277638667508115319494914342600199690237441851088350726869553691992122821267990343643644523989413546160765907845604067031798179773495433134648132709349683621175243064236059479837244518879574919017301667066698329442453248971033564328161407342561250703168154214939772631586519304164853651
+c1=66738113223447221430009739914948303261002811553064307532926788024694319846909340806982708347904688420671656410554852340732395818007063648478593071665936277836988050526188064146099581039172667768507259894363266310279948729552649788129953872816024709989260060633285022337107662251504618369065597018450927041881262189584381809106166042131798086882746986243210896131714227544235843922107304728228549916171484199199612243776469423359120753888158616202476325705252715374109256790899923317253605743212561589807498078080069511918514647943399566630574192829185904868376879831247378819590121286186417825591746918495311372015707767009078229770450338244309693800180936418605756818618708750868807720566288044943952844
+c2=88330949146651042517337653740810385187361689012501792799900873279978736035790659211001047937337215121948527017022967642906632732136313750277237761910710915459733551421653259986088596828049455592613225962133163865584111828012197112528645520371075411167515961263199635568730334149461654340122507778194391601956023625429418297129608911450200836427221311442323768087256798964844787274408624548839536279704401007441198390922847003287643673183230633728790263593607595427088882078742699027563601046309308221108391158848644822374865676056755011459026909057983805069264236657111115914570543103494726584296335044897998794251877515750910330960179539465060133592380802344398038815679281272098815068185059127533110716
+e1=49
+e2=35
+</code></pre>
+<blockquote>
+<p>It's clearly a <strong>common modulus attack</strong> scenario, but <strong>e1</strong> and <strong>e2</strong> are not coprime; their greatest common divisor is 7.</p>
+<p>Here, we need to divide <strong>e1</strong> and <strong>e2</strong> both by 7, turning <strong>m</strong> into <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.974ex" height="1.928ex" role="img" focusable="false" viewBox="0 -841 1314.6 852" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(911,363) scale(0.707)"><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>m</mi><mn>7</mn></msup></math></mjx-assistive-mml></mjx-container>.</p>
+<p>At this point, a <strong>low exponent attack</strong> can be applied. The problem's code is as follows:</p>
+</blockquote>
+<pre><code class="language-python"># py2 sameNAttack.py
+import primefac
+from Crypto.Util.number import long_to_bytes
+n=...
+e1=...
+e2=...
+c1=...
+c2=...
+def same_n_attack(n,e1,e2,c1,c2):
+    def egcd(a,b):
+        x, lastX = 0, 1
+        y, lastY = 1, 0
+        while (b != 0):
+            q = a // b
+            a, b = b, a % b
+            x, lastX = lastX - q * x, x
+            y, lastY = lastY - q * y, y
+        return (lastX, lastY)
+    s = egcd(e1,e2)
+    s1 = s[0]
+    s2 = s[1]
+    if s1 &lt; 0:
+        s1 = -s1
+        c1 = primefac.modinv(c1, n)
+        if c1 &lt; 0:
+            c1 += n
+    elif s2 &lt; 0:
+        s2 = -s2
+        c2 = primefac.modinv(c2, n)
+        if c2 &lt; 0:
+            c2 += n
+    m = (pow(c1, s1, n) * pow(c2, s2, n)) % n
+    i = 0
+    while 1:
+        if gmpy2.iroot(m + i * n, 7)[1] == True:
+            print(long_to_bytes(gmpy2.iroot(m + i * n, 7)[0]))
+            break
+        i += 1
+    return flag
+c = res = str(hex(same_n_attack(n,e1,e2,c1,c2)))[2:-128]
+print res
+flag = ''
+for i in range(0,len(res),2):
+  ch = res[i]+res[i+1]
+  flag += chr(int(ch,16))
+
+print flag
+</code></pre>
+<blockquote>
+<p><strong>flag{8ac9f9e3-82ba-ff7e-ac7b-235a02d891ef}</strong></p>
+</blockquote>
+<h2 id="6-result">6. result</h2>
+<p>Who knew there was more than one <strong>backdoor deals</strong>, and the further down the ranks you went, the faster the drop (so intense). With just <strong>30 seconds left</strong> before the competition ended, my rank fell from <strong>rk24</strong> to <strong>rk25</strong>, and I missed the chance to enter the <strong>onsite competition</strong> (which is fine anyway—I wouldn't know what to do there, just sit and brood).</p>
+<p>But man, this ranking curve is just <strong>crazy</strong>.</p>
+<img src="https://img.junyu33.me/blog/ctf02/c.png"/>
+<p><s>I wish someone had been disqualified earlier.</s></p>
+<h2 id="7-will-be-updated-after-re2-and-misc2">7. will be updated after re2 and misc2</h2>
+<h2 id="8-updated-on-10-2">8. (updated on 10/2)</h2>
+<p>Wow, I actually made it to the <strong>onsite competition</strong>.</p>
+<p>I originally thought it was because some people didn't submit their <strong>wp</strong> or got caught doing <strong>backdoor deals</strong>, and were disqualified. It turns out that the scores for ranks 23–26 were all the same, so we all advanced.</p>
+<p>The competition took place from <strong>October 16 to 17</strong>, which conveniently allowed me to skip the big dorm performance for the dorm cultural festival—what a relief!</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

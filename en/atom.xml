@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-18T14:27:47.465Z</updated>
+  <updated>2025-08-18T14:34:00.302Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
@@ -16,7 +16,7 @@
     <title>The Success of the Qiangwang Cup</title>
     <link href="https://blog.junyu33.me/en/2021/09/25/ctf02/"/>
     <id>https://blog.junyu33.me/en/2021/09/25/ctf02/</id>
-    <updated>2025-08-18T14:09:27.358Z</updated>
+    <updated>2025-08-18T14:32:56.437Z</updated>
     <summary type="html"><![CDATA[<p>After the last failed experience, I expected the upcoming <strong>Qiangwang Cup Youth CTF</strong> to be much more straightforward, but reality proved otherwise.</p>
 <p>Below is the write-up in the order I solved the problems (this time, I was the only one to solve them, not bad!):</p>
 <hr>

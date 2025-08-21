@@ -3,20 +3,67 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-18T14:34:00.302Z</updated>
+  <updated>2025-08-21T02:54:40.098Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
     <link href="https://blog.junyu33.me/en/2038/01/19/meta/"/>
     <id>https://blog.junyu33.me/en/2038/01/19/meta/</id>
-    <updated>2025-08-13T10:52:25.599Z</updated>
+    <updated>2025-08-21T02:43:30.080Z</updated>
     <summary type="html"><![CDATA[<p>Lists some meta information related to the blog itself for easy reference.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Twenty-two——bewilderment</title>
+    <link href="https://blog.junyu33.me/en/2021/11/01/bewilderment/"/>
+    <id>https://blog.junyu33.me/en/2021/11/01/bewilderment/</id>
+    <updated>2025-08-21T02:53:49.295Z</updated>
+    <summary type="html"><![CDATA[<blockquote>
+<p>This is my first time to write a post in English. There are three advantages.</p>
+<ul>
+<li>
+<p>I can deliver my message to whom I really want to tell.</p>
+</li>
+<li>
+<p>It's a way to prepare for my CET4 exam.</p>
+</li>
+<li>
+<p>Jumping between two input methods is annoying.</p>
+</li>
+</ul>
+<p>In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp; listening is nearly 15000), readers who have <strong>passed</strong> the CET4 exam might be enough to read the following text.</p>
+</blockquote>
+<p>Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I'm really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>csapp Decoding Lab</title>
+    <link href="https://blog.junyu33.me/en/2021/10/29/security01/"/>
+    <id>https://blog.junyu33.me/en/2021/10/29/security01/</id>
+    <updated>2025-08-21T02:38:45.246Z</updated>
+    <summary type="html"><![CDATA[<h1>solution</h1>
+  <img src="https://img.junyu33.me/blog/security01/1.png">         
+<p>(Note: This key may yield different results on different systems, or even across different IDEs within the same system, so the answer is <strong>for reference only</strong>.)</p>]]></summary>
+  </entry>
+  <entry>
+    <title>21——Goodbye, Mouse</title>
+    <link href="https://blog.junyu33.me/en/2021/10/24/1024/"/>
+    <id>https://blog.junyu33.me/en/2021/10/24/1024/</id>
+    <updated>2025-08-21T02:06:55.375Z</updated>
+    <summary type="html"><![CDATA[<h1>Introduction</h1>
+<p>In order to improve work efficiency and out of concern for my wrist health (already showing some swelling and wear), on this <strong>special day</strong>, as my mouse’s last bit of battery ran out, I decided to abandon the mouse and move <strong>almost</strong> all operations entirely to the keyboard.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Qiangwang Cup Offline Sponsored Trip Notes</title>
+    <link href="https://blog.junyu33.me/en/2021/10/17/ctf03/"/>
+    <id>https://blog.junyu33.me/en/2021/10/17/ctf03/</id>
+    <updated>2025-08-21T02:45:40.353Z</updated>
+    <summary type="html"><![CDATA[<p>I noticed an interesting phenomenon: <strong>the first place online scored zero offline; while the first place offline barely made it into the finals online.</strong></p>
+<p>Our team more or less followed this same pattern. What does this indicate?</p>]]></summary>
   </entry>
   <entry>
     <title>The Success of the Qiangwang Cup</title>
     <link href="https://blog.junyu33.me/en/2021/09/25/ctf02/"/>
     <id>https://blog.junyu33.me/en/2021/09/25/ctf02/</id>
-    <updated>2025-08-18T14:32:56.437Z</updated>
+    <updated>2025-08-21T02:46:03.793Z</updated>
     <summary type="html"><![CDATA[<p>After the last failed experience, I expected the upcoming <strong>Qiangwang Cup Youth CTF</strong> to be much more straightforward, but reality proved otherwise.</p>
 <p>Below is the write-up in the order I solved the problems (this time, I was the only one to solve them, not bad!):</p>
 <hr>
@@ -26,46 +73,46 @@
     <title>The Failure of the Longjian Cup</title>
     <link href="https://blog.junyu33.me/en/2021/09/14/ctf01/"/>
     <id>https://blog.junyu33.me/en/2021/09/14/ctf01/</id>
-    <updated>2025-08-18T13:56:48.762Z</updated>
+    <updated>2025-08-21T02:46:29.424Z</updated>
     <summary type="html"><![CDATA[<p>Not long after entering school, we were encouraged by our teacher to participate in the <strong>first Longjian Cup</strong>. When I saw the exam scope described in the contest guidelines, I realized the coverage had <strong>no overlap at all</strong> with the knowledge I had studied.</p>]]></summary>
   </entry>
   <entry>
     <title>Number guessing game</title>
     <link href="https://blog.junyu33.me/en/2021/08/27/guess/"/>
     <id>https://blog.junyu33.me/en/2021/08/27/guess/</id>
-    <updated>2025-08-14T04:57:06.306Z</updated>
-    <summary type="html"><![CDATA[<p>It was a free day again, so I dug out the number guessing game code that I wrote during the high school. I didn't improve it, but combined the popular online version with elementary school mathematics to form the following code.</p>]]></summary>
+    <updated>2025-08-21T02:45:04.261Z</updated>
+    <summary type="html"><![CDATA[<p>It was a free day again, so I dug out the number guessing game code that I wrote during the high school. I didn’t improve it, but combined the popular online version with elementary school mathematics to form the following code.</p>]]></summary>
   </entry>
   <entry>
     <title>Twenty——C2 Driving License Journey</title>
     <link href="https://blog.junyu33.me/en/2021/08/12/kaiche/"/>
     <id>https://blog.junyu33.me/en/2021/08/12/kaiche/</id>
-    <updated>2025-08-15T04:12:59.594Z</updated>
+    <updated>2025-08-21T02:44:44.874Z</updated>
     <summary type="html"><![CDATA[<p>From <strong>June 26</strong>, when I registered at the driving school, to <strong>August 12</strong>, when I got my license, learning to drive basically spanned my entire summer vacation. Except for a business trip that delayed me for nearly ten days, it took me almost 40 days in total to complete the training. Overall, the process went quite smoothly—I passed all the exams on the first try—and the enjoyable summer driving experience has now become a sweet memory.</p>]]></summary>
   </entry>
   <entry>
     <title>Xposed, from beginner to quitter</title>
     <link href="https://blog.junyu33.me/en/2021/08/10/xp/"/>
     <id>https://blog.junyu33.me/en/2021/08/10/xp/</id>
-    <updated>2025-08-15T02:44:30.173Z</updated>
+    <updated>2025-08-21T02:43:05.056Z</updated>
     <summary type="html"><![CDATA[<p>After getting a new phone, after two days of disdainful efforts (and the stupidity tax of 50 yuan to unlock the bootloader?), I finally gained full control of my Huawei phone.</p>]]></summary>
   </entry>
   <entry>
     <title>2048 and Threes! written in mathematica</title>
     <link href="https://blog.junyu33.me/en/2021/08/02/2048plus/"/>
     <id>https://blog.junyu33.me/en/2021/08/02/2048plus/</id>
-    <updated>2025-08-14T05:46:44.665Z</updated>
+    <updated>2025-08-21T02:47:23.796Z</updated>
     <summary type="html"><![CDATA[<p>With some free time, I dug out the 2048 code written in mathematica that I copied and pasted from the internet ten years ago and modified it, combining 2048 with Threes!:</p>
-<p>(Due to keyboard manipulation, the web-based compiler won't work. Please download mathematica version 8.0 or higher.)</p>]]></summary>
+<p>(Due to keyboard manipulation, the web-based compiler won’t work. Please download mathematica version 8.0 or higher.)</p>]]></summary>
   </entry>
   <entry>
     <title>The 1st blog</title>
     <link href="https://blog.junyu33.me/en/2018/11/30/1st_blog/"/>
     <id>https://blog.junyu33.me/en/2018/11/30/1st_blog/</id>
-    <updated>2025-08-13T15:21:48.083Z</updated>
+    <updated>2025-08-21T02:47:49.204Z</updated>
     <summary type="html"><![CDATA[<h2 id="First-meeting">First meeting</h2>
 <p>Hello, classmate! Welcome to the blogging system based on the Next theme built with Hexo.</p>
 <h2 id="About-Markdown">About Markdown</h2>
-<p>By the time you're able to access this page, you're already aware that blog posts will be written using Markdown s]]></summary>
+<p>By the time you’re able to access this page, you’re already aware that blog posts will be written using Markdown s]]></summary>
   </entry>
 </feed>

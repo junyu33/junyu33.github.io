@@ -63,7 +63,7 @@
 <h2 id="1-Check-in">1. Check-in</h2>
 <p>Opening the <strong>exe</strong> immediately revealed the <strong>flag</strong> (<strong>super happy to get the first blood</strong>):</p>
 <p><strong>flag{鲸鱼带你进入鲸奇世界}</strong></p>
-<h2 id="2-Lihua-s-for">2. Lihua's for</h2>
+<h2 id="2-Lihua’s-for">2. Lihua’s for</h2>
 <p><strong>Step 1: Unpacking:</strong></p>
 <img src="https://img.junyu33.me/blog/ctf02/a.png" />  
 <p><strong>Step 2: Open the 64-bit IDA and locate the main function</strong></p>
@@ -169,11 +169,11 @@ print long_to_bytes(m1)+long_to_bytes(m2)
 </code></pre>
 <p><strong>flag{afb1e6f2-9acb-efde-ad7c-246a99d8f1fd}</strong></p>
 <h2 id="4-Jigsaw-Puzzle">4. Jigsaw Puzzle</h2>
-<p>I could maybe write a script to solve this challenge, but I couldn't, so I had to <strong>visually inspect the unusual images</strong> and piece them together into a single image:
+<p>I could maybe write a script to solve this challenge, but I couldn’t, so I had to <strong>visually inspect the unusual images</strong> and piece them together into a single image:
 (edited using <strong>PowerPoint</strong>)</p>
 <img src="https://img.junyu33.me/blog/ctf02/b.png"/>  
 <p>At this point, I was stuck, but my rank was around <strong>30+</strong>, just a few spots away from the offline cutoff. And I happened to be blocked on a <strong>misc</strong> problem that seemed solvable:</p>
-<p>So I reached out to that student from Anhui (see Chapter 12 of the <em>Super Short Skirt Memoirs</em>—after a summer of practice, he had improved a lot) to do a <strong>write-up trade</strong>. I gave him the solution for a <strong>reverse</strong> challenge, and he gave me the <strong>write-up</strong> for this problem.</p>
+<p>So I reached out to that student from Anhui (I met him this March—after a summer of practice, he had improved a lot) to do a <strong>write-up trade</strong>. I gave him the solution for a <strong>reverse</strong> challenge, and he gave me the <strong>write-up</strong> for this problem.</p>
 <blockquote>
 <p>I submitted <strong>flag{Hamsters_are_so_cute}</strong>, but it was incorrect.
 Considering that there was no closing brace immediately after <em>cute</em>, it suggested that some punctuation might be occupying that space.
@@ -194,9 +194,9 @@ e1=49
 e2=35
 </code></pre>
 <blockquote>
-<p>It's clearly a <strong>common modulus attack</strong> scenario, but <strong>e1</strong> and <strong>e2</strong> are not coprime; their greatest common divisor is 7.</p>
+<p>It’s clearly a <strong>common modulus attack</strong> scenario, but <strong>e1</strong> and <strong>e2</strong> are not coprime; their greatest common divisor is 7.</p>
 <p>Here, we need to divide <strong>e1</strong> and <strong>e2</strong> both by 7, turning <strong>m</strong> into <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.974ex" height="1.928ex" role="img" focusable="false" viewBox="0 -841 1314.6 852" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(911,363) scale(0.707)"><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>m</mi><mn>7</mn></msup></math></mjx-assistive-mml></mjx-container>.</p>
-<p>At this point, a <strong>low exponent attack</strong> can be applied. The problem's code is as follows:</p>
+<p>At this point, a <strong>low exponent attack</strong> can be applied. The problem’s code is as follows:</p>
 </blockquote>
 <pre><code class="language-python"># py2 sameNAttack.py
 import primefac
@@ -250,14 +250,14 @@ print flag
 <p><strong>flag{8ac9f9e3-82ba-ff7e-ac7b-235a02d891ef}</strong></p>
 </blockquote>
 <h2 id="6-result">6. result</h2>
-<p>Who knew there was more than one <strong>backdoor deals</strong>, and the further down the ranks you went, the faster the drop (so intense). With just <strong>30 seconds left</strong> before the competition ended, my rank fell from <strong>rk24</strong> to <strong>rk25</strong>, and I missed the chance to enter the <strong>onsite competition</strong> (which is fine anyway—I wouldn't know what to do there, just sit and brood).</p>
+<p>Who knew there was more than one <strong>backdoor deals</strong>, and the further down the ranks you went, the faster the drop (so intense). With just <strong>30 seconds left</strong> before the competition ended, my rank fell from <strong>rk24</strong> to <strong>rk25</strong>, and I missed the chance to enter the <strong>onsite competition</strong> (which is fine anyway—I wouldn’t know what to do there, just sit and brood).</p>
 <p>But man, this ranking curve is just <strong>crazy</strong>.</p>
 <img src="https://img.junyu33.me/blog/ctf02/c.png"/>
 <p><s>I wish someone had been disqualified earlier.</s></p>
 <h2 id="7-will-be-updated-after-re2-and-misc2">7. will be updated after re2 and misc2</h2>
 <h2 id="8-updated-on-10-2">8. (updated on 10/2)</h2>
 <p>Wow, I actually made it to the <strong>onsite competition</strong>.</p>
-<p>I originally thought it was because some people didn't submit their <strong>wp</strong> or got caught doing <strong>backdoor deals</strong>, and were disqualified. It turns out that the scores for ranks 23–26 were all the same, so we all advanced.</p>
+<p>I originally thought it was because some people didn’t submit their <strong>wp</strong> or got caught doing <strong>backdoor deals</strong>, and were disqualified. It turns out that the scores for ranks 23–26 were all the same, so we all advanced.</p>
 <p>The competition took place from <strong>October 16 to 17</strong>, which conveniently allowed me to skip the big dorm performance for the dorm cultural festival—what a relief!</p>
 
 </div>

@@ -58,7 +58,7 @@
 
 	<h1>2048 and Threes! written in mathematica</h1>
 	<p>With some free time, I dug out the 2048 code written in mathematica that I copied and pasted from the internet ten years ago and modified it, combining 2048 with Threes!:</p>
-<p>(Due to keyboard manipulation, the web-based compiler won't work. Please download mathematica version 8.0 or higher.)</p>
+<p>(Due to keyboard manipulation, the web-based compiler won’t work. Please download mathematica version 8.0 or higher.)</p>
 <span id="more"></span>
 <p>Here is the original implementation of 2048 using wolfram language (mathematica):</p>
 <pre><code class="language-mathematica">MOVE[LEFT] = # //. &#123;&#123;x___, 1, a_ /; a > 1, y___&#125; :> &#123;x, a, 1, y&#125;, &#123;x___, 
@@ -83,7 +83,7 @@ EventHandler[
    KEY[LEFT], &quot;RightArrowKeyDown&quot; :&gt; KEY[RIGHT], &quot;UpArrowKeyDown&quot; :&gt; KEY[UP], 
   &quot;DownArrowKeyDown&quot; :&gt; KEY[DOWN]&#125;]
 </code></pre>
-<p>I've incorporated the rules of Threes!:</p>
+<p>I’ve incorporated the rules of Threes!:</p>
 <ul>
 <li>Here, 1 can only merge with 2, and 2 can only merge with 1. However, 3 + 3 = 6, and 6 + 6 = 12, just like the rules of 2048.</li>
 <li>The code randomly generates blocks of 1, 2, or 3 with equal probability.</li>

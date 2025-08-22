@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2021/11/06/security02/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2021/11/06/security02/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>安全项目第二题解答及思路分析</h1>
+	<h1>solution</h1>
+<img src="https://img.junyu33.me/blog/security02/1.jpg" style="zoom: 67%;" >
+<p>I used the <strong>TDM-GCC 4.9.2 32-bit Debug compiler</strong> in Dev-C++. Newer versions of the compiler have added security optimizations, and since I couldn’t outsmart them, I simply gave up.</p>
+<span id="more"></span>
+<h1>Thought Process Analysis:</h1>
+<h2 id="One-Sentence-Summary">One-Sentence Summary:</h2>
+<blockquote>
+<p><strong>Assembly knowledge is inescapable—you’ll never get away from it in your lifetime.</strong></p>
+</blockquote>
+<h2 id="Tools-Needed">Tools Needed:</h2>
+<ul>
+<li>Dev-C++ / Visual Studio</li>
+<li>OllyDbg (or the special edition provided by “52pojie” community)</li>
+</ul>
+<h2 id="Source-Code">Source Code:</h2>
+<pre><code class="language-C">/* bufbomb.c
+ *
+ * Bomb program that is solved using a buffer overflow attack
+ *
+ * program for CS:APP problem 3.38
+ *
+ * used for CS 202 HW 8 part 2
+ *
+ * compile using
+ *   gcc -g -O2 -Os -o bufbomb bufbomb.c
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ctype.h&gt;
+
+/* Like gets, except that characters are typed as pairs of hex digits.
+   Nondigit characters are ignored.  Stops when encounters newline */
+char *getxs(char *dest)
+&#123;
+  int c;
+  int even = 1; /* Have read even number of digits */
+  int otherd = 0; /* Other hex digit of pair */
+  char *sp = dest;
+  while ((c = getchar()) != EOF &amp;&amp; c != '\n') &#123;
+    if (isxdigit(c)) &#123;
+      int val;
+      if ('0' &lt;= c &amp;&amp; c &lt;= '9')
+	val = c - '0';
+      else if ('A' &lt;= c &amp;&amp; c &lt;= 'F')
+	val = c - 'A' + 10;
+      else
+	val = c - 'a' + 10;
+      if (even) &#123;
+	otherd = val;
+	even = 0;
+      &#125; else &#123;
+	*sp++ = otherd * 16 + val;
+	even = 1;
+      &#125;
+    &#125;
+  &#125;
+  *sp++ = '\0';
+  return dest;
+&#125;
+
+int getbuf()
+&#123;
+  char buf[16];
+  getxs(buf);
+  return 1;
+&#125;
+
+void test()
+&#123;
+  int val;
+  printf(&quot;Type Hex string:&quot;);
+  val = getbuf();
+  printf(&quot;getbuf returned 0x%x\n&quot;, val);
+&#125;
+
+int main()
+&#123;
+  int buf[16];
+  /* This little hack is an attempt to get the stack to be in a
+     stable position
+  */
+  int offset = (((int) buf) &amp; 0xFFF);   
+  int *space = (int *) malloc(offset);  
+  *space = 0; /* So that don't get complaint of unused variable */
+  test();
+  return 0;
+&#125;
+</code></pre>
+<p>Compared to the previous challenge, the code in this one is much more beginner-friendly. Even the seemingly long <code>getxs</code> function simply converts your input hexadecimal string into hexadecimal numbers and stores them in the <code>buf</code> buffer.</p>
+<p>But then—what does this have to do with the return value of <code>getbuf</code>? I suddenly realized that <code>getxs</code> has <strong>no input length restriction</strong>, which means this is a straightforward <strong>buffer overflow</strong>.</p>
+<p>However, during the Qiangwang Cup competition, I had just copy-pasted the Python exploit code without understanding the principle of overflow at all. That’s when I began a <strong>long journey of learning</strong>.</p>
+<h2 id="Prerequisite-Knowledge-1-—-Assembly">Prerequisite Knowledge 1 — Assembly</h2>
+<h3 id="Registers">Registers</h3>
+<ul>
+<li><strong>eax ~ edx</strong>: General-purpose registers. They act as temporary storage for variables and can also be used for addressing.</li>
+<li><strong>esp</strong>: Stack pointer (points to the top of the stack).</li>
+<li><strong>ebp</strong>: Base pointer (points to the bottom of the stack frame).</li>
+<li><strong>eip</strong>: Instruction pointer (stores the address of the next instruction to execute — conceptually, the “line number” in code).</li>
+</ul>
+<h3 id="Instructions-Intel-syntax-as-example">Instructions (Intel syntax as example)</h3>
+<ul>
+<li>
+<p><strong>mov</strong>: Copy instruction — assigns the value of the second operand to the first.</p>
+</li>
+<li>
+<p><strong>add</strong>: Adds the second operand to the first (similarly, <code>sub</code> = subtract, <code>mul</code> = multiply).</p>
+</li>
+<li>
+<p><strong>push</strong>: Pushes a value onto the stack and decreases <code>esp</code> by the size of the data type.</p>
+</li>
+<li>
+<p><strong>pop</strong>: Pops the top value from the stack into a register and increases <code>esp</code> by the size of the data type.</p>
+</li>
+<li>
+<p><strong>lea</strong>: Loads the address of the second operand into the first operand.</p>
+</li>
+<li>
+<p><strong>ptr</strong>: Type casting indicator.</p>
+</li>
+<li>
+<p><strong>ss</strong>: Refers to the stack segment register. Assembly has four segment registers:</p>
+<ul>
+<li><strong>cs</strong>: Code segment</li>
+<li><strong>ds</strong>: Data segment</li>
+<li><strong>ss</strong>: Stack segment</li>
+<li><strong>es</strong>: Extra segment
+Registers in different segments are independent, so they need to be distinguished.</li>
+</ul>
+</li>
+</ul>
+<p>For more details, see: <a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/ZZU-1001796025#/learn/announce">Assembly Language Programming</a></p>
+<h2 id="Prerequisite-Knowledge-2-—-Stack-Diagrams">Prerequisite Knowledge 2 — Stack Diagrams</h2>
+<p><strong>Note:</strong> The stack is not an independent region. It is actually a part of memory that exists while the program is running! This means you can locate stack data directly in the memory window.</p>
+<p>The stack follows the principle where the <strong>base address is higher</strong> and the <strong>top address is lower</strong>. Because of little-endian storage, the data we input accumulates from <strong>low to high addresses</strong>.</p>
+<p>A stack diagram should include the current state (instruction), the contents of the stack, and the positions of the <strong>esp</strong> and <strong>ebp</strong> pointers. Ideally, use different colors to highlight how various operations affect the stack, making program flow clearer.</p>
+<p>Drawing stack diagrams while analyzing assembly is a <strong>very good habit</strong>.</p>
+<p>For more details, see: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w54y1y7Di?p=12">Stack Diagram 1</a>
+<em>(Note: I checked the link—it's still alive and accessible.)</em></p>
+<hr>
+<h2 id="Solution">Solution</h2>
+<p>After a week of long study, I finally gained the ability to solve this problem.</p>
+<p>Similar to <strong>ret2shellcode</strong>, we need to exploit the buffer overflow vulnerability in the <code>getbuf</code> function. The goal is to overwrite the return value with the string stored in <code>buf</code>. That way, when the function returns, the CPU jumps to the start of the string and executes the hexadecimal instructions embedded there. Afterward, execution flows back to the <code>test</code> function, producing the desired output.</p>
+<pre><code>(&quot;eax=deadbeef&quot; + return test + &quot;00&quot; + ebp + head address)
+</code></pre>
+<h3 id="Locating-the-Function-Address">Locating the Function Address</h3>
+<p>First, use Dev-C++ to debug the source file. Set a breakpoint at the <code>getbuf</code> function, press <strong>F5</strong> to start debugging, then check the CPU window—what you see is the assembly code. On my machine, the starting address of this function was <strong>0x4015c1</strong>. This is the entry point of the <code>getbuf</code> function.</p>
+<p>Next, open the program in OllyDbg, press <strong>Ctrl+G</strong> to jump to this address, and the preparation work is done.</p>
+<img src="https://img.junyu33.me/blog/security02/2.jpg">
+<hr>
+<h3 id="Analyzing-the-Assembly-Code-—-updated-on-1-17-2022">Analyzing the Assembly Code — <em>updated on 1/17/2022</em></h3>
+<blockquote>
+<p><strong>Update (1/17/2022):</strong> The way the stack diagram was drawn before was not very standard. Stack diagrams should follow the principle of <strong>higher addresses on top, lower addresses at the bottom</strong>.</p>
+</blockquote>
+<p>We can see that the <code>getbuf</code> function occupies memory addresses from <strong>0x4015c1 to 0x4015d8</strong>. Let’s combine this with the stack diagram to understand what’s happening:</p>
+<ul>
+<li><strong>4015c1</strong>: Copy the current base pointer (ebp) to the stack top, <code>esp -= 4</code>. This is essentially saving the pre-call state.</li>
+<li><strong>4015c2</strong>: Set <code>ebp = esp</code>. Both pointers now align.</li>
+<li><strong>4015c4</strong>: <code>esp -= 40</code>, reserving local space for data storage.</li>
+<li><strong>4015c7</strong>: Assign <code>eax = ebp - 24</code>, preparing to write a string.</li>
+<li><strong>4015ca</strong>: Push the value of <code>eax</code> onto the stack.</li>
+<li><strong>4015cd</strong>: Call <code>getxs</code>, which writes the string into the address stored in <code>eax</code>.</li>
+<li><strong>4015d2</strong>: Assign <code>eax = 1</code>.</li>
+<li><strong>4015d7</strong>: Leave (equivalent to <code>mov esp, ebp</code> and <code>pop ebp</code>), restoring the pre-call state.</li>
+<li><strong>4015d8</strong>: Return (equivalent to <code>pop eip</code>).</li>
+</ul>
+<img src="https://img.junyu33.me/blog/security02/stack.jpg">
+<p><em>(Since the stack has already overflowed and program logic is altered, further drawing has little meaning here.)</em></p>
+<h3 id="Writing-the-Exploit-exp">Writing the Exploit (exp)</h3>
+<p>(You can think of this as manually writing simple assembly.)</p>
+<hr>
+<h4 id="Instructions-to-Execute">Instructions to Execute</h4>
+<p>Since the program’s return value is stored in <strong>eax</strong>, we need to modify <code>eax</code>. The command is:</p>
+<pre><code class="language-assembly">mov eax,0xdeadbeef
+</code></pre>
+<p>Next, we must jump out of the <code>getbuf</code> function. To do this, we need to know the return address of <code>getbuf</code>. Debugging the <code>test</code> function in Dev-C++ shows its starting address as <strong>0x4015d9</strong>. Looking at the assembly code, at <strong>0x4015eb</strong> the function calls <strong>0x4015c1</strong> (<code>getbuf</code>), so the proper return address is the <strong>next line: 0x4015f0</strong>.</p>
+<p>Since <code>retn</code> pops the top of the stack as the return value, we must push this modified return address, then return:</p>
+<pre><code class="language-assembly">push 0x4015f0
+retn
+</code></pre>
+<p>Every assembly instruction is a shorthand for its machine code. We must translate them into hex. You can use <code>gcc</code> or simply check in OllyDbg—the second column shows the machine code.</p>
+<p>The result is:</p>
+<pre><code>b8 ef be ad de 68 f0 15 40 00 c3
+</code></pre>
+<hr>
+<h4 id="Redirecting-Control-Flow">Redirecting Control Flow</h4>
+<p>The second step is to hijack the normal return sequence and redirect it to our crafted code.</p>
+<p>In the stack, <strong>esp</strong> stores the base address of the <code>test</code> function’s stack frame. This value cannot be altered, otherwise the program will crash.</p>
+<p>(In reality, this is because before returning there’s a <code>pop ebp</code> operation—this must match the original value for symmetry. If you’ve watched the Bilibili video, it becomes clearer.)</p>
+<p>Immediately after this base address, we fill in the starting address of the injected string. That way, when <code>retn</code> executes, it pops our crafted address into <strong>eip</strong> and jumps there.</p>
+<p>From the stack diagram, <strong>ebp = 0x62fe38</strong> and <strong>eip</strong> should be the intermediate <strong>eax value = 0x62fdf0</strong>.</p>
+<p>So we append:</p>
+<pre><code>38 fe 62 00 f0 fd 62 00
+</code></pre>
+<hr>
+<h4 id="Determining-the-Length">Determining the Length</h4>
+<p>The buffer starts at <strong>0x62fdf0</strong>—this is easy to confirm.</p>
+<p>Some might assume that since <code>buf</code> has length 16 and our command is 11 bytes, we just pad 5 bytes of <code>00</code>. But that’s wrong—compilers reserve <strong>more space than expected</strong>. This is the same reason why in OI (Olympiad in Informatics) some problems seem solvable by RE but actually result in WA. Similarly, subtracting <code>esp</code> by 40 does <strong>not</strong> equal the exploit length.</p>
+<p>The correct length is the length of the &quot;code&quot; section in the final stack diagram. Debugging to <strong>0x4015ca</strong> (the 5th diagram), we see <strong>ebp = 0x62fe08</strong>.</p>
+<p>Two addresses remain (4 bytes each), so the length is:</p>
+<pre><code>0x62fe08 - 0x62fdf0 + 8 = 32
+</code></pre>
+<p>Thus, we must fill:</p>
+<pre><code>32 - 8 - 11 = 13 bytes of 00
+</code></pre>
+<hr>
+<h4 id="Final-Answer">Final Answer</h4>
+<p>Combining everything, the final payload is:</p>
+<pre><code>b8 ef be ad de 68 f0 15 40 00 c3 
+00 00 00 00 00 00 00 00 00 00 00 00 00 
+38 fe 62 00 f0 fd 62 00
+</code></pre>
+<p>We successfully altered the program’s control flow <strong>without causing errors.</strong></p>
+<img src="https://img.junyu33.me/blog/security02/win.jpg">
+<h1>Summary</h1>
+<p><strong>System-level programming is truly no easy task—I’m starting to worry about my hairline.</strong></p>
+<p><s>The third security project—never (or never again) see you.</s></p>
+<p>Here I am: officially still a high school senior, taking freshman-level courses, studying sophomore-level material, while tackling assignments from what used to be junior year. <strong>Sichuan University really is impressive—the course difficulty can match that of the C9 universities!</strong></p>
+<hr>
+<h1>(Updated on 12/12)</h1>
+<p>(A relatively common and mainstream method, similar to <strong>ret2libc</strong>.)</p>
+<p>A senior’s alternative idea is:
+<code>&quot;00&quot; + ebp + return test.printf + address of string + &quot;deadbeef&quot;</code></p>
+<p>This approach is simpler, but you must know that <strong>printf’s argument passing works by first taking the address, then directly appending an immediate value</strong>.</p>
+<pre><code>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+CC CC CC CC CC CC CC CC 
+38 FE 62 00 01 16 40 00 11 40 40 00 EF BE AD DE
+</code></pre>
+<img src="https://img.junyu33.me/blog/security02/sol2.png">
+<hr>
+<h1>(Updated on 12/28)</h1>
+<p>In the programming class, the teacher’s idea was: export the memory data between the input address and the <code>val</code> address inside the <code>test</code> function. Then simply modify the return address of <code>getbuf</code> to <strong>0x4015f3</strong>, skipping the instruction that assigns <code>eax</code> to <code>ebp - 0xC</code> (which is where <code>val</code> is stored). Finally, in the input, directly modify the value at <code>val</code>’s address to <strong>0xdeadbeef</strong>.</p>
+<img src="https://img.junyu33.me/blog/security02/20211228.png">
+<p>Thus, the answer is:</p>
+<pre><code>DC FD 62 00 1C 43 B2 76 CC FF 62 00 C0 CC AC 76 
+5C 0F ED 6A FE FF FF FF 
+38 FE 62 00 F3 15 40 00 00 40 40 00 A4 68 3E 1C 
+38 FE 62 00 10 76 AB 76 00 00 71 00 00 00 00 00 
+58 0E 00 00 EF BE AD DE
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

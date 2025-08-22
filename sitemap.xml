@@ -235,6 +235,7 @@
   <url>
     <loc>https://blog.junyu33.me/zh/2021/11/23/ctf04/</loc>
     <lastmod>2025-08-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/11/23/ctf04/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/11/23/ctf04/" />
   </url>
   <url>
@@ -443,6 +444,7 @@
   <url>
     <loc>https://blog.junyu33.me/zh/2021/12/11/security03/</loc>
     <lastmod>2025-08-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/12/11/security03/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/12/11/security03/" />
   </url>
   <url>
@@ -678,5 +680,17 @@
     <lastmod>2025-08-22</lastmod>
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/11/06/security02/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/11/06/security02/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2021/11/23/ctf04/</loc>
+    <lastmod>2025-08-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/11/23/ctf04/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/11/23/ctf04/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2021/12/11/security03/</loc>
+    <lastmod>2025-08-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2021/12/11/security03/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2021/12/11/security03/" />
   </url>
 </urlset>

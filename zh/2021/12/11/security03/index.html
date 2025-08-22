@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 
+  
+    <link rel="alternate" hreflang="en" href="/en/2021/12/11/security03/">
+  
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +44,16 @@
 
   <div class="main">
     <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2021/12/11/security03/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
     
 
 	<h1>安全项目第三题解答及思路分析</h1>
@@ -375,6 +389,9 @@ void secret_phase()
 <img src="https://img.junyu33.me/blog/security03/data.png">
 <p>学过数据结构的同学可以敏锐地发现这像一颗binary tree，如果动动手把它画出来，你还会发现它是棵BST。</p>
 <img src="https://img.junyu33.me/blog/security03/bst.jpg">
+<blockquote>
+<p>用笔涂改地方的值是<code>6Bh</code>。</p>
+</blockquote>
 <p><code>fun7</code>的意思是如果你是从右子树回溯的，那么值×2+1；反之×2，而任何一个叶节点的值是0。</p>
 <p>手推一下就可以得知只有最右下角的数3E9h，也就是1001才能使树根的值为7。</p>
 <h1>总结</h1>

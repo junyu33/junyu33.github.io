@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2021/12/11/security03/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2021/12/11/security03/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>csapp Binary Bomb Lab</h1>
+	<h1>solution</h1>
+<img src="https://img.junyu33.me/blog/security03/res.png">
+<p>A nice reverse-engineering challenge: <strong>seven subtasks that gradually increase in difficulty, making it very suitable for beginners.</strong></p>
+<span id="more"></span>
+<h1>Thought Process Analysis</h1>
+<p>The following steps were carried out using <strong>IDA 7.5</strong>. I believe anyone interested in this problem probably has IDA at hand.</p>
+<p>(Of course, the author’s original intent was for you to read the assembly and debug with gdb—that would surely lead to hair loss.)</p>
+<p>main function logic is very simple: the program provides file input (with argument 1) and standard input (no argument). Next, you need to answer <strong>six questions (phases)</strong>. If any one of them is wrong, the bomb will explode.</p>
+<p>I will now analyze it <strong>phase by phase</strong>.</p>
+<h2 id="phase-1">phase_1</h2>
+<pre><code class="language-c">int __cdecl phase_1(int a1)
+&#123;
+  int result; // eax
+
+  result = strings_not_equal((_BYTE *)a1, &quot;Public speaking is very easy.&quot;);
+  if ( result )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>String comparison—just input:</p>
+<pre><code>Public speaking is very easy.
+</code></pre>
+<h2 id="phase-2">phase_2</h2>
+<pre><code class="language-c">int __cdecl phase_2(char *s)
+&#123;
+  int i; // ebx
+  int result; // eax
+  int v3[6]; // [esp+10h] [ebp-18h] BYREF
+
+  read_six_numbers(s, (int)v3);
+  if ( v3[0] != 1 )
+    explode_bomb();
+  for ( i = 1; i &lt;= 5; ++i )
+  &#123;
+    result = v3[i - 1] * (i + 1);
+    if ( v3[i] != result )
+      explode_bomb();
+  &#125;
+  return result;
+&#125;
+</code></pre>
+<p>Read six numbers, then check whether</p>
+<pre><code>v3[i] == v3[i - 1] * (i + 1)
+</code></pre>
+<p>That is, a simple <strong>factorial function</strong>.</p>
+<h2 id="phase-3">phase_3</h2>
+<pre><code class="language-c">int __cdecl phase_3(char *s)
+&#123;
+  int result; // eax
+  char v2; // bl
+  int v3; // [esp+Ch] [ebp-Ch] BYREF
+  char v4; // [esp+13h] [ebp-5h] BYREF
+  int v5; // [esp+14h] [ebp-4h] BYREF
+
+  if ( sscanf(s, &quot;%d %c %d&quot;, &amp;v3, &amp;v4, &amp;v5) &lt;= 2 )
+    explode_bomb();
+  result = v3;
+  switch ( v3 )
+  &#123;
+    case 0:
+      v2 = 'q';
+      if ( v5 != 777 )
+        explode_bomb();
+      return result;
+    case 1:
+      v2 = 'b';
+      if ( v5 != 214 )
+        explode_bomb();
+      return result;
+    case 2:
+      v2 = 'b';
+      if ( v5 != 755 )
+        explode_bomb();
+      return result;
+    case 3:
+      v2 = 'k';
+      if ( v5 != 251 )
+        explode_bomb();
+      return result;
+    case 4:
+      v2 = 'o';
+      if ( v5 != 160 )
+        explode_bomb();
+      return result;
+    case 5:
+      v2 = 't';
+      if ( v5 != 458 )
+        explode_bomb();
+      return result;
+    case 6:
+      v2 = 'v';
+      if ( v5 != 780 )
+        explode_bomb();
+      return result;
+    case 7:
+      v2 = 'b';
+      if ( v5 != 524 )
+        explode_bomb();
+      return result;
+    default:
+      explode_bomb();
+  &#125;
+  if ( v2 != v4 )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>There are 8 options to choose from, and <strong>any choice will successfully defuse</strong>.</p>
+<p><em>(Tip: If your <code>v2</code> shows as a number, you can right-click the number or press <code>r</code> to convert it to an ASCII character.)</em></p>
+<p>For example, in <strong>case 0</strong>, the three conditions are:</p>
+<ul>
+<li><code>v3 == 0</code></li>
+<li><code>v2 == v4</code></li>
+<li><code>v5 == 777</code></li>
+</ul>
+<p>So the correct input is:</p>
+<pre><code>0 q 777
+</code></pre>
+<p>The remaining cases follow the same principle.</p>
+<h2 id="phase-4">phase_4</h2>
+<pre><code class="language-c">int __cdecl func4(int a1)
+&#123;
+  int v1; // esi
+
+  if ( a1 &lt;= 1 )
+    return 1;
+  v1 = func4(a1 - 1);
+  return v1 + func4(a1 - 2);
+&#125;
+
+
+int __cdecl phase_4(char *s)
+&#123;
+  int result; // eax
+  int v2; // [esp+14h] [ebp-4h] BYREF
+
+  if ( sscanf(s, &quot;%d&quot;, &amp;v2) != 1 || v2 &lt;= 0 )
+    explode_bomb();
+  result = func4(v2);
+  if ( result != 55 )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>Anyone who has studied a bit of recursion will recognize that <code>func4</code> implements the computation of the <strong>nth term of the Fibonacci-like sequence</strong> (called here the “rabbit sequence”). But since it’s written with naive recursion, its efficiency is extremely poor, with exponential time complexity.</p>
+<p>The sequence defined here is:</p>
+<pre><code>1 2 3 5 8 13 21 34 55 89 144 ...
+</code></pre>
+<p>Therefore, the correct answer is <strong>9</strong>.</p>
+<hr>
+<p>In the provided instructions, there’s also the following hint:</p>
+<pre><code>Phases get progressively harder. There is also a &quot;secret phase&quot; that
+only appears if students append a certain string to the solution to
+Phase 4.
+</code></pre>
+<p>Next, we open the <code>phase_defused</code> function:</p>
+<pre><code class="language-c">void phase_defused()
+&#123;
+  char v0; // [esp+14h] [ebp-54h] BYREF
+  char v1[80]; // [esp+18h] [ebp-50h] BYREF
+
+  if ( num_input_strings == 6 )
+  &#123;
+    if ( sscanf(s, &quot;%d %s&quot;, &amp;v0, v1) == 2 &amp;&amp; !strings_not_equal(v1, &quot;austinpowers&quot;) )
+    &#123;
+      printf(&quot;Curses, you've found the secret phase!\n&quot;);
+      printf(&quot;But finding it and solving it are quite different...\n&quot;);
+      secret_phase();
+    &#125;
+    printf(&quot;Congratulations! You've defused the bomb!\n&quot;);
+  &#125;
+&#125;
+</code></pre>
+<p>Therefore, we need to append the string <strong><code>austinpowers</code></strong> right after the answer <strong>9</strong>.</p>
+<p>Only when <code>num_input_strings == 6</code> (meaning all six phases are correctly solved) will the <strong>hidden phase</strong> be revealed.</p>
+<h2 id="phase-5">phase_5</h2>
+<pre><code class="language-c">int __cdecl phase_5(_BYTE *a1)
+&#123;
+  int i; // edx
+  int result; // eax
+  char v3[8]; // [esp+10h] [ebp-8h] BYREF
+
+  if ( string_length(a1) != 6 )
+    explode_bomb();
+  for ( i = 0; i &lt;= 5; ++i )
+    v3[i] = array_123[a1[i] &amp; 0xF];
+  v3[6] = 0;
+  result = strings_not_equal(v3, &quot;giants&quot;);
+  if ( result )
+    explode_bomb();
+  return result;
+&#125;
+</code></pre>
+<p>The challenge is starting to get a bit more difficult—roughly on par with the second reverse-engineering problem in a freshman competition.</p>
+<p>Here’s what’s happening:</p>
+<ul>
+<li>The program takes the input string and applies a <strong>bitwise AND with 15</strong> on each byte (effectively <code>mod 16</code>).</li>
+<li>These values are then used as indices into the <strong><code>array_123</code> dictionary</strong>.</li>
+<li>The generated result is compared against the string <strong><code>giants</code></strong>.</li>
+</ul>
+<p>When examining <code>array_123</code>, you’ll notice it contains a set of ASCII characters. That means the target string is encoded through this mapping.</p>
+<p>To solve it, you can simply write a <strong>script to backtrack the values of <code>a1</code></strong>, by determining which input characters map to the corresponding letters in <code>giants</code>.</p>
+<img src="https://img.junyu33.me/blog/security03/array123.png">
+<pre><code class="language-C">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+unsigned char array_123[] =
+&#123;
+  0x69, 0x73, 0x72, 0x76, 0x65, 0x61, 0x77, 0x68, 0x6F, 0x62, 
+  0x70, 0x6E, 0x75, 0x74, 0x66, 0x67
+&#125;;
+char s[]=&quot;giants&quot;;
+int sol[10];
+int main()&#123;
+   for(int i=0;i&lt;6;i++)
+   &#123;
+      for(int j=0;j&lt;16;j++)
+         if(array_123[j]==s[i])
+         &#123;
+            sol[i]=j;
+            break;
+         &#125;
+   &#125;
+   for(int i=0;i&lt;6;i++)
+      printf(&quot;%d &quot;,sol[i]);
+   return 0;
+&#125;
+</code></pre>
+<p>The output result is:</p>
+<pre><code>15 0 5 11 13 1
+</code></pre>
+<p>However, the problem requires us to input a <strong>string</strong>. Since characters with values less than 16 are invisible, we need to add multiples of 16 to make them printable.</p>
+<p>Here, I chose to add <strong>96</strong>, and the final answer is:</p>
+<pre><code>o`ekma
+</code></pre>
+<h2 id="phase-6">phase_6</h2>
+<pre><code class="language-c">int __cdecl phase_6(char *s)
+&#123;
+  int i; // edi
+  int j; // ebx
+  int k; // edi
+  _DWORD *v4; // esi
+  int l; // ebx
+  int *v6; // esi
+  int m; // edi
+  int *v8; // eax
+  int *v9; // esi
+  int n; // edi
+  int result; // eax
+  int *v12; // [esp+24h] [ebp-34h]
+  int v13[6]; // [esp+28h] [ebp-30h]
+  int input[6]; // [esp+40h] [ebp-18h] BYREF
+
+  read_six_numbers(s, (int)input);
+  for ( i = 0; i &lt;= 5; ++i )
+  &#123;
+    if ( (unsigned int)(input[i] - 1) &gt; 5 )
+      explode_bomb();
+    for ( j = i + 1; j &lt;= 5; ++j )
+    &#123;
+      if ( input[i] == input[j] )
+        explode_bomb();
+    &#125;
+  &#125;
+  for ( k = 0; k &lt;= 5; ++k )
+  &#123;
+    v4 = &amp;node1;
+    for ( l = 1; l &lt; input[k]; ++l )
+      v4 = (_DWORD *)v4[2];
+    v13[k] = (int)v4;
+  &#125;
+  v6 = (int *)v13[0];
+  v12 = (int *)v13[0];
+  for ( m = 1; m &lt;= 5; ++m )
+  &#123;
+    v8 = (int *)v13[m];
+    v6[2] = (int)v8;
+    v6 = v8;
+  &#125;
+  v8[2] = 0;
+  v9 = v12;
+  for ( n = 0; n &lt;= 4; ++n )
+  &#123;
+    result = *v9;
+    if ( *v9 &lt; *(_DWORD *)v9[2] )
+      explode_bomb();
+    v9 = (int *)v9[2];
+  &#125;
+  return result;
+&#125;
+</code></pre>
+<p>This one is rather troublesome, as it involves <strong>linked list manipulation and modification</strong>, with fairly heavy use of pointers, and the readability of the code and data isn’t great.</p>
+<p>The general idea is:</p>
+<ul>
+<li>Input a <strong>permutation of numbers 1–6</strong>.</li>
+<li>Use this permutation to reorder the <code>node</code> structures.</li>
+<li>Rebuild a structure called <code>v13</code>.</li>
+<li>Traverse <code>v13</code> using <code>v9</code> to check whether the <strong>keys inside are in descending order</strong>.</li>
+</ul>
+<p>Inspecting the address of <code>node1</code>, we find a bunch of raw data (IDA still isn’t advanced enough to automatically recognize this structure).</p>
+<p>From the problem description file, we know:</p>
+<pre><code>Each bomb phase tests a different aspect of machine language programs:
+  Phase 1: string comparison
+  Phase 2: loops
+  Phase 3: conditionals/switches
+  Phase 4: recursive calls and the stack discipline
+  Phase 5: pointers
+  Phase 6: linked lists/pointers/structs
+</code></pre>
+<p>This strongly suggests that the <code>node</code> structure is indeed a <strong>linked list</strong>. By processing that raw data and converting it into integers, we can reconstruct the node values.</p>
+<img src="https://img.junyu33.me/blog/security03/link.png">
+<p>The <strong>first value of <code>node</code> is the key</strong>, the second is the position in the linked list, and the third corresponds to the <code>next</code> pointer array. This confirms that it’s a <strong>linked list structure</strong>.</p>
+<p>Sorting the keys in <strong>descending order</strong> gives the sequence:</p>
+<pre><code>4 2 6 3 1 5
+</code></pre>
+<p>Of course, if you didn’t fully understand the structure, you could also solve this by brute force. (The problem statement mentioned: <em>“Each incorrect attempt deducts 0.5 points from your total score.”</em> But since we’re solving offline, brute force is still fine!)</p>
+<p>Here is the brute-force script, for those interested:</p>
+<pre><code class="language-python">from pwn import *
+import itertools
+
+num = ['1','2','3','4','5','6']
+for num in itertools.permutations(num,6):
+    io = process('./bomb')
+    io.sendline('Public speaking is very easy.')
+    io.sendline('1 2 6 24 120 720')
+    io.sendline('0 q 777')
+    io.sendline('9')
+    io.sendline('o`ekma')
+    a = ' '.join(num)
+    print(a)
+    io.sendline(a)
+    for i in range(10):
+        s = io.recvline()
+        print(s)
+    io.close()
+
+# Correct permutation: 4 2 6 3 1 5
+</code></pre>
+<h2 id="secret-phase">secret_phase</h2>
+<pre><code class="language-c">int __cdecl fun7(_DWORD *a1, int a2)
+&#123;
+  if ( !a1 )
+    return -1;
+  if ( a2 &lt; *a1 )
+    return 2 * fun7((_DWORD *)a1[1], a2);
+  if ( a2 == *a1 )
+    return 0;
+  return 2 * fun7((_DWORD *)a1[2], a2) + 1;
+&#125;
+
+void secret_phase()
+&#123;
+  const char *v0; // eax
+  int v1; // ebx
+
+  v0 = (const char *)read_line();
+  v1 = __strtol_internal(v0, 0, 10, 0);
+  if ( (unsigned int)(v1 - 1) &gt; 0x3E8 )
+    explode_bomb();
+  if ( fun7(n1, v1) != 7 )
+    explode_bomb();
+  printf(&quot;Wow! You've defused the secret stage!\n&quot;);
+  phase_defused();
+&#125;
+</code></pre>
+<p>Unfortunately, the <code>n1</code> in the code again appears as raw data, so we have to manually decode it.</p>
+<img src="https://img.junyu33.me/blog/security03/data.png">
+<p>Anyone with some background in data structures can quickly recognize that this looks like a <strong>binary tree</strong>. If you sketch it out, you’ll notice it’s actually a <strong>Binary Search Tree (BST)</strong>.</p>
+<img src="https://img.junyu33.me/blog/security03/bst.jpg">
+<blockquote>
+<p>The value I overwrote by hand is 6Bh.</p>
+</blockquote>
+<p>The logic of <code>fun7</code> is as follows:</p>
+<ul>
+<li>If you backtrack from the <strong>right subtree</strong>, the value is <code>val × 2 + 1</code>.</li>
+<li>If you backtrack from the <strong>left subtree</strong>, the value is <code>val × 2</code>.</li>
+<li>Any leaf node has the value <code>0</code>.</li>
+</ul>
+<p>By manually tracing the calculation, you can determine that only the <strong>rightmost bottom node</strong>, which has the value <code>3E9h</code> (i.e., <strong>1001</strong>), will yield a final root value of <strong>7</strong>.</p>
+<h1>Summary</h1>
+<p>Lab 3 was indeed easier than Lab 2 (I finished the <strong>secret_phase</strong> from the evening of the 10th at 9 p.m. to the morning of the 11th at 9:30 a.m.), but it was not as simple as I initially imagined—certainly not something you can just solve by casually opening IDA.</p>
+<p>I would recommend that next year’s students <strong>must complete Lab 1 (decoding lab) and Lab 3 (binary bomb)</strong> for the security project, and treat Lab 2 (buffer bomb) as optional. Lab 2 requires too much prerequisite knowledge, which most students cannot handle. The fragmented hints scattered throughout the semester inevitably affect a systematic study of the stack later on.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

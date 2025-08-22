@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 
+  
+    <link rel="alternate" hreflang="en" href="/en/2021/11/23/ctf04/">
+  
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +44,16 @@
 
   <div class="main">
     <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2021/11/23/ctf04/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
     
 
 	<h1>scuctf新生赛——幽篁终见天战队wp</h1>
@@ -336,7 +350,7 @@ int main()
 <p>找到程序的正确终点，通过调整寄存器让程序跑到正确位置，拿到flag</p>
 <h2 id="RE6-EzLinearEquation">RE6:EzLinearEquation</h2>
 <p>IDA载入，得到多元1次方程，调用python的z3库解方程即可</p>
-<p><a target="_blank" rel="noopener" href="https://netcut.cn/1fl6ahg7f">Re6.cpp</a>（一周内有效）</p>
+<p><s><a target="_blank" rel="noopener" href="https://netcut.cn/1fl6ahg7f">Re6.cpp</a>（一周内有效）</s></p>
 <h2 id="RE7-VirtualMachine">RE7:VirtualMachine</h2>
 <p>x32dbg载入</p>
 <p>输入函数</p>
@@ -400,7 +414,7 @@ int main()
 <p>然后就是简单的翻找目录然后双写绕过cat flag</p>
 <img src="https://img.junyu33.me/blog/ctf04/web7_1.png"> 
 <h2 id="Web-ezSSTI">[Web]ezSSTI</h2>
-<p>由题目易得存在sstl标准注入的漏洞</p>
+<p>由题目易得存在ssti标准注入的漏洞</p>
 <p>测试一下</p>
 <img src="https://img.junyu33.me/blog/ctf04/ssti.png">
 <p>发现命令被执行</p>

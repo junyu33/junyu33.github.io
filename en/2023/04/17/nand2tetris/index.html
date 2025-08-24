@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/04/17/nand2tetris/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/04/17/nand2tetris/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>nand2tetris</h1>
+	<p>The remarks of different modules of nand2tetris, and my workout.</p>
+<p>43 hours (approximately) for part1 (module1-6) in December 28, 2022, grade 100%.</p>
+<p>89 hours (approximately) for part2 (module7-12) in April 17, 2023, grade 96.8%.</p>
+<span id="more"></span>
+<h1>modules</h1>
+<h2 id="module1-boolean-logic">module1(boolean logic)</h2>
+<ul>
+<li>aim: Build some basic logic chip like AND, OR, MUX, DMUX.</li>
+<li>difficulty: 1</li>
+<li>status: finished</li>
+<li>remark: Just need to get accustomed to HDL language.</li>
+</ul>
+<h2 id="module2-boolean-arithmetic">module2(boolean arithmetic)</h2>
+<ul>
+<li>aim: Build some more advanced chip like Add, FullAdder and ALU.</li>
+<li>difficulty: 2</li>
+<li>status: finished</li>
+<li>remark: Students who learnt digital circuit can figure it out easily, maybe you need some debugging skills when implementing the ALU.</li>
+</ul>
+<h2 id="module3-sequential-logic">module3(sequential logic)</h2>
+<ul>
+<li>aim: Build registers and different size of RAMs.</li>
+<li>difficulty: 2</li>
+<li>status: finished</li>
+<li>remark: Building a bit which can store data is kind of challenging, but building the register, RAM and pile them up is just repetition.</li>
+</ul>
+<h2 id="module4-machine-language">module4(machine language)</h2>
+<ul>
+<li>aim: Write hack assembly by hand.</li>
+<li>difficulty: 2</li>
+<li>status: finished</li>
+<li>remark: Commenting what you have done using the high-level language saves time when debugging.</li>
+</ul>
+<h2 id="module5-computer-architecture">module5(computer architecture)</h2>
+<ul>
+<li>aim: Build the CPU, memory and then the whole computer.</li>
+<li>difficulty: 3</li>
+<li>status: finished</li>
+<li>remark: Building the CPU needs some patience, while others are quite easy. (ps: ALWAYS REMEMBER THE BITS ARE ARRANGED IN SMALL ENDIAN !!!)</li>
+</ul>
+<h2 id="module6-assembler">module6(assembler)</h2>
+<ul>
+<li>aim: Build the translater between hack assembly and hack machine language(0's and 1's).</li>
+<li>difficulty: 3</li>
+<li>status: finished</li>
+<li>remark: The first project needs serious programming (although you can choose write by hand, but you'll not be able to handle following projects), I implemented using about 100 lines of python code.</li>
+</ul>
+<h2 id="module7-VM1-stack-arithmetic">module7(VM1: stack arithmetic)</h2>
+<ul>
+<li>aim: Transalte basic VM code like push, pop, add, sub, gt, lt.</li>
+<li>difficulty: 3</li>
+<li>status: finished</li>
+<li>remark: I implemented using about 350 lines of python code, but most of them are repetition of some patterns.</li>
+</ul>
+<h2 id="module8-VM2-program-control">module8(VM2: program control)</h2>
+<ul>
+<li>aim: Transalte rest of VM code like goto, function, call and return.</li>
+<li>difficulty: 4</li>
+<li>status: finished after deadline (makes no difference on my grade)</li>
+<li>remark: You need some deeper understanding of stack call &amp; return routines or you'll be painful. I implemented using 500+ lines of python code.</li>
+</ul>
+<h2 id="module9-high-level-language">module9(high-level language)</h2>
+<ul>
+<li>aim: Invent a program/game using jack language.</li>
+<li>difficulty: It varies, my project difficulty is about 3 and get 80pts.</li>
+<li>status: finished</li>
+<li>remark: Involution is everywhere.</li>
+</ul>
+<h2 id="module10-compiler1-syntax-analysis">module10(compiler1: syntax analysis)</h2>
+<ul>
+<li>aim: The first step of build a compiler: tokenize the jack program and parse it to become a xml file.</li>
+<li>difficulty: 3</li>
+<li>status: finished</li>
+<li>remark: A little challenge of using recursion, if you follow the syntax in lecture, implementing is rather easy. About 360 lines of python code.</li>
+</ul>
+<h2 id="module11-compiler2-code-generation">module11(compiler2: code generation)</h2>
+<ul>
+<li>aim: With the assistance of xml file, build the symbol table and get the jack code translated finally.</li>
+<li>difficulty: 5</li>
+<li>status: unfinished</li>
+<li>remark: The project is too difficult for only 2 or 3 days and I can't finish it on time. To meet the deadline, I just output the specific VM code in accordance with the test cases (打表 in Chinese).</li>
+</ul>
+<h2 id="module12-operating-system">module12(operating system)</h2>
+<ul>
+<li>aim: Build the entire OS by 8 classes (jack files).</li>
+<li>difficulty: 4</li>
+<li>status: finished except String class</li>
+<li>remark: Interesting project, I nearly finished all of the classes and found the OS running very slow. Fortunately, the judger only compares classes that are objective(i.e. has .tst files, like Memory, Math and Array module), so I still got the full mark.</li>
+</ul>
+<h1>my repo</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/junyu33/nand2tetris">https://github.com/junyu33/nand2tetris</a></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

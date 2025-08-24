@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-22T13:54:48.923Z</updated>
+  <updated>2025-08-24T11:42:59.357Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
@@ -11,6 +11,115 @@
     <id>https://blog.junyu33.me/en/2038/01/19/meta/</id>
     <updated>2025-08-21T02:43:30.080Z</updated>
     <summary type="html"><![CDATA[<p>Lists some meta information related to the blog itself for easy reference.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>(sticky, finished) nju-pa experience</title>
+    <link href="https://blog.junyu33.me/en/2033/05/13/nju_pa/"/>
+    <id>https://blog.junyu33.me/en/2033/05/13/nju_pa/</id>
+    <updated>2025-08-24T11:32:12.981Z</updated>
+    <summary type="html"><![CDATA[<p>2023/4/20 ~ 2024/5/4</p>
+<p>6705 commits (2 commits per compilation and execution)</p>
+<p>A year of persistence has finally come to an end.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>(ex)gcd, inverse and misc</title>
+    <link href="https://blog.junyu33.me/en/2024/09/13/exgcd/"/>
+    <id>https://blog.junyu33.me/en/2024/09/13/exgcd/</id>
+    <updated>2025-08-24T11:18:40.641Z</updated>
+    <summary type="html"><![CDATA[<p>Backup of an published talk on 9/13/2024.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Clever Compilers - x86_64 assembly arithmetic analysis</title>
+    <link href="https://blog.junyu33.me/en/2024/04/25/asmmath/"/>
+    <id>https://blog.junyu33.me/en/2024/04/25/asmmath/</id>
+    <updated>2025-08-24T11:15:58.465Z</updated>
+    <summary type="html"><![CDATA[<p>Backup of an unpublished talk on 4/25/2024.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Verilog - A Practice Approach</title>
+    <link href="https://blog.junyu33.me/en/2024/04/07/verilog/"/>
+    <id>https://blog.junyu33.me/en/2024/04/07/verilog/</id>
+    <updated>2025-08-24T11:15:58.841Z</updated>
+    <summary type="html"><![CDATA[<p>Backup of talk on 3/22/2024 from <a href="https://ccsgeeks.github.io/">https://ccsgeeks.github.io/</a></p>]]></summary>
+  </entry>
+  <entry>
+    <title>The hodgepodge of proxy configuration</title>
+    <link href="https://blog.junyu33.me/en/2024/03/14/proxy/"/>
+    <id>https://blog.junyu33.me/en/2024/03/14/proxy/</id>
+    <updated>2025-08-24T11:21:52.513Z</updated>
+    <summary type="html"><![CDATA[<p>My topic in a seminar at a ramdom time in the future.</p>
+<p>Also, HAPPY PI DAY!</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Thirty-six — my summary of year 2023</title>
+    <link href="https://blog.junyu33.me/en/2023/12/31/bye2023/"/>
+    <id>https://blog.junyu33.me/en/2023/12/31/bye2023/</id>
+    <updated>2025-08-24T11:36:26.308Z</updated>
+    <summary type="html"><![CDATA[<p>I find that I've nearly forgot to write this summary. So, in accordance with IELTS writing requirements, I'll try to write this in 40 minutes.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>LFS on a VM</title>
+    <link href="https://blog.junyu33.me/en/2023/08/27/LFS/"/>
+    <id>https://blog.junyu33.me/en/2023/08/27/LFS/</id>
+    <updated>2025-08-24T11:15:58.702Z</updated>
+    <summary type="html"><![CDATA[<img src='https://img.junyu33.me/blog/LFS/1.png'>
+<p>Just without <code>vmware-guest-additions</code> support, so there is no Internet.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Thirty-four — blog 2nd anniversary / NUS trip</title>
+    <link href="https://blog.junyu33.me/en/2023/07/06/2nd_anni/"/>
+    <id>https://blog.junyu33.me/en/2023/07/06/2nd_anni/</id>
+    <updated>2025-08-23T08:02:55.239Z</updated>
+    <summary type="html"><![CDATA[<p>Time flies; it’s already been two years.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Thirty-three — ChatGPT 2nd test</title>
+    <link href="https://blog.junyu33.me/en/2023/04/26/chatgpt2/"/>
+    <id>https://blog.junyu33.me/en/2023/04/26/chatgpt2/</id>
+    <updated>2025-08-24T11:18:25.912Z</updated>
+    <summary type="html"><![CDATA[<p>It's time to see the power of GPT-4.</p>
+<p>The first annotation is the question, the body is the answer, and the next annotation is the evaluation.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>nand2tetris</title>
+    <link href="https://blog.junyu33.me/en/2023/04/17/nand2tetris/"/>
+    <id>https://blog.junyu33.me/en/2023/04/17/nand2tetris/</id>
+    <updated>2025-08-24T11:19:58.221Z</updated>
+    <summary type="html"><![CDATA[<p>The remarks of different modules of nand2tetris, and my workout.</p>
+<p>43 hours (approximately) for part1 (module1-6) in December 28, 2022, grade 100%.</p>
+<p>89 hours (approximately) for part2 (module7-12) in April 17, 2023, grade 96.8%.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Thirty — my summary of year 2022</title>
+    <link href="https://blog.junyu33.me/en/2022/12/28/bye2022/"/>
+    <id>https://blog.junyu33.me/en/2022/12/28/bye2022/</id>
+    <updated>2025-08-24T11:36:14.624Z</updated>
+    <summary type="html"><![CDATA[<p>The year 2022 is mainly for accumulating basics. Nothing extraordinary happened.</p>
+<img src='https://img.junyu33.me/blog/bye2022/2022.png'>]]></summary>
+  </entry>
+  <entry>
+    <title>Twenty-nine — ChatGPT 1st test</title>
+    <link href="https://blog.junyu33.me/en/2022/12/12/chatgpt/"/>
+    <id>https://blog.junyu33.me/en/2022/12/12/chatgpt/</id>
+    <updated>2025-08-24T11:41:24.569Z</updated>
+    <summary type="html"><![CDATA[<p>It seems pretty good, though not as versatile as I'd hoped.</p>
+<p>Note: The original formatting is retained and no modifications are made to the output.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Twenty-five — bye, Baidu</title>
+    <link href="https://blog.junyu33.me/en/2022/04/15/bye_baidu/"/>
+    <id>https://blog.junyu33.me/en/2022/04/15/bye_baidu/</id>
+    <updated>2025-08-24T11:39:07.121Z</updated>
+    <summary type="html"><![CDATA[<p>My English presentation on 4/14/2022.</p>
+<img src='https://img.junyu33.me/blog/bye_baidu/1.png'>]]></summary>
+  </entry>
+  <entry>
+    <title>Twenty-four — my summary of year 2021</title>
+    <link href="https://blog.junyu33.me/en/2021/12/30/bye2021/"/>
+    <id>https://blog.junyu33.me/en/2021/12/30/bye2021/</id>
+    <updated>2025-08-24T11:37:15.626Z</updated>
+    <summary type="html"><![CDATA[<p>The year 2021 is another extraordinary year for me. Many shining and gloomy moments happened. To sum up, I still believe my year of 2021 goes smoothly.</p>
+<img src="https://img.junyu33.me/blog/bye2021/2021.png">]]></summary>
   </entry>
   <entry>
     <title>csapp Binary Bomb Lab</title>
@@ -30,10 +139,10 @@
 <img src="https://img.junyu33.me/blog/ctf04/rank.jpg" style="zoom:50%;" >]]></summary>
   </entry>
   <entry>
-    <title>Twenty-three——review of CLANNAD (anime)</title>
+    <title>Twenty-three — review of CLANNAD (anime)</title>
     <link href="https://blog.junyu33.me/en/2021/11/17/clannad/"/>
     <id>https://blog.junyu33.me/en/2021/11/17/clannad/</id>
-    <updated>2025-08-22T09:46:28.738Z</updated>
+    <updated>2025-08-24T11:37:28.598Z</updated>
     <summary type="html"><![CDATA[<p>Followed by my last English post &quot;bewilderment&quot;, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart.</p>
 <p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
 <p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>]]></summary>
@@ -48,10 +157,10 @@
 <p>I used the <strong>TDM-GCC 4.9.2 32-bit Debug compiler</strong> in Dev-C++. Newer versions of the compiler have added security optimizations, and since I couldn’t outsmart them, I simply gave up.</p>]]></summary>
   </entry>
   <entry>
-    <title>Twenty-two——bewilderment</title>
+    <title>Twenty-two — bewilderment</title>
     <link href="https://blog.junyu33.me/en/2021/11/01/bewilderment/"/>
     <id>https://blog.junyu33.me/en/2021/11/01/bewilderment/</id>
-    <updated>2025-08-21T02:57:10.353Z</updated>
+    <updated>2025-08-24T11:37:07.023Z</updated>
     <summary type="html"><![CDATA[<blockquote>
 <p>This is my first time to write a post in English. There are three advantages.</p>
 <ul>
@@ -68,86 +177,5 @@
 <p>In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp; listening is nearly 15000), readers who have <strong>passed</strong> the CET4 exam might be enough to read the following text.</p>
 </blockquote>
 <p>Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I'm really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>csapp Decoding Lab</title>
-    <link href="https://blog.junyu33.me/en/2021/10/29/security01/"/>
-    <id>https://blog.junyu33.me/en/2021/10/29/security01/</id>
-    <updated>2025-08-21T02:38:45.246Z</updated>
-    <summary type="html"><![CDATA[<h1>solution</h1>
-  <img src="https://img.junyu33.me/blog/security01/1.png">         
-<p>(Note: This key may yield different results on different systems, or even across different IDEs within the same system, so the answer is <strong>for reference only</strong>.)</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Twenty-one——Goodbye, Mouse</title>
-    <link href="https://blog.junyu33.me/en/2021/10/24/1024/"/>
-    <id>https://blog.junyu33.me/en/2021/10/24/1024/</id>
-    <updated>2025-08-21T02:55:44.637Z</updated>
-    <summary type="html"><![CDATA[<h1>Introduction</h1>
-<p>In order to improve work efficiency and out of concern for my wrist health (already showing some swelling and wear), on this <strong>special day</strong>, as my mouse’s last bit of battery ran out, I decided to abandon the mouse and move <strong>almost</strong> all operations entirely to the keyboard.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Qiangwang Cup Offline Sponsored Trip Notes</title>
-    <link href="https://blog.junyu33.me/en/2021/10/17/ctf03/"/>
-    <id>https://blog.junyu33.me/en/2021/10/17/ctf03/</id>
-    <updated>2025-08-21T02:45:40.353Z</updated>
-    <summary type="html"><![CDATA[<p>I noticed an interesting phenomenon: <strong>the first place online scored zero offline; while the first place offline barely made it into the finals online.</strong></p>
-<p>Our team more or less followed this same pattern. What does this indicate?</p>]]></summary>
-  </entry>
-  <entry>
-    <title>The Success of the Qiangwang Cup</title>
-    <link href="https://blog.junyu33.me/en/2021/09/25/ctf02/"/>
-    <id>https://blog.junyu33.me/en/2021/09/25/ctf02/</id>
-    <updated>2025-08-21T02:46:03.793Z</updated>
-    <summary type="html"><![CDATA[<p>After the last failed experience, I expected the upcoming <strong>Qiangwang Cup Youth CTF</strong> to be much more straightforward, but reality proved otherwise.</p>
-<p>Below is the write-up in the order I solved the problems (this time, I was the only one to solve them, not bad!):</p>
-<hr>
-<h2 i]]></summary>
-  </entry>
-  <entry>
-    <title>The Failure of the Longjian Cup</title>
-    <link href="https://blog.junyu33.me/en/2021/09/14/ctf01/"/>
-    <id>https://blog.junyu33.me/en/2021/09/14/ctf01/</id>
-    <updated>2025-08-21T02:46:29.424Z</updated>
-    <summary type="html"><![CDATA[<p>Not long after entering school, we were encouraged by our teacher to participate in the <strong>first Longjian Cup</strong>. When I saw the exam scope described in the contest guidelines, I realized the coverage had <strong>no overlap at all</strong> with the knowledge I had studied.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Number guessing game</title>
-    <link href="https://blog.junyu33.me/en/2021/08/27/guess/"/>
-    <id>https://blog.junyu33.me/en/2021/08/27/guess/</id>
-    <updated>2025-08-21T02:45:04.261Z</updated>
-    <summary type="html"><![CDATA[<p>It was a free day again, so I dug out the number guessing game code that I wrote during the high school. I didn’t improve it, but combined the popular online version with elementary school mathematics to form the following code.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Twenty——C2 Driving License Journey</title>
-    <link href="https://blog.junyu33.me/en/2021/08/12/kaiche/"/>
-    <id>https://blog.junyu33.me/en/2021/08/12/kaiche/</id>
-    <updated>2025-08-21T02:44:44.874Z</updated>
-    <summary type="html"><![CDATA[<p>From <strong>June 26</strong>, when I registered at the driving school, to <strong>August 12</strong>, when I got my license, learning to drive basically spanned my entire summer vacation. Except for a business trip that delayed me for nearly ten days, it took me almost 40 days in total to complete the training. Overall, the process went quite smoothly—I passed all the exams on the first try—and the enjoyable summer driving experience has now become a sweet memory.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Xposed, from beginner to quitter</title>
-    <link href="https://blog.junyu33.me/en/2021/08/10/xp/"/>
-    <id>https://blog.junyu33.me/en/2021/08/10/xp/</id>
-    <updated>2025-08-21T02:43:05.056Z</updated>
-    <summary type="html"><![CDATA[<p>After getting a new phone, after two days of disdainful efforts (and the stupidity tax of 50 yuan to unlock the bootloader?), I finally gained full control of my Huawei phone.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>2048 and Threes! written in mathematica</title>
-    <link href="https://blog.junyu33.me/en/2021/08/02/2048plus/"/>
-    <id>https://blog.junyu33.me/en/2021/08/02/2048plus/</id>
-    <updated>2025-08-21T02:47:23.796Z</updated>
-    <summary type="html"><![CDATA[<p>With some free time, I dug out the 2048 code written in mathematica that I copied and pasted from the internet ten years ago and modified it, combining 2048 with Threes!:</p>
-<p>(Due to keyboard manipulation, the web-based compiler won’t work. Please download mathematica version 8.0 or higher.)</p>]]></summary>
-  </entry>
-  <entry>
-    <title>The 1st blog</title>
-    <link href="https://blog.junyu33.me/en/2018/11/30/1st_blog/"/>
-    <id>https://blog.junyu33.me/en/2018/11/30/1st_blog/</id>
-    <updated>2025-08-21T02:47:49.204Z</updated>
-    <summary type="html"><![CDATA[<h2 id="First-meeting">First meeting</h2>
-<p>Hello, classmate! Welcome to the blogging system based on the Next theme built with Hexo.</p>
-<h2 id="About-Markdown">About Markdown</h2>
-<p>By the time you’re able to access this page, you’re already aware that blog posts will be written using Markdown s]]></summary>
   </entry>
 </feed>

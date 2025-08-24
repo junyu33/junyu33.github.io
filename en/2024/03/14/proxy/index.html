@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2024/03/14/proxy/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2024/03/14/proxy/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>The hodgepodge of proxy configuration</h1>
+	<p>My topic in a seminar at a ramdom time in the future.</p>
+<p>Also, HAPPY PI DAY!</p>
+<span id="more"></span>
+<h1>The hodgepodge of proxy configuration</h1>
+<h2 id="disclaimer">disclaimer</h2>
+<p><strong>This lecture only introduces proxy configuration method in different context from a university students' perspective. It won't provide any information about proxy sources, please STFW on your own.</strong></p>
+<h2 id="Introduction">Introduction</h2>
+<p>Proxy is a server that acts as an intermediary for requests from clients seeking resources from other servers. A client connects to the proxy server, requesting some service, such as a file, connection, web page, or other resource available from a different server and the proxy server evaluates the request as a way to simplify and control its complexity.</p>
+<p>Due to the inherent feature of our country, we need to use proxy to access some foreign websites or speed up the working efficiency when setting up the environment. This lecture will introduce the proxy configuration method in different context.</p>
+<h2 id="Basic-Assumptions">Basic Assumptions</h2>
+<ul>
+<li>The proxy server is running on <code>localhost</code> and listening on port <code>7897</code>, unless otherwise specified.</li>
+<li>The proxy server is a HTTP/HTTPS proxy server, unless otherwise specified.</li>
+<li>You neither use <code>global proxy</code> nor <code>TUN mode</code>.</li>
+</ul>
+<h2 id="Table-of-Contents">Table of Contents</h2>
+<h3 id="Linux-Mac-shell">Linux/Mac shell</h3>
+<pre><code class="language-bash">alias setproxy='export http_proxy=&quot;http://127.0.0.1:7897&quot;;export https_proxy=&quot;http://127.0.0.1:7897&quot;;export socks_proxy=&quot;http://127.0.0.1:7897&quot;'
+alias unsetproxy='unset http_proxy;unset https_proxy;unset socks_proxy'
+source ~/.bashrc (~/.zshrc etc.)
+</code></pre>
+<h3 id="Windows-shell">Windows shell</h3>
+<ul>
+<li>cmd</li>
+</ul>
+<pre><code class="language-cmd"># set proxy
+netsh winhttp set proxy 127.0.0.1:7897
+# delete proxy
+netsh winhttp reset proxy
+# view proxy
+netsh winhttp show proxy
+</code></pre>
+<ul>
+<li>powershell</li>
+</ul>
+<pre><code class="language-powershell">$Env:http_proxy=&quot;http://127.0.0.1:7897&quot;;$Env:https_proxy=&quot;http://127.0.0.1:7897&quot;
+</code></pre>
+<ul>
+<li>GUI(Windows 10/11)</li>
+</ul>
+<ol>
+<li>Open <code>Settings</code> -&gt; <code>Network &amp; Internet</code> -&gt; <code>Proxy</code></li>
+<li>Set <code>Manual proxy setup</code> to <code>On</code></li>
+<li>Fill in the <code>Address</code> and <code>Port</code> with <code>localhost</code> and <code>7897</code> respectively</li>
+</ol>
+<h3 id="Vmware">Vmware</h3>
+<p>assume you are using NAT mode and you enabled <code>allow LAN</code> in your proxy software.</p>
+<ol>
+<li>check your ifconfig/ipconfig result of <code>vmnet8</code></li>
+</ol>
+<pre><code>vmnet8: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 192.168.18.1  netmask 255.255.255.0  broadcast 192.168.18.255
+        inet6 fe80::250:56ff:fec0:8  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether 00:50:56:c0:00:08  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 103  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre>
+<ol start="2">
+<li>set proxy in your vm</li>
+</ol>
+<pre><code class="language-bash">export http_proxy=&quot;http://192.168.18.1:7897&quot;
+export https_proxy=&quot;http://192.168.18.1:7897&quot;
+export socks_proxy=&quot;http://192.168.18.1:7897&quot;
+</code></pre>
+<h3 id="VirtualBox">VirtualBox</h3>
+<ol>
+<li>set your network adapter to <code>Host-only Adapter</code></li>
+<li>an interface named <code>vboxnet0</code> or other will be created</li>
+<li>ifconfig/ipconfig to check the ip address</li>
+</ol>
+<pre><code class="language-bash">vboxnet0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 192.168.56.1  netmask 255.255.255.0  broadcast 192.168.56.255
+        inet6 fe80::800:27ff:fe00:0  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether 0a:00:27:00:00:00  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 33  bytes 3289 (3.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre>
+<ol start="4">
+<li>set proxy in your vm, in this way you can also solve the problem of not able to access the internet in your vm</li>
+</ol>
+<pre><code class="language-bash">export http_proxy=&quot;http://192.168.56.1:7897&quot;
+export https_proxy=&quot;http://192.168.56.1:7897&quot;
+export socks_proxy=&quot;http://192.168.56.1:7897&quot;
+</code></pre>
+<h3 id="browsers">browsers</h3>
+<ul>
+<li>Chrome/Edge/Firefox</li>
+</ul>
+<ol>
+<li>Open <code>Settings</code></li>
+<li>Search <code>Proxy</code> and click <code>Open your computer's proxy settings</code> (Chrome/Edge), Firefox can be configured directly</li>
+<li>Fill in the <code>Address</code> and <code>Port</code> with <code>localhost</code> and <code>7897</code> respectively</li>
+</ol>
+<ul>
+<li>Plugin (switchyomega, etc.)</li>
+</ul>
+<ol>
+<li>Install the plugin</li>
+<li>Options</li>
+<li>New profile (proxy profile, enter your profile name)</li>
+<li>select DIRECT -&gt; HTTP</li>
+<li>Fill in the <code>Address</code> and <code>Port</code> with <code>localhost</code> and <code>7897</code> respectively</li>
+<li>Apply changes</li>
+</ol>
+<h3 id="vscode-code-OSS-vscodium">vscode/code - OSS/vscodium</h3>
+<ul>
+<li>default use system proxy</li>
+</ul>
+<p>Settings -&gt; search <code>proxy</code> -&gt; fill in the <code>Address</code> and <code>Port</code> with <code>localhost</code> and <code>7897</code> respectively</p>
+<h3 id="Git">Git</h3>
+<pre><code class="language-bash">git config --global http.proxy http://localhost:7897
+git config --global https.proxy https://localhost:7897
+
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+</code></pre>
+<h3 id="ssh">ssh</h3>
+<pre><code class="language-bash">Host github.com
+    HostName ssh.github.com
+    #HostName github.com
+    port 443
+    IdentityFile ~/.ssh/id_rsa
+    User git
+    ProxyCommand nc -v -x 127.0.0.1:7897 %h %p
+</code></pre>
+<h3 id="curl-wget">curl/wget</h3>
+<p>default to use <code>http_proxy</code> and <code>https_proxy</code> environment variables, otherwise</p>
+<pre><code class="language-bash">curl -x localhost:7897 http://example.com
+wget -e http_proxy=localhost:7897 http://example.com
+</code></pre>
+<h3 id="apt-yum-pacman">apt/yum/pacman</h3>
+<p>changing the mirror is a better choice (STFW)</p>
+<pre><code class="language-bash">/etc/apt/apt.conf.d/proxy.conf
+Acquire::http::Proxy &quot;http://proxy-IP-address:proxyport/&quot;;
+Acquire::http::Proxy &quot;http://proxy-IP-address:proxyport/&quot;;
+</code></pre>
+<pre><code class="language-bash">/etc/yum.conf
+proxy=http://localhost:7897
+</code></pre>
+<pre><code class="language-bash"># delete either of the following lines, and configure the proxy in curl/wget
+# setting http_proxy and https_proxy environment variables is also a good choice
+
+/etc/pacman.conf
+#XferCommand = /usr/bin/curl -L -C - -f -o %o %u
+#XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
+</code></pre>
+<h3 id="docker">docker</h3>
+<ul>
+<li>dockerd</li>
+</ul>
+<pre><code class="language-bash">sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo touch /etc/systemd/system/docker.service.d/proxy.conf
+
+[Service]
+Environment=&quot;HTTP_PROXY=http://localhost:7897/&quot;
+Environment=&quot;HTTPS_PROXY=http://localhost:7897/&quot;
+Environment=&quot;NO_PROXY=localhost,127.0.0.1,.example.com&quot;
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+<ul>
+<li>container</li>
+</ul>
+<pre><code class="language-bash">~/.docker/config.json
+
+&#123;
+ &quot;proxies&quot;:
+ &#123;
+   &quot;default&quot;:
+   &#123;
+     &quot;httpProxy&quot;: &quot;http://localhost:7897&quot;,
+     &quot;httpsProxy&quot;: &quot;http://localhost:7897&quot;,
+     &quot;noProxy&quot;: &quot;localhost,127.0.0.1,.example.com&quot;
+   &#125;
+ &#125;
+&#125;
+</code></pre>
+<ul>
+<li>build</li>
+</ul>
+<pre><code class="language-bash">docker build . \
+    --build-arg &quot;HTTP_PROXY=http://localhost:7897/&quot; \
+    --build-arg &quot;HTTPS_PROXY=http://localhost:7897/&quot; \
+    --build-arg &quot;NO_PROXY=localhost,127.0.0.1,.example.com&quot; \
+    -t your/image:tag
+</code></pre>
+<h3 id="pip">pip</h3>
+<pre><code class="language-bash">pip install --proxy http://localhost:7897 package
+pip install --proxy https://localhost:7897 package
+</code></pre>
+<p>or change the mirror to a domestic one</p>
+<pre><code class="language-bash">~/.pip/pip.conf
+
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = https://pypi.tuna.tsinghua.edu.cn
+</code></pre>
+<h3 id="conda">conda</h3>
+<pre><code class="language-bash">~/.condarc
+
+channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/main
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/r
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  msys2: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  menpo: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  pytorch-lts: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.bfsu.edu.cn/anaconda/cloud
+</code></pre>
+<h3 id="npm">npm</h3>
+<pre><code># set proxy
+npm config set proxy http://127.0.0.1:7897
+npm config set https-proxy http://127.0.0.1:7897
+# delete proxy
+npm config delete proxy
+npm config delete https-proxy
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">~/.npmrc
+
+proxy=http://127.0.0.1:7897
+https-proxy=http://127.0.0.1:7897
+registry=https://registry.npmmirror.com/
+</code></pre>
+<h3 id="proxychains4">proxychains4</h3>
+<pre><code class="language-bash"># /etc/proxychains.conf
+
+
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to &quot;tor&quot;
+# socks4 	127.0.0.1 9050
+http 127.0.0.1 7897
+socks5 127.0.0.1 7897
+</code></pre>
+<p>BELOW ARE F**KING JAVA SERIES, it is hard to configure the proxy in java, I mostly use mirrors.</p>
+<h3 id="gradle">gradle</h3>
+<p>gradle.properties</p>
+<pre><code class="language-groovy">systemProp.http.proxyHost='localhost'
+systemProp.http.proxyPort='7897'
+# filter domains not using proxy
+systemProp.http.nonProxyHosts=*.example.com
+systemProp.https.proxyHost='localhost'
+systemProp.https.proxyPort='7897'
+# filter domains not using proxy
+systemProp.https.nonProxyHosts=*.example.com
+</code></pre>
+<h3 id="maven">maven</h3>
+<p>I choose to change the mirror to a domestic one</p>
+<pre><code class="language-bash">~/.m2/settings.xml
+&lt;settings&gt;
+    &lt;mirrors&gt;
+        &lt;mirror&gt;
+          &lt;id&gt;centralhttps&lt;/id&gt;
+          &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+          &lt;name&gt;Maven central https&lt;/name&gt;
+          &lt;url&gt;http://insecure.repo1.maven.org/maven2/&lt;/url&gt;
+        &lt;/mirror&gt;
+      &lt;/mirrors&gt;
+      &lt;/settings&gt;
+</code></pre>
+<h3 id="sbt">sbt</h3>
+<pre><code class="language-bash">~/.sbt/repositories
+
+[repositories]
+local
+aliyun: https://maven.aliyun.com/repository/public
+typesafe: https://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+ivy-sbt-plugin:https://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+sonatype-oss-releases
+maven-central
+sonatype-oss-snapshots
+
+
+sudo vi /usr/share/sbt/conf/sbtopts
+-Dsbt.override.build.repos=true
+</code></pre>
+<h3 id="coursier">coursier</h3>
+<pre><code class="language-bash">export COURSIER_REPOSITORIES=&quot;https://maven.aliyun.com/repository/public|https://maven.scijava.org/content/repositories/public&quot;
+
+# chisel installation modification
+./coursier bootstrap -i user -I user:sh.almond:scala-kernel-api_$SCALA_VERSION:$ALMOND_VERSION     sh.almond:scala-kernel_$SCALA_VERSION:$ALMOND_VERSION     --sources --default=true     -o almond
+
+</code></pre>
+<h3 id="mill">mill</h3>
+<p>doesn't support proxy, use proxychains4 to force it</p>
+<pre><code class="language-bash">alias mill='proxychains4 mill'
+</code></pre>
+<h2 id="References">References</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.yoouu.cn/basic/proxy.html">https://doc.yoouu.cn/basic/proxy.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud-atlas.readthedocs.io/zh-cn/latest/linux/arch_linux/pacman_proxy.html">https://cloud-atlas.readthedocs.io/zh-cn/latest/linux/arch_linux/pacman_proxy.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://pshizhsysu.gitbook.io/linux/yum/wei-yum-yuan-pei-zhi-dai-li">https://pshizhsysu.gitbook.io/linux/yum/wei-yum-yuan-pei-zhi-dai-li</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/629584549">https://zhuanlan.zhihu.com/p/629584549</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1806455">https://cloud.tencent.com/developer/article/1806455</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021817234">https://segmentfault.com/a/1190000021817234</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43681766/article/details/122889519">https://blog.csdn.net/weixin_43681766/article/details/122889519</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/474087997">https://zhuanlan.zhihu.com/p/474087997</a></li>
+</ul>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

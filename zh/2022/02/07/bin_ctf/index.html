@@ -305,7 +305,6 @@ io.sendline(payload)
 #io.recv()
 print(io.recv())
 io.interactive()
-
 </code></pre>
 <h2 id="HarekazeCTF2019-baby-rop2——rop3">[HarekazeCTF2019]baby_rop2——rop3</h2>
 <pre><code class="language-python">#rop
@@ -1229,7 +1228,7 @@ if __name__ == '__main__':
 <p>当你输入的不是整数时scanf拒绝输入，并返回了三个栈地址，其中一个与elf基址有关。</p>
 <p>由于libc的后三位固定，因此只需要泄露一次<code>stderr</code>的倒数第二位。</p>
 <p>最后格式化字符串把<code>stdout</code>的倒数第二位，改成<code>stderr</code>的倒数第二位即可，同时把secret的低位改成<code>\0</code></p>
-<p><code>fmtstr_payload</code>还是太长了（64&gt;40)，干脆手动。</p>
+<p><code>fmtstr_payload</code>还是太长了（64&gt;40），干脆手动。</p>
 <pre><code class="language-python">def exploit():
    io.sendline('1.5')
    io.recvuntil('1:')
@@ -2574,7 +2573,66 @@ def exploit():
 <h1>arm</h1>
 <h2 id="jarvisoj-typo——arm-rop">jarvisoj_typo——arm rop</h2>
 <p>arm寄存器介绍：</p>
-<p><img src="https://secpulseoss.oss-cn-shanghai.aliyuncs.com/wp-content/uploads/1970/01/beepress-image-183868-1658302660.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>别名/说明</th>
+<th>典型用途</th>
+<th>ABI 约定（AAPCS32）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0–R3</td>
+<td>参数/返回</td>
+<td>参数与返回</td>
+<td><strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>R4–R11</td>
+<td>保存寄存器</td>
+<td>本地变量/持久值</td>
+<td><strong>callee-saved</strong>（R9 有时平台保留）</td>
+</tr>
+<tr>
+<td>R12</td>
+<td>IP</td>
+<td>内部调用跳板</td>
+<td><strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>R13</td>
+<td>SP</td>
+<td>栈指针</td>
+<td>8 字节对齐</td>
+</tr>
+<tr>
+<td>R14</td>
+<td>LR</td>
+<td>返回地址</td>
+<td><strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>R15</td>
+<td>PC</td>
+<td>程序计数器</td>
+<td>读取/分支</td>
+</tr>
+<tr>
+<td>CPSR/APSR</td>
+<td>标志位</td>
+<td>条件码</td>
+<td>指令更新</td>
+</tr>
+<tr>
+<td>S0–S31 / D0–D31 / Q0–Q15</td>
+<td>VFP/NEON</td>
+<td>浮点/向量</td>
+<td>按工具链约定保存（常见 D8–D15 callee-saved）</td>
+</tr>
+</tbody>
+</table>
 <p>必装软件</p>
 <pre><code class="language-sh">sudo apt-get install gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu gdb-multiarch
 </code></pre>
@@ -2617,7 +2675,96 @@ if __name__ == '__main__':
 </code></pre>
 <h2 id="shanghai2018-baby-arm——arm-ret2csu-vmprotect">shanghai2018_baby_arm——arm ret2csu+vmprotect</h2>
 <p>aarch64寄存器介绍：</p>
-<p><img src="https://img-blog.csdnimg.cn/20201022134326903.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEzNTA4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>别名/说明</th>
+<th>典型用途</th>
+<th>ABI 约定（AAPCS64）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X0–X7 / W0–W7</td>
+<td>低 32 位用 Wn</td>
+<td>函数参数/返回值</td>
+<td>前 8 个参数；返回值 X0（必要时 X1 搭把手）<strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>X8</td>
+<td>indirect result / syscall num</td>
+<td>平台保留</td>
+<td><strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>X9–X15</td>
+<td>临时</td>
+<td>易失</td>
+<td><strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>X16–X17</td>
+<td>IP0/IP1</td>
+<td>内部跳转/PLT 桥接</td>
+<td><strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>X18</td>
+<td>平台寄存器</td>
+<td>有的平台当 TLS/保留</td>
+<td>视平台；通常别动</td>
+</tr>
+<tr>
+<td>X19–X28</td>
+<td>保存寄存器</td>
+<td>被调方保留</td>
+<td><strong>callee-saved</strong></td>
+</tr>
+<tr>
+<td>X29</td>
+<td>FP</td>
+<td>帧指针</td>
+<td><strong>callee-saved</strong></td>
+</tr>
+<tr>
+<td>X30</td>
+<td>LR</td>
+<td>返回地址</td>
+<td><strong>caller-saved</strong>（调用会覆盖）</td>
+</tr>
+<tr>
+<td>SP</td>
+<td>栈指针</td>
+<td>16 字节对齐</td>
+<td>调用前后对齐</td>
+</tr>
+<tr>
+<td>PC</td>
+<td>程序计数器</td>
+<td>下一条指令</td>
+<td>只读访问</td>
+</tr>
+<tr>
+<td>XZR/WZR</td>
+<td>常量 0</td>
+<td>写入丢弃</td>
+<td>非通用存储</td>
+</tr>
+<tr>
+<td>V0–V31</td>
+<td>128 位 SIMD/FP</td>
+<td>NEON/FP 计算</td>
+<td>V8–V15 <strong>callee-saved</strong>；其余 <strong>caller-saved</strong></td>
+</tr>
+<tr>
+<td>PSTATE/NZCV</td>
+<td>标志位</td>
+<td>条件分支</td>
+<td>指令更新</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hac425/p/9905475.html">https://www.cnblogs.com/hac425/p/9905475.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41202237/article/details/118518498">https://blog.csdn.net/qq_41202237/article/details/118518498</a></p>

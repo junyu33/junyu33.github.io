@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-25T13:50:31.810Z</updated>
+  <updated>2025-08-25T13:55:30.560Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(sticky) Meta Information</title>
@@ -13,10 +13,10 @@
     <summary type="html"><![CDATA[<p>Lists some meta information related to the blog itself for easy reference.</p>]]></summary>
   </entry>
   <entry>
-    <title>(sticky, finished) nju-pa experience</title>
+    <title>(sticky, archived) nju-pa experience</title>
     <link href="https://blog.junyu33.me/en/2033/05/13/nju_pa/"/>
     <id>https://blog.junyu33.me/en/2033/05/13/nju_pa/</id>
-    <updated>2025-08-24T14:55:31.873Z</updated>
+    <updated>2025-08-25T13:53:30.544Z</updated>
     <summary type="html"><![CDATA[<p>2023/4/20 ~ 2024/5/4</p>
 <p>6705 commits (2 commits per compilation and execution)</p>
 <p>A year of persistence has finally come to an end.</p>]]></summary>

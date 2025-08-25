@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-24T11:42:59.357Z</updated>
+  <updated>2025-08-25T01:03:30.144Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
@@ -16,10 +16,17 @@
     <title>(sticky, finished) nju-pa experience</title>
     <link href="https://blog.junyu33.me/en/2033/05/13/nju_pa/"/>
     <id>https://blog.junyu33.me/en/2033/05/13/nju_pa/</id>
-    <updated>2025-08-24T11:32:12.981Z</updated>
+    <updated>2025-08-24T14:55:31.873Z</updated>
     <summary type="html"><![CDATA[<p>2023/4/20 ~ 2024/5/4</p>
 <p>6705 commits (2 commits per compilation and execution)</p>
 <p>A year of persistence has finally come to an end.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>The Missing Lecture of Your Cryptography</title>
+    <link href="https://blog.junyu33.me/en/2024/11/15/danboneh/"/>
+    <id>https://blog.junyu33.me/en/2024/11/15/danboneh/</id>
+    <updated>2025-08-24T15:28:53.232Z</updated>
+    <summary type="html"><![CDATA[<p>Notes from Dan Boneh's online cryptography course.</p>]]></summary>
   </entry>
   <entry>
     <title>(ex)gcd, inverse and misc</title>
@@ -155,27 +162,5 @@
     <summary type="html"><![CDATA[<h1>solution</h1>
 <img src="https://img.junyu33.me/blog/security02/1.jpg" style="zoom: 67%;" >
 <p>I used the <strong>TDM-GCC 4.9.2 32-bit Debug compiler</strong> in Dev-C++. Newer versions of the compiler have added security optimizations, and since I couldn’t outsmart them, I simply gave up.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Twenty-two — bewilderment</title>
-    <link href="https://blog.junyu33.me/en/2021/11/01/bewilderment/"/>
-    <id>https://blog.junyu33.me/en/2021/11/01/bewilderment/</id>
-    <updated>2025-08-24T11:37:07.023Z</updated>
-    <summary type="html"><![CDATA[<blockquote>
-<p>This is my first time to write a post in English. There are three advantages.</p>
-<ul>
-<li>
-<p>I can deliver my message to whom I really want to tell.</p>
-</li>
-<li>
-<p>It's a way to prepare for my CET4 exam.</p>
-</li>
-<li>
-<p>Jumping between two input methods is annoying.</p>
-</li>
-</ul>
-<p>In the future, there will be more and more posts like this. Due to my poor writing vocabulary (less than 4000, while my reading &amp; listening is nearly 15000), readers who have <strong>passed</strong> the CET4 exam might be enough to read the following text.</p>
-</blockquote>
-<p>Last night I learned that my high school classmate ymq won Noether Award, a math prize for female enthusiasts in high school. I'm really grateful for her achievement and winning the glory for cdqz. However, it is her first sentence that stimulates me and makes me in deep thought.</p>]]></summary>
   </entry>
 </feed>

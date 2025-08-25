@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-25T01:03:30.144Z</updated>
+  <updated>2025-08-25T02:41:20.648Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(Sticky) Meta Information</title>
@@ -25,7 +25,7 @@
     <title>The Missing Lecture of Your Cryptography</title>
     <link href="https://blog.junyu33.me/en/2024/11/15/danboneh/"/>
     <id>https://blog.junyu33.me/en/2024/11/15/danboneh/</id>
-    <updated>2025-08-24T15:28:53.232Z</updated>
+    <updated>2025-08-25T01:06:08.811Z</updated>
     <summary type="html"><![CDATA[<p>Notes from Dan Boneh's online cryptography course.</p>]]></summary>
   </entry>
   <entry>
@@ -121,6 +121,19 @@
 <img src='https://img.junyu33.me/blog/bye_baidu/1.png'>]]></summary>
   </entry>
   <entry>
+    <title>(archived) ctf exercises (pwn)</title>
+    <link href="https://blog.junyu33.me/en/2022/02/07/bin_ctf/"/>
+    <id>https://blog.junyu33.me/en/2022/02/07/bin_ctf/</id>
+    <updated>2025-08-25T02:37:19.919Z</updated>
+    <summary type="html"><![CDATA[<p>Divided into four parts: stack, fmtstr, heap, and misc, used to record ideas and useful gadgets.</p>
+<p>The following second-level headings without a website specified default to the corresponding topic section on buuoj.</p>
+<blockquote>
+<p>updated on 2022/10/23:</p>
+<p>The first five pages of buu have been completed, and this column will no longer update specific ideas and exploits.</p>
+<p>Next, I may study kernel and high-version house series. Writeups for competition problems will be published in separate articles, with links added in the corresponding sections.</p>
+</blockquote>]]></summary>
+  </entry>
+  <entry>
     <title>Twenty-four — my summary of year 2021</title>
     <link href="https://blog.junyu33.me/en/2021/12/30/bye2021/"/>
     <id>https://blog.junyu33.me/en/2021/12/30/bye2021/</id>
@@ -153,14 +166,5 @@
     <summary type="html"><![CDATA[<p>Followed by my last English post &quot;bewilderment&quot;, I’m thrilling to find the right path to go on. I suddenly realized that during my high school times, one of my roommates recommended me to watch CLANNAD (short for CL later). I refused for overwhelming pressure several months before college entrance examination. But now I’m free but depressed, I think it’s just the time to watch it in order to guide my heart.</p>
 <p>This is the 3rd anime I watched besides <em>Working Cells</em> and <em>Future Diary</em>. After ten days striving not to weep, I succeeded. Unlike others said that the anime brings you tears, I prefer it gives you warmth and courage during rough times. (Maybe I haven’t been struggling in a hard situation so there’s no empathy for me to cry.) CL, as is shown in title, tells a story of several families, the transformation through time. It’s just a brief summary of life, although kind of idealized.</p>
 <p>I’m here to talk about some profound sentences and try to seize the essence of the story, otherwise they would be erode by time again.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>csapp Buffer Bomb Lab</title>
-    <link href="https://blog.junyu33.me/en/2021/11/06/security02/"/>
-    <id>https://blog.junyu33.me/en/2021/11/06/security02/</id>
-    <updated>2025-08-22T09:52:25.787Z</updated>
-    <summary type="html"><![CDATA[<h1>solution</h1>
-<img src="https://img.junyu33.me/blog/security02/1.jpg" style="zoom: 67%;" >
-<p>I used the <strong>TDM-GCC 4.9.2 32-bit Debug compiler</strong> in Dev-C++. Newer versions of the compiler have added security optimizations, and since I couldn’t outsmart them, I simply gave up.</p>]]></summary>
   </entry>
 </feed>

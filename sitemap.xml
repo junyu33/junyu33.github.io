@@ -142,6 +142,7 @@
   <url>
     <loc>https://blog.junyu33.me/zh/2022/02/07/bin_ctf/</loc>
     <lastmod>2025-08-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2022/02/07/bin_ctf/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2022/02/07/bin_ctf/" />
   </url>
   <url>
@@ -239,6 +240,7 @@
   <url>
     <loc>https://blog.junyu33.me/zh/2024/11/15/danboneh/</loc>
     <lastmod>2025-08-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2024/11/15/danboneh/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2024/11/15/danboneh/" />
   </url>
   <url>
@@ -794,6 +796,13 @@
   <url>
     <loc>https://blog.junyu33.me/en/2024/11/15/danboneh/</loc>
     <lastmod>2025-08-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2024/11/15/danboneh/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2024/11/15/danboneh/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2022/02/07/bin_ctf/</loc>
+    <lastmod>2025-08-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2022/02/07/bin_ctf/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2022/02/07/bin_ctf/" />
   </url>
 </urlset>

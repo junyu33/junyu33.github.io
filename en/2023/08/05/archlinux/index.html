@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/08/05/archlinux/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/08/05/archlinux/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>The second major change of my workflow — ubuntu2arch</h1>
+	<p>Last time, in April of last year, I migrated from Windows 11 + VS + VSCode to Ubuntu 22.04 + VSCode + NeoVim. Now, I've switched to Arch Linux + NeoVim.</p>
+<p>Later, for the conclusion of the university innovation project, I might have to set up a Windows driver development environment again, which could be quite a hassle.</p>
+<span id="more"></span>
+<h1>Preface</h1>
+<p>A few months ago, dependency issues with <code>dpkg</code> (mainly various Qt libraries) caused around 20 packages to become unupdatable. Additionally, <code>sudo apt upgrade</code> updates the Linux kernel by default, which requires recompiling VMware drivers, so I became too lazy to update.</p>
+<p>A few days ago, I tried using <code>PGP</code> for secure communication with a classmate and generated a self-signed PGP key. This led to numerous signature errors during <code>sudo apt upgrade</code>, and even after deleting the key, the issue persisted. After searching online, I decided to reinstall <code>gpg</code>, but it didn't help. In fact, it made things worse—I could no longer install any new packages, meaning I was forced to downgrade to the LFS user's daily installation method: compiling from source.</p>
+<p>As mentioned earlier, I'm a lazy person, and I didn't want to get my hands dirty with compiling and installing. So, I opted for a distribution with a simpler package manager—<code>pacman</code>, the Arch Linux family.</p>
+<h1>Installation</h1>
+<h2 id="Partitioning">Partitioning</h2>
+<p>After using Ubuntu installed on a mechanical hard drive for a few months, I noticed that Firefox's performance was unsatisfactory, and the previously allocated 100GB space for Ubuntu was becoming insufficient. Therefore, I decided to remove Windows 11, assign the root partition to the SSD, and allocate the remaining mechanical drive space to the home directory, resulting in the current partition layout:</p>
+<pre><code class="language-bash">&gt; lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda      8:0    0 111.8G  0 disk 
+├─sda1   8:1    0   300M  0 part /boot                       # ESP
+├─sda2   8:2    0   128M  0 part                             # MSI
+└─sda3   8:3    0 111.4G  0 part /                           # Former C drive
+sdb      8:16   0 931.5G  0 disk 
+├─sdb1   8:17   0   300G  0 part                             # Former D drive
+├─sdb2   8:18   0   300G  0 part /run/media/junyu33/software # Former E drive
+├─sdb3   8:19   0 200.2G  0 part                             # Remaining space after allocating F drive to Ubuntu
+└─sdb6   8:22   0 131.3G  0 part /home
+</code></pre>
+<p>Thus, when installing Arch, I only need to format <code>/dev/sda1</code> and <code>/dev/sda3</code>, while keeping the <code>/home</code> partition intact.</p>
+<h2 id="RTFM">RTFM</h2>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/Installation_guide">https://wiki.archlinuxcn.org/wiki/Installation_guide</a></p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/General_recommendations">https://wiki.archlinuxcn.org/wiki/General_recommendations</a></p>
+<p>Remember to install <code>iwctl</code> (look for alternatives if not using Intel hardware) and <code>dhcpcd</code> before rebooting. Otherwise, you'll have to restart from the USB drive every time, and the computer's beep sound can be a bit startling.</p>
+<p>Then, running <code>systemctl enable iwd dhcpcd</code> should get you online. After that, installing common software or even a GUI should be straightforward.</p>
+<h2 id="nvidia">nvidia</h2>
+<p>Arch Linux is pragmatic, so even though Linus has criticized NVIDIA, installing the driver is as simple as running <code>sudo pacman -S nvidia</code>.</p>
+<p>However, NVIDIA's power consumption issue is still worth considering. I referred to <a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/NVIDIA_Optimus">this documentation</a> and decided to use <code>optimus-manager</code> to switch between graphics cards.</p>
+<blockquote>
+<p>Since I had always been entering the GUI by typing <code>startxfce4</code> in the terminal, I also needed to install <code>lightdm</code> to ensure the switching command works properly.</p>
+</blockquote>
+<h1>Development Environment Setup</h1>
+<p>I was previously using VSCode 1.67 on Ubuntu, but now the installed version is already 1.80. The following points made me abandon VSCode:</p>
+<ul>
+<li>The UI changes are still hard for me to accept, especially the search bar at the top of the window, which is extremely ugly (though it can be disabled).</li>
+<li>The font size difference between the code and the shell is too large, making it feel inconsistent for someone like me who is used to a left-code, right-shell layout (a habit formed from GDB debugging). Neovim + tmux does not have this issue.</li>
+<li>When using Copilot, a key exchange error popup appears when logging into a Microsoft account and cannot be ignored. The Copilot plugin for Neovim works directly without requiring a re-login.</li>
+<li>VSCode's C/C++ plugin generated nearly 10GB of cache files in the user directory, and its performance is not outstanding.</li>
+</ul>
+<p>So, I first modified <code>~/.config/nvim/init.vim</code>. Some parts come from jyy's <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/ics-pa-gitbook/ics2022/0.4.html">nju-pa</a> Vim configuration, some from MIT's <a target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/2020/editors/">Vim assignment</a>, and some from the installation and configuration of plugins themselves:</p>
+<pre><code class="language-nvim">set nocompatible            &quot; disable compatibility to old-time vi
+set showmatch               &quot; show matching 
+set ignorecase              &quot; case insensitive 
+set mouse=v                 &quot; middle-click paste with 
+set hlsearch                &quot; highlight search 
+set incsearch               &quot; incremental search
+set tabstop=4               &quot; number of columns occupied by a tab 
+set softtabstop=4           &quot; see multiple spaces as tabstops so &lt;BS&gt; does the right thing
+set expandtab               &quot; converts tabs to white space
+set shiftwidth=2            &quot; width for autoindents
+set autoindent              &quot; indent a new line the same amount as the line just typed
+set number                  &quot; add line numbers
+set wildmode=longest,list   &quot; get bash-like tab completions
+set cc=80                  &quot; set an 80 column border for good coding style
+filetype plugin indent on   &quot;allow auto-indenting depending on file type
+syntax on                   &quot; syntax highlighting
+set mouse=a                 &quot; enable mouse click
+set clipboard=unnamedplus   &quot; using system clipboard
+filetype plugin on
+set cursorline              &quot; highlight current cursorline
+set ttyfast                 &quot; Speed up scrolling in Vim
+&quot; set spell                 &quot; enable spell check (may need to download language package)
+&quot; set noswapfile            &quot; disable creating swap file
+&quot; set backupdir=~/.cache/vim &quot; Directory to store backup files.
+
+call plug#begin(&quot;~/.vim/plugged&quot;)
+ &quot; Plugin Section
+&quot;Plug 'dracula/vim'
+&quot;Plug 'ryanoasis/vim-devicons'
+&quot;Plug 'SirVer/ultisnips'
+&quot;Plug 'honza/vim-snippets'
+ Plug 'scrooloose/nerdtree'
+&quot;Plug 'preservim/nerdcommenter'
+&quot;Plug 'mhinz/vim-startify'
+ Plug 'neoclide/coc.nvim', &#123;'branch': 'release'&#125;
+ 
+ Plug 'martinsione/darkplus.nvim'
+ Plug 'github/copilot.vim'
+ Plug 'pacha/vem-tabline'
+ Plug 'nvim-lualine/lualine.nvim'
+ Plug 'nvim-tree/nvim-web-devicons'
+ Plug 'ctrlpvim/ctrlp.vim'
+ Plug 'rmagatti/goto-preview'
+ Plug 'williamboman/mason.nvim'
+ Plug 'williamboman/mason-lspconfig.nvim'
+ Plug 'neovim/nvim-lspconfig'
+ Plug 'iamcco/markdown-preview.nvim', &#123; 'do': 'cd app &amp;&amp; yarn install' &#125;
+
+call plug#end()
+
+colorscheme darkplus
+let g:coc_global_extensions = ['coc-pyright', 'coc-snippets']
+let g:ctrlp_map = '&lt;c-p&gt;'
+
+inoremap &lt;expr&gt; &lt;Tab&gt; pumvisible() ? &quot;\&lt;C-y&gt;&quot; : &quot;\&lt;Tab&gt;&quot;
+inoremap &lt;expr&gt; &lt;S-Tab&gt; pumvisible() ? &quot;\&lt;C-n&gt;&quot; : &quot;\&lt;S-Tab&gt;&quot;
+
+## LSP + clangd + goto-preview
+
+I used [mason](https://github.com/williamboman/mason.nvim) and [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) to set up the LSP. Since I currently only frequently use `C` and `Python 3`, I only installed two language servers: `clangd` and `pyright`.
+
+For now, I only intend to use the features of viewing definitions and references, so I only installed the [goto-preview](https://github.com/rmagatti/goto-preview) plugin. As for auto-completion, since I have Copilot for that, it doesn't seem as essential anymore.
+
+## Configuring a Larger C Project
+
+For a larger C project, such as [nju-pa](https://nju-projectn.github.io/ics-pa-gitbook/ics2022), the function definitions and header file dependencies can be quite complex. Opening it directly may result in numerous errors. VSCode's solution is to use `includepath`, but this approach has two drawbacks: first, it is difficult to list all include paths (resulting in sporadic errors, a nightmare for perfectionists), and second, the definitions found may have no relation to the original files.
+
+`clangd` can better address this issue. It works by bottom-up discovery of `compile_commands.json` to determine the dependencies of each file, thereby covering all `includepath`s. At the same time, the accuracy of finding definitions is significantly improved.
+
+So, how can we generate `compile_commands.json` based on `make`? We can use [bear](https://github.com/rizsotto/Bear) to accomplish this task. Note that the command to run the bear program itself seems problematic; the correct command is:
+
+```bash
+bear -- &lt;your-build-command&gt;
+</code></pre>
+<p>For example, to compile riscv32-nemu, the command would be:</p>
+<pre><code class="language-bash">bear -- make ARCH=riscv32-nemu
+</code></pre>
+<p>After running this, <code>compile_commands.json</code> will be generated in the current directory. At this point, opening the source code with Neovim should no longer show &quot;incorrect&quot; errors, and it will be possible to query definitions and references.</p>
+<blockquote>
+<p>For <code>cmake</code> projects, you can refer to this link: <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html">https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html</a></p>
+</blockquote>
+<p>Result screenshot:</p>
+<img src='https://img.junyu33.me/blog/archlinux/res.png'>
+</div>
+
+
+  </div>
+</body>
+</html>
+

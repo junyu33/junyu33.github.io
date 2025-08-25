@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/10/30/cmake/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/10/30/cmake/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Simple CMake tutorial (miniob version)</h1>
+	<h1>A Simple Introduction to CMake</h1>
+<blockquote>
+<p>First, build an intuition: CMake is platform-independent. You won't specify which compiler or linker to use, nor will you write shell commands. It's best to think of it as a new <strong>object-oriented</strong> language.</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="Minimum-Example">Minimum Example</h2>
+<p>First, look at this minimum example:</p>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.8)
+
+project(Calculator LANGUAGES CXX)
+
+add_library(calclib STATIC src/calclib.cpp include/calc/lib.hpp)
+target_include_directories(calclib PUBLIC include)
+target_compile_features(calclib PUBLIC cxx_std_11)
+
+add_executable(calc apps/calc.cpp)
+target_link_libraries(calc PUBLIC calclib)
+</code></pre>
+<blockquote>
+<p><strong>Bold text</strong> indicates required items.</p>
+</blockquote>
+<ul>
+<li><strong><code>cmake_minimum_required(VERSION 3.8)</code></strong>
+<ul>
+<li>Specifies the CMake version standard to use.</li>
+</ul>
+</li>
+<li><strong><code>project(Calculator LANGUAGES CXX)</code></strong>
+<ul>
+<li>Defines project properties; here the name is <code>Calculator</code>. The project name is not related to the target file.</li>
+<li>Most built-in CMake functions follow this syntax: <code>function([MODE ...] target ATTR1 val1 ATTR2 val2 ...)</code>, where <code>val</code> can be a single element or a list (separated by spaces or semicolons).</li>
+</ul>
+</li>
+<li><code>add_library(calclib STATIC src/calclib.cpp include/calc/lib.hpp)</code>:
+<ul>
+<li>Links <code>calclib.cpp</code> and <code>lib.hpp</code> as a static library into <code>calclib</code> (here, <code>calclib</code> is a library).</li>
+</ul>
+</li>
+<li><code>target_include_directories(calclib PUBLIC include)</code>
+<ul>
+<li>Specifies the include directory for the target (here, the <code>include</code> directory in the project path).</li>
+</ul>
+</li>
+<li><code>target_compile_features(calclib PUBLIC cxx_std_11)</code>
+<ul>
+<li>Specifies compilation options (here, equivalent to <code>--std=c++11</code>).</li>
+</ul>
+</li>
+<li><strong><code>add_executable(calc apps/calc.cpp)</code></strong>
+<ul>
+<li>Defines an executable file and compiles it using <code>calc.cpp</code>.</li>
+</ul>
+</li>
+<li><code>target_link_libraries(calc PUBLIC calclib)</code>
+<ul>
+<li>Links <code>calclib</code> as a library to the executable <code>calc</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="miniob">miniob</h2>
+<p>This is a project with a nested structure:</p>
+<ul>
+<li>minidb
+<ul>
+<li>benchmark</li>
+<li>deps/common</li>
+<li>src
+<ul>
+<li>obclient</li>
+<li>observer</li>
+</ul>
+</li>
+<li>test/perf</li>
+<li>tools</li>
+<li>unittest
+<ul>
+<li>(a set of unit tests)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Only <code>minidb</code> and <code>observer</code> are analyzed here.</p>
+<h3 id="minidb-Root-Project">minidb (Root Project)</h3>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 20)
+
+project(minidb)
+
+MESSAGE(STATUS &quot;This is Project source dir &quot; $&#123;PROJECT_SOURCE_DIR&#125;)
+MESSAGE(STATUS &quot;This is PROJECT_BINARY_DIR dir &quot; $&#123;PROJECT_BINARY_DIR&#125;)
+
+SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)
+
+SET(CMAKE_MODULE_PATH $&#123;CMAKE_MODULE_PATH&#125; $&#123;CMAKE_SOURCE_DIR&#125;/cmake)
+
+OPTION(ENABLE_ASAN &quot;Enable build with address sanitizer&quot; ON)
+OPTION(WITH_UNIT_TESTS &quot;Compile miniob with unit tests&quot; ON)
+OPTION(CONCURRENCY &quot;Support concurrency operations&quot; OFF)
+OPTION(STATIC_STDLIB &quot;Link std library static or dynamic, such as libgcc, libstdc++, libasan&quot; OFF)
+</code></pre>
+<ul>
+<li>Function names are case-insensitive; within functions, keywords are recommended to be uppercase, and variables lowercase.</li>
+<li><code>set(CMAKE_CXX_STANDARD 20)</code>
+<ul>
+<li>Equivalent to an assignment statement. <code>CMAKE_CXX_STANDARD</code> = 20</li>
+<li>If a variable hasn't appeared before, it should be a built-in keyword. Refer to the manual (RTFM) for specifics.</li>
+</ul>
+</li>
+<li><code>MESSAGE(STATUS &quot;This is Project source dir &quot; $&#123;PROJECT_SOURCE_DIR&#125;)</code>
+<ul>
+<li>Print command.</li>
+<li><code>$&#123;foobar&#125;</code> indicates dereferencing.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><code>[cmake] -- This is Project source dir /home/junyu33/Desktop/github/miniob</code></p>
+</blockquote>
+<ul>
+<li><code>OPTION(foobar &quot;comment&quot; ON/OFF)</code>
+<ul>
+<li>Can be understood as a <code>set</code> for boolean types.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-cmake">MESSAGE(STATUS &quot;HOME dir: $ENV&#123;HOME&#125;&quot;)
+#SET(ENV&#123;variable name&#125; value)
+IF(WIN32)
+    MESSAGE(STATUS &quot;This is windows.&quot;)
+    ADD_DEFINITIONS(-DWIN32)
+ELSEIF(WIN64)
+    MESSAGE(STATUS &quot;This is windows.&quot;)
+    ADD_DEFINITIONS(-DWIN64)
+ELSEIF(APPLE)
+    MESSAGE(STATUS &quot;This is apple&quot;)
+    # normally __MACH__ has already been defined
+    ADD_DEFINITIONS(-D__MACH__ )
+ELSEIF(UNIX)
+    MESSAGE(STATUS &quot;This is UNIX&quot;)
+    ADD_DEFINITIONS(-DUNIX -DLINUX)
+ELSE()
+    MESSAGE(STATUS &quot;This is UNKNOW OS&quot;)
+ENDIF(WIN32)
+
+</code></pre>
+<ul>
+<li>Note that <code>$&#123;foobar&#125;</code> can also be dereferenced inside quotes.</li>
+<li>Here, <code>WIN32</code>, <code>WIN64</code>, <code>APPLE</code>, etc., are all built-in keywords.</li>
+<li>Conditions considered true in <code>IF ELSEIF</code> include:
+<ul>
+<li><code>ON</code>, <code>YES</code>, <code>TRUE</code>, <code>Y</code>, or any non-zero number.</li>
+</ul>
+</li>
+<li>Conditions considered false include:
+<ul>
+<li><code>0</code>, <code>OFF</code>, <code>NO</code>, <code>FALSE</code>, <code>N</code>, <code>IGNORE</code>, <code>NOTFOUND</code>, <code>&quot;&quot;</code>, or strings ending with <code>-NOTFOUND</code>.</li>
+</ul>
+</li>
+<li><code>ADD_DEFINITIONS</code>: Follows the same syntax as adding <code>-D</code> compilation options.</li>
+</ul>
+<pre><code class="language-cmake"># This is for clangd plugin for vscode
+SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125; -Wall -Werror&quot;)
+IF(DEBUG)
+    MESSAGE(STATUS &quot;DEBUG has been set as TRUE $&#123;DEBUG&#125;&quot;)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG &quot;)
+    ADD_DEFINITIONS(-DENABLE_DEBUG)
+ELSEIF(NOT DEFINED ENV&#123;DEBUG&#125;)
+    MESSAGE(STATUS &quot;Disable debug&quot;)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O2 -g &quot;)
+ELSE()
+    MESSAGE(STATUS &quot;Enable debug&quot;)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG&quot;)
+    ADD_DEFINITIONS(-DENABLE_DEBUG)
+ENDIF(DEBUG)
+</code></pre>
+<ul>
+<li>Note that <code>CMAKE_COMMON_FLAGS</code> is a user-defined variable. You can observe that additions here are incremental.</li>
+<li><code>ENV</code>: Retrieves system environment variables. <code>ENV&#123;foo&#125;</code> fetches the environment variable <code>foo</code>.</li>
+</ul>
+<pre><code class="language-cmake">IF (CONCURRENCY)
+    MESSAGE(STATUS &quot;CONCURRENCY is ON&quot;)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125; -DCONCURRENCY&quot;)
+    ADD_DEFINITIONS(-DCONCURRENCY)
+ENDIF (CONCURRENCY)
+
+MESSAGE(STATUS &quot;CMAKE_CXX_COMPILER_ID is &quot; $&#123;CMAKE_CXX_COMPILER_ID&#125;)
+IF (&quot;$&#123;CMAKE_CXX_COMPILER_ID&#125;&quot; STREQUAL &quot;GNU&quot; AND $&#123;STATIC_STDLIB&#125;)
+    ADD_LINK_OPTIONS(-static-libgcc -static-libstdc++)
+ENDIF()
+</code></pre>
+<ul>
+<li><code>ADD_LINK_OPTIONS</code>: Similar to adding <code>DEFINITION</code> as mentioned earlier, this specifies link options.</li>
+<li><code>STREQUAL</code>: Equivalent to <code>==</code>. Note that <code>STREQUAL</code> has higher precedence than <code>AND</code>.</li>
+</ul>
+<pre><code class="language-cmake">IF (ENABLE_ASAN)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125; -fno-omit-frame-pointer -fsanitize=address&quot;)
+    IF (&quot;$&#123;CMAKE_CXX_COMPILER_ID&#125;&quot; STREQUAL &quot;GNU&quot; AND $&#123;STATIC_STDLIB&#125;)
+        ADD_LINK_OPTIONS(-static-libasan)
+    ENDIF()
+ENDIF()
+
+IF (CMAKE_INSTALL_PREFIX)
+    MESSAGE(STATUS &quot;CMAKE_INSTALL_PREFIX has been set as &quot; $&#123;CMAKE_INSTALL_PREFIX&#125; )
+ELSEIF(DEFINED ENV&#123;CMAKE_INSTALL_PREFIX&#125;)
+    SET(CMAKE_INSTALL_PREFIX $ENV&#123;CMAKE_INSTALL_PREFIX&#125;)
+ELSE()
+    SET(CMAKE_INSTALL_PREFIX /tmp/$&#123;PROJECT_NAME&#125;)
+ENDIF()
+MESSAGE(STATUS &quot;Install target dir is &quot; $&#123;CMAKE_INSTALL_PREFIX&#125;)
+
+IF (DEFINED ENV&#123;LD_LIBRARY_PATH&#125;)
+    SET(LD_LIBRARY_PATH_STR $ENV&#123;LD_LIBRARY_PATH&#125;)
+    string(REPLACE &quot;:&quot; &quot;;&quot; LD_LIBRARY_PATH_LIST $&#123;LD_LIBRARY_PATH_STR&#125;)
+    MESSAGE(&quot; Add LD_LIBRARY_PATH to -L flags &quot; $&#123;LD_LIBRARY_PATH_LIST&#125;)
+    LINK_DIRECTORIES($&#123;LD_LIBRARY_PATH_LIST&#125;)
+ENDIF ()
+</code></pre>
+<ul>
+<li><code>string(REPLACE srcStr dstStr dstVal srcVal)</code>: Similar functions include <code>REGEX REPLACE</code>.</li>
+<li><code>LINK_DIRECTORIES</code>: Similar to <code>TARGET_LINK_DIRECTORIES</code>, but not targeting a specific object.</li>
+</ul>
+<pre><code class="language-cmake">IF (EXISTS /usr/local/lib)
+    LINK_DIRECTORIES (/usr/local/lib)
+ENDIF ()
+IF (EXISTS /usr/local/lib64)
+    LINK_DIRECTORIES (/usr/local/lib64)
+ENDIF ()
+
+INCLUDE_DIRECTORIES(. $&#123;PROJECT_SOURCE_DIR&#125;/deps /usr/local/include)
+
+# ADD_SUBDIRECTORY(src bin)  bin is the target directory, which can be omitted
+ADD_SUBDIRECTORY(deps)
+ADD_SUBDIRECTORY(src/obclient)
+ADD_SUBDIRECTORY(src/observer)
+ADD_SUBDIRECTORY(test/perf)
+ADD_SUBDIRECTORY(benchmark)
+ADD_SUBDIRECTORY(tools)
+</code></pre>
+<ul>
+<li><code>EXISTS</code>: Checks if a path exists.</li>
+<li><code>INCLUDE_DIRECTORIES</code>: Similar to <code>TARGET_INCLUDE_DIRECTORIES</code>, but not targeting a specific object.</li>
+<li><code>ADD_SUBDIRECTORY</code>: If the subdirectory contains a CMake project (e.g., <code>CMakeLists.txt</code>), recursively execute the project in the subdirectory.</li>
+</ul>
+<pre><code class="language-cmake">IF(WITH_UNIT_TESTS)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125; -fprofile-arcs -ftest-coverage&quot;)
+    enable_testing()
+    ADD_SUBDIRECTORY(unittest)
+ENDIF(WITH_UNIT_TESTS)
+
+SET(CMAKE_CXX_FLAGS $&#123;CMAKE_COMMON_FLAGS&#125;)
+SET(CMAKE_C_FLAGS $&#123;CMAKE_COMMON_FLAGS&#125;)
+MESSAGE(STATUS &quot;CMAKE_CXX_FLAGS is &quot; $&#123;CMAKE_CXX_FLAGS&#125;)
+
+INSTALL(DIRECTORY etc DESTINATION .
+		FILE_PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ)
+</code></pre>
+<ul>
+<li><code>enable_testing()</code>: Built-in command to enable testing.
+<ul>
+<li>This command should be in the source directory root because ctest expects to find a test file in the build directory root. This command is automatically invoked when the CTest module is included, except if the BUILD_TESTING option is turned off.</li>
+</ul>
+</li>
+<li><code>INSTALL</code>: For the <code>DIRECTORY</code> option, install files from <code>etc</code> to the current directory with permissions <code>OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ</code>.</li>
+</ul>
+<h3 id="Observer">Observer</h3>
+<pre><code class="language-cmake">MESSAGE(STATUS &quot;This is CMAKE_CURRENT_SOURCE_DIR dir &quot; $&#123;CMAKE_CURRENT_SOURCE_DIR&#125;)
+
+INCLUDE_DIRECTORIES($&#123;CMAKE_CURRENT_SOURCE_DIR&#125;)
+
+FILE(GLOB_RECURSE ALL_SRC *.cpp *.c)
+SET(MAIN_SRC main.cpp)
+MESSAGE(&quot;MAIN SRC: &quot; $&#123;MAIN_SRC&#125;)
+FOREACH (F $&#123;ALL_SRC&#125;)
+
+    IF (NOT $&#123;F&#125; STREQUAL $&#123;MAIN_SRC&#125;)
+        SET(LIB_SRC $&#123;LIB_SRC&#125; $&#123;F&#125;)
+    ENDIF()
+
+    MESSAGE(&quot;Use &quot; $&#123;F&#125;)
+
+ENDFOREACH (F)
+
+SET(LIBEVENT_STATIC_LINK TRUE)
+FIND_PACKAGE(Libevent CONFIG REQUIRED)
+</code></pre>
+<ul>
+<li><code>FILE(GLOB_RECURSE ...)</code>: <code>ALL_SRC = $(find . \( -name &quot;*.c&quot; -o -name &quot;*.cpp&quot; \))</code></li>
+<li><code>FOREACH</code>: <code>F</code> is the loop variable, <code>$&#123;ALL_SRC&#125;</code> is the collection to iterate over.</li>
+<li><code>FIND_PACKAGE</code>: Searches for configuration files in the <code>Libevent</code> package, with <code>REQUIRED</code> indicating a mandatory dependency.</li>
+</ul>
+<pre><code class="language-cmake">SET(LIBRARIES common pthread dl libevent::core libevent::pthreads libjsoncpp.a)
+
+# Specify target file locations
+SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)
+MESSAGE(&quot;Binary directory:&quot; $&#123;EXECUTABLE_OUTPUT_PATH&#125;)
+SET(LIBRARY_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/lib)
+MESSAGE(&quot;Archive directory:&quot; $&#123;LIBRARY_OUTPUT_PATH&#125;)
+
+ADD_EXECUTABLE(observer $&#123;MAIN_SRC&#125;)
+TARGET_LINK_LIBRARIES(observer observer_static)
+
+ADD_LIBRARY(observer_static STATIC $&#123;LIB_SRC&#125;)
+INCLUDE (readline)
+MINIOB_FIND_READLINE()
+</code></pre>
+<ul>
+<li><code>INCLUDE(foobar)</code>: Includes the specified CMake file; if the file does not exist, searches for a file named <code>foobar.cmake</code> in <code>CMAKE_MODULE_PATH</code>.</li>
+</ul>
+<pre><code class="language-cmake"># readline.cmake
+MACRO (MINIOB_FIND_READLINE)
+
+  FIND_PATH(READLINE_INCLUDE_DIR readline.h PATH_SUFFIXES readline)
+  FIND_LIBRARY(READLINE_LIBRARY NAMES readline)
+  IF (READLINE_INCLUDE_DIR AND READLINE_LIBRARY)
+    SET(HAVE_READLINE 1)
+  ELSE ()
+    MESSAGE(&quot;cannot find readline&quot;)
+  ENDIF()
+
+ENDMACRO (MINIOB_FIND_READLINE)
+</code></pre>
+<ul>
+<li><code>MACRO</code>: Defines a macro.</li>
+<li><code>find_path (&lt;VAR&gt; name1 [path1 path2 ...])</code>: Searches for a folder containing <code>readline.h</code> in subdirectories with the suffix <code>readline</code>, and saves the result to <code>READLINE_INCLUDE_DIR</code>.</li>
+<li><code>find_library (&lt;VAR&gt; name1 [path1 path2 ...])</code>: Searches for a library file named <code>readline</code>.</li>
+</ul>
+<blockquote>
+<p>Each library name given to the NAMES option is first considered as a library file name and then considered with platform-specific prefixes (e.g. lib) and suffixes (e.g. .so). Therefore one may specify library file names such as libfoo.a directly. This can be used to locate static libraries on UNIX-like systems.</p>
+</blockquote>
+<blockquote>
+<p><code>[cmake] readline include dir: /usr/include/readline</code>
+<code>[cmake] readline library: /usr/lib/libreadline.so</code></p>
+</blockquote>
+<pre><code class="language-cmake">IF (HAVE_READLINE)
+    TARGET_LINK_LIBRARIES(observer_static $&#123;READLINE_LIBRARY&#125;)
+    TARGET_INCLUDE_DIRECTORIES(observer_static PRIVATE $&#123;READLINE_INCLUDE_DIR&#125;)
+    ADD_DEFINITIONS(-DUSE_READLINE)
+    MESSAGE (&quot;observer_static use readline&quot;)
+ELSE ()
+    MESSAGE (&quot;readline is not found&quot;)
+ENDIF()
+
+SET_TARGET_PROPERTIES(observer_static PROPERTIES OUTPUT_NAME observer)
+TARGET_LINK_LIBRARIES(observer_static $&#123;LIBRARIES&#125;)
+
+# Target must be defined after ADD_EXECUTABLE; programs are not subject to this restriction.
+# Default permissions for TARGETS and PROGRAMS are OWNER_EXECUTE, GROUP_EXECUTE, and WORLD_EXECUTE, i.e., 755 permissions. Programs typically handle script-like files.
+# Types include RUNTIME／LIBRARY／ARCHIVE, prog
+INSTALL(TARGETS observer observer_static 
+    RUNTIME DESTINATION bin
+    ARCHIVE DESTINATION lib)
+</code></pre>
+<ul>
+<li><code>SET_TARGET_PROPERTIES</code>: Sets properties for the target; here, it sets the target name to <code>observer</code>.</li>
+<li><code>install(TARGETS &lt;target&gt;... [...])</code>: Deploys the runtime paths for <code>observer</code> and <code>observer_static</code> targets to <code>bin</code>, and archive file paths to <code>lib</code>.</li>
+</ul>
+<h1>Miscellaneous Issues</h1>
+<h2 id="What-exactly-does-CMake-do">What exactly does CMake do?</h2>
+<p>From a personal perspective, CMake provides a platform-independent abstraction, and the CMake build process essentially &quot;translates&quot; its language into platform-specific compilation and linking commands, assembling them into various files (on Linux, these would be the <code>Makefile</code> and related dependency files).</p>
+<p>We can find the corresponding, machine-generated <code>Makefile</code> in the CMake build directory.</p>
+<h2 id="How-to-achieve-functionality-similar-to-make-B-or-make-n-in-CMake">How to achieve functionality similar to <code>make -B</code> or <code>make -n</code> in CMake?</h2>
+<p><s>Please RTFM</s></p>
+<p>For the former, you can use the <code>--fresh</code> parameter.</p>
+<p>For the latter, you can use <code>--trace</code> to achieve it. Additionally, using <code>make --trace-expand</code> can expand the corresponding variables.</p>
+<h2 id="Where-does-DEBUG-come-from-in-the-following-code">Where does <code>DEBUG</code> come from in the following code?</h2>
+<pre><code class="language-cmake"># This is for clangd plugin for vscode
+SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125; -Wall -Werror&quot;)
+IF(DEBUG)
+    MESSAGE(STATUS &quot;DEBUG has been set as TRUE $&#123;DEBUG&#125;&quot;)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG &quot;)
+    ADD_DEFINITIONS(-DENABLE_DEBUG)
+ELSEIF(NOT DEFINED ENV&#123;DEBUG&#125;)
+    MESSAGE(STATUS &quot;Disable debug&quot;)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O2 -g &quot;)
+ELSE()
+    MESSAGE(STATUS &quot;Enable debug&quot;)
+    SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125;  -O0 -g -DDEBUG&quot;)
+    ADD_DEFINITIONS(-DENABLE_DEBUG)
+ENDIF(DEBUG)
+</code></pre>
+<p>You did not check <code>build.sh</code>:</p>
+<pre><code class="language-sh">function build
+&#123;
+  set -- &quot;$&#123;BUILD_ARGS[@]&#125;&quot;
+  case &quot;x$1&quot; in
+    xrelease)
+      do_build &quot;$@&quot; -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDEBUG=OFF
+      ;;
+    xdebug)
+      do_build &quot;$@&quot; -DCMAKE_BUILD_TYPE=Debug -DDEBUG=ON
+      ;;
+    *)
+      BUILD_ARGS=(debug &quot;$&#123;BUILD_ARGS[@]&#125;&quot;)
+      build
+      ;;
+  esac
+&#125;
+</code></pre>
+<p>There is a compilation option <code>-DDEBUG=ON</code> in this script. By tracing as described above or adding a log at the relevant location, you can confirm that the <code>DEBUG</code> variable comes from the runtime parameters of <code>cmake</code>.</p>
+<h1>Ref</h1>
+<p><a target="_blank" rel="noopener" href="https://modern-cmake-cn.github.io/Modern-CMake-zh_CN/">https://modern-cmake-cn.github.io/Modern-CMake-zh_CN/</a></p>
+<p><a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/index.html">https://cmake.org/cmake/help/latest/index.html</a></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

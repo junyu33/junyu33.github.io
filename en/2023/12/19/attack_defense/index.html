@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/12/19/attack_defense/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/12/19/attack_defense/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Network A/D Notes</h1>
+	<p>The content is excerpted from the instructor's PPT. Apart from correcting obvious factual errors (such as changing <code>/etc/password</code> to <code>/etc/passwd</code>), it does not represent personal opinions.</p>
+<span id="more"></span>
+<h1>Network Attack Techniques</h1>
+<h2 id="Key-Points-Criteria-and-Categories-of-Attack-Classification">(Key Points) Criteria and Categories of Attack Classification</h2>
+<p>Criteria: Mutual exclusivity, comprehensiveness, non-ambiguity, repeatability, acceptability, and practicality.</p>
+<p>Categories: From the attacker's perspective, attacks can be classified into physical (local) attacks, active attacks, passive attacks, and man-in-the-middle attacks.</p>
+<h2 id="Key-Points-Attack-Steps-and-Methods-Detailed-Understanding-of-Each-Step">(Key Points) Attack Steps and Methods, Detailed Understanding of Each Step</h2>
+<p>Attack Steps:</p>
+<ul>
+<li><strong>Information Gathering</strong> (Collect as much relevant information about the target as possible to establish a foundation for subsequent &quot;precise&quot; attacks)</li>
+<li><strong>Privilege Acquisition</strong> (Gain access to target system permissions such as RWX)</li>
+<li><strong>Backdoor Installation</strong> (Install backdoor programs in the target system to monitor it in a more convenient and covert manner)</li>
+<li><strong>Expanding Impact</strong> (Use the target system as a &quot;springboard&quot; to attack other hosts within the target's network, maximizing the effect of the attack)</li>
+<li><strong>Covering Tracks</strong> (Erase traces of the attack to maintain long-term control over the target and avoid detection and tracking)</li>
+</ul>
+<h2 id="Physical-Attacks-and-Social-Engineering">Physical Attacks and Social Engineering</h2>
+<p><strong>Definition of Physical Attack:</strong> A method of attack that bypasses physical security protection systems through various technical means to gain access to protected facilities or equipment resources, thereby obtaining or destroying protected information stored in the physical media of information systems.</p>
+<p><strong>Definition of Social Engineering:</strong> The art and science of exploiting human folly to manipulate individuals into performing desired actions or divulging confidential information.</p>
+<h1>Information Gathering Techniques</h1>
+<h2 id="Definition-Content-Classification-and-Necessity-of-Open-Source-Intelligence-OSINT-Gathering">Definition, Content, Classification, and Necessity of Open Source Intelligence (OSINT) Gathering</h2>
+<p><strong>Information Gathering</strong>: Refers to all reconnaissance activities conducted by hackers <strong>before or during an attack</strong> <strong>to carry out attacks more effectively</strong>.</p>
+<p><strong>Content</strong>: Domain names and IP addresses, security measures, internal network structure, domain organization, user emails, OS types, open ports, system architecture, sensitive files and directories, application types, etc.</p>
+<p><strong>Necessity</strong>:</p>
+<ul>
+<li>For attackers (first-mover advantage, gathering target information for attacks)</li>
+<li>For defenders (conducting information gathering on attackers for attribution and tracing)</li>
+</ul>
+<p><strong>Classification</strong>:</p>
+<ul>
+<li><strong>Active</strong> (direct access, may obtain more information but risks recording operations)</li>
+<li><strong>Passive</strong> (using third-party services for access, collects relatively less information, actions remain undetected)</li>
+</ul>
+<h2 id="Key-Points-Types-of-Network-Scanning-Host-Port-System-Type-Scanning-and-Principles">(Key Points) Types of Network Scanning (Host, Port, System Type Scanning) and Principles</h2>
+<p>Scanning Types:</p>
+<ul>
+<li><strong>Host Scanning</strong>: Uses the ping command to send an ICMP Echo Request (Type 8) packet to the target host and waits for an ICMP Echo Reply (Type 0) packet in response.</li>
+<li><strong>Port Scanning</strong>: Includes TCP SYN, TCP null, Xmas, TCP Window, TCP ACK, FTP Proxy, idle, and IP fragmentation scanning.</li>
+<li><strong>System Type Scanning</strong>: Involves detecting specific open ports, application banners, and TCP/IP stack fingerprinting.</li>
+</ul>
+<h2 id="Purpose-Principles-Components-and-Methods-of-Vulnerability-Scanning">Purpose, Principles, Components, and Methods of Vulnerability Scanning</h2>
+<p>Vulnerability detection involves inspecting critical computer information systems to identify weaknesses that could be exploited by hackers. This technology generally employs two strategies: passive and active.</p>
+<ul>
+<li>The <strong>passive strategy</strong> is host-based detection, which examines inappropriate settings, weak passwords, and other objects within the system that violate security policies.</li>
+<li>The <strong>active strategy</strong> is network-based detection, which executes script files to simulate attacks on the system and records its responses to uncover vulnerabilities.</li>
+</ul>
+<p>The main methods of vulnerability detection include: direct testing, inference, and credentialed testing.</p>
+<h2 id="Network-Topology-Discovery-Topology-Detection-Network-Device-Identification-Geolocation-of-Network-Entity-IPs">Network Topology Discovery (Topology Detection, Network Device Identification, Geolocation of Network Entity IPs)</h2>
+<p>Topology Detection: traceroute, SNMP</p>
+<p>Device Identification: shodan, zoomeye, FTP, SSH, telnet, HTTP</p>
+<p>IP Geolocation: Query-based Geolocation, Network Measurement-based Geolocation</p>
+<h1>Password Attacks</h1>
+<h2 id="Definition-and-Function-of-Passwords-Operating-System-Passwords">Definition and Function of Passwords (Operating System Passwords)</h2>
+<p>A password is a code or phrase typically composed of letters, numbers, or symbols, used to identify and verify the identity of an individual or system. Its main functions include: identity authentication, security assurance, privacy protection, data encryption, and access control.</p>
+<h2 id="Attack-Methods-Against-Password-Strength">Attack Methods Against Password Strength</h2>
+<p>Dictionary, Brute Force, Combination, Credential Stuffing, Rainbow Table</p>
+<h2 id="Storage-Methods">Storage Methods</h2>
+<p>Linux:</p>
+<ul>
+<li>Basic password file: <code>/etc/passwd</code></li>
+<li>Hashed password file: <code>/etc/shadow</code></li>
+<li>Password field consists of three parts (algorithm used, salt, password hash)</li>
+</ul>
+<p>Windows:</p>
+<ul>
+<li>Located in the <code>%systemroot%\system32\config</code> directory</li>
+<li><code>SAM._</code> file in the <code>%SystemRoot%\repair</code> directory</li>
+<li>Registry key: <code>HKEY_LOCAL_MACHINE\SAM</code></li>
+<li>In the memory block of <code>Winlogon.exe</code></li>
+<li>Locked, hidden, and unreadable; uses the NTLM authentication protocol</li>
+</ul>
+<h2 id="Transmission-Methods">Transmission Methods</h2>
+<ul>
+<li>Sniffing Attacks (Network cards operating in promiscuous mode)</li>
+<li>Keylogging</li>
+<li>Phishing</li>
+<li>Replay Attacks</li>
+</ul>
+<h2 id="Methods-to-Prevent-Password-Attacks">Methods to Prevent Password Attacks</h2>
+<ul>
+<li>Choose Secure Passwords</li>
+<li>Prevent Password Guessing Attacks</li>
+<li>Implement Security Policies</li>
+</ul>
+<h1>Software Vulnerabilities</h1>
+<h2 id="Definition-of-Vulnerability">Definition of Vulnerability</h2>
+<p>Refers to errors, flaws, and oversights in the design or implementation of information system hardware, software, operating systems, network protocols, databases, etc., that can be exploited by attackers.</p>
+<p>In simpler terms, a vulnerability is a weakness in a system that can be taken advantage of by an attack.</p>
+<h2 id="Common-Vulnerability-Types">Common Vulnerability Types</h2>
+<p>Common vulnerability types:</p>
+<ul>
+<li>Stack Overflow (CWE-121)</li>
+<li>Heap Overflow (CWE-122)</li>
+<li>Format String (CWE-134)</li>
+<li>Integer Overflow (CWE-190)</li>
+<li>Use after Free (CWE-416)</li>
+</ul>
+<h2 id="Key-Points-Principles-of-Stack-Overflow-Vulnerability-Exploitation-Memory-Distribution-Memory-Changes-During-Exploitation-Push-Pop-Operations-and-Stack-Overflow-Principles">(Key Points) Principles of Stack Overflow Vulnerability Exploitation (Memory Distribution, Memory Changes During Exploitation, Push/Pop Operations, and Stack Overflow Principles)</h2>
+<p>The content of the PPT is difficult to summarize concisely. Using GPT-4, a brief summary is provided as follows:</p>
+<p>A stack overflow occurs when data exceeds the memory space allocated for the stack. In memory, the stack is responsible for storing local variables and function call information. When too much data is pushed onto the stack (adding data), exceeding its boundaries, adjacent memory regions can be overwritten. This overflow can be exploited to tamper with the stack's control information (such as the return address), leading to the execution of unintended code.</p>
+<p>For detailed steps, refer to <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25816426">this article</a>. Reading up to the section on shellcode is sufficient.</p>
+<h2 id="Key-Points-Principles-of-Overflow-Vulnerability-Exploitation-Basic-Process-Key-Techniques-Overflow-Point-Location-Overwriting-Execution-Control-Addresses-Overwriting-Exception-Handling-Structures-Determining-Jump-Addresses-Shellcode-Location-and-Jumping">(Key Points) Principles of Overflow Vulnerability Exploitation (Basic Process, Key Techniques: Overflow Point Location, Overwriting Execution Control Addresses, Overwriting Exception Handling Structures, Determining Jump Addresses, Shellcode Location and Jumping)</h2>
+<p>Basic Process: Where to inject the &quot;overflow&quot; data? How long should the data be to overwrite the return address? What content should be used to overwrite the return address? What kind of attack code should be executed?</p>
+<ul>
+<li><strong>Overflow Point Location</strong>: Probing methods (using <code>cyclic</code> and <code>cyclic_find</code> in pwndbg), disassembly analysis.</li>
+<li><strong>Execution Control Addresses Include</strong>: Overwriting the return address, overwriting function pointer variables, overwriting exception handling structures.</li>
+<li><strong>Determining Jump Addresses</strong>: Instruction selection (jmp, call), instruction search range (user space, system DLLs, process code segments, PEB, TEB).</li>
+<li><strong>Shellcode Location and Jumping</strong>: <code>nop sled + decoder + real_shellcode</code>.</li>
+</ul>
+<h2 id="Definition-Purpose-Steps-for-Writing-Considerations-and-General-Methods-for-Writing-Shellcode">Definition, Purpose, Steps for Writing, Considerations, and General Methods for Writing Shellcode</h2>
+<p><strong>Definition:</strong> Shellcode is a piece of machine code that can perform specific functions and be executed directly by a computer. It is typically represented in hexadecimal form.</p>
+<p><strong>Purpose:</strong> Establishing reverse connections, uploading (or downloading) and executing Trojan horses or viruses, among other tasks.</p>
+<p><strong>Steps for Writing:</strong> Typically written in assembly language.</p>
+<p><strong>Considerations:</strong> Ensure proper exit, handle null bytes, and load DLLs.</p>
+<p><strong>General Methods for Writing Shellcode:</strong> List the function addresses corresponding to each version of the Windows operating system and use different addresses for different OS versions. The steps for dynamically locating function addresses (i.e., using <code>GetProcAddress</code> and <code>LoadLibrary</code> functions to dynamically obtain the addresses of other functions) are as follows:</p>
+<ul>
+<li>First, dynamically obtain the address of <code>GetProcAddress</code> (via brute-force searching, using the PEB to retrieve the kernel base address, SEH to obtain the kernel base address, or hashing to find all function addresses).</li>
+<li>Use <code>GetProcAddress</code> to obtain the addresses of other functions (e.g., <code>LoadLibrary</code>, <code>socket</code>).</li>
+<li>Then call the addresses of other functions.</li>
+</ul>
+<h2 id="Principles-of-Environment-Variable-Attacks-Set-UID-Concepts-and-Attack-Case-Analysis">Principles of Environment Variable Attacks, Set-UID Concepts, and Attack Case Analysis</h2>
+<p><strong>Principle:</strong> The hidden use of environment variables is dangerous. Since users can set environment variables, they become part of the attack surface for Set-UID programs.</p>
+<p><strong>Set-UID Concept:</strong> Allows users to <strong>temporarily</strong> run a program with the (elevated) permissions of the program's owner.</p>
+<p><strong>Case Analysis:</strong></p>
+<ul>
+<li>Dynamic Linker (<code>LD_PRELOAD</code>, <code>LD_LIBRARY_PATH</code>, <code>DYLD_PRINT_TO_FILE</code>)</li>
+<li>External Programs (<code>exec</code> family of functions, <code>system</code>)</li>
+<li>External Libraries (<code>locale</code>, <code>gettext</code>, <code>catopen</code>, etc.)</li>
+<li>Application Code</li>
+</ul>
+<h1>Web Application Attacks</h1>
+<h2 id="Fundamentals-of-Web-Applications-Architecture-Basic-Content">Fundamentals of Web Applications (Architecture, Basic Content)</h2>
+<p>Web servers (web pages, databases), Web clients, HTTP protocol</p>
+<ul>
+<li>Web pages are hosted on Web servers and are used to display information. They are typically written in HTML (Hypertext Markup Language).</li>
+<li>Web servers: Apache, IIS, Tomcat, Nginx, etc.</li>
+<li>Web clients (browsers): Chrome, Firefox, IE (Edge), etc.</li>
+<li>HTTP protocol: Request message format and response message format (please refer to external sources for details).</li>
+</ul>
+<h2 id="Key-Points-XSS-Attack-Definition-Same-Origin-Policy-Risks-Code-Vulnerability-Analysis-and-Exploitation-Methods-Types-Preventive-Measures">(Key Points) XSS Attack (Definition, Same-Origin Policy, Risks, Code Vulnerability Analysis and Exploitation Methods, Types, Preventive Measures)</h2>
+<p><strong>Definition:</strong> XSS attacks occur due to insufficient filtering of user input by web applications, allowing attackers to input specific data that is interpreted as JavaScript scripts or HTML code.</p>
+<p><strong>Same-Origin Policy:</strong> This policy means that cookies set by webpage A cannot be accessed by webpage B unless the two webpages are &quot;same-origin.&quot; &quot;Same-origin&quot; refers to &quot;three samenesses&quot; (same protocol, same domain, same port).</p>
+<p><strong>Risks:</strong> Phishing, extraction of client-side information, DDoS attacks, privilege escalation, worm propagation, etc.</p>
+<p><strong>Types:</strong> Reflected (non-persistent, parameter-based, appended to URLs), Stored (persistent, comments, databases), DOM-based XSS (JavaScript-based, does not require server interaction), etc.</p>
+<p><strong>Preventive Measures:</strong> HttpOnly, secure coding practices</p>
+<h2 id="SQL-Injection-Attack-Definition-Types-Injection-Steps-Privilege-Escalation-Methods-Definition-of-Database-Exposure-Prevention-Measures">SQL Injection Attack (Definition, Types, Injection Steps, Privilege Escalation Methods, Definition of Database Exposure, Prevention Measures)</h2>
+<p><strong>Definition:</strong> Submitting carefully crafted SQL query statements to a website, causing it to return critical data information.</p>
+<p><strong>Attack Types:</strong> Character-based, Numeric, Error-based, Blind SQL Injection</p>
+<p><strong>Injection Steps:</strong> Discover injection points, identify database type, guess table names, guess field names, extract content, access the admin page to upload malicious files.</p>
+<p><strong>Privilege Escalation Methods:</strong> For example, cracking pcAnywhere .cif files, exploiting Serv-U for privilege escalation (local overflow, VBS scripts).</p>
+<p><strong>Definition of Database Exposure:</strong> Using technical means or program vulnerabilities to obtain the database address and illegally download data to a local machine.</p>
+<p><strong>Prevention Measures:</strong> Escape special characters, input validation and filtering, parameterized queries.</p>
+<h2 id="HTTP-Session-Attacks-and-Defense-Session-ID-Prediction-Session-ID-Theft-Session-ID-Control-CSRF-Attacks-Preventive-Measures">HTTP Session Attacks and Defense (Session ID Prediction, Session ID Theft, Session ID Control, CSRF Attacks, Preventive Measures)</h2>
+<p>To prevent session ID prediction attacks, it is recommended to use built-in session management mechanisms provided by programming languages, such as those in PHP and Java.</p>
+<p>To counter session ID theft attacks, different preventive measures should be taken based on the specific methods used for theft. For instance, session ID theft attacks carried out via XSS can be mitigated by using the HttpOnly attribute.</p>
+<p>To defend against session fixation attacks, it is advisable to avoid session-adopting web environments whenever possible or implement safeguards against session adoption methods.</p>
+<p>To prevent session persistence attacks, the primary defense is to ensure that session IDs are not valid for extended periods. This can be achieved through measures such as forced session destruction or changing the session ID after user login.</p>
+<p>To defend against CSRF attacks, the following measures can be taken:</p>
+<ul>
+<li>Use POST instead of GET</li>
+<li>Verify the HTTP Referer</li>
+<li>Use CAPTCHA</li>
+<li>Implement tokens</li>
+</ul>
+<h1>Fake Message Attacks</h1>
+<h2 id="Key-Points-Principles-and-Attack-Strategies-of-Packet-Sniffing-and-Spoofing-TCP-Communication-Code-and-Process-IP-Spoofing-Attacks-and-Prevention">(Key Points) Principles and Attack Strategies of Packet Sniffing and Spoofing (TCP Communication Code and Process, IP Spoofing Attacks and Prevention)</h2>
+<p>Packet sniffing can be achieved using raw sockets (creating raw sockets, capturing all types of packets, enabling promiscuous mode, waiting for packets), or by using the pcap API and Scapy for packet sniffing.</p>
+<p>When certain critical information in a packet is forged, it is referred to as packet spoofing. Packet spoofing involves two main steps: constructing the packet (filling in the ICMP header and IP header) and sending the packet out.</p>
+<h2 id="Key-Points-What-is-the-TCP-Protocol-How-the-TCP-Protocol-Works-Principles-and-Steps-of-SYN-Flooding-Attacks-Principles-and-Steps-of-TCP-Reset-Attacks-Principles-and-Steps-of-TCP-Session-Hijacking-Attacks">(Key Points) What is the TCP Protocol, How the TCP Protocol Works, Principles and Steps of SYN Flooding Attacks, Principles and Steps of TCP Reset Attacks, Principles and Steps of TCP Session Hijacking Attacks</h2>
+<p>The Transmission Control Protocol (TCP) is a core protocol of the Internet protocol suite, operating at the transport layer on top of the IP layer. It provides host-to-host communication services for applications. There are two transport layer protocols: TCP (connection-oriented, reliable) and UDP (connectionless, unreliable, lower overhead).</p>
+<p>How the TCP Protocol Works: SYN, SYN-ACK, ACK</p>
+<ul>
+<li>When the server receives the initial SYN packet, it uses a TCB (Transmission Control Block) to store information about the connection.</li>
+<li>This is called a half-open connection because only the client-to-server connection is acknowledged.</li>
+<li>The server stores the TCB in a queue dedicated to half-open connections.</li>
+<li>After the server receives the ACK packet, it removes this TCB from the queue and stores it elsewhere.</li>
+<li>If the ACK does not arrive, the server will resend the SYN+ACK packet. After a certain period, the TCB will eventually be discarded.</li>
+</ul>
+<p>Principle of SYN Flooding Attack: To fill the queue storing half-open connections so that there is no space to store TCBs for any new half-open connections, essentially preventing the server from accepting any new SYN packets.</p>
+<p>Steps to Implement SYN Flooding: Continuously send a large number of SYN packets to the server. This consumes space in the queue by inserting TCB records without completing the third step of the handshake.</p>
+<p>Principle of TCP Reset Attack: The goal is to disconnect the TCP connection between A and B. A forged RST packet must have the correct source IP address, source port, destination address, destination port, and sequence number (within the receiver's window).</p>
+<p>Steps of TCP Reset Attack: Use Wireshark on the attacker's machine to sniff traffic and retrieve the target port, source port number, and sequence number.</p>
+<p>Principle of TCP Session Hijacking Attack: The goal is to inject data into an established connection. A forged TCP packet must be set up with the same parameters as in a reset attack.</p>
+<p>Steps of TCP Session Hijacking Attack: Same as the TCP reset attack.</p>
+<h2 id="Key-Points-DNS-Attacks-Domain-Name-Structure-Query-Process-Types-and-Principles-of-DNS-Attacks-Local-DNS-Cache-Poisoning-Attack-Remote-DNS-Cache-Poisoning-Attack-Malicious-DNS-Server-Response-Spoofing-Attack-Prevention-Measures">(Key Points) DNS Attacks (Domain Name Structure, Query Process, Types and Principles of DNS Attacks (Local DNS Cache Poisoning Attack, Remote DNS Cache Poisoning Attack, Malicious DNS Server Response Spoofing Attack), Prevention Measures)</h2>
+<p>Domain Name Structure: Root domain, top-level domain, authoritative domain, etc.</p>
+<p>Query Process: Iterative query and recursive query</p>
+<p>Types and Principles of DNS Attacks:</p>
+<ul>
+<li><strong>Local DNS Cache Poisoning Attack</strong>: This attack exploits the trust mechanism of DNS servers. The attacker forges a DNS response after observing a query from the local DNS server.</li>
+<li><strong>Remote DNS Cache Poisoning Attack</strong>: Unlike local attacks, remote DNS attacks require guessing the <strong>source port number</strong> and <strong>transaction ID</strong>. However, the latter can be prevented by querying different (non-existent) subdomains each time to avoid answer caching. Spoofed answers are provided in the authority section.</li>
+<li><strong>Malicious DNS Cache Poisoning Attack</strong>: When a user visits a website (e.g., <a target="_blank" rel="noopener" href="http://attacker32.com">attacker32.com</a>), the DNS query will eventually reach the authoritative name server for the <a target="_blank" rel="noopener" href="http://attacker32.com">attacker32.com</a> domain. In addition to providing an IP address in the answer section of the response, the DNS server can also provide information in the authority and additional sections. Attackers can use these sections to supply fraudulent information.</li>
+</ul>
+<p>Prevention Measures: DNSSEC provides authentication and integrity checks for DNS data. All answers from DNSSEC-protected zones are digitally signed. By verifying the digital signature, DNS resolvers can ensure the authenticity of the information. DNS cache poisoning will be defeated by this mechanism, as any forged data will be detected and fail the signature verification. (Strong machine translation tone)</p>
+<h1>Meltdown and Spectre Attacks</h1>
+<h2 id="CPU-Cache-Principles">CPU Cache Principles</h2>
+<p>Based on the principle of locality (computer programs tend to repeatedly access the same data and instruction sets within a short period of time), since cache access is faster than memory access, using a cache can significantly improve the average execution performance of programs.</p>
+<h2 id="Key-Point-Principle-of-Side-Channel-Attacks">(Key Point) Principle of Side-Channel Attacks</h2>
+<p>However, if the CPU attempts to access data that is not present in the cache, a time delay will occur, as the target data must be reloaded from memory into the cache. Measuring this time delay may allow an attacker to determine the occurrence and frequency of cache access failures.</p>
+<h2 id="Key-Points-Meltdown-Attack-Concept">(Key Points) Meltdown Attack Concept</h2>
+<p>Meltdown attacks exploit the out-of-order execution feature of modern processors to bypass memory isolation. Although certain memory addresses should not be accessible, they are cached due to out-of-order execution. When the program accesses these addresses again, the access time is significantly reduced. This timing difference can be used to infer the original values stored in those memory addresses.</p>
+<h2 id="Key-Points-Spectre-Attack-Concept">(Key Points) Spectre Attack Concept</h2>
+<p>Apart from leveraging the branch prediction feature of modern processors, the core idea of the Spectre attack is similar to that of the Meltdown attack.</p>
+<h1>Traceability Technology</h1>
+<h2 id="Overview-of-Traceability-and-Attribution">Overview of Traceability and Attribution</h2>
+<p>Objective: To identify the attacker's identity, the location of the attack point, and the attack path, among other information.</p>
+<p>Based on the depth of traceability, it can be categorized into:</p>
+<ul>
+<li>Attack host traceability</li>
+<li>Control host traceability</li>
+<li>Attacker traceability</li>
+<li>Attack organization traceability</li>
+</ul>
+<p>Typical scenarios: Within a domain, cross-domain.</p>
+<h2 id="Challenges-in-Traceability">Challenges in Traceability</h2>
+<p>The challenges include:</p>
+<ul>
+<li>Sender anonymity through the use of proxies or relays</li>
+<li>Anonymous communication systems inherently conceal the identities of both parties</li>
+<li>Lack of authentication mechanisms in the TCP/IP protocol and the stateless nature of Internet infrastructure</li>
+<li>Inadequate personal privacy protection and imperfect legal regulations</li>
+<li>Emergence of new technologies (e.g., VPN, NAT)</li>
+</ul>
+<h2 id="Typical-Techniques-for-Traceability-and-Source-Tracking">Typical Techniques for Traceability and Source Tracking</h2>
+<p>Common techniques include:</p>
+<ul>
+<li>IP Tracing Technology</li>
+<li>Traceability Techniques for Stepping-stone Attacks</li>
+<li>Tracing and Source Tracking in Anonymous Communication Systems</li>
+</ul>
+<h2 id="Development-Trends-in-Traceability-Technology">Development Trends in Traceability Technology</h2>
+<p>The development trends include:</p>
+<ul>
+<li>Source localization techniques in large-scale networks</li>
+<li>Software gene-based cyber attack traceability technology</li>
+<li>Big data-driven cyber attack traceability technology</li>
+<li>Multi-method integrated traceability techniques</li>
+</ul>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

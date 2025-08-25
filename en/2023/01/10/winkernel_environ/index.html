@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/01/10/winkernel_environ/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/01/10/winkernel_environ/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Setting up Windows driver development environment</h1>
+	<p>Under the pressure of the University Innovation Program, I started learning <s>environment setup for</s> Windows driver development. All I can say is:</p>
+<ul>
+<li>Due to the timeliness of information, it's better to refer to MSDN (even machine-translated versions) rather than relying solely on online tutorials.</li>
+<li><s>Because of open-source advantages, developing drivers for Windows might not be as appealing as doing so for Linux.</s></li>
+</ul>
+<img src='https://img.junyu33.me/blog/winkernel_environ/congrats.png'>
+<span id="more"></span>
+<h1>Prerequisite</h1>
+<ul>
+<li>Host: Windows 11.</li>
+<li>Disk space: At least 20GB, SSD recommended.</li>
+</ul>
+<h1>Steps</h1>
+<h2 id="Install-VS2022">Install VS2022</h2>
+<p>Ensure <strong>Desktop development with C++</strong> and <strong>MSVC v143 - VS 2022 C++ x64/x86 build tools (Latest)</strong> are ticked.</p>
+<h2 id="Install-Windows-11-SDK-WDK-for-22H2">Install Windows 11 SDK &amp; WDK for 22H2</h2>
+<p>Use default settings, proceed with installation.</p>
+<h2 id="Install-Windows-10-on-Your-VM">Install Windows 10 on Your VM</h2>
+<p>Quite easy.</p>
+<h2 id="Install-WDK-for-VM">Install WDK for VM</h2>
+<p>The average download speed is 200KB/s, even though the proxy/VPN is turned on. Time for touching fish.</p>
+<h2 id="Run-the-WDK-Test-Target-Setup">Run the WDK Test Target Setup</h2>
+<p>Easy, search for <code>WDK Test Target Setup x64-x64_en-us.msi</code>. Copy and paste.</p>
+<h2 id="Ensure-Host-Guest-Can-Ping-Each-Other">Ensure Host &amp; Guest Can Ping Each Other</h2>
+<p>If you are using VMware, it is recommended to use NAT mode. In this setup, the host IP corresponds to the <code>vmnet8</code> adapter when running <code>ipconfig</code>, while the guest IP is the sole IPv4 address displayed when running <code>ipconfig</code> within the guest system. Typically, both will reside within the same network segment (i.e., the first three sets of digits will match).</p>
+<h2 id="Write-Build-Your-First-Driver">Write &amp; Build Your First Driver</h2>
+<h3 id="Create-a-project">Create a project</h3>
+<p>Follow steps from MSDN directly.</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#create-and-build-a-driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#create-and-build-a-driver</a></p>
+<h3 id="write-a-sample-code">write a sample code</h3>
+<ul>
+<li>because inline asm is deprecated on x64 platform, we use this tutorial instead: <a target="_blank" rel="noopener" href="https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/#toc-heading-19">https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/#toc-heading-19</a></li>
+</ul>
+<h4 id="Driver-c">Driver.c</h4>
+<pre><code class="language-c">// https://bbs.kanxue.com/thread-254041.htm
+#include &lt;ntddk.h&gt;
+#include &quot;Header.h&quot;
+
+VOID DriverUnload(PDRIVER_OBJECT driver)
+&#123;
+    DbgPrint(&quot;first: Our driver is unloading…\r\n&quot;);
+&#125;
+
+NTSTATUS DriverEntry(PDRIVER_OBJECT driver, PUNICODE_STRING reg_path)
+&#123;
+#if DBG
+    int_3();
+#endif
+
+    DbgPrint(&quot;first: Hello world!\r\n&quot;);
+
+    driver-&gt;DriverUnload = DriverUnload;
+
+    return STATUS_SUCCESS;
+&#125;
+</code></pre>
+<h4 id="fun-asm">fun.asm</h4>
+<pre><code class="language-assembly">.CODE
+
+int_3 PROC
+	int 3
+	ret
+int_3 ENDP
+
+END
+</code></pre>
+<h4 id="Header-h">Header.h</h4>
+<pre><code class="language-c">#pragma once
+void int_3(void);
+</code></pre>
+<h3 id="Build-Project">Build Project</h3>
+<p>Before compiling the program, you also need to set the project properties:</p>
+<ul>
+<li>
+<p>Right-click → Properties → C/C++</p>
+<ul>
+<li>Set warning level to Level 3 (/W3)</li>
+<li>Change &quot;Treat Warnings as Errors&quot; to No (/WX-)</li>
+<li>Code Generation → Security Checks → Disable Security Checks (/GS-)</li>
+<li>Code Generation → Spectre Mitigation → Disabled</li>
+</ul>
+</li>
+<li>
+<p>Right-click → Properties → Linker</p>
+<ul>
+<li>Set &quot;Treat Linker Warnings as Errors&quot; to No (/WX:NO)</li>
+</ul>
+</li>
+<li>
+<p>Right-click → Properties → Driver Settings</p>
+<ul>
+<li>Change Target OS Version to Windows 10 or higher</li>
+<li>Change Target Platform to Desktop</li>
+</ul>
+</li>
+<li>
+<p>Right-click → Properties → Inf2Cat</p>
+<ul>
+<li>Change &quot;Use Local Time&quot; to Yes (/uselocaltime)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-254041.htm">https://bbs.kanxue.com/thread-254041.htm</a></p>
+</blockquote>
+<h2 id="Provision-Test-Computer">Provision Test Computer</h2>
+<p>Navigate to: Extensions &gt; Driver &gt; Test &gt; Configure Devices &gt; Add a new device</p>
+<p>Enter the IP address of your <strong>test computer</strong> as the <code>host name</code> and select <code>Provision device and choose debugger settings</code></p>
+<p>On the next page, choose <code>Network</code>. The <code>Host IP</code> should be the IP address of the <strong>host computer (vmnet8)</strong>.</p>
+<p>Wait for the provisioning process to complete. Note that the <code>TAEF service</code> may fail to install; this can be safely ignored.</p>
+<h2 id="Install-the-Driver">Install the Driver</h2>
+<p>Just follow the MSDN guide:</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#install-the-driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver#install-the-driver</a></p>
+<h2 id="Debug-the-driver">Debug the driver</h2>
+<p>Here are two ways:</p>
+<h3 id="Using-WinDbg-WinDbg-Preview-More-Steps">Using WinDbg/WinDbg Preview (More Steps)</h3>
+<ul>
+<li>
+<p>If the deploy process (right-click your project &gt; Deploy) is successful, your driver will be placed in the system drive of your test computer. Otherwise, you need to copy the output file from your host computer to the test computer.</p>
+</li>
+<li>
+<p>Download <code>INSTDRV.EXE</code> and copy it to your test computer.</p>
+</li>
+<li>
+<p>Open <code>INSTDRV.EXE</code> <strong>as Administrator</strong>. Then, open your WinDbg/WinDbg Preview and attach the kernel as described in the <strong>Provision Test Computer</strong> section.</p>
+</li>
+<li>
+<p>Create a snapshot in your VM. (IMPORTANT)</p>
+</li>
+<li>
+<p>First, <strong>install</strong> the driver <code>kmdfHelloWorld.sys</code>, then <strong>start</strong> it. If everything works correctly, your WinDbg instance will eventually pause at <code>fun.asm</code>. You can restore to your snapshot if something undesirable occurs (e.g., a blue screen).</p>
+</li>
+</ul>
+<h3 id="Using-VS2022-Not-Always-Reliable">Using VS2022 (Not Always Reliable)</h3>
+<ul>
+<li>Restore to your (successfully configured) snapshot.</li>
+<li>Right-click Properties &gt; Configuration Properties &gt; Debugging &gt; Debugger to launch &gt; Kernel Debugger</li>
+<li>Press F5. If everything works, your VS2022 instance will eventually stop at <code>fun.asm</code>, but there will be no highlights during debugging, as shown in the image placed in the preface.</li>
+</ul>
+<h1>References</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver">https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver</a></li>
+<li><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-254041.htm">https://bbs.kanxue.com/thread-254041.htm</a></li>
+<li><a target="_blank" rel="noopener" href="https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/">https://exp-blog.com/re/qu-dong-kai-fa-ru-men-2/</a></li>
+<li>《Encryption and Decryption》（Fourth Edition）</li>
+</ul>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

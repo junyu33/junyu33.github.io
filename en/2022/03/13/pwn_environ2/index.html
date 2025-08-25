@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/03/13/pwn_environ2/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/03/13/pwn_environ2/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>How to create an extremely comfortable pwn environment (Season 2)</h1>
+	<p>Now the question is, if you temporarily go home without your computer, but still want to control the computer at school, what should you do?</p>
+<p>Result Preview:</p>
+<img src="https://img.junyu33.me/blog/pwn_environ2/res.png" style="zoom:33%;" >
+<p>We assume the reader has completed the configuration from the previous session and ensured they have a public IP.</p>
+<span id="more"></span>
+<h1>Method 1 — Using DDNS</h1>
+<p>Every device has its own unique IP address. Theoretically, if you want to access a device, you only need to visit its IP address.</p>
+<p>However, due to the scarcity of IPv4 resources today (world population &gt; 7 billion, while the theoretically available IPv4 addresses are only <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)" style="stroke-width: 3;"/></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mn>32</mn></mrow></msup></math></mjx-assistive-mml></mjx-container>), some ISPs convert one public IP into multiple private IPs through NAT to alleviate resource shortages. <strong>Only IPs within the public network can access each other.</strong></p>
+<blockquote>
+<p>How to check if you have a public IP? Enter <code>ipconfig</code> in the command line to view your IP, and compare it with the result from a search engine. If they are the same, it's a public IP; otherwise, it's a private IP.</p>
+</blockquote>
+<p>Even if your device is lucky enough to have a public IP, there is still a problem for accessing it—generally, the IP address assigned by the device's ISP is dynamic and changes periodically, ranging from a few hours to half a month. If your connection is disconnected or the device is restarted, the corresponding IP will also change.</p>
+<p>DDNS solves the latter problem—it maps the device's changing IP to a fixed domain name. Users only need to access this domain name to connect to the device.</p>
+<p>I use Peanut Hull DDNS. After downloading and registering on the <a target="_blank" rel="noopener" href="https://hsk.oray.com/">official website</a>, the system automatically assigns you a domain name. You can connect to it from other devices using SSH to access this domain.</p>
+<p>Issues:</p>
+<ul>
+<li>Another application is added to startup.</li>
+<li>Cannot use a proxy.</li>
+<li>In some cases, using DDNS may cause broadband disconnection and prevent reconnection.</li>
+</ul>
+<h1>Method 2 — Using an IP Detection Script and Sending It to Email</h1>
+<p>Another idea is to use a script to query your IP address on an IP lookup website. If the script detects a change in the IP, it sends the new IP address to your email.</p>
+<p>This idea seems straightforward, but the actual implementation is not so simple.</p>
+<p>First, I copied a Python script that implements the above functionality (it's a bit long):</p>
+<pre><code class="language-python">import json
+from urllib.request import urlopen
+
+import os
+import time
+
+import smtplib
+from email.header import Header
+from email.mime.text import MIMEText
+
+# Two websites to get the IP address
+ip_url_1 = 'https://api.ipify.org/?format=json'
+ip_url_2 = 'http://jsonip.com'
+
+# Configuration file name
+config_file_name = '.global_ip.json'
+
+# Third-party SMTP service
+mail_host = &quot;smtp.qq.com&quot;      # SMTP server
+mail_user = &quot;2658799217&quot;      # Username
+mail_pass = &quot;&lt;thisisasecret&gt;&quot;  # Authorization password, not the login password. I believe everyone knows how to get the authorization code—you need to send a text message to Tencent.
+
+sender = '2658799217@qq.com'    		# Sender's email (preferably written in full, otherwise it may fail)
+receivers = ['2658799217@qq.com']  	# Recipient email, can be set to your QQ email or other email
+
+title = 'update_addr'  			# Email subject
+content = ''    				# Email content
+
+# Check configuration file and its permissions
+def check_configfile_exist():
+    file_exist = os.access(config_file_name, os.F_OK)
+    file_read  = os.access(config_file_name, os.R_OK)
+    file_write = os.access(config_file_name, os.W_OK)
+    return&#123;'file_exist':file_exist,'file_read':file_read,'file_write':file_write&#125;
+
+def generate_configfile(ip_addr):
+    config_construct = &#123;
+        &quot;ip_addr&quot;: ip_addr
+    &#125;
+    with open(config_file_name, &quot;w&quot;, encoding='utf8') as fp:
+        fp.write(json.dumps(config_construct,indent=4, ensure_ascii=False))
+    fp.close()
+
+def sendEmail():
+
+    message = MIMEText(content, 'plain', 'utf-8')  # Content, format, encoding
+    message['From'] = &quot;&#123;&#125;&quot;.format(sender)
+    message['To'] = &quot;,&quot;.join(receivers)
+    message['Subject'] = title
+
+    try:
+        smtpObj = smtplib.SMTP_SSL(mail_host, 465)  # Enable SSL sending, port is usually 465
+        smtpObj.login(mail_user, mail_pass)  # Login verification
+        smtpObj.sendmail(sender, receivers, message.as_string())  # Send
+        print(&quot;mail has been send successfully.&quot;)
+    except smtplib.SMTPException as e:
+        print(e)
+
+def send_email2(SMTP_host, from_account, from_passwd, to_account, subject, content):
+    email_client = smtplib.SMTP(SMTP_host)
+    email_client.login(from_account, from_passwd)
+    # create msg
+    msg = MIMEText(content, 'plain', 'utf-8')
+    msg['Subject'] = Header(subject, 'utf-8')  # subject
+    msg['From'] = from_account
+    msg['To'] = to_account
+    email_client.sendmail(from_account, to_account, msg.as_string())
+    email_client.quit()
+
+## Sub-method 1 — Write code in a VBS script to make it run at scheduled times
+
+~~Haven't learned VBS syntax yet (╹◡╹ლ) — temporarily filling the gap.~~
+
+## Sub-method 2 — Using Task Scheduler
+
+I added this VBS script to the Task Scheduler, configured it to run at system startup and user login, and even set it to trigger every ten minutes, as shown in the image below:
+
+&lt;img src=&quot;https://img.junyu33.me/blog/pwn_environ2/task.png&quot;&gt;
+
+However, during system startup, the system does automatically dial, but I do not receive the email about the IP change. Only when I manually run this VBS script does it successfully send the email.
+
+Existing issues:
+
+- At startup, it only dials but does not send an email.
+- It cannot use a proxy.
+- The operation is somewhat cumbersome.
+
+# Windows Default Terminal Settings
+
+The old cmd is very inconvenient to use—it lacks syntax highlighting, and switching to a different drive path requires an extra command. It's too troublesome.
+
+Running the following command in PowerShell allows you to change the device's default terminal to PowerShell:
+
+```powershell
+New-ItemProperty -Path &quot;HKLM:\SOFTWARE\OpenSSH&quot; -Name DefaultShell -Value &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -PropertyType String -Force
+</code></pre>
+<p>Why don't I use cmder? I tried it, but when SSH calls cmder, it crashes. I'm not exactly sure why.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

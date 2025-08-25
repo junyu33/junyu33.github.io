@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 
+  
+    <link rel="alternate" hreflang="en" href="/en/2022/02/07/bin_ctf2/">
+  
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,6 +45,16 @@
   <div class="main">
     <div class="post">
     
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2022/02/07/bin_ctf2/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
 
 	<h1>ctf练习（杂）</h1>
 	<p>分为re、crypto、misc三部分，用作记录思路和用得上的gadget。</p>
@@ -59,8 +73,6 @@ export CTF=&quot;$(printf &quot;\x0a\xda\xf2\x4f&quot;)&quot;
 <p>（30min后......）</p>
 <p>cyberchef一个个都试完了，全都解不出来...</p>
 <p>查看题解，发现是RC4，然后发现cyberchef的base64加密和RC4的解密结果都是错的，真无语。</p>
-<p>RC4算法识别：</p>
-<p><img src="https://bbsmax.ikafan.com/static/L3Byb3h5L2h0dHBzL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAyMDExMjExMzU4NDE4NC5wbmc/eC1vc3MtcHJvY2Vzcz1pbWFnZS93YXRlcm1hcmssdHlwZV9abUZ1WjNwb1pXNW5hR1ZwZEdrLHNoYWRvd18xMCx0ZXh0X2FIUjBjSE02THk5aWJHOW5MbU56Wkc0dWJtVjBMMjFqYlhWNVlXNW5ZUT09LHNpemVfMTYsY29sb3JfRkZGRkZGLHRfNzAjcGljX2NlbnRlcg==.jpg" alt=""></p>
 <p>从网上嫖来的解密脚本：</p>
 <pre><code class="language-python">import base64
 def rc4_main(key = &quot;init_key&quot;, message = &quot;init_message&quot;):

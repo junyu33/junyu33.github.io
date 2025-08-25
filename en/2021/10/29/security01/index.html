@@ -62,7 +62,7 @@
 <p>(Note: This key may yield different results on different systems, or even across different IDEs within the same system, so the answer is <strong>for reference only</strong>.)</p>
 <span id="more"></span>
 <h1>problem analysis</h1>
-<p>First, let’s paste the source code:</p>
+<p>First, let's paste the source code:</p>
 <pre><code class="language-C">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
@@ -205,7 +205,7 @@ o xexxtrxacxt1x.
 
 </code></pre>
 <p>We can vaguely see the shadow of the plaintext (for example, words like <strong>from</strong>, <strong>friend</strong>, <strong>good</strong>), but we still need to examine the decryption function to confirm it.</p>
-<p>Let’s first look at <strong>extract_message1</strong>:</p>
+<p>Let's first look at <strong>extract_message1</strong>:</p>
 <pre><code class="language-C">char * extract_message1(int start, int stride) &#123;
    int i, j, k;
    int done = 0;
@@ -231,11 +231,11 @@ o xexxtrxacxt1x.
 <p>After slightly modifying the code and running it, we obtain our <strong>first message</strong>.</p>
 <hr>
 <p><strong>However, this is just the first step — we still need to figure out key1 and key2.</strong></p>
-<p>Then you’ll be surprised to discover:</p>
+<p>Then you'll be surprised to discover:</p>
 <p><strong>The key1 and key2 we input actually have nothing to do with the variables start and stride, right?</strong></p>
 <p>Both <strong>start</strong> and <strong>stride</strong> are tied to the variable <strong>dummy</strong>. We must find a way to manipulate <strong>dummy</strong> through our input, thereby changing start and stride.</p>
 <p><strong>This is where the magic of C pointers comes in.</strong></p>
-<p>Now, let’s look at the <strong>process_keys12</strong> function:</p>
+<p>Now, let's look at the <strong>process_keys12</strong> function:</p>
 <pre><code class="language-C">void process_keys12 (int * key1, int * key2) &#123;
 
   
@@ -250,7 +250,7 @@ o xexxtrxacxt1x.
 <hr>
 <p>Now, <strong>key3</strong> and <strong>key4</strong> are more troublesome. Looking at the hint from <em>message1</em>:</p>
 <p><strong>“Choose a pair of key3, key4 to bypass extract1 and force the program to call extract2.”</strong></p>
-<p>Let’s analyze the <strong>extract2</strong> function:</p>
+<p>Let's analyze the <strong>extract2</strong> function:</p>
 <pre><code class="language-C">char * extract_message2(int start, int stride) &#123;
    int i, j;
 
@@ -267,20 +267,20 @@ o xexxtrxacxt1x.
 </code></pre>
 <p>It means: starting from <strong>start</strong>, read characters with a step size of <strong>stride</strong>. The process ends once an ASCII code of 0 is encountered.</p>
 <p>By visual inspection again, we can see that when <strong>start = 9</strong> and <strong>stride = 3</strong>, we can decrypt and obtain <em>message2</em> as shown in the runtime screenshot.</p>
-<p>Now the problem goes back to parameter passing. At first, I didn’t understand why we had to <strong>bypass</strong> <em>extract1</em>. After carefully analyzing the program structure, I realized:</p>
+<p>Now the problem goes back to parameter passing. At first, I didn't understand why we had to <strong>bypass</strong> <em>extract1</em>. After carefully analyzing the program structure, I realized:</p>
 <ul>
 <li>First, you cannot change the values of <strong>start</strong> and <strong>stride</strong> — otherwise, how would you decrypt correctly?</li>
-<li>But if you don’t change them, then you will inevitably decrypt <em>message1</em> (since its beginning is not 0). This seems contradictory, so we need a different approach.</li>
+<li>But if you don't change them, then you will inevitably decrypt <em>message1</em> (since its beginning is not 0). This seems contradictory, so we need a different approach.</li>
 </ul>
-<p><em>One of the few available write-ups online suggests modifying the return address to jump into that annoying conditional branch. However, for some unknown reason, even when I followed that method and successfully jumped, bypassing the <code>if</code> check, the return value of <code>main</code> was still not 0 (perhaps because stack overflow triggered the compiler’s security mechanism — sometimes security really is a bad thing), which meant message2 could not be printed.</em></p>
-<p>My idea, instead, is to try <strong>modifying the values in <code>data</code> within process_key34</strong>. Let’s take a look at this function:</p>
+<p><em>One of the few available write-ups online suggests modifying the return address to jump into that annoying conditional branch. However, for some unknown reason, even when I followed that method and successfully jumped, bypassing the <code>if</code> check, the return value of <code>main</code> was still not 0 (perhaps because stack overflow triggered the compiler's security mechanism — sometimes security really is a bad thing), which meant message2 could not be printed.</em></p>
+<p>My idea, instead, is to try <strong>modifying the values in <code>data</code> within process_key34</strong>. Let's take a look at this function:</p>
 <pre><code class="language-C">void process_keys34 (int * key3, int * key4) &#123;
 
    *(((int *)&amp;key3) + *key3) += *key4;
 &#125;
 
 </code></pre>
-<p>It’s actually quite similar to <strong>process_keys12</strong>, except that the middle <code>&quot;+&quot;</code> becomes <code>&quot;+=&quot;</code>.</p>
+<p>It's actually quite similar to <strong>process_keys12</strong>, except that the middle <code>&quot;+&quot;</code> becomes <code>&quot;+=&quot;</code>.</p>
 <p>Since <em>message1</em> reads its first character from <code>(*char)data[10]</code> (the <strong>bolded part</strong> in data[2] = 0x72<strong>46</strong>4663 — never forget little-endian order), we only need to change <code>data[2]</code> into <code>0x72004663</code> to make <em>message1</em> an empty string.</p>
 <p>The next step is to offset the address of <code>(int*)&amp;key3</code> by the value of <strong>key3</strong> so that it points into <code>data[2]</code>.</p>
 <img src="https://img.junyu33.me/blog/security01/2.png">  
@@ -293,7 +293,7 @@ o xexxtrxacxt1x.
 <p><strong>Problem solved.</strong> ✅</p>
 <h1>remark</h1>
 <p>As a pwn enthusiast, it still took me three nights to solve this problem and finish writing up the thought process. In my view, the knowledge points involved here go a bit beyond the scope of standard textbooks (after all, the essence of C cannot be captured in just a few textbook paragraphs). If you ask a student who has just finished an introductory course and can barely distinguish between <code>&amp;</code> and <code>*</code> to tackle this problem, that would be far too much.</p>
-<p><strong>But I have to admit, if you manage to solve this challenge independently</strong> (I also borrowed the approach for deriving key1 and key2), <strong>your C programming skills will have reached a whole new level — even stronger than that of an average OIer — and you’d be ready to start moving toward the binary exploitation track in CTF.</strong></p>
+<p><strong>But I have to admit, if you manage to solve this challenge independently</strong> (I also borrowed the approach for deriving key1 and key2), <strong>your C programming skills will have reached a whole new level — even stronger than that of an average OIer — and you'd be ready to start moving toward the binary exploitation track in CTF.</strong></p>
 
 </div>
 

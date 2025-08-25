@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/01/15/csapp/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/01/15/csapp/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>(Recently not updated) csapp learning notes</h1>
+	<p>(This article's assembly code uniformly adopts AT&amp;T syntax)</p>
+<blockquote>
+<p>Friendly reminder:</p>
+<p>When reading this book, notes, exercises, and experiments are all indispensable.</p>
+<p>If you feel the quality of the Chinese translation is subpar and prefer to read the original English version, do not choose the Global Edition! The Global Edition is riddled with errors in the exercise section, with many answers not matching the questions at all, severely impacting the reading experience and understanding of the material! (I ended up using free resources from GitHub—though not photocopied versions, and the main text quality is high, this issue with the exercises overshadows all other advantages). I now have to read the English original while doing the exercises from the Chinese version (lll￢ω￢).</p>
+</blockquote>
+<span id="more"></span>
+<h1>A Tour of Computer Systems</h1>
+<p>An outline covering all chapters, <s>which can serve as review material for an introduction to computer systems.</s></p>
+<h1>Representing and Manipulating Information</h1>
+<p>I skimmed through this before without doing the exercises, and now I'm unclear on how the <strong>smallest/largest denormalized number</strong> and <strong>smallest/largest normalized number</strong> of floating-point numbers are calculated.</p>
+<p>I'll come back to fill in the details when I have time.</p>
+<h1>Machine-Level Representation of Programs</h1>
+<h2 id="Historical-Perspectives">Historical Perspectives</h2>
+<p>Discussed the history of Intel processors and briefly mentioned the SSE and AVX instruction sets (I feel like I'll have to learn both in the future—time to start losing hair again (lll￢ω￢)).</p>
+<h2 id="Program-Coding">Program Coding</h2>
+<p>How to view GCC-compiled assembly code in AT&amp;T format in a Linux environment. (Note: GDB actually provides an option to switch to Intel format.)</p>
+<h2 id="Data-Types">Data Types</h2>
+<ul>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long (equivalent to long long; same applies below)</li>
+<li>float</li>
+<li>double</li>
+<li>pointer (this book assumes a 64-bit environment; all pointers are 8 bytes)</li>
+</ul>
+<h2 id="Accessing-Information">Accessing Information</h2>
+<p>The various registers (rax~rdx, rsi, rdi, rbp, rsp, r8~r15, and their corresponding 32-bit, 16-bit, and 8-bit versions) along with their <strong>conventional</strong> usages are shown in the figure below.</p>
+<img src="https://img.junyu33.me/blog/csapp/reg.png">
+<p>The mov instructions (movq, movl, movw, movb, movzbw, movsbq, etc., with the latter two performing type casting).</p>
+<h2 id="Arithmetic-and-Logical-Operations">Arithmetic and Logical Operations</h2>
+<p>lea — Load effective address, plus simple arithmetic instructions, similar to the form a+b*c (the letters q, l, w, b indicating byte size are omitted here and below).</p>
+<p>sf, zf, pf, cf, af, of — Various flags.</p>
+<p>add, sub, (i)mul, (i)div, shl(sal), shr, sar — Modify flag states.</p>
+<p>inc, dec — Do not modify flag states.</p>
+<p>cqto — Convert 64-bit to 128-bit, useful for 128-bit division.</p>
+<h2 id="Control-Flow">Control Flow</h2>
+<p>The assembly implementations of <code>if</code>, <code>switch</code>, <code>while</code>, <code>do-while</code>, and <code>for</code> statements are particularly error-prone in this assignment.</p>
+<p>Due to the CPU's branch prediction capability (which can achieve up to 90% accuracy for certain statements), simple <code>if</code> statements may precompute the register changes for both branches in advance to improve execution speed.</p>
+<p>For <code>switch</code> statements with multiple branches and closely clustered values, the compiler often constructs a jump table to replace various conditional jump instructions like <code>jz</code> and <code>jbe</code>, thereby enhancing code execution efficiency. This is because the performance of a jump table is not affected by the number of branches.</p>
+<h2 id="Process">Process</h2>
+<p>Once again reviewing the assembly implementation of stack calls, each part of a stack frame (return address, saved registers, local variables, argument build area) was thoroughly explained in detail.</p>
+<p>The order of parameter passing in 64-bit registers is <code>%rdi</code>, <code>%rsi</code>, <code>%rdx</code>, <code>%rcx</code>, <code>%r8</code>, <code>%r9</code>.</p>
+<h2 id="Array-Allocation-and-Access">Array Allocation and Access</h2>
+<p>The <code>lea</code> instruction is specifically designed for accessing arrays.</p>
+<p>Although compilers prefer using pointers to traverse arrays by adding a fixed value, even for multidimensional array traversal, they try to avoid using the formula <code>i * Wid + j</code> that we learned in data structure courses—after all, multiplication is too time-consuming.</p>
+<h2 id="The-Data-Structure-of-Exceptions-—-1-15-2022">The Data Structure of Exceptions — 1/15/2022</h2>
+<p>Discussed struct, union, and memory alignment.</p>
+<p><strong>The size of a union is the size of its largest data type.</strong></p>
+<p>Using a union allows for forced type conversion (e.g., converting a double to an unsigned long).</p>
+<p>Each member in a structure must be aligned to an address that is a multiple of its type size.</p>
+<h2 id="Combining-Control-and-Data-at-the-Machine-Level—1-16-2022">Combining Control and Data at the Machine Level—1/16/2022</h2>
+<p>Precedence of Pointers and Address Arithmetic—Determine the output of the following program:</p>
+<pre><code class="language-C">#include&lt;stdio.h&gt;
+int arr[20]=&#123;10,9,8,7,6,5,4,3,2,1,5&#125;;
+int main()
+&#123;
+	int *p=&amp;arr;
+	*(p+8)+=9;
+	int m=*((char*)p+8);
+	int n=*((char*)(p+8));
+	printf(&quot;%d %d&quot;,m,n);
+	return 0;
+&#125;
+</code></pre>
+<p>The answer is <code>8 11</code>.</p>
+<p>int (*p)(int, *int)—Function pointer, called using <code>p = fun</code>, returns an int with <code>res = p(int, &amp;int)</code>.</p>
+<p>int *p(int, *int)—Pointer function, returns an int* pointer.</p>
+<p>Various GDB debugging commands (for those using peda, commands like b, si, ni, x/s, x/wx may be useful since peda displays registers, assembly, stack, etc.):</p>
+<img src="https://img.junyu33.me/blog/csapp/gdb.png">
+<blockquote>
+<p>Errors in the <strong>main text</strong> of Exercise 3.46:</p>
+<p>Global edition: <code>get_line</code> is called with the return address equal to <s>0x400776</s> 0x400076.</p>
+<p>Chinese edition: The ASCII codes for characters 0–9 are <s>0x3~0x39</s> 0x30~0x39.</p>
+</blockquote>
+<p>In stack diagrams, addresses increase from bottom to top and from right to left. Therefore, for a dword (qword), data is stored from left to right (little-endian); while for a single byte, it is stored from right to left.</p>
+<blockquote>
+<p>Question:</p>
+<p>In part D, when the <code>get_line</code> function returns, the corrupted registers should also include %rip, not just %rbx as stated in the answer.</p>
+</blockquote>
+<p>Three main methods to prevent stack overflow: Address Space Layout Randomization (ASLR), stack protection (canary), and non-executable memory (NX).</p>
+<p>Assembly support for variable-length stacks—base pointer rbp:</p>
+<pre><code class="language-assembly">pushq %rbp
+movq %rsp, %rbp
+;procedure in the function
+leave 
+;movq %rbp, %rsp
+;popq %rbp
+ret
+</code></pre>
+<p><s>The book mentions that recent compilers have abandoned the convention of using a base pointer.</s> In practice, even with the latest compilers, writing a simple &quot;hello world&quot; program still uses the base pointer—this convention is still maintained.</p>
+<blockquote>
+<p>Questions:</p>
+<p>Why is s2 rounded to the &quot;nearest multiple of 8&quot; in Exercise B, and why is &quot;the offset of s1 preserved to the nearest multiple of 16&quot; in Exercise D?</p>
+</blockquote>
+<h2 id="Floating-Point-Code-—-1-19-2022">Floating-Point Code — 1/19/2022</h2>
+<p>Registers:</p>
+<p>%ymm0–%ymm15 are 256-bit floating-point registers.</p>
+<p>%xmm0–%xmm15 are 128-bit floating-point registers, occupying the lower 128 bits of the corresponding ymm registers.</p>
+<p>The first 8 registers can be used as function parameters (in particular, %xmm0 is the <strong>conventional</strong> return value, similar to %rax), while the last 8 are caller-saved.</p>
+<p>Moving floating-point values between memory and registers:</p>
+<p>movss: move single-precision float (between %xmm and a 32-bit memory location)</p>
+<p>movsd: move double-precision double (between %xmm and a 64-bit memory location)</p>
+<p>Moving between registers:</p>
+<p>movaps: move packed single-precision floats</p>
+<p>movapd: move packed double-precision doubles</p>
+<p><strong>Similar to integer registers, you cannot move a value directly from one memory location to another.</strong></p>
+<p>Conversion between floating-point and integer types (src can also be memory; omitted here for brevity):</p>
+<table>
+<thead>
+<tr>
+<th>(src type)\(dst type)</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>\</td>
+<td>cltq</td>
+<td>cvtsi2ssl %eax %xmm0</td>
+<td>cvtsi2sdl %eax %xmm0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>%eax</td>
+<td>\</td>
+<td>cvtsi2ssq %rax %xmm0</td>
+<td>cvtsi2sdq %rax %xmm0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>cvttss2si %xmm0 %eax</td>
+<td>cvttss2siq %xmm0 %rax</td>
+<td>\</td>
+<td>cvtss2sd mem %xmm0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>cvttsd2si %xmm0 %eax</td>
+<td>cvttsd2siq %xmm0 %rax</td>
+<td>cvtsd2ss mem %xmm0</td>
+<td>\</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>There are significant discrepancies between the instructions in CS:APP and the assembly syntax used by current compilers. This table follows the current standard. The following differences are noted:</p>
+<ol>
+<li>All floating-point instructions in CS:APP are prefixed with the letter &quot;v&quot;, which is now deprecated in current gcc (e.g., MinGW 10.3). The &quot;l&quot; suffix in integer-to-float and integer-to-double conversion instructions did not exist previously.</li>
+<li>Unlike in CS:APP, three-operand floating-point instructions no longer exist.</li>
+<li>Instead of the <strong>obscure</strong> self-conversion instructions for float↔double (vunpcklps, vcvtps2pd, vmovddup, vcvtpd2psx) used in CS:APP, gcc first copies the register value to memory and then uses a cvt instruction.</li>
+</ol>
+</blockquote>
+<p>Floating-point operators: Omitted, as the assembly statements are self-explanatory.</p>
+<p>Bitwise operations on floating-point values: Only applicable when all operands are inside registers.</p>
+<p>Immediate values in floating-point operations: Pre-stored in memory according to the IEEE standard and copied into %xmm registers when used in operations.</p>
+<p>Floating-point comparison instructions:</p>
+<p>comiss: compare single-precision floats.</p>
+<p>comisd: compare double-precision doubles.</p>
+<p>The comparison sets three flags: CF, ZF, and PF. PF is set to 1 if and only if either operand is NaN, in which case the result is Unordered.</p>
+<p>(The practice problems are good, but unfortunately, there's no answer key. I'll skip them.)</p>
+<h2 id="Summary-1-22-2022">Summary - 1/22/2022</h2>
+<p><strong>Finally finished learning x86 assembly! ✿✿ヽ(°▽°)ノ✿ Celebration time!</strong></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

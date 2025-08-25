@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2024/09/21/timeshift/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2024/09/21/timeshift/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>The Quick Guide to Using btrfs with TimeShift</h1>
+	<p>Recently, I moved to a new workstation with a new computer and two monitors. I am well aware of the importance of system backups, but due to sunk cost, I never fully implemented btrfs backup and recovery. Since the new system has nothing on it yet, I can experiment freely. Here's a record of how I set up Timeshift.</p>
+<p>This article focuses on practicality and does not delve into the underlying principles.</p>
+<span id="more"></span>
+<h1>Creating a btrfs Partition</h1>
+<p>For a new hard drive (mine is <code>/dev/nvme0n1</code>):</p>
+<ul>
+<li>First, create an EFI partition (512M) and mount it to <code>/boot/efi</code>.</li>
+<li>If your RAM is less than 16G, it is recommended to create a swap partition (8G). (But my new computer has 32G of RAM, so I did not create a swap partition.)</li>
+<li>Allocate the remaining space to btrfs.</li>
+</ul>
+<p>The corresponding commands are:</p>
+<pre><code class="language-bash">sudo fdisk /dev/nvme0n1
+
+# Create a GPT partition table
+g
+
+# Create the EFI partition
+n
+# Partition number
+&lt;enter&gt;
+# Start position
+&lt;enter&gt;
+# End position
++512M
+# Partition type
+t
+1
+# Remove signature
+y
+
+# Create the btrfs partition
+n
+# Partition number
+&lt;enter&gt;
+# Start position
+&lt;enter&gt;
+# End position
+&lt;enter&gt;
+# Remove signature
+y
+
+# Write changes
+w
+</code></pre>
+<h1>Formatting</h1>
+<p>Now there are two partitions: an EFI partition <code>/dev/nvme0n1p1</code> and a btrfs partition <code>/dev/nvme0n1p2</code>. We need to format them:</p>
+<pre><code class="language-bash">sudo mkfs.fat -F32 /dev/nvme0n1p1
+sudo mkfs.btrfs -L arch /dev/nvme0n1p2
+</code></pre>
+<h1>Creating btrfs Subvolumes (Important)</h1>
+<p>To ensure Timeshift works correctly, we need to achieve the following:</p>
+<pre><code class="language-bash">&gt; sudo btrfs subvolume list /
+[sudo] password for junyu33: 
+ID 256 gen 3073 top level 5 path @
+ID 257 gen 3073 top level 5 path @home
+</code></pre>
+<p>Specific commands:</p>
+<pre><code class="language-bash">sudo mount /dev/nvme0n1p2 /mnt
+sudo btrfs subvolume create /mnt/@
+sudo btrfs subvolume create /mnt/@home
+sudo umount /mnt
+sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt
+sudo mkdir /mnt/home
+sudo mount -o subvol=@home /dev/nvme0n1p2 /mnt/home
+sudo mkdir -p /mnt/boot/efi
+sudo mount /dev/nvme0n1p1 /mnt/boot/efi
+</code></pre>
+<h1>Installing the System</h1>
+<p>I'm not sure if Xubuntu will format the btrfs partition (I just tested it, and it seems it does—it can't be canceled). If so, my previous steps would be in vain. So I chose Arch Linux. I won't go into detail about the installation process; you can refer to the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Installation_guide">Arch Linux Installation Guide</a>.</p>
+<p>When you reach this step:</p>
+<blockquote>
+<p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
+</blockquote>
+<p>Check the content of the <code>fstab</code> file and, combined with the output of <code>blkid</code>, ensure the EFI partition and btrfs subvolumes are correctly mounted. Mine looks similar to:</p>
+<pre><code class="language-txt"># Static information about the filesystems.
+# See fstab(5) for details.
+
+# &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;
+# /dev/nvme0n1p2 LABEL=arch
+UUID=d6806b41-d69c-4f72-ba9f-a00a197729ab	/         	btrfs     	rw,relatime,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@	0 0
+
+# /dev/nvme0n1p2 LABEL=arch
+UUID=d6806b41-d69c-4f72-ba9f-a00a197729ab	/home     	btrfs     	rw,relatime,ssd,discard=async,space_cache=v2,subvolid=257,subvol=/@home	0 0
+
+# /dev/nvme0n1p1
+UUID=EB74-8512      	/boot/efi 	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+</code></pre>
+<p>At this point, your <code>/mnt</code> directory should resemble a normal Linux root directory, not <code>@</code> and <code>@home</code>.</p>
+<p>Then add the bootloader:</p>
+<pre><code class="language-bash">arch-chroot /mnt
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+<p>Then exit chroot and reboot into the new system.</p>
+<h1>Installing and Configuring Timeshift</h1>
+<pre><code class="language-bash"># Install cronie and enable the cron service
+sudo pacman -S cronie
+sudo systemctl enable cronie
+# Install Timeshift and the grub-btrfs plugin
+sudo pacman -S timeshift grub-btrfs
+yay -S timeshift-systemd-timer
+# Configure grub-btrfs to work with Timeshift
+sudo systemctl edit --full grub-btrfsd
+# Change `grub-btrfsd --syslog /.snapshots` to `grub-btrfsd --syslog -t`
+</code></pre>
+<p>Launch <code>timeshift</code> and configure it. Done.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

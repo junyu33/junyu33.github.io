@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/07/03/pwn_college/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/07/03/pwn_college/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Part of the solution of pwncollege</h1>
+	<p>Point to <a target="_blank" rel="noopener" href="https://dojo.pwn.college/challenges">https://dojo.pwn.college/challenges</a></p>
+<p>As per the website requirements, only the solution ideas and exploits for the first two challenges are provided here.</p>
+<span id="more"></span>
+<h1>heap</h1>
+<h2 id="babyheap1-0-2-1——UAF">babyheap1.0~2.1——UAF</h2>
+<pre><code class="language-python">def exploit():
+   malloc(flag_size)
+   free()
+   read_flag()
+   puts()
+</code></pre>
+<h2 id="babyheap3-0-3-1——uaf2-0">babyheap3.0~3.1——uaf2.0</h2>
+<p>Note: tcache uses a LIFO structure.</p>
+<h2 id="babyheap4-0-4-1—tcache-double-free">babyheap4.0&amp;4.1—tcache double free</h2>
+<p>This is the first time I've independently solved a heap challenge, even though it's the simplest type of <code>tcache double free</code>.</p>
+<h2 id="babyheap5-0-5-1-—-Unsorted-Bin-Attack">babyheap5.0 &amp; 5.1 — Unsorted Bin Attack</h2>
+<p>libc 2.23 → libc 2.31</p>
+<p>By exhausting all tcache bins, small bins and unsorted bins are triggered, allowing for chunk modification.</p>
+<h2 id="babyheap6-0-6-1——tcache-poisoning">babyheap6.0&amp;6.1——tcache poisoning</h2>
+<p>Simple tcache poisoning</p>
+<p><a target="_blank" rel="noopener" href="https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31">https://wargames.ret2.systems/level/how2heap_tcache_poisoning_2.31</a></p>
+<h2 id="babyheap7-0-7-1——tcache-poisoning-2-0">babyheap7.0&amp;7.1——tcache poisoning 2.0</h2>
+<p>Since the flag remains unchanged and only the latter part of the secret is needed, simply set <code>sec_addr += 8</code> and rerun the program.</p>
+<h2 id="babyheap8-0-8-1——Brute-Force">babyheap8.0&amp;8.1——Brute Force</h2>
+<p>Using the previous method, the last 12 bits of the secret can be leaked, while the first 4 bits can be obtained through brute force enumeration.</p>
+<p>The script took an entire class period to run before producing the result.</p>
+<h2 id="babyheap9-0——tcache-double-free">babyheap9.0——tcache double free</h2>
+<p>Due to the UAF (Use-After-Free) vulnerability, after the first free operation, setting the next pointer to 0 enables a double free.</p>
+<p>At this point, if the next pointer is modified to <code>0x42b321</code>, the key can be observed in the provided heap information.</p>
+<h2 id="babyheap9-1—tcache-double-free-perthread-corruption">babyheap9.1—tcache double free | perthread corruption</h2>
+<p>Following the steps from the previous level, proceed to malloc twice. Although the challenge prevents you from reading pointers near the key, the malloc operation still executes.</p>
+<p>Due to the linked list nature of <code>tcache</code>, the value at <code>addr+8</code> will be zeroed out. After performing this operation once more, you can pass the verification by entering 16 <code>\0</code> characters.</p>
+<p>In theory, it is possible to modify the address to the perthread struct and read the 8-byte key at the head of the linked list, though this approach was not tested.</p>
+<h2 id="babyheap10-0-10-1——Heap-on-Stack">babyheap10.0&amp;10.1——Heap on Stack</h2>
+<p>The stack address and ELF address are provided, so the heap can be directly placed on the stack, and the return address can be modified accordingly.</p>
+<h2 id="babyheap11-0-11-1——free-hook-arbitrary-read">babyheap11.0&amp;11.1——free_hook + arbitrary read</h2>
+<p>Since the ELF address and stack address were unknown, I first overwrote <code>free_hook</code> (note: when writing to <code>free_hook</code>, it's best to set the size field to <code>\x7f</code>) to point to <code>system_plt</code>, which granted a shell but without sufficient permissions.</p>
+<p>Then, I discovered that executing the <code>echo</code> function would allocate an additional heap chunk containing addresses related to the ELF and the stack. Moreover, the <code>echo</code> function did not restrict the offset size, allowing these addresses to be retrieved.</p>
+<p>Since I already had the ability to write to <code>free_hook</code>, I directly overwrote <code>free_hook</code> with the address of <code>win</code> to achieve the desired outcome.</p>
+<h2 id="babyheap12-0-12-1—modify-size">babyheap12.0&amp;12.1—modify size</h2>
+<p>Due to the mechanism of <code>tcache</code>, modifying the <code>size</code> of a heap chunk on the stack can bypass validity checks.</p>
+<h2 id="babyheap13-0——tcache-double-free">babyheap13.0——tcache double free</h2>
+<p>Similar to the approach in babyheap9.1, allocate memory near <code>sec</code>, then input a series of <code>\0</code> to overwrite the <code>key</code>.</p>
+<h2 id="babyheap13-1—Modify-Size">babyheap13.1—Modify Size</h2>
+<p>Since the offset between <code>sec</code> and the heap does not exceed one byte, after modifying the <code>size</code> of the heap on the stack, you can use <code>malloc</code> to allocate a slightly larger heap to fill with data.</p>
+<h2 id="babyheap14-0-14-1—modify-size-leak-elf-canary">babyheap14.0&amp;14.1—modify size + leak elf &amp; canary</h2>
+<p>Based on level13, use <code>echo</code> to leak the <code>elf</code> address and <code>canary</code> address, then perform stack overflow on the heap.</p>
+<p>For 14.1, note that <code>\x09</code> is not a valid input; it is recommended to use a later address instead.</p>
+<h2 id="babyheap15-0-15-1—Leaking-ELF-Stack-Unlink">babyheap15.0&amp;15.1—Leaking ELF &amp; Stack + Unlink</h2>
+<p>This challenge is a bit tricky. I ended up leaking the ELF, stack, libc, and heap before realizing the UAF was already gone.</p>
+<p>For arbitrary write, aside from double free, unlink is also an option. I didn't want to bother with intricate heap feng shui, so I just went with unlink to wrap things up.</p>
+<blockquote>
+<p>The libc version used in the following program has been upgraded from 2.31 to 2.35.</p>
+<p>Differences between glibc 2.35 and 2.31 include:</p>
+<ul>
+<li>Safe-linking — The actual address is the encrypted value XORed with the previous item shifted right by 12 bits (introduced in 2.32).</li>
+<li>Malloc alignment check — Addresses must be aligned to 0x10 (introduced in 2.33).</li>
+<li>Removal of hooks such as <code>__malloc_hook</code>, <code>__free_hook</code>, etc. (introduced in 2.34).</li>
+</ul>
+</blockquote>
+<h2 id="babyheap16-0—tcache-double-free-safe-linking">babyheap16.0—tcache double free + safe-linking</h2>
+<p>The logic is the same as level 9, except that an XOR operation is required when modifying the next pointer.</p>
+<h2 id="babyheap16-1—tcache-perthread-corruption-safe-linking">babyheap16.1—tcache perthread corruption + safe-linking</h2>
+<p>Due to alignment checks, it is not possible to zero out the value at addr. Here, tcache perthread corruption must be used instead, which allows allocating a chunk precisely at the key's location for reading.</p>
+<p>Additionally, the read value must be XORed to obtain the final key.</p>
+<h2 id="babyheap17-0——Canary-Leak">babyheap17.0——Canary Leak</h2>
+<p>Allocate the heap at the location <code>rbp-0x10</code>, obtain the canary from the printed information, and then perform a stack overflow.</p>
+<h2 id="babyheap17-1——off-by-null-unlink">babyheap17.1——off by null + unlink</h2>
+<p>By leveraging the null-termination feature of scanf, the <code>next_chunk_size</code> is changed from <code>0x101</code> to <code>0x100</code>, thereby achieving unlink.</p>
+<p>Subsequently, an entry in the <code>ptr</code> pointer array is overwritten with the return address, and the return address is overwritten via <code>scanf</code> to point to the <code>win</code> function.</p>
+<h2 id="babyheap18-0——off-by-null-unlink">babyheap18.0——off by null + unlink</h2>
+<p>The approach is similar: after unlink, directly use puts to read the sec array.</p>
+<h2 id="babyheap18-1-—-Fake-Chunk">babyheap18.1 — Fake Chunk</h2>
+<p>Fake a heap chunk and directly overwrite the <code>sec</code> array.</p>
+<h2 id="babyheap19-0-19-1——chunk-overlapping">babyheap19.0&amp;19.1——chunk overlapping</h2>
+<p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/chunk-extend-overlapping/#1inusefastbinextend">https://ctf-wiki.org/pwn/linux/user-mode/heap/ptmalloc2/chunk-extend-overlapping/#1inusefastbinextend</a></p>
+<h2 id="babyheap20-0-20-1——Safe-Linking-libc-environ-ORW-ROP">babyheap20.0&amp;20.1——Safe-Linking + libc.environ + ORW ROP</h2>
+<p>Leak the libc address via the unsorted bin and obtain the heap address through a heap overflow.</p>
+<p>Allocate four chunks. The first chunk overflows into the second, changing its size to three times the original. By printing and leaking the key pointer, overflow the second chunk while keeping the third chunk unchanged. Modify the <code>next</code> pointer of the fourth chunk (according to the Safe-Linking feature, this allows modifying the <code>next</code> pointer of the third chunk) to <code>libc.environ ^ (heap_base &gt;&gt; 12)</code>. Then, perform two <code>malloc</code> operations and print to obtain <code>libc.environ</code>.</p>
+<p>Use <code>libc.environ</code> to retrieve the stack address for unlink.</p>
+<p>Since directly obtaining a shell cannot read the flag, ORW ROP is used here for reading.</p>
+<h1>Kernel</h1>
+<h2 id="babykernel1-0-6-1—Basic-Definition">babykernel1.0~6.1—Basic Definition</h2>
+<p>Reference this blog post: <a target="_blank" rel="noopener" href="https://www.cnblogs.com/crybaby/p/14431651.html">https://www.cnblogs.com/crybaby/p/14431651.html</a></p>
+<p>Kernel shellcode is quite tricky.</p>
+<blockquote>
+<p>Note: How to check if KASLR is enabled?</p>
+<p>After entering the kernel, use <code>dmesg</code> to check if <code>nokaslr</code> appears at the end of the second line.</p>
+</blockquote>
+<h2 id="babykernel7-0-7-1——struct-debug">babykernel7.0~7.1——struct&amp;debug</h2>
+<p>You need to pass in a structure similar to the following:</p>
+<pre><code class="language-c">struct shellcode&#123;
+    unsigned long length;
+    char shellcode[0x1000];
+    unsigned long* shellcode_addr;
+&#125;
+</code></pre>
+<p>Note the following points:</p>
+<ul>
+<li>The shellcode must include a <code>ret</code> instruction (ret2usr).</li>
+<li>The <code>shellcode_addr</code> can be obtained through dynamic debugging and has a fixed location.</li>
+</ul>
+<h2 id="babykernel8-0-8-1—Shellcode-in-Shellcode">babykernel8.0~8.1—Shellcode in Shellcode</h2>
+<p>In a nutshell—writing shellcode within shellcode.</p>
+<p>The first entry into the kernel executes <code>commit_creds(prepare_kernel_cred(0))</code>, followed by a <code>ret2usr</code> to obtain a root shell. Then, upon re-entering, execute <code>run_cmd /bin/chmod 777 /flag</code> to modify the flag's permissions. (Note: spawning a shell in kernel mode has no effect.)</p>
+<h2 id="babykernel9-0-9-1——run-cmd">babykernel9.0~9.1——run_cmd</h2>
+<p>Directly change the <code>printk</code> pointer to <code>run_cmd</code>, then use <code>rdi</code> as the input to write <code>/bin/chmod 777 /flag</code>.</p>
+<h2 id="babykernel10-0—kaslr-leak">babykernel10.0—kaslr leak</h2>
+<p>Note that kaslr is only re-randomized after a kernel reboot, so rerunning the program will not change the original kernel function addresses.</p>
+<p>Similar to userland aslr, the lower 5 bits of kaslr are fixed. Writing 256 bytes causes the address of <code>printk</code> to be leaked, thereby allowing the address of <code>run_cmd</code> to be found.</p>
+<h2 id="babykernel10-1—Partial-Overwrite">babykernel10.1—Partial Overwrite</h2>
+<p>Since this driver does not print its own input, we choose to overwrite the last 3 bytes of <code>printk</code>, meaning we need to brute-force the sixth-to-last bit of <code>run_cmd</code>.</p>
+<h2 id="babykernel11-0-12-1-–-Memory-Scanning">babykernel11.0~12.1 – Memory Scanning</h2>
+<p>The program loads the flag into memory and then deletes the flag file, so the flag can only be found in memory.</p>
+<p>From the Discord spoiler, it is known that scanning should start from <code>0xffff888000000000</code> (i.e., the value of the macro <code>phys_to_virt(0)</code>, which is also the value of <code>__PAGE_OFFSET_BASE_L4</code> in the <a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/v5.4/source/arch/x86/include/asm/page_64_types.h#L41">source code</a>). Then, use <code>dmesg</code> to search for the flag.</p>
+<p>Note the following points:</p>
+<ul>
+<li>If using <a target="_blank" rel="noopener" href="https://shell-storm.org/online/Online-Assembler-and-Disassembler/">this website</a> to convert assembly into bytecode, be sure to convert the bytecode back into assembly to verify that no instructions are missing.</li>
+<li>To reduce output, it is recommended to compare the value at an address with <code>pwn.coll</code> (or a similar 64-bit string) before printing it to the console.</li>
+<li>Python consumes a lot of memory, and it is possible that starting a Python process may cause the memory containing the flag to be reallocated. Therefore, it is advisable to output the shellcode to a file and then use file stream input.</li>
+</ul>
+<h1>file</h1>
+<blockquote>
+<p>According to Linux philosophy, everything is a file, so <code>stdin(0)</code>, <code>stdout(1)</code>, <code>stderr(2)</code>, etc., are all files.</p>
+</blockquote>
+<h2 id="babyfile-level1—Arbitrary-Write-to-File">babyfile_level1—Arbitrary Write to File</h2>
+<p>If you do nothing and break after fwrite, the FILE structure will look like this:</p>
+<pre><code class="language-C">pwndbg&gt; x/30gx 0x18203b0
+0x18203b0:      0x00000000fbad2c84      0x0000000001820590
+0x18203c0:      0x0000000001820590      0x0000000001820590
+0x18203d0:      0x0000000001820590      0x0000000001820690
+0x18203e0:      0x0000000001821590      0x0000000001820590
+0x18203f0:      0x0000000001821590      0x0000000000000000
+0x1820400:      0x0000000000000000      0x0000000000000000
+0x1820410:      0x0000000000000000      0x00007fb7069655c0
+0x1820420:      0x0000000000000004      0x0000000000000000
+0x1820430:      0x0000000000000000      0x0000000001820490
+0x1820440:      0xffffffffffffffff      0x0000000000000000
+0x1820450:      0x00000000018204a0      0x0000000000000000
+0x1820460:      0x0000000000000000      0x0000000000000000
+0x1820470:      0x00000000ffffffff      0x0000000000000000
+0x1820480:      0x0000000000000000      0x00007fb7069614a0
+0x1820490:      0x0000000000000000      0x0000000000000000
+</code></pre>
+<p>So you only need to modify the values from <code>file+8</code> to <code>file+0x48</code> to the desired write location.</p>
+<p>Among these, <code>0xfbad2c00</code> is the magic number.</p>
+<pre><code class="language-python">def exploit():
+   fake_file = p64(0xfbad2c00) + p64(0x4040e0)*4 + p64(0x4041e0) + p64(0x4050e0) + p64(0x4040e0) + p64(0x4050e0)
+   io.send(fake_file)
+</code></pre>
+<p>Finally, <code>cat /tmp/babyfile.txt</code></p>
+<h2 id="babyfile-level2—Arbitrary-Read-from-File">babyfile_level2—Arbitrary Read from File</h2>
+<p>This time it's an arbitrary read:</p>
+<pre><code class="language-c">pwndbg&gt; x/30gx 0x6483b0
+0x6483b0:       0x00000000fbad0230      0x0000000000000000
+0x6483c0:       0x0000000000000000      0x0000000000648590
+0x6483d0:       0x0000000000000000      0x0000000000000000
+0x6483e0:       0x0000000000000000      0x0000000000648590
+0x6483f0:       0x0000000000649590      0x0000000000000000
+0x648400:       0x0000000000000000      0x0000000000000000
+0x648410:       0x0000000000000000      0x00007fc110d2e5c0
+0x648420:       0x0000000000000003      0x0000000000000000
+0x648430:       0x0000000000000000      0x0000000000648490
+0x648440:       0xffffffffffffffff      0x0000000000000000
+0x648450:       0x00000000006484a0      0x0000000000000000
+0x648460:       0x0000000000000000      0x0000000000000000
+0x648470:       0x00000000ffffffff      0x0000000000000000
+0x648480:       0x0000000000000000      0x00007fc110d2a4a0
+0x648490:       0x0000000000000000      0x0000000000000000
+</code></pre>
+<p>Here, <code>0xfbad000</code> is the magic number.</p>
+<p>Note that the size of <code>_IO_buf_end - _IO_buf_base</code> must be <strong>greater than</strong> (not equal to) the size of the buffer.</p>
+<pre><code class="language-python">def exploit():
+   fake_file = p64(0xfbad0000) + p64(0)*2 + p64(0x4041f8) + p64(0)*3 + p64(0x4041f8) + p64(0x4051f8)
+   io.send(fake_file)
+</code></pre>
+<h2 id="babyfile-level3——fileno-redirection">babyfile_level3——fileno redirection</h2>
+<p>Simply modify <code>_fileno</code> to standard output <code>1</code>.</p>
+<h2 id="babyfile-level4——fileno-redirection">babyfile_level4——fileno redirection</h2>
+<p>PIE is not enabled. Redirect to input and enter the <code>win</code> address.</p>
+<h2 id="babyfile-level5—arbitrary-write-to-file">babyfile_level5—arbitrary write to file</h2>
+<p>Same as level1.</p>
+<h2 id="babyfile-level5——arbitrary-read-from-file">babyfile_level5——arbitrary read from file</h2>
+<p>Same as level2.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

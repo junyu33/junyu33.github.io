@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/01/18/c2py/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/01/18/c2py/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Quick guide from C to python</h1>
+	<blockquote>
+<p>This tutorial only introduces the basic knowledge points required to use Python as a scripting language. Its purpose is not for machine learning or data analysis, but to help you write short, maintainable, and <s>never-overflowing</s> <strong>scripts</strong>.</p>
+<p>Readers with a solid foundation in C can master these concepts in an afternoon.</p>
+<p>This tutorial partially references <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400">Liao Xuefeng's blog</a> and is based on Python 3.</p>
+</blockquote>
+<span id="more"></span>
+<h1>Main Differences from C</h1>
+<ul>
+<li>Variables do not require type declaration when defined, but Python is a strongly typed language.</li>
+<li>No semicolon <code>;</code> at the end of statements.</li>
+<li>No curly braces <code>&#123;&#125;</code>; indentation is used instead (be consistent with spaces or tabs, and ensure uniform length).</li>
+<li>Add <code>:</code> at the end of <code>if</code> and <code>while</code> statements.</li>
+<li>Conditional expressions use <code>and</code> and <code>or</code> instead of <code>&amp;&amp;</code> or <code>||</code>.</li>
+<li>Integer division in Python is <code>//</code>, not <code>/</code>.</li>
+<li>Comments use <code>#</code> instead of <code>//</code>.</li>
+<li><code>'abc'</code> and <code>&quot;abc&quot;</code> have the same meaning.</li>
+</ul>
+<h1>I/O</h1>
+<ul>
+<li>Read an entire line and store it: <code>var = input()</code></li>
+<li>Read space-separated data: <code>a, b = map(int, input().split())</code></li>
+<li>Read with a prompt: <code>var = input('please type what you want')</code></li>
+<li>Output a line: <code>print(res)</code></li>
+<li>Output with spaces: <code>print('hello', res1, res2)</code></li>
+<li>Formatted output: <code>print('my name is %s and I\'m %d year(s) old.' %(name, age))</code>, or <code>print(f'my name is &#123;name&#125; and I\'m &#123;age&#125; year(s) old.')</code></li>
+<li>File I/O:</li>
+</ul>
+<pre><code class="language-python">with open('D:/tmp1/file.txt','a') as f:
+   f.write('this is a trivial test for file I/O.')
+with open('D:/tmp1/file.txt') as f:
+   content = f.read()
+print(content) # However, when the file contains Chinese characters, garbled text appears. &quot;你好&quot; becomes &quot;浣犲ソ&quot;. The solution is provided later.
+f.close()
+</code></pre>
+<h1>Data Type &amp; Conversion</h1>
+<p>Once a variable is created (assigned), its type is fixed. You can check its type using <code>type(var)</code>.</p>
+<ul>
+<li>Integer (int): <code>567</code>, <code>0xc0ffee</code>, <code>2**100+1</code>, <code>998244353 // 114514</code>, etc.</li>
+<li>Float: <code>3.14</code>, <code>1.6e-19</code>, <code>0.1 + 0.2</code>, <code>math.sqrt(1919810)</code>, etc.</li>
+<li>String (str): <code>'I\'m \&quot;OK\&quot;!'</code>, <code>'\\\t\\'</code>, or:</li>
+</ul>
+<pre><code class="language-python">'''hello,
+world!''' # Strings can be written across multiple lines.
+</code></pre>
+<ul>
+<li>
+<p>Bytes: e.g., <code>b'A'</code>, <code>b'1qaz2wsx'</code>. They cannot be operated with int or str.</p>
+</li>
+<li>
+<p>Boolean: <code>True</code> and <code>False</code>, equivalent to 1 and 0. They can be used in arithmetic and logical operations but cannot be reassigned.</p>
+</li>
+<li>
+<p>Null value: <code>None</code></p>
+</li>
+<li>
+<p>Convert string to integer: <code>int(input())</code></p>
+</li>
+<li>
+<p>Convert integer to float: <code>float(19260817)</code></p>
+</li>
+<li>
+<p>Convert hexadecimal to decimal: <code>int('0xdeadbeef',16)</code> or <code>int('0ff1ce',16)</code></p>
+</li>
+<li>
+<p>Convert decimal to binary: <code>bin(10)</code></p>
+</li>
+</ul>
+<h1>Encoding</h1>
+<p>(Finally, I can handle files with Chinese characters!)</p>
+<ul>
+<li>Main differences between encodings (Unicode is only used for memory display, not for data storage):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Character</th>
+<th style="text-align:center">ASCII</th>
+<th style="text-align:center">Unicode</th>
+<th style="text-align:center">UTF-8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">01000001</td>
+<td style="text-align:center">00000000 01000001</td>
+<td style="text-align:center">01000001</td>
+</tr>
+<tr>
+<td style="text-align:center">中</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">01001110 00101101</td>
+<td style="text-align:center">11100100 10111000 10101101</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Convert int to char using <code>chr()</code>; convert char to int using <code>ord()</code>.</li>
+<li>Convert str to ASCII or UTF-8 using <code>'xxx'.encode('ascii')</code> or <code>'xxx'.encode('utf-8')</code>.</li>
+<li>Convert bytes back to str using <code>decode</code>:</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; b'ABC'.decode('ascii')
+'ABC'
+&gt;&gt;&gt; b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
+'中文'
+</code></pre>
+<p>Returning to the earlier file I/O example, we only need to add <code>encoding = 'utf-8'</code> when opening the file the second time.</p>
+<h1>Basic Data Structures</h1>
+<p>In Python, data structures are treated as <em>objects</em> and come with built-in <em>methods</em>, which is a key difference from procedural C.</p>
+<h2 id="list——">list——[]</h2>
+<ul>
+<li>
+<p>Create a list: <code>subjects = ['calculus', 'programming', 'politics']</code></p>
+</li>
+<li>
+<p>Query the last item: <code>subjects[2]</code> or <code>subjects[-1]</code></p>
+</li>
+<li>
+<p>Reassign the second item: <code>subjects[1] = 'PE'</code> or <code>subjects[-2] = 'PE'</code></p>
+</li>
+<li>
+<p>Insert at the end: <code>subjects.append('introduction_to_computer_system')</code></p>
+</li>
+<li>
+<p>Insert at a specified position (at index 2): <code>subjects.insert(2, 'databases')</code></p>
+</li>
+<li>
+<p>Remove from the end: <code>subjects.pop()</code></p>
+</li>
+<li>
+<p>Remove the element at index 3: <code>subjects.pop(3)</code></p>
+</li>
+<li>
+<p>Sort the elements (elements in the list must be of the same type): <code>subjects.sort()</code></p>
+</li>
+</ul>
+<h2 id="tuple——">tuple——()</h2>
+<ul>
+<li>Create a tuple: <code>subjects = ('calculus', 'programming', 'politics')</code></li>
+</ul>
+<p>Once a tuple is created, <strong>it cannot be modified</strong>.</p>
+<h2 id="dict——">dict——{}</h2>
+<p>(Dict is similar to <code>map</code> in C++. I originally thought dict was also implemented using an rb-tree, but an error told me that it is implemented using hashing. Therefore, the elements in a dict must be <strong>immutable objects</strong> such as strings or tuples, and you cannot insert a list.)</p>
+<ul>
+<li>
+<p>Create a dict: <code>score = &#123;'calculus':96, 'programming':92, 'politics':86&#125;</code></p>
+</li>
+<li>
+<p>Insert an element: <code>score['PE']=80</code></p>
+</li>
+<li>
+<p>Delete an element: <code>score.pop('calculus')</code></p>
+</li>
+</ul>
+<h2 id="set——set-list">set——set(list)</h2>
+<p>As the name implies, a set does not contain duplicate elements.</p>
+<ul>
+<li>
+<p>Create a set: <code>academic = set(['programming', 'databases', 'assembly'])</code></p>
+</li>
+<li>
+<p>Insert an element: <code>academic.add('networking')</code></p>
+</li>
+<li>
+<p>Remove an element: <code>academic.remove('programming')</code></p>
+</li>
+<li>
+<p>Intersection and union:</p>
+</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; s1 = set([1, 2, 3])
+&gt;&gt;&gt; s2 = set([2, 3, 4])
+&gt;&gt;&gt; s1 &amp; s2
+&#123;2, 3&#125;
+&gt;&gt;&gt; s1 | s2
+&#123;1, 2, 3, 4&#125;
+</code></pre>
+<h1>Condition and Loop</h1>
+<ul>
+<li>Emphasize once again: use <code>and</code> and <code>or</code> for combining conditions, not <code>&amp;&amp;</code> or <code>||</code>!</li>
+</ul>
+<p>For other considerations in conditional statements, see the example below:</p>
+<pre><code class="language-python">age = int(input())
+if age &gt;= 6:
+    print('teenager')
+elif age &gt;= 18:
+    print('adult')
+else:
+    print('kid')
+</code></pre>
+<ul>
+<li>A for loop can iterate over every element in a list, tuple, or string:</li>
+</ul>
+<pre><code class="language-python">subjects = ['calculus', 'programming', 'politics']
+for i in subjects:
+    print(i)
+</code></pre>
+<ul>
+<li>It can also iterate over a sequence of integers (sum of integers from 0 to 100):</li>
+</ul>
+<pre><code class="language-python">sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+</code></pre>
+<ul>
+<li>break and continue still work (sum of even numbers from 0 to 50):</li>
+</ul>
+<pre><code class="language-python">sum = 0
+for x in range(101):
+    if x &gt; 50:
+        break
+    elif x &amp; 1:
+        continue
+    sum = sum + x
+print(sum)
+</code></pre>
+<ul>
+<li>A more efficient way to iterate over elements in a list, tuple, or string is <em>slicing</em>. The three parameters in slicing represent the start value, end value, and step size.</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; L = list(range(100))
+&gt;&gt;&gt; L[:10]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&gt;&gt;&gt; L[-10:]
+[90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+&gt;&gt;&gt; L[10:20]
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+&gt;&gt;&gt; L[:10:2]
+[0, 2, 4, 6, 8]
+&gt;&gt;&gt; L[::5]
+[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+&gt;&gt;&gt; L[:]
+[0, 1, 2, 3, ..., 99]
+&gt;&gt;&gt; L[::-1]
+[99, 98, 97, 96, ..., 0]
+</code></pre>
+<h1>Function</h1>
+<p>A simple factorial function:</p>
+<pre><code class="language-python">def fact(n):
+    if n==1:
+        return 1
+    return n * fact(n - 1)
+</code></pre>
+<ul>
+<li>A function can return multiple values—which is actually a tuple.</li>
+</ul>
+<pre><code class="language-python">def rot90(x, y):
+    tmp = x
+    x = -y
+    y = tmp
+    return x, y
+</code></pre>
+<h2 id="Positional-Arguments">Positional Arguments</h2>
+<p>They have the same meaning as parameters in the C language.</p>
+<h2 id="Default-Parameters">Default Parameters</h2>
+<p>For example, the help documentation for the <code>open</code> function is written as follows:</p>
+<pre><code class="language-python">&gt;&gt;&gt; help(open)
+Help on built-in function open in module io:
+
+open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+    Open file and return a stream.  Raise OSError upon failure.
+
+    file is either a text or byte string giving the name (and the path
+    if the file isn't in the current working directory) of the file to
+    be opened or an integer file descriptor of the file to be
+    wrapped. (If a file descriptor is given, it is closed when the
+-- More  --
+</code></pre>
+<ul>
+<li>Except for the first item, the file path, the rest are all default parameters. Since I didn't provide a value for the <code>encoding</code> parameter, it defaulted to <code>None</code>, which caused the read file to display garbled characters.</li>
+</ul>
+<blockquote>
+<p>Note: Default parameters must point to immutable objects! Otherwise, the results obtained after each function run may differ.</p>
+</blockquote>
+<h1>Summary</h1>
+<blockquote>
+<p>The best way to learn a language is to use it.</p>
+</blockquote>
+<p>Go solve problems now!</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

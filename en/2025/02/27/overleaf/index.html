@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2025/02/27/overleaf/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2025/02/27/overleaf/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Intranet penetration to build overleaf server</h1>
+	<h1>Introduction</h1>
+<p>In the previous article <a href="/en/2024/09/22/vnc/">&quot;Building a Fast and Secure VNC Service from Scratch&quot;</a>, we achieved a connection from a non-public network machine to a public network machine using DDNS and set up a VNC service on the public machine. In the mid-series article <a href="/en/2024/11/08/canmv/">&quot;Learn Intranet Penetration the Hard Way&quot;</a>, we used the DDNS-enabled public machine as a jump server to connect to another non-public network machine, thus realizing the dream of working from home. The goal of this follow-up article is to build a web service (specifically Overleaf) on that other non-public network machine based on the mid-series article, allowing local access and ultimately saving the annual $89 subscription fee.</p>
+<span id="more"></span>
+<h1>Prerequisites</h1>
+<ul>
+<li>A jump server that can connect to the public network (in my case, it's still the development board supporting RVV1.0 from the mid-series article)</li>
+<li>A higher-performance Linux server for installing the community edition of Overleaf</li>
+<li>Ensure that the host, server, and jump server can SSH connect to each other</li>
+<li>Ensure the jump server has a corresponding domain name</li>
+</ul>
+<h1>Steps</h1>
+<h2 id="First-Ensure-the-Overleaf-Server-Runs-Properly">First, Ensure the Overleaf Server Runs Properly</h2>
+<p>You can refer to <a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf">this blog post</a> or the <a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">official documentation</a>, but here are the steps for convenience:</p>
+<pre><code class="language-bash">git clone https://github.com/overleaf/toolkit.git ./overleaf-toolkit
+cd ./overleaf-toolkit
+sudo bin/init
+</code></pre>
+<p>Modify <code>./config/overleaf.rc</code>:</p>
+<pre><code>OVERLEAF_LISTEN_IP=0.0.0.0 # Listen on all IPs; by default, it's only accessible locally
+OVERLEAF_PORT=9999 # The default port is 80, but it might be occupied
+</code></pre>
+<p>Then start the service:</p>
+<pre><code class="language-bash">sudo bin/up -d
+sudo bin/down # To shut down
+</code></pre>
+<p>If the docker-compose proxy is not working well, you can change the mirror source:</p>
+<pre><code class="language-json">sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+&#123;
+    &quot;registry-mirrors&quot;: [
+    &quot;https://docker.m.daocloud.io&quot;,
+    &quot;https://docker.imgdb.de&quot;,
+    &quot;https://docker-0.unsee.tech&quot;,
+    &quot;https://docker.hlmirror.com&quot;,
+    &quot;https://docker.lms.run&quot;,
+    &quot;https://func.ink&quot;,
+    &quot;https://lispy.org&quot;,
+    &quot;https://docker.xiaogenban1993.com&quot;
+    ]
+&#125;
+EOF
+</code></pre>
+<p>Test whether the page displays correctly by curling <a target="_blank" rel="noopener" href="http://localhost:9999">http://localhost:9999</a>, for example:</p>
+<pre><code class="language-bash">&gt; unset http_proxy &amp;&amp; curl http://localhost:9999/
+Found. Redirecting to /login%
+</code></pre>
+<p>If there are no issues, it confirms the server itself is functioning properly. Proceed to the next step.</p>
+<h2 id="Server-First-Performs-Intranet-Penetration-to-the-Jump-Server">Server First Performs Intranet Penetration to the Jump Server</h2>
+<p>You can refer to <a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">this document</a>.</p>
+<p>Download the same version of <code>frpc</code> and <code>frps</code> (the author uses <code>0.61.0</code>). Modify <code>frpc.toml</code> on the client (i.e., the Overleaf server):</p>
+<pre><code class="language-toml">serverAddr = &lt;frps server domain name or IP&gt;
+serverPort = 7000
+transport.protocol = &quot;quic&quot;
+
+[[proxies]]
+name = &quot;web&quot;
+type = &quot;http&quot;
+localPort = 9999 # Corresponds to your Overleaf server's local port
+customDomains = &lt;frps server domain name&gt;
+</code></pre>
+<p>Then, modify <code>frps.toml</code> on the frps server (i.e., the jump server):</p>
+<pre><code class="language-toml">bindPort = 7000
+quicBindPort = 7000
+vhostHTTPPort = &lt;the mapped port in jump server&gt;
+</code></pre>
+<p>After that, start the client's <code>frpc</code>:</p>
+<pre><code class="language-sh">./frpc -c frpc.toml
+</code></pre>
+<p>And the server's <code>frps</code>:</p>
+<pre><code class="language-sh">./frps -c frps.toml
+</code></pre>
+<p>Assuming your server's domain name is <code>foo.example.com</code> and the jump server maps the HTTP port to <code>8080</code>, test with curl on the jump server:</p>
+<pre><code class="language-sh">&gt; unset http_proxy &amp;&amp; curl http://foo.example.com:8080
+Found. Redirecting to /login
+</code></pre>
+<p>If successful, it means frp is working correctly. If you only need to access it in an HTTP environment and the domain is registered, you can already use <code>http://foo.example.com:8080</code> to access it. Otherwise, proceed to the next step.</p>
+<blockquote>
+<p>It is recommended to add frps and frpc to systemctl for easy startup on boot, for example:</p>
+</blockquote>
+<pre><code class="language-ini">### /etc/systemd/system/frps.service
+[Unit]
+Description=frps
+After=network.target syslog.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/frps -c /usr/local/bin/frps.toml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<h2 id="Obtain-Let-s-Encrypt-Certificate-for-Domain-If-Not-Available">Obtain Let's Encrypt Certificate for Domain (If Not Available)</h2>
+<p>Let's Encrypt uses Certbot for domain ownership validation, with certificates valid for 90 days. However, the default parameters allow automatic renewal. When Nginx is properly configured, only a single command is needed, and you can select the first option during the process.</p>
+<pre><code>&gt; sudo certbot certonly --preferred-challenges dns -d &lt;frps server domain name&gt;
+
+How would you like to authenticate with the ACME CA?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: Nginx Web Server plugin (nginx)
+2: Runs an HTTP server locally which serves the necessary validation files under
+the /.well-known/acme-challenge/ request path. Suitable if there is no HTTP
+server already running. HTTP challenge only (wildcards not supported).
+(standalone)
+3: Saves the necessary validation files to a .well-known/acme-challenge/
+directory within the nominated webroot path. A seperate HTTP server must be
+running and serving files from the webroot path. HTTP challenge only (wildcards
+not supported). (webroot)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-3] then [enter] (press 'c' to cancel): 1
+</code></pre>
+<p>Alternatively, if you consider this a recursive issue, you can opt for manual acquisition and switch to automatic renewal after configuring Nginx. Manual acquisition requires editing two TXT records with your DNS provider; the detailed process will not be elaborated here.</p>
+<pre><code>sudo certbot certonly --manual --preferred-challenges dns -d &lt;frps server domain name&gt;
+</code></pre>
+<p>After successful validation, Certbot stores the certificate at <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/fullchain.pem</code> and the private key at <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/privkey.pem</code>.</p>
+<h2 id="HTTP-to-HTTPS">HTTP to HTTPS</h2>
+<p>Besides the method described in the documentation, which involves &quot;using the https2http plugin to expose a local HTTP service via HTTPS,&quot; you can also achieve this using nginx.</p>
+<p>After installing nginx, edit <code>/etc/nginx/sites-available/default</code>:</p>
+<pre><code>server &#123;
+    listen &lt;https port&gt; ssl;
+    server_name &lt;frps server domain name&gt;;
+
+    ssl_certificate &lt;your cert&gt;;
+    ssl_certificate_key &lt;your cert key&gt;;
+
+    client_max_body_size 50M;
+
+    location / &#123;
+        proxy_pass http://&lt;frps server domain name&gt;:&lt;the mapped port in jump server&gt;;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    &#125;
+&#125;
+</code></pre>
+<p>Here, <code>&lt;https port&gt;</code> is typically <code>443</code> (under normal conditions, i.e., if the domain is registered), <code>&lt;frps server domain name&gt;</code> is your jump server's domain name, <code>&lt;your cert&gt;</code> and <code>&lt;your cert key&gt;</code> are the certificate and private key previously obtained via Let's Encrypt, and <code>&lt;the mapped port in jump server&gt;</code> refers to the HTTP protocol service port previously mapped by frp on the jump server.</p>
+<p>After filling in the parameters:</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+</code></pre>
+<p>Assuming your server's domain name is <code>foo.example.com</code> and the mapped HTTPS port on the jump server is <code>443</code>, test it with curl on the jump server:</p>
+<pre><code class="language-bash">&gt; unset http_proxy &amp;&amp; curl https://foo.example.com
+Found. Redirecting to /login
+</code></pre>
+<p>This indicates that the nginx service is functioning properly. If your jump server's domain name is already registered, you should be able to access the URL and open the page normally from your local machine.</p>
+<h2 id="Bypassing-Unregistered-Restrictions">Bypassing Unregistered Restrictions</h2>
+<p>In short, avoid using common ports for HTTPS, which might help bypass the restrictions, but stability is not guaranteed.</p>
+<p>When accessing locally, simply add the port you set after the domain name, and it should work.</p>
+<h2 id="User-Configuration">User Configuration</h2>
+<p>Access <a target="_blank" rel="noopener" href="https://foo.example.com/launchpad">https://foo.example.com/launchpad</a> to set up an administrator account and add user accounts (if no email server is configured, the administrator can add users in the backend. The system will generate a registration success link for password setup—simply share this link with the registered users).</p>
+<p>Then, visit <a target="_blank" rel="noopener" href="https://foo.example.com/">https://foo.example.com/</a> to log in with your newly registered account and start using the platform. That's all—congratulations! 🎉</p>
+<h1>Updated on Mar 18th, 2025</h1>
+<h2 id="frp-https2http-Plugin">frp https2http Plugin</h2>
+<p>Using the frp https2http plugin allows you to convert Overleaf's HTTP connection to HTTPS locally, eliminating the need for configuring Nginx on a jump server and simultaneously resolving the WebSocket connection timeout issue mentioned in the FAQ.</p>
+<ul>
+<li>Client</li>
+</ul>
+<pre><code class="language-toml">serverAddr = &lt;frps server domain name&gt;
+serverPort = 7001
+transport.protocol = &quot;quic&quot;              # optional
+auth.method = &quot;token&quot;                    # optional
+auth.token = &lt;your secret token&gt;         # optional 
+
+[[proxies]]
+name = &quot;test_htts2http&quot;                  # any name is ok
+type = &quot;https&quot;
+customDomains = &lt;frps server domain name&gt;
+
+[proxies.plugin]
+type = &quot;https2http&quot;
+# port correspond to overleaf config's local port
+localAddr = &quot;127.0.0.1:9999&quot;   
+
+# HTTPS certificate-related configurations
+# use &lt;frps server domain name&gt; registered from certbot
+crtPath = &quot;./server.crt&quot;   
+keyPath = &quot;./server.key&quot;
+hostHeaderRewrite = &quot;127.0.0.1&quot;
+requestHeaders.set.x-from-where = &quot;frp&quot;
+</code></pre>
+<ul>
+<li>Server</li>
+</ul>
+<pre><code class="language-toml">bindPort = 7001
+quicBindPort = 7001                      # optional
+vhostHTTPSPort = &lt;https port&gt;                   
+auth.method = &quot;token&quot;                    # optional
+auth.token = &lt;your secret token&gt;         # optional
+</code></pre>
+<p>You can even add an additional layer of Netlify's CDN reverse proxy to make this <code>&lt;https port&gt;</code> the default 443.</p>
+<h2 id="Certbot-Manual-Hook">Certbot Manual Hook</h2>
+<p>To manually simulate a DNS subscription/renewal for the domain <code>example.com</code> using the <code>foo.sh</code> script, execute the following command:</p>
+<pre><code class="language-sh">sudo certbot certonly \
+  --manual \
+  --preferred-challenges dns \
+  --manual-auth-hook /path/to/foo.sh \
+  --dry-run \
+  -d example.com
+</code></pre>
+<p>Certbot will pass two parameters to <code>foo.sh</code>:</p>
+<ul>
+<li><code>$CERTBOT_DOMAIN</code>: The domain you are renewing.</li>
+<li><code>$CERTBOT_VALIDATION</code>: The validation string.</li>
+</ul>
+<p>The script should insert a TXT record in your DNS provider with the name <code>_acme-challenge. + $CERTBOT_DOMAIN</code> and the value <code>$CERTBOT_VALIDATION</code>. If you use Netlify as your DNS provider, I have implemented an automated solution in <code>dns-auth.sh</code> and <code>renew.py</code> at <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynamic-dns-py">https://github.com/junyu33/netlify-dynamic-dns-py</a>. Simply replace <code>/path/to/foo.sh</code> with the absolute path to <code>dns-auth.sh</code>, such as <code>/home/junyu33/netlify-dynamic-dns-py/dns-auth.sh</code>.</p>
+<p>If the operation is successful, remove the <code>--dry-run</code> parameter to perform an actual automatic renewal. If the renewal succeeds, Certbot will set up a scheduled task to call this script again when the certificate is about to expire, so ensure your hook script remains at the specified path.</p>
+<h1>FAQ</h1>
+<blockquote>
+<p>What to do if the WebSocket test times out in the Launchpad interface?</p>
+</blockquote>
+<p>Ignore it (it does not seem to affect usage currently), or use the frp https2http plugin.</p>
+<blockquote>
+<p>Why does it show &quot;connection error&quot; when entering a project?</p>
+</blockquote>
+<p>The reason is a WebSocket connection timeout. The solution is the same as above.</p>
+<blockquote>
+<p>Why can I only upload files up to 1M in size?</p>
+</blockquote>
+<p>See <a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">this issue</a>. The cause is an issue with the nginx configuration, which could be either inside the Docker container or on the jump server (though the latter has been ruled out since <code>client_max_body_size 50M</code> has been added there).</p>
+<blockquote>
+<p>Is it possible to avoid using HTTPS?</p>
+</blockquote>
+<p>At least on the latest version of Microsoft Edge, it will directly show &quot;connection not secure&quot; and prevent proceeding. Other scenarios have not been tested.</p>
+<blockquote>
+<p>Can I use a self-signed certificate for HTTPS? (e.g., generated using OpenSSL)</p>
+</blockquote>
+<p>Same as above.</p>
+<h1>References</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</a></p>
+<p><a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757">https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757</a></p>
+<p><a target="_blank" rel="noopener" href="https://jinli.io/p/%E8%87%AA%E5%BB%BA%E5%9C%A8%E7%BA%BFlatex%E7%BC%96%E8%AF%91%E9%A2%84%E8%A7%88%E6%9C%8D%E5%8A%A1overleaf%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%E7%89%88/">https://jinli.io/p/自建在线latex编译预览服务overleaf开源社区版/</a></p>
+<p><a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">https://gofrp.org/zh-cn/docs/examples/vhost-http/</a></p>
+<p><a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/https2http/">https://gofrp.org/zh-cn/docs/examples/https2http/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/docker-image/issues/20">https://github.com/overleaf/docker-image/issues/20</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx">https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx</a></p>
+<p><a target="_blank" rel="noopener" href="https://chat.deepseek.com/">https://chat.deepseek.com/</a></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

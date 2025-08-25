@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/07/22/xp2/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/07/22/xp2/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>An experience of grabbing packets for grab app</h1>
+	<p>During my time in Singapore, to achieve a cashless experience, my all-currency credit card did not support UnionPay QuickPass, so I had to use a third-party platform to link my bank card.</p>
+<p>Grab only provided BOC (Bank of China) as a third-party platform for mainland users, but after opening the link, I found that the verification code on BOC's login page couldn't be displayed.</p>
+<p>My task was to try and troubleshoot why the verification code wasn't showing—at the very least, I needed to reproduce this URL on a computer.</p>
+<span id="more"></span>
+<h1>Grab Desktop</h1>
+<p>Couldn't find it at all.</p>
+<h1>Android + HTTPToolkit (User Certificate)</h1>
+<p>BurpSuite doesn't seem to have particularly good support for Android, and I just found out that Fiddler is actually commercial software. So, I chose HTTPToolkit.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/httptoolkit/httptoolkit-desktop">https://github.com/httptoolkit/httptoolkit-desktop</a></p>
+<p>And the corresponding Android version:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/httptoolkit/httptoolkit-android">https://github.com/httptoolkit/httptoolkit-android</a></p>
+<p>HTTPToolkit allows installing two types of certificates on Android: user and system. The latter obviously requires root access.</p>
+<p>I tried using only the user certificate and was able to capture HTTP/HTTPS packets from Chrome, but it didn't work with Grab's built-in browser.</p>
+<p>With Nova's hint, I realized it might be due to SSL pinning. A Google search led me to this article:</p>
+<p><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/134061.html">https://www.secpulse.com/archives/134061.html</a></p>
+<p>It suggested using the JustTrustMe module from Xposed to solve the issue, which definitely requires root.</p>
+<p>I definitely didn't want to root my brand-new phone, so I opted for:</p>
+<h1>Waydroid + Magisk</h1>
+<p>Linux systems have to say goodbye to WSA and most Android emulators. Currently, Waydroid is a good alternative.</p>
+<p>The official Waydroid Android 11 image doesn't come with Magisk. Although you can switch to root by running <code>su</code> in the shell, for convenience, I used a repository to build an image that includes GApps and Magisk.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pagkly/MagiskOnWaydroid">https://github.com/pagkly/MagiskOnWaydroid</a></p>
+<p>I then downloaded RootExplorer and tried mounting the root and <code>/system</code> directories as read-write, which worked. However, the shell on the host system didn't seem capable of doing this.</p>
+<p>As someone used to working with the shell, relying solely on a GUI for operations felt inconvenient. If RootExplorer could obtain read-write permissions for these paths, why couldn't the shell?</p>
+<p>After some more Googling, I found many answers (including on XDA):</p>
+<p><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/closed-universal-systemrw-superrw-feat-makerw-ro2rw-read-only-2-read-write-super-partition-converter.4247311/">https://forum.xda-developers.com/t/closed-universal-systemrw-superrw-feat-makerw-ro2rw-read-only-2-read-write-super-partition-converter.4247311/</a></p>
+<p><a target="_blank" rel="noopener" href="https://androidforums.com/threads/the-one-and-only-official-system-rw-for-samsung-galaxy-s23-ultra-and-other-devices-by-lebigmac.1346815/">https://androidforums.com/threads/the-one-and-only-official-system-rw-for-samsung-galaxy-s23-ultra-and-other-devices-by-lebigmac.1346815/</a></p>
+<p>All pointing to this website:</p>
+<p><a target="_blank" rel="noopener" href="https://www.systemrw.com/download.php">https://www.systemrw.com/download.php</a></p>
+<p>Although the author's colorful, flashy fonts and some quirky memes were annoying, following the steps actually solved my urgent problem.</p>
+<p>Additionally, this answer helped resolve the communication issue between the host and Waydroid:</p>
+<p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/waydroid/comments/13e619n/how_do_i_write_to_waydroid_files_from_arch_linux/">https://www.reddit.com/r/waydroid/comments/13e619n/how_do_i_write_to_waydroid_files_from_arch_linux/</a></p>
+<p>So, all the work I've done so far is essentially what could have been achieved in the Android 4 era with a simple one-click root tool. It seems Android's security barriers have indeed improved significantly.</p>
+<h2 id="waydroid-magisk-Xposed">waydroid + magisk + Xposed</h2>
+<p>I found an Xposed installer online, but the resource fetching URL <a target="_blank" rel="noopener" href="http://repo.xposed.info">repo.xposed.info</a> stopped working a year ago.</p>
+<p><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/is-there-a-problem-in-xposed-website.4472673/">https://forum.xda-developers.com/t/is-there-a-problem-in-xposed-website.4472673/</a></p>
+<h2 id="waydroid-magisk-EdXposed">waydroid + magisk + EdXposed</h2>
+<p>So I found another alternative, EdXposed.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ElderDrivers/EdXposed">https://github.com/ElderDrivers/EdXposed</a></p>
+<p>At first, I didn't realize that the EdXposed framework needed to be installed through Magisk, which left me stuck for a while. Then, when trying to load the zip via Magisk, I ran into an unzip error. I found this forum post:</p>
+<p><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/magisk-module-unzip-error.4503395/">https://forum.xda-developers.com/t/magisk-module-unzip-error.4503395/</a></p>
+<p>The issue was that the downloaded zip file shouldn't be wrapped inside another folder (which reminded me of the submission method from the long-forgotten nand2tetris course).</p>
+<p>Finally, I got EdXposed installed. It was 2 a.m., and four hours had passed since I started.</p>
+<img src='https://img.junyu33.me/blog/xp2/edxposed.png'>
+<h3 id="waydroid-magisk-EdXposed-ProxyDroid-burpsuite">waydroid + magisk + EdXposed + ProxyDroid + burpsuite</h3>
+<p>Since httptoolkit only provides a QR code scanning method for the Android side, and Waydroid does not support the camera, this option is temporarily not considered.</p>
+<p>Additionally, Waydroid does not support Wi-Fi and cannot be configured with a proxy. Even if you set <code>http_proxy</code> in the shell, it only affects commands like <code>curl</code> and <code>wget</code> within the shell and does not support HTTPS.</p>
+<p>Therefore, I tried using ProxyDroid to route all apps through Burp Suite's proxy address, but it had no effect.</p>
+<p>After some research on Google, the possible reason is that some apps inherently do not support proxies, so even setting a global proxy at the root level may not work.</p>
+<h3 id="waydroid-magisk-EdXposed-PCAPdroid">waydroid + magisk + EdXposed + PCAPdroid</h3>
+<p>While translating the answers to the question above, one response speculated that we might be looking for packet capture tools on the Android platform (you really are good at guessing), and recommended PCAPDroid.</p>
+<p>However, PCAPDroid's HTTPS packet capture is an experimental feature and doesn't seem very stable. After following its guide to install PCAPDroid mitm and the relevant certificates, I still couldn't capture HTTPS packets.</p>
+<p>Then I remembered the previously mentioned Xposed module JustTrustMe. After installing it, there was no change at all.</p>
+<p>After searching for alternatives on Google, I found TrustMeAlready:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ViRb3/TrustMeAlready">https://github.com/ViRb3/TrustMeAlready</a></p>
+<p>This time, when testing browser access to Google, I managed to capture some HTTPS packets.</p>
+<p>But there was bad news: the Grab app wouldn't open. Although a possible solution might be MagiskHide, I felt like I was nearing the end of this road, so I decided to try another approach.</p>
+<h1>android + apk-mitm + httptoolkit(user)</h1>
+<p>Why not directly instrument the APK? This led to the following solution:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/shroudedcode/apk-mitm">https://github.com/shroudedcode/apk-mitm</a></p>
+<p>Since Grab couldn't be used in Waydroid anymore, I directly installed the patched Grab on my own phone. I expected some obstacles during the installation of a self-signed app, but surprisingly, it installed without issues.</p>
+<p>Next, I used httptoolkit again, and indeed, it captured far more HTTPS packets than before. However, I encountered a minor issue:</p>
+<ul>
+<li>When redirecting from Grab's website to BOC, if packet capture (mitm) was detected, the redirection would fail.</li>
+<li>But if I successfully entered BOC's website, I could freely capture packets. However, the page couldn't be refreshed, making it impossible to obtain the URL.</li>
+</ul>
+<p>This issue was eventually resolved as follows:</p>
+<h2 id="Android-apk-mitm-httptoolkit-user-a-bit-of-luck">Android + apk-mitm + httptoolkit(user) + a bit of luck</h2>
+<p>First, disable httptoolkit's intercept, then open the BOC link. Wait 0.5 to 1 second before enabling intercept again.</p>
+<p>With a bit of luck, you'll enter the BOC page. At this point, you can retrieve the BOC login page URL from the response of a certain GET request that fetches the redirect link. This page can only be opened using a mobile user agent:</p>
+<img src='https://img.junyu33.me/blog/xp2/boc.png'>
+<p>It was already 4 AM at this point—time to clock out.</p>
+<h1>Afterword</h1>
+<ul>
+<li>The last time I worked with Xposed was <a href="https://blog.junyu33.me/2021/08/10/xp.html">two years ago</a>. That post is now buried in the dustbin of history. <s>I originally intended to dig it up, but since it wasn't on a physical device, I decided to wait until I needed to set up a soft router.</s> So, in 2025, I ended up using the same phone again to solve an app packet capture issue. The details can be found <a href="https://blog.junyu33.me/2025/07/28/router.html">here</a>.</li>
+<li>After raising an <a target="_blank" rel="noopener" href="https://github.com/httptoolkit/httptoolkit-android/issues/13">issue</a> with the httptoolkit author, I learned that Waydroid actually supports ADB. I finally got to see the two coveted green checkmarks:</li>
+</ul>
+<img src='https://img.junyu33.me/blog/xp2/httptoolkit.png'>
+<ul>
+<li>Even with magiskhide installed, it seems there are still issues with Grab:</li>
+</ul>
+<pre><code class="language-shell">:/ # magisk --denylist ls                                                                                                                                                            
+com.google.android.gms|com.google.android.gms.unstable
+com.grabtaxi.passenger|com.grabtaxi.passenger
+:/ # pm list | grep grab
+1|:/ # pm list packages -f | grep grab                                                                                                                                               
+package:/data/app/~~oaJzpweAfnANsOwMdRVm8g==/com.grabtaxi.passenger-8U-wrhDH8uhWC6LSRS11cg==/base.apk=com.grabtaxi.passenger
+:/ # 
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

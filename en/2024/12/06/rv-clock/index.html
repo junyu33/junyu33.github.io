@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2024/12/06/rv-clock/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2024/12/06/rv-clock/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>How to manually measure the CPU frequency of a Risc-V processor</h1>
+	<span id="more"></span>
+<h1>Background</h1>
+<p>Since I previously left my contact information on relevant forums while setting up a jump server environment for a Risc-V development board, someone reached out to me today. They believed that the Ubuntu image was running on the big core (1.6 GHz) of the CanMV-K230, whereas I had previously emphasized it was on the small core (800 MHz), and they wanted me to take a look.</p>
+<p>First, <code>lscpu</code> and <code>cat /proc/cpuinfo</code> are definitely not usable. Also, <code>/sys/bus/cpu/devices/cpu0/cpufreq/</code> does not exist, so the only option was to try writing code manually to measure the CPU frequency.</p>
+<h1>Solution</h1>
+<p>A simple solution is to use the Linux system call <code>clock_gettime</code> to get the current time, then run a certain number of instructions in between to reduce measurement error:</p>
+<pre><code>#define NUM_INSTRUCTIONS (1000000000)
+
+asm volatile (
+    &quot;1:\n&quot;
+    &quot;   nop\n&quot;
+    &quot;   addi %[counter], %[counter], -1\n&quot;
+    &quot;   bnez %[counter], 1b\n&quot; 
+    : 
+    : [counter] &quot;r&quot;(NUM_INSTRUCTIONS)  
+    : &quot;memory&quot;  
+);
+</code></pre>
+<p>The code essentially starts from 1e9, executes a <code>nop</code> instruction (which is actually <code>addi x0, x0, 0</code>), decrements the counter, and finally checks if the counter is zero.</p>
+<p>Let's briefly calculate the number of instructions: both <code>addi</code> and <code>bnez</code> take one clock cycle. However, considering modern CPUs perform branch prediction and out-of-order execution, <code>bnez</code> will often be skipped directly. Therefore, in ideal conditions (such as running repeatedly multiple times), this loop would take approximately two clock cycles.</p>
+<p>Thus, this code, along with the two system calls before and after the loop, will actually take slightly more than 2e9 clock cycles. Of course, this error is negligible for determining whether it's 1.6 GHz or 800 MHz.</p>
+<p>Finally, we can simply divide 2e9 by the elapsed time to get the result in GHz.</p>
+<p>The final code is as follows:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+#define NUM_INSTRUCTIONS (1 * 1000000000)
+
+int main() &#123;
+    struct timespec start, end;
+    clock_gettime(CLOCK_REALTIME, &amp;start);
+
+    asm volatile (
+        &quot;1:\n&quot;
+                                &quot;               nop\n&quot;
+        &quot;   addi %[counter], %[counter], -1\n&quot;
+        &quot;   bnez %[counter], 1b\n&quot;
+        :
+        : [counter] &quot;r&quot;(NUM_INSTRUCTIONS)
+        : &quot;memory&quot;
+    );
+
+    clock_gettime(CLOCK_REALTIME, &amp;end);
+
+    long long start_time_ns = start.tv_sec * 1000000000 + start.tv_nsec;
+    long long end_time_ns = end.tv_sec * 1000000000 + end.tv_nsec;
+    long long elapsed_time_ns = end_time_ns - start_time_ns;
+
+    printf(&quot;Elapsed time: %lld ns\n&quot;, elapsed_time_ns);
+                printf(&quot;Elapsed Freq: %.3f GHz\n&quot;, 2e9 / elapsed_time_ns);
+
+    return 0;
+&#125;
+</code></pre>
+<p>Execution results:</p>
+<pre><code class="language-sh">junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1296113478 ns
+Elapsed Freq: 1.543 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1297572988 ns
+Elapsed Freq: 1.541 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1294495232 ns
+Elapsed Freq: 1.545 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1294133798 ns
+Elapsed Freq: 1.545 GHz
+junyu33@zjy-canmv:~/tmp$ ./test
+Elapsed time: 1294905847 ns
+Elapsed Freq: 1.545 GHz
+</code></pre>
+<h1>Summary</h1>
+<p>That friend eventually used my code to test his development board and got a result of 1.598 GHz. So, he was correct.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

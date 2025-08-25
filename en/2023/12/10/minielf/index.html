@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/12/10/minielf/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/12/10/minielf/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>MiniELF</h1>
+	<p>After several days of effort, I successfully compressed the program to 99 bytes.</p>
+<pre><code>&gt; xxd addition-ver24
+00000000: 7f45 4c46 0100 0000 0000 0000 0000 0005  .ELF............
+00000010: 0200 0300 1b00 0005 1b00 0005 0400 0000  ................
+00000020: 4889 e1b2 05cd 8090 81e3 2000 0100 8a01  H......... .....
+00000030: 2c60 0241 0366 6bc0 0a02 4101 0241 042c  ,`.A.fk...A..A.,
+00000040: 60b2 03b3 64f6 f304 3088 0141 c1e8 08b3  `...d...0..A....
+00000050: 0af6 f366 0530 3066 8901 4966 b804 00b3  ...f.00f..If....
+00000060: 01cd 80                                  ...
+</code></pre>
+<span id="more"></span>
+<h1>MiniELF</h1>
+<h2 id="A-B-Problem">A + B Problem</h2>
+<p>Read two integers from STDIN and output their sum to STDOUT.</p>
+<p>The input consists of two two-digit integers separated by a space.</p>
+<p>Ensure the output does not contain any extra carriage return (CR), line feed (LF), or CRLF characters.</p>
+<h2 id="Context">Context</h2>
+<ul>
+<li>Linux v5.8+ kernel</li>
+<li>glibc v2.33+</li>
+<li>Support dynamic linking</li>
+<li>x86_64 architecture</li>
+</ul>
+<h2 id="Score-Calculation">Score Calculation</h2>
+<p>You are guaranteed a score as long as the metrics you achieve are higher than a certain BASELINE (4096 bytes). Otherwise, your score is strictly determined by the following formula: (where <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.02ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 451 453" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>r</mi></math></mjx-assistive-mml></mjx-container> represents your ranking, <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.061ex" height="1.023ex" role="img" focusable="false" viewBox="0 -442 469 452" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>s</mi></math></mjx-assistive-mml></mjx-container> represents your final score, and <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.025ex" height="1.357ex" role="img" focusable="false" viewBox="0 -442 894.9 599.8" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>s</mi><mi>o</mi></msub></math></mjx-assistive-mml></mjx-container> represents the task's overall score)</p>
+<mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -1.552ex;" xmlns="http://www.w3.org/2000/svg" width="9.139ex" height="4.588ex" role="img" focusable="false" viewBox="0 -1342 4039.4 2028" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(746.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mfrac" transform="translate(1802.6,0)"><g data-mml-node="mn" transform="translate(421,676)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(220,-686)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(533,289) scale(0.707)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><rect width="1101.9" height="60" x="120" y="220"/></g><g data-mml-node="msub" transform="translate(3144.5,0)"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>s</mi><mo>=</mo><mfrac><mn>2</mn><msup><mn>2</mn><mi>r</mi></msup></mfrac><msub><mi>s</mi><mi>o</mi></msub></math></mjx-assistive-mml></mjx-container><p><strong>Solution</strong></p>
+<h3 id="Level-0-Compile-and-Run-in-C">Level 0 (Compile and Run in C)</h3>
+<p>A straightforward approach is to write an A+B problem in C, then compile and run it using gcc. Typically, the resulting executable size ranges from 15 to 17 KB. If you strip the symbol table, it can be reduced to around 14 KB.</p>
+<p>In fact, there is an optimization strategy based on the C code: packing (or &quot;packing&quot; the executable). In some cases, packing not only obfuscates the code but also compresses the program size. For example, using UPX to pack the stripped executable can reduce its size to about 5 KB.</p>
+<img src="https://img.junyu33.me/blog/minielf/1.png">
+<h3 id="Level-1-Write-Assembly-Directly">Level 1 (Write Assembly Directly)</h3>
+<p>Of course, since C language links to the relevant libraries of glibc during compilation (even with dynamic linking, the symbol table, PLT, GOT, etc., occupy a certain amount of space), and the <code>scanf</code> and <code>printf</code> we use can be replaced with <code>syscall read/write</code>, which should be common knowledge for those working with binaries.</p>
+<p>Therefore, it's better to write assembly directly to eliminate the space consumption brought by glibc. I had GPT4 generate the corresponding assembly code, made some minor modifications, and it passed the challenge. The size was between 4–5 KB, but it still fell slightly short of the baseline.</p>
+<h3 id="Level-2-Modifying-the-Start-Address">Level 2 (Modifying the Start Address)</h3>
+<p>Then you'll notice that even when using assembly, the generated program still has a lot of unused space. For example, in the image below, there are a bunch of zero bytes starting from <code>0x150</code>.</p>
+<img src="https://img.junyu33.me/blog/minielf/2.png">
+<p>A straightforward approach is to modify the program's start address. For instance, in the right image, from <code>0x150</code> to <code>0x1000</code> are all zeros. You can change the program's start address to <code>0x400150</code>. For specific modification methods, you can refer to <code>man elf</code>. Of course, you could also just blindly change all occurrences of <code>0x401000</code>—it seems to work fine (one of them is at <code>0x18</code>).</p>
+<p>My final size was 652 bytes, which is enough to meet the baseline.</p>
+<h3 id="Level-3-Trimming-the-ELF-Header-and-Footer">Level 3 (Trimming the ELF Header and Footer)</h3>
+<p>At this point, I came across <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/72930779/what-is-the-smallest-x86-64-hello-world-elf-binary">this answer</a> on Stack Overflow and realized that there was still room to trim the ELF header, and the footer could be completely removed.</p>
+<img src="https://img.junyu33.me/blog/minielf/stk1.png">
+<p>So, I copied the header from the answer, changed the start address from <code>0x78</code> to <code>0x74</code>, and then overwrote the location at <code>0x74</code> with my own machine code. I ran it, and it actually worked!</p>
+<p>As a result, my program size was reduced to 273 bytes.</p>
+<img src="https://img.junyu33.me/blog/minielf/3.png">
+<h3 id="LEVEL-4-Further-Trimming-the-Header">LEVEL 4 (Further Trimming the Header)</h3>
+<p>After that, I did some more detailed trimming work, reducing the size from 273 bytes to 235 bytes. At that point, someone submitted a solution of 205 bytes—there was no way around it, the ELF header still needed further optimization.</p>
+<p>I then found <a target="_blank" rel="noopener" href="https://codegolf.stackexchange.com/questions/5696/shortest-elf-for-hello-world-n">this answer</a>, which compressed a &quot;Hello, World!&quot; program to an astonishing 61 bytes!</p>
+<img src="https://img.junyu33.me/blog/minielf/4.png">
+<p>I studied it carefully for a while before understanding which parameters are indispensable when the ELF file is read. The specific explanations are as follows:</p>
+<ul>
+<li>The magic number <code>0x464c457f</code> at the beginning of the file is used to determine whether it is an ELF file. This cannot be modified.</li>
+<li><code>0x4</code> indicates the bit architecture, <code>0x5</code> is alignment, <code>0x6</code> is version, and <code>0x7</code> is OS/ABI. These cannot be modified.</li>
+<li><code>0x10</code> indicates the file type (executable), and the byte at <code>0x12</code> indicates the architecture (x86). These cannot be modified.</li>
+<li><code>0x18</code> to <code>0x1b</code> indicate the entry point.</li>
+<li><code>0x1c</code> to <code>0x1f</code> indicate the start address of the program segment, <code>0x2a</code> to <code>0x2b</code> indicate the size of the program segment, and <code>0x2c</code> to <code>0x2d</code> indicate the number of program segments.</li>
+</ul>
+<p>In the program segment:</p>
+<ul>
+<li>The first 4 bytes are the offset, <code>0x4</code> to <code>0x7</code> are the virtual address, <code>0x8</code> to <code>0xb</code> are the physical address, <code>0xc</code> to <code>0xf</code> are the file size, <code>0x10</code> to <code>0x13</code> are the memory size, and the remaining 8 bytes are flags and alignment, which can be ignored.</li>
+<li>It must be ensured that the virtual address plus the offset of the code segment in the file corresponds to the entry point address. For example, if virt = <code>0x500000</code> and offset(code) = <code>0x1b</code>, then entrypoint = <code>0x50001b</code>.</li>
+</ul>
+<p>In summary, only the bytes from <code>0x20</code> to <code>0x29</code> and those after <code>0x2e</code> in the header can be controlled. (Of course, the image above also successfully utilized the space from <code>0x1b</code> to <code>0x1f</code> by constructing certain instructions, but that's a later topic.)</p>
+<p>To address the issue that the four bytes from <code>0x2a</code> to <code>0x2d</code> cannot be utilized, I chose to construct relevant instructions (or use jump instructions). Both options make full use of the available space.</p>
+<p>After these operations, my program was compressed to 138 bytes.</p>
+<img src="https://img.junyu33.me/blog/minielf/4-res.png">
+<h3 id="LEVEL5-Algorithm-Modification">LEVEL5 (Algorithm Modification)</h3>
+<p>Of course, the story still isn't over. I trimmed it a bit more, reducing it from 138 bytes to 131 bytes, and then climbed the rankings again.</p>
+<p>But yesterday (December 8) morning, my opponent updated the record to 119 bytes. Actually, I had a 117-byte version in reserve at the time. Since I was nearing the limit of my assembly compression, I didn't rush to submit it.</p>
+<p>This is the assembly code I previously had GPT-4 generate (though it underwent some optimization):</p>
+<pre><code class="language-asm">.section .text
+.globl _start
+
+_start:
+    # Read the input string &quot;xy zw&quot;
+    add $3, %al           # syscall number for read
+    lea (%esp), %ecx     # buffer to store the input string
+    mov $5, %dl           # number of bytes to read (&quot;xy zw&quot;)
+    int $0x80             # syscall
+
+    # Convert first number from ASCII to integer
+    movzbl (%ecx), %eax  # load first digit (x)
+    sub $'0', %al         # convert from ASCII to integer
+    imul $10, %eax        # multiply by 10
+    inc %ecx              # move to next digit
+    movzbl (%ecx), %edx  # load second digit (y)
+    sub $'0', %dl         # convert from ASCII to integer
+    add %edx, %eax        # add second digit to first digit
+    mov %eax, %esi
+
+    # Convert second number from ASCII to integer
+    inc %ecx              # move to next digit
+    inc %ecx              # move to next digit
+    movzbl (%ecx), %eax  # load third digit (z)
+    sub $'0', %al         # convert from ASCII to integer
+    imul $10, %eax          # multiply by 10
+    inc %ecx              # move to next digit
+    movzbl (%ecx), %edx  # load fourth digit (w)
+    sub $'0', %dl         # convert from ASCII to integer
+    add %edx, %eax        # add second digit to first digit
+    
+    # Add the two numbers
+    add %esi, %eax    # add num1 and num2
+
+    # Convert result to ASCII (max 3 digits)
+    mov $10, %bl          # divisor for conversion
+convert_loop:
+    xor %edx, %edx        # clear edx
+    div %ebx              # divide eax by 10, result in eax, remainder in edx
+    add $'0', %dl         # convert remainder to ASCII
+    dec %esp              # move stack pointer for next digit
+    inc %edi
+    mov %dl, (%esp)       # store ASCII character on stack
+    test %eax, %eax       # check if number is fully converted
+    jnz convert_loop      # if not zero, continue loop
+
+    # Prepare for write syscall
+    lea (%esp), %ecx      # pointer to the sum (on the stack)
+    mov %edi, %edx
+    mov $1, %bl
+    mov $4, %al          # syscall number for write
+    int $0x80             # syscall
+</code></pre>
+<p>Then I felt there wasn't much room for optimization at the code level, so I rewrote the algorithm:</p>
+<pre><code class="language-asm"> mov  ecx, esp
+ mov  dl, 8
+ mov  al, 3
+ int  0x80
+ mov  al, byte ptr [ecx]
+ sub  al, 0x60
+ add  al, byte ptr [ecx + 3]
+ imul ax, ax, 0xa
+ add  al, byte ptr [ecx + 1]
+ add  al, byte ptr [ecx + 4]
+ sub  al, 0x60
+ mov  dl, 2
+ cmp  al, 0x64
+ add  dl, 1
+ mov  bl, 0x64
+ div  bl
+ add  al, 0x30
+ mov  byte ptr [ecx], al
+ add  ecx, 1
+ shr  eax, 8
+ mov  bl, 0xa
+ div  bl
+ add  ax, 0x3030
+ mov  word ptr [ecx], ax
+ mov  ecx, esp
+ mov  ax, 4
+ mov  bl, 1
+ int  0x80
+</code></pre>
+<p>The first part of this code is easy to understand: it adds the low bits to the low bits and the high bits to the high bits, then subtracts 0x30 to convert ASCII to raw numbers.</p>
+<p>The <code>div</code> instruction in the middle is a bit clever. Debugging with gdb reveals that <code>div al</code> places the quotient in the lower 8 bits and the remainder in the higher 8 bits. Once you understand that, the code becomes easy to follow.</p>
+<p>An interesting point is that the previous code had a jump instruction for looping, but I accidentally deleted one line while debugging, which caused the output to always be 3 digits (with leading zeros if the number was shorter). Surprisingly, it still passed the tests. So I simply removed the loop logic altogether.</p>
+<p>This brought the program down to 107 bytes.</p>
+<img src="https://img.junyu33.me/blog/minielf/5.png">
+<h3 id="LEVEL6-Instruction-Substitution">LEVEL6 (Instruction Substitution)</h3>
+<p>This is an interesting aspect of x86 assembly. Since x86 assembly uses variable-length instructions, semantically identical instructions can be implemented in different ways, resulting in different machine code lengths.</p>
+<ul>
+<li>For example, when loading an immediate value, since the problem ensures the data range is &lt;256, using the <code>al</code> register instead of <code>eax</code> as the destination can save 3 bytes.</li>
+<li>For example, replacing <code>add eax, 1</code> with <code>inc eax</code> can save 2 bytes.</li>
+<li>For example, if there are unused registers available, replacing stack read/write instructions with register operations can save at least 2 bytes.</li>
+<li>For example, in the previous header, <code>05 04 00 00 00</code> actually disassembles to <code>add eax, 4</code>. Then, using <code>dec eax</code> can achieve the same functionality as <code>mov al, 3</code>, saving an additional byte.</li>
+</ul>
+<p>In this challenge, I performed the following operations. Readers can look up how these assembly instruction substitutions save space in terms of byte count:</p>
+<img src="https://img.junyu33.me/blog/minielf/6.png">
+<p>After applying these &quot;clever tricks,&quot; the program size decreased from 107 bytes to 99 bytes. This is my final result.</p>
+<img src="https://img.junyu33.me/blog/minielf/6-res.png">
+</div>
+
+
+  </div>
+</body>
+</html>
+

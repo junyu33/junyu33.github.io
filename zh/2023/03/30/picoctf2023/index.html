@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 
+  
+    <link rel="alternate" hreflang="en" href="/en/2023/03/30/picoctf2023/">
+  
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,6 +45,16 @@
   <div class="main">
     <div class="post">
     
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2023/03/30/picoctf2023/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
 
 	<h1>PicoCTF 2023 pwn wp</h1>
 	<p>比较简单，且不失趣味性。</p>
@@ -51,8 +65,8 @@
 <h3 id="challenge-two-sum-statue-SOLVED-working-T1d">challenge two-sum| statue: SOLVED | working: T1d</h3>
 <p><code>2^31-1</code>和<code>1</code>，整数溢出</p>
 <h3 id="challenge-VNE-statue-SOLVED-working-T1d">challenge VNE| statue: SOLVED | working: T1d</h3>
-<p>根据提示，添加环境变量，以root身份执行ls命令。第一次执行‘<code>ls ``/root</code>’可以看到‘flag.txt’文件，</p>
-<p>第二次利用<code>&amp;&amp;</code>符号执行‘<code>ls ``/root &amp;&amp; cat ``/root/flag.txt</code>’拿到flag</p>
+<p>根据提示，添加环境变量，以root身份执行ls命令。第一次执行<code>ls ``/root</code>可以看到 flag.txt 文件，</p>
+<p>第二次利用<code>&amp;&amp;</code>符号执行<code>ls ``/root &amp;&amp; cat ``/root/flag.txt</code>拿到flag</p>
 <h3 id="challenge-hijacking-statue-SOLVED-working-T1d">challenge hijacking| statue: SOLVED | working: T1d</h3>
 <p>使用<code>sudo -l</code>指令查看发现可以无密码使用root权限运行<code>.server.py</code>文件，查看该文件发现导入了<code>base64</code>包，直接在该文件夹创建一个新的<code>base64.py</code>文件，写入<code>import os;os.system('ls -a /root')</code>,再用<code>sudo /usr/bin/python3 /home/picoctf/.server.py</code>执行，我们可以看见已经打印出了root路径下的所有文件，包括<code>.flag.txt</code>文件，于是直接修改base64.py文件为<code>import os;os.system('cat /root/.flag.txt')</code>运行<code>.server.py</code>文件就可以拿到flag了</p>
 <h3 id="challenge-tic-tac-statue-SOLVED-working-junyu33">challenge tic-tac | statue: SOLVED | working: junyu33</h3>

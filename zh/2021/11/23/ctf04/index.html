@@ -233,7 +233,7 @@ io.interactive()
 <p>64位程序，elf文件</p>
 <p>可以使用不断io.recvline()来读取每一行的信息，再进行切片就可以截取到输入地址。</p>
 <p>从某些方面来说，输入地址与泄露地址之间存在一定的偏移（可以通过动态调试查看rsi的地址与题目给出的地址差来确定），但本题偏移为0.</p>
-<p>Payload=shellcode.ljust(k,’a’)+p64(buf)</p>
+<p>Payload=shellcode.ljust(k,'a')+p64(buf)</p>
 <p>k=bias+bufferlength+sizeof(ebp)</p>
 <p>因此填充k的数量为0x88</p>
 <pre><code class="language-python">from pwn import *

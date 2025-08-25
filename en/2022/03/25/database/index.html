@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/03/25/database/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/03/25/database/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Database Learning Notes</h1>
+	<p>Learning databases isn't actually that hard—it's just that my head feels a bit cold.</p>
+<span id="more"></span>
+<h1>Conceptual Logic Transformation Rules — Week 5~8</h1>
+<p>Key Focus — <strong>Relationship</strong></p>
+<p>1.*</p>
+<h3 id="S-S">S-S</h3>
+<img src="https://img.junyu33.me/blog/database/1.png">
+<img src="https://img.junyu33.me/blog/database/2.png">
+<p>The primary key serves as a foreign key.</p>
+<p>The primary key of 1 is migrated to n.</p>
+<h4 id="With-Attributes">With Attributes</h4>
+<p><strong>If there are attributes, remove the attributes, swap the cardinalities, and then follow the above rules.</strong></p>
+<blockquote>
+<p>Note when modeling the conceptual model: First draw the 1* in the conceptual model.</p>
+</blockquote>
+<h3 id="S-W">S-W</h3>
+<img src="https://img.junyu33.me/blog/database/3.png">
+<p>A weak entity does not have a primary key and cannot be moved to a strong entity.</p>
+<img src="https://img.junyu33.me/blog/database/4.png">
+<blockquote>
+<p>1:* Binary S——W<br>
+1——&gt;* Primary key——&gt;Primary key + Foreign key</p>
+<p>from our teacher</p>
+</blockquote>
+<h4 id="With-Attributes-2">With Attributes</h4>
+<img src="https://img.junyu33.me/blog/database/5.png">
+<p>The parentheses indicate that &quot;preference&quot; is a weak entity.</p>
+<p><strong>At this point, an error occurs when generating the logical model</strong></p>
+<img src="https://img.junyu33.me/blog/database/6.png">
+<p>Move the attributes of the relationship into the dependent weak entity.</p>
+<p>(Here, Relationship_2 should be &quot;state,&quot; and the &quot;state&quot; item in &quot;preference&quot; should be the &quot;Date&quot; item.)</p>
+<img src='https://img.junyu33.me/blog/database/7.png'>
+<p>Then proceed with the transformation according to the previous rule.</p>
+<h2 id="1-1">1.1</h2>
+<h3 id="S-S-2">S-S</h3>
+<img src='https://img.junyu33.me/blog/database/8.png'>
+<p>If both parties are forced to participate, an alert will be triggered. Depending on the business requirements, one side can be changed to 0-1.</p>
+<img src="https://img.junyu33.me/blog/database/9.jpg">
+<p>The dominated side will have the foreign key of the dominating side.</p>
+<p>To move the foreign key to the right side, the right side should be set to 0-1.</p>
+<blockquote>
+<p>Similarly, for 1-1 and 0-1 relationships, it is equivalent to setting the left side as the dominating side.</p>
+</blockquote>
+<img src='https://img.junyu33.me/blog/database/a.jpg'>
+<p>For cases where both sides are 0-1, the dominated object is the side with fewer entities.</p>
+<h3 id="S-W-2">S-W</h3>
+<img src='https://img.junyu33.me/blog/database/b.png'>
+<img src='https://img.junyu33.me/blog/database/c.jpg'>
+<p>A weak entity uses the strong entity as its primary key and foreign key.</p>
+<p>Mandatory participation on both sides will trigger an alert. There are two ways to resolve this: either change the dominated side to 0-1, or directly merge the weak entity with the strong entity.</p>
+<h3 id="With-Attributes-3">With Attributes</h3>
+<h4 id="1-1-0-1">1-1, 0-1:</h4>
+<img src='https://img.junyu33.me/blog/database/d.png'>
+<img src='https://img.junyu33.me/blog/database/e.jpg'>
+<p>At this point, a new bidirectional relationship warning may appear. Handle it using the method for cases without attributes.</p>
+<p>We merge Manages and Staff. The dominant entity is Branch (diagram omitted), resulting in the physical model:</p>
+<img src='https://img.junyu33.me/blog/database/f.png'>
+<h4 id="1-1-1-1">1-1, 1-1:</h4>
+<p>Bidirectional association constraints. Modify it to 1-1, 0-1, which is equivalent to the handling method for this scenario.</p>
+<h4 id="0-1-0-1">0-1, 0-1:</h4>
+<img src='https://img.junyu33.me/blog/database/10.jpg'>
+<p>Merge the side that is closer to 1-1 (with fewer entities) with the new entity, and treat the original entity as the dominant one.</p>
+<p><em>.</em></p>
+<h3 id="Strong-Entity-Without-Attributes">Strong Entity Without Attributes</h3>
+<img src='https://img.junyu33.me/blog/database/11.png'>
+<img src='https://img.junyu33.me/blog/database/12.jpg'>
+<blockquote>
+<p>A <em>:</em> relationship becomes two 1:* relationships.</p>
+<p>A new entity is generated—a weak entity.</p>
+<p>The primary keys of the original entities on both sides → become part of the new entity: primary key + foreign key (the primary key from the &quot;1&quot; side moves to the &quot;n&quot; side and becomes a foreign key).</p>
+</blockquote>
+<h3 id="Strong-Entity-with-Attributes">Strong Entity with Attributes</h3>
+<img src='https://img.junyu33.me/blog/database/13.png'>
+<img src='https://img.junyu33.me/blog/database/14.png'>
+<p>Compared to having no attributes, it includes attributes of the association itself, but otherwise there is no significant difference.</p>
+<h3 id="Unable-to-Set-Up-S-W">Unable to Set Up S-W.</h3>
+<p>Solutions to resolve the warning:</p>
+<ol>
+<li>If there are no attributes, change one of the * to 1.</li>
+<li>If there are attributes, merge one relationship with the weak entity to form a 1.* relationship.</li>
+</ol>
+<h2 id="Recursion">Recursion</h2>
+<h3 id="1">1.*</h3>
+<img src='https://img.junyu33.me/blog/database/15.png'>
+<img src='https://img.junyu33.me/blog/database/16.png'>
+<p>The logical model includes the foreign key of the entity itself, which can also be interpreted as moving from one to many.</p>
+<p>0-1, 1-* is acceptable. 0-1, 0-* is acceptable.</p>
+<p><em><em>1-1, 1-</em> will result in a reflexive mandatory warning.</em>*</p>
+<img src='https://img.junyu33.me/blog/database/19.png'>
+<h3 id="1-1-2">1.1</h3>
+<p>Pay attention to setting the dominant role; the remaining rules are the same as in 1.*.</p>
+<p><strong>Only 0-1, 0-1 will not trigger a warning.</strong></p>
+<h3 id="">*.*</h3>
+<img src='https://img.junyu33.me/blog/database/17.png'>
+<img src='https://img.junyu33.me/blog/database/18.png'>
+<p>Similar to the binary *.* case, pay attention to renaming.</p>
+<p>Various types of *.* will not generate warnings.</p>
+<h2 id="Multiple-Relationships">Multiple Relationships</h2>
+<img src='https://img.junyu33.me/blog/database/1a.png'>
+<img src='https://img.junyu33.me/blog/database/1b.png'>
+<p>Note that the cardinality must be n; participation does not have much effect on it.</p>
+<p>If the cardinality is 1, there will be a warning:</p>
+<img src='https://img.junyu33.me/blog/database/1c.png'>
+<h3 id="Four-Cases-of-Subclass-Merging">Four Cases of Subclass Merging</h3>
+<img src='https://img.junyu33.me/blog/database/21.png'>
+<p>Let A be the parent class, and B and C be the subclasses.</p>
+<h3 id="Enforce-Disjointness">Enforce Disjointness</h3>
+<p>There is no need to create A; simply inherit the attributes of A to B and C.</p>
+<h3 id="Optional-Disjointness">Optional Disjointness</h3>
+<p>B and C cannot establish a connection with A (preserving the superclass-subclass relationship). Establish a connection between A and D; establish connections between B, C, and D, or connect each to other entities separately.</p>
+<h3 id="Force-Non-Disjoint">Force Non-Disjoint</h3>
+<p>Merge B and C first, then merge the result with A.</p>
+<h3 id="Optional-Non-Disjoint">Optional Non-Disjoint</h3>
+<p>Merge B and C, ensuring that B+C cannot establish a connection with A (while preserving the superclass-subclass relationship). Establish a connection between A and D, and connect B+C with D or other entities.</p>
+<h2 id="Subclasses">Subclasses</h2>
+<img src='https://img.junyu33.me/blog/database/1d.png'>
+<img src='https://img.junyu33.me/blog/database/1e.png'>
+<p>Subclasses inherit the attributes of the parent class. There is no difference among the four types of mandatory/overlapping relationships.</p>
+<h2 id="Multivalued-Attributes">Multivalued Attributes</h2>
+<img src='https://img.junyu33.me/blog/database/1f.png'>
+<img src='https://img.junyu33.me/blog/database/20.png'>
+<blockquote>
+<p>Create a new entity, a strong entity, separate the multivalued attributes, and establish a 1:* relationship with the original entity.</p>
+</blockquote>
+<h1>Normalization — Week 9~10</h1>
+<blockquote>
+<p>Taking classes online is so damn &quot;refreshing.&quot;</p>
+</blockquote>
+<p>Using this table as an example:</p>
+<img src='https://img.junyu33.me/blog/database/example.png'>
+<h2 id="First-make-a-set-of-assumptions-to-derive-relationships">First, make a set of assumptions to derive relationships</h2>
+<ul>
+<li>Employee ID corresponds to a unique name: ⑥ -&gt; ⑦</li>
+<li>Property ID corresponds to a unique address: ① -&gt; ④</li>
+<li>An employee can use only one car per day: ②⑥ -&gt; ⑧</li>
+<li>A property can only be shown once per day: ①② -&gt; ③⑤⑥</li>
+<li>On the same date and time, a car can only be used by one employee: ②③⑧ -&gt; ⑥</li>
+<li>On the same date and time, an employee can only view one property: ②③⑥ -&gt; ①⑤</li>
+</ul>
+<h2 id="Then-Start-Combining">Then Start Combining</h2>
+<img src='https://img.junyu33.me/blog/database/combine.png' style="zoom:67%;" >
+<p>We can get ①② -&gt; All</p>
+<img src='https://img.junyu33.me/blog/database/combine2.png'>
+<p>We can get ②③⑧ -&gt; All</p>
+<img src='https://img.junyu33.me/blog/database/combine3.png' style="zoom: 67%;" >
+<p>We can get ②③⑥ -&gt; All</p>
+<p>In summary, we obtain:</p>
+<img src='https://img.junyu33.me/blog/database/combine4.png'>
+<h2 id="Removing-Dependencies">Removing Dependencies</h2>
+<p>The last three lines can derive all information, so these three groups are <strong>candidate keys</strong>. At the same time, ①② is taken as the <strong>primary key</strong>.</p>
+<p>①② → ④ and ① → ④, so ① → ④ is a <strong>partial dependency</strong>.</p>
+<p>②③⑧ → ⑥ and ②③⑧ → ⑦, so ⑥ → ⑦ is a <strong>transitive dependency</strong> (also a partial dependency).</p>
+<p>②⑥ → ⑧ is a <strong>dependency where the determinant is not a key</strong> (also a partial dependency).</p>
+<h2 id="Exporting-the-Final-Table">Exporting the Final Table</h2>
+<img src='https://img.junyu33.me/blog/database/combine5.png'>
+<p>① and ④ form one table, ⑥ and ⑦ form another table, ②, ⑥, and ⑧ form a third table, and the remaining ①, ②, ③, ⑤, and ⑥ form a fourth table.</p>
+<img src='https://img.junyu33.me/blog/database/combine6.jpg'>
+<h1>Database Systems and SQL — Weeks 10–13</h1>
+<h2 id="Create">Create</h2>
+<h3 id="Creating-a-Data-Type">Creating a Data Type</h3>
+<pre><code class="language-sql">create type BranchNumber
+   from varchar(20)
+go
+</code></pre>
+<h3 id="Creating-a-Default-Value">Creating a Default Value</h3>
+<pre><code class="language-sql">create default D_B001
+    as 'B001'
+go
+</code></pre>
+<h3 id="Binding-Default-Values-to-Columns">Binding Default Values to Columns</h3>
+<pre><code class="language-sql">execute sp_bindefault D_B001, BranchNumber
+go
+</code></pre>
+<h3 id="Create-Rule">Create Rule</h3>
+<pre><code class="language-sql">create rule R_SexType as
+      @column in ('F','M')
+go
+</code></pre>
+<h3 id="Binding-a-Rule-to-a-Column">Binding a Rule to a Column</h3>
+<pre><code class="language-sql">execute sp_bindrule R_SexType, SexType
+go
+</code></pre>
+<h3 id="Create-Table">Create Table</h3>
+<pre><code class="language-sql">create table Staff (
+   staffNo              StaffNumber          not null,
+   branchNo             BranchNumber         not null,
+   Sup_staffNo          varchar(5)           null,
+   fNameOfStaff         FirstName            not null,
+   lNameOfStaff         LastName             not null,
+   Position             varchar(10)          not null,
+   sex                  SexType              not null           D_M            R_SexType,
+   DOB                  datetime             null,
+   salary               money                not null,
+   constraint PK_STAFF primary key nonclustered (staffNo)
+)# column name          datatype             null/not null      default val    rule  
+go
+</code></pre>
+<h2 id="Query">Query</h2>
+<h3 id="Result-Deduplication">Result Deduplication</h3>
+<pre><code class="language-sql">select DISTINCT propertyNo
+from Viewing
+</code></pre>
+<p>Deduplicating results affects the cardinality, average, and total count, but has no impact on the minimum and maximum values.</p>
+<h3 id="Range-Query">Range Query</h3>
+<pre><code class="language-sql">SELECT *
+FROM Staff
+WHERE salary BETWEEN 5000 AND 9000
+-- Values equal to 5000 or 9000 will also be included in the query results
+</code></pre>
+<h3 id="Wildcard-Search">Wildcard Search</h3>
+<pre><code class="language-sql">select *
+from PrivateOwner
+where address like '%St%'
+# The % symbol functions similarly to the wildcard '*' in regular expressions, used to find strings containing 'St'
+</code></pre>
+<h3 id="Sorting">Sorting</h3>
+<pre><code class="language-sql">select *
+from PropertyForRent
+order by type, rent desc
+</code></pre>
+<img src='https://img.junyu33.me/blog/database/sql.png'>
+<p>First, sort by <code>type</code> in alphabetical order, then for the same <code>type</code>, sort <code>rent</code> in descending order.</p>
+<h3 id="Grouping">Grouping</h3>
+<pre><code class="language-sql">SELECT branchNo,
+COUNT(staffNo) AS myCount,
+SUM(salary) AS mySum
+FROM Staff
+GROUP BY branchNo
+ORDER BY AVG(salary)
+-- Calculate the number of employees and total income for each branch, sorted by average salary
+</code></pre>
+<img src='https://img.junyu33.me/blog/database/sql1.png'>
+<p>Removing the <code>GROUP BY branchNo</code> column at this point will cause an error. The following modification should be made:</p>
+<pre><code class="language-sql">SELECT 
+COUNT(staffNo) AS myCount,
+SUM(salary) AS mySum
+FROM Staff
+-- Calculate the total number of employees and total income for the entire company
+</code></pre>
+<img src='https://img.junyu33.me/blog/database/sql2.png'>
+<h3 id="Correlated-Subqueries">Correlated Subqueries</h3>
+<pre><code class="language-sql">select *
+from Staff
+where salary&gt;(select AVG(salary) from Staff)
+# Query for employees whose salary is above the average salary. Cannot be written as salary&gt;AVG(salary)
+</code></pre>
+<pre><code class="language-sql">select *
+from Staff S1
+where salary&gt;(select AVG(salary) from Staff S2 
+where S1.branchNo=S2.branchNo)
+# Query for employees in each branch whose salary is above their branch's average salary
+</code></pre>
+<h3 id="Inner-Left-Right-and-Full-Joins">Inner, Left, Right, and Full Joins</h3>
+<pre><code class="language-sql">SELECT *
+FROM Staff, Branch
+WHERE Staff.branchNo = Branch.branchNo
+AND street = '163 Main St'
+# The data from both tables are merged into a single result, joined by matching branch information and a specific street.
+
+SELECT *
+FROM Branch b LEFT JOIN PropertyForRent p
+ON p.city = b.city
+# Retains all data from the left table; unmatched entries on the right are filled with null.
+
+SELECT *
+FROM Branch b RIGHT JOIN PropertyForRent p
+ON p.city = b.city
+# Retains all data from the right table; unmatched entries on the left are filled with null.
+
+SELECT *
+FROM Branch b FULL JOIN PropertyForRent p
+ON p.city = b.city
+# Retains all data from both tables; unmatched entries on either side are filled with null.
+</code></pre>
+<h3 id="Cross-Table-Queries">Cross-Table Queries</h3>
+<pre><code class="language-sql">select *
+from Registers
+where staffNo in
+	(select staffNo
+	 from Staff
+	 where branchNo = 
+		(select branchNo
+		 from Branch
+		 where street = '163 Main St'))
+# Query registration information for all staff members whose branch is located on this street
+
+select distinct clientNo
+from Viewing v1
+where NOT EXISTS
+    (select *
+ 	from PropertyForRent P
+ 	where rooms=3 and NOT EXISTS
+ 		(select * 
+ 		from Viewing v2
+		where v2.clientNo=v1.clientNo and v2.propertyNo=p.propertyNo))
+# Whoa (Find clients who have viewed all 3-bedroom properties — meaning there is no 3-bedroom property they haven't seen)
+
+</code></pre>
+<pre><code class="language-sql">select distinct clientNo
+from Viewing v1
+where EXISTS
+    (select *
+ 	from PropertyForRent P
+ 	where rooms=3 and EXISTS
+ 		(select * 
+ 		from Viewing v2
+		where v2.clientNo=v1.clientNo and v2.propertyNo=p.propertyNo))
+# Find clients who have viewed any 3-bedroom property
+
+select distinct clientNo
+from Viewing v1
+where propertyNo IN
+    (select propertyNo
+ 	from PropertyForRent
+ 	where rooms=3)
+# Equivalent query using the IN clause
+</code></pre>
+<h3 id="Set-Operations">Set Operations</h3>
+<pre><code class="language-sql">(select * from Branch)
+ union
+(select * from PropertyForRent)
+# Union
+
+(select * from Branch)
+ intersect
+(select * from PropertyForRent)
+# Intersection
+
+(select * from Branch)
+ except
+(select * from PropertyForRent)
+# Difference
+
+select distinct clientNo
+from Viewing v1
+where NOT EXISTS
+    ((select propertyNo
+ 	from PropertyForRent P
+ 	where rooms=3)
+ 	except
+ 	(select propertyNo
+ 	from Viewing v2
+	where v2.clientNo=v1.clientNo))
+# Alternative method to find clients who have viewed all 3-bedroom properties
+</code></pre>
+<h3 id="some-any-all">some/any/all</h3>
+<pre><code class="language-sql">select *
+from Staff
+where salary &gt; any
+	(select salary
+	 from Staff
+	 where branchNo = 'B003')
+# Using some/any here produces the same effect, and select salary has the same effect as select MIN(salary)
+
+select *
+from Staff
+where salary &gt; all
+	(select max(salary)
+	 from Staff
+	 where branchNo = 'B003')
+# Here, select salary has the same effect as select MAX(salary)
+</code></pre>
+<h2 id="Views-Week-13">Views - Week 13</h2>
+<h3 id="Create-View">Create View</h3>
+<pre><code class="language-sql">CREATE VIEW StaffPropCnt(branchNo, staffNo, cnt)
+AS 
+SELECT s.branchNo, s.staffNo, COUNT(*)
+FROM Staff s, PropertyForRent p
+WHERE s.staffNo = p.staffNo
+GROUP BY s.branchNo, s.staffNo
+</code></pre>
+<h3 id="Querying-Views">Querying Views</h3>
+<pre><code class="language-sql">-- Views can be treated as tables for further querying
+SELECT staffNo, cnt
+FROM StaffPropCnt
+WHERE branchNo = 'B003'
+ORDER BY staffNo
+
+-- Equivalent to
+SELECT s.staffNo AS staffNo, COUNT(*) AS cnt
+FROM Staff s, PropertyForRent p
+WHERE s.staffNo = p.staffNo AND s.branchNo = 'B003'
+GROUP BY s.branchNo, s.staffNo
+</code></pre>
+<h3 id="View-Modification">View Modification</h3>
+<pre><code class="language-sql">insert into StaffPropCnt
+values('B003','SG5',2)
+# Error: Cannot modify the view as it would affect the underlying table (insufficient information).
+</code></pre>
+<pre><code class="language-sql">CREATE ROLE Manager
+</code></pre>
+<h3 id="Granting-Permissions">Granting Permissions</h3>
+<pre><code class="language-sql">grant select, insert, update, delete, references, alter
+on Staff
+to Manager
+with grant option
+</code></pre>
+<h3 id="Revoke-Permissions">Revoke Permissions</h3>
+<pre><code class="language-sql">revoke references 
+on Staff
+from Manager 
+cascade
+</code></pre>
+<h2 id="Transaction-Concurrency—Week-14">Transaction Concurrency—Week 14</h2>
+<h3 id="Serialization">Serialization</h3>
+<p>Conflicts may arise from <strong>read-write</strong> and <strong>write-write</strong> operations on the same transaction across different threads.</p>
+<p>By treating each thread as a node and adding <strong>directed edges</strong> for <strong>read-write</strong> and <strong>write-write</strong> operations on the same transaction across different threads, if the generated graph is acyclic, it indicates that the parallel schedule is <strong>conflict</strong> serializable.</p>
+<p><s>Scheduling for views belongs to the NP-complete problem and is unsolvable.</s></p>
+<h3 id="Locking">Locking</h3>
+<p>Read Lock / Shared Lock / <code>read_lock</code>: Allows reading by self and others, but prohibits writing by self and others.</p>
+<p>Write Lock / Exclusive Lock / <code>write_lock</code>: Allows reading and writing by self, but prohibits reading and writing by others.</p>
+<p>If someone else holds a shared lock, you can only acquire a shared lock; if someone else holds an exclusive lock, you cannot acquire any lock.</p>
+<p>Two-phase locking can prevent issues such as <strong>lost updates, uncommitted dependencies, and inconsistent analysis</strong>.</p>
+<p>Disadvantages include:</p>
+<ul>
+<li><strong>Cascading rollbacks</strong> — Solutions include releasing locks at the end of a transaction or releasing exclusive locks at the end of a transaction.</li>
+<li><strong>Deadlocks</strong> — Solutions include lock timeout, wait-die &amp; wound-wait, and timestamp ordering.</li>
+</ul>
+<blockquote>
+<p>Thomas Write Rule:</p>
+<p>A writes first, then B reads; if A rolls back, the timestamp moves after B.</p>
+<p>A writes first, then B writes; A's write is discarded.</p>
+</blockquote>
+<p>Ensure all locks are acquired before releasing any lock.</p>
+<h3 id="Optimistic-Concurrency-Control">Optimistic Concurrency Control</h3>
+<p>Performing conflict checks only at the end of a transaction can improve concurrency.</p>
+<h3 id="Data-Granularity">Data Granularity</h3>
+<p>Finer granularity allows for higher concurrency but requires more locking information, and vice versa.</p>
+<h3 id="Intention-Locks">Intention Locks?</h3>
+<p>Not concerned.</p>
+<h1>Security — Week 16</h1>
+<p>This one depends on yourself.</p>
+<h2 id="Risk-Causes">Risk Causes</h2>
+<ul>
+<li>Hardware failure</li>
+<li>Failure of DBMS security mechanisms</li>
+<li>Unauthorized modifications or exceeding authorized scope of database operations</li>
+<li>Inadequate security policies or procedures by database administrators</li>
+<li>Programmers creating &quot;backdoors,&quot; insufficient program change controls, or lack of employee security training</li>
+<li>Unauthorized data access through identity theft, hacker intrusions for extortion, virus infections, etc.</li>
+</ul>
+<h2 id="Database-Protection-Measures">Database Protection Measures</h2>
+<ul>
+<li>Authorization and Access Control</li>
+<li>Views</li>
+<li>Backup and Recovery</li>
+<li>Integrity</li>
+<li>Encryption (Symmetric, Asymmetric)</li>
+<li>RAID Technology</li>
+</ul>
+<h2 id="DBMS-and-Network-Security-Protection-Measures">DBMS and Network Security Protection Measures</h2>
+<ul>
+<li>Proxy Server</li>
+<li>Firewall</li>
+<li>Kerberos</li>
+<li>Message Digest Algorithm and Digital Signature</li>
+<li>Digital Certificate</li>
+<li>Secure Electronic Transaction and Secure Transaction Technology</li>
+<li>Secure Sockets Layer and Secure HTTP</li>
+<li>Java Security</li>
+<li>ActiveX Security</li>
+</ul>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2023/11/11/upsdcake/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2023/11/11/upsdcake/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Thirty - Android 14 Easter Egg Trial</h1>
+	<p>In the previous essay, I mentioned that I bought a Google Pixel 7a in Singapore. A while ago, Android 14 was released, and my phone received the update notification, so I upgraded.</p>
+<p>Of course, the first thing I did after upgrading was to check out the Easter egg, <s>just to confirm whether the upgrade was merely a version number change</s>. (Actually, it's been almost a month since the upgrade, and out of sheer boredom, I remembered that I could play around with the Easter egg.)</p>
+<span id="more"></span>
+<h1>Process</h1>
+<h2 id="Entering-the-Easter-Egg">Entering the Easter Egg</h2>
+<p>As is well known, the first step to accessing an Easter egg is always to find &quot;About Phone&quot; and then frantically tap the Android version number several times.</p>
+<p>This time was no exception—I arrived at this page (though it wasn't full-screen; not sure if that was intentional or just a lazy bug):</p>
+<img src='https://img.junyu33.me/blog/upsdcake/1.jpg' width="33%">
+<p>Let's take a moment to appreciate this logo. At the top is the outline of an upside-down Android robot, which can also be interpreted as a planet. The green object in the center can be seen as a landing spacecraft, and the surrounding white dots naturally represent other stars. From this, we can deduce that the theme of this Easter egg is likely related to space travel.</p>
+<p>Try long-pressing the center logo—you'll notice your phone vibrating, and the stars around the logo begin to move faster (think about it: when a spacecraft takes off, the vibrations inside the cabin are quite noticeable, so this design aligns well with the physics involved).</p>
+<img src='https://img.junyu33.me/blog/upsdcake/2.jpg' width="33%">
+<p>After about six seconds, you'll enter the main interface of this Easter egg game.</p>
+<h2 id="Easter-Egg-Main-Content">Easter Egg Main Content</h2>
+<p>It seems that every time you enter the easter egg, you spawn at this fixed coordinate:</p>
+<img src='https://img.junyu33.me/blog/upsdcake/3.jpg' width="33%">
+<p>Then, when you try to swipe the screen, the game interface changes to this:</p>
+<img src='https://img.junyu33.me/blog/upsdcake/4.jpg' width="33%">
+<p>There are some relatively technical terms here, so I'll provide explanations:</p>
+<ul>
+<li><strong>STAR</strong>: Refers to the star.</li>
+<li><strong>CLASS</strong>: I believe this refers to spectral classification. For example, the Sun's spectral class is G2V, so its classification is G. Common classifications, from highest to lowest surface temperature (and from largest to smallest radius), are O, B, A, F, G, K, M (Oh, Be A Fine Gal, Kiss Me).</li>
+</ul>
+<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Stellar_Classification_Chart.png/585px-Stellar_Classification_Chart.png'>
+<blockquote>
+<p>Excerpted from <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stellar_classification">https://en.wikipedia.org/wiki/Stellar_classification</a></p>
+</blockquote>
+<ul>
+<li><strong>RADIUS</strong>: Refers to the star's radius. An A-type main-sequence star has a radius approximately 1.4 to 1.8 times that of the Sun, and the Sun's radius is about 696,340 km. This means the radius of an A-type main-sequence star typically ranges from about 976,000 km to 1,253,000 km. The value shown in the image is <code>5256</code>, so I'm not sure what unit this is.</li>
+<li><strong>MASS</strong>: Refers to the star's mass. An A-type main-sequence star typically has a mass between about 1.4 and 2.1 solar masses. The Sun's mass is (1.989 \times 10^{30}) kg, so the mass range for an A-type main-sequence star is ([2.78 \times 10^{30}, 4.177 \times 10^{30}]) kg. The value in the image is <code>2.28e+11</code>, so the unit might be (10^{19}) kg (though I'm not sure what significance this unit has).</li>
+<li><strong>BODIES</strong>: Refers to the number of planets captured by the star.</li>
+<li><strong>THR</strong>: After asking ChatGPT, I learned this stands for thrust, which essentially means acceleration according to Newton's second law.</li>
+<li><strong>POS</strong>: Refers to coordinates, with the same unit as RADIUS. It's unclear what the reference point is, but it's likely the star's center of mass.</li>
+<li><strong>VEL</strong>: The spacecraft's velocity. I won't bother with the unit.</li>
+</ul>
+<p>Going back to the image, you'll notice a thin cyan line in the upper right corner. If you move around it, you'll see it curves slightly. This suggests it might be a planetary orbit. To test this hypothesis, I asked ChatGPT to write a Python program that calculates the center of a circle given three points:</p>
+<pre><code class="language-python">import numpy as np
+
+def find_circle_center(x1, y1, x2, y2, x3, y3):
+    &quot;&quot;&quot;
+    Find the center of a circle passing through three points (x1, y1), (x2, y2), and (x3, y3).
+    &quot;&quot;&quot;
+
+    # Calculating the midpoints of lines joining points
+    x12_mid = (x1 + x2) / 2
+    y12_mid = (y1 + y2) / 2
+    x23_mid = (x2 + x3) / 2
+    y23_mid = (y2 + y3) / 2
+
+    # Calculating the slopes of lines joining points
+    m1 = (y2 - y1) / (x2 - x1) if x2 != x1 else float('inf')
+    m2 = (y3 - y2) / (x3 - x2) if x3 != x2 else float('inf')
+
+    # Calculating the slopes of perpendicular bisectors
+    if m1 != 0:
+        m1_perp = -1 / m1
+    else:
+        m1_perp = float('inf')
+
+    if m2 != 0:
+        m2_perp = -1 / m2
+    else:
+        m2_perp = float('inf')
+
+    # Handling the case of vertical lines
+    if m1_perp == float('inf'):
+        x_center = x12_mid
+        y_center = m2_perp * (x_center - x23_mid) + y23_mid
+    elif m2_perp == float('inf'):
+        x_center = x23_mid
+        y_center = m1_perp * (x_center - x12_mid) + y12_mid
+    else:
+        # Solving linear equations to find the intersection point of the perpendicular bisectors
+        A = np.array([[1, -m1_perp], [1, -m2_perp]])
+        B = np.array([y12_mid - m1_perp * x12_mid, y23_mid - m2_perp * x23_mid])
+        center = np.linalg.solve(A, B)
+
+        x_center, y_center = center
+
+    return x_center, y_center
+
+# Example coordinates
+x1, y1 = (1, 1)
+x2, y2 = (4, 5)
+x3, y3 = (7, 4)
+
+# Find the circle center
+circle_center = find_circle_center(x1, y1, x2, y2, x3, y3)
+circle_center
+</code></pre>
+<p>I arbitrarily selected three points on this cyan orbit (it's quite difficult to bring the spacecraft to a complete stop, so the margin of error is about (\pm 200)): ((45223, 77614), (46619, 76765), (48420, 75616)). The calculated center is approximately ((2193, 310)), which indeed lies within the star.</p>
+<p>Therefore, the main task of this game (as far as I can tell) is to find the star and its 9 planets. The methods are straightforward: for the star, just head toward ((0,0)); for the planets, first locate a cyan orbit, then follow it—you'll eventually encounter them.</p>
+<h3 id="Stellar-Section">Stellar Section</h3>
+<p>Let's start with the stellar part. The star looks like this, white in color, which aligns with the characteristics of an A-type star. There is strong gravity outside the star, but inside it, objects move at a constant velocity (I find it hard to believe there's no gravity inside the star). <s>Also, could those white lines surrounding the star be solar prominences?</s></p>
+<img src = 'https://img.junyu33.me/blog/upsdcake/5.jpg' width="33%">
+<p>I initially thought something special might happen near the star's center of mass (at the coordinate origin), but nothing out of the ordinary occurred.</p>
+<img src = 'https://img.junyu33.me/blog/upsdcake/6.jpg' width="33%">
+<p>Outside the star, there are some reddish orbits that fade from light to dark. Their purpose isn't entirely clear.</p>
+<h3 id="Planetary-Section">Planetary Section</h3>
+<p>Unlike stars, planets have solid interiors. The spacecraft cannot enter them but can land on their surfaces (if landing is successful, a corresponding message will appear in the top-left corner). The red orbit around the planet is likely the satellite orbit (though no actual satellites appear).</p>
+<p>According to relevant physical principles, the closer a planet is to the star, the faster its orbital speed. The planet shown in the image is the first from the inside, and it can be seen that I attempted to land multiple times (the length of the green line represents the spacecraft's speed). Ultimately, I succeeded by maintaining a relatively low speed.</p>
+<p>Additionally, I tried adjusting speed and trajectory to become a satellite of some larger planets but was unsuccessful.</p>
+<img src='https://img.junyu33.me/blog/upsdcake/7.jpg' width="33%">
+<p>Below is an explanation of some planetary-related terms displayed in the top-left corner (for specific details <s>there are too many technical terms, and I don't recognize them all</s> please look them up yourself):</p>
+<ul>
+<li>BODY: Planet name, with numbers indicating its position from the inside out.</li>
+<li>TYPE: Planet type.</li>
+<li>ATMO: Atmosphere type.</li>
+<li>FAUNA: Fauna biome.</li>
+<li>FLORA: Flora biome.</li>
+</ul>
+<p>In short, after exploring all nine planets, you will notice that the spacecraft information in the bottom-left corner disappears. I believe this means the Easter egg has been completed.</p>
+<img src='https://img.junyu33.me/blog/upsdcake/8.jpg' width="33%">
+<h1>Miscellaneous</h1>
+<ol>
+<li>This map has boundaries, with a radius of approximately <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="7.793ex" height="1.946ex" role="img" focusable="false" viewBox="0 -666 3444.7 860" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(1000,0)" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1500,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1944.7,0)"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" style="stroke-width: 3;"/><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>199</mn><mo>,</mo><mn>988</mn></math></mjx-assistive-mml></mjx-container>, also marked by a red line that the spacecraft cannot cross.</li>
+<li>The project source code is available on <a target="_blank" rel="noopener" href="https://github.com/hushenghao/AndroidEasterEggs/tree/main/eggs/U">GitHub</a> and is entirely written in Kotlin.</li>
+<li>(Updated on 11/14/2023) It seems the map changes daily. When I checked today, it had become <code>Upsidedowncake Alfredo Grotesque</code>, classified as type G. Flying near the star confirmed it was yellow.</li>
+<li>(Updated on 11/14/2023) The UDC number also seems to be related to the current date. I speculate that &quot;3&quot; represents 2023, &quot;10&quot; represents November (counting from 0? See <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/344380/why-is-january-month-0-in-java-calendar">here</a>), and &quot;14&quot; represents the day. The specific implementation can be seen at line 104 <a target="_blank" rel="noopener" href="https://github.com/hushenghao/AndroidEasterEggs/blob/957080fcf0245c65ed9c4e834997028f97ecfec7/eggs/U/src/main/java/com/android_u/egg/landroid/MainActivity.kt">here</a>.</li>
+</ol>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

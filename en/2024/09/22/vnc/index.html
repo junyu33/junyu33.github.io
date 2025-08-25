@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2024/09/22/vnc/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2024/09/22/vnc/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Building a Fast and Secure VNC Service from Scratch</h1>
+	<p>Since my dorm room computer has a public IP address, and commercial remote desktop software often suffers from high latency due to relay servers, coupled with my personal distrust of their security, I decided to set up my own VNC service.</p>
+<p>This allows me to connect back to my dorm room computer from the lab with low latency while ensuring a certain level of security.</p>
+<p>At the very least, TigerVNC should recognize the &quot;Connection is secure&quot; without any exemption.</p>
+<span id="more"></span>
+<h1>Prerequisites</h1>
+<ul>
+<li>Your own domain name.</li>
+<li>A public IP address (theoretically, both IPv4 and IPv6 should work; this article uses IPv4 as an example).</li>
+</ul>
+<h1>Steps</h1>
+<h2 id="Applying-for-DDNS">Applying for DDNS</h2>
+<p>My domain was purchased from <a target="_blank" rel="noopener" href="https://www.namecheap.com/">Namecheap</a>, but I host my DNS service with <a target="_blank" rel="noopener" href="https://www.netlify.com">Netlify</a>. If you're in the same situation, you can use <a target="_blank" rel="noopener" href="https://github.com/oscartbeaumont/netlify-dynamic-dns">Netlify Dynamic DNS</a> to automate the DDNS process. Of course, if you're a <a target="_blank" rel="noopener" href="https://www.cloudflare.com/">Cloudflare</a> user, there should be more tutorials available online, so I won't go into detail here. Below is my code:</p>
+<pre><code class="language-sh">#!/bin/bash
+
+# Configuration
+ACCESSTOKEN=&quot;&lt;access_token&gt;&quot;                 # Netlify API access token
+ZONE=&quot;example.com&quot;                           # Domain name (Netlify DNS zone)
+RECORD=&quot;subdomain&quot;                           # Subdomain (subdomain.example.com)
+
+# Get the current public IPv4 (without using proxy)
+IP=$(curl --noproxy '*' -s http://ipv4.icanhazip.com)
+
+# Disable IPv6 updates and ensure no proxy for Netlify requests
+NDDNS_IPv6_ENABLED=false no_proxy=&quot;*.netlify.com&quot; nddns_linux -accesstoken &quot;$ACCESSTOKEN&quot; -zone &quot;$ZONE&quot; -record &quot;$RECORD&quot;
+
+# Log the update
+echo &quot;$(date): Updated $RECORD.$ZONE to IP $IP&quot;
+</code></pre>
+<p>Then enable a scheduled task in systemd:</p>
+<pre><code class="language-sh">~/Desktop/tmp                                                                                                                                                                 10m 8s 22:12:16
+&gt; cat /etc/systemd/system/ddns-update.service
+[Unit]
+Description=Run DDNS update script
+
+[Service]
+Type=oneshot
+Environment=&quot;http_proxy=&lt;http_proxy&gt;&quot;                 # If you need proxy
+Environment=&quot;https_proxy=&lt;https_proxy&gt;&quot;               # If you need proxy
+ExecStart=/bin/bash /home/junyu33/Desktop/tmp/ddns.sh
+
+~/Desktop/tmp                                                                                                                                                                        22:12:42
+&gt; cat /etc/systemd/system/ddns-update.timer  
+[Unit]
+Description=Run DDNS update script every 30 minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+</code></pre>
+<p>This way, your domain will have an additional TXT record containing your computer's public IP.</p>
+<p>If your computer has sshd enabled at this point, you should be able to connect to it using <code>ssh user@subdomain.example.com</code>.</p>
+<h2 id="Installing-TigerVNC-Service">Installing TigerVNC Service</h2>
+<p>Refer to this article: <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04</a></p>
+<blockquote>
+<p>Read until Step 2. Although Step 3 does provide actual security, the TigerVNC client will still consider the connection insecure.</p>
+</blockquote>
+<p>Additionally, this article only covers the installation of the TigerVNC server. The command to install the client on Xubuntu is:</p>
+<pre><code class="language-sh">sudo apt install tigervnc-viewer
+</code></pre>
+<h2 id="Complete-the-certbot-DNS-01-challenge-to-obtain-a-certificate">Complete the certbot DNS-01 challenge to obtain a certificate</h2>
+<p>The certbot package on Xubuntu seems to have issues, so I opted for the certbot pip package in a conda virtual environment:</p>
+<pre><code class="language-sh">pip3 install certbot
+certbot certonly --manual --preferred-challenges dns --config-dir ~/Desktop/tmp --work-dir ~/Desktop/tmp --logs-dir ~/Desktop/tmp -d subdomain.example.com
+</code></pre>
+<p>Then, follow the prompts to add the TXT record.</p>
+<p>After completion, you will find the certificate files in <code>~/Desktop/tmp/archive/subdomain.example.com/</code>.</p>
+<pre><code class="language-sh">&gt; /bin/ls -al           
+total 16
+drwxrwxr-x 1 junyu33 junyu33   90 Sep 22 20:45 .
+drwx------ 1 junyu33 junyu33   48 Sep 22 20:45 ..
+-rw-rw-r-- 1 junyu33 junyu33 1273 Sep 22 20:45 cert1.pem
+-rw-rw-r-- 1 junyu33 junyu33 1566 Sep 22 20:45 chain1.pem
+-rw-rw-r-- 1 junyu33 junyu33 2839 Sep 22 20:45 fullchain1.pem
+-rw------- 1 junyu33 junyu33  241 Sep 22 20:45 privkey1.pem
+</code></pre>
+<h2 id="Configuring-TigerVNC-Secure-Connection">Configuring TigerVNC Secure Connection</h2>
+<p>Copy your certbot certificates to <code>~/.vnc/</code>:</p>
+<pre><code class="language-sh"># Server certificate and private key
+cp ~/Desktop/tmp/archive/subdomain.example.com/cert1.pem ~/.vnc/subdomain.example.com-SrvCert.pem
+cp ~/Desktop/tmp/archive/subdomain.example.com/privkey1.pem ~/.vnc/subdomain.example.com-SrvKey.pem
+</code></pre>
+<blockquote>
+<p>The prefix of the pem files here may not necessarily be <code>subdomain.example.com</code>, but when starting TigerVNC later, the correct pem files must be specified.</p>
+</blockquote>
+<p>Then restart the TigerVNC service:</p>
+<pre><code class="language-sh">vncserver -kill :2
+vncserver -SecurityTypes=X509Vnc -X509Cert=/home/junyu33/.vnc/subdomain.example.com-SrvCert.pem \
+          -X509Key=/home/junyu33/.vnc/subdomain.example.com-SrvKey.pem -localhost=no -geometry=1920x1080 :2
+</code></pre>
+<p>Next, copy <code>chain1.pem</code> to the <strong>client machine's</strong> <code>~/.vnc/</code> directory:</p>
+<pre><code class="language-sh"># Client certificate chain
+scp ~/Desktop/tmp/archive/subdomain.example.com/chain1.pem user@client.com:~/.vnc/chain1.pem
+</code></pre>
+<p>And modify the <strong>client machine's</strong> <code>~/.vnc/default.tigervnc</code> to ensure this line has the correct value (add it if it doesn't exist):</p>
+<pre><code class="language-sh">X509CA=/home/junyu33/.vnc/chain1.pem
+</code></pre>
+<p>At this point, when starting TigerVNC, you should directly see the message &quot;Connection is secure&quot; and be prompted to enter the password. Success!</p>
+<h1>FAQ</h1>
+<h2 id="Issue-Zero-Unable-to-Connect">Issue Zero (Unable to Connect):</h2>
+<img src='https://img.junyu33.me/blog/vnc/Screenshot_2024-09-22_23-00-47.png'>
+<ul>
+<li>Check if your DDNS is down.</li>
+<li>Check if your firewall is turned off.</li>
+<li>Check if your TigerVNC service is running.</li>
+</ul>
+<h2 id="Issue-1-unknown-authority-no-Let-s-Encrypt">Issue 1 (unknown authority, no Let's Encrypt):</h2>
+<img src='https://img.junyu33.me/blog/vnc/Screenshot_2024-09-22_22-44-30.png'>
+<p>TigerVNC is using your system's self-signed certificate instead of the Let's Encrypt certificate. You can find the following log entry in the startup logs:</p>
+<pre><code>You will require a certificate to use X509None, X509Vnc, or X509Plain.
+I will generate a self signed certificate for you in /home/junyu33/.vnc/&lt;hostname&gt;-SrvCert.pem.
+</code></pre>
+<p>This may be because you did not include the <code>-X509Key</code> and <code>-X509Cert</code> parameters when executing the command to restart TigerVNC.</p>
+<h2 id="Issue-2-Domain-and-Certificate-Mismatch">Issue 2 (Domain and Certificate Mismatch):</h2>
+<img src='https://img.junyu33.me/blog/vnc/Screenshot_2024-09-22_22-43-45.png'>
+<p>The cause is likely similar to the previous issue: when restarting the TigerVNC command, the <code>-X509Key</code> and <code>-X509Cert</code> parameters were not included. As a result, a self-signed certificate was used, and your computer's hostname naturally does not match the server you are connecting to.</p>
+<p>Another possible reason is that the domain name you applied for with certbot does not match your hostname. <strong>The domain names must be exactly identical, including both parent and subdomains.</strong></p>
+<h2 id="Issue-3-unknown-authority-involving-Let-s-Encrypt">Issue 3 (unknown authority, involving Let's Encrypt):</h2>
+<img src='https://img.junyu33.me/blog/vnc/Screenshot_2024-09-22_21-42-35.png'>
+<p>The <code>chain1.pem</code> file in your <code>.vnc</code> directory was not copied correctly (or does not exist on the <strong>client machine</strong>), or your <code>default.tigervnc</code> file is not configured properly.</p>
+<h2 id="Issue-4-TLS-Initialization-Error">Issue 4 (TLS Initialization Error):</h2>
+<img src='https://img.junyu33.me/blog/vnc/Screenshot_2024-09-22_22-57-33.png'>
+<p>Check whether the paths for copying the certificate and private key are correct, and ensure that you have not copied two certificates or two private keys.</p>
+<h2 id="Question-5-TigerVNC-Startup-Issue">Question 5 (TigerVNC Startup Issue):</h2>
+<pre><code class="language-sh">&gt; vncserver                                
+
+New Xtigervnc server '&lt;hostname&gt;:3 (junyu33)' on port 5903 for display :3.
+Use xtigervncviewer -SecurityTypes VncAuth -passwd /tmp/tigervnc.E2491i/passwd :3 to connect to the VNC server.
+
+
+=================== tail /home/junyu33/.vnc/&lt;hostname&gt;:3.log ===================
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+&gt; Warning:          Could not resolve keysym XF86CameraAccessEnable
+&gt; Warning:          Could not resolve keysym XF86CameraAccessDisable
+&gt; Warning:          Could not resolve keysym XF86CameraAccessToggle
+&gt; Warning:          Could not resolve keysym XF86NextElement
+&gt; Warning:          Could not resolve keysym XF86PreviousElement
+&gt; Warning:          Could not resolve keysym XF86AutopilotEngageToggle
+&gt; Warning:          Could not resolve keysym XF86MarkWaypoint
+&gt; Warning:          Could not resolve keysym XF86Sos
+&gt; Warning:          Could not resolve keysym XF86NavChart
+&gt; Warning:          Could not resolve keysym XF86FishingChart
+&gt; Warning:          Could not resolve keysym XF86SingleRangeRadar
+&gt; Warning:          Could not resolve keysym XF86DualRangeRadar
+&gt; Warning:          Could not resolve keysym XF86RadarOverlay
+&gt; Warning:          Could not resolve keysym XF86TraditionalSonar
+&gt; Warning:          Could not resolve keysym XF86ClearvuSonar
+&gt; Warning:          Could not resolve keysym XF86SidevuSonar
+&gt; Warning:          Could not resolve keysym XF86NavInfo
+Errors from xkbcomp are not fatal to the X server
+X connection to :3 broken (explicit kill or server shutdown).
+ ComparingUpdateTracker: 0 pixels in / 0 pixels out
+ ComparingUpdateTracker: (1:-nan ratio)
+Killing Xtigervnc process ID 8172... success!
+=========================================================================
+
+Session startup via '/etc/X11/Xtigervnc-session' cleanly exited too early (&lt; 3 seconds)!
+
+Maybe try something simple first, e.g.,
+	tigervncserver -xstartup /usr/bin/xterm
+The X session cleanly exited!
+The Xtigervnc server cleanly exited!
+</code></pre>
+<p>This error is quite tricky, and I haven't been able to identify the root cause.</p>
+<p>In my case, <code>/usr/bin/xterm</code> could run normally. While debugging, I tried starting TigerVNC on <code>:0</code> (usually it's <code>:1</code> or <code>:2</code>), which caused errors in the xfce4 interface. I didn't carefully read the error dialog, and as a result, some icons on the taskbar were removed by the system. Since I didn't know how to restore them, I simply rolled back <code>/home</code> using btrfs.</p>
+<p>Surprisingly, after rolling back <code>/home</code>, this issue disappeared.</p>
+<h2 id="Question-6-The-authentication-mechanism-requested-cannot-be-provided-by-the-computer">Question 6 (The authentication mechanism requested cannot be provided by the computer):</h2>
+<p>This error appears in the RVNC Viewer client on a mobile phone. Strangely, if encryption is not used, the mobile client can connect (though it will still report an insecure connection error).</p>
+<p>However, I don't really use VNC on my phone anyway, so I'll just ignore this issue.</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

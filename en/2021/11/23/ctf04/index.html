@@ -56,8 +56,8 @@
       </nav>
     
 
-	<h1>scuctf21 Freshman Contest Writeup</h1>
-	<p>The quality of this freshman contest was pretty good. Every member of our team <strong>“Youhuang Zhong Jian Tian”</strong> played to their strengths, and we had a great time during the competition. Below are a screenshot of the rankings and our team’s writeup:</p>
+	<h1>SCUCTF21 Freshman Contest Writeup</h1>
+	<p>The quality of this freshman contest was pretty good. Every member of our team <strong>“Youhuang Zhong Jian Tian”</strong> played to their strengths, and we had a great time during the competition. Below are a screenshot of the rankings and our team's writeup:</p>
 <img src="https://img.junyu33.me/blog/ctf04/rank.jpg" style="zoom:50%;" >
 <span id="more"></span>
 <h1>WriteUp from junyu33</h1>
@@ -77,18 +77,18 @@
 <p>If we interpret 72 directly as ASCII, the length becomes only 9, which is impossible. Considering Morse code: treating 210 as <code>0</code> and 226 as <code>1</code>, I tried decoding. With 210 = 0, 226 = 1, no meaningful text. With 210 = 1 and 226 = 0, I got the following image:</p>
 <img src="https://img.junyu33.me/blog/ctf04/crypto2.png">
 <p>The tricky part: <strong>Morse code is not prefix-free, which means it cannot be uniquely decoded in linear time. A single ciphertext can map to multiple plaintexts!</strong></p>
-<p>(For example, the flag doesn’t contain “tql”, but I still derived it.)</p>
+<p>(For example, the flag doesn't contain “tql”, but I still derived it.)</p>
 <p>After talking to the challenge author, he gave me most of the intended plaintext, and I brute-forced the rest.</p>
-<p>This challenge design wasn’t particularly good.</p>
+<p>This challenge design wasn't particularly good.</p>
 <pre><code>SCUCTF&#123;B1N?F3NCE!&#125;
 </code></pre>
 <h2 id="Crypto-3-number-theory">Crypto-3:number_theory</h2>
 <p>A <strong>real math problem.</strong></p>
 <p>The task: find <code>p,q,r,s</code> such that:</p>
 <mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="57.054ex" height="2.565ex" role="img" focusable="false" viewBox="0 -883.9 25217.9 1133.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(389,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(562,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(1576.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(2577,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(462,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(3664.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(4665,0)"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(466,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(5756.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(6757,0)"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(553,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(7713.5,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(8102.5,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(8491.5,0)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(605,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(9722.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(10722.5,0)"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(523,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(11871.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(12871.5,0)"><g data-mml-node="mi"><path data-c="1D467" d="M347 338Q337 338 294 349T231 360Q211 360 197 356T174 346T162 335T155 324L153 320Q150 317 138 317Q117 317 117 325Q117 330 120 339Q133 378 163 406T229 440Q241 442 246 442Q271 442 291 425T329 392T367 375Q389 375 411 408T434 441Q435 442 449 442H462Q468 436 468 434Q468 430 463 420T449 399T432 377T418 358L411 349Q368 298 275 214T160 106L148 94L163 93Q185 93 227 82T290 71Q328 71 360 90T402 140Q406 149 409 151T424 153Q443 153 443 143Q443 138 442 134Q425 72 376 31T278 -11Q252 -11 232 6T193 40T155 57Q111 57 76 -3Q70 -11 59 -11H54H41Q35 -5 35 -2Q35 13 93 84Q132 129 225 214T340 322Q352 338 347 338Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(498,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(13995.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(14995.5,0)"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(749,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(16148.1,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(16814.9,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(17870.6,0)"><g data-mml-node="mi"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(536,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(19032.4,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(20032.6,0)"><g data-mml-node="mi"><path data-c="1D45E" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(543.7,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(21202.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(22202.3,0)"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(484,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(23312.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(24312.3,0)"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(502,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mo stretchy="false">(</mo><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>+</mo><msup><mi>c</mi><mn>2</mn></msup><mo>+</mo><msup><mi>d</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>+</mo><msup><mi>z</mi><mn>2</mn></msup><mo>+</mo><msup><mi>w</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mo>=</mo><msup><mi>p</mi><mn>2</mn></msup><mo>+</mo><msup><mi>q</mi><mn>2</mn></msup><mo>+</mo><msup><mi>r</mi><mn>2</mn></msup><mo>+</mo><msup><mi>s</mi><mn>2</mn></msup></math></mjx-assistive-mml></mjx-container><p>always holds.</p>
-<p>My first instinct was to ask someone good at math, so I consulted this year’s <strong>winner of the Yau Mathematical Competition for Girls.</strong></p>
+<p>My first instinct was to ask someone good at math, so I consulted this year's <strong>winner of the Yau Mathematical Competition for Girls.</strong></p>
 <img src="https://img.junyu33.me/blog/ctf04/crypto3_1.png">
-<p>(<em>Of course, real mathematicians wouldn’t waste time on trivial stuff like this qwq.</em>)</p>
+<p>(<em>Of course, real mathematicians wouldn't waste time on trivial stuff like this qwq.</em>)</p>
 <blockquote>
 <p><strong>Slang note:</strong> “qwq” is a Chinese emoticon expressing mock-crying.</p>
 </blockquote>
@@ -178,7 +178,7 @@ print(hex(m[0] + m[1])[2:])
 <p>With such a large block of ciphertext, <strong>frequency analysis</strong> makes solving straightforward.</p>
 <img src="https://img.junyu33.me/blog/ctf04/crypto8.png">
 <h2 id="Misc-1-test-your-nc">Misc-1:test_your_nc~~~</h2>
-<p>The image size is too large, and Kali’s terminal has a feature to shrink the text.</p>
+<p>The image size is too large, and Kali's terminal has a feature to shrink the text.</p>
 <h2 id="Misc-2-OldKinderhoek">Misc-2: OldKinderhoek</h2>
 <p>The file is named <code>Ook.txt</code>. Looking up Ook encoding online, I found that there are only <strong>three types of encodings</strong> (and the text happens to contain only the numbers 0, 1, and 4). By writing a script to try all permutations and formatting the output properly, you can then upload it to the following site to decode:</p>
 <p><a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a></p>
@@ -188,43 +188,43 @@ print(hex(m[0] + m[1])[2:])
 </code></pre>
 <p>(<em>Note: OCR recognition accuracy is quite low—sometimes the same ASCII art is recognized correctly, sometimes not.</em>)</p>
 <h2 id="Misc-4-Time-To-Leave">Misc-4: Time To Leave</h2>
-<p>This is a traffic analysis problem. Add the <strong>TTL field</strong> as a column. In chronological order, look only at the byte values corresponding to TTL—you’ll see the flag appear every few characters.</p>
+<p>This is a traffic analysis problem. Add the <strong>TTL field</strong> as a column. In chronological order, look only at the byte values corresponding to TTL—you'll see the flag appear every few characters.</p>
 <h2 id="Misc-5-Fire-in-the-hole">Misc-5: Fire in the hole</h2>
 <p>Open the compressed file using <strong>010-editor</strong>:</p>
 <img src="https://img.junyu33.me/blog/ctf04/misc5_1.png">
 <p>Based on the hint (<em>a folder is also a type of file</em>), change the folder format into file format:</p>
 <img src="https://img.junyu33.me/blog/ctf04/misc5.png">
-<p>Replace the first line <code>flag/</code> with <code>flag</code>, and you’ll get:</p>
+<p>Replace the first line <code>flag/</code> with <code>flag</code>, and you'll get:</p>
 <pre><code>scuctf&#123;d1r_0r_fffffil3?&#125;
 </code></pre>
 <h2 id="Misc-6-The-Roar-of-Puny-senpai">Misc-6: The Roar of Puny-senpai</h2>
-<p>The hint is very clear: first decode with <strong>Punycode</strong>, and you’ll get a string of indescribable text. Then copy a portion of that text and search it online—you’ll quickly find a website that can decode it.</p>
+<p>The hint is very clear: first decode with <strong>Punycode</strong>, and you'll get a string of indescribable text. Then copy a portion of that text and search it online—you'll quickly find a website that can decode it.</p>
 <p><a target="_blank" rel="noopener" href="https://roar.iiilab.com/">https://roar.iiilab.com/</a></p>
 <h2 id="Stego-1-EZ-Steg">Stego-1: EZ_Steg</h2>
 <p>Open the file with <strong>Stegsolve</strong>, flip left and right a few times, and a QR code will appear.
-Scan it and you’ll get the flag.</p>
+Scan it and you'll get the flag.</p>
 <h2 id="Stego-2-Baby-Steg">Stego-2: Baby_Steg</h2>
 <p>The hint here was quite discouraging and confusing — “secret information bits” clearly felt like awkward machine translation.</p>
 <p>When adjusting in <strong>Stegsolve</strong> to the <em>random color map</em> option, careful observation reveals a series of irregular pixels in the top-left corner, looking like this:</p>
 <img src="https://img.junyu33.me/blog/ctf04/stego2.png">
-<p>Convert those pixels into binary (<code>0/1</code>), then to ASCII, and you’ll obtain the flag.
+<p>Convert those pixels into binary (<code>0/1</code>), then to ASCII, and you'll obtain the flag.
 Although the colored section in the middle is hard to recognize, the flag still makes sense, so you can guess the missing part (I got it correct in a single try).</p>
 <h2 id="Web-vscodeServer">Web: vscodeServer</h2>
 <p>Since this was an <strong>easy challenge</strong> and the interface looked very modern, it was obvious that no injection-type vulnerabilities were involved.</p>
 <p>By simply trying a <strong>weak password</strong>, I got in — with <strong>root privileges</strong>.</p>
-<p>Then just open the terminal, run <code>ls</code>, then <code>cat flag</code>, and it’s done.</p>
+<p>Then just open the terminal, run <code>ls</code>, then <code>cat flag</code>, and it's done.</p>
 <h2 id="Web-6-include">Web-6: include</h2>
-<p>This was the <strong>most basic file inclusion</strong> challenge. Even someone like me, who doesn’t usually touch web problems, managed to solve it.</p>
+<p>This was the <strong>most basic file inclusion</strong> challenge. Even someone like me, who doesn't usually touch web problems, managed to solve it.</p>
 <pre><code>?file=../../../flag
 </code></pre>
 <p>Answer:</p>
 <pre><code>scuctf&#123;1nclude_Y0u_g0t_1t&#125;
 </code></pre>
 <h2 id="Java-Command-Execution">Java: Command Execution</h2>
-<p>The challenge author tried to withdraw the problem, but wasn’t fast enough — I had already downloaded it.</p>
+<p>The challenge author tried to withdraw the problem, but wasn't fast enough — I had already downloaded it.</p>
 <img src="https://img.junyu33.me/blog/ctf04/java.jpg">  
 <h2 id="Osint-3-Lonely-Night">Osint-3: Lonely Night</h2>
-<p>From the picture, you can see a store called <strong>“Su 8 Supermarket”</strong>. Using Baidu Maps, only a few such locations can be found. One of them, located in Beijing, looks very similar to the given street view image — so that’s the answer.</p>
+<p>From the picture, you can see a store called <strong>“Su 8 Supermarket”</strong>. Using Baidu Maps, only a few such locations can be found. One of them, located in Beijing, looks very similar to the given street view image — so that's the answer.</p>
 <h2 id="Pwn-1-test-your-nc">Pwn-1: test_your_nc</h2>
 <p>Same as the <strong>first pwn challenge on buuctf</strong>: simply connect with <code>nc</code>, then run <code>cat flag</code> to get the answer.</p>
 <h2 id="Pwn-2-quiz">Pwn-2: quiz</h2>
@@ -233,7 +233,7 @@ Although the colored section in the middle is hard to recognize, the flag still 
 <p>Learning link: <a target="_blank" rel="noopener" href="https://www.icourse163.org/course/ZZU-1001796025">https://www.icourse163.org/course/ZZU-1001796025</a></p>
 <h2 id="Pwn-3-stackoverflow">Pwn-3: stackoverflow</h2>
 <p>This is the simplest type of pwn challenge. You only need to find the <strong>buffer length</strong> and the <strong>backdoor address</strong>.</p>
-<p>In the <code>Vuln_echo</code> function, the buffer length is <code>0x30</code>. Since it’s 64-bit, plus the length of <code>rbp</code> (8 bytes), the total padding length is <code>0x38</code>.</p>
+<p>In the <code>Vuln_echo</code> function, the buffer length is <code>0x30</code>. Since it's 64-bit, plus the length of <code>rbp</code> (8 bytes), the total padding length is <code>0x38</code>.</p>
 <p>The return address is the address of the <code>system(&quot;/bin/sh&quot;)</code> call in the <code>backdoor</code> function.</p>
 <pre><code class="language-python">from pwn import *
 #io = process('/ret2text')
@@ -271,9 +271,9 @@ p.interactive()
 </code></pre>
 <p>(Both the easiest and hardest reversing problems were taken by teammates, <strong>qwq</strong>).</p>
 <h2 id="Re5-ezapk">Re5: ezapk</h2>
-<p>(Not at all “easy” — simply using JEB wasn’t enough to solve this one.)</p>
+<p>(Not at all “easy” — simply using JEB wasn't enough to solve this one.)</p>
 <p>In <code>MainActivity</code>, there was a private member called the <strong><code>check</code> function</strong>, which was not defined in the code section.</p>
-<p>Based on previous experience with similar problems, I quickly loaded the APK’s <strong>library files into IDA</strong>, where I found the implementation of the <code>check</code> function.</p>
+<p>Based on previous experience with similar problems, I quickly loaded the APK's <strong>library files into IDA</strong>, where I found the implementation of the <code>check</code> function.</p>
 <p>(The code was really unpleasant to read, especially that <code>return</code>.)</p>
 <img src="https://img.junyu33.me/blog/ctf04/re5.png">
 <p>From what I could infer, the source code logic was:</p>
@@ -290,7 +290,7 @@ p.interactive()
 <img src="https://img.junyu33.me/blog/ctf04/happyre.png">
 <h2 id="Re4-Upxed">Re4: Upxed</h2>
 <p>Although the challenge author wanted us to manually unpack the binary, the result after using <strong>UPX</strong> was already readable enough, which made things much easier.</p>
-<p>The hint mentioned <strong>TEA encryption</strong>. Here’s a reference C implementation:</p>
+<p>The hint mentioned <strong>TEA encryption</strong>. Here's a reference C implementation:</p>
 <p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-266933.htm">https://bbs.pediy.com/thread-266933.htm</a></p>
 <p>Looking at the disassembly:</p>
 <img src="https://img.junyu33.me/blog/ctf04/re4.png">
@@ -298,23 +298,23 @@ p.interactive()
 <pre><code>THIS_IS_THE_KEYa
 </code></pre>
 <p>Note: when converting to integers, be sure to use <strong>little-endian order</strong>.</p>
-<p>Also pay attention to the encryption loop count (<strong>32 iterations</strong>) and the <strong>magic number</strong> <code>-0x61C88647</code> (important detail: it’s negative, which is somewhat tricky).</p>
+<p>Also pay attention to the encryption loop count (<strong>32 iterations</strong>) and the <strong>magic number</strong> <code>-0x61C88647</code> (important detail: it's negative, which is somewhat tricky).</p>
 <p>For the rest, just follow the reference implementation and it works.</p>
 <h2 id="Re9-Plants-Vs-Zombies-Unintended-Solution">Re9: Plants_Vs_Zombies (Unintended Solution)</h2>
-<p>(<strong>The intended solution was related to a technique called “Heaven’s Gate,” but I definitely wasn’t able to do that at the time.</strong>)</p>
-<p>When I got the game, I used a few tricks and cleared it within half an hour (don’t ask me how I beat it so quickly). However, the expected decryption routine didn’t appear.</p>
+<p>(<strong>The intended solution was related to a technique called “Heaven's Gate,” but I definitely wasn't able to do that at the time.</strong>)</p>
+<p>When I got the game, I used a few tricks and cleared it within half an hour (don't ask me how I beat it so quickly). However, the expected decryption routine didn't appear.</p>
 <p>Instead, when the game failed, the file <strong><code>flag.txt</code></strong> in the root directory was encrypted into <strong><code>flag.enc</code></strong>. Since I had just finished two cryptography problems and was in a crypto mindset, I decided to analyze the relationship between plaintext and ciphertext.</p>
 <img src="https://img.junyu33.me/blog/ctf04/re9.png">
-<p>From the image, it’s clear that the plaintext and ciphertext are <strong>bitwise encrypted</strong>, and the transformation between them has a very obvious <strong>linear relationship</strong>. Essentially, the ciphertext just adds the array index to each byte. So for decryption, we only need to subtract the index.</p>
+<p>From the image, it's clear that the plaintext and ciphertext are <strong>bitwise encrypted</strong>, and the transformation between them has a very obvious <strong>linear relationship</strong>. Essentially, the ciphertext just adds the array index to each byte. So for decryption, we only need to subtract the index.</p>
 <p>(<em>Note: the 7th byte is special, but since we know it must be <code>&#123;</code>, we can just skip worrying about it for now.</em>)</p>
-<p>Now let’s determine the parameters <code>k</code>, <code>b</code>, and <code>mod</code>:</p>
+<p>Now let's determine the parameters <code>k</code>, <code>b</code>, and <code>mod</code>:</p>
 <ul>
 <li><strong>k</strong>: Easy to compute from the differences. Result is <code>0x20</code>.</li>
 <li><strong>b</strong>: Slight issue here. When I input a character with ASCII 0, the program crashed. After asking the challenge author, I learned it was a technical bug. Using ASCII 1 instead gave the result <code>0x20</code>. Therefore, <code>b = 0</code>.</li>
 <li><strong>mod</strong>: See the figure below:</li>
 </ul>
 <img src="https://img.junyu33.me/blog/ctf04/re9_2.png">
-<p>It’s obvious that <code>mod &lt;= 256</code>. Since we saw the character <code>FB</code>, we know <code>mod &gt; 251</code>. Therefore, the only possible value is <strong>255</strong>.</p>
+<p>It's obvious that <code>mod &lt;= 256</code>. Since we saw the character <code>FB</code>, we know <code>mod &gt; 251</code>. Therefore, the only possible value is <strong>255</strong>.</p>
 <p>At this point, the encryption function was completely clear. There were two possible approaches:</p>
 <ol>
 <li>Write a decryption function.</li>
@@ -360,7 +360,7 @@ Check the image description to locate the flag.</p>
 <h2 id="Osint-4-Blue-Planet">Osint-4: Blue Planet</h2>
 <p>Filtering satellite maps on Baidu leads to this:</p>
 <img src="https://img.junyu33.me/blog/ctf04/osint2_1.png">
-<p>It’s immediately recognizable as <strong>Italy</strong>.</p>
+<p>It's immediately recognizable as <strong>Italy</strong>.</p>
 <img src="https://img.junyu33.me/blog/ctf04/osint2_2.png">
 <p>From here, the answer is obtained.</p>
 <h2 id="Osint-5-Travel-Diary">Osint-5: Travel Diary</h2>
@@ -369,17 +369,17 @@ Check the names of JR stations in Ōtsu and find the one matching the signboard.
 Examine the direction markers on the road signs.
 Using Google Maps, you can then pinpoint the answer.</p>
 <h2 id="RE1-Welcome">RE1: Welcome</h2>
-<p>Load the program into <strong>IDA</strong>, and you’ll see a sequence of numbers.
-Input this sequence into the program, and you’ll get the <strong>FLAG</strong>.</p>
+<p>Load the program into <strong>IDA</strong>, and you'll see a sequence of numbers.
+Input this sequence into the program, and you'll get the <strong>FLAG</strong>.</p>
 <h2 id="RE2-Xor">RE2: Xor</h2>
-<p>Load into <strong>IDA</strong>, and you’ll find it’s just a simple XOR.
-Check the memory, apply the reverse XOR operation, and you’ll obtain the <strong>answer</strong>.</p>
+<p>Load into <strong>IDA</strong>, and you'll find it's just a simple XOR.
+Check the memory, apply the reverse XOR operation, and you'll obtain the <strong>answer</strong>.</p>
 <h2 id="RE3-DebugMe">RE3: DebugMe</h2>
 <p>Use <strong>IDA remote debugging</strong>.
-Identify the correct end of the program, then adjust the registers so that execution reaches the intended location — and you’ll successfully retrieve the <strong>flag</strong>.</p>
+Identify the correct end of the program, then adjust the registers so that execution reaches the intended location — and you'll successfully retrieve the <strong>flag</strong>.</p>
 <h2 id="RE6-EzLinearEquation">RE6: EzLinearEquation</h2>
-<p>Load the program into <strong>IDA</strong>, and you’ll find it reduces to a set of <strong>linear equations with multiple variables</strong>.
-You can simply call Python’s <strong>z3 solver</strong> to resolve the equations and obtain the flag.</p>
+<p>Load the program into <strong>IDA</strong>, and you'll find it reduces to a set of <strong>linear equations with multiple variables</strong>.
+You can simply call Python's <strong>z3 solver</strong> to resolve the equations and obtain the flag.</p>
 <p><s>Reference: <a target="_blank" rel="noopener" href="https://netcut.cn/1fl6ahg7f">Re6.cpp</a> <em>(valid for one week)</em></s></p>
 <h2 id="RE7-VirtualMachine">RE7: VirtualMachine</h2>
 <p>Load the program into <strong>x32dbg</strong>.</p>
@@ -424,7 +424,7 @@ Therefore, brute-forcing the flag character by character is feasible — once ve
 <p>Get a=flag</p>
 <h2 id="Web2-Hardphp">[Web2] Hardphp</h2>
 <p>By carefully checking <strong>robots.txt</strong>, you can then access <code>indexxxxx.php</code>.</p>
-<p>There you’ll find the <strong>source code</strong>:</p>
+<p>There you'll find the <strong>source code</strong>:</p>
 <img src="https://img.junyu33.me/blog/ctf04/web2.png">  
 <p>The trick is to construct a string that starts with <strong><code>0e</code></strong> and whose MD5 hash also starts with <strong><code>0e</code></strong>.
 For example, the string:</p>
@@ -435,7 +435,7 @@ For example, the string:</p>
 <h2 id="Web5-Abstract-Code-Art">[Web5] Abstract Code Art</h2>
 <p>After URL-encoding the source code:</p>
 <img src="https://img.junyu33.me/blog/ctf04/web5.png">  
-<p>You’ll notice two extra invisible characters:</p>
+<p>You'll notice two extra invisible characters:</p>
 <pre><code>%80%AE%E2%81%A6  
 %80%AE%E2%80%A6
 </code></pre>
@@ -445,11 +445,11 @@ For example, the string:</p>
 <img src="https://img.junyu33.me/blog/ctf04/web5_1.png">  
 <hr>
 <h2 id="Web7-curl-curl-curl">[Web7] curl_curl_curl</h2>
-<p>From the challenge description, it’s clear there is a <strong>curl vulnerability</strong>.</p>
+<p>From the challenge description, it's clear there is a <strong>curl vulnerability</strong>.</p>
 <p>Testing confirms it:</p>
 <img src="https://img.junyu33.me/blog/ctf04/web7.png">  
 <p>The <code>ls</code> command gets executed successfully.</p>
-<p>From there, it’s just a matter of searching the directories and using <strong>double-encoding to bypass</strong> restrictions, until you can run:</p>
+<p>From there, it's just a matter of searching the directories and using <strong>double-encoding to bypass</strong> restrictions, until you can run:</p>
 <pre><code>cat flag
 </code></pre>
 <img src="https://img.junyu33.me/blog/ctf04/web7_1.png">  

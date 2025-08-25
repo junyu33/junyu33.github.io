@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/02/07/bin_ctf2/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/02/07/bin_ctf2/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>ctf exercises (others)</h1>
+	<p>Divided into three parts: re, crypto, and misc, used to record ideas and useful gadgets.</p>
+<p>The following second-level headings without a specified site default to the corresponding partition topics on buuoj.</p>
+<span id="more"></span>
+<h1>re/mobile</h1>
+<h2 id="xctf-50-catch-me">xctf-50: catch-me</h2>
+<p>The <code>getenv</code> function is used to retrieve environment variables. In Python, a script to manually set environment variables is as follows:</p>
+<pre><code class="language-python"># if ASIS == CTF == 0x4ff2da0a, then
+export ASIS=&quot;$(printf &quot;\x0a\xda\xf2\x4f&quot;)&quot;
+export CTF=&quot;$(printf &quot;\x0a\xda\xf2\x4f&quot;)&quot;
+</code></pre>
+<p><s>All those floating-point instructions I spent dozens of lines analyzing were in vain</s></p>
+<h2 id="buu-n1book-babyalgo">buu-n1book: babyalgo</h2>
+<p>Common algorithm recognition—just look at the ciphertext and key, then guess what encryption algorithm it is.</p>
+<p>(30 minutes later...)</p>
+<p>Tried every option in CyberChef one by one, but none of them worked...</p>
+<p>Checked the solution and found out it was RC4. Then realized CyberChef's Base64 encryption and RC4 decryption both gave incorrect results. So frustrating.</p>
+<p>Decryption script borrowed from the internet:</p>
+<pre><code class="language-python">import base64
+def rc4_main(key = &quot;init_key&quot;, message = &quot;init_message&quot;):
+    print(&quot;RC4 decryption main function called successfully&quot;)
+    print('\n')
+    s_box = rc4_init_sbox(key)
+    crypt = rc4_excrypt(message, s_box)
+    return crypt
+def rc4_init_sbox(key):
+    s_box = list(range(256))
+    print(&quot;Original s-box: %s&quot; % s_box)
+    print('\n')
+    j = 0
+    for i in range(256):
+        j = (j + s_box[i] + ord(key[i % len(key)])) % 256
+        s_box[i], s_box[j] = s_box[j], s_box[i]
+    print(&quot;Scrambled s-box: %s&quot;% s_box)
+    print('\n')
+    return s_box
+def rc4_excrypt(plain, box):
+    print(&quot;Decryption program called successfully.&quot;)
+    print('\n')
+    plain = base64.b64decode(plain.encode('utf-8'))
+    plain = bytes.decode(plain)
+    res = []
+    i = j = 0
+    for s in plain:
+        i = (i + 1) % 256
+        j = (j + box[i]) % 256
+        box[i], box[j] = box[j], box[i]
+        t = (box[i] + box[j]) % 256
+        k = box[t]
+        res.append(chr(ord(s) ^ k))
+    print(&quot;res is used to decrypt the string; decrypted result: %res&quot; %res)
+    print('\n')
+    cipher = &quot;&quot;.join(res)
+    print(&quot;Decrypted string: %s&quot; %cipher)
+    print('\n')
+    print(&quot;Decrypted output (without any encoding):&quot;)
+    print('\n')
+    return cipher
+a=[0xc6,0x21,0xca,0xbf,0x51,0x43,0x37,0x31,0x75,0xe4,0x8e,0xc0,0x54,0x6f,0x8f,0xee,0xf8,0x5a,0xa2,0xc1,0xeb,0xa5,0x34,0x6d,0x71,0x55,0x8,0x7,0xb2,0xa8,0x2f,0xf4,0x51,0x8e,0xc,0xcc,0x33,0x53,0x31,0x0,0x40,0xd6,0xca,0xec,0xd4]
+s=&quot;&quot;
+for i in a:
+    s+=chr(i)
+s=str(base64.b64encode(s.encode('utf-8')), 'utf-8')
+rc4_main(&quot;Nu1Lctf233&quot;, s)
+
+</code></pre>
+<h2 id="susctf-DigitalCircuits">susctf: DigitalCircuits</h2>
+<p>A Python-packaged exe was provided. We unpacked it using <code>PyInstaller Extractor</code>.</p>
+<p>We obtained a series of pyc, pyd, and dll files. We located the <code>DigitalCircuits</code> file and the <code>struct</code> file, then appended the first 16 bytes of the latter to the header of the former. Using <code>uncompyle6</code> or <code>pycdc</code>, we decompiled it into source code.</p>
+<p><s>Through knowledge of digital circuits</s>, we analyzed the meanings of the first nine functions and obtained the following code:</p>
+<pre><code class="language-python">import time
+
+def AND(a, b):
+    if a == '1':
+        if b == '1':
+            return '1'
+    return '0'
+
+
+def OR(a, b):
+    if a == '0':
+        if b == '0':
+            return '0'
+    return '1'
+
+
+def NOT(a):
+    if a == '1':
+        return '0'
+    if a == '0':
+        return '1'
+
+
+def XOR(a, b):
+    return OR(AND(a, NOT(b)), AND(NOT(a), b))
+
+
+def ADD(x, y, z): #low -&gt; high
+    s = XOR(XOR(x, y), z)
+    c = OR(AND(x, y), AND(z, OR(x, y)))
+    return (s, c)
+
+
+def str_ADD(a, b):
+    ans = ''
+    z = '0'
+    a = a[::-1]
+    b = b[::-1]
+    for i in range(32):
+        ans += ADD(a[i], b[i], z)[0]
+        z = ADD(a[i], b[i], z)[1]
+
+    return ans[::-1]
+
+
+def SHL(a, n):
+    return a[n:] + '0' * n
+
+
+def SHR(a, n):
+    return n * '0' + a[:-n]
+
+
+def str_XOR(a, b):
+    ans = ''
+    for i in range(32):
+        ans += XOR(a[i], b[i])
+
+    return ans
+
+
+def f10(v0, v1, k0, k1, k2, k3):
+    s = '00000000000000000000000000000000'
+    d = '10011110001101110111100110111001'
+    for i in range(32):
+        s = str_ADD(s, d)
+        v0 = str_ADD(v0, str_XOR(str_XOR(str_ADD(SHL(v1, 4), k0), str_ADD(v1, s)), str_ADD(SHR(v1, 5), k1)))
+        v1 = str_ADD(v1, str_XOR(str_XOR(str_ADD(SHL(v0, 4), k2), str_ADD(v0, s)), str_ADD(SHR(v0, 5), k3)))
+
+    return v0 + v1
+
+k0 = '0100010001000101'.zfill(32)
+k1 = '0100000101000100'.zfill(32)
+k2 = '0100001001000101'.zfill(32)
+k3 = '0100010101000110'.zfill(32)
+flag = input('please input flag:')
+if flag[0:7] != 'SUSCTF&#123;' or flag[(-1)] != '&#125;':
+    print('Error!!!The formate of flag is SUSCTF&#123;XXX&#125;')
+    time.sleep(5)
+    exit(0)
+flagstr = flag[7:-1]
+if len(flagstr) != 24:
+    print('Error!!!The length of flag 24')
+    time.sleep(5)
+    exit(0)
+else:
+    res = ''
+    for i in range(0, len(flagstr), 8):
+        v0 = flagstr[i:i + 4]
+        v0 = bin(ord(flagstr[i]))[2:].zfill(8) + bin(ord(flagstr[(i + 1)]))[2:].zfill(8) + bin(ord(flagstr[(i + 2)]))[2:].zfill(8) + bin(ord(flagstr[(i + 3)]))[2:].zfill(8)
+        v1 = bin(ord(flagstr[(i + 4)]))[2:].zfill(8) + bin(ord(flagstr[(i + 5)]))[2:].zfill(8) + bin(ord(flagstr[(i + 6)]))[2:].zfill(8) + bin(ord(flagstr[(i + 7)]))[2:].zfill(8)
+        res += f10(v0, v1, k0, k1, k2, k3)
+
+    if res == '001111101000100101000111110010111100110010010100010001100011100100110001001101011000001110001000001110110000101101101000100100111101101001100010011100110110000100111011001011100110010000100111':
+        print('True')
+    else:
+        print('False')
+time.sleep(5)
+
+</code></pre>
+<p>Converting <code>10011110001101110111100110111001</code> in f10 to hexadecimal yields <code>0x9e3779b9</code>. Searching online reveals that this is a special constant used in TEA/XTEA/XXTEA. Further analysis of the source code confirms it is TEA.</p>
+<p>Attached is the C decryption script:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#define DELTA 0x9e3779b9
+#define MX (((z&gt;&gt;5^y&lt;&lt;2) + (y&gt;&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))
+
+void btea (uint32_t* v,int n, uint32_t* k) &#123;
+	uint32_t v0=v[0], v1=v[1], sum=0xC6EF3720, i;  /* set up */
+	uint32_t delta=0x9e3779b9;                     /* a key schedule constant */
+	uint32_t k0=k[0], k1=k[1], k2=k[2], k3=k[3];   /* cache key */
+	for (i=0; i&lt;32; i++) &#123;                         /* basic cycle start */
+		v1 -= ((v0&lt;&lt;4) + k2) ^ (v0 + sum) ^ ((v0&gt;&gt;5) + k3);
+		v0 -= ((v1&lt;&lt;4) + k0) ^ (v1 + sum) ^ ((v1&gt;&gt;5) + k1);
+		sum -= delta;
+	&#125;                                              /* end cycle */
+	v[0]=v0; v[1]=v1;
+&#125;
+
+
+int main()
+&#123;
+	uint32_t v[2]= &#123;0x3e8947cb,0xcc944639&#125;;
+	uint32_t w[2]= &#123;0x31358388,0x3b0b6893&#125;;
+	uint32_t x[2]= &#123;0xda627361,0x3b2e6427&#125;;
+
+	uint32_t const k[4]= &#123;17477,16708,16965,17734&#125;;
+	int n = 2; //The absolute value of n represents the length of v; positive indicates encryption, negative indicates decryption
+	// v is the data to be encrypted, consisting of two 32-bit unsigned integers
+	// k is the encryption/decryption key, consisting of four 32-bit unsigned integers, i.e., a 128-bit key
+	btea(v, -n, k);
+	printf(&quot;%x %x &quot;,v[0],v[1]);
+	btea(w, -n, k);
+	printf(&quot;%x %x &quot;,w[0],w[1]);
+	btea(x, -n, k);
+	printf(&quot;%x %x&quot;,x[0],x[1]);
+	return 0;
+&#125;
+</code></pre>
+<h2 id="starctf-Simple-File-System">starctf: Simple File System</h2>
+<p>Following the approach used in the Freshman Competition's PVZ challenge, I first attempted to change the flag to an all-zero string and then exported the buried flag.</p>
+<p>I found that the exported encrypted value remained fixed, making it even simpler than PVZ.</p>
+<p>I then changed the flag to all visible characters and exported it again, creating a mapping from plaintext to ciphertext.</p>
+<p>Input:</p>
+<pre><code class="language-Plain%20Text">!&quot;#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz&#123;|&#125;!&quot;#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz&#123;|&#125;
+</code></pre>
+<p>Output:</p>
+<img src='https://img.junyu33.me/blog/bin_ctf2/649a0f60-43d2-4b07-8734-3f24a8a97cc5.png'>
+<p>Since the ciphertext corresponding to *CTF is <code>00 d2 fc d8</code>, I located this hexadecimal string in <code>image.flag</code> and then decrypted it back.</p>
+<pre><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int A[100], bs[100] = &#123;0x14, 0x16, 0x10, 0x12, 0x1c, 0x1e, 0x18, 0x1a, 0x04, 0x06, 0x00, 0x02, 0x0c, 0x0e, 0x08, 0x0a&#125;;
+int B[100];
+map &lt;int,int&gt; mp;
+map &lt;int,int&gt;inv;
+int dat[50] = &#123;0x0, 0xd2, 0xfc, 0xd8, 0xa2, 0xda, 0xba, 0x9e, 0x9c, 0x26, 0xf8, 0xf6, 0xb4, 0xce, 0x3c, 0xcc, 0x96, 0x88, 0x98, 0x34, 0x82, 0xde, 0x80, 0x36, 0x8a, 0xd8, 0xc0, 0xf0, 0x38, 0xae, 0x40&#125;;
+int main() &#123;
+   for(int i = 32; i &lt; 126; i++)
+      A[i - 32] = i;
+   int x;
+   for(x = 1; x &lt; 16; x++)
+      B[x] = bs[x];
+   for(x = 16; x &lt; 32; x++)
+      B[x] = bs[x-16]+0x20;
+   for(x = 32; x &lt; 48; x++)
+      B[x] = bs[x-32]+0xc0;
+   for(x = 48; x &lt; 64; x++)
+      B[x] = bs[x-48]+0xe0;
+   for(x = 64; x &lt; 80; x++)
+      B[x] = bs[x-64]+0x80;
+   for(x = 80; x &lt; 96; x++)
+      B[x] = bs[x-80]+0xa0;      
+   for(int i = 1; i &lt; 96; i++) &#123;
+      mp[A[i]] = B[i];
+      inv[B[i]] = A[i];
+   &#125;
+   //printf(&quot;%x %x %x %x&quot;,mp['*'],mp['C'],mp['T'],mp['F']);
+   for(int i = 0; i &lt; 31; i++)
+      printf(&quot;%c&quot;, inv[dat[i]]);
+   return 0;
+&#125;
+</code></pre>
+<h2 id="Youngter-drive">Youngter-drive</h2>
+<p>A multi-threading problem:</p>
+<img src = 'https://img.junyu33.me/blog/bin_ctf2/mutex.png'>
+<p>Note that this program creates two threads. The first thread processes the input bytes and decrements the position pointer <code>dword_418008</code> by 1, while the second thread only decrements <code>dword_418008</code> by one. The pointer continues until it reaches <code>-1</code>.</p>
+<p>Note that the initial value of <code>dword_418008</code> is 29, so the program only transforms the values at odd positions (though trying once for odd positions and once for even positions would also work). Additionally, it can be inferred that the input length is 30 characters.</p>
+<p>Since only the first 29 bytes (0~28) are compared after encryption, the last character needs to be brute-forced manually.</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+char ipt[100] = &quot;TOiZiZtOrYaToUwPnToBsOaOapsyS&quot;;
+char QWERTY[100] = &quot;QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm&quot;;
+int main()&#123;
+	for(int i = 0; i &lt; 29; i++) &#123;
+		if(i % 2 == 0) &#123;
+			cout &lt;&lt; ipt[i];
+			continue;
+		&#125;
+		for(int j = 'A'; j &lt;= 'z'; j++) &#123; // brute force directly
+			char tmp = 0;
+			if(j &gt;= 'A' &amp;&amp; j &lt;= 'Z')
+				tmp = QWERTY[j - 38];
+			else if(j &gt;= 'a' &amp;&amp; j &lt;= 'z')
+				tmp = QWERTY[j - 96];
+			if(tmp == ipt[i])
+				cout &lt;&lt; char(j);
+		&#125;
+	&#125;
+	return 0;
+&#125;// only pre_29 bytes
+</code></pre>
+<h2 id="Universe-final-answer">Universe_final_answer</h2>
+<p>Z3 template problem, only posting the Z3 part of the code for future reference.</p>
+<pre><code class="language-python">from z3 import *
+v1, v2, v3, v4, v5, v6, v7, v8, v9, v11 = Ints('v1 v2 v3 v4 v5 v6 v7 v8 v9 v11')
+solver = Solver()
+solver.add( -85 * v9 + 58 * v8 + 97 * v6 + v7 + -45 * v5 + 84 * v4 + 95 * v2 - 20 * v1 + 12 * v3 == 12613 )
+solver.add(30 * v11 + -70 * v9 + -122 * v6 + -81 * v7 + -66 * v5 + -115 * v4 + -41 * v3 + -86 * v1 - 15 * v2 - 30 * v8 == -54400)
+solver.add(-103 * v11 + 120 * v8 + 108 * v7 + 48 * v4 + -89 * v3 + 78 * v1 - 41 * v2 + 31 * v5 - (v6 * 64) - 120 * v9 == -10283)
+solver.add(71 * v6 + (v7 * 128) + 99 * v5 + -111 * v3 + 85 * v1 + 79 * v2 - 30 * v4 - 119 * v8 + 48 * v9 - 16 * v11 == 22855)
+solver.add(5 * v11 + 23 * v9 + 122 * v8 + -19 * v6 + 99 * v7 + -117 * v5 + -69 * v3 + 22 * v1 - 98 * v2 + 10 * v4 == -2944)
+solver.add(-54 * v11 + -23 * v8 + -82 * v3 + -85 * v2 + 124 * v1 - 11 * v4 - 8 * v5 - 60 * v7 + 95 * v6 + 100 * v9 == -2222)
+solver.add(-83 * v11 + -111 * v7 + -57 * v2 + 41 * v1 + 73 * v3 - 18 * v4 + 26 * v5 + 16 * v6 + 77 * v8 - 63 * v9 == -13258)
+solver.add(81 * v11 + -48 * v9 + 66 * v8 + -104 * v6 + -121 * v7 + 95 * v5 + 85 * v4 + 60 * v3 + -85 * v2 + 80 * v1 == -1559)
+solver.add(101 * v11 + -85 * v9 + 7 * v6 + 117 * v7 + -83 * v5 + -101 * v4 + 90 * v3 + -28 * v1 + 18 * v2 - v8 == 6308 )
+solver.add(99 * v11 + -28 * v9 + 5 * v8 + 93 * v6 + -18 * v7 + -127 * v5 + 6 * v4 + -9 * v3 + -93 * v1 + 58 * v2 == -1697)
+
+if solver.check() == sat:
+    result = solver.model()
+print(result)
+
+</code></pre>
+<h2 id="equation">equation</h2>
+<p>Decrypting JSFuck script with JS:</p>
+<p>Regular expressions are a great tool, but unfortunately, I don't know how to use them.</p>
+<pre><code class="language-html">&lt;script&gt;
+function deEquation(str) &#123;
+  for (let i = 0; i &lt;= 1; i++) &#123;
+  str = str.replace(/l\[(\D*?)](\+l|-l|==)/g, (m, a, b) =&gt; 'l[' + eval(a) + ']' + b);
+  &#125;
+  str = str.replace(/==(\D*?)&amp;&amp;/g, (m, a) =&gt; '==' + eval(a) + '&amp;&amp;');
+  return str;
+&#125;
+s = 'your jsfuck string'
+ss=deEquation(s);
+document.write(ss);
+&lt;/script&gt;
+</code></pre>
+<p>After decryption, a series of equations are obtained. Use regular expression replacement to replace <code>&amp;&amp;</code> with <code>\n</code> for easier multiline editing.</p>
+<p>Then use Z3 to solve the equations:</p>
+<pre><code class="language-python">from z3 import *
+s = Solver()
+l = [Int(&quot;x_%s&quot; % i) for i in range(42)]
+s.add(l[40]+l[35]+l[34]-l[0]-l[15]-l[37]+l[7]+l[6]-l[26]+l[20]+l[19]+l[8]-l[17]-l[14]-l[38]+l[1]-l[9]+l[22]+l[41]+l[3]-l[29]-l[36]-l[25]+l[5]+l[32]-l[16]+l[12]-l[24]+l[30]+l[39]+l[10]+l[2]+l[27]+l[28]+l[21]+l[33]-l[18]+l[4]==861)
+s.add(l[31]+l[26]+l[11]-l[33]+l[27]-l[3]+l[12]+l[30]+l[1]+l[32]-l[16]+l[7]+l[10]-l[25]+l[38]-l[41]-l[14]-l[19]+l[29]+l[36]-l[9]-l[28]-l[6]-l[0]-l[22]-l[18]+l[20]-l[37]+l[4]-l[24]+l[34]-l[21]-l[39]-l[23]-l[8]-l[40]+l[15]-l[35]==-448)
+s.add(l[26]+l[14]+l[15]+l[9]+l[13]+l[30]-l[11]+l[18]+l[23]+l[7]+l[3]+l[12]+l[25]-l[24]-l[39]-l[35]-l[20]+l[40]-l[8]+l[10]-l[5]-l[33]-l[31]+l[32]+l[19]+l[21]-l[6]+l[1]+l[16]+l[17]+l[29]+l[22]-l[4]-l[36]+l[41]+l[38]+l[2]+l[0]==1244)
+s.add(l[5]+l[22]+l[15]+l[2]-l[28]-l[10]-l[3]-l[13]-l[18]+l[30]-l[9]+l[32]+l[19]+l[34]+l[23]-l[17]+l[16]-l[7]+l[24]-l[39]+l[8]-l[12]-l[40]-l[25]+l[37]-l[35]+l[11]-l[14]+l[20]-l[27]+l[4]-l[33]-l[21]+l[31]-l[6]+l[1]+l[38]-l[29]==-39)
+s.add(l[41]-l[29]+l[23]-l[4]+l[20]-l[33]+l[35]+l[3]-l[19]-l[21]+l[11]+l[26]-l[24]-l[17]+l[37]+l[1]+l[16]-l[0]-l[13]+l[7]+l[10]+l[14]+l[22]+l[39]-l[40]+l[34]-l[38]+l[32]+l[25]-l[2]+l[15]+l[6]+l[28]-l[8]-l[5]-l[31]-l[30]-l[27]==485)
+s.add(l[13]+l[19]+l[21]-l[2]-l[33]-l[0]+l[39]+l[31]-l[23]-l[41]+l[38]-l[29]+l[36]+l[24]-l[20]-l[9]-l[32]+l[37]-l[35]+l[40]+l[7]-l[26]+l[15]-l[10]-l[6]-l[16]-l[4]-l[5]-l[30]-l[14]-l[22]-l[25]-l[34]-l[17]-l[11]-l[27]+l[1]-l[28]==-1068)
+s.add(l[32]+l[0]+l[9]+l[14]+l[11]+l[18]-l[13]+l[24]-l[2]-l[15]+l[19]-l[21]+l[1]+l[39]-l[8]-l[3]+l[33]+l[6]-l[5]-l[35]-l[28]+l[25]-l[41]+l[22]-l[17]+l[10]+l[40]+l[34]+l[27]-l[20]+l[23]+l[31]-l[16]+l[7]+l[12]-l[30]+l[29]-l[4]==939)
+s.add(l[19]+l[11]+l[20]-l[16]+l[40]+l[25]+l[1]-l[31]+l[28]-l[23]+l[14]-l[9]-l[27]+l[35]+l[39]-l[37]-l[8]-l[22]+l[5]-l[6]+l[0]-l[32]+l[24]+l[33]+l[29]+l[38]+l[15]-l[2]+l[30]+l[7]+l[12]-l[3]-l[17]+l[34]+l[41]-l[4]-l[13]-l[26]==413)
+s.add(l[22]+l[4]-l[9]+l[34]+l[35]+l[17]+l[3]-l[24]+l[38]-l[5]-l[41]-l[31]-l[0]-l[25]+l[33]+l[15]-l[1]-l[10]+l[16]-l[29]-l[12]+l[26]-l[39]-l[21]-l[18]-l[6]-l[40]-l[13]+l[8]+l[37]+l[19]+l[14]+l[32]+l[28]-l[11]+l[23]+l[36]+l[7]==117)
+s.add(l[32]+l[16]+l[3]+l[11]+l[34]-l[31]+l[14]+l[25]+l[1]-l[30]-l[33]-l[40]-l[4]-l[29]+l[18]-l[27]+l[13]-l[19]-l[12]+l[23]-l[39]-l[41]-l[8]+l[22]-l[5]-l[38]-l[9]-l[37]+l[17]-l[36]+l[24]-l[21]+l[2]-l[26]+l[20]-l[7]+l[35]-l[0]==-313)
+s.add(l[40]-l[1]+l[5]+l[7]+l[33]+l[29]+l[12]+l[38]-l[31]+l[2]+l[14]-l[35]-l[8]-l[24]-l[39]-l[9]-l[28]+l[23]-l[17]-l[22]-l[26]+l[32]-l[11]+l[4]-l[36]+l[10]+l[20]-l[18]-l[16]+l[6]-l[0]+l[3]-l[30]+l[37]-l[19]+l[21]+l[25]-l[15]==-42)
+s.add(l[21]+l[26]-l[17]-l[25]+l[27]-l[22]-l[39]-l[23]-l[15]-l[20]-l[32]+l[12]+l[3]-l[6]+l[28]+l[31]+l[13]-l[16]-l[37]-l[30]-l[5]+l[41]+l[29]+l[36]+l[1]+l[11]+l[24]+l[18]-l[40]+l[19]-l[35]+l[2]-l[38]+l[14]-l[9]+l[4]+l[0]-l[33]==289)
+s.add(l[29]+l[31]+l[32]-l[17]-l[7]+l[34]+l[2]+l[14]+l[23]-l[4]+l[3]+l[35]-l[33]-l[9]-l[20]-l[37]+l[24]-l[27]+l[36]+l[15]-l[18]-l[0]+l[12]+l[11]-l[38]+l[6]+l[22]+l[39]-l[25]-l[10]-l[19]-l[1]+l[13]-l[41]+l[30]-l[16]+l[28]-l[26]==-117)
+s.add(l[5]+l[37]-l[39]+l[0]-l[27]+l[12]+l[41]-l[22]+l[8]-l[16]-l[38]+l[9]+l[15]-l[35]-l[29]+l[18]+l[6]-l[25]-l[28]+l[36]+l[34]+l[32]-l[14]-l[1]+l[20]+l[40]-l[19]-l[4]-l[7]+l[26]+l[30]-l[10]+l[13]-l[21]+l[2]-l[23]-l[3]-l[33]==-252)
+s.add(l[29]+l[10]-l[41]-l[9]+l[12]-l[28]+l[11]+l[40]-l[27]-l[8]+l[32]-l[25]-l[23]+l[39]-l[1]-l[36]-l[15]+l[33]-l[20]+l[18]+l[22]-l[3]+l[6]-l[34]-l[21]+l[19]+l[26]+l[13]-l[4]+l[7]-l[37]+l[38]-l[2]-l[30]-l[0]-l[35]+l[5]+l[17]==-183)
+s.add(l[6]-l[8]-l[20]+l[34]-l[33]-l[25]-l[4]+l[3]+l[17]-l[13]-l[15]-l[40]+l[1]-l[30]-l[14]-l[28]-l[35]+l[38]-l[22]+l[2]+l[24]-l[29]+l[5]+l[9]+l[37]+l[23]-l[18]+l[19]-l[21]+l[11]+l[36]+l[41]-l[7]-l[32]+l[10]+l[26]-l[0]+l[31]==188)
+s.add(l[3]+l[6]-l[41]+l[10]+l[39]+l[37]+l[1]+l[8]+l[21]+l[24]+l[29]+l[12]+l[27]-l[38]+l[11]+l[23]+l[28]+l[33]-l[31]+l[14]-l[5]+l[32]-l[17]+l[40]-l[34]+l[20]-l[22]-l[16]+l[19]+l[2]-l[36]-l[7]+l[18]+l[15]+l[26]-l[0]-l[4]+l[35]==1036)
+s.add(l[28]-l[33]+l[2]+l[37]-l[12]-l[9]-l[39]+l[16]-l[32]+l[8]-l[36]+l[31]+l[10]-l[4]+l[21]-l[25]+l[18]+l[24]-l[0]+l[29]-l[26]+l[35]-l[22]-l[41]-l[6]+l[15]+l[19]+l[40]+l[7]+l[34]+l[17]-l[3]-l[13]+l[5]+l[23]+l[11]-l[27]+l[1]==328)
+s.add(l[22]-l[32]+l[17]-l[9]+l[20]-l[18]-l[34]+l[23]+l[36]-l[35]-l[38]+l[27]+l[4]-l[5]-l[41]+l[29]+l[33]+l[0]-l[37]+l[28]-l[40]-l[11]-l[12]+l[7]+l[1]+l[2]-l[26]-l[16]-l[8]+l[24]-l[25]+l[3]-l[6]-l[19]-l[39]-l[14]-l[31]+l[10]==-196)
+s.add(l[11]+l[13]+l[14]-l[15]-l[29]-l[2]+l[7]+l[20]+l[30]-l[36]-l[33]-l[19]+l[31]+l[0]-l[39]-l[4]-l[6]+l[38]+l[35]-l[28]+l[34]-l[9]-l[23]-l[26]+l[37]-l[8]-l[27]+l[5]-l[41]+l[3]+l[17]+l[40]-l[10]+l[25]+l[12]-l[24]+l[18]+l[32]==7)
+s.add(l[34]-l[37]-l[40]+l[4]-l[22]-l[31]-l[6]+l[38]+l[13]-l[28]+l[8]+l[30]-l[20]-l[7]-l[32]+l[26]+l[1]-l[18]+l[5]+l[35]-l[24]-l[41]+l[9]-l[0]-l[2]-l[15]-l[10]+l[12]-l[36]+l[33]-l[16]-l[14]-l[25]-l[29]-l[21]+l[27]+l[3]-l[17]==-945)
+s.add(l[12]-l[30]-l[8]+l[20]-l[2]-l[36]-l[25]-l[0]-l[19]-l[28]-l[7]-l[11]-l[33]+l[4]-l[23]+l[10]-l[41]+l[39]-l[32]+l[27]+l[18]+l[15]+l[34]+l[13]-l[40]+l[29]-l[6]+l[37]-l[14]-l[16]+l[38]-l[26]+l[17]+l[31]-l[22]-l[35]+l[5]-l[1]==-480)
+s.add(l[36]-l[11]-l[34]+l[8]+l[0]+l[15]+l[28]-l[39]-l[32]-l[2]-l[27]+l[22]+l[16]-l[30]-l[3]+l[31]-l[26]+l[20]+l[17]-l[29]-l[18]+l[19]-l[10]+l[6]-l[5]-l[38]-l[25]-l[24]+l[4]+l[23]+l[9]+l[14]+l[21]-l[37]+l[13]-l[41]-l[12]+l[35]==-213)
+s.add(l[19]-l[36]-l[12]+l[33]-l[27]-l[37]-l[25]+l[38]+l[16]-l[18]+l[22]-l[39]+l[13]-l[7]-l[31]-l[26]+l[15]-l[10]-l[9]-l[2]-l[30]-l[11]+l[41]-l[4]+l[24]+l[34]+l[5]+l[17]+l[14]+l[6]+l[8]-l[21]-l[23]+l[32]-l[1]-l[29]-l[0]+l[3]==-386)
+s.add(l[0]+l[7]-l[28]-l[38]+l[19]+l[31]-l[5]+l[24]-l[3]+l[33]-l[12]-l[29]+l[32]+l[1]-l[34]-l[9]-l[25]+l[26]-l[8]+l[4]-l[10]+l[40]-l[15]-l[11]-l[27]+l[36]+l[14]+l[41]-l[35]-l[13]-l[17]-l[21]-l[18]+l[39]-l[2]+l[20]-l[23]-l[22]==-349)
+s.add(l[10]+l[22]+l[21]-l[0]+l[15]-l[6]+l[20]-l[29]-l[30]-l[33]+l[19]+l[23]-l[28]+l[41]-l[27]-l[12]-l[37]-l[32]+l[34]-l[36]+l[3]+l[1]-l[13]+l[18]+l[14]+l[9]+l[7]-l[39]+l[8]+l[2]-l[31]-l[5]-l[40]+l[38]-l[26]-l[4]+l[16]-l[25]==98)
+s.add(l[28]+l[38]+l[20]+l[0]-l[5]-l[34]-l[41]+l[22]-l[26]+l[11]+l[29]+l[31]-l[3]-l[16]+l[23]+l[17]-l[18]+l[9]-l[4]-l[12]-l[19]-l[40]-l[27]+l[33]+l[8]-l[37]+l[2]+l[15]-l[24]-l[39]+l[10]+l[35]-l[1]+l[30]-l[36]-l[25]-l[14]-l[32]==-412)
+s.add(l[1]-l[24]-l[29]+l[39]+l[41]+l[0]+l[9]-l[19]+l[6]-l[37]-l[22]+l[32]+l[21]+l[28]+l[36]+l[4]-l[17]+l[20]-l[13]-l[35]-l[5]+l[33]-l[27]-l[30]+l[40]+l[25]-l[18]+l[34]-l[3]-l[10]-l[16]-l[23]-l[38]+l[8]-l[14]-l[11]-l[7]+l[12]==-95)
+s.add(l[2]-l[24]+l[31]+l[0]+l[9]-l[6]+l[7]-l[1]-l[22]+l[8]-l[23]+l[40]+l[20]-l[38]-l[11]-l[14]+l[18]-l[36]+l[15]-l[4]-l[41]-l[12]-l[34]+l[32]-l[35]+l[17]-l[21]-l[10]-l[29]+l[39]-l[16]+l[27]+l[26]-l[3]-l[5]+l[13]+l[25]-l[28]==-379)
+s.add(l[19]-l[17]+l[31]+l[14]+l[6]-l[12]+l[16]-l[8]+l[27]-l[13]+l[41]+l[2]-l[7]+l[32]+l[1]+l[25]-l[9]+l[37]+l[34]-l[18]-l[40]-l[11]-l[10]+l[38]+l[21]+l[3]-l[0]+l[24]+l[15]+l[23]-l[20]+l[26]+l[22]-l[4]-l[28]-l[5]+l[39]+l[35]==861)
+s.add(l[35]+l[36]-l[16]-l[26]-l[31]+l[0]+l[21]-l[13]+l[14]+l[39]+l[7]+l[4]+l[34]+l[38]+l[17]+l[22]+l[32]+l[5]+l[15]+l[8]-l[29]+l[40]+l[24]+l[6]+l[30]-l[2]+l[25]+l[23]+l[1]+l[12]+l[9]-l[10]-l[3]-l[19]+l[20]-l[37]-l[33]-l[18]==1169)
+s.add(l[13]+l[0]-l[25]-l[32]-l[21]-l[34]-l[14]-l[9]-l[8]-l[15]-l[16]+l[38]-l[35]-l[30]-l[40]-l[12]+l[3]-l[19]+l[4]-l[41]+l[2]-l[36]+l[37]+l[17]-l[1]+l[26]-l[39]-l[10]-l[33]+l[5]-l[27]-l[23]-l[24]-l[7]+l[31]-l[28]-l[18]+l[6]==-1236)
+s.add(l[20]+l[27]-l[29]-l[25]-l[3]+l[28]-l[32]-l[11]+l[10]+l[31]+l[16]+l[21]-l[7]+l[4]-l[24]-l[35]+l[26]+l[12]-l[37]+l[6]+l[23]+l[41]-l[39]-l[38]+l[40]-l[36]+l[8]-l[9]-l[5]-l[1]-l[13]-l[14]+l[19]+l[0]-l[34]-l[15]+l[17]+l[22]==-114)
+s.add(l[12]-l[28]-l[13]-l[23]-l[33]+l[18]+l[10]+l[11]+l[2]-l[36]+l[41]-l[16]+l[39]+l[34]+l[32]+l[37]-l[38]+l[20]+l[6]+l[7]+l[31]+l[5]+l[22]-l[4]-l[15]-l[24]+l[17]-l[3]+l[1]-l[35]-l[9]+l[30]+l[25]-l[0]-l[8]-l[14]+l[26]+l[21]==659)
+s.add(l[21]-l[3]+l[7]-l[27]+l[0]-l[32]-l[24]-l[37]+l[4]-l[22]+l[20]-l[5]-l[30]-l[31]-l[1]+l[15]+l[41]+l[12]+l[40]+l[38]-l[17]-l[39]+l[19]-l[13]+l[23]+l[18]-l[2]+l[6]-l[33]-l[9]+l[28]+l[8]-l[16]-l[10]-l[14]+l[34]+l[35]-l[11]==-430)
+s.add(l[11]-l[23]-l[9]-l[19]+l[17]+l[38]-l[36]-l[22]-l[10]+l[27]-l[14]-l[4]+l[5]+l[31]+l[2]+l[0]-l[16]-l[8]-l[28]+l[3]+l[40]+l[25]-l[33]+l[13]-l[32]-l[35]+l[26]-l[20]-l[41]-l[30]-l[12]-l[7]+l[37]-l[39]+l[15]+l[18]-l[29]-l[21]==-513)
+s.add(l[32]+l[19]+l[4]-l[13]-l[17]-l[30]+l[5]-l[33]-l[37]-l[15]-l[18]+l[7]+l[25]-l[14]+l[35]+l[40]+l[16]+l[1]+l[2]+l[26]-l[3]-l[39]-l[22]+l[23]-l[36]-l[27]-l[9]+l[6]-l[41]-l[0]-l[31]-l[20]+l[12]-l[8]+l[29]-l[11]-l[34]+l[21]==-502)
+s.add(l[30]-l[31]-l[36]+l[3]+l[9]-l[40]-l[33]+l[25]+l[39]-l[26]+l[23]-l[0]-l[29]-l[32]-l[4]+l[37]+l[28]+l[21]+l[17]+l[2]+l[24]+l[6]+l[5]+l[8]+l[16]+l[27]+l[19]+l[12]+l[20]+l[41]-l[22]+l[15]-l[11]+l[34]-l[18]-l[38]+l[1]-l[14]==853)
+s.add(l[38]-l[10]+l[16]+l[8]+l[21]-l[25]+l[36]-l[30]+l[31]-l[3]+l[5]-l[15]+l[23]-l[28]+l[7]+l[12]-l[29]+l[22]-l[0]-l[37]-l[14]-l[11]+l[32]+l[33]-l[9]+l[39]+l[41]-l[19]-l[1]+l[18]-l[4]-l[6]+l[13]+l[20]-l[2]-l[35]-l[26]+l[27]==-28)
+s.add(l[11]+l[18]-l[26]+l[15]-l[14]-l[33]+l[7]-l[23]-l[25]+l[0]-l[6]-l[21]-l[16]+l[17]-l[19]-l[28]-l[38]-l[37]+l[9]+l[20]-l[8]-l[3]+l[22]-l[35]-l[10]-l[31]-l[2]+l[41]-l[1]-l[4]+l[24]-l[34]+l[39]+l[40]+l[32]-l[5]+l[36]-l[27]==-529)
+s.add(l[38]+l[8]+l[36]+l[35]-l[23]-l[34]+l[13]-l[4]-l[27]-l[24]+l[26]+l[31]-l[30]-l[5]-l[40]+l[28]-l[11]-l[2]-l[39]+l[15]+l[10]-l[17]+l[3]+l[19]+l[22]+l[33]+l[0]+l[37]+l[16]-l[9]-l[32]+l[25]-l[21]-l[12]+l[6]-l[41]+l[20]-l[18]==-12)
+s.add(l[6]-l[30]-l[20]-l[27]-l[14]-l[39]+l[41]-l[33]-l[0]+l[25]-l[32]-l[3]+l[26]-l[12]+l[8]-l[35]-l[24]+l[15]+l[9]-l[4]+l[13]+l[36]+l[34]+l[1]-l[28]-l[21]+l[18]+l[23]+l[29]-l[10]-l[38]+l[22]+l[37]+l[5]+l[19]+l[7]+l[16]-l[31]==81)
+
+if s.check() == sat:
+   result = s.model()
+for i in range(42):
+   print(chr(int(&quot;%s&quot;%result[l[i]])), end='')
+</code></pre>
+<h2 id="Wangding-Cup-2020-Qinglong-Group-Jocker">[Wangding Cup 2020 Qinglong Group] Jocker</h2>
+<p>A brain-teaser challenge + SMC self-decryption — First experience with IDC.</p>
+<pre><code class="language-c">#include &lt;idc.idc&gt;
+static main() &#123;
+    auto i, x;
+    for ( i = 0; i &lt;= 0xBA; i++ ) &#123;
+        x = Byte(0x401500 + i);
+        PatchByte(0x401500 + i, x ^ 0x41);
+    &#125;
+&#125;
+</code></pre>
+<p>Pressing 'C' can generate code from binary data, and pressing 'P' can construct functions from code blocks.</p>
+<h2 id="n1book-The-Legend-of-Digital-Shell">n1book: The Legend of Digital Shell</h2>
+<p>frida-hook</p>
+<p>Copy the frida-server to <code>/data/local/tmp</code> on a rooted Android virtual machine or emulator and start it. Install <code>frida-dexdump</code> on the host machine.</p>
+<p>Launch the app on the virtual machine and execute the dumping command on the host:</p>
+<pre><code class="language-sh">frida-dexdump -FU
+</code></pre>
+<p>Several <code>classes.dex</code> files will be output. Open the one without a serial number, locate the <code>Secret</code> class, which contains the following:</p>
+<pre><code class="language-java">package com.sec.n1book1;
+
+public class Secret &#123;
+    static int check(String s) &#123;
+        if (AESUtils.encryptString2Base64(s, s.substring(0, 6), &quot;123456&quot;).replaceAll(&quot;\r|\n&quot;, BuildConfig.FLAVOR).equals(&quot;u0uYYmh4yRpPIT/zSP7EL/MOCliVoVLt3gHcrXDymLc=&quot;)) &#123;
+            return 0;
+        &#125;
+        return -1;
+    &#125;
+&#125;
+</code></pre>
+<p>It calls the method <code>encryptString2Base64(String content, String password, String iv)</code>, indicating that this is a CBC encryption with the key being the first 6 characters of the flag and the IV being &quot;123456&quot;.</p>
+<p>However, the padding method was unclear. After referring to some online scripts, it was determined that padding is handled using spaces.</p>
+<pre><code class="language-python">from Crypto.Cipher import AES
+import base64
+password = b'n1book'.ljust(32, b&quot; &quot;) 
+b64 = b'u0uYYmh4yRpPIT/zSP7EL/MOCliVoVLt3gHcrXDymLc=' 
+en_text = base64.b64decode(b64)
+iv = b'123456'.ljust(16,b&quot; &quot;)
+
+aes = AES.new(password,AES.MODE_CBC,iv) 
+den_text = aes.decrypt(en_text) 
+print(den_text)
+</code></pre>
+<h2 id="corctf2022-Microsoft-❤️-Linux">corctf2022 Microsoft ❤️ Linux</h2>
+<p>The first half can be directly loaded into IDA as a 32-bit ELF file. The specified range of bytes should be processed with <code>ror 13</code> (which is essentially equivalent to <code>ror 5</code>).</p>
+<p>For the second half, open the file in IDA using binary mode and select 16-bit. It can be observed that the instructions are in DOS format, and the encryption method is <code>xor 13</code> with a length of 18. However, there seems to be an issue with the encryption range.</p>
+<p>The ciphertext can only be located between 0x210 and 0x233. After XORing the entire range with 13, the last 18 bytes resemble the flag. Concatenate this with the first half to obtain the complete flag.</p>
+<h1>crypto</h1>
+<h2 id="buu-re-rsa">buu-re: rsa</h2>
+<p><s>I really don't know why this challenge is categorized under reverse engineering.</s></p>
+<p>Given the public key <code>pub.key</code> and the ciphertext <code>flag.enc</code>, and since the public key is small enough, it can be brute-forced to factorize (p) and (q).</p>
+<ol>
+<li>
+<p>Use <code>openssl rsa -pubin -text -modulus -in pub.pem</code> to obtain (e) and (n).</p>
+</li>
+<li>
+<p>Factorize (n) using factordb to get (p) and (q).</p>
+</li>
+<li>
+<p>Run <code>python rsatool.py -o private.pem -e &lt;your e&gt; -p &lt;your p&gt; -q &lt;your q&gt;</code> to generate the private key.</p>
+<blockquote>
+<p>Download the Python3-compatible version of rsatool from: <a target="_blank" rel="noopener" href="https://github.com/ius/rsatool">https://github.com/ius/rsatool</a></p>
+</blockquote>
+</li>
+<li>
+<p>Use <code>openssl rsautl -decrypt -in flag.enc -inkey private.pem</code> to decrypt and obtain the plaintext.</p>
+</li>
+</ol>
+<h2 id="N1book-N1DES">N1book_N1DES</h2>
+<p>A slightly modified DES with the number of rounds changed from 16 to 32.</p>
+<p>It still follows the Feistel structure, so the decryption function can be written by mirroring the encryption function.</p>
+<p>Here is the encryption function:</p>
+<pre><code class="language-python">def encrypt(self, plaintext):
+   if (len(plaintext) % 16 != 0 or isinstance(plaintext, bytes) == False):
+      raise Exception(&quot;plaintext must be a multiple of 16 in length&quot;)
+   res = ''
+   for i in range(len(plaintext) / 16):
+      block = plaintext[i * 16:(i + 1) * 16]
+      L = block[:8]
+      R = block[8:]
+      for round_cnt in range(32):
+            L, R = R, str_xor(round_add(R, self.Kn[round_cnt]),L)
+            L, R = str_permutate(L,s_box) , str_permutate(R,s_box)
+      L, R = R, L
+      res += L + R
+   return res
+</code></pre>
+<p>The decryption script is as follows:</p>
+<pre><code class="language-python">inv_s = [178, 218, ... 62, 208]
+
+def decrypt(self,cipher):
+    res = ''
+    for i in range(len(cipher) / 16):
+        block = cipher[i * 16:(i + 1) * 16]
+        L = block[:8]
+        R = block[8:]
+        for round_cnt in range(32):
+            L, R = str_permutate(L,inv_s) , str_permutate(R,inv_s)
+            L, R =  R,str_xor(round_add(R, self.Kn[31 - round_cnt]),L)
+        L, R = R, L
+        res += L + R
+    return res
+</code></pre>
+<h2 id="rsa1">rsa1</h2>
+<blockquote>
+<p>Given p, q, dp, dq, and c, find the original message.</p>
+</blockquote>
+<p>Reference: <a target="_blank" rel="noopener" href="https://blogcsdn.net/qq_32350719/article/details/102719279">https://blogcsdn.net/qq_32350719/article/details/102719279</a></p>
+<pre><code class="language-python">from gmpy2 import *
+from Crypto.Util.number import *
+
+I = invert(q, p)
+mp = pow(c, dp, p)
+mq = pow(c, dq, q)         
+m = (((mp - mq) * I) % p) * q + mq     
+print(long_to_bytes(m))         
+</code></pre>
+<h2 id="corctf2022-tadpole">corctf2022 tadpole</h2>
+<p>Challenge description:</p>
+<pre><code class="language-python">from Crypto.Util.number import bytes_to_long, isPrime
+from secrets import randbelow
+
+p = bytes_to_long(open(&quot;flag.txt&quot;, &quot;rb&quot;).read())
+assert isPrime(p)
+
+a = randbelow(p)
+b = randbelow(p)
+
+def f(s):
+    return (a * s + b) % p
+
+print(&quot;a = &quot;, a)
+print(&quot;b = &quot;, b)
+print(&quot;f(31337) = &quot;, f(31337))
+print(&quot;f(f(31337)) = &quot;, f(f(31337)))
+</code></pre>
+<p>Subtracting the upper from the lower gives:</p>
+<p><mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="28.988ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 12812.6 1000" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(751.2,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1473.4,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1862.4,0)"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(2634.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(3634.9,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(4103.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(4770.7,0)"><path data-c="2261" d="M56 444Q56 457 70 464H707Q722 456 722 444Q722 430 706 424H72Q56 429 56 444ZM56 237T56 250T70 270H707Q722 262 722 250T707 230H70Q56 237 56 250ZM56 56Q56 71 72 76H706Q722 70 722 56Q722 44 707 36H70Q56 43 56 56Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(5826.4,0)"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(6376.4,0)"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(7148.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(8148.9,0)"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(8698.9,0)"/><g data-mml-node="mo" transform="translate(9142.9,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(9531.9,0)"><path data-c="6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" style="stroke-width: 3;"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(833,0)" style="stroke-width: 3;"/><path data-c="64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z" transform="translate(1333,0)" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(11420.9,0)"/><g data-mml-node="mi" transform="translate(11920.6,0)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(12423.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>f</mi><mo>−</mo><mi>s</mi><mo stretchy="false">)</mo><mo>≡</mo><mi>f</mi><mi>f</mi><mo>−</mo><mi>f</mi><mspace width="0.444em"/><mo stretchy="false">(</mo><mi>mod</mi><mspace width="0.333em"/><mi>p</mi><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container></p>
+<p>The difference between the left and right sides is a multiple of p. Factorize the prime factors to solve (essentially, it is a prime number).</p>
+<h2 id="corctf2022-luckyguess">corctf2022 luckyguess</h2>
+<pre><code class="language-python">#!/usr/local/bin/python
+from random import getrandbits
+
+p = 2**521 - 1
+a = getrandbits(521)
+b = getrandbits(521)
+print(&quot;a =&quot;, a)
+print(&quot;b =&quot;, b)
+
+try:
+    x = int(input(&quot;enter your starting point: &quot;))
+    y = int(input(&quot;alright, what's your guess? &quot;))
+except:
+    print(&quot;?&quot;)
+    exit(-1)
+
+r = getrandbits(20)
+for _ in range(r):
+    x = (x * a + b) % p
+
+if x == y:
+    print(&quot;wow, you are truly psychic! here, have a flag:&quot;, open(&quot;flag.txt&quot;).read())
+else:
+    print(&quot;sorry, you are not a true psychic... better luck next time&quot;)
+</code></pre>
+<p>Using a fixed point, construct <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.294ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 572 453" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math></mjx-assistive-mml></mjx-container> such that <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="21.982ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 9716.1 1000" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(849.8,0)"><path data-c="2261" d="M56 444Q56 457 70 464H707Q722 456 722 444Q722 430 706 424H72Q56 429 56 444ZM56 237T56 250T70 270H707Q722 262 722 250T707 230H70Q56 237 56 250ZM56 56Q56 71 72 76H706Q722 70 722 56Q722 44 707 36H70Q56 43 56 56Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1905.6,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(2699.8,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(3422,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(4173.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(5173.4,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(5602.4,0)"/><g data-mml-node="mo" transform="translate(6046.4,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(6435.4,0)"><path data-c="6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" style="stroke-width: 3;"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(833,0)" style="stroke-width: 3;"/><path data-c="64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z" transform="translate(1333,0)" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(8324.4,0)"/><g data-mml-node="mi" transform="translate(8824.1,0)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(9327.1,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mo>≡</mo><mi>x</mi><mo>∗</mo><mi>a</mi><mo>+</mo><mi>b</mi><mspace width="0.444em"/><mo stretchy="false">(</mo><mi>mod</mi><mspace width="0.333em"/><mi>p</mi><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container>.</p>
+<p>Therefore, <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="27.483ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 12147.6 1000" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(725.2,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1725.4,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(2432.2,0)"><path data-c="2261" d="M56 444Q56 457 70 464H707Q722 456 722 444Q722 430 706 424H72Q56 429 56 444ZM56 237T56 250T70 270H707Q722 262 722 250T707 230H70Q56 237 56 250ZM56 56Q56 71 72 76H706Q722 70 722 56Q722 44 707 36H70Q56 43 56 56Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(3488,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(4282.2,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(5004.4,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(5393.4,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(6144.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(7144.9,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(7644.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(8033.9,0)"/><g data-mml-node="mo" transform="translate(8477.9,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(8866.9,0)"><path data-c="6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" style="stroke-width: 3;"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(833,0)" style="stroke-width: 3;"/><path data-c="64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z" transform="translate(1333,0)" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(10755.9,0)"/><g data-mml-node="mi" transform="translate(11255.6,0)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(11758.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi><mo>−</mo><mi>b</mi><mo>≡</mo><mi>x</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>a</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mspace width="0.444em"/><mo stretchy="false">(</mo><mi>mod</mi><mspace width="0.333em"/><mi>p</mi><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container>.</p>
+<p><mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="31.476ex" height="2.452ex" role="img" focusable="false" viewBox="0 -833.9 13912.2 1083.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(849.8,0)"><path data-c="2261" d="M56 444Q56 457 70 464H707Q722 456 722 444Q722 430 706 424H72Q56 429 56 444ZM56 237T56 250T70 270H707Q722 262 722 250T707 230H70Q56 237 56 250ZM56 56Q56 71 72 76H706Q722 70 722 56Q722 44 707 36H70Q56 43 56 56Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1905.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(2294.6,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(3045.8,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(4046,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(4546,0)"><g data-mml-node="mo"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(422,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g></g></g><g data-mml-node="mo" transform="translate(6143.9,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(6866.1,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(7255.1,0)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(7980.3,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(8980.6,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(9409.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(9798.6,0)"/><g data-mml-node="mo" transform="translate(10242.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(10631.6,0)"><path data-c="6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" style="stroke-width: 3;"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(833,0)" style="stroke-width: 3;"/><path data-c="64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z" transform="translate(1333,0)" style="stroke-width: 3;"/></g><g data-mml-node="mspace" transform="translate(12520.6,0)"/><g data-mml-node="mi" transform="translate(13020.2,0)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(13523.2,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mo>≡</mo><mo stretchy="false">(</mo><mi>a</mi><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mrow data-mjx-texclass="ORD"><mo>−</mo><mn>1</mn></mrow></msup><mo>∗</mo><mo stretchy="false">(</mo><mi>p</mi><mo>−</mo><mi>b</mi><mo stretchy="false">)</mo><mspace width="0.444em"/><mo stretchy="false">(</mo><mi>mod</mi><mspace width="0.333em"/><mi>p</mi><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container>, which can be directly computed using <code>gmpy2.invert</code>.</p>
+<h2 id="corctf2022-exchanged">corctf2022 exchanged</h2>
+<pre><code class="language-python">from Crypto.Util.number import *
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+from hashlib import sha256
+from secrets import randbelow
+
+p = 142031099029600410074857132245225995042133907174773113428619183542435280521982827908693709967174895346639746117298434598064909317599742674575275028013832939859778024440938714958561951083471842387497181706195805000375824824688304388119038321175358608957437054475286727321806430701729130544065757189542110211847
+a = randbelow(p)
+b = randbelow(p)
+s = randbelow(p)
+
+print(&quot;p =&quot;, p)
+print(&quot;a =&quot;, a)
+print(&quot;b =&quot;, b)
+print(&quot;s =&quot;, s)
+
+a_priv = randbelow(p)
+b_priv = randbelow(p)
+
+def f(s):
+    return (a * s + b) % p
+
+def mult(s, n):
+    for _ in range(n):
+        s = f(s)
+    return s
+
+A = mult(s, a_priv)
+B = mult(s, b_priv)
+
+print(&quot;A =&quot;, A)
+print(&quot;B =&quot;, B)
+
+shared = mult(A, b_priv)
+assert mult(B, a_priv) == shared
+
+flag = open(&quot;flag.txt&quot;, &quot;rb&quot;).read()
+key = sha256(long_to_bytes(shared)).digest()[:16]
+iv = long_to_bytes(randint(0, 2**128))
+cipher = AES.new(key, AES.MODE_CBC, iv=iv)
+print(iv.hex() + cipher.encrypt(pad(flag, 16)).hex())
+</code></pre>
+<p>(The following equalities are assumed modulo <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="1.138ex" height="1.439ex" role="img" focusable="false" viewBox="0 -442 503 636" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi></math></mjx-assistive-mml></mjx-container>)</p>
+<p>Expanding <code>mult</code> gives:</p>
+<mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -2.819ex;" xmlns="http://www.w3.org/2000/svg" width="17.392ex" height="6.712ex" role="img" focusable="false" viewBox="0 -1720.9 7687.1 2966.8" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1027.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(2083.6,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mi" transform="translate(3100,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(3791.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="munderover" transform="translate(4791.5,0)"><g data-mml-node="mo"><path data-c="2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(148.2,-1087.9) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(345,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1123,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" style="stroke-width: 3;"/></g></g><g data-mml-node="TeXAtom" transform="translate(67.9,1150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(572,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1350,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g></g></g><g data-mml-node="msup" transform="translate(6402.1,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mi" transform="translate(7258.1,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>A</mi><mo>=</mo><msup><mi>a</mi><mi>x</mi></msup><mi>s</mi><mo>+</mo><munderover><mo data-mjx-texclass="OP">∑</mo><mrow data-mjx-texclass="ORD"><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow data-mjx-texclass="ORD"><mi>x</mi><mo>−</mo><mn>1</mn></mrow></munderover><msup><mi>a</mi><mi>i</mi></msup><mi>b</mi></math></mjx-assistive-mml></mjx-container><mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -2.819ex;" xmlns="http://www.w3.org/2000/svg" width="17.281ex" height="6.839ex" role="img" focusable="false" viewBox="0 -1776.9 7638.1 3022.8" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1036.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(2092.6,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mi" transform="translate(3051,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(3742.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="munderover" transform="translate(4742.5,0)"><g data-mml-node="mo"><path data-c="2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(148.2,-1087.9) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(345,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1123,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" style="stroke-width: 3;"/></g></g><g data-mml-node="TeXAtom" transform="translate(96.9,1206) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(490,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1268,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g></g></g><g data-mml-node="msup" transform="translate(6353.1,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mi" transform="translate(7209.1,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>B</mi><mo>=</mo><msup><mi>a</mi><mi>y</mi></msup><mi>s</mi><mo>+</mo><munderover><mo data-mjx-texclass="OP">∑</mo><mrow data-mjx-texclass="ORD"><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow data-mjx-texclass="ORD"><mi>y</mi><mo>−</mo><mn>1</mn></mrow></munderover><msup><mi>a</mi><mi>i</mi></msup><mi>b</mi></math></mjx-assistive-mml></mjx-container><p>After deriving the expressions:</p>
+<mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="24.173ex" height="1.827ex" role="img" focusable="false" viewBox="0 -725.5 10684.4 807.5" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(469,0)"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1045,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1574,0)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(2025,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(2491,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(3288.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(4344.6,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mi" transform="translate(5303,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(6275.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(7275.5,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(8256.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(9256.9,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mi" transform="translate(10215.4,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>s</mi><mi>h</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>d</mi><mo>=</mo><msup><mi>a</mi><mi>y</mi></msup><mi>A</mi><mo>+</mo><mi>B</mi><mo>−</mo><msup><mi>a</mi><mi>y</mi></msup><mi>s</mi></math></mjx-assistive-mml></mjx-container><p>Subtracting B with misalignment yields:</p>
+<mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="32.09ex" height="2.565ex" role="img" focusable="false" viewBox="0 -883.9 14184 1133.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(562,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(490,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1268,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g></g></g><g data-mml-node="mi" transform="translate(1862.2,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(2553.4,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(3553.6,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(4512.1,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(4901.1,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(5552.3,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(6552.5,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(7021.5,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(7632.8,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(8633,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(9339.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(10395.5,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(11154.5,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(11543.5,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(12294.8,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(13295,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(13795,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mi>a</mi><mrow data-mjx-texclass="ORD"><mi>y</mi><mo>+</mo><mn>1</mn></mrow></msup><mi>s</mi><mo>−</mo><msup><mi>a</mi><mi>y</mi></msup><mo stretchy="false">(</mo><mi>b</mi><mo>−</mo><mi>s</mi><mo stretchy="false">)</mo><mo>−</mo><mi>b</mi><mo>=</mo><mi>B</mi><mo stretchy="false">(</mo><mi>a</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container><mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="31.852ex" height="2.565ex" role="img" focusable="false" viewBox="0 -883.9 14078.5 1133.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(562,413) scale(0.707)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(1236.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(2292,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(2681,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(3431,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(4182.3,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(5182.5,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(6154.7,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(7154.9,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(7583.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(7972.9,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(8361.9,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(9013.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(10013.4,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(10542.4,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(11233.6,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(12233.8,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(12702.8,0)"><g data-mml-node="mo"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(422,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mi>a</mi><mi>y</mi></msup><mo>=</mo><mo stretchy="false">(</mo><mi>A</mi><mi>a</mi><mo>−</mo><mi>A</mi><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>a</mi><mi>s</mi><mo>−</mo><mi>s</mi><msup><mo stretchy="false">)</mo><mrow data-mjx-texclass="ORD"><mo>−</mo><mn>1</mn></mrow></msup></math></mjx-assistive-mml></mjx-container><p>Thus, <mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="6.812ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 3011 705" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(469,0)"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1045,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(1574,0)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(2025,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(2491,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>s</mi><mi>h</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>d</mi></math></mjx-assistive-mml></mjx-container> can be calculated.</p>
+<p>Note: For AES CBC mode, both the key and IV are in big-endian order.</p>
+<pre><code class="language-python">from Crypto.Util.number import *
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+from hashlib import sha256
+from secrets import randbelow
+from gmpy2 import *
+
+p = ...
+a = ...
+b = ...
+s = ...
+A = ...
+B = ...
+iv = 0xe0364f9f55fc27fc46f3ab1dc9db48fa
+enc = 0x482eae28750eaba12f4f76091b099b01fdb64212f66caa6f366934c3b9929bad37997b3f9d071ce3c74d3e36acb26d6efc9caa2508ed023828583a236400d64e
+iv = iv.to_bytes(16, 'big')
+enc = enc.to_bytes(64, 'big')
+
+a_y = (B*(a-1)+b) * invert((b+a*s-s), p) % p
+shared = (a_y*A+B+(p-a_y)*s) % p
+
+key = sha256(long_to_bytes(shared)).digest()[:16]
+cipher = AES.new(key, AES.MODE_CBC, iv=iv)
+plain = cipher.decrypt(enc)
+print(plain)
+</code></pre>
+<h1>misc</h1>
+<h2 id="tqlctf2022-misc-wizard">tqlctf2022-misc: wizard</h2>
+<p>Hash collision + random guessing:</p>
+<pre><code class="language-python">from pwn import*
+
+for i in range (100):
+        r=remote('120.79.12.160', 32517)
+        context.log_level = 'debug'
+
+        fo = open('./1.txt','r')
+        r.recvuntil('h ')
+        req = bytes(r.recv(6))
+        ti = 0
+        for j in fo:
+                j = bytes(j, 'utf-8')
+                if j == req:
+                        #print(ti)
+                        ti += 1000000
+                        r.sendline(str(ti))
+                        r.recv()
+                        r.recv()
+                        #r.recvuntil('\n')
+                        r.sendline('G 100') # I chose '100' arbitrarily 
+                        r.recvuntil('You are ')
+                        #print(r.recv(1))
+                        if r.recv(1) == b's':
+                                r.interactive()
+                        break
+                ti += 1
+</code></pre>
+<h2 id="xctf-mobile-beginner-6-easy-apk">xctf-mobile-(beginner)-6: easy-apk</h2>
+<p>Custom base64 table, use the Python script below:</p>
+<pre><code class="language-python">import base64
+import string
+
+str1 = &quot;5rFf7E2K6rqN7Hpiyush7E6S5fJg6rsi5NBf6NGT5rs=&quot;
+
+string1 = &quot;vwxrstuopq34567ABCDEFGHIJyz012PQRSTKLMNOZabcdUVWXYefghijklmn89+/&quot;
+string2 = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;
+
+print(base64.b64decode(str1.translate(str.maketrans(string1,string2))))
+</code></pre>
+<h2 id="NepCTF2022-signin">NepCTF2022 signin</h2>
+<p>USB Steganography Script</p>
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+normalKeys = &#123;&quot;04&quot;:&quot;a&quot;, &quot;05&quot;:&quot;b&quot;, &quot;06&quot;:&quot;c&quot;, &quot;07&quot;:&quot;d&quot;, &quot;08&quot;:&quot;e&quot;, &quot;09&quot;:&quot;f&quot;, &quot;0a&quot;:&quot;g&quot;, &quot;0b&quot;:&quot;h&quot;, &quot;0c&quot;:&quot;i&quot;, &quot;0d&quot;:&quot;j&quot;, &quot;0e&quot;:&quot;k&quot;, &quot;0f&quot;:&quot;l&quot;, &quot;10&quot;:&quot;m&quot;, &quot;11&quot;:&quot;n&quot;, &quot;12&quot;:&quot;o&quot;, &quot;13&quot;:&quot;p&quot;, &quot;14&quot;:&quot;q&quot;, &quot;15&quot;:&quot;r&quot;, &quot;16&quot;:&quot;s&quot;, &quot;17&quot;:&quot;t&quot;, &quot;18&quot;:&quot;u&quot;, &quot;19&quot;:&quot;v&quot;, &quot;1a&quot;:&quot;w&quot;, &quot;1b&quot;:&quot;x&quot;, &quot;1c&quot;:&quot;y&quot;, &quot;1d&quot;:&quot;z&quot;,&quot;1e&quot;:&quot;1&quot;, &quot;1f&quot;:&quot;2&quot;, &quot;20&quot;:&quot;3&quot;, &quot;21&quot;:&quot;4&quot;, &quot;22&quot;:&quot;5&quot;, &quot;23&quot;:&quot;6&quot;,&quot;24&quot;:&quot;7&quot;,&quot;25&quot;:&quot;8&quot;,&quot;26&quot;:&quot;9&quot;,&quot;27&quot;:&quot;0&quot;,&quot;28&quot;:&quot;&lt;RET&gt;&quot;,&quot;29&quot;:&quot;&lt;ESC&gt;&quot;,&quot;2a&quot;:&quot;&lt;DEL&gt;&quot;, &quot;2b&quot;:&quot;\t&quot;,&quot;2c&quot;:&quot;&lt;SPACE&gt;&quot;,&quot;2d&quot;:&quot;-&quot;,&quot;2e&quot;:&quot;=&quot;,&quot;2f&quot;:&quot;[&quot;,&quot;30&quot;:&quot;]&quot;,&quot;31&quot;:&quot;\\&quot;,&quot;32&quot;:&quot;&lt;NON&gt;&quot;,&quot;33&quot;:&quot;;&quot;,&quot;34&quot;:&quot;'&quot;,&quot;35&quot;:&quot;&lt;GA&gt;&quot;,&quot;36&quot;:&quot;,&quot;,&quot;37&quot;:&quot;.&quot;,&quot;38&quot;:&quot;/&quot;,&quot;39&quot;:&quot;&lt;CAP&gt;&quot;,&quot;3a&quot;:&quot;&lt;F1&gt;&quot;,&quot;3b&quot;:&quot;&lt;F2&gt;&quot;, &quot;3c&quot;:&quot;&lt;F3&gt;&quot;,&quot;3d&quot;:&quot;&lt;F4&gt;&quot;,&quot;3e&quot;:&quot;&lt;F5&gt;&quot;,&quot;3f&quot;:&quot;&lt;F6&gt;&quot;,&quot;40&quot;:&quot;&lt;F7&gt;&quot;,&quot;41&quot;:&quot;&lt;F8&gt;&quot;,&quot;42&quot;:&quot;&lt;F9&gt;&quot;,&quot;43&quot;:&quot;&lt;F10&gt;&quot;,&quot;44&quot;:&quot;&lt;F11&gt;&quot;,&quot;45&quot;:&quot;&lt;F12&gt;&quot;&#125;
+shiftKeys = &#123;&quot;04&quot;:&quot;A&quot;, &quot;05&quot;:&quot;B&quot;, &quot;06&quot;:&quot;C&quot;, &quot;07&quot;:&quot;D&quot;, &quot;08&quot;:&quot;E&quot;, &quot;09&quot;:&quot;F&quot;, &quot;0a&quot;:&quot;G&quot;, &quot;0b&quot;:&quot;H&quot;, &quot;0c&quot;:&quot;I&quot;, &quot;0d&quot;:&quot;J&quot;, &quot;0e&quot;:&quot;K&quot;, &quot;0f&quot;:&quot;L&quot;, &quot;10&quot;:&quot;M&quot;, &quot;11&quot;:&quot;N&quot;, &quot;12&quot;:&quot;O&quot;, &quot;13&quot;:&quot;P&quot;, &quot;14&quot;:&quot;Q&quot;, &quot;15&quot;:&quot;R&quot;, &quot;16&quot;:&quot;S&quot;, &quot;17&quot;:&quot;T&quot;, &quot;18&quot;:&quot;U&quot;, &quot;19&quot;:&quot;V&quot;, &quot;1a&quot;:&quot;W&quot;, &quot;1b&quot;:&quot;X&quot;, &quot;1c&quot;:&quot;Y&quot;, &quot;1d&quot;:&quot;Z&quot;,&quot;1e&quot;:&quot;!&quot;, &quot;1f&quot;:&quot;@&quot;, &quot;20&quot;:&quot;#&quot;, &quot;21&quot;:&quot;$&quot;, &quot;22&quot;:&quot;%&quot;, &quot;23&quot;:&quot;^&quot;,&quot;24&quot;:&quot;&amp;&quot;,&quot;25&quot;:&quot;*&quot;,&quot;26&quot;:&quot;(&quot;,&quot;27&quot;:&quot;)&quot;,&quot;28&quot;:&quot;&lt;RET&gt;&quot;,&quot;29&quot;:&quot;&lt;ESC&gt;&quot;,&quot;2a&quot;:&quot;&lt;DEL&gt;&quot;, &quot;2b&quot;:&quot;\t&quot;,&quot;2c&quot;:&quot;&lt;SPACE&gt;&quot;,&quot;2d&quot;:&quot;_&quot;,&quot;2e&quot;:&quot;+&quot;,&quot;2f&quot;:&quot;&#123;&quot;,&quot;30&quot;:&quot;&#125;&quot;,&quot;31&quot;:&quot;|&quot;,&quot;32&quot;:&quot;&lt;NON&gt;&quot;,&quot;33&quot;:&quot;\&quot;&quot;,&quot;34&quot;:&quot;:&quot;,&quot;35&quot;:&quot;&lt;GA&gt;&quot;,&quot;36&quot;:&quot;&lt;&quot;,&quot;37&quot;:&quot;&gt;&quot;,&quot;38&quot;:&quot;?&quot;,&quot;39&quot;:&quot;&lt;CAP&gt;&quot;,&quot;3a&quot;:&quot;&lt;F1&gt;&quot;,&quot;3b&quot;:&quot;&lt;F2&gt;&quot;, &quot;3c&quot;:&quot;&lt;F3&gt;&quot;,&quot;3d&quot;:&quot;&lt;F4&gt;&quot;,&quot;3e&quot;:&quot;&lt;F5&gt;&quot;,&quot;3f&quot;:&quot;&lt;F6&gt;&quot;,&quot;40&quot;:&quot;&lt;F7&gt;&quot;,&quot;41&quot;:&quot;&lt;F8&gt;&quot;,&quot;42&quot;:&quot;&lt;F9&gt;&quot;,&quot;43&quot;:&quot;&lt;F10&gt;&quot;,&quot;44&quot;:&quot;&lt;F11&gt;&quot;,&quot;45&quot;:&quot;&lt;F12&gt;&quot;&#125;
+output = []
+keys = open('./usbdata.txt')
+for line in keys:
+    try:
+        if line[0]!='0' or (line[1]!='0' and line[1]!='2') or line[3]!='0' or line[4]!='0' or line[9]!='0' or line[10]!='0' or line[12]!='0' or line[13]!='0' or line[15]!='0' or line[16]!='0' or line[18]!='0' or line[19]!='0' or line[21]!='0' or line[22]!='0' or line[6:8]==&quot;00&quot;:
+             continue
+        if line[6:8] in normalKeys.keys():
+            output += [[normalKeys[line[6:8]]],[shiftKeys[line[6:8]]]][line[1]=='2']
+        else:
+            output += ['[unknown]']
+    except:
+        pass
+keys.close()
+
+flag=0
+print(&quot;&quot;.join(output))
+for i in range(len(output)):
+    try:
+        a=output.index('&lt;DEL&gt;')
+        del output[a]
+        del output[a-1]
+    except:
+        pass
+for i in range(len(output)):
+    try:
+        if output[i]==&quot;&lt;CAP&gt;&quot;:
+            flag+=1
+            output.pop(i)
+            if flag==2:
+                flag=0
+        if flag!=0:
+            output[i]=output[i].upper()
+    except:
+        pass
+print ('output :' + &quot;&quot;.join(output))
+</code></pre>
+<h2 id="corctf2022-whack-a-frog">corctf2022 whack-a-frog</h2>
+<p>Obtained a pcap file and found many GET requests upon inspection.</p>
+<p>First, extract these GET requests:</p>
+<pre><code class="language-sh">cat whacking-the-froggers.pcap | grep -a 'anticheat?x=' &gt; in
+</code></pre>
+<p>These requests contain x and y coordinates. Use regular expressions to extract them:</p>
+<pre><code class="language-python">from pwn import *
+import re
+io = open('in', 'rb')
+out = open('out', 'w')
+x = []
+y = []
+for i in range(10000):
+   get = io.readline()
+   if len(re.findall(rb'x=\d+', get)) &gt; 0:
+      print(int(re.findall(rb'x=\d+', get)[0][2:]), 
+            int(re.findall(rb'y=\d+', get)[0][2:]), file=out)
+</code></pre>
+<p>Then use C to convert it into ASCII art. Note that the x and y coordinates were initially swapped:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int mp[600][600];
+int main()
+&#123;
+  freopen(&quot;out&quot;, &quot;r&quot;, stdin);
+  freopen(&quot;flag&quot;, &quot;w&quot;, stdout);
+  int x, y;
+  for (int i = 0; i &lt; 2204; i++)
+  &#123;
+    scanf(&quot;%d %d&quot;, &amp;x, &amp;y);
+    // mp[x][y] = 1;
+    mp[y][x] = 1;
+  &#125;
+  for (int i = 0; i &lt; 600; i++) 
+  &#123;
+    for (int j = 0; j &lt; 600; j++)
+      if (mp[i][j])
+        printf(&quot;0&quot;);
+      else
+        printf(&quot; &quot;);
+    printf(&quot;\n&quot;);
+  &#125;
+  return 0;
+&#125;
+</code></pre>
+<p>Viewing the output in gedit after zooming out shows that the strokes roughly form the correct pattern, confirming it should be the flag:</p>
+<img src='https://img.junyu33.me/blog/bin_ctf2/image-20220807223307359-16598827924091.png'>
+<h2 id="NPUCTF2020-OI-s-Dream">[NPUCTF2020] OI's Dream</h2>
+<p>A classic path counting problem that can be solved using matrix exponentiation. Copilot wrote it in 2 minutes.</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int MOD = 10003;
+int n, m, k;
+
+struct mat &#123;
+   int m[110][110];
+&#125;;
+mat operator*(mat a, mat b) &#123;
+   mat c;
+   for (int i = 1; i &lt;= n; i++) &#123;
+      for (int j = 1; j &lt;= n; j++) &#123;
+         c.m[i][j] = 0;
+         for (int k = 1; k &lt;= n; k++) &#123;
+            c.m[i][j] = (c.m[i][j] + a.m[i][k] * b.m[k][j]) % MOD;
+         &#125;
+      &#125;
+   &#125;
+   return c;
+&#125;
+mat qpow(mat a, int b) &#123;
+   mat ans;
+   for (int i = 1; i &lt;= n; i++) &#123;
+      for (int j = 1; j &lt;= n; j++) &#123;
+         ans.m[i][j] = (i == j);
+      &#125;
+   &#125;
+   while (b) &#123;
+      if (b &amp; 1) ans = ans * a;
+      a = a * a;
+      b &gt;&gt;= 1;
+   &#125;
+   return ans;
+&#125;
+mat X;
+
+int main() &#123;
+   freopen(&quot;yyh.in&quot;, &quot;r&quot;, stdin);
+   cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
+   for (int i = 0; i &lt; m; i++) &#123;
+      int x, y;
+      cin &gt;&gt; x &gt;&gt; y;
+      X.m[x][y] = X.m[y][x] = 1;
+   &#125;
+   X = qpow(X, k);
+   cout &lt;&lt; X.m[1][n] &lt;&lt; endl;
+   return 0;
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

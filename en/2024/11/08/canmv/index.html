@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2024/11/08/canmv/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2024/11/08/canmv/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Learn intranet penetration the hard way (CanMV-K230 version)</h1>
+	<p>Please note that this article is not a tutorial for readers who are new to intranet penetration, but rather a follow-up to the article &quot;Building a Fast and Secure VNC Service from Scratch.&quot;</p>
+<span id="more"></span>
+<h1>Problem Introduction</h1>
+<p>If you clicked into this article, you should already be able to perform intranet penetration using a public network server. However, the Azure server I'm using for free is not located domestically, and even though it can connect to my workstation computer, the speed somewhat affects the user experience.</p>
+<p>In the previous article, &quot;Building a Fast and Secure VNC Service from Scratch,&quot; I mentioned that my dormitory has a dynamic public IP after broadband dial-up, which can largely solve the issue of slow connection speeds when using a cloud server to access my workstation. However, I recently learned from a graduate student senior that the network cables in the graduate dormitory do not support public IPs. This means that my current solution for remotely connecting to my workstation computer will become completely ineffective after I graduate from my undergraduate studies—how can I tolerate that? At the time, I hadn't come up with a good solution.</p>
+<p>This unfortunate reality took a slight turn when, due to recent research needs, I purchased a development board supporting the RVV 1.0 CPU. I realized I could transfer the role of my current computer as an SSH jump server to the newly purchased development board. After graduation, I could hand the development board to a junior student, who would continue to connect it to the broadband, allowing me to maintain the ideal of &quot;working from home.&quot;</p>
+<h1>Goal Breakdown</h1>
+<p>Now, we need such a development board to fulfill the following four functions:</p>
+<ol>
+<li>Automatically boot the system on startup.</li>
+<li>Automatically perform PPPoE dial-up on startup.</li>
+<li>Automatically run the previously written DDNS script on startup.</li>
+<li>Allow me to conduct development related to RVV 1.0 on the development board.</li>
+</ol>
+<p>To meet the fourth requirement, after several hours of STFW (Searching The Friendly Web), I ruled out most off-the-shelf development boards on the market. I found that only Canaan's CanMV-K230 meets my needs (though later someone told me that &quot;Jindie Shikong&quot; also has a model supporting RVV 1.0, I excluded it due to its large size and high price). After reviewing Canaan's user documentation, I further outlined the specific implementation steps:</p>
+<ol>
+<li>Purchase the CanMV-K230 development board.</li>
+<li>Purchase a suitable SD card and insert it into the development board.</li>
+<li>Flash the official system image.</li>
+<li>Boot the system, insert the Ethernet cable into the development board, and test whether dial-up works normally.</li>
+<li>Copy the DDNS script from the host to the development board and test whether the DDNS service works normally.</li>
+<li>SSH into my domain from another device to see if I can connect to both the development board and my workstation computer.</li>
+</ol>
+<p>It seems straightforward, but in reality, each step is fraught with pitfalls.</p>
+<h1>Pitfall Experience</h1>
+<h2 id="Purchasing-the-CanMV-K230-Development-Board">Purchasing the CanMV-K230 Development Board</h2>
+<p>The first step, of course, was to buy the development board. I searched for &quot;CanMV-K230&quot; on Taobao, and a bunch of options popped up. I clicked on the one with the highest sales volume, which was from the official 01studio flagship store. To my surprise, the memory was listed as 1GB instead of the official 512MB? Amazing! With technology advancing so quickly, I had to grab it right away. So, from opening Taobao to placing the order, it took me less than two minutes—I just made sure the model was indeed K230 and the CPU version was C908 (supporting RVV 1.0).</p>
+<p>Three days later, I received the package. The seller had also included a 32GB SD card. Following Canaan's documentation, I started flashing the firmware. I first chose the image labeled with &quot;01studio&quot; and encountered no issues during the flashing process. Then, I connected the power, opened minicom, and—huh? Why is there a Python shell? I tried typing <code>exit</code>, but the command wasn't supported. I pressed <code>Ctrl+D</code>, but the screen just flashed and rebooted back into Python. Did I just spend 284 yuan for a Python shell?</p>
+<p>I asked a friend and learned that what I was seeing was actually a MicroPython shell. He tried jailbreaking it but didn't succeed. I then tried other firmware images from Canaan's official website and found that none of them worked except the one with the &quot;01studio&quot; label. To make matters worse, the development board doesn't come with an Ethernet port, so I had to separately purchase a USB-to-Ethernet adapter. At that point, I was already considering returning it.</p>
+<p>Over the next few days, I attempted to manually compile the <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_sdk">K230-SDK</a> and <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_linux_sdk">K230-linux-SDK</a> provided by Canaan for the CanMV-K230 and generate my own images. Without exception, either the board failed to boot, or it booted straight into that annoying MicroPython interface. I also contacted Taobao customer service, who passed the buck to the 01studio communication group. 01studio, in turn, directed me to Canaan, and Canaan finally suggested I try connecting to the Linux debug serial port using a USB programmer. But even that didn't work.</p>
+<p>I figured that since 01studio is essentially a downstream partner of Canaan and their target customers are those focused on AI training (CanMV K230 AI Development Board)—not me—and given that this board felt a bit &quot;knockoff&quot; compared to Canaan's official offerings, further debugging might lead to more issues without official support. So, the day after failing with serial debugging—the fifth day after receiving the board (since returns within seven days are hassle-free, with only shipping fees required)—I officially submitted my return request.</p>
+<blockquote>
+<p>It feels like everything has to be branded with &quot;AI&quot; to sell these days. AI has really become the ultimate buzzword.</p>
+</blockquote>
+<h2 id="Purchasing-a-Suitable-SD-Card-and-Inserting-It-into-the-Development-Board">Purchasing a Suitable SD Card and Inserting It into the Development Board</h2>
+<p>On the day of the refund, I bought another official Canaan development board for 283 yuan (original price 323, without an SD card), and also purchased a 64GB SD card for 17 yuan (original price 25).</p>
+<p>Experienced buyers might notice that the SD card price seems off—and indeed it was. At the time, I believed in the principle &quot;you get what you pay for,&quot; so I chose the more expensive development board but didn't think too much about the SD card. Since the product had a high positive review rate, I figured if it turned out to be fake, I could just return it and quickly buy a more expensive one nearby—no big loss.</p>
+<p>What was strange was that the SD card's logistics were updated in real-time, while the development board's tracking only showed: &quot;Shipped,&quot; &quot;Picked Up,&quot; and &quot;Out for Delivery.&quot; After three full days with no updates, the SD card had already reached the local distribution center. I began to suspect that I had bought another fake development board, so on the morning of the third day, I called the delivery person. They assured me it had also reached the distribution center, which eased my worries a bit.</p>
+<p>By the evening of the third day, my SD card had arrived, but there was still no movement on the development board. Since it was outside business hours, I didn't want to bother the delivery person again, so I waited until the next morning to ask once more. The delivery person said it had arrived and gave me the pickup code. I was puzzled—why hadn't Taobao notified me that the item had arrived? But after unboxing it, the development board looked exactly like the one on Canaan's official website, so I couldn't stay upset.</p>
+<p>Next, I used the SD card that arrived the previous day to install the system, using the Debian image from Canaan's official website. After flashing it with <code>dd</code>, I used GParted to expand the Linux partition from 1GB to 58GB. Then, I booted Linux from the development board and encountered the following error:</p>
+<pre><code>junyu33@zjy-canmv:~$ sudo apt install net-tools                                                                                                               
+[sudo] password for junyu33:              
+E: dpkg was interrupted, you must manually run 'sudo dpkg --configure -a' to correct the problem. 
+junyu33@zjy-canmv:~$ sudo dpkg --configure -a
+dpkg: error: parsing file '/var/lib/dpkg/updates/0000' near line 0:
+ MSDOS end of file (^Z) in field name ''
+</code></pre>
+<p>I had never seen this error before, so I started to suspect that my SD card might be faulty. I pasted the error into ChatGPT, which suggested deleting <code>/var/lib/dpkg/updates/0000</code>. What followed was this:</p>
+<pre><code>junyu33@zjy-canmv:~$ sudo rm /var/lib/dpkg/updates/*                                                                                                          
+[  151.617623] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6563
+[  151.631373] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6563
+rm: cannot remove '/[  153.220073] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6719
+var/lib/dpkg/updates/0007': Stru[  153.234325] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6719
+cture needs cleaning
+rm: cannot remove '/[  153.248629] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8089
+var/lib/dpkg/updates/0008': Structure needs cleaning
+[  153.321093] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8089
+rm: cannot remove '/[  153.334419] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8144
+var/lib/dpkg/updates/0010': Stru[  153.348760] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 8144
+cture needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0011': Structure needs cleaning
+[  153.457330] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6557
+[  153.470351] EXT4-fs error (device mmcblk1p3): ext4_lookup:1708: inode #13720: comm rm: deleted inode referenced: 6557
+rm: cannot remove '/var/lib/dpkg/updates/0013': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0014': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0015': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0016': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0017': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0018': Structure needs cleaning
+rm: cannot remove '/var/lib/dpkg/updates/0019': Structure needs cleaning
+</code></pre>
+<p>At that moment, I thought, &quot;Well, that's it—time to prepare for a return.&quot; But I still tried repairing it with fsck, and it seemed okay temporarily. However, after installing a bunch of software and rebooting, the &quot;dpkg was interrupted&quot; error appeared again. I realized I needed to check if the SD card was counterfeit (the last time I bought a fake product was in middle school—a &quot;128GB&quot; USB drive that was actually only 8GB). I searched online for tools and found <a target="_blank" rel="noopener" href="https://4-x.tw/fake_sdcard/">this link</a>.</p>
+<p>I followed Method 2 from the link and indeed found the number &quot;08&quot; on the back. The brand was &quot;Jinsudun&quot; (which looks a lot like Kingston but isn't). There was no doubt—it was fake. I immediately started testing with expansion detection software.</p>
+<ul>
+<li>On Windows, the link suggested using MyDiskTest. I tried it on a Windows virtual machine, but it crashed immediately. I also tested it on my roommate's computer, and it crashed again. It felt like the seller had tampered with the software to prevent it from running.</li>
+<li>On Linux, I first scanned it with badblocks (read-only mode), and no issues were found. Then I used f3, and finally uncovered the problem. The results were as follows:</li>
+</ul>
+<pre><code>F3 read 8.0
+Copyright (C) 2010 Digirati Internet LTDA.
+This is free software; see the source for copying conditions.
+
+                  SECTORS      ok/corrupted/changed/overwritten
+Validating file 1.h2w ... 2097152/        0/      0/      0
+Validating file 2.h2w ... 2097152/        0/      0/      0
+Validating file 3.h2w ... 2050304/    46848/      0/      0
+Validating file 4.h2w ...       0/  2097152/      0/      0
+Validating file 5.h2w ...       0/  2097152/      0/      0
+Validating file 6.h2w ...       0/  2097152/      0/      0
+Validating file 7.h2w ...       0/  2097152/      0/      0
+Validating file 8.h2w ...       0/  2097152/      0/      0
+Validating file 9.h2w ...       0/  2097152/      0/      0
+Validating file 10.h2w ...       0/  2097152/      0/      0
+Validating file 11.h2w ...       0/  2097152/      0/      0
+Validating file 12.h2w ...       0/  2097152/      0/      0
+Validating file 13.h2w ...       0/  2097152/      0/      0
+Validating file 14.h2w ...       0/  2097152/      0/      0
+Validating file 15.h2w ...       0/  2097152/      0/      0
+Validating file 16.h2w ...       0/  2097152/      0/      0
+Validating file 17.h2w ...       0/  2097152/      0/      0
+Validating file 18.h2w ...       0/  2097152/      0/      0
+Validating file 19.h2w ...       0/  2097152/      0/      0
+Validating file 20.h2w ...       0/  2097152/      0/      0
+Validating file 21.h2w ...       0/  2097152/      0/      0
+Validating file 22.h2w ...       0/  2097152/      0/      0
+Validating file 23.h2w ...       0/  2097152/      0/      0
+Validating file 24.h2w ...       0/  2097152/      0/      0
+Validating file 25.h2w ...       0/  2097152/      0/      0
+Validating file 26.h2w ...       0/  2097152/      0/      0
+Validating file 27.h2w ...       0/  2097152/      0/      0
+Validating file 28.h2w ...       0/  2097152/      0/      0
+Validating file 29.h2w ...       0/  2097152/      0/      0
+Validating file 30.h2w ...       0/  2097152/      0/      0
+Validating file 31.h2w ...       0/  2097152/      0/      0
+Validating file 32.h2w ...       0/  2097152/      0/      0
+Validating file 33.h2w ...       0/  2097152/      0/      0
+Validating file 34.h2w ...       0/  2097152/      0/      0
+Validating file 35.h2w ...       0/  2097152/      0/      0
+Validating file 36.h2w ...       0/  2097152/      0/      0
+Validating file 37.h2w ...       0/  2097152/      0/      0
+Validating file 38.h2w ...       0/  2097152/      0/      0
+Validating file 39.h2w ...       0/  2097152/      0/      0
+Validating file 40.h2w ...       0/  2097152/      0/      0
+Validating file 41.h2w ...       0/  2097152/      0/      0
+Validating file 42.h2w ...       0/  2097152/      0/      0
+Validating file 43.h2w ...       0/  2097152/      0/      0
+Validating file 44.h2w ...       0/  2097152/      0/      0
+Validating file 45.h2w ...       0/  2097152/      0/      0
+Validating file 46.h2w ...       0/  2097152/      0/      0
+Validating file 47.h2w ...       0/  2097152/      0/      0
+Validating file 48.h2w ...       0/  2097152/      0/      0
+Validating file 49.h2w ...       0/  2097152/      0/      0
+Validating file 50.h2w ...       0/  2097152/      0/      0
+Validating file 51.h2w ...       0/  2097152/      0/      0
+Validating file 52.h2w ...       0/  2097152/      0/      0
+Validating file 53.h2w ...       0/  2097152/      0/      0
+Validating file 54.h2w ...       0/  2097152/      0/      0
+Validating file 55.h2w ... 1947392/   149760/      0/      0
+Validating file 56.h2w ... 2097152/        0/      0/      0
+Validating file 57.h2w ... 2097152/        0/      0/      0
+Validating file 58.h2w ... 2097152/        0/      0/      0
+Validating file 59.h2w ... 1212160/        0/      0/      0
+
+  Data OK: 7.48 GB (15695616 sectors)
+Data LOST: 51.09 GB (107151360 sectors)
+	       Corrupted: 51.09 GB (107151360 sectors)
+	Slightly changed: 0.00 Byte (0 sectors)
+	     Overwritten: 0.00 Byte (0 sectors)
+Average reading speed: 16.12 MB/s
+</code></pre>
+<p>The results confirmed it was an 8GB counterfeit SD card, with only the first 3GB and last 5GB being usable. I immediately submitted a full refund request (without returning the product), and within a minute, my 17 yuan was refunded.</p>
+<p>Additionally, I took a look at the Taobao reviews and found only a few dozen negative comments (which is very few compared to tens of thousands of positive reviews). The negative reviews all complained about the SD card's quality and cursed the unscrupulous seller. Now I finally understand why my sister says, &quot;When shopping on Taobao, only look at the negative reviews.&quot;</p>
+<blockquote>
+<p>On the day of writing, I checked the product's reviews again and found that even those few dozen negative comments were gone. I have nothing more to say.</p>
+</blockquote>
+<p>Of course, even though I wasted half a day dealing with a fake SD card, I still had to complete my task. I figured these things should be easy to find anywhere, so the next morning I checked Meituan (a delivery app) and chose a well-known brand (SanDisk). The delivery arrived in less than half an hour, but when I saw it—wait, why is this SD card so big? I searched online and realized that what I thought was a &quot;small SD card&quot; was actually a TF card (or microSD card). Unfortunately, I had bought the wrong thing again.</p>
+<p>Since the store was only a few hundred meters from my dorm, I decided it would be easier to walk there and return it. At the store, I explained that I had bought the wrong product, and the seller was willing to accept the return. I asked if they had TF cards, and she said she wasn't sure but would look. Eventually, she found one—a ThinkPlus brand. It might not be as well-known as major brands, but it was definitely much better than &quot;Jinsudun.&quot; The seller said they only had 32GB and 128GB options. Considering I would need to download a bunch of toolchains and compile a lot of software, I decided to play it safe and buy the 128GB card.</p>
+<blockquote>
+<p>The price at the physical store was 90 yuan, but I could get it for just over 50 yuan on Meituan. I have no idea where Meituan gets the money to cover that 40-yuan difference.</p>
+</blockquote>
+<p>After getting the 128GB TF card, I tested the first 5GB with f3, and no issues were found. Then I flashed the system image. As of the writing date, no problems have occurred, and the possibility of it being counterfeit has basically been ruled out.</p>
+<h2 id="Flashing-the-Officially-Provided-System-Image">Flashing the Officially Provided System Image</h2>
+<p>As mentioned earlier, there are two different types of official images: one is an RTOS with micropython running on the large core and Linux on the small core, while the other is an image designed for Debian- and Ubuntu-based distributions. Naturally, the latter better suits my needs, so I flashed the Debian image onto my TF card. Finally, I saw the word &quot;Debian&quot; in the minicom output.</p>
+<p>Is that the end of it? Far from it!</p>
+<p>Then, I discovered a critical flaw—this Debian system has no WiFi interface! However, according to Canaan's documentation, this development board definitely has WiFi hardware. I immediately reflashed the former image and accessed the debugging serial port of the small core. Here's what I found:</p>
+<ol>
+<li>The small core runs a Buildroot-based Linux.</li>
+<li>The small core has a WiFi interface and can connect to WiFi normally.</li>
+<li>The small core only has 128MB of memory.</li>
+</ol>
+<p>So, we're faced with a dilemma:</p>
+<ul>
+<li>If you use the micropython image, you can debug the PPPoE connection process via WiFi SSH, but you won't have access to a package manager and will have to endure the pain of manually compiling toolchains with only 128MB of memory.</li>
+<li>On the other hand, if you use the Debian image, development is much more comfortable, but debugging PPPoE becomes nearly impossible (since you can't connect to a wired network while debugging PPPoE).</li>
+</ul>
+<p>So, which image should we choose? The answer is—only children make choices.</p>
+<h2 id="Building-a-Custom-System-Image">Building a Custom System Image</h2>
+<p>Based on our previous observations, we can rule out issues related to hardware and Linux driver compatibility. This implies that the problem can definitely be resolved through our own efforts. In other words, we can address this issue by appropriately &quot;assembling&quot; the MicroPython image and the Debian image.</p>
+<p>As for the specific solution, the approaches I have attempted include the following:</p>
+<ol>
+<li>Directly hacking the two images in their current state</li>
+<li>Attempting to modify the SDK source code used for image compilation to obtain an image that meets our requirements</li>
+<li>Attempting to modify the SDK source code used for image compilation and then hacking the resulting image</li>
+</ol>
+<h3 id="In-place-Hack">In-place Hack</h3>
+<p>We can observe the structure of these two images:</p>
+<p>Micropython image:</p>
+<pre><code>&gt; mmls CanMV-K230_sdcard_v1.8_nncase_v2.9.0.img 
+GUID Partition Table (EFI)
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Safety Table
+001:  -------   0000000000   0000020479   0000020480   Unallocated
+002:  Meta      0000000001   0000000001   0000000001   GPT Header
+003:  Meta      0000000002   0000000033   0000000032   Partition Table
+004:  000       0000020480   0000061439   0000040960   rtt
+005:  001       0000061440   0000163839   0000102400   linux
+006:  -------   0000163840   0000262143   0000098304   Unallocated
+007:  002       0000262144   0000425983   0000163840   rootfs
+008:  003       0000425984   0000950271   0000524288   fat32appfs
+009:  -------   0000950272   0000950304   0000000033   Unallocated
+</code></pre>
+<p>Debian image:</p>
+<pre><code>&gt; mmls CanMV-K230_debian_sdcard_sdk_1.3.img 
+GUID Partition Table (EFI)
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Safety Table
+001:  -------   0000000000   0000020479   0000020480   Unallocated
+002:  Meta      0000000001   0000000001   0000000001   GPT Header
+003:  Meta      0000000002   0000000033   0000000032   Partition Table
+004:  000       0000020480   0000061439   0000040960   rtt
+005:  001       0000061440   0000163839   0000102400   linux
+006:  -------   0000163840   0000262143   0000098304   Unallocated
+007:  002       0000262144   0003515591   0003253448   rootfs
+008:  -------   0003515592   0003515624   0000000033   Unallocated
+</code></pre>
+<p>So we can see that only the rootfs partition size differs, and the Debian image lacks the fat32appfs partition. From previous research, we know this partition is used for AI training applications, which is irrelevant to me and can be discarded, so it can essentially be considered part of rootfs. Therefore, the structure of both images is identical and can be replaced on a partition-by-partition basis.</p>
+<p>Based on prior judgment, WiFi works normally in the Micropython image. Since WiFi, as part of the driver, is either loaded by the Linux kernel or via DKMS in <code>/lib/modules</code>, to be safe:</p>
+<ul>
+<li>I mounted the <code>/lib/modules</code> directory from the rootfs partition of the Micropython image, extracted it, and wrote it to the corresponding partition in the Debian image without changing the size.</li>
+<li>I directly copied the linux partition from the Micropython image to the corresponding partition in the Debian image.</li>
+</ul>
+<p>Then I burned it to the TF card and booted the development board. dmesg reported missing WiFi firmware, specifically <code>/etc/firmware/config.txt</code>, <code>/etc/firmware/fw_bcm43438a1.bin</code>, and <code>/etc/firmware/nvram.txt</code>. I found the corresponding paths in the Micropython image, copied them over, and rebooted again. This time, it reported errors:</p>
+<pre><code>[  OK  ] Started NetworkManager.service - Network Manager.
+[   32.925997] [dhd] failed to power up DHD generic adapter, 0 retry left
+[  OK  ] Started NetworkManag[   32.955283] [dhd] wifi_platform_set_power = 0, delay: 0 msec
+er-dispatcher.�[   32.961896] [dhd] ======== PULL WL_REG_ON(1) LOW! ========
+� Manager Sc[   32.968726] [dhd] wifi_platform_bus_enumerate device present 0
+ript Dispatcher [   32.975930] [dhd] ======== Card detection to remove SDIO card! ========
+Service.
+[   32.983935] [dhd] failed to power up DHD generic adapter, max retry reached**
+[   32.992006] [dhd] unregister wifi platform drivers
+[   32.996807] [dhd] wifi_platform_bus_enumerate device present 0
+[   33.002648] [dhd] ======== Card detection to remove SDIO card! ========
+[   33.009272] [dhd] dhd_wlan_deinit_gpio: gpio_free(WL_REG_ON 1)
+[   33.015121] [dhd] _dhd_module_init: Failed to load the driver, try cnt 0
+[   33.021848] [dhd] _dhd_module_init: Failed to load driver max retry reached**
+[   33.028996] [dhd] STATIC-MSG) dhd_static_buf_exit : Enter
+[   33.034468] [dhd] _dhd_module_init: Exit err=-19
+[***   ] Job ifupdown-pre.service/start running (23s / 3min 3s)
+[   39.325657] [dhd] _dhd_module_init: in Dongle Host Driver, version 101.10.361.33 (wlan=r892223-20230607-2)
+[   39.325657] drivers/net/wireless/bcmdhd compiled on Aug 26 2024 at 15:28:32
+[   39.325657] 
+[   39.343823] [dhd] STATIC-MSG) dhd_static_buf_init : 101.10.361.31 (wlan=r892223-20230427-1)
+[   39.352249] [dhd] STATIC-MSG) dhd_init_wlan_mem : prealloc ok for index 0: 1100800(1075K)
+[   39.360468] [dhd] ======== Get GPIO from DTS(android,bcmdhd_wlan) ========
+[   39.367383] of_get_named_gpiod_flags: parsed 'gpio_wl_reg_on' property of node '/soc/sdhci0@91580000/bcmdhd_wlan[0]' - status (0)
+[   39.379060] [dhd] dhd_wlan_init_gpio: WL_REG_ON=1
+[   39.383772] [dhd] dhd_wifi_platform_load: Enter
+[   39.388309] [dhd] Power-up adapter 'DHD generic adapter'
+[   39.395030] dummy_sdmmc: probe of mmc0:0001:1 failed with error -110
+[   39.401552] dummy_sdmmc: probe of mmc0:0001:2 failed with error -110
+[   39.408008] [dhd] wifi_platform_set_power = 1, delay: 200 msec
+[   39.413855] [dhd] ======== PULL WL_REG_ON(1) HIGH! ========
+[   39.625906] [dhd] wifi_platform_bus_enumerate device present 1
+[     *] Job ifupdown-pre.service/start running (25s / 3min 3s)
+[   41.661915] [dhd] failed to power up DHD generic adapter, 0 retry left
+[   41.685982] [dhd] wifi_platform_set_power = 0, delay: 0 msec
+[   41.691662] [dhd] ======== PULL WL_REG_ON(1) LOW! ========
+[   41.697179] [dhd] wifi_platform_bus_enumerate device present 0
+[   41.703022] [dhd] ======== Card detection to remove SDIO card! ========
+[   41.709653] [dhd] failed to power up DHD generic adapter, max retry reached**
+[   41.716795] [dhd] unregister wifi platform drivers
+[   41.721592] [dhd] wifi_platform_bus_enumerate device present 0
+[   41.727435] [dhd] ======== Card detection to remove SDIO card! ========
+[   41.734059] [dhd] dhd_wlan_deinit_gpio: gpio_free(WL_REG_ON 1)
+[   41.739903] [dhd] _dhd_module_init: Failed to load the driver, try cnt 0
+[   41.746641] [dhd] Error creating socket.
+[   41.750584] [dhd] _dhd_module_init: Failed to load driver max retry reached**
+[   41.757732] [dhd] STATIC-MSG) dhd_static_buf_exit : Enter
+[  OK  ] Finished ifupdown-pre.service - He…o synchronize boot up for ifupdown.
+</code></pre>
+<p>I searched online but couldn't find a suitable solution. Additionally, a new problem emerged: my Debian's memory was also reduced to 128M!</p>
+<p>So I extracted the DTB file from the linux partition, decompiled it into a DTS file, attempted to modify the memory size configured for Linux, recompiled it, embedded it back into the linux partition, rewrote the TF card, and rebooted again—but the sha256sum didn't match!</p>
+<p>To proceed further, I would need to read the source code for image generation to understand the sha256 generation logic. Since I'd have to read the source code anyway, it might be better to just recompile from the SDK! Thus, we arrive at the next solution:</p>
+<h3 id="Compiling-the-SDK">Compiling the SDK</h3>
+<p>As mentioned earlier, the relevant SDKs for my needs are K230-SDK and K230-linux-SDK. I attempted to compile them again, and the results were slightly different from the official images: one generated a usable Debian image with 512MB of memory but without WiFi support; the other generated a Buildroot-based image with WiFi support and 512MB of memory.</p>
+<ul>
+<li>Documentation for generating Debian using K230-SDK:<br>
+<a target="_blank" rel="noopener" href="https://developer.canaan-creative.com/k230/dev/zh/03_other/K230_debian_ubuntu%E8%AF%B4%E6%98%8E.html">https://developer.canaan-creative.com/k230/dev/zh/03_other/K230_debian_ubuntu说明.html</a></li>
+<li>Documentation for generating Buildroot using K230-linux-SDK:<br>
+<a target="_blank" rel="noopener" href="https://developer.canaan-creative.com/k230_linux/dev/zh/01_software/K230_linux_sdk%E6%95%99%E7%A8%8B.html#sdk">https://developer.canaan-creative.com/k230_linux/dev/zh/01_software/K230_linux_sdk教程.html#sdk</a></li>
+</ul>
+<p>Clearly, there are two paths to choose from:</p>
+<ul>
+<li>Modify the rootfs build process in K230-linux-SDK to replace the rootfs with a Debian image.</li>
+<li>Modify the Linux kernel build process in K230-SDK to enable the root partition with WiFi driver support.</li>
+</ul>
+<p>The first path appears to require less debugging, and indeed it does. This process can be broken down into the following sub-steps:</p>
+<ol>
+<li>Rebuild a Debian-based rootfs.ext4.</li>
+<li>Locate the code that uses rootfs.ext4 to generate the Buildroot image.</li>
+<li>Manually execute this code with the correct parameters and environment variables to generate an image that uses the Debian rootfs instead of the Linux-SDK's Buildroot.</li>
+</ol>
+<h4 id="Building-debian-ext4">Building debian.ext4</h4>
+<p>The K230-SDK documentation provides the method. Here is the build code:</p>
+<pre><code class="language-sh">sudo rm -rf debian13
+sudo apt-get update
+sudo apt install qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring systemd-container rsync wget
+sudo debootstrap --arch=riscv64  unstable debian13 https://mirrors.aliyun.com/debian/
+sudo chroot debian13/
+echo &quot;root:root&quot; | chpasswd
+
+cat &gt;&gt;/etc/network/interfaces &lt;&lt;EOF
+auto lo
+iface lo inet loopback
+auto eth0
+iface eth0 inet dhcp
+EOF
+apt-get install -y  net-tools ntpdate
+ntpdate ntp.ntsc.ac.cn
+exit
+sudo  mkfs.ext4 -d debian13  -r 1 -N 0 -m 1 -L &quot;rootfs&quot; -O ^64bit debian13.ext4 1G
+</code></pre>
+<p>Note: Do not forget to copy the <code>/etc/firmware</code> and <code>/lib/modules</code> folders from the previously generated K230-linux-SDK image into <code>debian13.ext4</code>.</p>
+<h4 id="Locating-the-Image-Generation-Code">Locating the Image Generation Code</h4>
+<p>Search for the string <code>sysimage-sdcard.img</code> in the K230-linux-SDK project:</p>
+<pre><code class="language-sh">&gt; egrep -i --recursive &quot;sysimage-sdcard.img&quot; .
+./.github/workflows/build.yml:          rm -rf output/$&#123;CONF&#125;/images/sysimage-sdcard.img
+./.gitlab-ci.yml:  - rm -rf output/$&#123;CONF&#125;/images/sysimage-sdcard.img
+./.gitlab-ci.yml:            sudo cp -rf --sparse=always -L $&#123;src_file&#125; $&#123;DST_DIR&#125;/$&#123;SUB_DIR&#125;/sysimage-sdcard.img.gz;
+./.gitlab-ci.yml:            sysimage_md5=$(md5sum $&#123;DST_DIR&#125;/$&#123;SUB_DIR&#125;/sysimage-sdcard.img.gz | awk '&#123;print $1&#125;');
+./.gitlab-ci.yml:            echo &quot;sysimage_path=$&#123;DST_DIR&#125;/$&#123;SUB_DIR&#125;/sysimage-sdcard.img.gz&quot; &gt;&gt; $CI_PROJECT_DIR/build.env;
+./.gitlab-ci.yml:    - echo &quot;sysimage-sdcard.img.gz md5 $&#123;sysimage_md5&#125;&quot;
+./README.md:output/k230d_canmv_defconfig/images/sysimage-sdcard.img.gz
+./buildroot-overlay/board/canaan/k230-soc/genimage.cfg:image sysimage-sdcard.img &#123;
+./buildroot-overlay/board/canaan/k230-soc/post-image.sh:        local image_name=&quot;$2&quot;; #&quot;sysimage-sdcard.img&quot;
+./buildroot-overlay/board/canaan/k230-soc/post-image.sh:gen_image $&#123;GENIMAGE_CFG_SD&#125;   sysimage-sdcard.img
+./buildroot-overlay/boot/uboot/u-boot-2022.10-overlay/include/configs/k230_evb.h:       &quot;upsdimg=usb start; dhcp;  tftp 0x9000000 10.10.1.94:wjx/sysimage-sdcard.img.gz;gzwrite mmc 1 0x$fileaddr  0x$filesize; \0&quot; \
+......
+</code></pre>
+<p>It appears that <code>./buildroot-overlay/board/canaan/k230-soc/post-image.sh</code> meets our requirements. Let's examine the file:</p>
+<pre><code class="language-sh">&gt; tail -n 10 ./buildroot-overlay/board/canaan/k230-soc/post-image.sh
+        $&#123;UBOOT_BUILD_DIR&#125;/tools/mkimage -A riscv -O linux -T kernel -C none -a 0 -e 0 -n linux -d $&#123;BINARIES_DIR&#125;/fw_jump.bin  boot/fw_jump_add_uboot_head.bin
+        rm -rf boot.ext4 ;fakeroot mkfs.ext4 -d boot  -r 1 -N 0 -m 1 -L &quot;boot&quot; -O ^64bit boot.ext4 45M
+&#125;
+
+gen_uboot_bin
+gen_env_bin
+#gen_linux_bin;
+gen_boot_ext4
+
+gen_image $&#123;GENIMAGE_CFG_SD&#125;   sysimage-sdcard.img
+</code></pre>
+<p>As the name suggests, this should be the final code for generating the image.</p>
+<h4 id="Manually-Executing-the-Code">Manually Executing the Code</h4>
+<p>When reading the following code:</p>
+<blockquote>
+<p>The code is too lengthy to include here; you can view it at the <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_linux_sdk/blob/dev/buildroot-overlay/board/canaan/k230-soc/post-image.sh">repository link</a>.</p>
+</blockquote>
+<p>You might feel overwhelmed. The logic is relatively complex. There's no need to scrutinize it carefully (since we only want to replace the original rootfs.ext4 with our debian.ext4), but running it directly will cause errors due to dependencies on certain parameters and environment variables. Therefore, manual instrumentation is required. The modifications are as follows:</p>
+<pre><code class="language-sh">#!/bin/bash
+set -e
+
+# Print the executed command and all parameters
+echo &quot;###########################################################################################&quot;
+echo &quot;Command: $0&quot;
+echo &quot;All Parameters: $@&quot;
+
+# Print the PATH environment variable
+printenv
+echo &quot;###########################################################################################&quot;
+
+DTB=&quot;k230-canmv.dtb&quot;
+LINUX_DIR=$&#123;BUILD_DIR&#125;/linux-6.6.22
+rootfs_ext4_file=&quot;&quot;
+
+[ $# -ge 2 ] &amp;&amp; DTB=&quot;$2.dtb&quot;
+[ $# -ge 3 ] &amp;&amp; LINUX_DIR=&quot;$3&quot;
+[ $# -ge 4 ] &amp;&amp; rootfs_ext4_file=&quot;$4&quot;
+
+
+echo &quot;###########################################################################################&quot;
+echo &quot;$&#123;DTB&#125;, $&#123;rootfs_ext4_file&#125;&quot;
+echo &quot;###########################################################################################&quot;
+
+#BINARIES_DIR=/home/wangjianxin/k230_linux_sdk/output/k230_canmv_defconfig/images
+UBOOT_BUILD_DIR=$&#123;BUILD_DIR&#125;/uboot-2022.10
+K230_SDK_ROOT=$(dirname $(dirname $&#123;BASE_DIR&#125;))
+GENIMAGE_CFG_SD=$(dirname $(realpath &quot;$0&quot;))/genimage.cfg
+env_dir=$(dirname $(realpath &quot;$0&quot;))
+</code></pre>
+<p>Then, rerun the top-level Makefile. We will get output similar to this:</p>
+<pre><code>###########################################################################################
+Command: board/canaan/k230-soc/post-image.sh
+All Parameters: /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92
+SHELL=/bin/bash
+LSCOLORS=Gxfxcxdxbxegedabagacad
+BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config
+SESSION_MANAGER=local/zjy:@/tmp/.ICE-unix/2277,unix/zjy:/tmp/.ICE-unix/2277
+WINDOWID=121634819
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+XDG_CONFIG_DIRS=/etc/xdg/xdg-xfce:/etc/xdg
+PERL=/usr/bin/perl
+LESS=-R
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+XDG_MENU_PREFIX=xfce-
+TERM_PROGRAM_VERSION=3.4
+GTK_IM_MODULE=fcitx
+CONDA_EXE=/home/junyu33/anaconda3/bin/conda
+_CE_M=
+TMUX=/tmp/tmux-1000/default,50921,1
+LANGUAGE=en_US:en
+......
+HG=hg
+CONFIG_SHELL=/bin/bash
+LC_NUMERIC=en_US.UTF-8
+HOSTCXX_NOCCACHE=/usr/lib/ccache/g++
+OLDPWD=/home/junyu33/Desktop/github/k230_linux_sdk/buildroot-overlay
+TERM_PROGRAM=tmux
+_=/usr/bin/printenv
+###########################################################################################
+</code></pre>
+<p>We can see that there are three input parameters: the images path, the DTB file name, and the Linux kernel source path. A quick look at the source code reveals that the fourth parameter is the rootfs.ext4 file path.</p>
+<p>For the environment variables, first capture all environment variables and save them as A. Then run <code>printenv</code> without the script and save the result as B. Sort both A and B, then diff them to clearly see which new environment variables the script introduces.</p>
+<p>Finally, we can write a command similar to this (run as root):</p>
+<p><code>ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4</code></p>
+<p>Write the generated image to a TF card, boot the development board, and this time the board runs Debian, supports WiFi, and even has 512MB of memory—seemingly perfect!</p>
+<p>However, the story is not over yet.</p>
+<h2 id="Testing-Dial-up">Testing Dial-up</h2>
+<p>Then I attempted to use nmcli for dial-up, but nmcli reported an error again:</p>
+<pre><code class="language-sh">root@zjy:/etc/NetworkManager/system-connections# netplan apply
+
+** (generate:2357): WARNING **: 03:00:44.109: Permissions for /etc/netplan/01-netcfg.yaml are too open. Netplan configuration should NOT be accessible by others.
+/etc/netplan/01-netcfg.yaml:8:3: Error in network definition: unknown key 'pppoe'
+  pppoe:
+</code></pre>
+<p>After searching online, I still couldn't find any similar issues. So, I started debugging from lower-level tools, such as testing whether ppp could work properly:</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo pon
+Couldn't open the /dev/ppp device: No such device or address
+/usr/sbin/pppd: Please load the ppp_generic kernel module.
+</code></pre>
+<p>It seems I have to deal with the Linux kernel again. Here, there are two possible approaches:</p>
+<ul>
+<li>Compile the ppp/pppoe module on the spot and try to insmod it.</li>
+<li>Modify the kernel configuration and recompile the entire Linux kernel.</li>
+</ul>
+<h3 id="Compiling-Modules-In-Place">Compiling Modules In-Place</h3>
+<p>I brushed up on my Linux kernel compilation knowledge, and <a target="_blank" rel="noopener" href="http://kernel.org">kernel.org</a> states:</p>
+<blockquote>
+<p>The command to build an external module is:</p>
+<pre><code class="language-sh">$ make -C &lt;path_to_kernel_dir&gt; M=$PWD
+</code></pre>
+<p>The kbuild system knows that an external module is being built due to the &quot;M=&lt;dir&gt;&quot; option given in the command.</p>
+</blockquote>
+<p>So I followed the same approach. The PPP module I need is located in <code>drivers/net/ppp</code>, so I used the following compilation command on the development board:</p>
+<pre><code class="language-sh">make -C /home/junyu33/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/ M=$PWD
+</code></pre>
+<p>However, it threw errors again:</p>
+<pre><code>/home/junyu33/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/Makefile:1325: warning: overriding recipe for target 'vdso_install'
+arch/riscv/Makefile:144: warning: ignoring old recipe for target 'vdso_install'
+  CALL    scripts/checksyscalls.sh
+  LDS     arch/riscv/kernel/vdso/vdso.lds
+  VDSO32AS arch/riscv/kernel/vdso/rt_sigreturn-32.o
+  VDSO32AS arch/riscv/kernel/vdso/getcpu-32.o
+  VDSO32AS arch/riscv/kernel/vdso/flush_icache-32.o
+  VDSO32AS arch/riscv/kernel/vdso/sys_hwprobe-32.o
+  VDSO32AS arch/riscv/kernel/vdso/note-32.o
+  VDSO32CC arch/riscv/kernel/vdso/hwprobe-32.o
+  VDSO32LD  arch/riscv/kernel/vdso/vdso32.so.dbg
+  OBJCOPY arch/riscv/kernel/vdso/vdso32.so
+  VDSO32SYM include/generated/vdso32-offsets.h
+  LDS     arch/riscv/kernel/vdso/vdso.lds
+  VDSO64AS arch/riscv/kernel/vdso/rt_sigreturn-64.o
+  VDSO64AS arch/riscv/kernel/vdso/getcpu-64.o
+  VDSO64AS arch/riscv/kernel/vdso/flush_icache-64.o
+  VDSO64AS arch/riscv/kernel/vdso/sys_hwprobe-64.o
+  VDSO64AS arch/riscv/kernel/vdso/note-64.o
+  VDSO64CC arch/riscv/kernel/vdso/vgettimeofday-64.o
+  VDSO64CC arch/riscv/kernel/vdso/hwprobe-64.o
+  VDSO64LD  arch/riscv/kernel/vdso/vdso64.so.dbg
+  OBJCOPY arch/riscv/kernel/vdso/vdso64.so
+  VDSO64SYM include/generated/vdso64-offsets.h
+  MODPOST Module.symvers
+ERROR: modpost: &quot;slhc_free&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_uncompress&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_toss&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_remember&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_compress&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+ERROR: modpost: &quot;slhc_init&quot; [drivers/net/ppp/ppp_generic.ko] undefined!
+make[2]: *** [scripts/Makefile.modpost:145: Module.symvers] Error 1
+make[1]: *** [/home/junyu33/linux-3c3f4061b727e6d0e2293357a7475b578d688d92/Makefile:1903: single_modules] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+</code></pre>
+<p>I tried compiling both in-place and cross-compiling on the host, compiling this specific path and the entire kernel, but encountered this error (or even more errors). Through an LLM, I learned that this happens because PPP's dependency, SLHC, is neither compiled into the kernel nor built as a module, causing the PPP compilation to fail.</p>
+<p>I didn't bother looking for where SLHC is located because I was worried that compiling SLHC might reveal further dependencies on other modules. So, I decided to take the second approach.</p>
+<h3 id="Compiling-the-Kernel">Compiling the Kernel</h3>
+<p>Finally, I've reached this damn step, and I'm facing a series of problems again:</p>
+<ol>
+<li>Which parameters should I modify?</li>
+<li>What compilation commands should I use, and what are the compilation outputs?</li>
+<li>Where should I place the outputs in the K230-linux-SDK?</li>
+</ol>
+<h4 id="Modifying-Parameters">Modifying Parameters</h4>
+<p>Since we want to enable the <code>ppp_generic</code> feature, according to the Makefile in <code>drivers/net/ppp</code>:</p>
+<pre><code class="language-makefile"># SPDX-License-Identifier: GPL-2.0
+#
+# Makefile for the Linux PPP network device drivers.
+#
+
+obj-$(CONFIG_PPP) += ppp_generic.o
+obj-$(CONFIG_PPP_ASYNC) += ppp_async.o
+obj-$(CONFIG_PPP_BSDCOMP) += bsd_comp.o
+obj-$(CONFIG_PPP_DEFLATE) += ppp_deflate.o
+obj-$(CONFIG_PPP_MPPE) += ppp_mppe.o
+obj-$(CONFIG_PPP_SYNC_TTY) += ppp_synctty.o
+obj-$(CONFIG_PPPOE) += pppox.o pppoe.o
+obj-$(CONFIG_PPPOL2TP) += pppox.o
+obj-$(CONFIG_PPTP) += pppox.o pptp.o
+</code></pre>
+<p>Of course, we need to enable <code>CONFIG_PPP=y</code>.</p>
+<p>Actually, to be safe, I enabled all the features mentioned here.</p>
+<h4 id="Compiling-and-Generating-the-Image">Compiling and Generating the Image</h4>
+<p>Next, we need to understand where the Linux kernel reads these configurations from. According to related documentation, the Linux kernel reads the development board configurations from <code>arch/riscv/config</code>. For the CanMV-K230 development board, the file read is <code>arch/riscv/config/k230_canmv_defconfig</code>.</p>
+<p>Additionally, I thought of a trick to bypass the second and third problems. While browsing through the files in the K230-linux-SDK, I accidentally discovered two patches in a certain Linux directory. One of them had the following content:</p>
+<pre><code class="language-sh">&gt; cat 0003-driver-net-r8152-use-chip-ID-as-MAC-addr.patch 
+From 588af5417c9b1fcc8e9d6d48b996656096d4c322 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E9=BB=84=E5=AD=90=E6=87=BF?=
+ &lt;huangziyi@canaan-creative.com&gt;
+Date: Fri, 13 Sep 2024 14:57:10 +0800
+Subject: [PATCH] driver: net: r8152 use chip ID as MAC addr
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: 黄子懿 &lt;huangziyi@canaan-creative.com&gt;
+---
+ drivers/net/usb/r8152.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/usb/r8152.c b/drivers/net/usb/r8152.c
+index 127b34dcc5b3..65bcef61b1ec 100644
+--- a/drivers/net/usb/r8152.c
++++ b/drivers/net/usb/r8152.c
+@@ -1808,8 +1808,17 @@ static int determine_ethernet_addr(struct r8152 *tp, struct sockaddr *sa)
+        &#125; else if (!is_valid_ether_addr(sa-&gt;sa_data)) &#123;
+                netif_err(tp, probe, dev, &quot;Invalid ether addr %pM\n&quot;,
+                          sa-&gt;sa_data);
+-               eth_hw_addr_random(dev);
+-               ether_addr_copy(sa-&gt;sa_data, dev-&gt;dev_addr);
++               void __iomem *trng_addr = ioremap(0x91213300, 0x100);
++               unsigned int trng_data = readl(trng_addr);
++               iounmap(trng_addr);
++               char mac_addr_hex[6] = &#123;
++                       0x00, 0xe0, 0x4c,
++                       trng_data &amp; 0xff,
++                       (trng_data&gt;&gt;8) &amp; 0xff,
++                       (trng_data&gt;&gt;16) &amp; 0xff
++               &#125;;
++               // eth_hw_addr_random(dev);
++               ether_addr_copy(sa-&gt;sa_data, mac_addr_hex);
+                netif_info(tp, probe, dev, &quot;Random ether addr %pM\n&quot;,
+                           sa-&gt;sa_data);
+                return 0;
+-- 
+2.46.0
+
+</code></pre>
+<p>I asked an LLM about it and learned that this is in git patch format, which can be generated using <code>git format-patch -1 &lt;commit-hash&gt;</code>. So, I made a separate copy of the Linux source, created a git repository, modified <code>arch/riscv/config/k230_canmv_defconfig</code> to include the PPP-related configurations, and then ran <code>git format-patch -1</code>. The result was as follows:</p>
+<pre><code class="language-sh">&gt; cat 0002-add-ppp-for-canmv-k230.patch                  
+From 5613ac073bf8d9fcc140542458cb3d05c43228a0 Mon Sep 17 00:00:00 2001
+From: junyu33 &lt;2658799217@qq.com&gt;
+Date: Wed, 6 Nov 2024 19:07:02 +0800
+Subject: [PATCH] add ppp for canmv k230
+
+---
+ arch/riscv/configs/k230_defconfig | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/riscv/configs/k230_defconfig b/arch/riscv/configs/k230_defconfig
+index 6e579f78c..f4c993f12 100644
+--- a/arch/riscv/configs/k230_defconfig
++++ b/arch/riscv/configs/k230_defconfig
+@@ -303,3 +303,14 @@ CONFIG_CFG80211_WEXT=y
+ CONFIG_MAC80211=y
+ CONFIG_MEDIA_USB_SUPPORT=y
+ CONFIG_USB_VIDEO_CLASS=y
++
++CONFIG_PPP=y
++CONFIG_PPP_BSDCOMP=y
++CONFIG_PPP_DEFLATE=y
++CONFIG_PPP_FILTER=y
++CONFIG_PPP_MPPE=y
++CONFIG_PPP_MULTILINK=y
++CONFIG_PPPOE=y
++CONFIG_PPPOE_HASH_BITS=4
++CONFIG_PPP_ASYNC=y
++CONFIG_PPP_SYNC_TTY=y
+-- 
+2.43.0
+
+</code></pre>
+<p>It looked quite similar, so I named it <code>0002-add-ppp-for-canmv-k230.patch</code> and saved it in the same directory as the other patches. Then, I deleted the Linux source downloaded by the K230-linux-SDK, ran the top-level Makefile of the project again, and generated the image.</p>
+<h3 id="Hacking-the-Image-Again">Hacking the Image Again</h3>
+<p>Of course, after putting so much effort into the Debian rootfs, I really didn't want to &quot;restore the system to factory settings.&quot; So, once again, I extracted the Linux partition of the Buildroot image and overwrote the corresponding partition of the Debian image, then attempted to boot.</p>
+<p>The result of using <code>zcat</code> is as follows:</p>
+<pre><code class="language-sh">junyu33@zjy:~$ zcat /proc/config.gz | grep CONFIG_PPP
+CONFIG_PPP=y
+CONFIG_PPP_BSDCOMP=y
+CONFIG_PPP_DEFLATE=y
+CONFIG_PPP_FILTER=y
+CONFIG_PPP_MPPE=y
+CONFIG_PPP_MULTILINK=y
+CONFIG_PPPOE=y
+# CONFIG_PPPOE_HASH_BITS_1 is not set
+# CONFIG_PPPOE_HASH_BITS_2 is not set
+CONFIG_PPPOE_HASH_BITS_4=y
+# CONFIG_PPPOE_HASH_BITS_8 is not set
+CONFIG_PPPOE_HASH_BITS=4
+CONFIG_PPP_ASYNC=y
+CONFIG_PPP_SYNC_TTY=y
+</code></pre>
+<p>This confirms that our previous modifications to the Linux partition were effective.</p>
+<p><code>pppd</code> also runs normally:</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo pppd --version
+[sudo] password for junyu33: 
+pppd version 2.5.0
+</code></pre>
+<p>No issues at all—seems like this kind of hack is really quite useful.</p>
+<h3 id="Client-Side-Debugging">Client-Side Debugging</h3>
+<p>Through the debugging at the above levels, we have resolved the issue of PPPoE unavailability at the driver level. Now, the only remaining problem lies in the user configuration, which is much simpler, and the subsequent steps are straightforward without many alternative paths to choose from.</p>
+<p>Since NetworkManager is already installed, we can directly run the corresponding commands:</p>
+<pre><code class="language-sh">sudo nmcli connection add type pppoe ifname enx00e04ca7c468 con-name mypppoe username &quot;&lt;username&gt;&quot; password &quot;&lt;password&gt;&quot;
+sudo nmcli connection up mypppoe 
+</code></pre>
+<p>Hmm, the connection still failed. Then, I checked <code>ifconfig</code> and noticed that <code>enx00e04ca7c468</code> did not have an IPv4 address. So, I added a DHCP command before the connection command:</p>
+<pre><code class="language-sh">sudo dhclient enx00e04ca7c468
+sudo nmcli connection add type pppoe ifname enx00e04ca7c468 con-name mypppoe username &quot;&lt;username&gt;&quot; password &quot;&lt;password&gt;&quot;
+sudo nmcli connection up mypppoe 
+</code></pre>
+<p>This time, the connection succeeded without errors. I then attempted to test the ping using this PPP interface, and the results were as follows:</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo ping -I ppp0 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) from 220.167.40.175 ppp0: 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=56 time=33.2 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=56 time=33.4 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=56 time=33.4 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=56 time=33.0 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=56 time=33.4 ms
+</code></pre>
+<p>The dial-up issue has finally been completely resolved.</p>
+<h2 id="Testing-DDNS">Testing DDNS</h2>
+<p>I previously uploaded the script I used for DDNS to <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynamic-dns-py">GitHub</a>. I cloned it onto the development board, wrote the configuration file, and ran the script—only to be told that <code>curl</code> wasn't installed. I thought, isn't <code>curl</code> a pretty basic tool? How could it not be included?</p>
+<p>Then there was the issue of Python package dependencies. Since Python 3.12 restricts the use of <code>pip</code> for installing packages in the system environment, and I didn't feel like installing Anaconda or Virtualenv on this development board—especially since the project only depends on <code>requests</code>—I solved it with one line:</p>
+<pre><code class="language-sh">sudo apt install python3-requests
+</code></pre>
+<p>After starting the script, there were no errors. Within a few minutes, I was able to SSH into the development board using my domain name from the host machine.</p>
+<h2 id="Testing-SSH-and-Making-It-Persistent">Testing SSH and Making It Persistent</h2>
+<p>Now we come to the most important and critical step: since the school dormitory experiences power outages at night, I need to ensure that after a power loss, the DDNS service automatically resumes when power is restored at 6 a.m. the next day. Specifically, we need to achieve the following:</p>
+<ol>
+<li>Enable Debian to start on boot.</li>
+<li>Automatically initiate dial-up on startup.</li>
+<li>Automatically start DDNS on boot.</li>
+<li>Allow the development board to operate independently of a computer.</li>
+</ol>
+<h3 id="Boot-Debian-on-Startup">Boot Debian on Startup</h3>
+<p>This is not difficult. Just enter U-Boot during startup and change the wait time from 3 to 0.</p>
+<pre><code class="language-sh">setenv bootdelay 0
+saveenv
+</code></pre>
+<p>The consequence of doing this is that I can no longer enter U-Boot, but it doesn't really matter. If I ever need to change it back, I can just reflash the Linux partition.</p>
+<h3 id="Auto-Dial-on-Boot">Auto Dial on Boot</h3>
+<p>Create a systemd service:</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/pppoe-connection.service 
+[sudo] password for junyu33: 
+[Unit]
+Description=Start PPPoE Connection mypppoe
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStartPre=dhclient enx00e04ca7c468
+ExecStart=/usr/bin/nmcli connection up mypppoe
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>After restarting, it was found that nmcli did not have permission to dial, so the user was changed to run as root.</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/pppoe-connection.service 
+[sudo] password for junyu33: 
+[Unit]
+Description=Start PPPoE Connection mypppoe
+After=network.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStartPre=dhclient enx00e04ca7c468
+ExecStart=/usr/bin/nmcli connection up mypppoe
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>After restarting again, the dial-up functioned normally.</p>
+<h3 id="Auto-DDNS-on-Boot">Auto DDNS on Boot</h3>
+<p>Since the IP may change, ensure it updates once at boot and every half hour:</p>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/ddns-update.timer 
+[Unit]
+Description=Run DDNS update script every 30 minutes
+ 
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+Persistent=true
+ 
+[Install]
+WantedBy=timers.target
+</code></pre>
+<p>Then write the specific service content, noting the following:</p>
+<ul>
+<li>Do not use a proxy, otherwise the public IP will be obtained from the proxy</li>
+<li>The written script is not compatible with sh syntax, so it must be run with <code>bash</code></li>
+<li>Some parts of the script use relative paths, so the PWD must be specified</li>
+</ul>
+<pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/ddns-update.service 
+[Unit]
+Description=Run DDNS update script
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/junyu33/netlify-dynamic-dns-py
+ExecStartPre=/usr/bin/env http_proxy= https_proxy=
+ExecStart=/bin/bash /home/junyu33/netlify-dynamic-dns-py/ddns.sh
+</code></pre>
+<h3 id="Running-the-Development-Board-Independently-from-the-Computer">Running the Development Board Independently from the Computer</h3>
+<p>This was the only part of the process that felt like stumbling in the dark. Since I was short on power adapters, I ended up using one that hadn't been used in a long time. As it turned out, that particular adapter was probably faulty—even though the power indicator light was on, Debian simply wouldn't boot. As a result, I spent quite a while waiting on my host computer, unable to SSH in.</p>
+<p>I then reconnected the development board to my computer and tried SSH again—this time it worked. That ruled out any issues with the development board's system.</p>
+<p>Next, I switched to the power adapter I normally use for my headphones, and it worked. So it was clear the issue was with the old adapter I had used earlier.</p>
+<p>After that, I plugged the power and Ethernet cables into my roommate's unused USB charging hub and broadband port (he's away for an internship in Beijing), and it worked again. It was almost lights-out time by then, so I decided to call it a night and see whether I could SSH into both my development board and my workstation computer the next day.</p>
+<p>The next morning, as soon as I woke up, I tried connecting from my own computer—everything worked perfectly. And so:</p>
+<p>Congratulations—I've finally achieved the dream of “working from home” once again!</p>
+<h1>Lessons Learned</h1>
+<ol>
+<li>You get what you pay for—high quality rarely comes cheap.</li>
+<li>When shopping online, read the negative reviews. Don't just buy something because it's popular.</li>
+<li>Always keep a clear understanding of what you're doing, or it's easy to get lost in the woods.</li>
+<li>Break out of the “student mindset”—don't learn something just for the sake of learning it. That approach is highly inefficient.</li>
+</ol>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

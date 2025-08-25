@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/03/07/pwn_environ/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/03/07/pwn_environ/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>How to create an extremely comfortable pwn environment</h1>
+	<p>If only we could focus our energy on writing shellcode instead of constantly switching back and forth between the virtual machine and VSCode—what a delight that would be.</p>
+<p>Let's assume the reader has just installed VSCode with no plugins whatsoever, starting from scratch.</p>
+<p>The entire process will likely take half a day to a full day.</p>
+<p>Result preview:</p>
+<img src="https://img.junyu33.me/blog/pwn_environ/show.png">
+<span id="more"></span>
+<h1>Setting Up a Linux System and Beautifying the Shell</h1>
+<h2 id="Method-1-Using-a-Virtual-Machine-Recommended">Method 1: Using a Virtual Machine (Recommended)</h2>
+<p>I personally recommend downloading the virtual machine version from the official Kali website. This way, installation is just a matter of importing it, which takes only a few minutes and saves you from many potential pitfalls.</p>
+<p>Additionally, once installed, the packages pre-installed in the system are generally sufficient for most tasks. Tools like Python 3, pip, GDB, and SSH are all pre-configured, making it very convenient.</p>
+<p>The built-in terminal, Zsh, also has a visually appealing interface and requires minimal additional configuration.</p>
+<h2 id="Method-2-Using-WSL-WSL2">Method 2: Using WSL/WSL2</h2>
+<p>If your Windows build version is lower than 18362, I do not recommend choosing this method because earlier versions can only install WSL, and WSL is not a true Linux kernel. More specifically, you cannot run 32-bit programs.</p>
+<p>If your Windows build version is lower than 19041, installing WSL2 will enable Hyper-V, which may cause conflicts with VMware virtual machines. Therefore, I also do not recommend it for personal use.</p>
+<blockquote>
+<p>For experienced users: If you have previously installed WSL, you can refer to this upgrade guide: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/356397851">https://zhuanlan.zhihu.com/p/356397851</a></p>
+</blockquote>
+<p>My system build version is 18363, so I installed WSL. I will use the installation of WSL as an example for explanation.</p>
+<h3 id="Enable-WSL-and-Download-a-Linux-Subsystem">Enable WSL and Download a Linux Subsystem</h3>
+<p>Windows 10 Settings → Update &amp; Security → For Developers → Developer Mode</p>
+<p>Press Win+Q → Turn Windows features on or off → Restart</p>
+<p>Go to the Microsoft Store and download a Linux distribution of your choice. I opted for Ubuntu 18.04.</p>
+<p><strong>Remember to change the software source as the first thing after installation.</strong></p>
+<p>Learn to survive in Vim.</p>
+<p>If you have access to a proxy, consider installing proxychains to avoid the agony of slow <code>git clone</code> operations.</p>
+<h3 id="Customize-and-Beautify-the-Linux-Terminal-Optional">Customize and Beautify the Linux Terminal (Optional)</h3>
+<p>This process can be divided into the following three main steps:</p>
+<ol>
+<li>Install Zsh</li>
+<li>Install Oh-My-Zsh</li>
+<li>Configure the Powerlevel9k theme in Oh-My-Zsh</li>
+</ol>
+<p>(These steps might keep you busy for a while 😉)</p>
+<p>Reference Links:</p>
+<p><a target="_blank" rel="noopener" href="https://www.thisfaner.com/p/powerlevel9k-zsh/#powerlevel9k-introduction">https://www.thisfaner.com/p/powerlevel9k-zsh/#powerlevel9k-introduction</a><br>
+<a target="_blank" rel="noopener" href="https://www.sysgeek.cn/install-zsh-shell-ubuntu-18-04/">https://www.sysgeek.cn/install-zsh-shell-ubuntu-18-04/</a></p>
+<h2 id="Setting-Up-Shared-Folders">Setting Up Shared Folders</h2>
+<h3 id="VMware">VMware</h3>
+<p>Right-click the virtual machine → Settings → Options → Shared Folders → Always Enabled → Add Path</p>
+<p>In Kali: The path to the shared folder is <code>/mnt/hgfs</code>.</p>
+<p>If Kali was directly imported, no additional mounting is required.</p>
+<p>Otherwise, refer to this article: <a target="_blank" rel="noopener" href="https://www.cnblogs.com/wuhongbin/p/14052984.html">https://www.cnblogs.com/wuhongbin/p/14052984.html</a></p>
+<h3 id="WSL">WSL</h3>
+<p>You can directly see all the drive letters of the host system in <code>/mnt/</code> without the need for sharing.</p>
+<h1>Configuring a Pwn Environment in Linux</h1>
+<h2 id="Using-IDA-Pro-on-Linux-Updated-on-4-29-2023">Using IDA Pro on Linux (Updated on 4/29/2023)</h2>
+<blockquote>
+<p>If you can afford a legitimate license for the Linux version, you may skip this section.</p>
+<p>ref: <a target="_blank" rel="noopener" href="https://www.debugwar.com/article/activate-IDAPython-with-wine-IDA-under-linux">https://www.debugwar.com/article/activate-IDAPython-with-wine-IDA-under-linux</a></p>
+</blockquote>
+<p>It is assumed that most readers have access to a study version of IDA Pro 7.7, albeit the Windows edition. To run IDA Pro in a Linux environment, follow these steps (using Ubuntu 22.04.2 LTS as an example):</p>
+<ol>
+<li>Download <code>winehq</code>, selecting the <code>stable-branch</code>: <a target="_blank" rel="noopener" href="https://wiki.winehq.org/Ubuntu">https://wiki.winehq.org/Ubuntu</a></li>
+<li>Run <code>ida.exe</code> or <code>ida64.exe</code> once using <code>wine</code>. At this point, IDA will prompt that there is no Python environment.</li>
+<li>It is recommended to download the portable package of <code>python3.8.10</code>:<br>
+<code>wget https://www.python.org/ftp/python/3.8.10/python-3.8.10-embed-amd64.zip</code><br>
+and place it in the corresponding Windows partition of wine at <code>C:\Program Files\Python3</code><br>
+(i.e., the Linux partition path <code>~/.wine/drive_c/Program Files/Python3</code>).</li>
+<li>Add the path from step 3 to the <code>PATH</code> in the Windows registry, specifically the <code>PATH</code> key value under<br>
+<code>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment</code>.</li>
+<li>Add <code>C:\Program Files\Python3\python38.dll</code> to the <code>Python3TargetDLL</code> key value under<br>
+<code>HKEY_CURRENT_USER\Software\Hex-Rays</code> (create the key if it does not exist).</li>
+<li>At this point, opening IDA should allow the use of <code>IDAPython</code>, but plugins related to <code>yara</code> and <code>keystone</code> may still report errors. This is because the relevant modules have not been installed via <code>pip</code>.</li>
+<li>Execute the <code>pip</code> installation script:<br>
+<code>wine python https://bootstrap.pypa.io/get-pip.py</code><br>
+and add the line <code>./Lib/site-packages</code> to the <code>python38._pth</code> file in the <code>Python3</code> directory.<br>
+Executing <code>wine python.exe -m pip --version</code> should then display the <code>pip</code> version.</li>
+<li>Install the required modules:<br>
+<code>wine python -m pip install yara-python keystone-engine six</code></li>
+<li>(Optional) Add <code>pip</code> to the <code>PATH</code> (<code>C:\Program Files\Python3\Scripts</code>), integrate the ChatGPT plugin <code>gepetto.py</code> (requires installing the <code>openai</code> module), configure theme files, etc.</li>
+<li>Do not run <code>idapyswitch.exe</code>, as it may undo all previous progress.</li>
+</ol>
+<h2 id="Tools-Required-for-Writing-Shellcode">Tools Required for Writing Shellcode</h2>
+<ol>
+<li>Install Python, recommended version between 3.6 and 3.10.</li>
+<li>Install the latest version of pip.</li>
+<li>Install pwntools.</li>
+</ol>
+<h2 id="Debugging-Tools">Debugging Tools</h2>
+<ol>
+<li>
+<p>Install gdb. (It is recommended to also install gcc and g++.)</p>
+</li>
+<li>
+<p>Install gdb plugins: peda, gef, and pwndbg. (I used the gdbplugins project for a bundled installation.)</p>
+</li>
+<li>
+<p>Since these three plugins cannot coexist, you need to write a startup selection script or remember the startup methods for each plugin.</p>
+<blockquote>
+<p>Selection script: <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/94a71af2022a">https://www.jianshu.com/p/94a71af2022a</a><br>
+Or edit ~/.gdbinit:</p>
+</blockquote>
+<pre><code class="language-bash">source ~/GdbPlugins/gef/gef.py
+#source ~/GdbPlugins/pwndbg/gdbinit.py
+#source ~/GdbPlugins/peda/peda.py
+</code></pre>
+<blockquote>
+<p>Uncomment the line for the plugin you want to use.</p>
+</blockquote>
+</li>
+</ol>
+<h1>Configuring VSCode Remote Connection</h1>
+<p>This process is relatively complex and has many pitfalls, so be mentally prepared.</p>
+<h2 id="Configuring-SSH-on-Linux">Configuring SSH on Linux</h2>
+<p>Kali Linux should come with it pre-installed, so no additional installation is needed.</p>
+<p><code>sudo apt-get install ssh</code></p>
+<p>Change <code>PermitRootLogin</code> to <code>yes</code> in <code>/etc/ssh/sshd_config</code> using <code>vim</code>.</p>
+<p><code>service ssh start</code></p>
+<h3 id="Configuring-the-Port-Optional">Configuring the Port (Optional)</h3>
+<p><code>vim /etc/ssh/sshd_config</code></p>
+<blockquote>
+<p>In vim, the find command is executed in normal mode by typing <code>/</code> followed by <code>#port</code>, as vim defaults to exact match and is case-sensitive.<br>
+(If you are unsure what normal mode is, press the <code>Esc</code> key a few times.)</p>
+</blockquote>
+<p>The default port is 22. To change it, remove the comment symbol.</p>
+<h2 id="Configuring-SSH-on-Windows">Configuring SSH on Windows</h2>
+<p>It is recommended to install Git, which comes with SSH pre-installed.</p>
+<p>The remaining configuration steps are similar to those on Linux.</p>
+<h3 id="Windows-Environment-Testing">Windows Environment Testing</h3>
+<p>Open your terminal and enter:</p>
+<p><code>ssh kali@&lt;your outer ip in kali&gt; -p &lt;your modified port&gt;</code> (for Kali virtual machine)</p>
+<p><code>ssh &lt;your name&gt;@localhost -p &lt;your modified port&gt;</code> (for WSL)</p>
+<p>If you enter the correct password and successfully access the Linux terminal, it means the configuration is successful.</p>
+<h3 id="Configuring-SSH-Keys-Optional">Configuring SSH Keys (Optional)</h3>
+<p>If you prefer not to enter a password each time, you can resolve this by deploying a pair of SSH keys. (The principle is the same as deploying a blog.)</p>
+<p>You can refer to this article: <a target="_blank" rel="noopener" href="https://blog.csdn.net/andriodhahaha/article/details/104809303">https://blog.csdn.net/andriodhahaha/article/details/104809303</a></p>
+<h2 id="Configuring-the-VSCode-SSH-Plugin">Configuring the VSCode SSH Plugin</h2>
+<p>Search for <code>Remote - SSH</code>, install it, and then click the newly appeared <code>Remote Explorer</code> menu on the side.</p>
+<p>Click the plus sign, re-enter the SSH command you previously used in the terminal, and wait for VSCode to install the VSCode server on the remote Android device.</p>
+<h3 id="Pitfall-1-—-bad-owner-or-permissions-on-ssh-config">Pitfall 1 — bad owner or permissions on /.ssh/config</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chaoenhu/article/details/103698804">https://blog.csdn.net/chaoenhu/article/details/103698804</a></p>
+<h3 id="Pitfall-Two-The-vscode-server-appears-to-freeze-during-installation">Pitfall Two - The vscode server appears to freeze during installation</h3>
+<p>It looks something like this:</p>
+<img src="https://img.junyu33.me/blog/pwn_environ/fake_error.png">
+<p>Actually, it hasn't frozen—it has already finished installing. All you need to do is click the plus sign in the upper right corner to open a new terminal.</p>
+<h3 id="Installing-Plugins-on-VSCode-Server-Optional">Installing Plugins on VSCode Server (Optional)</h3>
+<p>The process is similar to installing plugins locally, but you need to click <code>Install on 192.168.xxx.xxx/127.0.0.1</code> to ensure it is installed on the server, not your local machine.</p>
+<h3 id="Frequently-Asked-Questions——Updated-on-3-25-2022">Frequently Asked Questions——Updated on 3/25/2022</h3>
+<p>The Pylance plugin in VSCode may fail to recognize some functions in pwntools and generate warnings. You can ignore these warnings by following the steps below:</p>
+<ol>
+<li>
+<p>Press Ctrl+Shift+P and type &quot;settings.json&quot;.</p>
+</li>
+<li>
+<p>You will be taken to a settings interface. Ignore any existing content. Find the option <code>edit in setting.json</code> in your <strong>remote IP</strong> settings and click on it.</p>
+</li>
+<li>
+<p>Add the following code on the line above the last closing brace:</p>
+<pre><code class="language-json">   &quot;python.analysis.diagnosticSeverityOverrides&quot;: &#123;
+        &quot;reportUndefinedVariable&quot;: &quot;none&quot;
+   &#125;
+</code></pre>
+</li>
+</ol>
+<p>The Pylance plugin in VSCode may also report the <code>code is unreachable</code> error extensively due to the <code>sendline</code> series of functions. The modification method is as follows:</p>
+<p>Check the source code of <code>sendline</code> and modify the following section:</p>
+<pre><code class="language-python">    def send_raw(self, data):
+        &quot;&quot;&quot;send_raw(data) Should not be called directly. Sends data to the tube. Should return ``exceptions.EOFError``, if it is unable to send any more, because of a close tube. &quot;&quot;&quot;
+
+        raise EOFError('Not implemented')
+</code></pre>
+<p>Change <code>raise EOFError('Not implemented')</code> to <code>raise NotImplementedError</code>.</p>
+<h2 id="VSCode-Interface-Tweaks">VSCode Interface Tweaks</h2>
+<p>Right-click in <strong>non-editing areas</strong> to make adjustments.</p>
+<p><strong>After completing these steps, we can start coding happily!</strong></p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

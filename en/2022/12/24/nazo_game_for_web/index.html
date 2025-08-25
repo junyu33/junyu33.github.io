@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2022/12/24/nazo_game_for_web/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2022/12/24/nazo_game_for_web/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>nazo game for web</h1>
+	<p>Excerpt from the web project report, to be open-sourced at an appropriate time.</p>
+<p>To ensure security, on December 23, 2022, I redeployed <code>babyweb.py</code> using Docker, replacing the original Nginx server.</p>
+<span id="more"></span>
+<h1>Project Overview</h1>
+<p>This project is a simple web puzzle game where players read the requirements of each level, deduce the corresponding answers, input them into the URL, and proceed to the next level. If all levels are completed, players are redirected to a success page. The reasons for choosing this project are:</p>
+<p><strong>1.</strong> <strong>To serve as an important component of my personal homepage.</strong></p>
+<p><strong>2.</strong> <strong>To allow players to review web knowledge from this semester while solving puzzles.</strong></p>
+<p><strong>3.</strong> <strong>To experience the entire process from conceptualizing puzzles, designing the frontend, developing the backend, deploying to a server, and maintaining the project.</strong></p>
+<p><strong>4.</strong> <strong>To create a project from scratch, 100% hand-coded.</strong></p>
+<h1>System Analysis</h1>
+<h2 id="Business-Analysis">Business Analysis</h2>
+<p>Frontend: Utilizes the Bootstrap framework, with jQuery and AJAX employed in Level 10 for submitting user input.</p>
+<p>Backend: Web routing and POST requests in Level 8 are implemented using the Express framework for Node.js, while the backend for Level 10 is built with Flask, using MySQL to store routing data.</p>
+<p>Deployment: Source code is synchronized to GitHub, deployed and reverse-proxied using Vercel, with Nginx used locally on the server for reverse proxying.</p>
+<h2 id="Business-Process">Business Process</h2>
+<h3 id="Frontend">Frontend</h3>
+<img src = 'https://img.junyu33.me/blog/nazo_game_for_web/1.png'>
+<h3 id="Backend-and-Deployment">Backend and Deployment</h3>
+<img src = 'https://img.junyu33.me/blog/nazo_game_for_web/2.png'>
+<blockquote>
+<p>Nginx should now be replaced with Docker.</p>
+</blockquote>
+<h2 id="System-Design">System Design</h2>
+<h3 id="Overall-Design">Overall Design</h3>
+<p>The project is themed as a challenge-based game that requires web knowledge. It will be deployed on a personal server and utilize technologies such as Bootstrap, jQuery, AJAX, Flask, Node.js, MySQL, Nginx, and Vercel.</p>
+<h3 id="Interface-Design">Interface Design</h3>
+<img src = 'https://img.junyu33.me/blog/nazo_game_for_web/3.png'>
+<h3 id="Input-Output-Design">Input/Output Design</h3>
+<p>For levels 1-7 and level 9, submit the answers via the website.<br>
+Level 8 will utilize a POST request, and level 10 will involve interaction with the shell.</p>
+<h3 id="Module-Design">Module Design</h3>
+<img src='https://img.junyu33.me/blog/nazo_game_for_web/4.png'>
+<p>The game is divided into three parts: first, the welcome screen, which provides the game rules and introduction; then the game interface, containing levels 1 to 10 and error messages; and finally, the success screen, displaying a success message and about information.</p>
+<h1>Specific Implementation</h1>
+<h2 id="Personal-Homepage-Module-junyu33-me">Personal Homepage Module - <a target="_blank" rel="noopener" href="http://junyu33.me">junyu33.me</a></h2>
+<p>Static webpage, implemented with pure HTML + CSS:</p>
+<p>Use Bootstrap to reserve the central 1/2 area for content. When the height is set to 90vh, centering the content vertically works perfectly. The upper section contains the title, and the middle image uses the <code>border-radius: 50%</code> property. Then use an <code>&lt;hr&gt;</code> as a divider, and the lower section includes 4 href subdomains implemented with Bootstrap buttons.</p>
+<h2 id="Puzzle-Game-Module——nazo-junyu33-me">Puzzle Game Module——<a target="_blank" rel="noopener" href="http://nazo.junyu33.me">nazo.junyu33.me</a></h2>
+<blockquote>
+<p>The following content contains partial solution analysis. Proceed with caution!!</p>
+</blockquote>
+<p>The Nazo game involves solving a problem presented on the page and entering the answer after the domain name to proceed to the next level. After completing all the levels designed by the creator, players can access a congratulatory page indicating they have cleared the game.</p>
+<p>This is a comprehensive full-stack project and the main component of this course design. It utilizes technologies such as HTML, CSS, JavaScript, Bootstrap, jQuery, AJAX, Node.js, Flask, Nginx, and MySQL.</p>
+<h3 id="Welcome-Interface">Welcome Interface</h3>
+<p>Primarily introduces the game rules. The page layout is similar to the personal homepage, with Bootstrap-styled buttons that use routing to link to the first level.</p>
+<h3 id="Level-1">Level 1</h3>
+<p>This level is a simple test of HTML5 history and the player's Googling skills, with nothing particularly special. Here, the Bootstrap card element is used to distinguish between the level name and the content. Subsequent questions will follow this template.</p>
+<h3 id="Level-2">Level 2</h3>
+<p>Testing the player's basic knowledge of HTML5 keywords. Here, Bootstrap's list elements are used to present the four provided options, and the code element is utilized to display inline code snippets.</p>
+<h3 id="Level-3">Level 3</h3>
+<p>A simple test of the player's understanding of CSS content, requiring them to check the CSS source code to identify the font used.</p>
+<h3 id="Level-4">Level 4</h3>
+<p>This level tests your understanding of CSS hex and RGB color codes <s>as well as your ability to distinguish colors by eye</s>. You may use the color picker in the developer tools to complete this task. JavaScript pop-up windows are used here to provide corresponding hints.</p>
+<h3 id="Level-5">Level 5</h3>
+<p>This level tests the player's understanding of CSS positioning, still using a multiple-choice format with four options to choose from. There is nothing particularly special about this stage.</p>
+<h3 id="Level-6">Level 6</h3>
+<p>This level tests the user's understanding of JavaScript data types. To limit possible answers, the question specifies the starting characters (while also hinting at the character length to reduce difficulty <s>making brute-forcing easier</s>).</p>
+<p>There are three correct answers for this level. By storing the answers in a database, inconsistencies caused by URL encoding are avoided, allowing multiple routes to point to a single file.</p>
+<h3 id="Level-7">Level 7</h3>
+<p>This level tests the understanding of JavaScript syntactic sugar <code>reduce</code> and Bootstrap's responsive image feature. The correct solution involves solving it through brute-force iteration.</p>
+<h3 id="Level-8">Level 8</h3>
+<p>This level tests the understanding of basic backend operations. Initially, it's clear that all four languages can be used for backend development, so simply inputting these options directly won't work. After inspecting the webpage source code, a comment is found instructing to POST one of the options. Tools such as curl, Hackbar, Postman, or even Burp Suite can be used to achieve this.</p>
+<h3 id="Level-9">Level 9</h3>
+<p>This level tests the player's understanding of web technologies and information gathering skills. First, by inspecting the webpage source code, it can be observed that each page uses Bootstrap 5. Further examination of Bootstrap 5's CSS reveals numerous instances of the term &quot;flex,&quot; which allows option C to be eliminated.</p>
+<p>Additionally, by reviewing the source code of the answer to Level 8, a comment can be found: <code>my_server: node.js</code>. This allows option B to be eliminated.</p>
+<p>Since the server in the response header is Vercel and the ping result also points to Vercel's IP address, it can be concluded that the website uses a reverse proxy, thus eliminating option D.</p>
+<h3 id="Level-10">Level 10</h3>
+<p>This level tests the player's basic penetration testing skills. It might be challenging without a public IP address. (The specific process is detailed in the Flask backend section.)</p>
+<p>The input box here uses AJAX and jQuery technology to combine the user's command with the domain name into a GET request sent to the server, and uses the <code>alert</code> function to receive the server's response content.</p>
+<h3 id="Answer-Error-Page">Answer Error Page</h3>
+<p>If the answer is not present in the RUOTE field of the database, the backend will write a 404 in the header and return <code>err.html</code>.</p>
+<h3 id="Clearance-Page">Clearance Page</h3>
+<p>If the answer is not found in the RUOTE field of the database, the backend will write a 404 in the header and return err.html.</p>
+<h3 id="Node-js-Backend">Node.js Backend</h3>
+<p>Built using the Express framework, it extracts user input routes through the <code>body-parser</code> middleware and connects to a database storing routes and corresponding files to determine if the user's input is the correct answer. If it exists, the corresponding HTML is retrieved and written to the response; otherwise, a 404 status is written to the header and <code>err.html</code> is returned. A dedicated route is used to handle the POST request for the eighth level.</p>
+<pre><code class="language-javascript">const &#123; readFileSync &#125; = require(&quot;fs&quot;);
+const http = require(&quot;http&quot;);
+const url = require(&quot;url&quot;);
+
+var express = require('express');
+var app = express();
+
+var bodyParser = require('body-parser');
+app.use(bodyParser());
+
+var mysql      = require('mysql');
+var connection = mysql.createConnection(&#123;
+  host     : '47.114.45.27',
+  user     : 'root',
+  password : '******',
+  database : 'nazo_answer'
+&#125;);
+
+connection.connect();
+
+app.post('/31337', function(req, res) &#123;
+   if ( req.body.Go != undefined) &#123;
+      var data = readFileSync(&quot;./answer.html&quot;);
+      res.end(data);
+   &#125; else &#123;
+      var data = readFileSync(&quot;./level8.html&quot;);
+      res.end(data);
+   &#125;
+&#125;);
+
+app.get('*', function(req, res) &#123;
+   var route = req.params[0];
+   connection.query('SELECT `PATH` FROM `ANSWER` WHERE `ROUTE` = &quot;' + route + '&quot;', function (error, results, fields) &#123;
+      if (error) throw error;
+      if (results.length &gt; 0) &#123;
+         var data = readFileSync(&quot;./&quot; + results[0].PATH);
+         res.end(data);
+      &#125; else &#123;
+         res.writeHead(404, &#123;'Content-Type': 'text/html'&#125;)
+         var data = readFileSync(&quot;./err.html&quot;);
+         res.end(data);
+      &#125;
+   &#125;);
+&#125;);
+
+
+app.listen(&quot;80&quot;,()=&gt;&#123;
+    console.log(&quot;serv running on http://127.0.0.1:80&quot;);
+&#125;);
+
+</code></pre>
+<h3 id="Flask-Backend">Flask Backend</h3>
+<p>This demonstrates an application with an SSRF vulnerability. First, by examining the source code, it can be seen that user input is not filtered, allowing the construction of specific strings to gain shell access to the server. It can also be observed that the behavior of the <code>date</code> command causes the shell output to filter letters and numbers shorter than 3 characters, making it impossible to obtain the key using the <code>cat</code> command. Even attempts to convert it to other encodings like base64 and combine it with <code>head</code> or <code>tail</code> commands make it difficult to piece together the complete encoded string.</p>
+<p>At the same time, the shell user is not <code>root</code> and lacks sufficient permissions to modify HTML files, so appending the key to the end of an HTML file is also not feasible.</p>
+<blockquote>
+<p>Now that it's running in Docker, the HTML is not inside the container at all, making this method completely ineffective.</p>
+</blockquote>
+<p>One feasible approach is to reverse the shell to a public IP (usually requiring your own server). The specific process is omitted here.</p>
+<pre><code class="language-python">import os
+import pathlib
+import tempfile
+import contextlib
+import urllib
+import subprocess
+import ctypes
+
+from flask import Flask, request, session, redirect
+from flask_cors import CORS
+
+level = 10
+challenge_host = &quot;localhost&quot;
+hacker_host = &quot;localhost&quot;
+app = Flask(__name__)
+CORS(app)
+
+def level10():
+    timezone = request.args.get(&quot;timezone&quot;, &quot;UTC&quot;)
+    return subprocess.check_output(f&quot;TZ=&#123;timezone&#125; date&quot;, shell=True, encoding=&quot;latin&quot;)
+
+@app.route(&quot;/&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+@app.route(&quot;/&lt;path:path&gt;&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+def catch_all(path=&quot;&quot;):
+    challenge = globals()[f&quot;level&#123;level&#125;&quot;]
+    return challenge()
+
+def challenge():
+    app.run(challenge_host, 8080)
+
+challenge()
+</code></pre>
+<h2 id="Deploying-to-the-Server-and-Implementing-Domain-with-HTTPS">Deploying to the Server and Implementing Domain with HTTPS</h2>
+<p>First, upload the code to a private GitHub repository, then pull it down on the server. For the Node.js backend, since <code>npm install xxx --save</code> was executed earlier, the server only needs to run <code>npm install</code>. The Python backend only requires installing Flask and Flask-CORS. Finally, use <code>sudo chmod</code> to set all files to read-only permissions to prevent writing keys into HTML. Since the Python Flask backend does not require root privileges to start, this will not affect the players' gaming experience later.</p>
+<p>Deploying the domain and implementing HTTPS is relatively more challenging. Since my domain was obtained for free (for one year) through the GitHub Student Pack on Namecheap and is not registered with an ICP license, I cannot directly map the DNS A record to the server's IP address. The only solution here is to use reverse proxy.</p>
+<p>There are two methods for reverse proxy: one is using Nginx, but Nginx requires an intermediate server that must either be ICP-licensed or located overseas (which creates a circular dependency issue, making it unfeasible). The other method is to use a third-party service for reverse proxy, such as Vercel. The specific steps are as follows:</p>
+<ol>
+<li>
+<p>Install Vercel's client locally using npm and log in.</p>
+</li>
+<li>
+<p>Write the reverse proxy configuration file <code>nazo.json</code>:</p>
+</li>
+</ol>
+<pre><code class="language-json">&#123;
+    &quot;version&quot;: 2,
+    &quot;routes&quot;: [
+      &#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;http://&lt;server ip&gt;&quot;&#125;
+    ]
+&#125;
+</code></pre>
+<ol start="3">
+<li>Run <code>vercel -A nazo.json --prod</code>.</li>
+</ol>
+<p>This method allows access to websites hosted on domestic servers without an ICP license. The drawback is that since domestic DNS may pollute Vercel's domain, the access speed will certainly be slower than that of domestic websites.</p>
+<p><s>For safety, I eventually set up an Nginx server on my own server and reverse-proxied the Flask port.</s></p>
+<p>As for adding subdomains, Vercel allows you to add a custom subdomain under your top-level domain for your frontend and even provides a free SSL certificate to upgrade to HTTPS. I originally intended to use Nginx + Certbot + Crontab to apply for an SSL certificate and renew it periodically, but Vercel's approach is incredibly user-friendly.</p>
+<h2 id="Docker-Environment-Configuration">Docker Environment Configuration</h2>
+<p>After finishing my regular school classes, I found time to further optimize my project. With the help of Copilot, I successfully wrote my first Dockerfile:</p>
+<pre><code class="language-dockerfile"># python with flask and flask-cors
+FROM python:3.10.7
+RUN pip install flask flask-cors
+COPY ./babyweb.py /
+COPY ./key /
+WORKDIR /
+EXPOSE 5000
+CMD [&quot;python&quot;, &quot;babyweb.py&quot;]
+</code></pre>
+<p>However, this Dockerfile failed to run on Docker for Windows due to path-related errors. Perhaps Docker downloaded a Windows-based Python environment?</p>
+<p>For convenience, I reran the command in an Ubuntu environment. Not only did it run successfully, but the exported image size also decreased from 5GB to 900MB. Linux is indeed more efficient!</p>
+<p>Finally, I started the container on the server, tested the exploit, and after confirming everything worked, I changed the reverse proxy JSON to a different port, deployed it on Vercel, and then destroyed the original port.</p>
+<h1>Course Design Experience and Insights</h1>
+<p>As a project built entirely from scratch and 100% hand-coded, going through the entire process—from conception, frontend, and backend to deployment and maintenance—was quite challenging. The deployment phase, in particular, was tricky. Initially, I tried to host both the Flask backend and the Node.js backend under the same domain but on different ports. However, I spent a day or two struggling with cross-origin and HTTPS issues without making any progress. Eventually, I had to split the two services into separate domains. Over time, more and more technologies were integrated into the website. From the initial simple setup of Bootstrap + Node.js + a local server, it has evolved into Bootstrap + Express + Flask + Nginx + MySQL + full-site HTTPS + server permission management. This shows that web development is a process of continuous refinement. I hope students playing the Nazo Game will enjoy it and solidify the web knowledge they've acquired.</p>
+<h1>Project Improvement Notes</h1>
+<ol>
+<li>
+<p><s>Not deploying the service using Docker, making it difficult to migrate and posing certain security risks.</s></p>
+</li>
+<li>
+<p>No cookie design to prevent level skipping and record the number of incorrect attempts.</p>
+</li>
+<li>
+<p>Relatively slow access speeds within China.</p>
+</li>
+</ol>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

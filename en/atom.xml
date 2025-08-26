@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-08-25T15:01:01.908Z</updated>
+  <updated>2025-08-26T01:59:40.146Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(sticky) Meta Information</title>
@@ -100,7 +100,7 @@
     <title>Fifty-three — Beware of LLM becoming the next "test-taker"</title>
     <link href="https://blog.junyu33.me/en/2025/02/01/chatgpt4/"/>
     <id>https://blog.junyu33.me/en/2025/02/01/chatgpt4/</id>
-    <updated>2025-08-25T14:55:09.416Z</updated>
+    <updated>2025-08-26T01:23:30.053Z</updated>
     <summary type="html"><![CDATA[<p>With the release of DeepSeek and ChatGPT o3-mini, we are delighted to see that LLMs are continuously striving toward either &quot;cost reduction&quot; or &quot;efficiency improvement.&quot; However, given that LLM training also carries a paper-oriented nature, we must remain vigilant. If development continues in this direction, LLMs might become the next &quot;exam-smart but impractical experts.&quot;</p>]]></summary>
   </entry>
   <entry>

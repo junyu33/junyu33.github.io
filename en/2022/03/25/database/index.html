@@ -61,7 +61,7 @@
 <span id="more"></span>
 <h1>Conceptual Logic Transformation Rules — Week 5~8</h1>
 <p>Key Focus — <strong>Relationship</strong></p>
-<p>1.*</p>
+<h2 id="1">1.*</h2>
 <h3 id="S-S">S-S</h3>
 <img src="https://img.junyu33.me/blog/database/1.png">
 <img src="https://img.junyu33.me/blog/database/2.png">
@@ -119,7 +119,7 @@
 <h4 id="0-1-0-1">0-1, 0-1:</h4>
 <img src='https://img.junyu33.me/blog/database/10.jpg'>
 <p>Merge the side that is closer to 1-1 (with fewer entities) with the new entity, and treat the original entity as the dominant one.</p>
-<p><em>.</em></p>
+<h2 id="">*.*</h2>
 <h3 id="Strong-Entity-Without-Attributes">Strong Entity Without Attributes</h3>
 <img src='https://img.junyu33.me/blog/database/11.png'>
 <img src='https://img.junyu33.me/blog/database/12.jpg'>
@@ -139,7 +139,7 @@
 <li>If there are attributes, merge one relationship with the weak entity to form a 1.* relationship.</li>
 </ol>
 <h2 id="Recursion">Recursion</h2>
-<h3 id="1">1.*</h3>
+<h3 id="1-2">1.*</h3>
 <img src='https://img.junyu33.me/blog/database/15.png'>
 <img src='https://img.junyu33.me/blog/database/16.png'>
 <p>The logical model includes the foreign key of the entity itself, which can also be interpreted as moving from one to many.</p>
@@ -149,7 +149,7 @@
 <h3 id="1-1-2">1.1</h3>
 <p>Pay attention to setting the dominant role; the remaining rules are the same as in 1.*.</p>
 <p><strong>Only 0-1, 0-1 will not trigger a warning.</strong></p>
-<h3 id="">*.*</h3>
+<h3 id="-2">*.*</h3>
 <img src='https://img.junyu33.me/blog/database/17.png'>
 <img src='https://img.junyu33.me/blog/database/18.png'>
 <p>Similar to the binary *.* case, pay attention to renaming.</p>
@@ -264,7 +264,7 @@ from Viewing
 <pre><code class="language-sql">SELECT *
 FROM Staff
 WHERE salary BETWEEN 5000 AND 9000
--- Values equal to 5000 or 9000 will also be included in the query results
+# Values equal to 5000 or 9000 will also be included in the query results
 </code></pre>
 <h3 id="Wildcard-Search">Wildcard Search</h3>
 <pre><code class="language-sql">select *
@@ -286,7 +286,7 @@ SUM(salary) AS mySum
 FROM Staff
 GROUP BY branchNo
 ORDER BY AVG(salary)
--- Calculate the number of employees and total income for each branch, sorted by average salary
+# Calculate the number of employees and total income for each branch, sorted by average salary
 </code></pre>
 <img src='https://img.junyu33.me/blog/database/sql1.png'>
 <p>Removing the <code>GROUP BY branchNo</code> column at this point will cause an error. The following modification should be made:</p>
@@ -294,7 +294,7 @@ ORDER BY AVG(salary)
 COUNT(staffNo) AS myCount,
 SUM(salary) AS mySum
 FROM Staff
--- Calculate the total number of employees and total income for the entire company
+# Calculate the total number of employees and total income for the entire company
 </code></pre>
 <img src='https://img.junyu33.me/blog/database/sql2.png'>
 <h3 id="Correlated-Subqueries">Correlated Subqueries</h3>
@@ -429,13 +429,13 @@ WHERE s.staffNo = p.staffNo
 GROUP BY s.branchNo, s.staffNo
 </code></pre>
 <h3 id="Querying-Views">Querying Views</h3>
-<pre><code class="language-sql">-- Views can be treated as tables for further querying
+<pre><code class="language-sql"># Views can be treated as tables for further querying
 SELECT staffNo, cnt
 FROM StaffPropCnt
 WHERE branchNo = 'B003'
 ORDER BY staffNo
 
--- Equivalent to
+# Equivalent to
 SELECT s.staffNo AS staffNo, COUNT(*) AS cnt
 FROM Staff s, PropertyForRent p
 WHERE s.staffNo = p.staffNo AND s.branchNo = 'B003'
@@ -446,6 +446,7 @@ GROUP BY s.branchNo, s.staffNo
 values('B003','SG5',2)
 # Error: Cannot modify the view as it would affect the underlying table (insufficient information).
 </code></pre>
+<h3 id="创建角色">创建角色</h3>
 <pre><code class="language-sql">CREATE ROLE Manager
 </code></pre>
 <h3 id="Granting-Permissions">Granting Permissions</h3>

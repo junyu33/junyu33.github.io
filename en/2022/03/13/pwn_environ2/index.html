@@ -150,32 +150,78 @@ def send_email2(SMTP_host, from_account, from_passwd, to_account, subject, conte
     email_client.sendmail(from_account, to_account, msg.as_string())
     email_client.quit()
 
-## Sub-method 1 — Write code in a VBS script to make it run at scheduled times
 
-~~Haven't learned VBS syntax yet (╹◡╹ლ) — temporarily filling the gap.~~
+localtime = time.localtime(time.time()) # 打印本地时间
+print(&quot;\n&quot; + time.asctime(localtime))
 
-## Sub-method 2 — Using Task Scheduler
+# 通过两个网站获取ip地址
+my_ip_1 = str(json.load(urlopen(ip_url_1))['ip'])
+my_ip_2 = str(json.load(urlopen(ip_url_2))['ip'])
 
-I added this VBS script to the Task Scheduler, configured it to run at system startup and user login, and even set it to trigger every ten minutes, as shown in the image below:
+if (my_ip_1 == my_ip_2):
+    ip_addr = my_ip_1
+else:
+    ip_addr = &quot;ip_1 :&quot; + my_ip_1 + &quot;\n&quot; + &quot;ip_2 :&quot; + my_ip_2
 
-&lt;img src=&quot;https://img.junyu33.me/blog/pwn_environ2/task.png&quot;&gt;
+if(check_configfile_exist()['file_exist'] &amp; check_configfile_exist()['file_write']):
+    config_file = open(config_file_name,'r')
+    read_context = json.load(config_file)
+    old_ip = read_context['ip_addr']
+    config_file.close()
+    if (old_ip == ip_addr):
+        print(&quot;ip address is up-to-date&quot;)
+    else:
+        content = &quot;old ip address is : &quot; + old_ip + '\n' + &quot;new ip address is : &quot; + ip_addr
+        sendEmail()
+        generate_configfile(ip_addr)
+else:
+    generate_configfile(ip_addr)
+    content = &quot;new ip address is : &quot; + ip_addr
+    sendEmail()
 
-However, during system startup, the system does automatically dial, but I do not receive the email about the IP change. Only when I manually run this VBS script does it successfully send the email.
 
-Existing issues:
-
-- At startup, it only dials but does not send an email.
-- It cannot use a proxy.
-- The operation is somewhat cumbersome.
-
-# Windows Default Terminal Settings
-
-The old cmd is very inconvenient to use—it lacks syntax highlighting, and switching to a different drive path requires an extra command. It's too troublesome.
-
-Running the following command in PowerShell allows you to change the device's default terminal to PowerShell:
-
-```powershell
-New-ItemProperty -Path &quot;HKLM:\SOFTWARE\OpenSSH&quot; -Name DefaultShell -Value &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -PropertyType String -Force
+</code></pre>
+<p>Of course, with just this script, it is indeed possible to achieve the above functionality. But what should we do in an unattended situation?</p>
+<p>With the meager syntax I learned from writing differential test scripts in high school, I wrote a bat file. It first checks whether the device is connected to the internet. If it is not, it waits 10 seconds and checks again. Otherwise, it calls this script and then pauses for 10 minutes.</p>
+<pre><code class="language-bat">@echo off
+    
+:start
+ping -n 2 114.114.114.114 | find &quot;TTL=&quot; &gt;nul
+if errorlevel 1 (
+TIMEOUT 10
+goto:start
+) else (
+pythonw D:/tmp1/tmp/test.py ::Here pythonw is used to prevent a popup window, which is very important when playing games.
+)
+TIMEOUT 600
+goto:start
+</code></pre>
+<p>But then another new problem arises—the script itself also pops up a window, right? Isn’t this a bit like recursion?</p>
+<p>So, I looked up some information online and found out that vbs scripts do not produce any prompts when running (except when a command fails), which can solve this issue.</p>
+<p>I also borrowed some code from the internet that uses a vbs script to run commands and bat files:</p>
+<pre><code class="language-vbscript">CreateObject(&quot;WScript.Shell&quot;).run&quot;Rasdial 123 &lt;telephone&gt; &lt;passwd&gt;&quot;,0
+set ws=wscript.createobject(&quot;wscript.shell&quot;) 
+   ws.run &quot;D:/tmp1/tmp/start.bat /start&quot;,0
+</code></pre>
+<p>This vbs script does two things: first, it automatically dials to connect to the internet, and second, it calls the previous bat file.</p>
+<p>I disconnected the internet and actually ran it myself. I found that the dial-up was successful, and I also received the long-awaited email about the IP change.</p>
+<p>There remains the final question—how to schedule this script to run at specific times?</p>
+<h2 id="Sub-method-1-—-Write-code-in-a-VBS-script-to-make-it-run-at-scheduled-times">Sub-method 1 — Write code in a VBS script to make it run at scheduled times</h2>
+<p><s>Haven't learned VBS syntax yet (╹◡╹ლ) — temporarily filling the gap.</s></p>
+<h2 id="Sub-method-2-—-Using-Task-Scheduler">Sub-method 2 — Using Task Scheduler</h2>
+<p>I added this VBS script to the Task Scheduler, configured it to run at system startup and user login, and even set it to trigger every ten minutes, as shown in the image below:</p>
+<img src="https://img.junyu33.me/blog/pwn_environ2/task.png">
+<p>However, during system startup, the system does automatically dial, but I do not receive the email about the IP change. Only when I manually run this VBS script does it successfully send the email.</p>
+<p>Existing issues:</p>
+<ul>
+<li>At startup, it only dials but does not send an email.</li>
+<li>It cannot use a proxy.</li>
+<li>The operation is somewhat cumbersome.</li>
+</ul>
+<h1>Windows Default Terminal Settings</h1>
+<p>The old cmd is very inconvenient to use—it lacks syntax highlighting, and switching to a different drive path requires an extra command. It's too troublesome.</p>
+<p>Running the following command in PowerShell allows you to change the device's default terminal to PowerShell:</p>
+<pre><code class="language-powershell">New-ItemProperty -Path &quot;HKLM:\SOFTWARE\OpenSSH&quot; -Name DefaultShell -Value &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -PropertyType String -Force
 </code></pre>
 <p>Why don't I use cmder? I tried it, but when SSH calls cmder, it crashes. I'm not exactly sure why.</p>
 

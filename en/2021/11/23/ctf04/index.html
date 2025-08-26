@@ -388,8 +388,8 @@ You can simply call Python's <strong>z3 solver</strong> to resolve the equations
 <p><strong>Comparison function:</strong></p>
 <img src="https://img.junyu33.me/blog/ctf04/re7_1.png">
 <p>The comparison function first checks the <strong>length of the string</strong>, then compares the <strong>encrypted input</strong> against the ciphertext.</p>
-<p>Through experimentation, you can see that encryption is applied <strong>one character at a time</strong>.
-Therefore, brute-forcing the flag character by character is feasible — once verified, the correct flag is obtained.</p>
+<p>Through experimentation, you can see that encryption is applied <strong>one character at a time</strong>.</p>
+<p>Therefore, brute-forcing the flag character by character is feasible — once verified, the correct flag is obtained.</p>
 <h2 id="HardRe-Fxxk">HardRe: Fxxk</h2>
 <p>Load the program into <strong>OllyDbg (Od)</strong>.</p>
 <p>Step through execution until the <strong>main function</strong>:</p>
@@ -401,22 +401,18 @@ Therefore, brute-forcing the flag character by character is feasible — once ve
 <p>It validates that the string length is exactly 8:</p>
 <img src="https://img.junyu33.me/blog/ctf04/re8_3.png">
 <p>Then each character is checked through a validation function.</p>
-<h3 id="Entering-the-validation-function">Entering the validation function</h3>
+<p>Entering the validation function</p>
 <img src="https://img.junyu33.me/blog/ctf04/re8_4.png">
 <p>Analysis shows that the function ensures each input character is <strong>within the range A–Z</strong>, while also <strong>encrypting the input</strong>.</p>
 <p>Observing the registers gives the encrypted input:</p>
 <img src="https://img.junyu33.me/blog/ctf04/re8_5.png">
-<h3 id="Continuing-execution">Continuing execution</h3>
-<p>We then discover a reference string:</p>
+<p>Continuing execution, we then discover a reference string:</p>
 <img src="https://img.junyu33.me/blog/ctf04/re8_6.png">
 <p>The program compares the <strong>encrypted input</strong> against this string:</p>
 <pre><code>LMSULHNH
 </code></pre>
-<h3 id="Solution-methods">Solution methods</h3>
-<ol>
-<li><strong>Brute-force</strong> the flag by trial and error.</li>
-<li>Reverse the encryption logic from the assembly function to reconstruct the original flag.</li>
-</ol>
+<p>Solution 1: <strong>Brute-force</strong> the flag by trial and error.</p>
+<p>Solution 2: Reverse the encryption logic from the assembly function to reconstruct the original flag.</p>
 <h1>WriteUp from Cyan</h1>
 <h2 id="Web1-Get-Post">[Web1] Get&amp;Post</h2>
 <img src="https://img.junyu33.me/blog/ctf04/web1.png">

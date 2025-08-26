@@ -909,7 +909,8 @@ if __name__ == '__main__':
 <ul>
 <li>Bob</li>
 </ul>
-<pre><code class="language-python">#!/usr/bin/python3           
+<pre><code class="language-python">```python
+#!/usr/bin/python3           
 # bob.py
 import socket
 import random
@@ -972,7 +973,104 @@ class Bob_2in1_OT:
         if self.i == 0:
             v = pow(C0[0], self.k, self.p) ^ C0[1]
         else:
-            v = pow(C1[0], self.k, self.p) ^ C1[1</code></pre>
+            v = pow(C1[0], self.k, self.p) ^ C1[1]
+        # print('v_' + str(self.i) + ' =', v)
+        return v
+
+class Bob_nin1_OT:
+    def __init__(self, n, i, sock):
+        self.n = n
+        self.i = i
+        self.sock = sock
+    
+    def run_protocol(self):
+        # alice and bob perform the 2-in-1 OT protocol for n times
+        k = [] 
+        # if j == i, bob choose k0 xor k1 xor ... xor k_&#123;j-1&#125; xor x[j]
+        # otherwise, bob choose kj
+        for j in range(1, self.n + 1):
+            if j == self.i:
+                bob = Bob_2in1_OT(p, g, 0, self.sock) 
+                k.append(bob.run_protocol())
+            else:
+                bob = Bob_2in1_OT(p, g, 1, self.sock)
+                k.append(bob.run_protocol())
+        
+        # with a little calculation we know 
+        # the xor sum of first i elements of k is x[i]
+        xi = 0
+        for j in range(0, self.i):
+            xi ^= k[j]
+        return xi
+
+class Bob_GMW:
+    def __init__(self, y, sock):
+        self.y = y
+        self.sock = sock
+
+    def send_number(self, number):
+        self.sock.send(str(number).encode())
+
+    def recv_number(self):
+        return int(self.sock.recv(1024).decode())
+
+    def run_protocol(self):
+        # step1: alice gen xa in [0, 2**comm_bit-1], xb = x xor xa, sned xb to bob
+        xb = self.recv_number()
+        
+        # step2: bob gen yb in [0, 2**comm_bit-1], ya = y xor yb, send ya to alice
+        yb = random.randint(0, 2**comm_bit-1)
+        ya = self.y ^ yb
+        self.send_number(ya)
+
+        # step4: operate 4**comm_bit in 1 OT with bob,
+        # alice provide f00 to f&#123;2**comm_bit-1&#125;&#123;2**comm_bit-1&#125;, 
+        # bob provide index according to xb*(2**comm_bit)+yb
+        i = xb*(2**comm_bit) + yb + 1 # don't forget to add 1, it's 1-indexed
+        bob = Bob_nin1_OT(4**comm_bit, i, self.sock)
+        zb = bob.run_protocol()
+
+        # step5: bob send zb = f(xb, yb) to alice
+        self.send_number(zb)
+
+        # step6: alice and bob reveal G(x, y) = za xor zb
+        za = self.recv_number()
+        z = za ^ zb
+        return z
+
+        
+if __name__ == '__main__':
+    if len(sys.argv) &lt; 3:
+        print('Usage: python3 bob.py &lt;mode&gt; &lt;y&gt; [&lt;ip of bob&gt;] [&lt;port&gt;]')
+        sys.exit(1)
+    
+    mode = sys.argv[1]
+    y = int(sys.argv[2])
+    port = 12345
+    if len(sys.argv) &gt;= 4:
+        ip = sys.argv[3]
+        if len(sys.argv) &gt;= 5:
+            port = int(sys.argv[4])
+    else:
+        ip = '127.0.0.1'
+    sock = init_socket(ip, port)
+    
+    # Define the prime number p and generator g
+    p = 998244353
+    g = 3
+    comm_bit = 5
+
+
+    Bob = Bob_GMW(y, sock)
+    res = Bob.run_protocol()
+    print('result from Bob: G(x, y) =', res)
+    sock.close()
+</code></pre>
+<h1>References</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126396795">Introduction to garbled circuits (I) Oblivious transfer</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/237061306">GMW Protocol introduction</a></li>
+</ul>
 
 </div>
 

@@ -102,7 +102,7 @@
 <p>因此，我 copy 了回答的 header，把start地址从<code>0x78</code>修改到<code>0x74</code>，然后把自己的机器码覆盖到<code>0x74</code>的位置，跑一跑，居然真的可以运行！</p>
 <p>于是，我的程序大小缩减到了273 byte。</p>
 <img src="https://img.junyu33.me/blog/minielf/3.png">
-<h3 id="LEVEL-4（进一步裁剪header）">LEVEL 4（进一步裁剪header）</h3>
+<h3 id="Level-4（进一步裁剪header）">Level 4（进一步裁剪header）</h3>
 <p>之后，我做了一些较为细碎的裁剪工作，从273 byte 裁剪到了235 byte。此时，有人交了一发205 byte，这下没法了，ELF header还是得继续看。</p>
 <p>我又找到了<a target="_blank" rel="noopener" href="https://codegolf.stackexchange.com/questions/5696/shortest-elf-for-hello-world-n">这篇回答</a>，它把一个 helloworld 压倒了惊人的 61 byte 的大小！</p>
 <img src="https://img.junyu33.me/blog/minielf/4.png">
@@ -123,7 +123,7 @@
 <p>为了处理 <code>0x2a</code> 到 <code>0x2d</code> 这四个字节无法利用的问题，我选择了构造相关指令（或者选择使用跳转指令）。这两者都是充分利用了空间的选择。</p>
 <p>经过这样的操作后，我的程序压缩到了 138 byte。</p>
 <img src="https://img.junyu33.me/blog/minielf/4-res.png">
-<h3 id="LEVEL5（修改算法）">LEVEL5（修改算法）</h3>
+<h3 id="Level-5（修改算法）">Level 5（修改算法）</h3>
 <p>当然，故事仍然没有结束，我又裁剪了一下，把 138 byte 剪到了 131 byte，然后刷了一下榜。</p>
 <p>但昨天（12月8日）上午，对手把这个数据更新到了 119 byte，其实当时我是有 117 byte 的存货。而当时我快到我汇编压缩的极限了，于是就没急着交。</p>
 <p>这是我先前让 GPT-4 生成的汇编代码（其实经过了一些优化）：</p>
@@ -215,7 +215,7 @@ convert_loop:
 <p>有趣的一点是，之前代码是有用于循环的跳转指令的，但我在调试代码时不小心删掉了一条，导致输出的代码总是3位（如果位数不够会带前导零），但也能通过测试。于是就干脆把循环逻辑给去掉了。</p>
 <p>这样下来，程序已经压缩到了107 byte。</p>
 <img src="https://img.junyu33.me/blog/minielf/5.png">
-<h3 id="LEVEL6（指令替换）">LEVEL6（指令替换）</h3>
+<h3 id="Level-6（指令替换）">Level 6（指令替换）</h3>
 <p>这是x86汇编比较有趣的地方，由于x86汇编是不等长指令，一些语义相同的指令，用不同的方法实现，生成的机器码长度也不同。</p>
 <ul>
 <li>例如，加载立即数时，因为题目保证数据范围&lt;256，如果目的寄存器用的是al而不是eax，那么立即数可以省下3 byte。</li>

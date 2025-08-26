@@ -706,14 +706,98 @@ W
 4 4 4 4 3 3 3 3 2 2 2 2 2 1 1 1 1 1 N 
 S
 4 4 4 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 E 
-4 3 2 1 0 
+4 3 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 S 
+3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 W 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 N 
+E
+4 3 3 3 3 3 3 2 2 1 1 1 1 1 1 1 1 1 1 E 
+4 4 3 3 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 S 
+3 3 2 2 2 2 2 1 0 0 0 0 0 0 0 0 0 0 W 
+3 3 2 2 2 2 2 2 1 1 0 0 0 0 0 0 0 0 N 
+N
+</code></pre>
+<p>Then, using <code>python</code>'s <code>matplotlib</code> library as usual, we can get a line chart like this:</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.interpolate import make_interp_spline
 
-## Experiment 3: Calculating the Average Tenpai Probability for Each Player
+plt.rcParams['font.family'] = 'WenQuanYi Zen Hei'
 
-The original Python code can be slightly modified as follows:
+tenpai_cnt = 0
+tot_cnt = 0
 
-```python
-import numpy as np
+# 模拟从文件中读取数据的函数
+def read_data_from_file(file_path):
+    with open(file_path, 'r') as file:
+        data_block = []
+        while True:
+            lines = [file.readline().strip() for _ in range(5)]
+            if lines[0] == '':  # 遇到空行结束
+                break
+            data_block.append(lines)
+        return data_block
+
+# 解析每个数据块并生成统计图
+def plot_data_blocks(data_blocks):
+    global tot_cnt, tenpai_cnt
+    for block_index, block in enumerate(data_blocks):
+        tot_cnt += 1
+        data = []
+        labels = []
+
+        # 解析数据块中的每行数据
+        for line in block[:-1]:  # 最后一行是方位字母，不包含数值
+            values = list(map(int, line.split()[:-1]))  # 去掉方位字母，保留数值
+            labels.append(line.split()[-1])  # 保存方位字母
+            data.append(values)
+
+        highlight_label = block[-1].strip()  # 最后一行表示需要highlight的方位
+
+        # 绘制每个数据块的统计图
+        plt.figure(figsize=(10, 6))
+        for i, row in enumerate(data):
+            x = np.arange(len(row))
+            x_smooth = np.linspace(x.min(), x.max(), 300)
+            spl = make_interp_spline(x, row, k=2)
+            y_smooth = spl(x_smooth)
+    
+            # 如果是需要highlight的方位，使用红色，否则使用灰色
+            if labels[i] == highlight_label:
+                if 0 in row:
+                    tenpai_cnt += 1
+                plt.plot(x_smooth, y_smooth, label=labels[i], color='red', linewidth=2)
+            else:
+                plt.plot(x_smooth, y_smooth, label=labels[i], color='gray', alpha=0.6)
+
+        plt.title(f'统计图 - 第 &#123;block_index + 1&#125; 个数据块')
+        plt.xlabel('Index')
+        plt.ylabel('Value')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+
+# 测试代码（使用从文件读取的数据）
+file_path = '../build/problem3.txt' 
+blocks = read_data_from_file(file_path)
+plot_data_blocks(blocks)
+</code></pre>
+<p>We can get the following results:</p>
+<img src='https://img.junyu33.me/blog/majsoul/2-1.png' width='600'>
+<img src='https://img.junyu33.me/blog/majsoul/2-2.png' width='600'>
+<img src='https://img.junyu33.me/blog/majsoul/2-3.png' width='600'>
+<img src='https://img.junyu33.me/blog/majsoul/2-4.png' width='600'>
+<p>As we all know, Riichi Mahjong emphasizes defense. If you sense that your opponent is drawing a hand, and if you are not completely confident in your hand, you should choose to forfeit the draw to prevent losses. Therefore, <strong>whether you can frequently draw the first hand is the key to winning the game</strong>.</p>
+<p>However, the statistical chart shows that we either couldn't draw or couldn't be the first player to draw. I visually inspected the remaining 12 data sets and found only one in which I, as North, drew on the same round as East. But because I was North, I couldn't be the first player to draw. In other words, <strong>at least in this data set, I didn't draw first once</strong>.</p>
+<p>So how do we calculate whether this data is reasonable? We can first calculate the probability of each player being the first to draw a hand under absolutely fair conditions. We can make the following rough estimate:</p>
+<blockquote>
+<p>According to statistics<sup><a target="_blank" rel="noopener" href="https://note.com/hagure_melon/n/nbc0ae46c3004">5</a></sup>, we know that the probability of a winning hand in a Mahjong game is 84%, and waiting for a hand is a necessary condition for a winning hand, so the probability of each player being the first to wait for a hand is about 21%.</p>
+</blockquote>
+<p>Next, we can calculate the probability of my situation happening:</p>
+<mjx-container class="MathJax" jax="SVG" display="true" style="direction: ltr; display: block; text-align: center; margin: 1em 0; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="31.394ex" height="2.565ex" role="img" focusable="false" viewBox="0 -883.9 13876.2 1133.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1028.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(2084.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(2473.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(3195.8,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(4196,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" style="stroke-width: 3;"/><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(778,0)" style="stroke-width: 3;"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1278,0)" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(5974,0)"><g data-mml-node="mo"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(422,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)" style="stroke-width: 3;"/></g></g></g><g data-mml-node="mo" transform="translate(7430.9,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(8486.7,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" style="stroke-width: 3;"/><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(778,0)" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(1278,0)" style="stroke-width: 3;"/><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(1778,0)" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(11042.4,0)"><path data-c="3C" d="M694 -11T694 -19T688 -33T678 -40Q671 -40 524 29T234 166L90 235Q83 240 83 250Q83 261 91 266Q664 540 678 540Q681 540 687 534T694 519T687 505Q686 504 417 376L151 250L417 124Q686 -4 687 -5Q694 -11 694 -19Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(12098.2,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" style="stroke-width: 3;"/><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)" style="stroke-width: 3;"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(778,0)" style="stroke-width: 3;"/><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z" transform="translate(1278,0)" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; overflow: hidden; width: 100%;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>0.21</mn><msup><mo stretchy="false">)</mo><mrow data-mjx-texclass="ORD"><mn>16</mn></mrow></msup><mo>=</mo><mn>0.023</mn><mo>&lt;</mo><mn>0.05</mn></math></mjx-assistive-mml></mjx-container><p>This is clearly a very small probability, so we can consider this scenario unreasonable.</p>
+<p>Conclusion: Mahjong Souls does have the potential to influence a player's winning streak by manipulating the deck (for example, placing the desired card at the end of the deck). <strong>Mahjong Souls's dealings are likely to be unfair in the short term</strong>.</p>
+<h2 id="Experiment-3-Calculating-the-Average-Tenpai-Probability-for-Each-Player">Experiment 3: Calculating the Average Tenpai Probability for Each Player</h2>
+<p>The original Python code can be slightly modified as follows:</p>
+<pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interp1ate import make_interp_spline
 

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2025/11/29/lineage/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2025/11/29/lineage/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Flash STF-AL10 into Lineage</h1>
+	<p>After getting a new phone again, and after a week of persistent effort, I finally managed to flash Lineage onto my previously unlocked bootloader phone (STF-AL10).</p>
+<p>Here's a description of the complete flashing process.</p>
+<span id="more"></span>
+<h2 id="Unlock-bootloader">Unlock bootloader</h2>
+<p>The STF-AL10 uses the Kirin 960 processor. Free solutions for this processor are available online – disassemble the device, short-circuit it to enter EDL mode, and use potatoNV to inject the unlock code. For details, please refer to the &quot;How to Unlock the Bootloader at Zero Cost&quot; section of <a href="https://blog.junyu33.me/zh/2021/08/10/xp/">this article</a> or <a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#jie-suo-bootloader">Caiwen's blog</a>.</p>
+<h2 id="Flashing">Flashing</h2>
+<h3 id="Finding-ROM">Finding ROM</h3>
+<p>Since the STF-AL10 phone was released in 2017, eight years have passed since the date of writing, and there are still quite a few ROMs for this phone on XDA. I chose <a target="_blank" rel="noopener" href="https://xdaforums.com/t/rom-huawei-13-leaos-lineage-20-0-for-huawei-device-emui-9-1-version.4560779/">LeaOS</a>, which runs Android 13 and is a heavily modified version of lineage. This ROM is also adapted to Honor devices to a certain extent. For STF-AL10, I downloaded the package <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/altairfr-huawei/files/LeaOS-20.0/LeaOS-20.0-20251019-iceows-google-stf.img.xz/download">LeaOS-20.0-20251019-iceows-google-stf.img.xz</a>.</p>
+<h3 id="Backup">Backup</h3>
+<p>Although my phone, which I hadn't used for four years, didn't have any important data left, ChatGPT strongly recommended that I back it up. So I started looking for TWRP compatible with my current system, EMUI 5.1. This process was very arduous, but I finally found the following link in a place I can't remember now:</p>
+<pre><code>[LIST] [STRIKE][URL=&quot;https://mega.nz/#!C0RmiCZT!2LwBaeWnNDM-cMVjQCq19a60crWOUytS4y_5Ml8sDhk&quot;][U]download twrp-3.1.1-0-stf.img[/U][/URL][/STRIKE] Temporary Solution [URL=&quot;https://www.androidfilehost.com/?fid=745849072291684672&quot;]twrp-3.1.1-1-stf.img[/URL] md5: db84a0c2780e010369c6e365277d17e7 [/LIST]
+</code></pre>
+<p>The link for &quot;mega&quot; is invalid, while the corresponding file <a target="_blank" rel="noopener" href="https://www.androidfilehost.com/?fid=745849072291684672">twrp-3.1.1-1-stf.img</a> is still working. Therefore, in fastboot, executing <code>fastboot flash recovery twrp-3.1.1-1-stf.img</code>, <strong>unplugging the data cable</strong>, and restarting by pressing the power and volume up buttons successfully booted into TWRP.</p>
+<p>I chose to use TWRP's backup function to back up the <code>system boot data cust</code> partition and the user's SD card path <code>/data/media/0</code>. The latter mainly contains some old photos, documents, and almost useless app data, which together amount to nearly 40GB. Since I don't use it often, I chose to back it up to a larger external hard drive.</p>
+<h3 id="Getting-bricked">Getting bricked</h3>
+<p>Since my phone is running EMUI 5.1, and this ROM is compatible with EMUI 9.1, I followed <a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#sheng-ji-dao-emui-8">caiwen's blog</a> to flash EMUI 8 using TWRP, and then gradually upgraded to 9.1. The only difference between my procedure and the blog post was that I used the latest official version of HuRUpdater, v0.4. However, unfortunately, something went wrong—for unknown reasons, the TWRP script executed successfully, but my phone seems to have become bricked.</p>
+<p>Then I tried restarting my phone and found that the screen was not working completely. Not only could I not access the system, but I couldn't even enter recovery or fastboot mode. Pressing any button, charging, or plugging the phone into the computer had no effect whatsoever. The screen was off, the indicator lights were off, and the phone didn't vibrate; it was like a black brick. I searched online and, surprisingly, there really is a term called &quot;black brick&quot; to describe this state.</p>
+<p>At that point, ChatGPT was even advising me to take my phone to a repair shop. Naturally, I couldn't give up on flashing the ROM so easily. <s>After all, it had been four years since I last reached this point, and if I gave up this time, who knows how many more years I'd have to wait?</s> So I started frantically searching for solutions using ATFAT and STFW, and found this <a target="_blank" rel="noopener" href="https://github.com/Coconutat/Huawei-GSI-And-Modify-Or-Support-KernelSU-Tutorial/wiki/4.%E8%A7%A3%E9%94%81%E5%92%8C%E5%88%B7%E6%9C%BA">outline guide</a>.</p>
+<p>According to the guide, I needed to download the <strong>Hunter Huawei Standalone Cracked Version</strong> and install a series of drivers for Huawei phones. Because some drivers for older Huawei devices weren't signed for Windows 11, installing Windows 11 directly on my machine failed. Solutions included disabling <code>Core Isolation</code> or installing a Windows 7 virtual machine; I felt the former wasn't clean enough, so I chose the latter.</p>
+<p>After installing Windows 7 on a virtual machine, I connected my phone to it. A device named <code>USB SER</code> (possibly with an exclamation mark) appeared in Device Manager, indicating that the virtual machine needed the corresponding driver. Following the instructions, I first installed <strong>Huawei F**king Awesome Driver.exe</strong> (the name is ... questionable). If all goes well, <code>USB SER</code> in Device Manager will change to <code>HUAWEI USB COM 1.0</code>. Then, I opened <strong>Huawei Flash-One-Click Start.bat</strong>, ignoring the two error messages (possibly related to the dongle), and arrived at the main interface. I selected the <strong>USB COM 1.0</strong> option, changed the processor to the Kirin 960 corresponding to STF-AL10, and left the port either Auto or selected the port displayed in Device Manager. Then, I clicked START to recover the bricked device.</p>
+<p>If all goes well, the phone will vibrate and reboot into fastboot mode. The screen may still be black, but you'll be able to see the corresponding device in <code>fastboot devices</code>. At this point, you can go to <a target="_blank" rel="noopener" href="https://www.rom100.com/forum.php">Wanwei Forum</a> to find the official package suitable for STF-AL10.</p>
+<blockquote>
+<p>This website requires a 10 RMB deposit to download up to three packages per hour. However, considering that flashing a device might require trying many packages, and similar websites typically charge 2 RMB per package, and taking into account the significant time cost of finding resources for free, I think 10 RMB is acceptable.</p>
+</blockquote>
+<p>The directory structure of an official package is usually like this: after opening the zip archive, there is a <code>dload</code> directory within the <code>software</code> folder, with the following structure:</p>
+<pre><code>dload\
+|--STF-AL00_all_cn
+    ...
+|--STF-AL10_all_cn
+   |--update_sd_STF-AL10_all_cn.zip
+|--update_sd_base.zip
+</code></pre>
+<blockquote>
+<p>Normally, we refer to <code>update_sd_base.zip</code> as the &quot;large package&quot;, while the <code>update_sd_STF-AL10_all_cn.zip</code> corresponding to a specific device model is called the &quot;small package&quot;. When flashing the ROM, you should first flash the &quot;large package&quot; and then flash the &quot;small package&quot;.</p>
+</blockquote>
+<p>Our goal now is to unpack these two zip files. Each zip file contains a file named <code>UPDATE.APP</code>. We'll first load the <code>UPDATE.APP</code> file from the larger zip file into the Write Flash section of the <strong>Hunter Huawei Standalone Cracked Version</strong>. You'll usually get the following result:</p>
+<img src='https://img.junyu33.me/blog/lineage/2.png'>
+<p>Pay attention to the version number on the left. You can use <code>fastboot oem get-build-number</code> to look up your phone's OEM number. If your number happens to be in the list on the left (mine is), there's a high probability of a successful flash (of course, if it's not in the list, it doesn't necessarily mean it will fail; it's still a matter of luck). In short, in my case, after flashing the large ROM corresponding to <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1086-wcgwc3KH3YWoeGEb1Q?pwd=dddd">this package</a>, my phone was fully restored (except for the two buttons on either side of the home button not working, everything else was normal), and I didn't bother with the smaller ROM.</p>
+<blockquote>
+<p>As for how to speed up BaiduNetDisk, most of the high-speed and free download tools seem to be unavailable. You could consider renting a temporary account for one yuan a day on Xianyu or buying a 7-day membership for a few yuan.</p>
+</blockquote>
+<h3 id="Update-to-EMUI-9">Update to EMUI 9</h3>
+<p>After successfully flashing back to the official EMUI 5.1, all my data was indeed wiped, and the bootloader even locked my phone. Fortunately, I still had the unlock code from Taobao, so I could still use it to unlock my phone again.</p>
+<p>Then, to my surprise, I found that the system update function was working again. So I upgraded from EMUI 5.1 OTA to 5.1-&gt;8.0-&gt;9.0-&gt;9.1, the process was very smooth, without any problems, and the bootloader didn't lock again.</p>
+<h3 id="Stuck-in-bootloop">Stuck in bootloop</h3>
+<p>After upgrading EMUI to version 9.1, I followed the instructions in the <a target="_blank" rel="noopener" href="https://xdaforums.com/t/rom-huawei-13-leaos-lineage-20-0-for-huawei-device-emui-9-1-version.4560779/">LeaOS</a> post to flash a custom ROM. The prerequisites were <strong>TWRP installed on the system and the bootloader unlocked</strong>. I had already unlocked the bootloader, and the TWRP version compatible with EMUI 9.1 could be found in <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/altairfr-huawei/files/TWRP-Recovery/twrp-stf-ki960.img/download">post 5</a>, so I got started.</p>
+<p>I entered fastboot mode and then executed <code>fastboot flash system LeaOS-20.0-20251019-iceows-google-stf.img</code>, and the following error occurred:</p>
+<pre><code>$ fastboot flash system LeaOS-20.0-20230304-iceows-google-stf.img
+Invalid sparse file format at header magic
+Sending sparse 'system' 1/7 (460241 KB)            OKAY [ 11.774s]
+Writing 'system'                                   FAILED (remote: 'sparse flash write failure')
+fastboot: error: Command failed
+</code></pre>
+<p>After checking, the reason was that the system partition was smaller than the required size of the image. I needed to use the <a target="_blank" rel="noopener" href="https://xdaforums.com/t/huawei-partition-kit-enlarge-system-partition.4545993/">Huawei system partitioning tool</a> in XDA to expand the <code>system</code> partition and then re-flash the device.</p>
+<p>However, knowing the cause of the error didn't change anything. The phone started endlessly rebooting—another night was wasted. The process was roughly the same as in the &quot;Getting Bricked&quot; section: finding a ROM with a version number close to the current phone and then trying it repeatedly with a ROM hunter tool—except this time the OEM number didn't match perfectly, but it still booted successfully, I don't know why.</p>
+<h3 id="Expand-the-system-partition">Expand the system partition</h3>
+<p>After recovering my phone a second time, just to be on the safe side, I updated it to the version with the exact same serial number as the OEM version before expanding the system partition. The script in <a target="_blank" rel="noopener" href="https://xdaforums.com/t/huawei-partition-kit-enlarge-system-partition.4545993/">this tool</a> worked fine following the steps in the README file within the compressed package. However, the only flaw was that steps 6 and 9 in the README didn't automatically generate the <code>HW</code> and <code>HW-IMG</code> paths; instead, the artifacts were placed directly in the tool's root directory.</p>
+<p>Specifically, the artifacts for the <code>HW</code> path are as follows:</p>
+<pre><code>2025/11/28 Fri  10:53 PM               621 5-FlashIMG.cmd
+2025/11/28 Fri  10:53 PM               596 5-FlashIMG.sh
+2025/11/28 Fri  10:53 PM               938 backup.sh
+2025/11/28 Fri  10:53 PM               115 clearpart.sh
+2025/11/28 Fri  10:53 PM               204 formatpart.sh
+2025/11/28 Fri  10:53 PM             5,900 HuaweiFileGPT-MMC.txt
+2025/11/28 Fri  10:53 PM                 0 HuaweiFileGPT-UFS.txt
+2025/11/28 Fri  10:53 PM             6,040 HuaweiFilePart.txt
+2025/11/28 Fri  10:53 PM               552 makepart.sh
+2025/11/28 Fri  10:53 PM               413 restore.sh
+</code></pre>
+<p>The output of <code>HW-IMG</code> is as follows:</p>
+<pre><code>2025/11/28 Fri  11:08 PM       209,715,200 patch_a.img
+2025/11/28 Fri  11:13 PM       310,378,496 preas.img
+2025/11/28 Fri  11:09 PM        33,554,432 preavs.img
+2025/11/28 Fri  11:05 PM       134,217,728 reserved5.img
+2025/11/28 Fri  11:55 PM     2,860,515,328 system_a.img
+</code></pre>
+<p>You need to manually move these files from the root directory to these two paths to ensure the script runs correctly.</p>
+<p>Additionally, to verify that your <code>system</code> partition has indeed expanded to the capacity you set in the <code>HWGSIPartition</code> application (default 3.5G), you can check it using <code>df -h /system</code> in the installed TWRP. If <code>system</code> is not mounted, you can also find the mapping between the <code>system</code> partition and the block device by checking <code>/proc/mounts</code>, then use the relevant command (ATFAI) to get the number of blocks on that block device, and finally multiply by 512 and divide by 2^30 to get the number of GB.</p>
+<h3 id="The-3rd-try">The 3rd try</h3>
+<p>After ensuring my system partition was indeed 3.5GB (actually, more than 2.8GB should be fine), I proceeded with the third flashing operation. Following the steps outlined in the <a target="_blank" rel="noopener" href="https://xdaforums.com/t/rom-huawei-13-leaos-lineage-20-0-for-huawei-device-emui-9-1-version.4560779/">LeaOS</a> post, except for the optional steps, I succeeded.</p>
+<blockquote>
+<p>Note that when flashing TWRP, you must <strong>unplug the data cable</strong> and restart the computer, pressing the power button and volume up button.</p>
+</blockquote>
+<p>The flashed system ran without any major issues; Wi-Fi, camera, Bluetooth, GPS, and other functions all worked normally, and Google Play also worked fine. The only downside was a significant drop in battery life; even when left idle, it barely lasted a day, whereas the stock battery could last a week. (Of course, this is a minor drawback for a non-primary phone.)</p>
+<h2 id="Using-Magisk-and-passing-Play-Integrity-check">Using Magisk and passing Play Integrity check</h2>
+<h3 id="magisk">magisk</h3>
+<p>For instructions on flashing Magisk, please refer to <a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#shua-ru-mian-ju">caiwen's blog</a>. Unfortunately, the link to the Huawei unpacking tool provided on the blog is no longer valid. However, the <code>HuaweiUpdateExtractor.exe</code> file in the <code>HuaweiUpdateExtractor</code> folder of <a target="_blank" rel="noopener" href="https://github.com/SimomYung/unpack_huawei_package">this GitHub repository</a> is a usable unpacking tool. Follow the steps outlined in his blog for the rest of the process. I successfully completed this task, so I won't go into the details.</p>
+<blockquote>
+<p>For non-Chinese speakers that cannot read the caiwen's blog: For most devices, <code>boot.img</code> is repaired. EMUI 5 repairs <code>boot.img</code>; EMUI 8 repairs <code>ramdisk.img</code>; and EMUI 9 and HarmonyOS repair <code>RECOVERY_RAMDIS.img</code> in <code>UPDATE.APP</code> using the unpacking tool. <code>Vbmeta</code> partition is not bothered.</p>
+</blockquote>
+<h3 id="play-integrity-safetynet">play integrity/safetynet</h3>
+<p>For information on how to pass Google's Play Integrity/SafetyNet certification, the current solution can be found in <a target="_blank" rel="noopener" href="https://github.com/yadavnikhil03/Play-integrity-fix-guide/blob/main/guide/full_guide.md">this GitHub repository</a>. Due to time constraints, I chose to use WSA with Magisk pre-installed for verification.</p>
+<blockquote>
+<p>By the way, the latest available WSA installation guide (as of November 2025) is available at <a target="_blank" rel="noopener" href="https://github.com/MustardChef/WSABuilds/tree/master">WSABuilds</a>, which provides a solution to the problem of WSA not working properly due to the July Windows update.</p>
+</blockquote>
+<p>I used the IntegrityBox (MeowNa) solution. Besides installing all five packages provided in the guide, I also installed <code>KsuWebUI</code>. After following the guide, I opened the <code>IntegrityBox</code> settings for <code>KsuWebUI</code> and performed the following operations:</p>
+<ul>
+<li>Play Integrity Fix -&gt; PIF Setting, enable the first five options (i.e. <code>Spoof Build</code> to <code>Spoof Fingerprint</code>)</li>
+<li><code>Kill GMS Process</code></li>
+<li>Click <code>Update Keybox</code> in Tricky Store</li>
+</ul>
+<p>Then you can pass the Strong Integrity check.</p>
+<img src='https://img.junyu33.me/blog/lineage/1.png'>
+<blockquote>
+<p>However, the cat-and-mouse game between Google and these developers is expected to be quite intense, with developers updating their repositories on a daily basis. This solution may not be sustainable in the long run...</p>
+</blockquote>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

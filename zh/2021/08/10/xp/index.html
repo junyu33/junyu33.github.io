@@ -592,6 +592,17 @@ Failed to spawn: unable to find process with name 'com.android.vending'
 <p>完结撒花。</p>
 <h2 id="updated-on-2025-7-28">updated on 2025-7-28</h2>
 <p>又过了将近一年，我的旧手机终于在尝试给app抓包时起到了作用——然并没有解决我遇到的问题，具体内容见<a href="https://blog.junyu33.me/2025/07/28/router.html">此链接</a>。</p>
+<h2 id="updated-on-2025-11-26（如何零成本解bl锁）">updated on 2025-11-26（如何零成本解bl锁）</h2>
+<p>距离这台手机（STF-AL10）解锁已经过去了四年多的时间，先前只有相关人士知道的某些关键信息也逐渐在网上流传，现在已经可以做到零成本解bl锁了。步骤如下：</p>
+<ol>
+<li>拆开手机后盖，用镊子短接下面的触点（另一端放在金属上即可），此时手机便进入了 9008/EDL 模式。短接后用USB连接电脑，设备管理器更新 <code>HUAWEI USB COM 1.0</code>（也有可能是 <code>USB SER</code>，反正检测到更新 diff 一下即可）就可松开镊子。</li>
+</ol>
+<img src='https://img.junyu33.me/blog/xp/2.png'>
+<ol start="2">
+<li>GitHub 上有一个强制向麒麟处理器硬件写入解锁码的工具 <a target="_blank" rel="noopener" href="https://github.com/mashed-potatoes/PotatoNV">PotatoNV</a>，支持<code>620 650 655 658 659 925 935 950 960</code>型号。STF-AL10 的处理器是麒麟 960，PotatoNV 刚好是支持的最后一代。具体操作按照给出的链接 README 进行操作即可，工具的大致原理就是检测到 9008 模式的设备后给设备注入一个随机的解锁码，从而手动输入该解锁码解锁。</li>
+<li>使用 <code>fastboot oem unlock YOUR_CODE_HERE</code> 命令或<a target="_blank" rel="noopener" href="https://www.downxia.com/downinfo/181026.html">华为专用解锁工具</a>进行解锁。</li>
+</ol>
+<p>虽然手机解锁之后可以使用对应的<a target="_blank" rel="noopener" href="https://xdaforums.com/t/openkirin-beta-stf-twrp-3-1-1-1-update-28-10-2017.3654355/">TWRP</a>进行卡刷，也可以刷 Magisk 进行 root。但如果想要换一个 OS 的话，由于年代过于久远，目前基本找不到支持手机上的 EMUI5.1 (Android 7) 的 ROM。如果你想体验 lineage 等类原生 android，可以参考<a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#sheng-ji-dao-emui-8">这篇文章</a>将手机升级支持到 Project Treble 的 EMUI 版本（例如 EMUI 9），再进行线刷。<s>总之，最后你会发现官方的才是最好的，并刷回官方的系统。</s></p>
 
 </div>
 

@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-10-28T15:16:07.620Z</updated>
+  <updated>2025-11-30T09:22:48.798Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(sticky) Meta Information</title>
@@ -20,6 +20,14 @@
     <summary type="html"><![CDATA[<p>2023/4/20 ~ 2024/5/4</p>
 <p>6705 commits (2 commits per compilation and execution)</p>
 <p>A year of persistence has finally come to an end.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Flash STF-AL10 into Lineage</title>
+    <link href="https://blog.junyu33.me/en/2025/11/29/lineage/"/>
+    <id>https://blog.junyu33.me/en/2025/11/29/lineage/</id>
+    <updated>2025-11-30T09:20:22.508Z</updated>
+    <summary type="html"><![CDATA[<p>After getting a new phone again, and after a week of persistent effort, I finally managed to flash Lineage onto my previously unlocked bootloader phone (STF-AL10).</p>
+<p>Here's a description of the complete flashing process.</p>]]></summary>
   </entry>
   <entry>
     <title>Why does elliptic curve point addition satisfy the associative law?</title>
@@ -157,15 +165,5 @@
     <id>https://blog.junyu33.me/en/2024/11/08/canmv/</id>
     <updated>2025-08-25T13:17:39.055Z</updated>
     <summary type="html"><![CDATA[<p>Please note that this article is not a tutorial for readers who are new to intranet penetration, but rather a follow-up to the article &quot;Building a Fast and Secure VNC Service from Scratch.&quot;</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Forty-eight — bye, Chinese stock market</title>
-    <link href="https://blog.junyu33.me/en/2024/10/19/bye_stocks/"/>
-    <id>https://blog.junyu33.me/en/2024/10/19/bye_stocks/</id>
-    <updated>2025-08-25T13:17:39.007Z</updated>
-    <summary type="html"><![CDATA[<p>This is my third article in the &quot;Goodbye&quot; series, following the previous two about ACM and Baidu.</p>
-<p>This piece objectively documents my financial journey over the past few years, along with some personal reflections.</p>
-<p>Here, &quot;red&quot; represents gains, and &quot;green&quot; represents losses.</p>
-<p>The content of this article does not constitute any investment advice and represents only personal opinions. The stock market involves risks; invest with caution.</p>]]></summary>
   </entry>
 </feed>

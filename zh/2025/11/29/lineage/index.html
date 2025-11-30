@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  
+    <link rel="alternate" hreflang="en" href="/en/2025/11/29/lineage/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">Categories</a>
+				
+				
+					<a href="/zh/tags">Tags</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2025/11/29/lineage/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>将 STF-AL10 刷机为 lineage</h1>
+	<p>再次换新手机后，经过一周的不懈努力，我终于让上上台解了bl锁的手机（STF-AL10）刷上了 lineage。</p>
+<p>这里叙述一下完整的刷机过程。</p>
+<span id="more"></span>
+<h2 id="解锁-bootloader">解锁 bootloader</h2>
+<p>STF-AL10 使用麒麟 960 处理器，这种型号的处理器网上已经有免费方案——拆机短接进入EDL模式并使用 potatoNV 进行解锁码注入。具体过程可以参考<a href="https://blog.junyu33.me/zh/2021/08/10/xp/">这篇文章</a>的“如何零成本解bl锁”一节或者<a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#jie-suo-bootloader">caiwen的博客</a>。</p>
+<h2 id="正式刷机">正式刷机</h2>
+<h3 id="寻找可用的-ROM">寻找可用的 ROM</h3>
+<p>由于 STF-AL10 手机在 2017 年就发布了，距离写作之日已经过去 8 年时间，XDA 上面还是有不少针对这款手机的 ROM。我选择了搭载 android 13 的<a target="_blank" rel="noopener" href="https://xdaforums.com/t/rom-huawei-13-leaos-lineage-20-0-for-huawei-device-emui-9-1-version.4560779/">LeaOS</a>，也就是 lineage 的魔改版本。这款 ROM 也对荣耀设备做了一定程度的适配，对于 STF-AL10，我下载的是<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/altairfr-huawei/files/LeaOS-20.0/LeaOS-20.0-20251019-iceows-google-stf.img.xz/download">LeaOS-20.0-20251019-iceows-google-stf.img.xz</a>这个包。</p>
+<h3 id="备份">备份</h3>
+<p>尽管我那个四年没用的手机已经没有什么重要的数据，但 ChatGPT 强烈建议我备份，于是我开始寻找适配当前系统 EMUI 5.1 的 TWRP。这个过程非常辛苦，但最后终于在一个现在我不记得的位置找到了如下链接：</p>
+<pre><code>[LIST] [STRIKE][URL=&quot;https://mega.nz/#!C0RmiCZT!2LwBaeWnNDM-cMVjQCq19a60crWOUytS4y_5Ml8sDhk&quot;][U]download twrp-3.1.1-0-stf.img[/U][/URL][/STRIKE] Temporary Solution [URL=&quot;https://www.androidfilehost.com/?fid=745849072291684672&quot;]twrp-3.1.1-1-stf.img[/URL] md5: db84a0c2780e010369c6e365277d17e7 [/LIST]
+</code></pre>
+<p>其中 mega 那个链接已经失效，而后者对应的 <a target="_blank" rel="noopener" href="https://www.androidfilehost.com/?fid=745849072291684672">twrp-3.1.1-1-stf.img</a> 至今仍然可用。于是在 fastboot 中，执行 <code>fastboot flash recovery twrp-3.1.1-1-stf.img</code>，<strong>拔掉数据线</strong>并重启按电源和音量加，便成功进入了 TWRP。</p>
+<p>我选择用 TWRP 的 backup 功能备份 <code>system boot data cust</code> 分区，以及用户SD卡路径<code>/data/media/0</code>，后者主要有一些老旧的照片、文档和几乎无用的 app 数据，这两者加起来大概也有接近 40G 的容量。因为毕竟不常用，我选择备份到了容量较大的移动硬盘。</p>
+<h3 id="陷入黑砖">陷入黑砖</h3>
+<p>由于我的手机是 EMUI 5.1，而该 ROM 适配 EMUI 9.1，于是我按照<a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#sheng-ji-dao-emui-8">caiwen的博客</a>开始在TWRP里卡刷到 EMUI 8，然后慢慢升级到 9.1。我的操作与博客唯一的区别是，用了 HuRUpdater 的官方最新版本 v0.4，然而不幸的事情发生了——由于未知原因，TWRP 脚本执行成功，但手机似乎变砖了。</p>
+<p>然后我尝试重启手机，发现屏幕彻底黑了。不仅进不了系统，甚至 recovery 和 fastboot 都进不了，按任何键、充电、手机插电脑都没有任何反应，屏幕不亮、指示灯不亮、手机也没有振动，好比一块黑色的砖头。我上网搜了一下，没想到就真有“黑砖”这个词来形容目前的状态。</p>
+<p>当时 ChatGPT 都开始劝我进手机店送修了。我自然是不能这么轻易就放弃刷机的，<s>毕竟上次走到这一步也是四年以前了，如果这次放弃不知道又得等到几年之后</s>，于是我开始疯狂 ATFAT&amp;STFW 来寻找解决方案，并找到了这个<a target="_blank" rel="noopener" href="https://github.com/Coconutat/Huawei-GSI-And-Modify-Or-Support-KernelSU-Tutorial/wiki/4.%E8%A7%A3%E9%94%81%E5%92%8C%E5%88%B7%E6%9C%BA">纲要性的指南</a>。</p>
+<p>按照该指南的内容，我需要下载<strong>猎人华为单机破解版</strong>，以及安装一系列华为手机的驱动。由于老华为设备的驱动某些并没有得到 win11 的签名，在我的机器直接安装 win11 会拒绝加载。解决方法有关闭 core isolation 或者安装一个 win7 的虚拟机，我认为前者不够 clean，于是选择了后者。</p>
+<p>虚拟机安装 win7 后，将手机连接到虚拟机，设备管理器会出现一个名为 <code>USB SER</code> 的设备（可能还有一个感叹号），这意味着虚拟机需要安装对应的驱动。然后我按照该指南进行操作，首先安装<strong>华为牛逼驱动.exe</strong>（这名字起得......）。如果不出意外，设备管理器中的 <code>USB SER</code> 会变成 <code>HUAWEI USB COM 1.0</code>。然后打开<strong>华为线刷-一键启动.bat</strong>，忽略那两个报错（可能与加密狗有关）便来到了主界面。选择 <strong>USB COM 1.0</strong> 一栏，处理器改成 STF-AL10 对应的 Kirin 960，端口可以保持 Auto 也可以选设备管理器显示的端口，然后点 START 就可以救砖了。</p>
+<p>如果不出意外，手机会震动一下并重启到 fastboot，可能屏幕仍然是黑的，但 <code>fastboot devices</code> 能看到对应的设备了，这个时候你就可以上<a target="_blank" rel="noopener" href="https://www.rom100.com/forum.php">万维论坛</a>找适合 STF-AL10 的官方包了。</p>
+<blockquote>
+<p>这个网站需要氪金 10 元可以在一小时内最多下三个包，但介于刷机可能得试很多包，而且类似这样的网站下一个包也是 2 元起步。再考虑白嫖寻找资源所要付出的巨大时间成本，我觉得 10 元还是可以接受的。</p>
+</blockquote>
+<p>官方包的目录结构通常是这样的，打开压缩包 zip 后，<code>software</code> 有一个 <code>dload</code> 目录，结构如下：</p>
+<pre><code>dload\
+|--STF-AL00_all_cn
+    ...
+|--STF-AL10_all_cn
+   |--update_sd_STF-AL10_all_cn.zip
+|--update_sd_base.zip
+</code></pre>
+<blockquote>
+<p>通常情况下，我们称 <code>update_sd_base.zip</code> 为“大包”，而具体机型对应的 <code>update_sd_STF-AL10_all_cn.zip</code> 为“小包”，刷机的话先刷“大包”再刷“小包”。</p>
+</blockquote>
+<p>我们现在的目标是解包这两个 zip 文件，每个 zip 里面各包含了一个名为 <code>UPDATE.APP</code> 的文件，我们先将大包中的 <code>UPDATE.APP</code> 加载到<strong>猎人华为单机破解版</strong>的 Write Flash 一栏中。你通常会得到如下的结果：</p>
+<img src='https://img.junyu33.me/blog/lineage/2.png'>
+<p>注意观察左边对应的版本号，你可以使用 <code>fastboot oem get-build-number</code> 查询你手机对应的 OEM 编号。如果你的编号刚好在左边列出的列表中（我的就是），则有高概率刷机成功（当然如果不在也不一定代表一定失败，这个还是看脸）。总之我这边的情况就是刷了<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1086-wcgwc3KH3YWoeGEb1Q?pwd=dddd">这个包</a>对应的大包后，手机就满血复活了（除了 home 键的左右两边那个键不能用之外其他一切正常），小包就没管了。</p>
+<blockquote>
+<p>至于百度网盘如何加速，目前的高速并且免费的下载工具似乎挂得差不多了，你可以考虑在闲鱼上花一元租一天临时账号或者花几块钱购买7天会员。</p>
+</blockquote>
+<h3 id="升级到-EMUI-9">升级到 EMUI 9</h3>
+<p>成功刷回官方 EMUI 5.1 之后，我的数据的确被全部清除，甚至 bootloader 给我回锁了。幸好淘宝那边的解锁码还在，我依旧可以使用该解锁码重新解锁我的手机。</p>
+<p>之后我惊奇的发现系统更新功能好了，于是我便一路从 EMUI 5.1 OTA 升级到了 5.1-&gt;8.0-&gt;9.0-&gt;9.1，过程非常丝滑，没有任何问题出现，bl 也不会回锁。</p>
+<h3 id="陷入-bootloop">陷入 bootloop</h3>
+<p>将 EMUI 升级到版本 9.1 后，我按照<a target="_blank" rel="noopener" href="https://xdaforums.com/t/rom-huawei-13-leaos-lineage-20-0-for-huawei-device-emui-9-1-version.4560779/">LeaOS</a>那个帖子开始进行刷入第三方 ROM 的操作。看了眼前置条件是<strong>系统装有 TWRP 和解开了 bl 锁</strong>，bl 锁我已经解开，而适配 EMUI 9.1 的 TWRP 也可以在这个帖子的<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/altairfr-huawei/files/TWRP-Recovery/twrp-stf-ki960.img/download">5楼</a>找到，于是我便开干了。</p>
+<p>我进入了 fastboot，然后执行 <code>fastboot flash system LeaOS-20.0-20251019-iceows-google-stf.img</code>，于是出现了以下错误：</p>
+<pre><code>$ fastboot flash system LeaOS-20.0-20230304-iceows-google-stf.img
+Invalid sparse file format at header magic
+Sending sparse 'system' 1/7 (460241 KB)            OKAY [ 11.774s]
+Writing 'system'                                   FAILED (remote: 'sparse flash write failure')
+fastboot: error: Command failed
+</code></pre>
+<p>查了一下原因是：system 分区小于该 img 需要的大小，我需要使用 XDA 中的<a target="_blank" rel="noopener" href="https://xdaforums.com/t/huawei-partition-kit-enlarge-system-partition.4545993/">华为 system 分区工具</a>将 <code>system</code> 分区扩容，再重新进行刷机操作。</p>
+<p>然而知道报错的原因并不能改变什么。手机开始无限重启——好家伙又是一个晚上。过程大致跟“陷入黑砖”那一节差不多，也是找与目前手机版本号相近的 ROM，然后用猎人工具不断尝试——只不过这次 OEM 编号没有完全匹配上但也成功启动了，不知道为什么。</p>
+<h3 id="对-system-分区扩容">对 system 分区扩容</h3>
+<p>手机第二次救回来后，为了以防万一，我把手机更新到与 OEM 编号完全相同的版本，再进行扩容 system 分区的操作。<a target="_blank" rel="noopener" href="https://xdaforums.com/t/huawei-partition-kit-enlarge-system-partition.4545993/">这个工具</a>的脚本按照压缩包内 README 的步骤做基本没有问题，但唯一的瑕疵是这个 README 中的第 6 步和第 9 步对应的 <code>HW</code> 路径和 <code>HW-IMG</code> 路径不会自动生成，而是把产物直接放在了工具的根目录。</p>
+<p>具体而言，<code>HW</code> 路径的产物如下：</p>
+<pre><code>2025/11/28 周五  下午 10:53               621 5-FlashIMG.cmd
+2025/11/28 周五  下午 10:53               596 5-FlashIMG.sh
+2025/11/28 周五  下午 10:53               938 backup.sh
+2025/11/28 周五  下午 10:53               115 clearpart.sh
+2025/11/28 周五  下午 10:53               204 formatpart.sh
+2025/11/28 周五  下午 10:53             5,900 HuaweiFileGPT-MMC.txt
+2025/11/28 周五  下午 10:53                 0 HuaweiFileGPT-UFS.txt
+2025/11/28 周五  下午 10:53             6,040 HuaweiFilePart.txt
+2025/11/28 周五  下午 10:53               552 makepart.sh
+2025/11/28 周五  下午 10:53               413 restore.sh
+</code></pre>
+<p>而 <code>HW-IMG</code> 的产物如下：</p>
+<pre><code>2025/11/28 周五  下午 11:08       209,715,200 patch_a.img
+2025/11/28 周五  下午 11:13       310,378,496 preas.img
+2025/11/28 周五  下午 11:09        33,554,432 preavs.img
+2025/11/28 周五  下午 11:05       134,217,728 reserved5.img
+2025/11/28 周五  下午 11:55     2,860,515,328 system_a.img
+</code></pre>
+<p>你需要将根目录的这些文件手动移动到这两个路径以保证脚本的正常运行。</p>
+<p>另外，为了检验自己的 <code>system</code> 分区是否真的扩容到了你在 <code>HWGSIPartition</code> 应用中设置的容量（默认 3.5G），你可以在安装好的TWRP中 <code>df -h /system</code> 中查看。如果 <code>system</code> 没有挂载，也可以通过查看 <code>/proc/mounts</code> 找到 <code>system</code> 分区与块设备的映射，再通过相关指令（ATFAI）得到该块设备的 block 数，最后乘 512 再除以 2^30 即可得到 GB 数。</p>
+<h3 id="第三次刷入">第三次刷入</h3>
+<p>确保自己的 system 分区真的是 3.5G（其实大于 2.8G 应该就可以了）后，我进入了第三次刷机操作。按照<a target="_blank" rel="noopener" href="https://xdaforums.com/t/rom-huawei-13-leaos-lineage-20-0-for-huawei-device-emui-9-1-version.4560779/">LeaOS</a>那个帖子完整走了一遍除了 option 之外的操作，一次性就成功了。</p>
+<blockquote>
+<p>注意刷 TWRP 一定要<strong>拔掉数据线</strong>并重启按电源和音量加哦。</p>
+</blockquote>
+<p>刷入的系统没有遇到什么太大的问题，wifi、摄像头、蓝牙、相机、定位这些功能都正常，google play 也可以正常使用。唯一的缺点就是续航显著下降，即使放着不动也很难撑过一天，而原生甚至可以撑一周。（当然这对非主力机是一个不痛不痒的缺点）</p>
+<h2 id="刷入面具以及过-play-integrity-认证">刷入面具以及过 play integrity 认证</h2>
+<h3 id="magisk">magisk</h3>
+<p>刷入面具的部分可以<a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#shua-ru-mian-ju">参考caiwen的博客</a>，但很遗憾，博客提供华为解包工具链接已经失效。但<a target="_blank" rel="noopener" href="https://github.com/SimomYung/unpack_huawei_package">这个github仓库</a>中的<code>HuaweiUpdateExtractor</code>文件夹中的<code>HuaweiUpdateExtractor.exe</code>即为可以使用的解包工具，其余过程按照他的博客走一遍流程即可，我这里也操作成功，具体过程就不展开了。</p>
+<h3 id="play-integrity-safetynet">play integrity/safetynet</h3>
+<p>对于如何过 google 的 play integrity/safetynet 认证，目前的方案可以参考<a target="_blank" rel="noopener" href="https://github.com/yadavnikhil03/Play-integrity-fix-guide/blob/main/guide/full_guide.md">这个github仓库</a>。由于时间限制，我选择了先前装好 magisk 的 WSA 进行验证。</p>
+<blockquote>
+<p>顺便说一句，目前（2025年11月）最新可用的 WSA 安装指南在<a target="_blank" rel="noopener" href="https://github.com/MustardChef/WSABuilds/tree/master">WSABuilds</a>，提供了7月份 Windows 更新导致 WSA 无法正常使用的解决方法。</p>
+</blockquote>
+<p>我使用了 IntegrityBox (MeowNa) 方案，除了将指南提供的五个包全部安装之外，我还额外安装了 KsuWebUI。指南走了一遍后，我打开 KsuWebUI 对应的 Integrity Box 设置，并进行了如下操作：</p>
+<ul>
+<li>Play Integrity Fix 的 PIF Setting 中，我开启了前五个（也就是 <code>Spoof Build</code> 到 <code>Spoof Fingerprint</code>）</li>
+<li><code>Kill GMS Process</code></li>
+<li>Tricky Store 点击 <code>Update Keybox</code></li>
+</ul>
+<p>然后就可以过 Strong Integrity 验证了。</p>
+<img src='https://img.junyu33.me/blog/lineage/1.png'>
+<blockquote>
+<p>但估计 Google 和这些开发者之间的猫鼠游戏会相当激烈，开发者这边仓库更新速度都是以天为单位，这方案可能也不会长久......</p>
+</blockquote>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

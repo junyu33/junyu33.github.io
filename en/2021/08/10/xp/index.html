@@ -592,6 +592,21 @@ Failed to spawn: unable to find process with name 'com.android.vending'
 <p>And that's a wrap! 🎉</p>
 <h2 id="updated-on-2025-7-28">updated on 2025-7-28</h2>
 <p>Nearly a year later, my old phone finally came in handy when I tried to capture traffic from an app—though it didn't actually solve the problem I was facing. For details, see <a href="https://blog.junyu33.me/2025/07/28/router.html">this link</a>.</p>
+<h2 id="Updated-on-2025-11-26-how-to-unlock-bootloader-for-free">Updated on 2025-11-26 (how to unlock bootloader for free)</h2>
+<p>More than four years have passed since I unlocked this phone (STF-AL10). Some key information previously known only to certain individuals has gradually circulated online, and now it's possible to unlock the bootloader at zero cost. The steps are as follows:</p>
+<ol>
+<li>Remove the back cover of the phone. Use tweezers to short-circuit the testpoint (shown in the picture below, place the other end on metal). The phone will then enter 9008/EDL mode. After that, connect the phone to the computer via USB. The device manager will show <code>HUAWEI USB COM 1.0</code> (or possibly <code>USB SER</code>), then remove the tweezers.</li>
+</ol>
+<img src='https://img.junyu33.me/blog/xp/2.png'>
+<ol start="2">
+<li>
+<p>There is a tool on GitHub that forces the writing of an unlock code to the Kirin processor hardware: <a target="_blank" rel="noopener" href="https://github.com/mashed-potatoes/PotatoNV">PotatoNV</a>, supporting <code>Kirin 620/650/655/658/659/925/935/950/960</code>. The STF-AL10's processor is the Kirin 960, and PotatoNV happens to be the last generation it supports. For specific instructions, follow the steps in the provided <code>README</code>. The tool's basic principle is to detect devices in 9008 mode and inject a random unlock code into the device, allowing manual input of this code to unlock.</p>
+</li>
+<li>
+<p>Use the <code>fastboot oem unlock YOUR_CODE_HERE</code> command or the <a target="_blank" rel="noopener" href="https://www.downxia.com/downinfo/181026.html">Huawei-specific unlocking tool</a> to unlock.</p>
+</li>
+</ol>
+<p>While you can use <a target="_blank" rel="noopener" href="https://xdaforums.com/t/openkirin-beta-stf-twrp-3-1-1-1-update-28-10-2017.3654355/">TWRP</a> to flash the firmware after unlocking the phone, or root it using Magisk, it's extremely difficult to find a ROM that supports EMUI 5.1 (Android 7) on your phone due to its age. If you want to experience a stock Android experience like Lineage, you can refer to <a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#sheng-ji-dao-emui-8">this article</a> to upgrade your phone to a Project Treble-supported EMUI version (such as EMUI 9) before flashing it. <s>Ultimately, you'll find that the official one is the best, and flash back to the official system.</s></p>
 
 </div>
 

@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/zh/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2025-10-28T15:16:07.620Z</updated>
+  <updated>2025-11-30T09:22:48.798Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -20,6 +20,14 @@
     <summary type="html"><![CDATA[<p>2023/4/20 ~ 2024/5/4</p>
 <p>6705 commits (2 commits per compilation and execution)</p>
 <p>A year of persistence has finally come to an end.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>将 STF-AL10 刷机为 lineage</title>
+    <link href="https://blog.junyu33.me/zh/2025/11/29/lineage/"/>
+    <id>https://blog.junyu33.me/zh/2025/11/29/lineage/</id>
+    <updated>2025-11-30T08:46:10.893Z</updated>
+    <summary type="html"><![CDATA[<p>再次换新手机后，经过一周的不懈努力，我终于让上上台解了bl锁的手机（STF-AL10）刷上了 lineage。</p>
+<p>这里叙述一下完整的刷机过程。</p>]]></summary>
   </entry>
   <entry>
     <title>（转载）我国法律争取到的文化福利，请视频网站不要拱手让出</title>
@@ -168,13 +176,5 @@
     <updated>2025-08-25T13:17:38.992Z</updated>
     <summary type="html"><![CDATA[<p>临近年底了，我突然想起 2024 年，其实也是 2048 这个红极一时的游戏上线的十周年了。</p>
 <p>但可能鲜有人知道，2048 这个游戏，实际上是真正烧脑游戏 Threes! 的 copycat。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>第一百篇博客</title>
-    <link href="https://blog.junyu33.me/zh/2024/12/13/100th_blog/"/>
-    <id>https://blog.junyu33.me/zh/2024/12/13/100th_blog/</id>
-    <updated>2025-08-25T09:14:30.753Z</updated>
-    <summary type="html"><![CDATA[<p>在三年前的七月份，我写下第一篇博客开始。我立下了希望能在本科结束之前，写下 100 篇文章的目标。没想到我居然提前大概半年的时间，完成了这个目标。</p>
-<p>既然“一百”算是一个特殊的数字，那么我觉得这个博客的内容也应该是与博客本身相关的，不然就不能体现出这篇文章的“特殊”程度了。</p>]]></summary>
   </entry>
 </feed>

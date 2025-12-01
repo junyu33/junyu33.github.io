@@ -1,14 +1,8 @@
-/zh/*           /zh/:splat          200
-/en/*           /en/:splat          200
-/css/*          /css/:splat         200
-/archives/*     /archives/:splat    200
-/categories/*   /categories/:splat  200
-/tags/*         /tags/:splat        200
-/lib/*          /lib/:splat         200
+/robots.txt      /robots.txt      200
+/favicon.ico     /favicon.ico     200
+/sitemap.xml     /sitemap.xml     200
 
-/robots.txt     /robots.txt         200
-/favicon.ico    /favicon.ico        200
-/sitemap.xml    /sitemap.xml        200
-/               /index.html         200
+/                 /index.html     200
 
-/*              /zh/:splat          301!
+/:year/:month/:day/:slug/   /zh/:year/:month/:day/:slug/   301
+/:year/:month/:day/:slug    /zh/:year/:month/:day/:slug    301

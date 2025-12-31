@@ -22,6 +22,18 @@
 <p>A year of persistence has finally come to an end.</p>]]></summary>
   </entry>
   <entry>
+    <title>五六——我的 2025</title>
+    <link href="https://blog.junyu33.me/en/2025/12/31/bye2025/"/>
+    <id>https://blog.junyu33.me/en/2025/12/31/bye2025/</id>
+    <updated>2025-12-31T07:50:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>感觉现在的生活，像是缺少熵源的 PRNG 一般，陷入了一个名为“科研”的循环，但有一个好处是稀缺的“平静”。</p>
+<img src='https://img.junyu33.me/blog/bye2025/bye2025.png'>
+<h2 id="一月">一月</h2>
+<ul>
+<li>ysyx C 阶段第二次答辩成功通过，并在 <a href="https://blog.junyu33.me/2033/05/13/nju_pa/">nju-pa 文章</a> 中撰写了 C 阶段项目感言，短期内应该不会碰 RTL 设计了。</li>
+<li>毕设实验之 arm/riscv 支持与]]></summary>
+  </entry>
+  <entry>
     <title>Flash STF-AL10 into Lineage</title>
     <link href="https://blog.junyu33.me/en/2025/11/29/lineage/"/>
     <id>https://blog.junyu33.me/en/2025/11/29/lineage/</id>
@@ -158,12 +170,5 @@
     <id>https://blog.junyu33.me/en/2024/11/15/danboneh/</id>
     <updated>2024-11-15T05:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>Notes from Dan Boneh's online cryptography course.</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Learn intranet penetration the hard way (CanMV-K230 version)</title>
-    <link href="https://blog.junyu33.me/en/2024/11/08/canmv/"/>
-    <id>https://blog.junyu33.me/en/2024/11/08/canmv/</id>
-    <updated>2024-11-08T03:00:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>Please note that this article is not a tutorial for readers who are new to intranet penetration, but rather a follow-up to the article &quot;Building a Fast and Secure VNC Service from Scratch.&quot;</p>]]></summary>
   </entry>
 </feed>

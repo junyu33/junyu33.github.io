@@ -1285,12 +1285,13 @@
   <url>
     <loc>https://blog.junyu33.me/en/2025/12/31/bye2025/</loc>
     <lastmod>2025-12-31</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2025/12/31/bye2025/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2025/12/31/bye2025/" />
   </url>
   <url>
     <loc>https://blog.junyu33.me/zh/2025/12/31/bye2025/</loc>
     <lastmod>2025-12-31</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2025/12/31/bye2024/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2025/12/31/bye2025/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2025/12/31/bye2025/" />
   </url>
 </urlset>

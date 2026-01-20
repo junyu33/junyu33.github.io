@@ -1294,4 +1294,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2025/12/31/bye2025/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2025/12/31/bye2025/" />
   </url>
+  <url>
+    <loc>https://blog.junyu33.me/zh/2026/01/20/camus/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/01/20/camus/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/01/20/camus/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2026/01/20/camus/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/01/20/camus/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/01/20/camus/" />
+  </url>
 </urlset>

@@ -13,15 +13,6 @@
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
   </entry>
   <entry>
-    <title>（置顶，已完结）nju-pa 心得</title>
-    <link href="https://blog.junyu33.me/zh/2033/05/13/nju_pa/"/>
-    <id>https://blog.junyu33.me/zh/2033/05/13/nju_pa/</id>
-    <updated>2025-01-13T04:30:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>2023/4/20 ~ 2024/5/4</p>
-<p>6705 commits (2 commits per compilation and execution)</p>
-<p>A year of persistence has finally come to an end.</p>]]></summary>
-  </entry>
-  <entry>
     <title>Rathee 三部曲：CrypTFlow2，SIRNN与SecFloat</title>
     <link href="https://blog.junyu33.me/zh/2026/01/30/secfloat/"/>
     <id>https://blog.junyu33.me/zh/2026/01/30/secfloat/</id>
@@ -180,5 +171,12 @@
     <id>https://blog.junyu33.me/zh/2025/02/01/chatgpt4/</id>
     <updated>2025-02-01T03:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>随着 deepseek 与 chatGPT o3-mini 的出炉，我们欣喜地看到 LLM 正不断朝着“降本”抑或“增效”的方向而不断努力。但毕竟 LLM 训练也带着 paper-oriented 的特性，我们需要警惕，再朝着这样的方向进行下去，LLM 有可能变成下一个“做题家”。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>（转载）漫话骗子的故事</title>
+    <link href="https://blog.junyu33.me/zh/2025/01/16/%E6%BC%AB%E8%AF%9D%E9%AA%97%E5%AD%90%E7%9A%84%E6%95%85%E4%BA%8B/"/>
+    <id>https://blog.junyu33.me/zh/2025/01/16/%E6%BC%AB%E8%AF%9D%E9%AA%97%E5%AD%90%E7%9A%84%E6%95%85%E4%BA%8B/</id>
+    <updated>2025-01-15T16:00:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>原作者：Master-Hash</p>]]></summary>
   </entry>
 </feed>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P1328 【生活大爆炸版石头剪刀布】</h1>
+	<p><strong>二维数组+奇葩得分</strong></p>
+<p>因为双方最多只能得200分，让A方赢加10000，另一方赢加1，再整除（求余）肯定没问题。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int a[5][5] = &#123; &#123;0,1,10000,10000,1&#125;,
+           &#123;10000,0,1,10000,1&#125;,
+	        &#123;1,10000,0,1,10000&#125;,
+		      &#123;1,1,10000,0,10000&#125;,
+		      &#123;10000,10000,1,1,0&#125; &#125;;  //二维打表省去冗长if(switch)
+int main()
+&#123;
+	int n; cin &gt;&gt; n;                 //局数
+	int r[210], s[210];
+	int na, nb; cin &gt;&gt; na &gt;&gt; nb;
+	for (int i = 0; i &lt; na; i++)
+		cin &gt;&gt; r[i];
+	for (int i = 0; i &lt; nb; i++)
+		cin &gt;&gt; s[i];                 //每个循环要出啥子 
+	int ans = 0;
+	for (int i = 0; i &lt; n; i++)
+		ans += a[r[i%na]][s[i%nb]];     //模拟双方得分
+	cout &lt;&lt; ans / 10000 &lt;&lt; &quot; &quot; &lt;&lt; ans % 10000;//得出单方得分
+   return 0；
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

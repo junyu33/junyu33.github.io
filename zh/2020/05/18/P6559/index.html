@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P6559 【[SBCOI2020]小镇】</h1>
+	<h2 id="STL做法">STL做法</h2>
+<p>用一个pair储存二维坐标，再用map映射一个bool值。</p>
+<p>对每一个坐标，判断上下左右四格有没有值为1的，如果有ans++。</p>
+<p>因为同一盏灯会被两边各算一次，最后将ans/2即可。</p>
+<h2 id="代码">代码</h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=1e5+10;
+int n,m;
+int opx[]=&#123;0,0,-1,1,0&#125;,opy[]=&#123;0,1,0,0,-1&#125;;
+pair&lt;int,int&gt; pos[N],tmp;
+map&lt;pair&lt;int,int&gt;,bool&gt;mp;
+int ans;
+int main()&#123;
+   cin&gt;&gt;n&gt;&gt;m;
+   for(int i=1;i&lt;=m;i++)&#123;
+      cin&gt;&gt;pos[i].first&gt;&gt;pos[i].second;
+      mp[pos[i]]=1;
+   &#125;
+   for(int i=1;i&lt;=m;i++)
+      for(int j=1;j&lt;=4;j++)&#123;
+         tmp.first=pos[i].first+opx[j];
+         tmp.second=pos[i].second+opy[j];
+         ans+=mp[tmp];
+      &#125;
+   cout&lt;&lt;ans/2;
+   return 0;
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P1601 【A+B Problem（高精）】</h1>
+	<p>尝试挑战c++最短代码(自学的，没有借鉴)</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+char a[600], b[600]; int sum[600];
+int main()
+&#123;
+	int max,min;
+	cin &gt;&gt; a &gt;&gt; b;
+	int stra = strlen(a);
+	int strb = strlen(b);
+	if (stra &gt;= strb) max = stra;
+	else max=strb;//确定长度长的
+	if (stra &lt; strb) min = stra;
+	else min=strb;//确定长度短的
+	for (int i = 0;i&lt;=max-1; i++)
+	&#123;
+		if (min==strb&amp;&amp;i&gt;=min) sum[599 - i] += int(a[stra - i - 1] - '0');
+		if(min==stra&amp;&amp;i&gt;=min) sum[599 - i] += int(b[strb - i - 1] - '0');// 把长度长的直接扔上去
+		if(i&lt;min) sum[599 - i] += int(a[stra - i - 1] - '0') + int(b[strb - i - 1] - '0');//一位一位地加
+		if (sum[599 - i] &gt; 9) &#123; sum[599 - i] = sum[599 - i] - 10; sum[598 - i]++; &#125;//进位
+	&#125;
+	if (sum[599 - max] != 0) cout &lt;&lt; sum[599 - max];//最高位判定
+	for (int i = 600-max; i &lt;= 599; i++) cout &lt;&lt; sum[i];//按位输出
+	return 0;
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

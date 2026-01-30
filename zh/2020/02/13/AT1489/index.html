@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 AT1489 【文字列と素数】</h1>
+	<p>前置芝士：</p>
+<ol>
+<li>
+<p>质数判定：除了用<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.491ex;" xmlns="http://www.w3.org/2000/svg" width="3.287ex" height="2.398ex" role="img" focusable="false" viewBox="0 -843 1453 1060" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msqrt"><g transform="translate(853,0)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(0,-17)"><path data-c="221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z" style="stroke-width: 3;"/></g><rect width="600" height="60" x="853" y="723"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msqrt><mi>n</mi></msqrt></math></mjx-assistive-mml></mjx-container> 的数去除外，它除以6一定余1或者余5.</p>
+</li>
+<li>
+<p>预处理10的n次幂，1e5以内质数.</p>
+</li>
+<li>
+<p>字符个数超过5就直接退出.</p>
+</li>
+<li>
+<p>搜索的时候不需要剪枝，一次搜索成本是<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.564ex;" xmlns="http://www.w3.org/2000/svg" width="7.819ex" height="2.26ex" role="img" focusable="false" viewBox="0 -749.5 3456 999" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D476" d="M53 245Q53 297 70 356T125 478T216 590T349 671T523 703Q656 703 735 637T815 445Q815 378 791 307Q727 104 527 17Q437 -17 344 -17Q289 -17 242 -5T150 35T79 116T53 245ZM664 489Q664 575 618 611T511 648Q463 648 416 627T334 570Q297 531 270 472T230 355T213 261T208 206Q208 177 215 151T237 98T284 56T358 40Q440 40 510 98T618 270Q664 400 664 489Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(837,0) translate(0 -0.5)"><path data-c="28" d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(1284,0)"><path data-c="1D7CF" d="M481 0L294 3Q136 3 109 0H96V62H227V304Q227 546 225 546Q169 529 97 529H80V591H97Q231 591 308 647L319 655H333Q355 655 359 644Q361 640 361 351V62H494V0H481Z" style="stroke-width: 3;"/><path data-c="1D7D0" d="M175 580Q175 578 185 572T205 551T215 510Q215 467 191 449T137 430Q107 430 83 448T58 511Q58 558 91 592T168 640T259 654Q328 654 383 637Q451 610 484 563T517 459Q517 401 482 360T368 262Q340 243 265 184L210 140H274Q416 140 429 145Q439 148 447 186T455 237H517V233Q516 230 501 119Q489 9 486 4V0H57V25Q57 51 58 54Q60 57 109 106T215 214T288 291Q364 377 364 458Q364 515 328 553T231 592Q214 592 201 589T181 584T175 580Z" transform="translate(575,0)" style="stroke-width: 3;"/><path data-c="1D7CE" d="M266 654H280H282Q500 654 524 418Q529 370 529 320Q529 125 456 52Q397 -10 287 -10Q110 -10 63 154Q45 212 45 316Q45 504 113 585Q140 618 185 636T266 654ZM374 548Q347 604 286 604Q247 604 218 575Q197 552 193 511T188 311Q188 159 196 116Q202 87 225 64T287 41Q339 41 367 87Q379 107 382 152T386 329Q386 518 374 548Z" transform="translate(1150,0)" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(3009,0) translate(0 -0.5)"><path data-c="29" d="M231 251Q231 354 214 439T173 575T123 661T81 714T64 735Q64 744 73 749H75Q77 749 79 749T84 750T90 750H105Q132 732 159 708T220 639T281 542T325 413T343 251T325 89T281 -40T221 -138T159 -207T105 -249H90Q80 -249 76 -249T68 -245T64 -234Q64 -230 81 -212T123 -160T172 -75T214 61T231 251Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi mathvariant="bold-italic">O</mi><mo stretchy="false" mathvariant="bold">(</mo><mn mathvariant="bold">120</mn><mo stretchy="false" mathvariant="bold">)</mo></math></mjx-assistive-mml></mjx-container>,可以通过本题.</p>
+</li>
+</ol>
+<p>具体搜索细节看代码</p>
+<pre><code class="language-cpp">//注意：本代码在某一个非关键地方隐藏了错误
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+char a[15],t[15];
+long long stra,num,flag,used[200],usednum[14];
+long long power[114] = &#123;1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000,100000000000&#125;;
+bool num1[100000];
+int prime[10000];
+bool isprime(long long a)&#123;//结合之前的预处理与第一条，速度更快
+	if(a==1) return 0;
+	if(a==2||a==3) return 1;
+	if(a%6!=1&amp;&amp;a%6!=5) return 0;
+	for(int i=1;prime[i]&amp;&amp;prime[i]*prime[i]&lt;=a;i++)
+	   if(a%prime[i]==0) return 0;
+	return 1;   
+&#125;
+void init()&#123;
+	int p=0;
+	for(int i=2;i*i&lt;=100000;i++)
+	   for(int j=i;i*j&lt;=100000;j++)
+	      num1[i*j]=1;   
+	for(int i=2;i&lt;=100000;i++) 
+		if(!num1[i])
+			prime[++p]=i;
+&#125;
+void dfs(int t)&#123;
+	if(flag) return;
+	if(t==stra)&#123;//到了规定长度就判定
+		if(isprime(num)) &#123;
+			flag++;
+			cout&lt;&lt;num&lt;&lt;endl;
+		&#125;
+		return;
+	&#125;
+	if(used[a[t]])&#123;//字母用了就直接继承之前的
+		num+=used[a[t]]*power[stra-1-t];
+		dfs(t+1);
+		num-=used[a[t]]*power[stra-1-t];
+	&#125;
+	else
+		for(int i=1;i&lt;=9;i++)&#123;//没有用就重新挑选
+			if(usednum[i]) continue;
+			used[a[t]]=i;
+			usednum[i]=1;
+			num+=i*power[stra-1-t];
+			dfs(t+1);
+			num-=i*power[stra-1-t];
+	      usednum[i]=0;
+	      used[a[t]]=0;
+		&#125;
+	
+&#125;
+int main()&#123;
+	init();
+	cin&gt;&gt;a;
+	stra=strlen(a);
+	int cnt=0,flg,p=1;
+	for(int i=0;i&lt;stra;i++) &#123;
+		flg=0;
+		for(int j=1;j&lt;=5;j++)
+			if(a[i]==t[j]) flg++;
+		if(!flg)&#123;
+			cnt++;
+			t[p++]=a[i];
+		&#125;
+	&#125;
+	if(cnt&gt;5) cout&lt;&lt;-1;
+	else&#123;
+		num=0;dfs(0);
+		if(!flag) cout&lt;&lt;-1;
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

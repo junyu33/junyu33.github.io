@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P3949 【答案错误】</h1>
+	<p>手动模拟即可得到后一半是经过前一半反转得到的。又看到是2的n次方，于是灵机一动，转换成二进制，思路呼之欲出：</p>
+<p><strong>只需要把分值x减去1，转化成二进制，统计1的个数，再判断奇偶性即可。</strong></p>
+<p>这里科普一下，在体育比赛(二人竞技)时,先发球跟后发球会带来一定的心理影响，为了尽量削弱这种发球先后带来的影响，无聊的数学家们就想出了这种顺序：(0表示甲方发球，1表示乙方发球)</p>
+<p>0 1</p>
+<p>0 1 1 0</p>
+<p>0 1 1 0 1 0 0 1</p>
+<p>0 1 1 0 1 0 0 1 1 0 0 1 0 1 1 0</p>
+<p>...</p>
+<p>这可以当作对这种分配方法的感性理解吧。</p>
+<p><strong>这里只贴出核心代码，快读、long long这些自己加。</strong></p>
+<pre><code class="language-cpp">int main()&#123;
+   n=read(),q=read();
+   while(q--)&#123;
+      int a=read()-1,cnt=0;
+      for(int i=n;~i;i--)
+         if(a&gt;=2的i次幂) cnt++,a-=2的i次幂;
+      if(cnt%2) printf(&quot;Z\n&quot;);
+      else printf(&quot;X\n&quot;);
+   &#125;
+   return 0;
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

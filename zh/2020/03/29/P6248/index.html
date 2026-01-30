@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P6248 【准备战斗，选择你的英雄】</h1>
+	<p>思路都是复杂度<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.576ex;" xmlns="http://www.w3.org/2000/svg" width="6.312ex" height="2.463ex" role="img" focusable="false" viewBox="0 -833.9 2789.8 1088.7" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="msubsup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(845.3,363) scale(0.707)"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(748,-247) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(2400.8,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><msubsup><mi>C</mi><mi>n</mi><mn>6</mn></msubsup><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container>的，都是暴力枚举英雄，然后直接判断值。</p>
+<p><s>曾经想写贪心最后放弃了。</s></p>
+<p>这里介绍一种stl的string类型字符串比较方法。</p>
+<p>我们先需要两个结构体u与v，一个存英雄的属性，一个存附加条件（结合加成）。</p>
+<pre><code class="language-cpp">struct hero&#123;
+   string s;
+   int v;
+&#125;p[40];
+struct extra&#123;
+   string a;
+   string b;
+   int v;
+&#125;q[40];
+</code></pre>
+<p>关于string类型的比较有一个函数叫s1.compare(s2)或者s2.compare(s1)，当它返回0时表示s1,s2相同，返回-1时表示不同。</p>
+<p>这里的12个compare语句稍微有些难懂，这里解释一下。对于给定的一种组合，先用左边那个英雄跟所有选定英雄配对，再用右边的配对。因为左右两遍的英雄不会是同一个，所以是一种等价的写法，并不影响结果。只要有两组配对成功，就说明u,v这两种英雄都在选定英雄中存在，可以加上他们的附加值。</p>
+<pre><code class="language-cpp">int getv(int a,int b,int c,int d,int e,int f)&#123;
+   int ans=p[a].v+p[b].v+p[c].v+p[d].v+p[e].v+p[f].v;
+   for(int i=1;i&lt;=m;i++)&#123;
+      int flg=0;
+      string u=q[i].a,v=q[i].b;
+      if(u.compare(p[a].s)==0||v.compare(p[a].s)==0) flg++;
+      if(u.compare(p[b].s)==0||v.compare(p[b].s)==0) flg++;
+      if(u.compare(p[c].s)==0||v.compare(p[c].s)==0) flg++;
+      if(u.compare(p[d].s)==0||v.compare(p[d].s)==0) flg++;
+      if(u.compare(p[e].s)==0||v.compare(p[e].s)==0) flg++;
+      if(u.compare(p[f].s)==0||v.compare(p[f].s)==0) flg++;
+      if(flg==2) ans+=q[i].v;
+   &#125;
+   return ans;
+&#125;
+</code></pre>
+<p>至于枚举部分，直接暴力六重for循环即可。</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

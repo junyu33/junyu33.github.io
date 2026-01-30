@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P2921 【[USACO08DEC]在农场万圣节Trick or Treat on the Farm】</h1>
+	<p>其实这道题不需要tarjan，不需要分类讨论，只需要记一下时间戳、环的周长即可.</p>
+<p>先用dfs1预处理各个环的周长（包括自环），并把周长的值d标记在整个环上。再用dfs2遍历路线，待到d值为正时，直接返回搜索深度+d.</p>
+<p>具体细节看代码（核心部分不超20行）</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define inf 5201314
+using namespace std;
+const int N=3e5+10;
+int n,to[N],d[N],dfn[N];
+void dfs1(int a,int t)&#123;
+   if(d[a]||dfn[a]&gt;=inf) return; //避免第三次遍历环，同时避免给环外的节点错误赋d值 
+   if(dfn[a]&amp;&amp;dfn[a]&lt;inf) d[a]=t-dfn[a];//第二次遍历环即可利用时间戳之差计算环的周长 
+   else dfn[a]=t;
+   dfs1(to[a],t+1);
+   dfn[a]=inf; //遍历完成后，给路径赋一个极大值，标记此环已经来过
+&#125;
+int dfs2(int a)&#123;
+   if(d[a]) return d[a];
+   return d[a]=dfs2(to[a])+1;//路径压缩，节省大量时间 
+&#125;
+int main()&#123;
+   cin&gt;&gt;n;
+   for(int i=1;i&lt;=n;i++) cin&gt;&gt;to[i];
+   for(int i=1;i&lt;=n;i++)&#123;
+      if(dfn[i]) continue;//说明路径已走过，节省大量时间  
+      dfs1(i,1);
+   &#125;
+   for(int i=1;i&lt;=n;i++) cout&lt;&lt;dfs2(i)&lt;&lt;endl;
+   return 0;
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P2821 【变幻数】</h1>
+	<p><strong>既然有高精，怎么能没有python呢？</strong></p>
+<pre><code class="language-python">n=input()
+n=int(n)
+if n&lt;10:print(n) #特判
+else:
+   i=9
+   flg=0
+   st=''
+   while 1:
+      if n==1: break
+      if i==1:
+         flg=1 
+         print(&quot;There is no such number!&quot;) 
+         break
+      if n%i==0:
+         st+=str(i)
+         n//=i #这里一定要用整除，不然n的类型会变成double，从而导致精度炸掉
+      else: i-=1
+   if flg==0: print(st[::-1]) #倒序
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

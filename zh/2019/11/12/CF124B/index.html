@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 CF124B 【Permutations】</h1>
+	<p><strong>这个题有next_permutation就简单了</strong></p>
+<p>输入用字符串，用个f函数和permut数组（存数字所在位数）把其转换成整型。</p>
+<p>m个数过一遍f后用<strong>next_permutation</strong>重置permut数组</p>
+<p>以上过程进行n!遍后得出最小值</p>
+<p>注意pow最好用数组,用内部可能WA。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+char num[10][10];
+int range[10][10];
+int permut[10];
+int m,n;
+int fac[]=&#123;1,1,2,6,24,120,720,5040,40320,362880&#125;;
+int poww[]=&#123;1,10,100,1000,10000,100000,1000000,10000000,100000000&#125;;
+int f(int a)
+&#123;
+	int t=0;
+	for(int i=n; i&gt;=1; i--) t+=range[a][i]*poww[10,permut[i]-1];
+	return t;
+&#125;
+int main()
+&#123;
+	cin&gt;&gt;m&gt;&gt;n;
+	for(int i=1;i&lt;=n;i++) permut[i]=i;
+	for(int i=1; i&lt;=m; i++)
+		scanf(&quot;%s&quot;,num[i]+1);
+	for(int i=1; i&lt;=m; i++)
+		for(int j=1; j&lt;=n; j++)
+			range[i][j]=num[i][j]-'0';
+	int cha=2e9;		
+	for(int i=1; i&lt;=fac[n]; i++)
+	&#123;
+		int maxn=0,minn=2e9;
+		for(int j=1; j&lt;=m; j++)
+		&#123;
+			maxn=max(f(j),maxn);
+			minn=min(f(j),minn);
+		&#125;
+		cha=min(cha,maxn-minn);
+		next_permutation(permut+1,permut+n+1);
+	&#125;
+	cout&lt;&lt;cha;
+	return 0;
+&#125;
+
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

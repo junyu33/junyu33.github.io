@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>题解 P2268 【[HNOI2002]DNA分子的最佳比对】</h1>
+	<p>看其余两位都是直接动归，这里我来一份记忆化搜索的代码</p>
+<p>思路跟他们相仿，这里我就不赘述了</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define inf 1e8
+using namespace std;
+int m,n,x[1105],y[1105];
+char xx[1105],yy[1105];
+int mem[2205][2205],mem1[2205][2205];
+int dfs(int a,int s)
+&#123;
+    int p,q,r,w;p=q=r=w=-inf;//因为最大值可能为负,返回值为这四种情况的最大值
+    if(mem[a][s])return mem[a][s];//记忆化
+    if(a&gt;=m&amp;&amp;s&gt;=n)return 0;//边界条件  
+    if(a&lt;m&amp;&amp;s&lt;n&amp;&amp;xx[a]==yy[s]) p=1+dfs(a+1,s+1);//配对且相同
+    if(a&lt;m&amp;&amp;s&lt;n&amp;&amp;xx[a]!=yy[s]) w=dfs(a+1,s+1);//配对但不相同
+    if(s&lt;n)q=dfs(a,s+1)-2;
+    if(a&lt;m)r=dfs(a+1,s)-2;//在左边或右边插入“-”
+    mem[a][s]=max(max(p,q),max(r,w));
+    return mem[a][s];
+&#125;
+int main()
+&#123;
+    cin&gt;&gt;xx&gt;&gt;yy;
+    m=strlen(xx);
+    n=strlen(yy);
+    cout&lt;&lt;dfs(0,0);
+    return 0;
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

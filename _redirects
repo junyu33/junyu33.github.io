@@ -6,3 +6,5 @@
 
 /:year/:month/:day/:slug/   /zh/:year/:month/:day/:slug/   301
 /:year/:month/:day/:slug    /zh/:year/:month/:day/:slug    301
+
+/*    /404.html    404

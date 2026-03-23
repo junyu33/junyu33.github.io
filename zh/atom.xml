@@ -13,6 +13,17 @@
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
   </entry>
   <entry>
+    <title>（转载）Keep Android Open</title>
+    <link href="https://blog.junyu33.me/zh/2026/03/23/keep_android_open/"/>
+    <id>https://blog.junyu33.me/zh/2026/03/23/keep_android_open/</id>
+    <updated>2026-03-22T22:00:00.000Z</updated>
+    <summary type="html"><![CDATA[<blockquote>
+<p>原文地址：<a href="https://keepandroidopen.org/zh-CN/">https://keepandroidopen.org/zh-CN/</a></p>
+<p>版权: 公有领域。本网站使用 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a></p>
+</blockquote>
+<p>2025年8月，Google <a href="https://developer.android.com/developer-verif]]></summary>
+  </entry>
+  <entry>
     <title>如何构造一个阶为 p^3 的非阿贝尔群</title>
     <link href="https://blog.junyu33.me/zh/2026/03/12/semidirect/"/>
     <id>https://blog.junyu33.me/zh/2026/03/12/semidirect/</id>
@@ -174,12 +185,5 @@
     <updated>2025-03-18T15:00:00.000Z</updated>
     <summary type="html"><![CDATA[<h1>introduction</h1>
 <p>在前序文章《从零搭建一个又快又安全的 VNC 服务》中，我们实现了从非公网机器连接到使用了 ddns 的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the hard way》中，我们使用了 ddns 的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建 web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89 订阅费用的目的。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>五三——警惕 LLM 成为下一个“做题家”</title>
-    <link href="https://blog.junyu33.me/zh/2025/02/01/chatgpt4/"/>
-    <id>https://blog.junyu33.me/zh/2025/02/01/chatgpt4/</id>
-    <updated>2025-02-01T03:30:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>随着 deepseek 与 chatGPT o3-mini 的出炉，我们欣喜地看到 LLM 正不断朝着“降本”抑或“增效”的方向而不断努力。但毕竟 LLM 训练也带着 paper-oriented 的特性，我们需要警惕，再朝着这样的方向进行下去，LLM 有可能变成下一个“做题家”。</p>]]></summary>
   </entry>
 </feed>

@@ -13,7 +13,7 @@
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
   </entry>
   <entry>
-    <title>我如何在 Android 的 Termux/Ubuntu 套娃环境里跑通 VSCode Remote 和 Codex</title>
+    <title>在 Android 的 Termux/Ubuntu 套娃环境里跑通 VSCode Remote+Codex</title>
     <link href="https://blog.junyu33.me/zh/2026/03/28/termux/"/>
     <id>https://blog.junyu33.me/zh/2026/03/28/termux/</id>
     <updated>2026-03-27T20:30:00.000Z</updated>

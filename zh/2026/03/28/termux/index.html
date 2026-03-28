@@ -56,7 +56,7 @@
       </nav>
     
 
-	<h1>我如何在 Android 的 Termux/Ubuntu 套娃环境里跑通 VSCode Remote 和 Codex</h1>
+	<h1>在 Android 的 Termux/Ubuntu 套娃环境里跑通 VSCode Remote+Codex</h1>
 	<p>自从去年 12 月飞速入门 vibe coding 之后，我想尝试在任何能装 vscode 的机器中，都装上 codex 插件。于是我的下一步目标是——那台废弃的 android 手机。理论上 android（在 Google <a target="_blank" rel="noopener" href="https://keepandroidopen.org">坏事还没做尽前</a>）是可以安装 termux 的，后者又有<a target="_blank" rel="noopener" href="https://github.com/MFDGaming/ubuntu-in-termux">脚本</a>来在里面套娃 ubuntu。因此我的那台 android 手机安装 remote SSH 和 codex 理论上是可行的。但实际上......</p>
 <span id="more"></span>
 <h2 id="配置-SSH-直连-termux-内部的-ubuntu">配置 SSH 直连 termux 内部的 ubuntu</h2>
@@ -211,7 +211,7 @@ export all_proxy=http://主机ip:7897
 export ALL_PROXY=http://主机ip:7897
 unset no_proxy NO_PROXY
 </code></pre>
-<p>然后彻底重启 <code>vscode server</code>，并再更新一下环境变量：</p>
+<p>然后彻底重启 vscode server，并再更新一下环境变量：</p>
 <pre><code>pkill -f vscode-server
 source ~/.bashrc
 </code></pre>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  
+    <link rel="alternate" hreflang="en" href="/en/2026/03/28/termux/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2026/03/28/termux/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>我如何在 Android 的 Termux/Ubuntu 套娃环境里跑通 VSCode Remote 和 Codex</h1>
+	<p>自从去年 12 月飞速入门 vibe coding 之后，我想尝试在任何能装 vscode 的机器中，都装上 codex 插件。于是我的下一步目标是——那台废弃的 android 手机。理论上 android（在 Google <a target="_blank" rel="noopener" href="https://keepandroidopen.org">坏事还没做尽前</a>）是可以安装 termux 的，后者又有<a target="_blank" rel="noopener" href="https://github.com/MFDGaming/ubuntu-in-termux">脚本</a>来在里面套娃 ubuntu。因此我的那台 android 手机安装 remote SSH 和 codex 理论上是可行的。但实际上......</p>
+<span id="more"></span>
+<h2 id="配置-SSH-直连-termux-内部的-ubuntu">配置 SSH 直连 termux 内部的 ubuntu</h2>
+<p>问题的第一步，就是如何配置 SSH 直接连到里面的 Ubuntu，而不是通过 termux 再中转一层（因为 vscode server 并不支持 remote SSH 套娃）。这是整个流程最简单的一步，只需要在 Ubuntu 单独启一个 <code>sshd</code>，然后换一个和 termux 的 <code>sshd</code> 不冲突的端口即可。例如，在 Ubuntu 运行：</p>
+<pre><code class="language-sh">apt update
+apt install -y openssh-server curl bash
+mkdir -p /run/sshd
+ssh-keygen -A
+sed -i 's/^#\?Port .*/Port 2222/' /etc/ssh/sshd_config
+/usr/sbin/sshd
+</code></pre>
+<p>也就是对应了 <code>2222</code> 端口。</p>
+<p>这里我为了方便，使用默认的 root 用户，用 <code>passwd</code> 命令设一个密码，之后即可通过：</p>
+<pre><code class="language-sh">ssh -p 2222 root@手机IP
+</code></pre>
+<p>进行访问。</p>
+<p>然后下一步是配好免密登录：</p>
+<pre><code class="language-sh">ssh-copy-id -p 2222 root@手机IP
+</code></pre>
+<p>本机 <code>~/.ssh/config</code> 写一个代号，例如 <code>phone-ubuntu</code>：</p>
+<pre><code>Host phone-ubuntu
+    HostName 手机IP
+    Port 2222
+    User root
+    ServerAliveInterval 30
+    ServerAliveCountMax 6
+</code></pre>
+<p>测试 <code>ssh phone-ubuntu</code> 即可。如果没有问题，vscode 这边如果不出意外应该是可以正常使用 remote SSH 了。</p>
+<h2 id="Vscode-报错-Signature-verification-failed-with-UnknownError-error">Vscode 报错 <code>Signature verification failed with 'UnknownError' error.</code></h2>
+<p>然后我便尝试去用 remote SSH 装 codex，诡异的事情便开始发生了。我收到了以下报错：</p>
+<blockquote>
+<p>Signature verification failed with 'UnknownError' error.</p>
+</blockquote>
+<p>我的直感是由于这个 <code>ubuntu-in-termux</code> 只是一个由 proot 搭起来的伪 linux 环境，但至少我得搞清楚这个 <code>UnknownError</code> 究竟具体是什么 error。于是我开始寻找这个报错的上下文：</p>
+<ul>
+<li>vscode 的 output 页面中的 <code>Extension Host (Remote)</code></li>
+<li>Ubuntu 中的 <code>~/.vscode-server</code> 路径的 log 文件</li>
+</ul>
+<p>对于前者直接点到那个位置，再 Ctrl+F 即可，后者的话路径在：</p>
+<pre><code class="language-sh">grep -niE 'signature|UnknownError' \
+~/.vscode-server/data/logs/20260320T154741/remoteagent.log \
+~/.vscode-server/data/logs/20260320T154741/exthost2/remoteexthost.log \
+~/.vscode-server/data/logs/20260320T154741/exthost1/remoteexthost.log 2&gt;/dev/null
+</code></pre>
+<p>（注意这里 logs 下面换成自己的时间路径）</p>
+<p>可惜的是，当时这三个路径都没有结果。然后我又选择在本地查看最近 10 分钟的 log：</p>
+<pre><code class="language-sh">find ~/.config/Code/logs -type f \( -iname '*shared*' -o -iname '*window*' -o -iname '*renderer*' \) -mmin -10 -print0 2&gt;/dev/null \ | xargs -0 grep -nEi 'Signature verification failed|UnknownError|signature|codex|openai|install' 2&gt;/dev/null
+</code></pre>
+<p>这次倒是有了一些结果：</p>
+<pre><code>sharedprocess.log:122 Extension signature verification result for github.copilot-chat: Success
+sharedprocess.log:134 Extension signature verification result for llvm-vs-code-extensions.vscode-clangd: Success
+renderer.log:299 Remote Install Error Name SignatureVerificationInternal
+renderer.log:301 Signature verification failed with 'UnknownError' error.
+</code></pre>
+<p>由此排除了本地 vscode 签名校验的问题（也就是失败点在远端安装 vscode server 这一步）。接下来有两个选择：</p>
+<ul>
+<li>直接将本地文件拷贝到 Ubuntu；</li>
+<li>在 Ubuntu 安装 codex 对应的 vsix 包。</li>
+</ul>
+<p>对于前者，首先我们得考虑 codex 这个插件是不是纯 js 写的，也就是运行：</p>
+<pre><code class="language-sh">find ~/.vscode/extensions/openai.chatgpt-* -type f | grep -E '\.node$|bin/|dist/.*(linux|arm64|x64)|\.(so|dll|exe)$'
+</code></pre>
+<p>我这里的返回结果为：</p>
+<pre><code>/home/junyu33/.vscode/extensions/openai.chatgpt-26.318.11754-linux-x64/bin/linux-x86_64/rg 
+/home/junyu33/.vscode/extensions/openai.chatgpt-26.318.11754-linux-x64/bin/linux-x86_64/codex
+</code></pre>
+<p>这里区分了架构与平台，因此直接拷贝文件这条路可以放弃了。</p>
+<p>接下来我们应该考虑如何搞到 codex 的 vsix 包，插件对应的商店页面没有找到对应的 vsix 下载链接，经过与 GPT 的一番斗智斗勇后，我获得了可以自由选择版本号的下载脚本：</p>
+<pre><code class="language-sh">for v in 26.318.11754 26.313.41514 26.313.41036 26.304.20706 0.4.79 0.4.60; do
+  echo &quot;=== $v ===&quot;
+  curl -sI &quot;https://marketplace.visualstudio.com/_apis/public/gallery/publishers/openai/vsextensions/chatgpt/$v/vspackage?targetPlatform=linux-arm64&quot; | sed -n '1,10p'
+  echo
+done
+</code></pre>
+<p>最新版本 <code>26.318.11754</code> 下下来是一个用 gzip 打包的 vsix(zip)，看上去应该没有问题。接下来我尝试把 vsix 拷贝到服务器，然后另一个问题出现了：</p>
+<h3 id="SCP-传输失败">SCP 传输失败</h3>
+<p>当我运行 <code>scp openai-chatgpt-26.318.11754-linux-arm64.vsix phone-ubuntu:</code> 后，我遇到了以下“报错”：</p>
+<pre><code class="language-sh">** WARNING: connection is not using a post-quantum key exchange algorithm. 
+** This session may be vulnerable to &quot;store now, decrypt later&quot; attacks. 
+** The server may need to be upgraded. See https://openssh.com/pq.html 
+scp: Connection closed
+</code></pre>
+<p>我开始以为 openSSH 把非后量子密码协议给禁用了，然后意识到这只是一个 warning，重点是最后一句 <code>scp: Connection closed</code>。GPT 给出的解释是 Ubuntu 这边的 <code>sshd</code> 是手动启动的（也就是手动运行 <code>/usr/sbin/sshd</code>，而不是通过 <code>systemctl</code> 等方式启动），这会导致我的 SSH 仅能登录，没有 <code>SFTP subsystem</code> 进行文件传输，一个简单的 check 方式是：</p>
+<pre><code>sftp -P 2222 phone-ubuntu
+</code></pre>
+<p>我测试了一下，确实不行。GPT 提供了两种解决方案：</p>
+<ul>
+<li>加参数 <code>-O</code> 令我这边的 SSH 客户端强制兼容旧协议；</li>
+<li>确认 <code>/etc/ssh/sshd_config</code> 中有 <code>Subsystem sftp /usr/lib/openssh/sftp-server</code> 一行且未注释（或者改成 <code>Subsystem sftp internal-sftp</code>），然后重启 <code>sshd</code>。</li>
+</ul>
+<p>考虑到我的客户端 openSSH 版本是 10.2，服务器（Ubuntu）是 8.2，再加上服务器是非标准 linux 环境，使用后者可能会有其他兼容性问题，因此我选择每次记得加 <code>-O</code> 了事。</p>
+<hr>
+<p>总之，给 scp 命令加上 <code>-O</code> 后，文件拷贝总算可以正常进行，最后便是离线安装 vsix：</p>
+<pre><code class="language-sh">code --install-extension ~/openai-chatgpt-26.318.11754-linux-arm64.vsix
+</code></pre>
+<p>然后便安装成功了。</p>
+<h2 id="codex-无法正常登录">codex 无法正常登录</h2>
+<p>由于国内特殊的网络原因，再加上我这种奇葩环境，我在浏览器输入账号密码，允许 vscode 客户端登录后，callback 似乎无法正确地传回到我的手机，从而我便卡在了 codex 登录这一步。</p>
+<p>我便想登录应该是有认证 token 的，能否直接把我本地的凭据传到手机里呢？答案是肯定的，codex 在其官方文档中给了<a target="_blank" rel="noopener" href="https://developers.openai.com/codex/auth?utm_source=chatgpt.com">如下说明</a>：</p>
+<blockquote>
+<p>If you can complete the login flow on a machine with a browser, you can copy your cached credentials to the headless machine.</p>
+<ol>
+<li>On a machine where you can use the browser-based login flow, run <code>codex login</code>.</li>
+<li>Confirm the login cache exists at <code>~/.codex/auth.json</code>.</li>
+<li>Copy <code>~/.codex/auth.json</code> to <code>~/.codex/auth.json</code> on the headless machine.</li>
+</ol>
+</blockquote>
+<p>为了保险，我也拷贝了对应的 <code>config.toml</code>，翻译到我这边就是：</p>
+<pre><code class="language-sh">ssh phone-ubuntu 'mkdir -p ~/.codex'
+scp -O ~/.codex/auth.json phone-ubuntu:~/.codex/auth.json
+scp -O ~/.codex/config.toml phone-ubuntu:~/.codex/config.toml
+chmod 600 ~/.codex/auth.json ~/.codex/config.toml
+</code></pre>
+<blockquote>
+<p>注：这个操作对于 <code>codex-cli</code> 同样适用，也就是 vscode 的 codex 插件和 <code>codex-cli</code> 是同样的一套认证系统。</p>
+</blockquote>
+<p>然后 vscode 这边 reload window，应该就没问题了。</p>
+<h2 id="代理问题">代理问题</h2>
+<p>然后正当我打算愉快地与 codex 对话时，网络又出错了......</p>
+<h3 id="shell-没配好代理">shell 没配好代理</h3>
+<p>首先检测 Ubuntu 这边有没有配好代理。结果我首先发现我忘了给代理的机器开启 <code>Allow LAN</code>，然后 <code>~/.bashrc</code> 写的是：</p>
+<pre><code class="language-sh">http_proxy=http://主机ip:7897
+https_proxy=http://主机ip:7897
+</code></pre>
+<p>而不是：</p>
+<pre><code class="language-sh">export http_proxy=http://主机ip:7897
+export https_proxy=http://主机ip:7897
+</code></pre>
+<p>哎，真是个低级的错误......</p>
+<p>开启局域网连接，并 <code>source ~/.bashrc</code> 后，<code>curl google.com</code> 就能正常返回了。</p>
+<h3 id="codex-reconnecting-1-5-2-5-3-5-4-5-5-5">codex reconnecting 1/5 2/5 3/5 4/5 5/5</h3>
+<p>shell 代理解决之后，没想到 codex 仍然反复 reconnecting。我首先确认了 vscode 远端的代理设置为空（也就是默认走系统代理），这似乎没有问题。然后继续看 vscode server 的 log：</p>
+<pre><code class="language-sh">grep -RniE 'backend-api/codex/responses|Reconnecting|stream disconnected|proxy' ~/.vscode-server/data/logs ~/.config/Code/logs 2&gt;/dev/null | tail -100
+</code></pre>
+<p>得到了以下结果：</p>
+<pre><code>/root/.vscode-server/data/logs/20260320T154741/exthost13/remoteexthost.log:1075:2026-03-20 17:44:52.997 [trace] ProxyResolver#tls.connect [&#123;&quot;highWaterMark&quot;:16384,&quot;ca&quot;:&quot;[290 certs]&quot;,&quot;servername&quot;:&quot;chatgpt.com&quot;,&quot;session&quot;:&quot;null&quot;,&quot;localAddress&quot;:&quot;null&quot;,&quot;ALPNProtocols&quot;:&quot;http/1.1&quot;,&quot;port&quot;:443,&quot;host&quot;:&quot;chatgpt.com&quot;&#125;] 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/remoteexthost.log:1076:2026-03-20 17:44:53.016 [trace] ProxyResolver#tls.connect [&#123;&quot;highWaterMark&quot;:16384,&quot;ca&quot;:&quot;[290 certs]&quot;,&quot;servername&quot;:&quot;ab.chatgpt.com&quot;,&quot;session&quot;:&quot;null&quot;,&quot;localAddress&quot;:&quot;null&quot;,&quot;ALPNProtocols&quot;:&quot;http/1.1&quot;,&quot;port&quot;:443,&quot;host&quot;:&quot;ab.chatgpt.com&quot;&#125;] 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:38:2026-03-20 17:44:09.945 [error] [CodexMcpConnection] cli: message=&quot;codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: failed to lookup address information: Try again, url: wss://chatgpt.com/backend-api/codex/responses&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:39:2026-03-20 17:44:09.950 [warning] [CodexMcpConnection] cli: message=&quot;codex_core::session_startup_prewarm: startup websocket prewarm setup failed: stream disconnected before completion: failed to lookup address information: Try again&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:41:2026-03-20 17:44:14.994 [error] [CodexMcpConnection] cli: message=&quot;codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: failed to lookup address information: Try again, url: wss://chatgpt.com/backend-api/codex/responses&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:42:2026-03-20 17:44:14.997 [warning] [CodexMcpConnection] cli: message=&quot;codex_core::codex: stream disconnected - retrying sampling request (1/5 in 198ms)...&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:47:2026-03-20 17:44:20.214 [error] [CodexMcpConnection] cli: message=&quot;codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: failed to lookup address information: Try again, url: wss://chatgpt.com/backend-api/codex/responses&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:48:2026-03-20 17:44:20.216 [warning] [CodexMcpConnection] cli: message=&quot;codex_core::codex: stream disconnected - retrying sampling request (2/5 in 376ms)...&quot;
+</code></pre>
+<p>结果是 <strong>扩展本身走了 vscode 的代理</strong>，但是 <strong>codex 本地的 websocket</strong> 貌似连接又出现了问题。那么问题就比较简单了，只需看 codex 是否接收到来自代理的环境变量即可：</p>
+<p>首先还是更新一下 <code>~/.bashrc</code>：</p>
+<pre><code class="language-sh">export http_proxy=http://主机ip:7897
+export https_proxy=http://主机ip:7897
+export HTTP_PROXY=http://主机ip:7897
+export HTTPS_PROXY=http://主机ip:7897
+export all_proxy=http://主机ip:7897
+export ALL_PROXY=http://主机ip:7897
+unset no_proxy NO_PROXY
+</code></pre>
+<p>然后彻底重启 <code>vscode server</code>，并再更新一下环境变量：</p>
+<pre><code>pkill -f vscode-server
+source ~/.bashrc
+</code></pre>
+<p>然后测试一下 <code>codex-cli</code> 本体能否正常工作：</p>
+<pre><code>~/.vscode-server/extensions/openai.chatgpt-26.318.11754/bin/linux-aarch64/codex exec &quot;Say pong and nothing else.&quot;
+OpenAI Codex v0.116.0-alpha.10 (research preview) 
+-------- 
+workdir: /root
+model: gpt-5.4 
+provider: openai 
+approval: never 
+sandbox: read-only 
+reasoning effort: medium 
+reasoning summaries: none 
+session id: 019d0aa5-e037-7952-98b8-ded673f4d1ba 
+-------- user Say pong and nothing else. 
+warning: Codex could not find system bubblewrap at /usr/bin/bwrap. Please install bubblewrap with your package manager. Codex will use the vendored bubblewrap in the meantime. 
+mcp startup: no servers 
+codex 
+pong 
+tokens used 
+1,101
+</code></pre>
+<p>看样子是正常了，然后重新打开 vscode server，codex 也终于恢复正常，完结撒花！</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

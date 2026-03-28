@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2026/03/28/termux/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2026/03/28/termux/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>How I forced VSCode Remote+Codex to work inside Ubuntu-in-Termux on Android</h1>
+	<p>Ever since I rapidly got into vibe coding last December, I wanted to try installing the Codex extension on every machine that could run VSCode. So my next target was that abandoned Android phone. In theory, Android (before Google <a target="_blank" rel="noopener" href="https://keepandroidopen.org">hadn't yet done all the bad things it could</a>) can install Termux, and the latter even has a <a target="_blank" rel="noopener" href="https://github.com/MFDGaming/ubuntu-in-termux">script</a> to nest Ubuntu inside it. So in theory, installing Remote SSH and Codex on that Android phone should be possible. But in practice...</p>
+<span id="more"></span>
+<h2 id="Configure-SSH-to-connect-directly-to-the-Ubuntu-inside-Termux">Configure SSH to connect directly to the Ubuntu inside Termux</h2>
+<p>The first problem was how to configure SSH to connect directly to the Ubuntu inside, instead of going through Termux as an intermediate layer (because vscode server does not support nested Remote SSH). This was actually the simplest step in the whole process: just start a separate <code>sshd</code> inside Ubuntu, and use a port that does not conflict with Termux's <code>sshd</code>. For example, run the following in Ubuntu:</p>
+<pre><code class="language-sh">apt update
+apt install -y openssh-server curl bash
+mkdir -p /run/sshd
+ssh-keygen -A
+sed -i 's/^#\?Port .*/Port 2222/' /etc/ssh/sshd_config
+/usr/sbin/sshd
+</code></pre>
+<p>This corresponds to port <code>2222</code>.</p>
+<p>For convenience, I used the default root user here, set a password with <code>passwd</code>, and then I could access it with:</p>
+<pre><code class="language-sh">ssh -p 2222 root@phone_ip
+</code></pre>
+<p>Next, set up passwordless login:</p>
+<pre><code class="language-sh">ssh-copy-id -p 2222 root@phone_ip
+</code></pre>
+<p>Then write an alias in the local <code>~/.ssh/config</code>, for example <code>phone-ubuntu</code>:</p>
+<pre><code>Host phone-ubuntu
+    HostName phone_ip
+    Port 2222
+    User root
+    ServerAliveInterval 30
+    ServerAliveCountMax 6
+</code></pre>
+<p>Test <code>ssh phone-ubuntu</code>. If that works, then VSCode should be able to use Remote SSH normally as well, assuming nothing unexpected happens.</p>
+<h2 id="VSCode-reports-Signature-verification-failed-with-UnknownError-error">VSCode reports <code>Signature verification failed with 'UnknownError' error.</code></h2>
+<p>Then I tried using Remote SSH to install Codex, and the strange part began. I got the following error:</p>
+<blockquote>
+<p>Signature verification failed with 'UnknownError' error.</p>
+</blockquote>
+<p>My first intuition was that this <code>ubuntu-in-termux</code> was only a pseudo-Linux environment built with proot, but at the very least I needed to figure out what this <code>UnknownError</code> actually was. So I started looking for the context of this error:</p>
+<ul>
+<li>the <code>Extension Host (Remote)</code> page in VSCode output</li>
+<li>the log files under the <code>~/.vscode-server</code> path in Ubuntu</li>
+</ul>
+<p>For the former, just jump to that location directly and press Ctrl+F. For the latter, the path was:</p>
+<pre><code class="language-sh">grep -niE 'signature|UnknownError' \
+~/.vscode-server/data/logs/20260320T154741/remoteagent.log \
+~/.vscode-server/data/logs/20260320T154741/exthost2/remoteexthost.log \
+~/.vscode-server/data/logs/20260320T154741/exthost1/remoteexthost.log 2&gt;/dev/null
+</code></pre>
+<p>(Note: replace the timestamped path under <code>logs</code> with your own.)</p>
+<p>Unfortunately, those three paths gave no result at the time. So I then chose to inspect the recent local logs from the last 10 minutes:</p>
+<pre><code class="language-sh">find ~/.config/Code/logs -type f \( -iname '*shared*' -o -iname '*window*' -o -iname '*renderer*' \) -mmin -10 -print0 2&gt;/dev/null \ | xargs -0 grep -nEi 'Signature verification failed|UnknownError|signature|codex|openai|install' 2&gt;/dev/null
+</code></pre>
+<p>This time I did get some results:</p>
+<pre><code>sharedprocess.log:122 Extension signature verification result for github.copilot-chat: Success
+sharedprocess.log:134 Extension signature verification result for llvm-vs-code-extensions.vscode-clangd: Success
+renderer.log:299 Remote Install Error Name SignatureVerificationInternal
+renderer.log:301 Signature verification failed with 'UnknownError' error.
+</code></pre>
+<p>This ruled out a problem with local VSCode signature verification (that is, the failure point was the remote installation of vscode server). At this point there were two options:</p>
+<ul>
+<li>directly copy the local files into Ubuntu;</li>
+<li>install the Codex VSIX package inside Ubuntu.</li>
+</ul>
+<p>For the former, I first needed to consider whether the Codex extension was pure JS, i.e. run:</p>
+<pre><code class="language-sh">find ~/.vscode/extensions/openai.chatgpt-* -type f | grep -E '\.node$|bin/|dist/.*(linux|arm64|x64)|\.(so|dll|exe)$'
+</code></pre>
+<p>On my machine the result was:</p>
+<pre><code>/home/junyu33/.vscode/extensions/openai.chatgpt-26.318.11754-linux-x64/bin/linux-x86_64/rg 
+/home/junyu33/.vscode/extensions/openai.chatgpt-26.318.11754-linux-x64/bin/linux-x86_64/codex
+</code></pre>
+<p>This clearly distinguished architecture and platform, so the route of directly copying files could be abandoned.</p>
+<p>Next, I had to figure out how to obtain the Codex VSIX package. I could not find a corresponding VSIX download link on the extension's Marketplace page. After a round of battle of wits with GPT, I ended up with a download script that could freely choose the version number:</p>
+<pre><code class="language-sh">for v in 26.318.11754 26.313.41514 26.313.41036 26.304.20706 0.4.79 0.4.60; do
+  echo &quot;=== $v ===&quot;
+  curl -sI &quot;https://marketplace.visualstudio.com/_apis/public/gallery/publishers/openai/vsextensions/chatgpt/$v/vspackage?targetPlatform=linux-arm64&quot; | sed -n '1,10p'
+  echo
+done
+</code></pre>
+<p>The latest version, <code>26.318.11754</code>, downloaded as a VSIX (zip) wrapped in gzip, which looked fine. Next I tried copying the VSIX to the server, and then another problem appeared:</p>
+<h3 id="SCP-transfer-failed">SCP transfer failed</h3>
+<p>When I ran <code>scp openai-chatgpt-26.318.11754-linux-arm64.vsix phone-ubuntu:</code>, I got the following &quot;error&quot;:</p>
+<pre><code class="language-sh">** WARNING: connection is not using a post-quantum key exchange algorithm. 
+** This session may be vulnerable to &quot;store now, decrypt later&quot; attacks. 
+** The server may need to be upgraded. See https://openssh.com/pq.html 
+scp: Connection closed
+</code></pre>
+<p>At first I thought OpenSSH had disabled non-post-quantum key exchange algorithms, but then I realized this was only a warning, and the key part was the last line: <code>scp: Connection closed</code>. GPT's explanation was that the Ubuntu-side <code>sshd</code> had been started manually (that is, by directly running <code>/usr/sbin/sshd</code>, instead of via <code>systemctl</code> or similar), which meant my SSH could only log in but had no <code>SFTP subsystem</code> for file transfer. A simple check was:</p>
+<pre><code class="language-sh">sftp -P 2222 phone-ubuntu
+</code></pre>
+<p>I tested it, and indeed it did not work. GPT provided two solutions:</p>
+<ul>
+<li>add <code>-O</code> so my SSH client would force compatibility with the old protocol;</li>
+<li>ensure that <code>/etc/ssh/sshd_config</code> contains an uncommented line <code>Subsystem sftp /usr/lib/openssh/sftp-server</code> (or change it to <code>Subsystem sftp internal-sftp</code>), then restart <code>sshd</code>.</li>
+</ul>
+<p>Given that my client OpenSSH version was 10.2, while the server (Ubuntu) was 8.2, and the server was a non-standard Linux environment, the latter might introduce other compatibility issues. So I chose the simpler solution: just remember to add <code>-O</code> every time.</p>
+<hr>
+<p>In short, after adding <code>-O</code> to the <code>scp</code> command, file transfer finally worked. Then the last step was offline installation of the VSIX:</p>
+<pre><code class="language-sh">code --install-extension ~/openai-chatgpt-26.318.11754-linux-arm64.vsix
+</code></pre>
+<p>And then it installed successfully.</p>
+<h2 id="Codex-could-not-log-in-properly">Codex could not log in properly</h2>
+<p>Because of the special network situation in China, combined with my bizarre environment, after I entered the account and password in the browser and allowed the VSCode client to log in, the callback seemed unable to return correctly to my phone, so I got stuck at the Codex login step.</p>
+<p>My thought was that login should involve an authentication token, so could I just copy the credentials from my local machine to the phone? The answer was yes. The official Codex docs state the following:</p>
+<blockquote>
+<p>If you can complete the login flow on a machine with a browser, you can copy your cached credentials to the headless machine.</p>
+<ol>
+<li>On a machine where you can use the browser-based login flow, run <code>codex login</code>.</li>
+<li>Confirm the login cache exists at <code>~/.codex/auth.json</code>.</li>
+<li>Copy <code>~/.codex/auth.json</code> to <code>~/.codex/auth.json</code> on the headless machine.</li>
+</ol>
+</blockquote>
+<p>To be safe, I also copied the corresponding <code>config.toml</code>, which in my case translated to:</p>
+<pre><code class="language-sh">ssh phone-ubuntu 'mkdir -p ~/.codex'
+scp -O ~/.codex/auth.json phone-ubuntu:~/.codex/auth.json
+scp -O ~/.codex/config.toml phone-ubuntu:~/.codex/config.toml
+chmod 600 ~/.codex/auth.json ~/.codex/config.toml
+</code></pre>
+<blockquote>
+<p>Note: this also applies to <code>codex-cli</code>, meaning the Codex plugin in VSCode and <code>codex-cli</code> use the same authentication system.</p>
+</blockquote>
+<p>Then reload the window in VSCode, and it should be fine.</p>
+<h2 id="Proxy-issues">Proxy issues</h2>
+<p>Just when I thought I could finally talk happily with Codex, the network broke again...</p>
+<h3 id="The-shell-proxy-was-not-set-up-correctly">The shell proxy was not set up correctly</h3>
+<p>First, check whether the proxy inside Ubuntu was configured properly. It turned out I had first forgotten to enable <code>Allow LAN</code> on the machine providing the proxy, and then in <code>~/.bashrc</code> I had written:</p>
+<pre><code class="language-sh">http_proxy=http://host_ip:7897
+https_proxy=http://host_ip:7897
+</code></pre>
+<p>instead of:</p>
+<pre><code class="language-sh">export http_proxy=http://host_ip:7897
+export https_proxy=http://host_ip:7897
+</code></pre>
+<p>Sigh, such a low-level mistake...</p>
+<p>After enabling LAN access and running <code>source ~/.bashrc</code>, <code>curl google.com</code> worked normally.</p>
+<h3 id="Codex-reconnecting-1-5-2-5-3-5-4-5-5-5">Codex reconnecting 1/5 2/5 3/5 4/5 5/5</h3>
+<p>After fixing the shell proxy, I did not expect Codex to still keep reconnecting. I first confirmed that the proxy setting in remote VSCode was empty (i.e. it should use the system proxy by default), which seemed fine. Then I continued looking at the vscode server logs:</p>
+<pre><code class="language-sh">grep -RniE 'backend-api/codex/responses|Reconnecting|stream disconnected|proxy' ~/.vscode-server/data/logs ~/.config/Code/logs 2&gt;/dev/null | tail -100
+</code></pre>
+<p>This gave the following results:</p>
+<pre><code class="language-sh">/root/.vscode-server/data/logs/20260320T154741/exthost13/remoteexthost.log:1075:2026-03-20 17:44:52.997 [trace] ProxyResolver#tls.connect [&#123;&quot;highWaterMark&quot;:16384,&quot;ca&quot;:&quot;[290 certs]&quot;,&quot;servername&quot;:&quot;chatgpt.com&quot;,&quot;session&quot;:&quot;null&quot;,&quot;localAddress&quot;:&quot;null&quot;,&quot;ALPNProtocols&quot;:&quot;http/1.1&quot;,&quot;port&quot;:443,&quot;host&quot;:&quot;chatgpt.com&quot;&#125;] 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/remoteexthost.log:1076:2026-03-20 17:44:53.016 [trace] ProxyResolver#tls.connect [&#123;&quot;highWaterMark&quot;:16384,&quot;ca&quot;:&quot;[290 certs]&quot;,&quot;servername&quot;:&quot;ab.chatgpt.com&quot;,&quot;session&quot;:&quot;null&quot;,&quot;localAddress&quot;:&quot;null&quot;,&quot;ALPNProtocols&quot;:&quot;http/1.1&quot;,&quot;port&quot;:443,&quot;host&quot;:&quot;ab.chatgpt.com&quot;&#125;] 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:38:2026-03-20 17:44:09.945 [error] [CodexMcpConnection] cli: message=&quot;codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: failed to lookup address information: Try again, url: wss://chatgpt.com/backend-api/codex/responses&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:39:2026-03-20 17:44:09.950 [warning] [CodexMcpConnection] cli: message=&quot;codex_core::session_startup_prewarm: startup websocket prewarm setup failed: stream disconnected before completion: failed to lookup address information: Try again&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:41:2026-03-20 17:44:14.994 [error] [CodexMcpConnection] cli: message=&quot;codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: failed to lookup address information: Try again, url: wss://chatgpt.com/backend-api/codex/responses&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:42:2026-03-20 17:44:14.997 [warning] [CodexMcpConnection] cli: message=&quot;codex_core::codex: stream disconnected - retrying sampling request (1/5 in 198ms)...&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:47:2026-03-20 17:44:20.214 [error] [CodexMcpConnection] cli: message=&quot;codex_api::endpoint::responses_websocket: failed to connect to websocket: IO error: failed to lookup address information: Try again, url: wss://chatgpt.com/backend-api/codex/responses&quot; 
+/root/.vscode-server/data/logs/20260320T154741/exthost13/openai.chatgpt/Codex.log:48:2026-03-20 17:44:20.216 [warning] [CodexMcpConnection] cli: message=&quot;codex_core::codex: stream disconnected - retrying sampling request (2/5 in 376ms)...&quot;
+</code></pre>
+<p>The result was that <strong>the extension itself was using VSCode's proxy</strong>, but <strong>Codex's own websocket</strong> still seemed to have connection problems. At that point, the problem became much simpler: I only needed to check whether Codex had received the proxy-related environment variables.</p>
+<p>So first I updated <code>~/.bashrc</code> again:</p>
+<pre><code class="language-sh">export http_proxy=http://host_ip:7897
+export https_proxy=http://host_ip:7897
+export HTTP_PROXY=http://host_ip:7897
+export HTTPS_PROXY=http://host_ip:7897
+export all_proxy=http://host_ip:7897
+export ALL_PROXY=http://host_ip:7897
+unset no_proxy NO_PROXY
+</code></pre>
+<p>Then I completely restarted <code>vscode server</code>, and refreshed the environment variables again:</p>
+<pre><code>pkill -f vscode-server
+source ~/.bashrc
+</code></pre>
+<p>Then I tested whether the <code>codex-cli</code> binary itself was working properly:</p>
+<pre><code>~/.vscode-server/extensions/openai.chatgpt-26.318.11754/bin/linux-aarch64/codex exec &quot;Say pong and nothing else.&quot;
+OpenAI Codex v0.116.0-alpha.10 (research preview) 
+-------- 
+workdir: /root
+model: gpt-5.4 
+provider: openai 
+approval: never 
+sandbox: read-only 
+reasoning effort: medium 
+reasoning summaries: none 
+session id: 019d0aa5-e037-7952-98b8-ded673f4d1ba 
+-------- user Say pong and nothing else. 
+warning: Codex could not find system bubblewrap at /usr/bin/bwrap. Please install bubblewrap with your package manager. Codex will use the vendored bubblewrap in the meantime. 
+mcp startup: no servers 
+codex 
+pong 
+tokens used 
+1,101
+</code></pre>
+<p>It looked normal, so after reopening vscode server, Codex also finally came back to life. The end, confetti!</p>
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

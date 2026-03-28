@@ -1440,4 +1440,16 @@
     <lastmod>2026-03-23</lastmod>
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/03/23/keep_android_open/" />
   </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2026/03/28/termux/</loc>
+    <lastmod>2026-03-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/03/28/termux/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/03/28/termux/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/zh/2026/03/28/termux/</loc>
+    <lastmod>2026-03-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/03/28/termux/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/03/28/termux/" />
+  </url>
 </urlset>

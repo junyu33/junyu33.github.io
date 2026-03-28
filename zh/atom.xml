@@ -13,6 +13,13 @@
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
   </entry>
   <entry>
+    <title>我如何在 Android 的 Termux/Ubuntu 套娃环境里跑通 VSCode Remote 和 Codex</title>
+    <link href="https://blog.junyu33.me/zh/2026/03/28/termux/"/>
+    <id>https://blog.junyu33.me/zh/2026/03/28/termux/</id>
+    <updated>2026-03-27T20:30:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>自从去年 12 月飞速入门 vibe coding 之后，我想尝试在任何能装 vscode 的机器中，都装上 codex 插件。于是我的下一步目标是——那台废弃的 android 手机。理论上 android（在 Google <a href="https://keepandroidopen.org">坏事还没做尽前</a>）是可以安装 termux 的，后者又有<a href="https://github.com/MFDGaming/ubuntu-in-termux">脚本</a>来在里面套娃 ubuntu。因此我的那台 android 手机安装 remote SSH 和 codex 理论上是可行的。但实际上......</p>]]></summary>
+  </entry>
+  <entry>
     <title>（转载）Keep Android Open</title>
     <link href="https://blog.junyu33.me/zh/2026/03/23/keep_android_open/"/>
     <id>https://blog.junyu33.me/zh/2026/03/23/keep_android_open/</id>
@@ -177,13 +184,5 @@
     <id>https://blog.junyu33.me/zh/2025/03/09/sqrt/</id>
     <updated>2025-03-09T15:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>小学的时候家父给我炫耀他上学的时候学过手算开平方根，说以后在朋友间炫耀可能有用。当时我可能学会了，但之后这个方法似乎在数学教材中绝版了，只记得“二十倍初商加次商”这个口诀。这篇文章的主要目的就是叙述，我如何回忆起来的过程。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>内网穿透搭建 overleaf 服务器</title>
-    <link href="https://blog.junyu33.me/zh/2025/02/27/overleaf/"/>
-    <id>https://blog.junyu33.me/zh/2025/02/27/overleaf/</id>
-    <updated>2025-03-18T15:00:00.000Z</updated>
-    <summary type="html"><![CDATA[<h1>introduction</h1>
-<p>在前序文章《从零搭建一个又快又安全的 VNC 服务》中，我们实现了从非公网机器连接到使用了 ddns 的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the hard way》中，我们使用了 ddns 的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建 web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89 订阅费用的目的。</p>]]></summary>
   </entry>
 </feed>

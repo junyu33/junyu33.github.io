@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  
+    <link rel="alternate" hreflang="en" href="/en/2026/04/17/llm_numiq/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/zh">首页</a>
+				<a href="/zh/archives">归档</a>
+				
+					<a href="/zh/categories">分类</a>
+				
+				
+					<a href="/zh/tags">标签</a>
+				
+				<a href="/">English</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2026/04/17/llm_numiq/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>五八——LLM 数字智商测试</h1>
+	<p>现在市面上已经有了一些针对 LLM 的智商评测，比如 <a target="_blank" rel="noopener" href="https://trackingai.org/home">https://trackingai.org/home</a> 列举了国内外知名 LLM 的智商测试结果（例如公开的 Mensa Norway 和一名 Mensa 成员的私下题库）。然而，Mensa Norway 的题目基本上以图形推理为主，如果能够了解 LLM 在数字推理能力的表现，也是有一定益处的。</p>
+<span id="more"></span>
+<h2 id="测试题目、模型与方法论">测试题目、模型与方法论</h2>
+<p>本文选取知名度不如门萨（这意味着被数据集收录的概率较低），但仍具有一定参考价值的 <em>NUMERUS BASIC</em> 数字推理测试 <a target="_blank" rel="noopener" href="https://free.ultimaiq.net/numerus_basic.htm">https://free.ultimaiq.net/numerus_basic.htm</a> 。我个人怀疑这个测试给出的判分偏高，但用于比较 LLM 间的相对能力还是有一定价值。</p>
+<p>这里我打算选取以下模型作为实验对象：</p>
+<ul>
+<li><code>ChatGPT 5.3/5.4 Thinking (Standard, Extended)/5.4 Pro (Extended)</code>（Web）</li>
+<li><code>Gemini 3 Flash/Thinking/3.1 Pro</code>（Web）</li>
+<li><code>Claude Haiku 4.5 (Extended)</code>（Web）<code>Sonnet 4.6/Opus 4.6 Thinking</code>（Antigravity）</li>
+<li><code>Grok 4.20 Fast/Expert</code>（Web，Heavy 太贵买不起）</li>
+<li><code>Deepseek Instant (DeepThink)/Expert (DeepThink)</code>（Web）</li>
+<li><code>Doubao Fast/Thinking/Expert</code>（Web）</li>
+<li><code>Qwen3.5 Flash/Max/Max-Thinking</code>（Web）</li>
+</ul>
+<p>也就是一共 20 种不同模型配置。</p>
+<p>为了尽量平衡测试的工作量，并最大限度发挥模型的最大潜力，本文将采取以下测试策略：</p>
+<ol>
+<li>将 <em>NUMERUS BASIC</em> 的全部 20 道题目以一条消息的形式发送。得到初始答题结果。</li>
+<li>对于第二次追加测试，如果先前该模型做错，<strong>新开对话</strong>将这些错题逐一发送，得到修正后的答题结果。</li>
+<li>测试的提示词如下：</li>
+</ol>
+<pre><code>Please fill in the location of the question mark:
+1) 1, 1, 1, 2, ?, 2
+2) 1, 2, 4, 5, ?
+3) -1, 5, 11, ?
+4) 0.5, 2, ?, 32
+5) 1, 3, 4, ?, 11
+6) ?, 1, 3, 6, 10
+7) 1, 10, 110, 1101, ?
+8) 123, 354, 897, ?
+9) 5, 10, 20, 35, ?
+10) 2, 4, 12, ?, 72
+11) 123, 451, ?, 512
+12) 510001, 401010, 300200, ?
+13) 11, 32, 54, 78, ?
+14) 24, 16, 25, 66, ?, 36
+15) 1/2, 3/4, 7/8, ?
+16) 1/2, 3/2, 5/6, ?
+17) 77, 49, 36, 18, ?
+18) 135, 791, ?, 151
+19) 138, 257, ?, 132
+20) 123, ?, 789, 211101
+Write your answers in a row using space to separate each other.
+You CANNOT search the Internet, do these problems independently.
+</code></pre>
+<h2 id="初测结果">初测结果</h2>
+<p>第一次的测试结果如下：</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/image.png">
+<p>我们可以得到一些结论：</p>
+<ol>
+<li>GPT 相对于其他 LLM 断崖式领先。</li>
+<li>答题正确率（智商分数）与思考时间正相关。</li>
+<li>国外 GPT&gt;&gt;Gemini&gt;Claude，国内 Deepseek&gt;Doubao&gt;Qwen。Grok 由于没拿到价值 $300 的 Heavy 账号，因此不好直接比较。</li>
+<li>考虑成本问题，国产 LLM 基本上可以与国外的 LLM 抗衡了（GPT 除外）。</li>
+</ol>
+<p>同时也有一些有趣的观察：</p>
+<ol>
+<li>耗时最长的是 Deepseek 开启深度思考的 Expert，20 道题一共花了 4998s。</li>
+<li>千问思考超过 600s 系统就会判定超时并硬中断对话，这相当不友好；而deepseek会选择给一个继续按钮，在推理成本和用户体验达到一个平衡。</li>
+<li>对于 LLM 来说，最难的题目是第 7 题，而从人类角度看 14 题是最难的（如果你搜到了那个满分答案解析）。</li>
+<li>千问不太老实，隔几道题就要使用 <code>You CANNOT search the Internet, do these problems independently.</code> 提示词，它才不会调用搜索引擎。</li>
+</ol>
+<h2 id="复测结果">复测结果</h2>
+<p>复测后的修正答题结果如下，个人认为应该是各模型的上限能力：</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-4.png">
+<p>可以得出以下结论：</p>
+<ol>
+<li>GPT 相对于其他 LLM，仍然是断崖式领先，甚至 pro 版本 IQ 超过了 150.</li>
+<li>对于绝大多数模型，把任务拆分来做还是有益于提高正确率。</li>
+<li>国外 GPT&gt;&gt;Gemini&gt;Claude，国内 Deepseek&gt;Doubao≈Qwen.</li>
+<li>Deepseek Expert 已经达到了 Gemini/Claude 最好模型的水平——只不过有时候思考时间太长了。</li>
+</ol>
+<p>另外一些有趣的观察：</p>
+<ol>
+<li>grok Fast 感觉非常喜欢说胡话——这非常符合 Musk 嗑药之后的风格。</li>
+</ol>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-1.png">
+<ol start="2">
+<li>deepseek Expert（也就是传说中的 V4 版本）在思考 14 题时开始背起了圆周率，等了一个下午后，我尝试随便截取中的一段，放到<a target="_blank" rel="noopener" href="https://www.subidiom.com/pi">这个网站</a>里看看是不是在 Pi 的前 20 亿位——结果答案是否定的，就代表 deepseek
+背错了。</li>
+</ol>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-2.png">
+<ol start="3">
+<li>千问 Flash 经常喜欢输出一些循环的结果，然后被系统强行停止（这与之前 600 秒超时异曲同工）。</li>
+</ol>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-3.png">
+<ol start="4">
+<li>千问 Max 用错误的思路蒙对了对于人类来说最难的 14 题。</li>
+<li>13 题的答案有争议，许多 ai 指向的另一个答案都有道理（包括我第一次做也是那个答案）。但为了确保公平性，我选择按照网站结果给分。</li>
+</ol>
+<h2 id="可视化">可视化</h2>
+<p>所有参与模型修正前后的成绩比较：</p>
+<img src = "https://img.junyu33.me/blog/llm_numiq/output.png">
+<p>最好模型修正前后的成绩比较：</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/best_submodel_dumbbell_uniform_colors.png">
+<blockquote>
+<p>GPT 还是独树一帜啊。</p>
+</blockquote>
+<p>按照题目正确率与模型正确率排序的热力图（首测）：</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/corrected_difficulty_reordered_heatmap.png">
+<p>按照题目正确率与模型正确率排序的热力图（复测）：</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/corrected_heatmap_yellow_as_correct.png">
+<p>按照题目正确率与模型正确率排序的热力图（将复测正确也归入绿色）：</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/corrected_heatmap_yellow_merged_green.png">
+</div>
+
+
+  </div>
+</body>
+</html>
+

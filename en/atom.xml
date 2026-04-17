@@ -13,6 +13,13 @@
     <summary type="html"><![CDATA[<p>Lists some meta information related to the blog itself for easy reference.</p>]]></summary>
   </entry>
   <entry>
+    <title>Fifty-eight — LLM Numerial IQ Test</title>
+    <link href="https://blog.junyu33.me/en/2026/04/17/llm_numiq/"/>
+    <id>https://blog.junyu33.me/en/2026/04/17/llm_numiq/</id>
+    <updated>2026-04-16T19:00:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>Some LLM-oriented IQ evaluations are already available on the market. For example, <a href="https://trackingai.org/home">https://trackingai.org/home</a> lists IQ-test results for well-known domestic and international LLMs, including the public Mensa Norway test and a private question set from a Mensa member. However, the Mensa Norway test is largely focused on <strong>visual</strong> reasoning. It may therefore also be useful to understand how LLMs perform on <strong>numerical reasoning</strong>.</p>]]></summary>
+  </entry>
+  <entry>
     <title>How I forced VSCode Remote+Codex to work inside Ubuntu-in-Termux on Android</title>
     <link href="https://blog.junyu33.me/en/2026/03/28/termux/"/>
     <id>https://blog.junyu33.me/en/2026/03/28/termux/</id>
@@ -161,13 +168,5 @@
     <updated>2026-02-05T07:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>As the end of the year approaches, it suddenly occurred to me that 2024 actually marks the 10th anniversary of the once wildly popular game, 2048.</p>
 <p>However, few may know that 2048 is actually a copycat of the truly brain-burning game, Threes!</p>]]></summary>
-  </entry>
-  <entry>
-    <title>The 100th blog</title>
-    <link href="https://blog.junyu33.me/en/2024/12/13/100th_blog/"/>
-    <id>https://blog.junyu33.me/en/2024/12/13/100th_blog/</id>
-    <updated>2024-12-13T13:00:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>Three years ago in July, I wrote my first blog post and set a goal to publish 100 articles before finishing my undergraduate studies. Unexpectedly, I achieved this goal about half a year ahead of schedule.</p>
-<p>Since &quot;one hundred&quot; is a special number, I believe the content of this blog should be related to the blog itself—otherwise, it wouldn't reflect the significance of this &quot;special&quot; post.</p>]]></summary>
   </entry>
 </feed>

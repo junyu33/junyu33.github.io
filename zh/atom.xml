@@ -13,6 +13,13 @@
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
   </entry>
   <entry>
+    <title>五八——LLM 数字智商测试</title>
+    <link href="https://blog.junyu33.me/zh/2026/04/17/llm_numiq/"/>
+    <id>https://blog.junyu33.me/zh/2026/04/17/llm_numiq/</id>
+    <updated>2026-04-16T19:00:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>现在市面上已经有了一些针对 LLM 的智商评测，比如 <a href="https://trackingai.org/home">https://trackingai.org/home</a> 列举了国内外知名 LLM 的智商测试结果（例如公开的 Mensa Norway 和一名 Mensa 成员的私下题库）。然而，Mensa Norway 的题目基本上以图形推理为主，如果能够了解 LLM 在数字推理能力的表现，也是有一定益处的。</p>]]></summary>
+  </entry>
+  <entry>
     <title>在 Android 的 Termux/Ubuntu 套娃环境里跑通 VSCode Remote+Codex</title>
     <link href="https://blog.junyu33.me/zh/2026/03/28/termux/"/>
     <id>https://blog.junyu33.me/zh/2026/03/28/termux/</id>
@@ -177,12 +184,5 @@
 <p>There is <strong>only one repeated number</strong> in <code>nums</code>, return this repeated number.</p>
 <p>You must solve the problem <strong>without modifying the array</strong> and using only <strong>constant extra space</strong>.</p>
 </blockquote>]]></summary>
-  </entry>
-  <entry>
-    <title>如何笔算开平方根</title>
-    <link href="https://blog.junyu33.me/zh/2025/03/09/sqrt/"/>
-    <id>https://blog.junyu33.me/zh/2025/03/09/sqrt/</id>
-    <updated>2025-03-09T15:00:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>小学的时候家父给我炫耀他上学的时候学过手算开平方根，说以后在朋友间炫耀可能有用。当时我可能学会了，但之后这个方法似乎在数学教材中绝版了，只记得“二十倍初商加次商”这个口诀。这篇文章的主要目的就是叙述，我如何回忆起来的过程。</p>]]></summary>
   </entry>
 </feed>

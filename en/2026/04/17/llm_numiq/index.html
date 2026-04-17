@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/2026/04/17/llm_numiq/">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <!-- RSS / Atom -->
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <title>现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+	<div class="inner">
+		<a href="/">
+			现充|junyu33
+		</a>
+		<div class="right">
+			
+				<a href="/">Home</a>
+				<a href="/archives">Archive</a>
+				
+					<a href="/categories">Categories</a>
+				
+				
+					<a href="/tags">Tags</a>
+				
+				<a href="/zh">中文站</a>
+			
+		</div>
+	</div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2026/04/17/llm_numiq/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Fifty-eight — LLM Numerial IQ Test</h1>
+	<p>Some LLM-oriented IQ evaluations are already available on the market. For example, <a target="_blank" rel="noopener" href="https://trackingai.org/home">https://trackingai.org/home</a> lists IQ-test results for well-known domestic and international LLMs, including the public Mensa Norway test and a private question set from a Mensa member. However, the Mensa Norway test is largely focused on <strong>visual</strong> reasoning. It may therefore also be useful to understand how LLMs perform on <strong>numerical reasoning</strong>.</p>
+<span id="more"></span>
+<h2 id="Test-Questions-Models-and-Methodology">Test Questions, Models, and Methodology</h2>
+<p>For this article, I chose the <em>NUMERUS BASIC</em> numerical reasoning test, which is less famous than Mensa (meaning it is probably less likely to have been absorbed into training data), yet still has some reference value: <a target="_blank" rel="noopener" href="https://free.ultimaiq.net/numerus_basic.htm">https://free.ultimaiq.net/numerus_basic.htm</a> . I personally suspect that its scoring may be somewhat inflated, but it should still be useful for comparing the <strong>relative</strong> abilities of different LLMs.</p>
+<p>I plan to evaluate the following models:</p>
+<ul>
+<li><code>ChatGPT 5.3/5.4 Thinking (Standard, Extended)/5.4 Pro (Extended)</code> (Web)</li>
+<li><code>Gemini 3 Flash/Thinking/3.1 Pro</code> (Web)</li>
+<li><code>Claude Haiku 4.5 (Extended)</code> (Web), <code>Sonnet 4.6/Opus 4.6 Thinking</code> (Antigravity)</li>
+<li><code>Grok 4.20 Fast/Expert</code> (Web; Heavy is too expensive for me)</li>
+<li><code>Deepseek Instant (DeepThink)/Expert (DeepThink)</code> (Web)</li>
+<li><code>Doubao Fast/Thinking/Expert</code> (Web)</li>
+<li><code>Qwen3.5 Flash/Max/Max-Thinking</code> (Web)</li>
+</ul>
+<p>That is, a total of <strong>20 different model configurations</strong>.</p>
+<p>In order to balance the workload as much as possible while also giving each model the best chance to reach its upper bound, I adopted the following testing strategy:</p>
+<ol>
+<li>Send <strong>all 20 questions</strong> of <em>NUMERUS BASIC</em> in a single message and record the initial answers.</li>
+<li>For the second-round supplementary test, if a model got a question wrong, start a <strong>new conversation</strong> and resend those wrong questions one by one to obtain corrected answers.</li>
+<li>The prompt used was:</li>
+</ol>
+<pre><code>Please fill in the location of the question mark:
+1) 1, 1, 1, 2, ?, 2
+2) 1, 2, 4, 5, ?
+3) -1, 5, 11, ?
+4) 0.5, 2, ?, 32
+5) 1, 3, 4, ?, 11
+6) ?, 1, 3, 6, 10
+7) 1, 10, 110, 1101, ?
+8) 123, 354, 897, ?
+9) 5, 10, 20, 35, ?
+10) 2, 4, 12, ?, 72
+11) 123, 451, ?, 512
+12) 510001, 401010, 300200, ?
+13) 11, 32, 54, 78, ?
+14) 24, 16, 25, 66, ?, 36
+15) 1/2, 3/4, 7/8, ?
+16) 1/2, 3/2, 5/6, ?
+17) 77, 49, 36, 18, ?
+18) 135, 791, ?, 151
+19) 138, 257, ?, 132
+20) 123, ?, 789, 211101
+Write your answers in a row using space to separate each other.
+You CANNOT search the Internet, do these problems independently.
+</code></pre>
+<h2 id="Initial-Results">Initial Results</h2>
+<p>The first-round results are shown below:</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/image.png">
+<p>Several conclusions can be drawn:</p>
+<ol>
+<li>GPT leads all other LLMs by a cliff-like margin.</li>
+<li>Accuracy (IQ score) is positively correlated with thinking time.</li>
+<li>Among overseas models: GPT &gt;&gt; Gemini &gt; Claude. Among Chinese models: Deepseek &gt; Doubao &gt; Qwen. Since I did not have access to the $300 Grok Heavy tier, direct comparison is difficult.</li>
+<li>Considering cost, Chinese LLMs are already largely competitive with overseas models, except for GPT.</li>
+</ol>
+<p>There were also some interesting observations:</p>
+<ol>
+<li>The slowest model was Deepseek Expert with deep thinking enabled: all 20 questions took <strong>4998 seconds</strong> in total.</li>
+<li>Qwen’s system forcibly times out and interrupts the conversation after about <strong>600 seconds</strong> of thinking, which is quite unfriendly; Deepseek, by contrast, offers a “continue” button, striking a better balance between inference cost and user experience.</li>
+<li>For LLMs, the hardest question was <strong>Question 7</strong>, whereas from a human perspective <strong>Question 14</strong> is the hardest one (assuming you found that full-score explanation online).</li>
+<li>Qwen is not very honest: unless I repeatedly include the line <code>You CANNOT search the Internet, do these problems independently.</code>, it keeps trying to call a search engine.</li>
+</ol>
+<h2 id="Retest-Results">Retest Results</h2>
+<p>The corrected second-round results are shown below, which I believe approximate the upper bound of each model’s capability:</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-4.png">
+<p>From these, we can conclude:</p>
+<ol>
+<li>GPT still leads all the other LLMs by a huge margin; the Pro version even exceeds <strong>150 IQ</strong>.</li>
+<li>For most models, breaking the task apart is indeed beneficial for improving accuracy.</li>
+<li>Among overseas models: GPT &gt;&gt; Gemini &gt; Claude. Among Chinese models: Deepseek &gt; Doubao ≈ Qwen.</li>
+<li>Deepseek Expert has already reached the level of the best Gemini/Claude models — although its thinking time can be excessively long.</li>
+</ol>
+<p>A few more interesting observations:</p>
+<ol>
+<li>Grok Fast seems to love spouting nonsense — which feels very much in line with Musk on drugs.</li>
+</ol>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-1.png">
+<ol start="2">
+<li>While thinking about Question 14, Deepseek Expert (that is, the rumored V4 version) suddenly started reciting digits of pi. After waiting an entire afternoon, I took a random substring and checked it on <a target="_blank" rel="noopener" href="https://www.subidiom.com/pi">this website</a> to see whether it appeared within the first 2 billion digits of pi. The answer was no, which means Deepseek
+recited it incorrectly.</li>
+</ol>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-2.png">
+<ol start="3">
+<li>Qwen Flash often likes to output repeating loops of text until the system forcibly stops it, which is oddly similar to the 600-second timeout behavior mentioned earlier.</li>
+</ol>
+<img src="https://img.junyu33.me/blog/llm_numiq/image-3.png">
+<ol start="4">
+<li>Qwen Max guessed the human-hardest Question 14 correctly using an incorrect line of reasoning.</li>
+<li>The answer to Question 13 is somewhat controversial. Many AIs point to another plausible answer, and that was actually my own first instinct as well. But in the interest of fairness, I scored it according to the official website’s answer.</li>
+</ol>
+<h2 id="Visualizations">Visualizations</h2>
+<p>Comparison of all participating models before and after correction:</p>
+<img src = "https://img.junyu33.me/blog/llm_numiq/output.png">
+<p>Comparison of the best-performing submodel in each family before and after correction:</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/best_submodel_dumbbell_uniform_colors.png">
+<blockquote>
+<p>GPT really stands alone.</p>
+</blockquote>
+<p>Heatmap of the first-round test, with questions and models sorted by correctness rate:</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/corrected_difficulty_reordered_heatmap.png">
+<p>Heatmap of the retest, with questions and models sorted by correctness rate:</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/corrected_heatmap_yellow_as_correct.png">
+<p>Heatmap of the retest with second-round-correct answers also merged into green:</p>
+<img src="https://img.junyu33.me/blog/llm_numiq/corrected_heatmap_yellow_merged_green.png">
+
+</div>
+
+
+  </div>
+</body>
+</html>
+

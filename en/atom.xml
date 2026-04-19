@@ -34,7 +34,7 @@
     <summary type="html"><![CDATA[<p>Ever since I rapidly got into vibe coding last December, I wanted to try installing the Codex extension on every machine that could run VSCode. So my next target was that abandoned Android phone. In theory, Android (before Google <a href="https://keepandroidopen.org">hadn't yet done all the bad things it could</a>) can install Termux, and the latter even has a <a href="https://github.com/MFDGaming/ubuntu-in-termux">script</a> to nest Ubuntu inside it. So in theory, installing Remote SSH and Codex on that Android phone should be possible. But in practice...</p>]]></summary>
   </entry>
   <entry>
-    <title>How to Construct a Non-abelian Group with p^3 Elements</title>
+    <title>How to construct a non-abelian group with p^3 elements</title>
     <link href="https://blog.junyu33.me/en/2026/03/12/semidirect/"/>
     <id>https://blog.junyu33.me/en/2026/03/12/semidirect/</id>
     <updated>2026-03-12T00:00:00.000Z</updated>
@@ -118,7 +118,7 @@
     <summary type="html"><![CDATA[<p>In the previous post, we introduced the Weil pairing and Tate pairing on elliptic curves. In this article, we explore some applications of elliptic curves in Diophantine equations.</p>]]></summary>
   </entry>
   <entry>
-    <title>calculate weil-pairing from 0 to 1</title>
+    <title>Calculate weil-pairing from 0 to 1</title>
     <link href="https://blog.junyu33.me/en/2025/04/18/weil/"/>
     <id>https://blog.junyu33.me/en/2025/04/18/weil/</id>
     <updated>2025-04-18T07:00:00.000Z</updated>

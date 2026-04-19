@@ -1464,4 +1464,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/04/17/llm_numiq/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/04/17/llm_numiq/" />
   </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2026/04/19/bye_tenhou/</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/04/19/llm_numiq/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/04/19/bye_tenhou/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/zh/2026/04/19/bye_tenhou/</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/04/19/llm_numiq/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/04/19/bye_tenhou/" />
+  </url>
 </urlset>

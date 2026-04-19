@@ -196,7 +196,7 @@ pythonw D:/tmp1/tmp/test.py ::Here pythonw is used to prevent a popup window, wh
 TIMEOUT 600
 goto:start
 </code></pre>
-<p>But then another new problem arises—the script itself also pops up a window, right? Isn’t this a bit like recursion?</p>
+<p>But then another new problem arises—the script itself also pops up a window, right? Isn't this a bit like recursion?</p>
 <p>So, I looked up some information online and found out that vbs scripts do not produce any prompts when running (except when a command fails), which can solve this issue.</p>
 <p>I also borrowed some code from the internet that uses a vbs script to run commands and bat files:</p>
 <pre><code class="language-vbscript">CreateObject(&quot;WScript.Shell&quot;).run&quot;Rasdial 123 &lt;telephone&gt; &lt;passwd&gt;&quot;,0

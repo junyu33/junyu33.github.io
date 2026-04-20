@@ -55,7 +55,7 @@
 </blockquote>]]></summary>
   </entry>
   <entry>
-    <title>Rathee 三部曲：CrypTFlow2，SIRNN与SecFloat</title>
+    <title>Rathee 三部曲：CrypTFlow2，SIRNN 与 SecFloat</title>
     <link href="https://blog.junyu33.me/zh/2026/01/30/secfloat/"/>
     <id>https://blog.junyu33.me/zh/2026/01/30/secfloat/</id>
     <updated>2026-01-29T19:30:00.000Z</updated>
@@ -172,7 +172,7 @@
     <summary type="html"><![CDATA[<p>在上一篇 post 中，我们介绍了在椭圆曲线上的 weil pairing 和 tate pairing。在这一篇中我们考虑椭圆曲线在丢番图方程上的一些应用。</p>]]></summary>
   </entry>
   <entry>
-    <title>calculate weil-pairing from 0 to 1</title>
+    <title>Calculate weil-pairing from 0 to 1</title>
     <link href="https://blog.junyu33.me/zh/2025/04/18/weil/"/>
     <id>https://blog.junyu33.me/zh/2025/04/18/weil/</id>
     <updated>2025-04-18T07:00:00.000Z</updated>

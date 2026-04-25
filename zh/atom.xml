@@ -156,7 +156,7 @@
     <title>（转载）凑8游戏——图论分析</title>
     <link href="https://blog.junyu33.me/zh/2025/05/23/eights/"/>
     <id>https://blog.junyu33.me/zh/2025/05/23/eights/</id>
-    <updated>2025-05-23T04:30:00.000Z</updated>
+    <updated>2026-04-24T18:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>原作者：Master-Hash</p>
 <p>凑8游戏由 Max，也就是创办这个网站的人，于初一军训期间介绍给笔者。规则如下：</p>
 <p>开局时，两个人两只手都是1，双方轮流，每轮玩家可以将自己手上的一个数字的值变为该数字和对方手上某个数字的和（只准加，不准加自己），如果超过7，一律变为1，如果为8，则撤手，两只手都撤下为赢。</p>

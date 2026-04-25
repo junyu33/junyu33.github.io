@@ -1,4 +1,8 @@
+/robots.txt      /robots.txt      200
+/favicon.ico     /favicon.ico     200
+/sitemap.xml     /sitemap.xml     200
+
+/                 /index.html     200
+
 /:year/:month/:day/:slug/   /zh/:year/:month/:day/:slug/   301
 /:year/:month/:day/:slug    /zh/:year/:month/:day/:slug    301
-
-/*    /404.html    404

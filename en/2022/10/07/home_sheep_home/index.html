@@ -290,7 +290,7 @@ val = hashlib.md5((salt+_loc1_+salt).encode('utf-8')).hexdigest()
 print(val)
 </code></pre>
 <p><s>Unfortunately, the MD5 value calculated by this code does not match <code>val</code> for unknown reasons.</s></p>
-<p>Updated on 13/6/2025:</p>
+<p>Updated on 6/13/2025:</p>
 <p>The reason the hash value did not match is that the values of <code>achieve_total</code> and <code>collection_total</code> are not the lengths of the <code>achievements</code> and <code>collectables</code> fields. This is because some achievements and collectible items were ultimately not included in the final game. To obtain the correct values for these two, we can use a correct save file and perform a hash collision with combinations of these two values, for example:</p>
 <pre><code class="language-python"># Count the total obtained achievements and available achievements
 achievements_got = sum(1 for ach in json_data[&quot;achievements&quot;] if ach[&quot;got&quot;])

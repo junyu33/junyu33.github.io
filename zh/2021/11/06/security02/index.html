@@ -234,14 +234,14 @@ retn
 <p>系统级编程果然并非易事，我要开始担心自己的头发了。</p>
 <p><s>第三个安全项目，再（也不）见。</s></p>
 <p>我，学籍在高三，上着大一的课，学着大二的知识点，却在做以前大三的作业——川大真不错，课程难度都可以和C9高校比肩了！</p>
-<h1>(updated on 12,12)</h1>
+<h1>(updated on 12/12)</h1>
 <p>（容易想到且较为主流的方法，类似于ret2libc）</p>
 <p>学长的另外一种思路是(&quot;00&quot;+ebp+return test.printf+address of string+&quot;deadbeef&quot;) 。这种方式思路更加简单，但是你得知道printf的传参方式是先取地址，再直接append一个立即数。</p>
 <blockquote>
 <p>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 CC CC CC CC CC CC CC CC 38 FE 62 00 01 16 40 00 11 40 40 00 EF BE AD DE</p>
 </blockquote>
 <img src="https://img.junyu33.me/blog/security02/sol2.png">
-<h1>(updated on 12,28)</h1>
+<h1>(updated on 12/28)</h1>
 <p>程序设计课上老师的思路是：将输入地址到test函数中val地址之间的内存数据都导出来，我们只需要修改getbuf函数的返回地址到0x4015f3，来避开上一行eax对ebp-0xC（也就是val的地址）处的赋值，然后在输入中将val地址的值修改为0xdeadbeef即可。</p>
 <img src="https://img.junyu33.me/blog/security02/20211228.png">
 <p>因此答案是：</p>

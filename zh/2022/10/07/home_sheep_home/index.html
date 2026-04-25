@@ -287,7 +287,7 @@ val = hashlib.md5((salt+_loc1_+salt).encode('utf-8')).hexdigest()
 print(val)
 </code></pre>
 <p><s>可惜的是，这个代码算出来的MD5值与<code>val</code>并不相同，原因未知。</s></p>
-<p>Updated on 13/6/2025：</p>
+<p>Updated on 6/13/2025：</p>
 <p>算出来哈希值不一致的原因是 <code>achieve_total</code> 与 <code>collection_total</code> 的值并非 <code>achievements</code> 与 <code>collectables</code> 字段的长度。因为有些成就与收集的物品最终并没有纳入游戏本体。为了拿到这两个的正确值，我们只需要用一个正确的存档，拿这两个数值的组合进行哈希碰撞即可，例如：</p>
 <pre><code class="language-python"># 统计已获得的成就总数和可用成就总数
 achievements_got = sum(1 for ach in json_data[&quot;achievements&quot;] if ach[&quot;got&quot;])

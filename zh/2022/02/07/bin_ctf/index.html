@@ -888,7 +888,7 @@ io.sendline('123456')
 io.interactive()
 </code></pre>
 <p>不使用工具的exp <s>（然而我并不理解其中的含义）</s>:</p>
-<h3 id="updated-on-2-25">updated on 2,25</h3>
+<h3 id="updated-on-2-25">updated on 2/25</h3>
 <p><code>$n</code>代表已经先前成功输出的字节数，在这儿是四个int，也就是<code>0x10</code>.</p>
 <p>而之前我们算出到输入的偏移是10，因此就从%10开始，把<code>0x804c044</code>~<code>0x804c047</code>的地址全部复制为<code>0x10</code>.</p>
 <p>因此我们最后输入<code>10101010</code>即可满足条件。</p>

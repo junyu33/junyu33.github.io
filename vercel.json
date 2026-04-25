@@ -1,0 +1,1 @@
+{"$schema":"https://openapi.vercel.sh/vercel.json","redirects":[{"source":"/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug","destination":"/zh/:year/:month/:day/:slug/","permanent":true},{"source":"/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug/","destination":"/zh/:year/:month/:day/:slug/","permanent":true}]}

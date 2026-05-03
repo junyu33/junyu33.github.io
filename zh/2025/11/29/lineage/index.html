@@ -10,19 +10,12 @@
     
   
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"> -->
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
   <link rel="alternate" type="application/atom+xml" title="RSS" href="https://blog.junyu33.me/atom.xml">
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script> -->
   <script defer src="/vendor/highlight/highlight.min.js"></script>
-  <script>
-    if (window.hljs) {
-      hljs.highlightAll();
-    }
-  </script>
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -33,24 +26,25 @@
 
 <body>
   <div class="head-nav">
-	<div class="inner">
-		<a href="/">
-			现充|junyu33
-		</a>
-		<div class="right">
-			
-				<a href="/zh">首页</a>
-				<a href="/zh/archives">归档</a>
-				
-					<a href="/zh/categories">分类</a>
-				
-				
-					<a href="/zh/tags">标签</a>
-				
-				<a href="/">English</a>
-			
-		</div>
-	</div>
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/zh">首页</a>
+                                <a href="/zh/archives">归档</a>
+                                
+                                        <a href="/zh/categories">分类</a>
+                                
+                                
+                                        <a href="/zh/tags">标签</a>
+                                
+                                <a href="/">English</a>
+                                <a id="mirror-switch" data-lang="zh" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">国内镜像</a>
+                        
+                </div>
+        </div>
 </div>
 
   <div class="main">
@@ -72,7 +66,7 @@
 <p>这里叙述一下完整的刷机过程。</p>
 <span id="more"></span>
 <h2 id="解锁-bootloader">解锁 bootloader</h2>
-<p>STF-AL10 使用麒麟 960 处理器，这种型号的处理器网上已经有免费方案——拆机短接进入EDL模式并使用 potatoNV 进行解锁码注入。具体过程可以参考<a href="https://blog.junyu33.me/zh/2021/08/10/xp/">这篇文章</a>的“如何零成本解bl锁”一节或者<a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#jie-suo-bootloader">caiwen的博客</a>。</p>
+<p>STF-AL10 使用麒麟 960 处理器，这种型号的处理器网上已经有免费方案——拆机短接进入EDL模式并使用 potatoNV 进行解锁码注入。具体过程可以参考<a href="/zh/2021/08/10/xp/">这篇文章</a>的“如何零成本解bl锁”一节或者<a target="_blank" rel="noopener" href="https://www.caiwen.work/post/huawei_honor_9#jie-suo-bootloader">caiwen的博客</a>。</p>
 <h2 id="正式刷机">正式刷机</h2>
 <h3 id="寻找可用的-ROM">寻找可用的 ROM</h3>
 <p>由于 STF-AL10 手机在 2017 年就发布了，距离写作之日已经过去 8 年时间，XDA 上面还是有不少针对这款手机的 ROM。我选择了搭载 android 13 的<a target="_blank" rel="noopener" href="https://xdaforums.com/t/rom-huawei-13-leaos-lineage-20-0-for-huawei-device-emui-9-1-version.4560779/">LeaOS</a>，也就是 lineage 的魔改版本。这款 ROM 也对荣耀设备做了一定程度的适配，对于 STF-AL10，我下载的是<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/altairfr-huawei/files/LeaOS-20.0/LeaOS-20.0-20251019-iceows-google-stf.img.xz/download">LeaOS-20.0-20251019-iceows-google-stf.img.xz</a>这个包。</p>
@@ -177,15 +171,28 @@ fastboot: error: Command failed
 
   </div>
 
-  <!-- Vercel Web Analytics -->
-  <!-- <script>
-    window.va = window.va || function () {
-      (window.vaq = window.vaq || []).push(arguments);
-    };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script> -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
 
-  <!-- Vercel Speed Insights -->
-  <!-- <script defer src="/_vercel/speed-insights/script.js"></script> -->
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
 </body>
 </html>

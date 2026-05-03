@@ -10,19 +10,12 @@
     
   
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"> -->
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
   <link rel="alternate" type="application/atom+xml" title="RSS" href="https://blog.junyu33.me/atom.xml">
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script> -->
   <script defer src="/vendor/highlight/highlight.min.js"></script>
-  <script>
-    if (window.hljs) {
-      hljs.highlightAll();
-    }
-  </script>
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -33,24 +26,25 @@
 
 <body>
   <div class="head-nav">
-	<div class="inner">
-		<a href="/">
-			现充|junyu33
-		</a>
-		<div class="right">
-			
-				<a href="/">Home</a>
-				<a href="/archives">Archive</a>
-				
-					<a href="/categories">Categories</a>
-				
-				
-					<a href="/tags">Tags</a>
-				
-				<a href="/zh">中文站</a>
-			
-		</div>
-	</div>
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/">Home</a>
+                                <a href="/archives">Archive</a>
+                                
+                                        <a href="/categories">Categories</a>
+                                
+                                
+                                        <a href="/tags">Tags</a>
+                                
+                                <a href="/zh">中文站</a>
+                                <a id="mirror-switch" data-lang="en" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">CN Mirror</a>
+                        
+                </div>
+        </div>
 </div>
 
   <div class="main">
@@ -81,7 +75,7 @@
 <h2 id="Struggle-2024-7-17-2025-12-6">Struggle (2024/7/17 - 2025/12/6)</h2>
 <p>July 2024 brought another period of free time. A month or two earlier, I had decided to pursue graduate studies at my current university and had already chosen my advisor, which meant I didn't have to travel around for summer camps. It turned into a perfect summer. I remember that August was extremely hot, so my family went to a nearby place to escape the heat. Naturally, my parents played Mahjong every afternoon.</p>
 <blockquote>
-<p>At that time, I was deeply frustrated by what I believed to be rigged matchmaking in Mahjong Soul. One day I couldn't take it anymore and <a href="https://blog.junyu33.me/en/2024/08/25/majsoul/">wrote an article</a> &quot;proving&quot; it. Shortly after that, I stopped playing on that account.</p>
+<p>At that time, I was deeply frustrated by what I believed to be rigged matchmaking in Mahjong Soul. One day I couldn't take it anymore and <a href="/en/2024/08/25/majsoul/">wrote an article</a> &quot;proving&quot; it. Shortly after that, I stopped playing on that account.</p>
 </blockquote>
 <p>Being reminded of it, I naturally thought of Tenhou again. My previous account had been reclaimed after 180 days of inactivity, so I registered a new one and started over. I played both yonma and sanma again, believing that a few months would be enough to reach Tokujou (upper tables). Instead, I played from 2024/7/17 all the way to 2025/12/6, and failed to achieve that goal in either mode. There's no need for excessive wording here—the data speaks for itself:</p>
 <ul>
@@ -166,15 +160,28 @@
 
   </div>
 
-  <!-- Vercel Web Analytics -->
-  <!-- <script>
-    window.va = window.va || function () {
-      (window.vaq = window.vaq || []).push(arguments);
-    };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script> -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
 
-  <!-- Vercel Speed Insights -->
-  <!-- <script defer src="/_vercel/speed-insights/script.js"></script> -->
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
 </body>
 </html>

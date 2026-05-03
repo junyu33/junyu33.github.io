@@ -10,19 +10,12 @@
     
   
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"> -->
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
   <link rel="alternate" type="application/atom+xml" title="RSS" href="https://blog.junyu33.me/atom.xml">
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script> -->
   <script defer src="/vendor/highlight/highlight.min.js"></script>
-  <script>
-    if (window.hljs) {
-      hljs.highlightAll();
-    }
-  </script>
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -33,24 +26,25 @@
 
 <body>
   <div class="head-nav">
-	<div class="inner">
-		<a href="/">
-			现充|junyu33
-		</a>
-		<div class="right">
-			
-				<a href="/">Home</a>
-				<a href="/archives">Archive</a>
-				
-					<a href="/categories">Categories</a>
-				
-				
-					<a href="/tags">Tags</a>
-				
-				<a href="/zh">中文站</a>
-			
-		</div>
-	</div>
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/">Home</a>
+                                <a href="/archives">Archive</a>
+                                
+                                        <a href="/categories">Categories</a>
+                                
+                                
+                                        <a href="/tags">Tags</a>
+                                
+                                <a href="/zh">中文站</a>
+                                <a id="mirror-switch" data-lang="en" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">CN Mirror</a>
+                        
+                </div>
+        </div>
 </div>
 
   <div class="main">
@@ -602,7 +596,7 @@ Failed to spawn: unable to find process with name 'com.android.vending'
 </code></pre>
 <p>And that's a wrap! 🎉</p>
 <h2 id="updated-on-2025-7-28">updated on 2025-7-28</h2>
-<p>Nearly a year later, my old phone finally came in handy when I tried to capture traffic from an app—though it didn't actually solve the problem I was facing. For details, see <a href="https://blog.junyu33.me/2025/07/28/router.html">this link</a>.</p>
+<p>Nearly a year later, my old phone finally came in handy when I tried to capture traffic from an app—though it didn't actually solve the problem I was facing. For details, see <a href="/2025/07/28/router.html">this link</a>.</p>
 <h2 id="Updated-on-2025-11-26-how-to-unlock-bootloader-for-free">Updated on 2025-11-26 (how to unlock bootloader for free)</h2>
 <p>More than four years have passed since I unlocked this phone (STF-AL10). Some key information previously known only to certain individuals has gradually circulated online, and now it's possible to unlock the bootloader at zero cost. The steps are as follows:</p>
 <ol>
@@ -624,15 +618,28 @@ Failed to spawn: unable to find process with name 'com.android.vending'
 
   </div>
 
-  <!-- Vercel Web Analytics -->
-  <!-- <script>
-    window.va = window.va || function () {
-      (window.vaq = window.vaq || []).push(arguments);
-    };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script> -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
 
-  <!-- Vercel Speed Insights -->
-  <!-- <script defer src="/_vercel/speed-insights/script.js"></script> -->
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
 </body>
 </html>

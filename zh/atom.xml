@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-04-19T14:00:00.000Z</updated>
+  <updated>2026-05-11T09:30:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -11,6 +11,13 @@
     <id>https://blog.junyu33.me/zh/2038/01/19/meta/</id>
     <updated>2026-04-25T09:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>A One Round Protocol for Tripartite Diffie–Hellman</title>
+    <link href="https://blog.junyu33.me/zh/2026/05/11/joux/"/>
+    <id>https://blog.junyu33.me/zh/2026/05/11/joux/</id>
+    <updated>2026-05-11T09:30:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>2026/05/11 组会存档。</p>]]></summary>
   </entry>
   <entry>
     <title>五九——再见，天凤</title>
@@ -172,14 +179,5 @@
     <id>https://blog.junyu33.me/zh/2025/04/27/diophantine/</id>
     <updated>2025-04-27T15:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>在上一篇 post 中，我们介绍了在椭圆曲线上的 weil pairing 和 tate pairing。在这一篇中我们考虑椭圆曲线在丢番图方程上的一些应用。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Calculate weil-pairing from 0 to 1</title>
-    <link href="https://blog.junyu33.me/zh/2025/04/18/weil/"/>
-    <id>https://blog.junyu33.me/zh/2025/04/18/weil/</id>
-    <updated>2025-04-18T07:00:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>为了更好理解 weil-pairing 以及 miller 算法，这里使用 python 从 0 开始实现了一遍。</p>
-<p>用到的依赖只有 <code>pow</code> 函数，<code>math.inf</code> 和深拷贝函数 <code>copy.deepcopy</code>，且使用了本人并不顺手的 OOP 编程范式。</p>
-<p>虽然写了之后对 weil-pairing 和 OOP 的理解同时加深了（</p>]]></summary>
   </entry>
 </feed>

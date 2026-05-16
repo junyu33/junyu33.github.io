@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -64,17 +65,17 @@
 	<h1>如何打造一个究极舒适的 pwn 环境（第三季）</h1>
 	<p>在物理机上安装ubuntu20.04并配置常用软件和kernel pwn环境。</p>
 <span id="more"></span>
-<h1>ubuntu20.04安装</h1>
-<h2 id="创建启动盘">创建启动盘</h2>
+<h2 id="ubuntu20-04安装">ubuntu20.04安装</h2>
+<h3 id="创建启动盘">创建启动盘</h3>
 <p>在网上下载ubuntu20.04的iso文件后，使用UltraISO将U盘刻录为RAW格式。</p>
 <p><strong>注意是RAW格式，不是什么USB-HDD+之类的东西，不然安装程序都进不去！</strong></p>
 <p>重启进BIOS时，把U盘的优先级提到<code>hard drive</code>前面。</p>
-<h2 id="安装ubuntu">安装ubuntu</h2>
+<h3 id="安装ubuntu">安装ubuntu</h3>
 <p>此时系统会让你试用或者安装，我的做法是先试用，再点安装程序。</p>
 <p>试用的界面相当于一个可以上网的PE，你可以体验完后<s>直接关机</s>继续安装。</p>
 <p>建议在体验过程中使用<code>Gparted</code>给硬盘分区，在硬盘的末端分出100G，左边60G给根目录，右边40G给用户目录，格式ext4。swap分区可以不用，缺点就是开机速度稍微慢一点。这样安装的时候就不用再折腾分区了。</p>
 <p>安装过程中建议选择完整安装<strong>但不下载更新</strong>（否则安装将巨慢无比）。正常情况半小时足以安装好。</p>
-<h2 id="换源">换源</h2>
+<h3 id="换源">换源</h3>
 <p><code>sudo vim /etc/apt/sources.list</code></p>
 <pre><code class="language-bash">#添加阿里源
 deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
@@ -98,16 +99,16 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted 
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse multiverse
 </code></pre>
 <p><code>sudo apt-get update</code></p>
-<h2 id="输入法">输入法</h2>
+<h3 id="输入法">输入法</h3>
 <p>ubuntu自带的用起来感觉还行，基于iBus，不需要怎么配置。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43431593/article/details/106444769">https://blog.csdn.net/weixin_43431593/article/details/106444769</a></p>
-<h2 id="搭梯子">搭梯子</h2>
+<h3 id="搭梯子">搭梯子</h3>
 <blockquote>
 <p>众所周知，如果你有了梯子，找梯子就很容易；但是如果你没有，找梯子就很麻烦。</p>
 </blockquote>
 <p>如果使用了VPN，也许可以从官网上下载到天朝特供版的下载链接，省去了不少麻烦。</p>
 <p>如果使用了机场，虽然拷贝订阅链接很简单，但是从github上下载客户端却很麻烦。建议在先前的系统中下载好linux版本，然后在ubuntu直接安装。</p>
-<h1>终端环境配置</h1>
+<h2 id="终端环境配置">终端环境配置</h2>
 <blockquote>
 <p>原文地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41179606/article/details/80957817">https://blog.csdn.net/weixin_41179606/article/details/80957817</a></p>
 <p>在安装zsh-syntax-highlighting时原文有错误，笔者已修正。</p>
@@ -155,9 +156,9 @@ ZSH_THEME=&quot;ys&quot;或&quot;agnoster&quot;
 
 source ~/.zshrc
 </code></pre>
-<h1>软件安装</h1>
+<h2 id="软件安装">软件安装</h2>
 <p>现在你有了魔法而且换了源，安装软件或者拉取项目的时候，就不用考虑网络的问题了。</p>
-<h2 id="软件列表">软件列表</h2>
+<h3 id="软件列表">软件列表</h3>
 <ul>
 <li>chrome</li>
 <li>netease music</li>
@@ -186,7 +187,7 @@ source ~/.zshrc
 <li>wechat</li>
 <li><s>tim</s></li>
 </ul>
-<h2 id="从apt源安装">从apt源安装</h2>
+<h3 id="从apt源安装">从apt源安装</h3>
 <pre><code class="language-bash"># install
 sudo apt install *
 # OR sudo apt-get install *
@@ -194,14 +195,14 @@ sudo apt install *
 sudo apt remove *
 # OR sudo apt-get remove *
 </code></pre>
-<h2 id="安装deb文件">安装deb文件</h2>
+<h3 id="安装deb文件">安装deb文件</h3>
 <p>大多数应用都是这样安装的</p>
 <pre><code class="language-bash"># install
 sudo dpkg -i *.deb
 # remove
 sudo dpkg -r *.deb
 </code></pre>
-<h2 id="使用非国产系windows应用">使用非国产系windows应用</h2>
+<h3 id="使用非国产系windows应用">使用非国产系windows应用</h3>
 <p>大部分可以用wine搞定。</p>
 <pre><code class="language-bash">sudo dpkg --add-architecture i386 
 wget -nc https://dl.winehq.org/wine-builds/winehq.key
@@ -213,9 +214,9 @@ sudo apt install --install-recommends winehq-stable
 </code></pre>
 <p>还是要一两个G的，安装有点费时。</p>
 <p>只不过ida的一些配置比较麻烦，这里得写一下：</p>
-<h3 id="IDA-配置">IDA 配置</h3>
+<h4 id="IDA-配置">IDA 配置</h4>
 <p>这里默认读者用的是免安装版的ida。</p>
-<h4 id="坑一">坑一</h4>
+<h5 id="坑一">坑一</h5>
 <p>直接用wine打开ida似乎会导致dll无法加载，从而ida的各种功能无法使用。</p>
 <p>写了两个脚本指定了python的路径：</p>
 <pre><code class="language-bat"># start.bat
@@ -235,7 +236,7 @@ wine start64.bat
 <p>有时会出现idapython无法加载的玄学错误，我的解决方案是在桌面建立ida根目录的软链接，从桌面打开shell进入软链接，再用wine运行这两个bat。</p>
 <p>但是直接cd绝对路径就会报错，不知道什么原因。</p>
 </blockquote>
-<h4 id="坑二">坑二</h4>
+<h5 id="坑二">坑二</h5>
 <p>这个时候，ida本体和idapython已经可以正常使用了，但是部分插件，例如<code>findcrypt</code>、<code>keypatch</code>依然存在缺少<code>yara</code>、<code>keystone-engine</code>插件的问题。</p>
 <p>安装方法见坑三。</p>
 <p><s>由于我们的python是免安装版的，自然使用pip安装插件不会奏效。</s></p>
@@ -243,7 +244,7 @@ wine start64.bat
 <blockquote>
 <p><s>一个方便查看多了哪些文件的方法是，尝试卸载这个插件，然后shell将会显示将要删除哪些文件，这些文件就是安装后多出来的文件。</s></p>
 </blockquote>
-<h4 id="坑三">坑三</h4>
+<h5 id="坑三">坑三</h5>
 <blockquote>
 <p>原文链接：<a target="_blank" rel="noopener" href="https://github.com/polymorf/findcrypt-yara/issues/34">https://github.com/polymorf/findcrypt-yara/issues/34</a></p>
 </blockquote>
@@ -252,27 +253,27 @@ wine start64.bat
 <p>先用python执行<code>get-pip.py</code>，然后找到<code>python38._pth</code>文件，新建一行<code>Lib\site-packages</code>，然后就可以愉快地用pip安装包了。</p>
 <p>一个简单粗暴的解决方法在<code>findcrypt3.rules</code>是删掉这个规则：</p>
 <p><img src="https://user-images.githubusercontent.com/37646748/103058572-73556f80-45dd-11eb-9ebf-b4a4c1a2e25a.png" alt=""></p>
-<h2 id="尝试使用国产系windows应用">尝试使用国产系windows应用</h2>
-<h3 id="网易云音乐">网易云音乐</h3>
+<h3 id="尝试使用国产系windows应用">尝试使用国产系windows应用</h3>
+<h4 id="网易云音乐">网易云音乐</h4>
 <blockquote>
 <p>deepin yyds!</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.deepin.org/zh/cooperative/netease-cloud-music/">https://www.deepin.org/zh/cooperative/netease-cloud-music/</a></p>
-<h3 id="腾讯会议">腾讯会议</h3>
+<h4 id="腾讯会议">腾讯会议</h4>
 <p>有原生linux版，可能是因为钉钉有linux版所以腾讯才舍得研发个原生版。</p>
-<h3 id="微信">微信</h3>
-<h4 id="优麒麟原生版（未测试）">优麒麟原生版（未测试）</h4>
+<h4 id="微信">微信</h4>
+<h5 id="优麒麟原生版（未测试）">优麒麟原生版（未测试）</h5>
 <p><a target="_blank" rel="noopener" href="https://www.ubuntukylin.com/applications/106-cn.html">https://www.ubuntukylin.com/applications/106-cn.html</a></p>
-<h4 id="使用deepinwine">使用deepinwine</h4>
+<h5 id="使用deepinwine">使用deepinwine</h5>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40756508/article/details/107511334">https://blog.csdn.net/qq_40756508/article/details/107511334</a></p>
-<h3 id="tim-qq"><s>tim/qq</s></h3>
-<h4 id="官方远古原生版">官方远古原生版</h4>
+<h4 id="tim-qq"><s>tim/qq</s></h4>
+<h5 id="官方远古原生版">官方远古原生版</h5>
 <p><a target="_blank" rel="noopener" href="https://im.qq.com/linuxqq/index.html">https://im.qq.com/linuxqq/index.html</a></p>
 <p>二维码扫不了，艹了。</p>
-<h4 id="deepinwine">deepinwine</h4>
+<h5 id="deepinwine">deepinwine</h5>
 <p>很容易崩溃，基本上就是一登录就崩溃。</p>
 <p>暂时没有好的解决方案。</p>
-<h4 id="docker">docker</h4>
+<h5 id="docker">docker</h5>
 <p><a target="_blank" rel="noopener" href="https://github.com/top-bettercode/docker-qq">https://github.com/top-bettercode/docker-qq</a></p>
 <p>启动脚本把<code>fcitx</code>都改成<code>ibus</code>可以输入中文。</p>
 <p>2022年6月13日实测可用。</p>
@@ -280,11 +281,11 @@ wine start64.bat
 <pre><code class="language-bash"># 10f0ec600caf是容器的id，可以通过sudo docker ps命令获得
 sudo docker cp 10f0ec600caf:'/TencentFiles/2658799217/FileRecv/RV.rar' ~/Desktop
 </code></pre>
-<h1>kernel pwn环境搭建</h1>
+<h2 id="kernel-pwn环境搭建">kernel pwn环境搭建</h2>
 <blockquote>
 <p>部分内容来源于 <a target="_blank" rel="noopener" href="https://kiprey.gitee.io/2021/10/kernel_pwn_introduction/">https://kiprey.gitee.io/2021/10/kernel_pwn_introduction/</a></p>
 </blockquote>
-<h2 id="内核下载与编译">内核下载与编译</h2>
+<h3 id="内核下载与编译">内核下载与编译</h3>
 <p>这里有一个项目打包了所有下载、解压、编译、打包rootfs的过程，还是很方便的。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/pwncollege/pwnkernel">https://github.com/pwncollege/pwnkernel</a></p>
 <pre><code class="language-bash">git clone https://github.com/pwncollege/pwnkernel.git
@@ -292,7 +293,7 @@ sudo docker cp 10f0ec600caf:'/TencentFiles/2658799217/FileRecv/RV.rar' ~/Desktop
 ./launch.sh
 # 由于在launch.sh中提供了打包rootfs的操作，因此只需要将编译好的驱动放到_install文件夹即可。
 </code></pre>
-<h2 id="gdb-attach与调试">gdb attach与调试</h2>
+<h3 id="gdb-attach与调试">gdb attach与调试</h3>
 <pre><code class="language-bash"># 一定要提前指定架构
 set architecture i386:x86-64
 gef-remote --qemu-mode localhost:1234
@@ -305,7 +306,7 @@ continue
 [Breakpoint 1, start_kernel () at init/main.c:837]
 ......
 </code></pre>
-<h2 id="启动脚本（未测试）">启动脚本（未测试）</h2>
+<h3 id="启动脚本（未测试）">启动脚本（未测试）</h3>
 <pre><code class="language-bash">#! /bin/bash
 
 # 判断当前权限是否为 root，需要高权限以执行 gef-remote --qemu-mode
@@ -348,7 +349,7 @@ gef-remote --qemu-mode localhost:1234
 b start_kernel
 c
 </code></pre>
-<h2 id="上传脚本">上传脚本</h2>
+<h3 id="上传脚本">上传脚本</h3>
 <blockquote>
 <p>从校赛扒过来的，配合本目录的exp.c使用。</p>
 </blockquote>

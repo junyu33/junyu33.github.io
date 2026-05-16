@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -65,8 +66,8 @@
 	<p>虽然pwn AK了，但pwn手还是输麻了。</p>
 <p>运维水平很是蛋疼，以后文件别放毒盘（</p>
 <span id="more"></span>
-<h1>pwn</h1>
-<h2 id="welcomeUNCTF2022">welcomeUNCTF2022</h2>
+<h2 id="pwn">pwn</h2>
+<h3 id="welcomeUNCTF2022">welcomeUNCTF2022</h3>
 <pre><code class="language-c">int func()
 &#123;
   char s2[11]; // [esp+Ch] [ebp-1Ch] BYREF
@@ -82,7 +83,7 @@
 &#125;
 </code></pre>
 <p>简单判断，测试nc是否正常工作<s>与靶机状态</s>。</p>
-<h2 id="石头剪刀布">石头剪刀布</h2>
+<h3 id="石头剪刀布">石头剪刀布</h3>
 <p>main部分</p>
 <pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
 &#123;
@@ -130,7 +131,7 @@
 &#125;
 </code></pre>
 <p>给定了随机种子，只需在Linux环境下写个对应种子的随机数序列，再按照赢的方式输入即可。</p>
-<h2 id="move-your-heart">move your heart</h2>
+<h3 id="move-your-heart">move your heart</h3>
 <p>main函数跟第二题思路相同，略去。</p>
 <pre><code class="language-c">ssize_t back()
 &#123;
@@ -143,9 +144,9 @@
 <p>这里是栈迁移。payload大概是</p>
 <p><code>p64(pop_rdi)+p64(buf+0x18)+p64(system_plt)+b'/bin/sh\0'+p64(buf)+p64(leave_ret)</code></p>
 <p>刚刚够用。</p>
-<h2 id="checkin">checkin</h2>
+<h3 id="checkin">checkin</h3>
 <p>比较有意思，考了整数溢出与异常处理。</p>
-<h3 id="int-overflow">int overflow</h3>
+<h4 id="int-overflow">int overflow</h4>
 <pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
 &#123;
   char nptr[32]; // [rsp+0h] [rbp-50h] BYREF
@@ -171,7 +172,7 @@
 <p>buf这个没什么用，暂时不管它。</p>
 <p>注意到倒数第二行这里把字节转成了无符号类型，而<code>atoi</code>是转成<code>int</code>，考虑到有一个整数溢出。</p>
 <p>而第0位不能是符号，可以加一个空格来绕过，不影响<code>atoi</code>的结果。</p>
-<h3 id="sigsegv">sigsegv</h3>
+<h4 id="sigsegv">sigsegv</h4>
 <p>此时我们可以读入无限制长度的数据，可以使用rop等方式解决。</p>
 <p>但注意到<code>1nit</code>函数里有一个<code>sigsegv_handler</code>，意思是<code>SIGSEGV</code>后直接吐flag。</p>
 <pre><code class="language-c">void __noreturn sigsegv_handler()
@@ -182,7 +183,7 @@
 &#125;
 </code></pre>
 <p>因此只需乱输一通爆栈即可。</p>
-<h2 id="int-0x80">int_0x80</h2>
+<h3 id="int-0x80">int_0x80</h3>
 <pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
 &#123;
   int i; // [rsp+Ch] [rbp-124h]
@@ -206,9 +207,9 @@
 </code></pre>
 <p>alphanumeric shellcode</p>
 <p>可以使用AE64库，记得设一下参数为rsi。</p>
-<h2 id="fakehero">fakehero</h2>
+<h3 id="fakehero">fakehero</h3>
 <p><s>建议改名为fakeheap</s>（顾名思义，一个伪堆题）。</p>
-<h3 id="add操作">add操作</h3>
+<h4 id="add操作">add操作</h4>
 <pre><code class="language-c">__int64 __fastcall add(void **a1)
 &#123;
   void **v1; // rbx
@@ -234,7 +235,7 @@
 </code></pre>
 <p>注意这里的buf是从栈上直接copy，并且没有清零，因此可以泄露libc和elf地址。<s>但这并没有什么作用</s></p>
 <p>更重要的漏洞是没有限制idx的range。</p>
-<h3 id="free-show操作">free&amp;show操作</h3>
+<h4 id="free-show操作">free&amp;show操作</h4>
 <pre><code class="language-c">__int64 __fastcall delete(void **a1)
 &#123;
   int v2; // [rsp+1Ch] [rbp-4h] BYREF
@@ -250,7 +251,7 @@
 &#125;
 </code></pre>
 <p>没什么好说的uaf，没有办法编辑free后堆中的内容，再加上前面没有堆溢出，基本无法double free。</p>
-<h3 id="解法">解法</h3>
+<h4 id="解法">解法</h4>
 <p>观察初始化函数，这里堆是可执行的。</p>
 <pre><code class="language-c">void init()
 &#123;

@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -62,16 +63,16 @@
     
 
 	<h1>安全项目第三题解答及思路分析</h1>
-	<h1>解答</h1>
+	<h2 id="解答">解答</h2>
 <img src="https://img.junyu33.me/blog/security03/res.png">
 <p>一道不错的逆向题，7个小题的难度是逐渐攀升的，很适合新手。</p>
 <span id="more"></span>
-<h1>思路分析</h1>
+<h2 id="思路分析">思路分析</h2>
 <p>以下过程均基于IDA 7.5完成，相信有兴趣看这道题的手头都有IDA吧。</p>
 <p>（当然作者的原意是想让你看汇编，gdb调试，那就很秃头了）</p>
 <p>main函数的逻辑很简单，程序提供了文件输入功能（带参数1）和标准输入（参数为空）。接下来你需要回答6个问题（phase），任何一个问题回答错误，炸弹都会爆。</p>
 <p>下面我将逐phase进行分析。</p>
-<h2 id="phase-1">phase_1</h2>
+<h3 id="phase-1">phase_1</h3>
 <pre><code class="language-c">int __cdecl phase_1(int a1)
 &#123;
   int result; // eax
@@ -83,7 +84,7 @@
 &#125;
 </code></pre>
 <p>字符串比较，直接输入<code>Public speaking is very easy.</code>即可。</p>
-<h2 id="phase-2">phase_2</h2>
+<h3 id="phase-2">phase_2</h3>
 <pre><code class="language-c">int __cdecl phase_2(char *s)
 &#123;
   int i; // ebx
@@ -103,7 +104,7 @@
 &#125;
 </code></pre>
 <p>读入六个数，然后判断<code> v3[i] == v3[i - 1] * (i + 1)</code> ，即简单的阶乘函数。</p>
-<h2 id="phase-3">phase_3</h2>
+<h3 id="phase-3">phase_3</h3>
 <pre><code class="language-c">int __cdecl phase_3(char *s)
 &#123;
   int result; // eax
@@ -169,7 +170,7 @@
 <p>（提示：如果你的v2显示的是数字，你可以右键这个数字或者按r把它转成ASCII字符）</p>
 <p>以case 0为例，有<code>v3 == 0</code>,<code>v2 == v4</code>,<code>v5 == 777</code>这三个条件，因此输入0、q、777即可。</p>
 <p>剩下的case同理。</p>
-<h2 id="phase-4">phase_4</h2>
+<h3 id="phase-4">phase_4</h3>
 <pre><code class="language-c">int __cdecl func4(int a1)
 &#123;
   int v1; // esi
@@ -222,7 +223,7 @@ Phase 4.
 &#125;
 </code></pre>
 <p>因此我们需要在9后面追加一句<code>austinpowers</code>，然后到<code>num_input_strings == 6</code>，即六题都答对后才能看到隐藏关卡。</p>
-<h2 id="phase-5">phase_5</h2>
+<h3 id="phase-5">phase_5</h3>
 <pre><code class="language-c">int __cdecl phase_5(_BYTE *a1)
 &#123;
   int i; // edx
@@ -270,7 +271,7 @@ int main()&#123;
 </code></pre>
 <p>输出的结果是<code>15 0 5 11 13 1</code>.</p>
 <p>但是题目要求我们输入字符串，而小于16的输入都是不可见的字符，我们需要把它们都加上16的倍数。我这里选择加上96，得到的答案是o`ekma</p>
-<h2 id="phase-6">phase_6</h2>
+<h3 id="phase-6">phase_6</h3>
 <pre><code class="language-c">int __cdecl phase_6(char *s)
 &#123;
   int i; // edi
@@ -363,7 +364,7 @@ for num in itertools.permutations(num,6):
 	io.close()
 # 4 2 6 3 1 5
 </code></pre>
-<h2 id="secret-phase">secret_phase</h2>
+<h3 id="secret-phase">secret_phase</h3>
 <pre><code class="language-c">int __cdecl fun7(_DWORD *a1, int a2)
 &#123;
   if ( !a1 )
@@ -399,7 +400,7 @@ void secret_phase()
 </blockquote>
 <p><code>fun7</code>的意思是如果你是从右子树回溯的，那么值×2+1；反之×2，而任何一个叶节点的值是0。</p>
 <p>手推一下就可以得知只有最右下角的数3E9h，也就是1001才能使树根的值为7。</p>
-<h1>总结</h1>
+<h2 id="总结">总结</h2>
 <p>lab3确实比lab2简单（从10号晚上9点开始到11号早上9点半做完secret_phase），但是也不是我之前想象得那么简单，随便开开IDA就能做出来的。</p>
 <p>建议给下一届同学安全项目必做lab1、lab3，选做lab2。lab2的前置知识太多了，同学们吃不消，穿插在学期中的过于碎片化的提示势必会对将来堆栈的系统学习带来影响。</p>
 

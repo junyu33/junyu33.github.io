@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -67,7 +68,7 @@
 <img src="https://img.junyu33.me/blog/pwn_environ2/res.png" style="zoom:33%;" >
 <p>我们假设读者已经完成的上一季的配置，并确保自己拥有公网ip。</p>
 <span id="more"></span>
-<h1>方法一——使用ddns</h1>
+<h2 id="方法一——使用ddns">方法一——使用ddns</h2>
 <p>每一个设备，都拥有自己唯一的ip地址。理论上如果你要访问一个设备，你只需要访问它的ip地址就可以了。</p>
 <p>然而，在当今ipv4资源稀缺的情况下（世界人口大于70亿，而理论可用的ipv4地址只有<mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" style="stroke-width: 3;"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)" style="stroke-width: 3;"/></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mn>32</mn></mrow></msup></math></mjx-assistive-mml></mjx-container>个），部分运营商会将一个公网ip通过NAT转换成多个内网ip，以缓解资源不足的压力。<strong>而只有公网里的ip，才可以互相访问。</strong></p>
 <blockquote>
@@ -82,7 +83,7 @@
 <li>不能使用代理。</li>
 <li>某些情况下使用ddns会导致宽带断线，且无法重连。</li>
 </ul>
-<h1>方法二——使用ip检测脚本，并发送到邮箱</h1>
+<h2 id="方法二——使用ip检测脚本，并发送到邮箱">方法二——使用ip检测脚本，并发送到邮箱</h2>
 <p>另外一种思路是使用脚本在ip查询网站，查询自己的ip地址。如果脚本发现ip发生了变化，就向自己的邮箱发送新的ip地址。</p>
 <p>这个思路看上去简单明了，但是实际操作并非如此。</p>
 <p>首先，我复制了一份实现以上功能的python脚本（还是有点长的）：</p>
@@ -211,9 +212,9 @@ set ws=wscript.createobject(&quot;wscript.shell&quot;)
 <p>这个vbs做了两件事，一是自动拨号上网，二是调用之前的bat文件。</p>
 <p>我亲自断网，并实际运行了一下，发现拨号成功了，也收到了梦寐以求的ip更换的邮件。</p>
 <p>还剩下最后一个问题——如何定时运行这个脚本？</p>
-<h2 id="子方法一——在vbs脚本里写代码，让其定时运行">子方法一——在vbs脚本里写代码，让其定时运行</h2>
+<h3 id="子方法一——在vbs脚本里写代码，让其定时运行">子方法一——在vbs脚本里写代码，让其定时运行</h3>
 <p><s>还没学会vbs语法呢ლ(╹◡╹ლ)——暂时填坑。</s></p>
-<h2 id="子方法二——使用任务计划程序">子方法二——使用任务计划程序</h2>
+<h3 id="子方法二——使用任务计划程序">子方法二——使用任务计划程序</h3>
 <p>我在任务计划里添加了这个vbs脚本，设置了系统启动和用户登录时运行它，甚至让他每隔十分钟触发一次，如图所示：</p>
 <img src="https://img.junyu33.me/blog/pwn_environ2/task.png">
 <p>然而，在系统启动时，系统确实可以帮我自动拨号，但是我没有收到更改ip的邮件。只有当我手动运行了这个vbs后，它才能做到发邮件的功能。</p>
@@ -223,7 +224,7 @@ set ws=wscript.createobject(&quot;wscript.shell&quot;)
 <li>不能使用代理。</li>
 <li>操作略显麻烦。</li>
 </ul>
-<h1>windows默认终端设置</h1>
+<h2 id="windows默认终端设置">windows默认终端设置</h2>
 <p>老朽的cmd用着非常不方便，没有语法高亮，cd不同盘符的路径还得多敲一句命令，太麻烦了。</p>
 <p>在powershell中运行下面这句命令，可以将设备的默认终端更换为powershell：</p>
 <pre><code class="language-powershell">New-ItemProperty -Path &quot;HKLM:\SOFTWARE\OpenSSH&quot; -Name DefaultShell -Value &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -PropertyType String -Force

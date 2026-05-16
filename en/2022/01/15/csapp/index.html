@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -69,17 +70,17 @@
 <p>If you feel the quality of the Chinese translation is subpar and prefer to read the original English version, do not choose the Global Edition! The Global Edition is riddled with errors in the exercise section, with many answers not matching the questions at all, severely impacting the reading experience and understanding of the material! (I ended up using free resources from GitHub—though not photocopied versions, and the main text quality is high, this issue with the exercises overshadows all other advantages). I now have to read the English original while doing the exercises from the Chinese version (lll￢ω￢).</p>
 </blockquote>
 <span id="more"></span>
-<h1>A Tour of Computer Systems</h1>
+<h2 id="A-Tour-of-Computer-Systems">A Tour of Computer Systems</h2>
 <p>An outline covering all chapters, <s>which can serve as review material for an introduction to computer systems.</s></p>
-<h1>Representing and Manipulating Information</h1>
+<h2 id="Representing-and-Manipulating-Information">Representing and Manipulating Information</h2>
 <p>I skimmed through this before without doing the exercises, and now I'm unclear on how the <strong>smallest/largest denormalized number</strong> and <strong>smallest/largest normalized number</strong> of floating-point numbers are calculated.</p>
 <p>I'll come back to fill in the details when I have time.</p>
-<h1>Machine-Level Representation of Programs</h1>
-<h2 id="Historical-Perspectives">Historical Perspectives</h2>
+<h2 id="Machine-Level-Representation-of-Programs">Machine-Level Representation of Programs</h2>
+<h3 id="Historical-Perspectives">Historical Perspectives</h3>
 <p>Discussed the history of Intel processors and briefly mentioned the SSE and AVX instruction sets (I feel like I'll have to learn both in the future—time to start losing hair again (lll￢ω￢)).</p>
-<h2 id="Program-Coding">Program Coding</h2>
+<h3 id="Program-Coding">Program Coding</h3>
 <p>How to view GCC-compiled assembly code in AT&amp;T format in a Linux environment. (Note: GDB actually provides an option to switch to Intel format.)</p>
-<h2 id="Data-Types">Data Types</h2>
+<h3 id="Data-Types">Data Types</h3>
 <ul>
 <li>char</li>
 <li>short</li>
@@ -89,32 +90,32 @@
 <li>double</li>
 <li>pointer (this book assumes a 64-bit environment; all pointers are 8 bytes)</li>
 </ul>
-<h2 id="Accessing-Information">Accessing Information</h2>
+<h3 id="Accessing-Information">Accessing Information</h3>
 <p>The various registers (rax~rdx, rsi, rdi, rbp, rsp, r8~r15, and their corresponding 32-bit, 16-bit, and 8-bit versions) along with their <strong>conventional</strong> usages are shown in the figure below.</p>
 <img src="https://img.junyu33.me/blog/csapp/reg.png">
 <p>The mov instructions (movq, movl, movw, movb, movzbw, movsbq, etc., with the latter two performing type casting).</p>
-<h2 id="Arithmetic-and-Logical-Operations">Arithmetic and Logical Operations</h2>
+<h3 id="Arithmetic-and-Logical-Operations">Arithmetic and Logical Operations</h3>
 <p>lea — Load effective address, plus simple arithmetic instructions, similar to the form a+b*c (the letters q, l, w, b indicating byte size are omitted here and below).</p>
 <p>sf, zf, pf, cf, af, of — Various flags.</p>
 <p>add, sub, (i)mul, (i)div, shl(sal), shr, sar — Modify flag states.</p>
 <p>inc, dec — Do not modify flag states.</p>
 <p>cqto — Convert 64-bit to 128-bit, useful for 128-bit division.</p>
-<h2 id="Control-Flow">Control Flow</h2>
+<h3 id="Control-Flow">Control Flow</h3>
 <p>The assembly implementations of <code>if</code>, <code>switch</code>, <code>while</code>, <code>do-while</code>, and <code>for</code> statements are particularly error-prone in this assignment.</p>
 <p>Due to the CPU's branch prediction capability (which can achieve up to 90% accuracy for certain statements), simple <code>if</code> statements may precompute the register changes for both branches in advance to improve execution speed.</p>
 <p>For <code>switch</code> statements with multiple branches and closely clustered values, the compiler often constructs a jump table to replace various conditional jump instructions like <code>jz</code> and <code>jbe</code>, thereby enhancing code execution efficiency. This is because the performance of a jump table is not affected by the number of branches.</p>
-<h2 id="Process">Process</h2>
+<h3 id="Process">Process</h3>
 <p>Once again reviewing the assembly implementation of stack calls, each part of a stack frame (return address, saved registers, local variables, argument build area) was thoroughly explained in detail.</p>
 <p>The order of parameter passing in 64-bit registers is <code>%rdi</code>, <code>%rsi</code>, <code>%rdx</code>, <code>%rcx</code>, <code>%r8</code>, <code>%r9</code>.</p>
-<h2 id="Array-Allocation-and-Access">Array Allocation and Access</h2>
+<h3 id="Array-Allocation-and-Access">Array Allocation and Access</h3>
 <p>The <code>lea</code> instruction is specifically designed for accessing arrays.</p>
 <p>Although compilers prefer using pointers to traverse arrays by adding a fixed value, even for multidimensional array traversal, they try to avoid using the formula <code>i * Wid + j</code> that we learned in data structure courses—after all, multiplication is too time-consuming.</p>
-<h2 id="The-Data-Structure-of-Exceptions-—-1-15-2022">The Data Structure of Exceptions — 1/15/2022</h2>
+<h3 id="The-Data-Structure-of-Exceptions-—-1-15-2022">The Data Structure of Exceptions — 1/15/2022</h3>
 <p>Discussed struct, union, and memory alignment.</p>
 <p><strong>The size of a union is the size of its largest data type.</strong></p>
 <p>Using a union allows for forced type conversion (e.g., converting a double to an unsigned long).</p>
 <p>Each member in a structure must be aligned to an address that is a multiple of its type size.</p>
-<h2 id="Combining-Control-and-Data-at-the-Machine-Level—1-16-2022">Combining Control and Data at the Machine Level—1/16/2022</h2>
+<h3 id="Combining-Control-and-Data-at-the-Machine-Level—1-16-2022">Combining Control and Data at the Machine Level—1/16/2022</h3>
 <p>Precedence of Pointers and Address Arithmetic—Determine the output of the following program:</p>
 <pre><code class="language-C">#include&lt;stdio.h&gt;
 int arr[20]=&#123;10,9,8,7,6,5,4,3,2,1,5&#125;;
@@ -158,7 +159,7 @@ ret
 <p>Questions:</p>
 <p>Why is s2 rounded to the &quot;nearest multiple of 8&quot; in Exercise B, and why is &quot;the offset of s1 preserved to the nearest multiple of 16&quot; in Exercise D?</p>
 </blockquote>
-<h2 id="Floating-Point-Code-—-1-19-2022">Floating-Point Code — 1/19/2022</h2>
+<h3 id="Floating-Point-Code-—-1-19-2022">Floating-Point Code — 1/19/2022</h3>
 <p>Registers:</p>
 <p>%ymm0–%ymm15 are 256-bit floating-point registers.</p>
 <p>%xmm0–%xmm15 are 128-bit floating-point registers, occupying the lower 128 bits of the corresponding ymm registers.</p>
@@ -228,7 +229,7 @@ ret
 <p>comisd: compare double-precision doubles.</p>
 <p>The comparison sets three flags: CF, ZF, and PF. PF is set to 1 if and only if either operand is NaN, in which case the result is Unordered.</p>
 <p>(The practice problems are good, but unfortunately, there's no answer key. I'll skip them.)</p>
-<h2 id="Summary-1-22-2022">Summary - 1/22/2022</h2>
+<h3 id="Summary-1-22-2022">Summary - 1/22/2022</h3>
 <p><strong>Finally finished learning x86 assembly! ✿✿ヽ(°▽°)ノ✿ Celebration time!</strong></p>
 
 </div>

@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -62,18 +63,18 @@
     
 
 	<h1>内网穿透搭建 overleaf 服务器</h1>
-	<h1>introduction</h1>
+	<h2 id="introduction">introduction</h2>
 <p>在前序文章《从零搭建一个又快又安全的 VNC 服务》中，我们实现了从非公网机器连接到使用了 ddns 的公网机器，并搭建了公网机器的 VNC 服务；在中序文章《Learn 内网穿透 the hard way》中，我们使用了 ddns 的公网机器作为跳板机，连接到了另一台非公网机器，从而实现了居家办公的梦想；接下来这篇文章的目的是在中序文章的基础上，在另一台非公网机器搭建 web 服务（也就是 overleaf），本地访问，从而达到省掉一年 $89 订阅费用的目的。</p>
 <span id="more"></span>
-<h1>prerequisites</h1>
+<h2 id="prerequisites">prerequisites</h2>
 <ul>
 <li>一台可以连上公网的跳板机（我这里仍然是中序文章中支持 RVV1.0 的开发板）</li>
 <li>较高性能的，用来安装 overleaf 社区版的 linux 服务器</li>
 <li>确保主机、服务器、跳板机可以互相 ssh 连接</li>
 <li>确保跳板机有对应的域名</li>
 </ul>
-<h1>steps</h1>
-<h2 id="先保证服务器的-overleaf-正常运行">先保证服务器的 overleaf 正常运行</h2>
+<h2 id="steps">steps</h2>
+<h3 id="先保证服务器的-overleaf-正常运行">先保证服务器的 overleaf 正常运行</h3>
 <p>可以参考<a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf">这篇博客</a>或者<a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">官方文档</a>，但还是贴一下步骤：</p>
 <pre><code class="language-bash">git clone https://github.com/overleaf/toolkit.git ./overleaf-toolkit
 cd ./overleaf-toolkit
@@ -108,7 +109,7 @@ EOF
 Found. Redirecting to /login%
 </code></pre>
 <p>如果没有问题证明服务端本身工作正常，进入下一步。</p>
-<h2 id="服务器先内网穿透到跳板机">服务器先内网穿透到跳板机</h2>
+<h3 id="服务器先内网穿透到跳板机">服务器先内网穿透到跳板机</h3>
 <p>可以参考<a target="_blank" rel="noopener" href="https://gofrp.org/zh-cn/docs/examples/vhost-http/">这个文档</a>。</p>
 <p>下载同一个版本的 <code>frpc</code> 与 <code>frps</code>（笔者使用<code>0.61.0</code>），客户端（也就是 overleaf 服务器）修改 <code>frpc.toml</code>：</p>
 <pre><code class="language-toml">serverAddr = &lt;frps server domain name or IP&gt;
@@ -154,7 +155,7 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 </code></pre>
-<h2 id="let-s-encrypt-获取域名证书（如果没有）">let's encrypt 获取域名证书（如果没有）</h2>
+<h3 id="let-s-encrypt-获取域名证书（如果没有）">let's encrypt 获取域名证书（如果没有）</h3>
 <p>let's encrypt 使用 certbot 进行域名所有权验证，证书有效期为 90 天。但默认参数允许自动续期，在配置好 nginx 的情况只需要一行命令，中间选择第一个选项即可。</p>
 <pre><code>&gt; sudo certbot certonly --preferred-challenges dns -d &lt;frps server domain name&gt;
 
@@ -176,7 +177,7 @@ Select the appropriate number [1-3] then [enter] (press 'c' to cancel): 1
 <pre><code>sudo certbot certonly --manual --preferred-challenges dns -d &lt;frps server domain name&gt;
 </code></pre>
 <p>验证成功后，certbot 将证书存放于 <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/fullchain.pem</code>，私钥存放于 <code>/etc/letsencrypt/live/&lt;frps server domain name&gt;/privkey.pem</code>。</p>
-<h2 id="http-转-https">http 转 https</h2>
+<h3 id="http-转-https">http 转 https</h3>
 <p>除了文档中所述“结合 https2http 插件来实现将本地的 HTTP 服务以 HTTPS 协议暴露出去”之外，也可以使用 nginx 来达到这一点。</p>
 <p>安装 nginx 后，编辑 <code>/etc/nginx/sites-available/default</code>：</p>
 <pre><code>server &#123;
@@ -208,14 +209,14 @@ sudo systemctl enable nginx
 Found. Redirecting to /login
 </code></pre>
 <p>代表 nginx 服务正常，如果此时你的跳板机域名已经备案，在本地访问这个 URL 应该可以正常打开页面了。</p>
-<h2 id="绕过未备案限制">绕过未备案限制</h2>
+<h3 id="绕过未备案限制">绕过未备案限制</h3>
 <p>一句话，https 端口不要用常用端口，应该可以绕过，但不保证稳定性。</p>
 <p>之后本地访问的时候，域名后面加上你自己设置的端口应该就可以了。</p>
-<h2 id="用户配置">用户配置</h2>
+<h3 id="用户配置">用户配置</h3>
 <p>访问 <a target="_blank" rel="noopener" href="https://foo.example.com/launchpad">https://foo.example.com/launchpad</a> 设置管理员账号与添加账号（如果没有设置邮箱服务器，可以让管理员账户在后台添加用户，后台会给出一个注册成功的修改密码的链接，把那个链接发给注册用户就好了）。</p>
 <p>然后访问 <a target="_blank" rel="noopener" href="https://foo.example.com/">https://foo.example.com/</a> 自己登录刚注册的账号然后使用。完结撒花。</p>
-<h1>Updated on Mar 18th, 2025</h1>
-<h2 id="frp-https2http-插件">frp https2http 插件</h2>
+<h2 id="Updated-on-Mar-18th-2025">Updated on Mar 18th, 2025</h2>
+<h3 id="frp-https2http-插件">frp https2http 插件</h3>
 <p>使用 frp https2http 插件可以在本地将 overleaf 的 http 连接转为 https，省去了跳板机配置nginx的麻烦，并同时解决了FAQ中的websocket连接超时的问题。</p>
 <ul>
 <li>client</li>
@@ -253,7 +254,7 @@ auth.method = &quot;token&quot;                    # optional
 auth.token = &lt;your secret token&gt;         # optional
 </code></pre>
 <p>你甚至可以再套一层 netlify 的 cdn 反代把这个 <code>&lt;https port&gt;</code> 变成默认的 443。</p>
-<h2 id="certbot-手动-hook">certbot 手动 hook</h2>
+<h3 id="certbot-手动-hook">certbot 手动 hook</h3>
 <p>使用以下指令可以手动模拟对<code>example.com</code>域名的 dns 订阅/续订，并使用<code>foo.sh</code>脚本：</p>
 <pre><code class="language-sh">sudo certbot certonly \
   --manual \
@@ -269,7 +270,7 @@ auth.token = &lt;your secret token&gt;         # optional
 </ul>
 <p>这个脚本要做的内容是在你的 dns provider 中插入一行名为 <code>_acme-challenge. + $CERTBOT_DOMAIN</code>，值为 <code>$CERTBOT_VALIDATION</code> 的 TXT 记录。如果你使用 netlify 作为 dns，这一点我在 <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynamic-dns-py">https://github.com/junyu33/netlify-dynamic-dns-py</a> 中的 <code>dns-auth.sh</code> 和 <code>renew.py</code> 中做了一个自动化的实现。只需将 <code>/path/to/foo.sh</code> 替换为 <code>dns-auth.sh</code> 的绝对路径即可，例如 <code>/home/junyu33/netlify-dynamic-dns-py/dns-auth.sh</code>。</p>
 <p>如果运行成功，就可以把 <code>--dry-run</code> 这个参数去掉以执行真正的自动续订。如果续订成功，certbot 会设置一个计划任务，在证书即将到期时再次调用这个脚本进行续订，所以需要保持你的 hook 脚本始终在该路径存在。</p>
-<h1>FAQ</h1>
+<h2 id="FAQ">FAQ</h2>
 <blockquote>
 <p>launchpad 界面中 websocket 检测超时怎么办？</p>
 </blockquote>
@@ -290,7 +291,7 @@ auth.token = &lt;your secret token&gt;         # optional
 <p>HTTPS 使用自签名证书可以吗？（例如使用 openssl 自己生成一对）</p>
 </blockquote>
 <p>同上。</p>
-<h1>参考资料</h1>
+<h2 id="参考资料">参考资料</h2>
 <p><a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</a></p>
 <p><a target="_blank" rel="noopener" href="https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757">https://ziuch.com/article/self-hosted-overleaf#105da52b1a26809bbcb5d8294bc18757</a></p>
 <p><a target="_blank" rel="noopener" href="https://jinli.io/p/%E8%87%AA%E5%BB%BA%E5%9C%A8%E7%BA%BFlatex%E7%BC%96%E8%AF%91%E9%A2%84%E8%A7%88%E6%9C%8D%E5%8A%A1overleaf%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%E7%89%88/">https://jinli.io/p/自建在线latex编译预览服务overleaf开源社区版/</a></p>

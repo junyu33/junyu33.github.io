@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -64,11 +65,11 @@
 	<h1>Learn intranet penetration the hard way (CanMV-K230 version)</h1>
 	<p>Please note that this article is not a tutorial for readers who are new to intranet penetration, but rather a follow-up to the article &quot;Building a Fast and Secure VNC Service from Scratch.&quot;</p>
 <span id="more"></span>
-<h1>Problem Introduction</h1>
+<h2 id="Problem-Introduction">Problem Introduction</h2>
 <p>If you clicked into this article, you should already be able to perform intranet penetration using a public network server. However, the Azure server I'm using for free is not located domestically, and even though it can connect to my workstation computer, the speed somewhat affects the user experience.</p>
 <p>In the previous article, &quot;Building a Fast and Secure VNC Service from Scratch,&quot; I mentioned that my dormitory has a dynamic public IP after broadband dial-up, which can largely solve the issue of slow connection speeds when using a cloud server to access my workstation. However, I recently learned from a graduate student senior that the network cables in the graduate dormitory do not support public IPs. This means that my current solution for remotely connecting to my workstation computer will become completely ineffective after I graduate from my undergraduate studies—how can I tolerate that? At the time, I hadn't come up with a good solution.</p>
 <p>This unfortunate reality took a slight turn when, due to recent research needs, I purchased a development board supporting the RVV 1.0 CPU. I realized I could transfer the role of my current computer as an SSH jump server to the newly purchased development board. After graduation, I could hand the development board to a junior student, who would continue to connect it to the broadband, allowing me to maintain the ideal of &quot;working from home.&quot;</p>
-<h1>Goal Breakdown</h1>
+<h2 id="Goal-Breakdown">Goal Breakdown</h2>
 <p>Now, we need such a development board to fulfill the following four functions:</p>
 <ol>
 <li>Automatically boot the system on startup.</li>
@@ -86,8 +87,8 @@
 <li>SSH into my domain from another device to see if I can connect to both the development board and my workstation computer.</li>
 </ol>
 <p>It seems straightforward, but in reality, each step is fraught with pitfalls.</p>
-<h1>Pitfall Experience</h1>
-<h2 id="Purchasing-the-CanMV-K230-Development-Board">Purchasing the CanMV-K230 Development Board</h2>
+<h2 id="Pitfall-Experience">Pitfall Experience</h2>
+<h3 id="Purchasing-the-CanMV-K230-Development-Board">Purchasing the CanMV-K230 Development Board</h3>
 <p>The first step, of course, was to buy the development board. I searched for &quot;CanMV-K230&quot; on Taobao, and a bunch of options popped up. I clicked on the one with the highest sales volume, which was from the official 01studio flagship store. To my surprise, the memory was listed as 1GB instead of the official 512MB? Amazing! With technology advancing so quickly, I had to grab it right away. So, from opening Taobao to placing the order, it took me less than two minutes—I just made sure the model was indeed K230 and the CPU version was C908 (supporting RVV 1.0).</p>
 <p>Three days later, I received the package. The seller had also included a 32GB SD card. Following Canaan's documentation, I started flashing the firmware. I first chose the image labeled with &quot;01studio&quot; and encountered no issues during the flashing process. Then, I connected the power, opened minicom, and—huh? Why is there a Python shell? I tried typing <code>exit</code>, but the command wasn't supported. I pressed <code>Ctrl+D</code>, but the screen just flashed and rebooted back into Python. Did I just spend 284 yuan for a Python shell?</p>
 <p>I asked a friend and learned that what I was seeing was actually a MicroPython shell. He tried jailbreaking it but didn't succeed. I then tried other firmware images from Canaan's official website and found that none of them worked except the one with the &quot;01studio&quot; label. To make matters worse, the development board doesn't come with an Ethernet port, so I had to separately purchase a USB-to-Ethernet adapter. At that point, I was already considering returning it.</p>
@@ -96,7 +97,7 @@
 <blockquote>
 <p>It feels like everything has to be branded with &quot;AI&quot; to sell these days. AI has really become the ultimate buzzword.</p>
 </blockquote>
-<h2 id="Purchasing-a-Suitable-SD-Card-and-Inserting-It-into-the-Development-Board">Purchasing a Suitable SD Card and Inserting It into the Development Board</h2>
+<h3 id="Purchasing-a-Suitable-SD-Card-and-Inserting-It-into-the-Development-Board">Purchasing a Suitable SD Card and Inserting It into the Development Board</h3>
 <p>On the day of the refund, I bought another official Canaan development board for 283 yuan (original price 323, without an SD card), and also purchased a 64GB SD card for 17 yuan (original price 25).</p>
 <p>Experienced buyers might notice that the SD card price seems off—and indeed it was. At the time, I believed in the principle &quot;you get what you pay for,&quot; so I chose the more expensive development board but didn't think too much about the SD card. Since the product had a high positive review rate, I figured if it turned out to be fake, I could just return it and quickly buy a more expensive one nearby—no big loss.</p>
 <p>What was strange was that the SD card's logistics were updated in real-time, while the development board's tracking only showed: &quot;Shipped,&quot; &quot;Picked Up,&quot; and &quot;Out for Delivery.&quot; After three full days with no updates, the SD card had already reached the local distribution center. I began to suspect that I had bought another fake development board, so on the morning of the third day, I called the delivery person. They assured me it had also reached the distribution center, which eased my worries a bit.</p>
@@ -222,7 +223,7 @@ Average reading speed: 16.12 MB/s
 <p>The price at the physical store was 90 yuan, but I could get it for just over 50 yuan on Meituan. I have no idea where Meituan gets the money to cover that 40-yuan difference.</p>
 </blockquote>
 <p>After getting the 128GB TF card, I tested the first 5GB with f3, and no issues were found. Then I flashed the system image. As of the writing date, no problems have occurred, and the possibility of it being counterfeit has basically been ruled out.</p>
-<h2 id="Flashing-the-Officially-Provided-System-Image">Flashing the Officially Provided System Image</h2>
+<h3 id="Flashing-the-Officially-Provided-System-Image">Flashing the Officially Provided System Image</h3>
 <p>As mentioned earlier, there are two different types of official images: one is an RTOS with micropython running on the large core and Linux on the small core, while the other is an image designed for Debian- and Ubuntu-based distributions. Naturally, the latter better suits my needs, so I flashed the Debian image onto my TF card. Finally, I saw the word &quot;Debian&quot; in the minicom output.</p>
 <p>Is that the end of it? Far from it!</p>
 <p>Then, I discovered a critical flaw—this Debian system has no WiFi interface! However, according to Canaan's documentation, this development board definitely has WiFi hardware. I immediately reflashed the former image and accessed the debugging serial port of the small core. Here's what I found:</p>
@@ -237,7 +238,7 @@ Average reading speed: 16.12 MB/s
 <li>On the other hand, if you use the Debian image, development is much more comfortable, but debugging PPPoE becomes nearly impossible (since you can't connect to a wired network while debugging PPPoE).</li>
 </ul>
 <p>So, which image should we choose? The answer is—only children make choices.</p>
-<h2 id="Building-a-Custom-System-Image">Building a Custom System Image</h2>
+<h3 id="Building-a-Custom-System-Image">Building a Custom System Image</h3>
 <p>Based on our previous observations, we can rule out issues related to hardware and Linux driver compatibility. This implies that the problem can definitely be resolved through our own efforts. In other words, we can address this issue by appropriately &quot;assembling&quot; the MicroPython image and the Debian image.</p>
 <p>As for the specific solution, the approaches I have attempted include the following:</p>
 <ol>
@@ -245,7 +246,7 @@ Average reading speed: 16.12 MB/s
 <li>Attempting to modify the SDK source code used for image compilation to obtain an image that meets our requirements</li>
 <li>Attempting to modify the SDK source code used for image compilation and then hacking the resulting image</li>
 </ol>
-<h3 id="In-place-Hack">In-place Hack</h3>
+<h4 id="In-place-Hack">In-place Hack</h4>
 <p>We can observe the structure of these two images:</p>
 <p>Micropython image:</p>
 <pre><code>&gt; mmls CanMV-K230_sdcard_v1.8_nncase_v2.9.0.img 
@@ -341,7 +342,7 @@ Service.
 <p>I searched online but couldn't find a suitable solution. Additionally, a new problem emerged: my Debian's memory was also reduced to 128M!</p>
 <p>So I extracted the DTB file from the linux partition, decompiled it into a DTS file, attempted to modify the memory size configured for Linux, recompiled it, embedded it back into the linux partition, rewrote the TF card, and rebooted again—but the sha256sum didn't match!</p>
 <p>To proceed further, I would need to read the source code for image generation to understand the sha256 generation logic. Since I'd have to read the source code anyway, it might be better to just recompile from the SDK! Thus, we arrive at the next solution:</p>
-<h3 id="Compiling-the-SDK">Compiling the SDK</h3>
+<h4 id="Compiling-the-SDK">Compiling the SDK</h4>
 <p>As mentioned earlier, the relevant SDKs for my needs are K230-SDK and K230-linux-SDK. I attempted to compile them again, and the results were slightly different from the official images: one generated a usable Debian image with 512MB of memory but without WiFi support; the other generated a Buildroot-based image with WiFi support and 512MB of memory.</p>
 <ul>
 <li>Documentation for generating Debian using K230-SDK:<br>
@@ -360,7 +361,7 @@ Service.
 <li>Locate the code that uses rootfs.ext4 to generate the Buildroot image.</li>
 <li>Manually execute this code with the correct parameters and environment variables to generate an image that uses the Debian rootfs instead of the Linux-SDK's Buildroot.</li>
 </ol>
-<h4 id="Building-debian-ext4">Building debian.ext4</h4>
+<h5 id="Building-debian-ext4">Building debian.ext4</h5>
 <p>The K230-SDK documentation provides the method. Here is the build code:</p>
 <pre><code class="language-sh">sudo rm -rf debian13
 sudo apt-get update
@@ -381,7 +382,7 @@ exit
 sudo  mkfs.ext4 -d debian13  -r 1 -N 0 -m 1 -L &quot;rootfs&quot; -O ^64bit debian13.ext4 1G
 </code></pre>
 <p>Note: Do not forget to copy the <code>/etc/firmware</code> and <code>/lib/modules</code> folders from the previously generated K230-linux-SDK image into <code>debian13.ext4</code>.</p>
-<h4 id="Locating-the-Image-Generation-Code">Locating the Image Generation Code</h4>
+<h5 id="Locating-the-Image-Generation-Code">Locating the Image Generation Code</h5>
 <p>Search for the string <code>sysimage-sdcard.img</code> in the K230-linux-SDK project:</p>
 <pre><code class="language-sh">&gt; egrep -i --recursive &quot;sysimage-sdcard.img&quot; .
 ./.github/workflows/build.yml:          rm -rf output/$&#123;CONF&#125;/images/sysimage-sdcard.img
@@ -411,7 +412,7 @@ gen_boot_ext4
 gen_image $&#123;GENIMAGE_CFG_SD&#125;   sysimage-sdcard.img
 </code></pre>
 <p>As the name suggests, this should be the final code for generating the image.</p>
-<h4 id="Manually-Executing-the-Code">Manually Executing the Code</h4>
+<h5 id="Manually-Executing-the-Code">Manually Executing the Code</h5>
 <p>When reading the following code:</p>
 <blockquote>
 <p>The code is too lengthy to include here; you can view it at the <a target="_blank" rel="noopener" href="https://github.com/kendryte/k230_linux_sdk/blob/dev/buildroot-overlay/board/canaan/k230-soc/post-image.sh">repository link</a>.</p>
@@ -486,7 +487,7 @@ _=/usr/bin/printenv
 <p><code>ACLOCAL_PATH=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/riscv64-buildroot-linux-gnu/sysroot/usr/share/aclocal:/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/host/share/aclocal BINARIES_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images BASE_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig BR2_CONFIG=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/.config BR2_DL_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/buildroot-2024.02.1/../../dl BR2_VERSION=2024.02.1 BR2_VERSION_FULL=-g8d50485-dirty BR_COMPILER_PARANOID_UNSAFE_PATH=enabled BUILD_DIR=/home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build BUILDROOT_CONFIG=/tmp/deprecated/The-BUILDROOT_CONFIG-environment-variable-was-renamed-to-BR2_CONFIG BZR=bzr ./buildroot-overlay/board/canaan/k230-soc/post-image.sh /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/images k230-canmv /home/junyu33/Desktop/github/k230_linux_sdk/output/k230_canmv_defconfig/build/linux-3c3f4061b727e6d0e2293357a7475b578d688d92 /home/junyu33/Desktop/tmp/debian13.ext4</code></p>
 <p>Write the generated image to a TF card, boot the development board, and this time the board runs Debian, supports WiFi, and even has 512MB of memory—seemingly perfect!</p>
 <p>However, the story is not over yet.</p>
-<h2 id="Testing-Dial-up">Testing Dial-up</h2>
+<h3 id="Testing-Dial-up">Testing Dial-up</h3>
 <p>Then I attempted to use nmcli for dial-up, but nmcli reported an error again:</p>
 <pre><code class="language-sh">root@zjy:/etc/NetworkManager/system-connections# netplan apply
 
@@ -504,7 +505,7 @@ Couldn't open the /dev/ppp device: No such device or address
 <li>Compile the ppp/pppoe module on the spot and try to insmod it.</li>
 <li>Modify the kernel configuration and recompile the entire Linux kernel.</li>
 </ul>
-<h3 id="Compiling-Modules-In-Place">Compiling Modules In-Place</h3>
+<h4 id="Compiling-Modules-In-Place">Compiling Modules In-Place</h4>
 <p>I brushed up on my Linux kernel compilation knowledge, and <a target="_blank" rel="noopener" href="http://kernel.org">kernel.org</a> states:</p>
 <blockquote>
 <p>The command to build an external module is:</p>
@@ -553,14 +554,14 @@ make: *** [Makefile:234: __sub-make] Error 2
 </code></pre>
 <p>I tried compiling both in-place and cross-compiling on the host, compiling this specific path and the entire kernel, but encountered this error (or even more errors). Through an LLM, I learned that this happens because PPP's dependency, SLHC, is neither compiled into the kernel nor built as a module, causing the PPP compilation to fail.</p>
 <p>I didn't bother looking for where SLHC is located because I was worried that compiling SLHC might reveal further dependencies on other modules. So, I decided to take the second approach.</p>
-<h3 id="Compiling-the-Kernel">Compiling the Kernel</h3>
+<h4 id="Compiling-the-Kernel">Compiling the Kernel</h4>
 <p>Finally, I've reached this damn step, and I'm facing a series of problems again:</p>
 <ol>
 <li>Which parameters should I modify?</li>
 <li>What compilation commands should I use, and what are the compilation outputs?</li>
 <li>Where should I place the outputs in the K230-linux-SDK?</li>
 </ol>
-<h4 id="Modifying-Parameters">Modifying Parameters</h4>
+<h5 id="Modifying-Parameters">Modifying Parameters</h5>
 <p>Since we want to enable the <code>ppp_generic</code> feature, according to the Makefile in <code>drivers/net/ppp</code>:</p>
 <pre><code class="language-makefile"># SPDX-License-Identifier: GPL-2.0
 #
@@ -579,7 +580,7 @@ obj-$(CONFIG_PPTP) += pppox.o pptp.o
 </code></pre>
 <p>Of course, we need to enable <code>CONFIG_PPP=y</code>.</p>
 <p>Actually, to be safe, I enabled all the features mentioned here.</p>
-<h4 id="Compiling-and-Generating-the-Image">Compiling and Generating the Image</h4>
+<h5 id="Compiling-and-Generating-the-Image">Compiling and Generating the Image</h5>
 <p>Next, we need to understand where the Linux kernel reads these configurations from. According to related documentation, the Linux kernel reads the development board configurations from <code>arch/riscv/config</code>. For the CanMV-K230 development board, the file read is <code>arch/riscv/config/k230_canmv_defconfig</code>.</p>
 <p>Additionally, I thought of a trick to bypass the second and third problems. While browsing through the files in the K230-linux-SDK, I accidentally discovered two patches in a certain Linux directory. One of them had the following content:</p>
 <pre><code class="language-sh">&gt; cat 0003-driver-net-r8152-use-chip-ID-as-MAC-addr.patch 
@@ -660,7 +661,7 @@ index 6e579f78c..f4c993f12 100644
 
 </code></pre>
 <p>It looked quite similar, so I named it <code>0002-add-ppp-for-canmv-k230.patch</code> and saved it in the same directory as the other patches. Then, I deleted the Linux source downloaded by the K230-linux-SDK, ran the top-level Makefile of the project again, and generated the image.</p>
-<h3 id="Hacking-the-Image-Again">Hacking the Image Again</h3>
+<h4 id="Hacking-the-Image-Again">Hacking the Image Again</h4>
 <p>Of course, after putting so much effort into the Debian rootfs, I really didn't want to &quot;restore the system to factory settings.&quot; So, once again, I extracted the Linux partition of the Buildroot image and overwrote the corresponding partition of the Debian image, then attempted to boot.</p>
 <p>The result of using <code>zcat</code> is as follows:</p>
 <pre><code class="language-sh">junyu33@zjy:~$ zcat /proc/config.gz | grep CONFIG_PPP
@@ -686,7 +687,7 @@ CONFIG_PPP_SYNC_TTY=y
 pppd version 2.5.0
 </code></pre>
 <p>No issues at all—seems like this kind of hack is really quite useful.</p>
-<h3 id="Client-Side-Debugging">Client-Side Debugging</h3>
+<h4 id="Client-Side-Debugging">Client-Side Debugging</h4>
 <p>Through the debugging at the above levels, we have resolved the issue of PPPoE unavailability at the driver level. Now, the only remaining problem lies in the user configuration, which is much simpler, and the subsequent steps are straightforward without many alternative paths to choose from.</p>
 <p>Since NetworkManager is already installed, we can directly run the corresponding commands:</p>
 <pre><code class="language-sh">sudo nmcli connection add type pppoe ifname enx00e04ca7c468 con-name mypppoe username &quot;&lt;username&gt;&quot; password &quot;&lt;password&gt;&quot;
@@ -707,13 +708,13 @@ PING 8.8.8.8 (8.8.8.8) from 220.167.40.175 ppp0: 56(84) bytes of data.
 64 bytes from 8.8.8.8: icmp_seq=5 ttl=56 time=33.4 ms
 </code></pre>
 <p>The dial-up issue has finally been completely resolved.</p>
-<h2 id="Testing-DDNS">Testing DDNS</h2>
+<h3 id="Testing-DDNS">Testing DDNS</h3>
 <p>I previously uploaded the script I used for DDNS to <a target="_blank" rel="noopener" href="https://github.com/junyu33/netlify-dynamic-dns-py">GitHub</a>. I cloned it onto the development board, wrote the configuration file, and ran the script—only to be told that <code>curl</code> wasn't installed. I thought, isn't <code>curl</code> a pretty basic tool? How could it not be included?</p>
 <p>Then there was the issue of Python package dependencies. Since Python 3.12 restricts the use of <code>pip</code> for installing packages in the system environment, and I didn't feel like installing Anaconda or Virtualenv on this development board—especially since the project only depends on <code>requests</code>—I solved it with one line:</p>
 <pre><code class="language-sh">sudo apt install python3-requests
 </code></pre>
 <p>After starting the script, there were no errors. Within a few minutes, I was able to SSH into the development board using my domain name from the host machine.</p>
-<h2 id="Testing-SSH-and-Making-It-Persistent">Testing SSH and Making It Persistent</h2>
+<h3 id="Testing-SSH-and-Making-It-Persistent">Testing SSH and Making It Persistent</h3>
 <p>Now we come to the most important and critical step: since the school dormitory experiences power outages at night, I need to ensure that after a power loss, the DDNS service automatically resumes when power is restored at 6 a.m. the next day. Specifically, we need to achieve the following:</p>
 <ol>
 <li>Enable Debian to start on boot.</li>
@@ -721,13 +722,13 @@ PING 8.8.8.8 (8.8.8.8) from 220.167.40.175 ppp0: 56(84) bytes of data.
 <li>Automatically start DDNS on boot.</li>
 <li>Allow the development board to operate independently of a computer.</li>
 </ol>
-<h3 id="Boot-Debian-on-Startup">Boot Debian on Startup</h3>
+<h4 id="Boot-Debian-on-Startup">Boot Debian on Startup</h4>
 <p>This is not difficult. Just enter U-Boot during startup and change the wait time from 3 to 0.</p>
 <pre><code class="language-sh">setenv bootdelay 0
 saveenv
 </code></pre>
 <p>The consequence of doing this is that I can no longer enter U-Boot, but it doesn't really matter. If I ever need to change it back, I can just reflash the Linux partition.</p>
-<h3 id="Auto-Dial-on-Boot">Auto Dial on Boot</h3>
+<h4 id="Auto-Dial-on-Boot">Auto Dial on Boot</h4>
 <p>Create a systemd service:</p>
 <pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/pppoe-connection.service 
 [sudo] password for junyu33: 
@@ -762,7 +763,7 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 </code></pre>
 <p>After restarting again, the dial-up functioned normally.</p>
-<h3 id="Auto-DDNS-on-Boot">Auto DDNS on Boot</h3>
+<h4 id="Auto-DDNS-on-Boot">Auto DDNS on Boot</h4>
 <p>Since the IP may change, ensure it updates once at boot and every half hour:</p>
 <pre><code class="language-sh">junyu33@zjy:~$ sudo cat /etc/systemd/system/ddns-update.timer 
 [Unit]
@@ -792,14 +793,14 @@ WorkingDirectory=/home/junyu33/netlify-dynamic-dns-py
 ExecStartPre=/usr/bin/env http_proxy= https_proxy=
 ExecStart=/bin/bash /home/junyu33/netlify-dynamic-dns-py/ddns.sh
 </code></pre>
-<h3 id="Running-the-Development-Board-Independently-from-the-Computer">Running the Development Board Independently from the Computer</h3>
+<h4 id="Running-the-Development-Board-Independently-from-the-Computer">Running the Development Board Independently from the Computer</h4>
 <p>This was the only part of the process that felt like stumbling in the dark. Since I was short on power adapters, I ended up using one that hadn't been used in a long time. As it turned out, that particular adapter was probably faulty—even though the power indicator light was on, Debian simply wouldn't boot. As a result, I spent quite a while waiting on my host computer, unable to SSH in.</p>
 <p>I then reconnected the development board to my computer and tried SSH again—this time it worked. That ruled out any issues with the development board's system.</p>
 <p>Next, I switched to the power adapter I normally use for my headphones, and it worked. So it was clear the issue was with the old adapter I had used earlier.</p>
 <p>After that, I plugged the power and Ethernet cables into my roommate's unused USB charging hub and broadband port (he's away for an internship in Beijing), and it worked again. It was almost lights-out time by then, so I decided to call it a night and see whether I could SSH into both my development board and my workstation computer the next day.</p>
 <p>The next morning, as soon as I woke up, I tried connecting from my own computer—everything worked perfectly. And so:</p>
 <p>Congratulations—I've finally achieved the dream of “working from home” once again!</p>
-<h1>Lessons Learned</h1>
+<h2 id="Lessons-Learned">Lessons Learned</h2>
 <ol>
 <li>You get what you pay for—high quality rarely comes cheap.</li>
 <li>When shopping online, read the negative reviews. Don't just buy something because it's popular.</li>

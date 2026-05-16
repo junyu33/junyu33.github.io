@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -62,11 +63,11 @@
     
 
 	<h1>How to manually measure the CPU frequency of a Risc-V processor</h1>
-	<span id="more"></span>
-<h1>Background</h1>
+	<h2 id="Background">Background</h2>
 <p>Since I previously left my contact information on relevant forums while setting up a jump server environment for a Risc-V development board, someone reached out to me today. They believed that the Ubuntu image was running on the big core (1.6 GHz) of the CanMV-K230, whereas I had previously emphasized it was on the small core (800 MHz), and they wanted me to take a look.</p>
 <p>First, <code>lscpu</code> and <code>cat /proc/cpuinfo</code> are definitely not usable. Also, <code>/sys/bus/cpu/devices/cpu0/cpufreq/</code> does not exist, so the only option was to try writing code manually to measure the CPU frequency.</p>
-<h1>Solution</h1>
+<span id="more"></span>
+<h2 id="Solution">Solution</h2>
 <p>A simple solution is to use the Linux system call <code>clock_gettime</code> to get the current time, then run a certain number of instructions in between to reduce measurement error:</p>
 <pre><code>#define NUM_INSTRUCTIONS (1000000000)
 
@@ -133,7 +134,7 @@ junyu33@zjy-canmv:~/tmp$ ./test
 Elapsed time: 1294905847 ns
 Elapsed Freq: 1.545 GHz
 </code></pre>
-<h1>Summary</h1>
+<h2 id="Summary">Summary</h2>
 <p>That friend eventually used my code to test his development board and got a result of 1.598 GHz. So, he was correct.</p>
 
 </div>

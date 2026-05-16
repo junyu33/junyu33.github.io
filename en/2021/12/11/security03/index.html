@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -62,16 +63,16 @@
     
 
 	<h1>CS:APP Binary Bomb Lab</h1>
-	<h1>solution</h1>
+	<h2 id="solution">solution</h2>
 <img src="https://img.junyu33.me/blog/security03/res.png">
 <p>A nice reverse-engineering challenge: <strong>seven subtasks that gradually increase in difficulty, making it very suitable for beginners.</strong></p>
 <span id="more"></span>
-<h1>Thought Process Analysis</h1>
+<h2 id="Thought-Process-Analysis">Thought Process Analysis</h2>
 <p>The following steps were carried out using <strong>IDA 7.5</strong>. I believe anyone interested in this problem probably has IDA at hand.</p>
 <p>(Of course, the author's original intent was for you to read the assembly and debug with gdb—that would surely lead to hair loss.)</p>
 <p>main function logic is very simple: the program provides file input (with argument 1) and standard input (no argument). Next, you need to answer <strong>six questions (phases)</strong>. If any one of them is wrong, the bomb will explode.</p>
 <p>I will now analyze it <strong>phase by phase</strong>.</p>
-<h2 id="phase-1">phase_1</h2>
+<h3 id="phase-1">phase_1</h3>
 <pre><code class="language-c">int __cdecl phase_1(int a1)
 &#123;
   int result; // eax
@@ -85,7 +86,7 @@
 <p>String comparison—just input:</p>
 <pre><code>Public speaking is very easy.
 </code></pre>
-<h2 id="phase-2">phase_2</h2>
+<h3 id="phase-2">phase_2</h3>
 <pre><code class="language-c">int __cdecl phase_2(char *s)
 &#123;
   int i; // ebx
@@ -108,7 +109,7 @@
 <pre><code>v3[i] == v3[i - 1] * (i + 1)
 </code></pre>
 <p>That is, a simple <strong>factorial function</strong>.</p>
-<h2 id="phase-3">phase_3</h2>
+<h3 id="phase-3">phase_3</h3>
 <pre><code class="language-c">int __cdecl phase_3(char *s)
 &#123;
   int result; // eax
@@ -182,7 +183,7 @@
 <pre><code>0 q 777
 </code></pre>
 <p>The remaining cases follow the same principle.</p>
-<h2 id="phase-4">phase_4</h2>
+<h3 id="phase-4">phase_4</h3>
 <pre><code class="language-c">int __cdecl func4(int a1)
 &#123;
   int v1; // esi
@@ -238,7 +239,7 @@ Phase 4.
 </code></pre>
 <p>Therefore, we need to append the string <strong><code>austinpowers</code></strong> right after the answer <strong>9</strong>.</p>
 <p>Only when <code>num_input_strings == 6</code> (meaning all six phases are correctly solved) will the <strong>hidden phase</strong> be revealed.</p>
-<h2 id="phase-5">phase_5</h2>
+<h3 id="phase-5">phase_5</h3>
 <pre><code class="language-c">int __cdecl phase_5(_BYTE *a1)
 &#123;
   int i; // edx
@@ -297,7 +298,7 @@ int main()&#123;
 <p>Here, I chose to add <strong>96</strong>, and the final answer is:</p>
 <pre><code>o`ekma
 </code></pre>
-<h2 id="phase-6">phase_6</h2>
+<h3 id="phase-6">phase_6</h3>
 <pre><code class="language-c">int __cdecl phase_6(char *s)
 &#123;
   int i; // edi
@@ -400,7 +401,7 @@ for num in itertools.permutations(num,6):
 
 # Correct permutation: 4 2 6 3 1 5
 </code></pre>
-<h2 id="secret-phase">secret_phase</h2>
+<h3 id="secret-phase">secret_phase</h3>
 <pre><code class="language-c">int __cdecl fun7(_DWORD *a1, int a2)
 &#123;
   if ( !a1 )
@@ -441,7 +442,7 @@ void secret_phase()
 <li>Any leaf node has the value <code>0</code>.</li>
 </ul>
 <p>By manually tracing the calculation, you can determine that only the <strong>rightmost bottom node</strong>, which has the value <code>3E9h</code> (i.e., <strong>1001</strong>), will yield a final root value of <strong>7</strong>.</p>
-<h1>Summary</h1>
+<h2 id="Summary">Summary</h2>
 <p>Lab 3 was indeed easier than Lab 2 (I finished the <strong>secret_phase</strong> from the evening of the 10th at 9 p.m. to the morning of the 11th at 9:30 a.m.), but it was not as simple as I initially imagined—certainly not something you can just solve by casually opening IDA.</p>
 <p>I would recommend that next year's students <strong>must complete Lab 1 (decoding lab) and Lab 3 (binary bomb)</strong> for the security project, and treat Lab 2 (buffer bomb) as optional. Lab 2 requires too much prerequisite knowledge, which most students cannot handle. The fragmented hints scattered throughout the semester inevitably affect a systematic study of the stack later on.</p>
 

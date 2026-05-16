@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -65,19 +66,19 @@
 	<img src='https://img.junyu33.me/blog/LFS/1.png'>
 <p>Just without <code>vmware-guest-additions</code> support, so there is no Internet.</p>
 <span id="more"></span>
-<h1>FAQs &amp; tips</h1>
-<h2 id="I-m-lazy-I-don-t-want-to-create-any-other-partition-including-home-boot-or-create-swap">I'm lazy, I don't want to create any other partition including <code>/home</code>, <code>/boot</code> or create <code>swap</code>.</h2>
+<h2 id="FAQs-tips">FAQs &amp; tips</h2>
+<h3 id="I-m-lazy-I-don-t-want-to-create-any-other-partition-including-home-boot-or-create-swap">I'm lazy, I don't want to create any other partition including <code>/home</code>, <code>/boot</code> or create <code>swap</code>.</h3>
 <p>Yes, you can expand your VM disk by 20 GB and allocate it to your LFS root directory. Using the <code>/boot</code> directory from your host distro is acceptable (even it's not in a seperate partition).</p>
-<h2 id="sed-can-t-read-gcc-config-i386-t-linux64-No-such-file-or-directory">sed: can't read gcc/config/i386/t-linux64: No such file or directory</h2>
+<h3 id="sed-can-t-read-gcc-config-i386-t-linux64-No-such-file-or-directory">sed: can't read gcc/config/i386/t-linux64: No such file or directory</h3>
 <p><a target="_blank" rel="noopener" href="https://www.linuxquestions.org/questions/linux-from-scratch-13/sed-can%27t-read-gcc-config-i386-t-linux64-no-such-file-or-directory-4175694927/">https://www.linuxquestions.org/questions/linux-from-scratch-13/sed-can't-read-gcc-config-i386-t-linux64-no-such-file-or-directory-4175694927/</a></p>
 <p>You didn't extract the tarball and enter the gcc directory, the LFS guide omitted these first two steps every page.</p>
-<h2 id="VMware-Workstation-has-paused-this-virtual-machine-because-the-disk-on-which-the-virtual-machine-is-stored-is-almost-full">VMware Workstation has paused this virtual machine because the disk on which the virtual machine is stored is almost full</h2>
+<h3 id="VMware-Workstation-has-paused-this-virtual-machine-because-the-disk-on-which-the-virtual-machine-is-stored-is-almost-full">VMware Workstation has paused this virtual machine because the disk on which the virtual machine is stored is almost full</h3>
 <p>Read the warning carefully, it says:</p>
 <blockquote>
 <p>VMware Workstation has paused this virtual machine because <strong>the disk on which the virtual machine is stored</strong> is almost full.</p>
 </blockquote>
 <p>So it's the time to clean your <strong>host</strong> disk space, instead of insufficient space of your VM, especially you've taken too many snapshots.</p>
-<h2 id="The-system-has-no-more-ptys-Ask-your-system-administrator-to-create-more">The system has no more ptys.  Ask your system administrator to create more.</h2>
+<h3 id="The-system-has-no-more-ptys-Ask-your-system-administrator-to-create-more">The system has no more ptys.  Ask your system administrator to create more.</h3>
 <p>Make sure if you've done <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/chapter07/kernfs.html">chapter 7.3</a> and <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/chapter07/chroot.html">chapter 7.4</a> correctly. You can save the script below in your VM, reboot and run it <strong>with root privilege</strong>.</p>
 <pre><code class="language-prepare.sh">mkdir -pv $LFS/&#123;dev,proc,sys,run&#125;
 mount -v --bind /dev $LFS/dev
@@ -98,17 +99,17 @@ fi
     PATH=/usr/bin:/usr/sbin     \
     /bin/bash --login
 </code></pre>
-<h2 id="The-terminal-looks-frozen-when-running-make-check-in-gcc-of-chroot-environ">The terminal looks frozen when running <code>make check</code> in gcc of chroot environ</h2>
+<h3 id="The-terminal-looks-frozen-when-running-make-check-in-gcc-of-chroot-environ">The terminal looks frozen when running <code>make check</code> in gcc of chroot environ</h3>
 <p>That's normal. The guide says it takes around 43 SBU to finish the whole process. For me it cost about 10 hours without pipelining, some of checks like <code>asan.exp</code> in g++ tests, <code>comformance.exp</code> in libstdc++ tests cost 2 to 3 hours (yes, for one check file).</p>
 <p>You can type <code>su tester -c &quot;PATH=$PATH make -k check -j4&quot;</code> to speed up a bit.</p>
-<h2 id="Make-failure-in-gcc-of-chroot-environ">Make failure in gcc of chroot environ</h2>
+<h3 id="Make-failure-in-gcc-of-chroot-environ">Make failure in gcc of chroot environ</h3>
 <p>Try <code>make</code> again (without -B).</p>
-<h2 id="Too-many-make-check-failures-thousands-of-in-gcc-of-chroot-environ">Too many make check failures (thousands of) in gcc of chroot environ</h2>
+<h3 id="Too-many-make-check-failures-thousands-of-in-gcc-of-chroot-environ">Too many make check failures (thousands of) in gcc of chroot environ</h3>
 <p>It's maybe caused by the source, download again in <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/chapter03/packages.html">All Packages</a> and redo the process if you want to wait another couple of hours.</p>
 <p>If you didn't see any error in <code>make</code>, ignore the <code>make check</code> process is also an option.</p>
-<h2 id="Can-I-use-grub-mkconfig-in-my-host-distro-to-generate-boot-config">Can I use <code>grub-mkconfig</code> in my host distro to generate boot config</h2>
+<h3 id="Can-I-use-grub-mkconfig-in-my-host-distro-to-generate-boot-config">Can I use <code>grub-mkconfig</code> in my host distro to generate boot config</h3>
 <p>Yes, it works. The only flaw is that the grub boot menu entry will be <code>unknown Linux distribution on /dev/sdaX</code> instead of our favorite <code>Linux From Scratch</code>.</p>
-<h2 id="Can-t-boot-into-LFS-saying-something-including-available-partitions-0b00-1048575-sr0-driver-sr">Can't boot into LFS, saying something including <code>available partitions: 0b00 1048575 sr0 driver: sr</code></h2>
+<h3 id="Can-t-boot-into-LFS-saying-something-including-available-partitions-0b00-1048575-sr0-driver-sr">Can't boot into LFS, saying something including <code>available partitions: 0b00 1048575 sr0 driver: sr</code></h3>
 <p>The Linux kernel you built doesn't include the VMware disk driver. You can search options in <code>make menuconfig</code> which contains string <code>VMWARE</code> and add them manually in <code>.config</code> in kernel source root.</p>
 <p>Here are the search results of my machine:</p>
 <pre><code>INFINIBAND_VMWARE_PVRDMA
@@ -138,7 +139,7 @@ net/vmw_vsock/Kconfig
 File Systems ---&gt;
     [*] Ext3 Journaling file system support
 </code></pre>
-<h1>Summary</h1>
+<h2 id="Summary">Summary</h2>
 <p>It tooks me about 9 days, the kernel config is not as hard as I thought before. The most difficult part is the patience.</p>
 <p>BTW, the <a target="_blank" rel="noopener" href="https://www.linuxfromscratch.org/lfs/view/stable/partintro/toolchaintechnotes.html">technical guide</a> explained before looks still kind of abstract even though I've finished the whole process. Maybe that's the most educational part in the whole LFS journey.</p>
 <p>In the future, maybe I'll go to the BLFS part, such as installing <code>vmware-guest-additions</code> and configuring the network, ssh, programming, DE, etc. Of course this is time-cosuming, <s>so maybe I'll give up here.</s></p>

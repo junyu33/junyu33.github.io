@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -64,12 +65,12 @@
 	<h1>Network Security Notes</h1>
 	<p>For self-study during final exams.</p>
 <span id="more"></span>
-<h1>Cyberspace Security Overview</h1>
+<h2 id="Cyberspace-Security-Overview">Cyberspace Security Overview</h2>
 <p>Basic Objectives: CIA (Confidentiality, Integrity, Availability)</p>
 <p>Four-Layer Model: Electromagnetic devices, electronic information systems, operational data, applications</p>
 <p>Fundamental Modules: Information, applications, networks, the Internet</p>
 <p>Critical Information Infrastructure Protection (CIIP)</p>
-<h1>Risk Management</h1>
+<h2 id="Risk-Management">Risk Management</h2>
 <p>Asset: Anything of value to an organization, the object to be protected</p>
 <p>Threat: Activities that may lead to information security incidents and loss of organizational information assets</p>
 <p>Vulnerability: Weaknesses or security risks related to information assets</p>
@@ -88,7 +89,7 @@
 <p>Asset Identification and Assessment: The importance of assets to the smooth operation of key organizational functions; qualitative assessment (CIA + Auditability + Non-repudiation)</p>
 <p>Relationship Between Risk Terminology:</p>
 <img src='https://img.junyu33.me/blog/网络空间安全技术/mermaid.png'>
-<h1>Cyberspace Security Assurance and Operations</h1>
+<h2 id="Cyberspace-Security-Assurance-and-Operations">Cyberspace Security Assurance and Operations</h2>
 <p>PDR: Protection, Detection, Response</p>
 <ul>
 <li>Time relationship (time-based, can be breached)</li>
@@ -100,7 +101,7 @@
 <blockquote>
 <p>Three protections and one support: (Local computing environment, regional boundaries, networks and infrastructure) &lt;- Supporting infrastructure</p>
 </blockquote>
-<h1>Cyberspace Security Technologies</h1>
+<h2 id="Cyberspace-Security-Technologies">Cyberspace Security Technologies</h2>
 <p>Five services, eight security mechanisms, and other security mechanisms</p>
 <ul>
 <li>Security Services: Authentication, access control, CI (Confidentiality and Integrity), non-repudiation (behavior, content)</li>
@@ -119,7 +120,7 @@
 </blockquote>
 <p>Integrity Detection: Prevents (or detects) addition, deletion, modification, or substitution</p>
 <p>Non-repudiation Mechanism: Prevents <strong>senders or receivers</strong> from repudiating <strong>actions or content</strong></p>
-<h1>Authentication Technology</h1>
+<h2 id="Authentication-Technology">Authentication Technology</h2>
 <p>Concept: A claimant submits an identity of a subject and claims to be that subject, enabling the verifier to gain trust in the claimed fact.</p>
 <ul>
 <li>Relationship with access control: Together, they achieve CIA</li>
@@ -156,7 +157,7 @@
 <li>Security of the hash function</li>
 <li>Forgery and replay by the receiver (can be resolved through mutual authentication and timestamps)</li>
 </ul>
-<h1>Access Control Technology</h1>
+<h2 id="Access-Control-Technology">Access Control Technology</h2>
 <p>Functions: CIA</p>
 <p>Access Control List (ACL), Capability List (CL)</p>
 <p>Discretionary Access Control (DAC): Allows the creator of an object to determine access rights for subjects</p>
@@ -178,7 +179,7 @@
 <li>Many-to-many between roles and permissions</li>
 <li>Permission = operation + object; many-to-many between operations and objects</li>
 </ul>
-<h1>Firewall Technology</h1>
+<h2 id="Firewall-Technology">Firewall Technology</h2>
 <p>An advanced access control device placed between different security domains, controlling inbound and outbound network access based on relevant policies</p>
 <p>Packet Filtering Firewall:</p>
 <ul>
@@ -198,7 +199,7 @@
 <li>Concurrent connections</li>
 </ul>
 <p>WAF: Web Application Firewall</p>
-<h1>Intrusion Detection System</h1>
+<h2 id="Intrusion-Detection-System">Intrusion Detection System</h2>
 <p>Intrusion: Deliberate actions attempting to access information or disrupt system and network operations illegally or without authorization, compromising CIA.</p>
 <p>Intrusion Detection: The discovery of intrusion behaviors.</p>
 <p>Intrusion Detection System (IDS): A combination of software and hardware that performs intrusion detection functions.</p>
@@ -210,7 +211,7 @@
 </ul>
 <p>Two Key IDS Metrics: False positive rate, false negative rate</p>
 <p>Typical Deployment: Connected to the network in a bypass manner and deployed at critical locations (DMZ, between routers and border firewalls, network hubs, high-security subnets, etc.).</p>
-<h2 id="Host-Intrusion-Detection-System">Host Intrusion Detection System:</h2>
+<h3 id="Host-Intrusion-Detection-System">Host Intrusion Detection System:</h3>
 <p>(Network Connection Monitoring + Host File Monitoring)</p>
 <p>Advantages:</p>
 <ul>
@@ -231,7 +232,7 @@
 <li>Issues with upgrades</li>
 <li>Higher deployment and maintenance costs</li>
 </ul>
-<h2 id="Network-Intrusion-Detection-System-NIDS">Network Intrusion Detection System (NIDS):</h2>
+<h3 id="Network-Intrusion-Detection-System-NIDS">Network Intrusion Detection System (NIDS):</h3>
 <p>Advantages:</p>
 <ul>
 <li>Quickly obtain information without reconfiguring or redirecting logging mechanisms</li>
@@ -247,7 +248,7 @@
 <li>Requires configuring switch port mirroring for fully switched networks</li>
 <li>High bandwidth requirements</li>
 </ul>
-<h1>Intrusion Prevention System (IPS)</h1>
+<h2 id="Intrusion-Prevention-System-IPS">Intrusion Prevention System (IPS)</h2>
 <p>Intrusion Prevention System (IPS): A security product that integrates intrusion detection and prevention (IPS = IDS + firewall).</p>
 <p>GAP (Network Isolation System): A system that enables data exchange between two different security domains through protocol conversion and data ferry methods. Only explicitly permitted transmission information is allowed to pass.</p>
 <ul>
@@ -263,7 +264,7 @@
 <li>Dynamic authorization (different users are granted different network usage permissions)</li>
 </ul>
 <p>Main functions of NAC: Authentication and authorization, scanning and assessment, quarantine and enforcement, updating and remediation.</p>
-<h1>IPSec + SSL</h1>
+<h2 id="IPSec-SSL">IPSec + SSL</h2>
 <p>IP Authentication Header (AH) mechanism: (IP header + AH header + TCP Header + data)</p>
 <ul>
 <li>Connectionless integrity</li>

@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -62,12 +63,12 @@
     
 
 	<h1>Simple CMake tutorial (miniob version)</h1>
-	<h1>A Simple Introduction to CMake</h1>
+	<h2 id="A-Simple-Introduction-to-CMake">A Simple Introduction to CMake</h2>
 <blockquote>
 <p>First, build an intuition: CMake is platform-independent. You won't specify which compiler or linker to use, nor will you write shell commands. It's best to think of it as a new <strong>object-oriented</strong> language.</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="Minimum-Example">Minimum Example</h2>
+<h3 id="Minimum-Example">Minimum Example</h3>
 <p>First, look at this minimum example:</p>
 <pre><code class="language-cmake">cmake_minimum_required(VERSION 3.8)
 
@@ -121,7 +122,7 @@ target_link_libraries(calc PUBLIC calclib)
 </ul>
 </li>
 </ul>
-<h2 id="miniob">miniob</h2>
+<h3 id="miniob">miniob</h3>
 <p>This is a project with a nested structure:</p>
 <ul>
 <li>minidb
@@ -145,7 +146,7 @@ target_link_libraries(calc PUBLIC calclib)
 </li>
 </ul>
 <p>Only <code>minidb</code> and <code>observer</code> are analyzed here.</p>
-<h3 id="minidb-Root-Project">minidb (Root Project)</h3>
+<h4 id="minidb-Root-Project">minidb (Root Project)</h4>
 <pre><code class="language-cmake">cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 20)
 
@@ -327,7 +328,7 @@ INSTALL(DIRECTORY etc DESTINATION .
 </li>
 <li><code>INSTALL</code>: For the <code>DIRECTORY</code> option, install files from <code>etc</code> to the current directory with permissions <code>OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ</code>.</li>
 </ul>
-<h3 id="Observer">Observer</h3>
+<h4 id="Observer">Observer</h4>
 <pre><code class="language-cmake">MESSAGE(STATUS &quot;This is CMAKE_CURRENT_SOURCE_DIR dir &quot; $&#123;CMAKE_CURRENT_SOURCE_DIR&#125;)
 
 INCLUDE_DIRECTORIES($&#123;CMAKE_CURRENT_SOURCE_DIR&#125;)
@@ -419,15 +420,15 @@ INSTALL(TARGETS observer observer_static
 <li><code>SET_TARGET_PROPERTIES</code>: Sets properties for the target; here, it sets the target name to <code>observer</code>.</li>
 <li><code>install(TARGETS &lt;target&gt;... [...])</code>: Deploys the runtime paths for <code>observer</code> and <code>observer_static</code> targets to <code>bin</code>, and archive file paths to <code>lib</code>.</li>
 </ul>
-<h1>Miscellaneous Issues</h1>
-<h2 id="What-exactly-does-CMake-do">What exactly does CMake do?</h2>
+<h2 id="Miscellaneous-Issues">Miscellaneous Issues</h2>
+<h3 id="What-exactly-does-CMake-do">What exactly does CMake do?</h3>
 <p>From a personal perspective, CMake provides a platform-independent abstraction, and the CMake build process essentially &quot;translates&quot; its language into platform-specific compilation and linking commands, assembling them into various files (on Linux, these would be the <code>Makefile</code> and related dependency files).</p>
 <p>We can find the corresponding, machine-generated <code>Makefile</code> in the CMake build directory.</p>
-<h2 id="How-to-achieve-functionality-similar-to-make-B-or-make-n-in-CMake">How to achieve functionality similar to <code>make -B</code> or <code>make -n</code> in CMake?</h2>
+<h3 id="How-to-achieve-functionality-similar-to-make-B-or-make-n-in-CMake">How to achieve functionality similar to <code>make -B</code> or <code>make -n</code> in CMake?</h3>
 <p><s>Please RTFM</s></p>
 <p>For the former, you can use the <code>--fresh</code> parameter.</p>
 <p>For the latter, you can use <code>--trace</code> to achieve it. Additionally, using <code>make --trace-expand</code> can expand the corresponding variables.</p>
-<h2 id="Where-does-DEBUG-come-from-in-the-following-code">Where does <code>DEBUG</code> come from in the following code?</h2>
+<h3 id="Where-does-DEBUG-come-from-in-the-following-code">Where does <code>DEBUG</code> come from in the following code?</h3>
 <pre><code class="language-cmake"># This is for clangd plugin for vscode
 SET(CMAKE_COMMON_FLAGS &quot;$&#123;CMAKE_COMMON_FLAGS&#125; -Wall -Werror&quot;)
 IF(DEBUG)
@@ -462,7 +463,7 @@ ENDIF(DEBUG)
 &#125;
 </code></pre>
 <p>There is a compilation option <code>-DDEBUG=ON</code> in this script. By tracing as described above or adding a log at the relevant location, you can confirm that the <code>DEBUG</code> variable comes from the runtime parameters of <code>cmake</code>.</p>
-<h1>Ref</h1>
+<h2 id="Ref">Ref</h2>
 <p><a target="_blank" rel="noopener" href="https://modern-cmake-cn.github.io/Modern-CMake-zh_CN/">https://modern-cmake-cn.github.io/Modern-CMake-zh_CN/</a></p>
 <p><a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/index.html">https://cmake.org/cmake/help/latest/index.html</a></p>
 

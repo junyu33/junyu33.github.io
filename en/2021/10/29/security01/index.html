@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -62,11 +63,11 @@
     
 
 	<h1>CS:APP Decoding Lab</h1>
-	<h1>solution</h1>
+	<h2 id="solution">solution</h2>
   <img src="https://img.junyu33.me/blog/security01/1.png">         
 <p>(Note: This key may yield different results on different systems, or even across different IDEs within the same system, so the answer is <strong>for reference only</strong>.)</p>
 <span id="more"></span>
-<h1>problem analysis</h1>
+<h2 id="problem-analysis">problem analysis</h2>
 <p>First, let's paste the source code:</p>
 <pre><code class="language-C">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -296,7 +297,7 @@ o xexxtrxacxt1x.
 <p>This gives us the value of <strong>key3</strong>.</p>
 <p>As for <strong>key4</strong>, the goal is to turn <code>0x72464663</code> into <code>0x72004663</code>. That just means adding <code>-0x460000</code>, which is <code>-4587520</code> in decimal — the value of key4.</p>
 <p><strong>Problem solved.</strong> ✅</p>
-<h1>remark</h1>
+<h2 id="remark">remark</h2>
 <p>As a pwn enthusiast, it still took me three nights to solve this problem and finish writing up the thought process. In my view, the knowledge points involved here go a bit beyond the scope of standard textbooks (after all, the essence of C cannot be captured in just a few textbook paragraphs). If you ask a student who has just finished an introductory course and can barely distinguish between <code>&amp;</code> and <code>*</code> to tackle this problem, that would be far too much.</p>
 <p><strong>But I have to admit, if you manage to solve this challenge independently</strong> (I also borrowed the approach for deriving key1 and key2), <strong>your C programming skills will have reached a whole new level — even stronger than that of an average OIer — and you'd be ready to start moving toward the binary exploitation track in CTF.</strong></p>
 

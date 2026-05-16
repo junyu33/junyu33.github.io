@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -65,8 +66,8 @@
 	<p>Although I managed to pwn all challenges, the pwn player still lost badly.</p>
 <p>The Ops level is quite frustrating; please stop putting files on Baidu Netdisk in the future.</p>
 <span id="more"></span>
-<h1>pwn</h1>
-<h2 id="welcomeUNCTF2022">welcomeUNCTF2022</h2>
+<h2 id="pwn">pwn</h2>
+<h3 id="welcomeUNCTF2022">welcomeUNCTF2022</h3>
 <pre><code class="language-c">int func()
 &#123;
   char s2[11]; // [esp+Ch] [ebp-1Ch] BYREF
@@ -82,7 +83,7 @@
 &#125;
 </code></pre>
 <p>Simple check to test if netcat (nc) is working properly and the target machine status.</p>
-<h2 id="Rock-Paper-Scissors">Rock Paper Scissors</h2>
+<h3 id="Rock-Paper-Scissors">Rock Paper Scissors</h3>
 <p>Main Section</p>
 <pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
 &#123;
@@ -130,7 +131,7 @@
 &#125;
 </code></pre>
 <p>Given that the random seed is set, simply generate a corresponding random number sequence under the same seed in a Linux environment, and input the winning choices accordingly.</p>
-<h2 id="move-your-heart">move your heart</h2>
+<h3 id="move-your-heart">move your heart</h3>
 <p>The main function follows the same logic as the second question and is omitted.</p>
 <pre><code class="language-c">ssize_t back()
 &#123;
@@ -143,9 +144,9 @@
 <p>This is a stack pivoting scenario. The payload is roughly:</p>
 <p><code>p64(pop_rdi)+p64(buf+0x18)+p64(system_plt)+b'/bin/sh\0'+p64(buf)+p64(leave_ret)</code></p>
 <p>It fits just right.</p>
-<h2 id="Check-in">Check-in</h2>
+<h3 id="Check-in">Check-in</h3>
 <p>Pretty interesting, covering integer overflow and exception handling.</p>
-<h3 id="Integer-Overflow">Integer Overflow</h3>
+<h4 id="Integer-Overflow">Integer Overflow</h4>
 <pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
 &#123;
   char nptr[32]; // [rsp+0h] [rbp-50h] BYREF
@@ -171,7 +172,7 @@
 <p>The <code>buf</code> variable is not particularly useful here, so we can ignore it for now.</p>
 <p>Note that in the second-to-last line, the byte count is cast to an unsigned type, while <code>atoi</code> converts to <code>int</code>. This suggests a potential integer overflow vulnerability.</p>
 <p>Since the first character cannot be a minus sign, it is possible to bypass this check by adding a space, which does not affect the result of <code>atoi</code>.</p>
-<h3 id="sigsegv">sigsegv</h3>
+<h4 id="sigsegv">sigsegv</h4>
 <p>At this point, we can read data of unlimited length and can use methods like ROP to solve the challenge.</p>
 <p>However, note that there is a <code>sigsegv_handler</code> function in <code>1nit</code>, which means that upon receiving <code>SIGSEGV</code>, the flag is directly output.</p>
 <pre><code class="language-c">void __noreturn sigsegv_handler()
@@ -182,7 +183,7 @@
 &#125;
 </code></pre>
 <p>Therefore, simply inputting random data to overflow the stack is sufficient.</p>
-<h2 id="int-0x80">int_0x80</h2>
+<h3 id="int-0x80">int_0x80</h3>
 <pre><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
 &#123;
   int i; // [rsp+Ch] [rbp-124h]
@@ -206,9 +207,9 @@
 </code></pre>
 <p>Alphanumeric shellcode</p>
 <p>You can use the AE64 library, remember to set the parameter to rsi.</p>
-<h2 id="fakehero">fakehero</h2>
+<h3 id="fakehero">fakehero</h3>
 <p><s>Suggest renaming it to fakeheap</s> (As the name implies, a fake heap problem).</p>
-<h3 id="add-Operation">add Operation</h3>
+<h4 id="add-Operation">add Operation</h4>
 <pre><code class="language-c">__int64 __fastcall add(void **a1)
 &#123;
   void **v1; // rbx
@@ -234,7 +235,7 @@
 </code></pre>
 <p>Note that <code>buf</code> is copied directly from the stack and is not zeroed out, which allows leaking libc and ELF addresses. <s>But this doesn't really matter.</s></p>
 <p>The more important vulnerability is the lack of bounds checking on <code>idx</code>.</p>
-<h3 id="free-show-Operation">free&amp;show Operation</h3>
+<h4 id="free-show-Operation">free&amp;show Operation</h4>
 <pre><code class="language-c">__int64 __fastcall delete(void **a1)
 &#123;
   int v2; // [rsp+1Ch] [rbp-4h] BYREF
@@ -250,7 +251,7 @@
 &#125;
 </code></pre>
 <p>There's not much to say—it's a classic Use-After-Free (UAF) scenario. There is no way to edit the content in the heap after it is freed, and since there is no heap overflow earlier, it is basically impossible to perform a double free.</p>
-<h3 id="Solution">Solution</h3>
+<h4 id="Solution">Solution</h4>
 <p>Observing the initialization function, the heap is executable here.</p>
 <pre><code class="language-c">void init()
 &#123;

@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -66,9 +67,9 @@
 <p>然后 grab 提供的大陆第三方平台只有 BOC，并且打开链接之后发现 BOC 的登录页面无法显示验证码。</p>
 <p>我的任务就是尝试排查验证码无法显示的原因，最起码要把这个 URL 在电脑上复现出来。</p>
 <span id="more"></span>
-<h1>grab desktop</h1>
+<h2 id="grab-desktop">grab desktop</h2>
 <p>根本找不到</p>
-<h1>android + httptoolkit(user)</h1>
+<h2 id="android-httptoolkit-user">android + httptoolkit(user)</h2>
 <p>burpsuite 似乎对安卓端没有什么特别的支持，fiddler 我现在才知道居然是商业软件，于是我选择了 httptoolkit</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/httptoolkit/httptoolkit-desktop">https://github.com/httptoolkit/httptoolkit-desktop</a></p>
 <p>以及对应的安卓端：</p>
@@ -79,7 +80,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/134061.html">https://www.secpulse.com/archives/134061.html</a></p>
 <p>需要使用 Xposed 的 JustTrustMe 模块来解决，这下铁定要 root 了</p>
 <p>刚买的新手机我是肯定不想 root 的，于是我选择</p>
-<h1>waydroid + magisk</h1>
+<h2 id="waydroid-magisk">waydroid + magisk</h2>
 <p>Linux 系统肯定得和 WSA 与各大安卓模拟器说再见了，目前比较好的选择是 waydroid</p>
 <p>waydroid 的官方 Android 11 镜像肯定是没有 magisk 的，虽然在 shell 中运行 su 可以切换到 root，但为了省事，还是使用一下仓库 build 包含 GApps 和 magisk 的镜像</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/pagkly/MagiskOnWaydroid">https://github.com/pagkly/MagiskOnWaydroid</a></p>
@@ -94,10 +95,10 @@
 <p>另外，这个回答也解决了主机和 Waydroid 的通信问题</p>
 <p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/waydroid/comments/13e619n/how_do_i_write_to_waydroid_files_from_arch_linux/">https://www.reddit.com/r/waydroid/comments/13e619n/how_do_i_write_to_waydroid_files_from_arch_linux/</a></p>
 <p>好了，目前所做的所有工作，就相当于在 Android 4 时代，随便下个一键 root 工具就能达到的效果。看来 Android 的安全门槛还是提高了不少啊</p>
-<h2 id="waydroid-magisk-Xposed">waydroid + magisk + Xposed</h2>
+<h3 id="waydroid-magisk-Xposed">waydroid + magisk + Xposed</h3>
 <p>从网上找了个 Xposed installer，但是它 fetch resource 的网址 <a target="_blank" rel="noopener" href="http://repo.xposed.info">repo.xposed.info</a> 在一年前已经寄了</p>
 <p><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/is-there-a-problem-in-xposed-website.4472673/">https://forum.xda-developers.com/t/is-there-a-problem-in-xposed-website.4472673/</a></p>
-<h2 id="waydroid-magisk-EdXposed">waydroid + magisk + EdXposed</h2>
+<h3 id="waydroid-magisk-EdXposed">waydroid + magisk + EdXposed</h3>
 <p>因此又找了个 alternative，EdXposed</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/ElderDrivers/EdXposed">https://github.com/ElderDrivers/EdXposed</a></p>
 <p>开始不知道 EdXposed framework 需要在 magisk 里面安，自闭了一会儿。然后从 magisk load zip的时候又遇到 unzip error，找到这个 forum</p>
@@ -105,12 +106,12 @@
 <p>原因是下载的压缩包外面不能再套一层文件夹（想起尘封于记忆中的 nand2tetris 的提交方式）</p>
 <p>终于把 EdXposed 的安装搞定了，此时是凌晨2点，离我开始已经过去4个小时了。</p>
 <img src='https://img.junyu33.me/blog/xp2/edxposed.png'>
-<h3 id="waydroid-magisk-EdXposed-ProxyDroid-burpsuite">waydroid + magisk + EdXposed + ProxyDroid + burpsuite</h3>
+<h4 id="waydroid-magisk-EdXposed-ProxyDroid-burpsuite">waydroid + magisk + EdXposed + ProxyDroid + burpsuite</h4>
 <p>由于 httptoolkit Android 端只提供了扫码方式，然后 Waydroid 并不支持摄像头，因此暂时不考虑</p>
 <p>同时 Waydroid 不支持 wifi，也没有办法设置代理。即使在 shell 中设置 <code>http_proxy</code> 之类，也只对 shell 中的 <code>curl</code> <code>wget</code> 有效，且不支持 https</p>
 <p>于是我尝试使用 ProxyDroid 把所有 App 都通过 burpsuite 的代理地址，然而并没有效果</p>
 <p>google 下可能的原因是某些 App 本身就不支持代理，即使在 root 层面上设定了全局代理也依然不会奏效</p>
-<h3 id="waydroid-magisk-EdXposed-PCAPdroid">waydroid + magisk + EdXposed + PCAPdroid</h3>
+<h4 id="waydroid-magisk-EdXposed-PCAPdroid">waydroid + magisk + EdXposed + PCAPdroid</h4>
 <p>在翻上述问题的回答时，有一个回答猜想我们可能是想找 Android 平台的抓包工具（你是真能猜啊），推荐了 PCAPDroid</p>
 <p>但是这个 PCAPDroid 对 https 抓包是实验性功能，似乎并不稳定。按照它的 guide 安了 PCAPDroid mitm 和安装相关 cert 之后，还是抓不了 https 包</p>
 <p>于是我想起来之前提到的 Xposed 插件 JustTrustMe，安了之后并没有任何改变</p>
@@ -118,7 +119,7 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/ViRb3/TrustMeAlready">https://github.com/ViRb3/TrustMeAlready</a></p>
 <p>这回测试浏览器访问 google，抓到了部分的 https 包</p>
 <p>但是有个坏消息，grab app 打不开了，虽然说可能的解决方法是 MagiskHide，但是我感觉这条路快走到头了，于是我决定换条路</p>
-<h1>android + apk-mitm + httptoolkit(user)</h1>
+<h2 id="android-apk-mitm-httptoolkit-user">android + apk-mitm + httptoolkit(user)</h2>
 <p>为什么不直接对 apk 进行插桩呢，于是有了这个解决方案</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/shroudedcode/apk-mitm">https://github.com/shroudedcode/apk-mitm</a></p>
 <p>因为 Waydroid 这边已经用不了 grab 了，于是我直接在自己的手机上装了 patch 过后的 grab，我本来会认为 self-signed app 在安装过程中会遇到一些阻碍，没想到居然还装上了</p>
@@ -128,12 +129,12 @@
 <li>但如果进入了 BOC 的网站，就可以自由地抓包，但页面不能刷新，也就没办法获取 URL</li>
 </ul>
 <p>这个问题最后是这么解决的</p>
-<h2 id="android-apk-mitm-httptoolkit-user-a-bit-of-luck">android + apk-mitm + httptoolkit(user) + a bit of luck</h2>
+<h3 id="android-apk-mitm-httptoolkit-user-a-bit-of-luck">android + apk-mitm + httptoolkit(user) + a bit of luck</h3>
 <p>先断开 httptoolkit 的 intercept，然后打开进入 BOC 的链接，等待 0.5 ~ 1s 的时间再打开 intercept</p>
 <p>运气好的话就可以进到 BOC 的页面，这个时候就可以从某个获取跳转链接的 GET 请求的 response 中拿到 BOC 的登录页面，只能使用手机的 UA 打开：</p>
 <img src='https://img.junyu33.me/blog/xp2/boc.png'>
 <p>这个时候已经凌晨4点了，下班</p>
-<h1>后记</h1>
+<h2 id="后记">后记</h2>
 <ul>
 <li>上次接触 Xposed 还是在<a href="/2021/08/10/xp/">两年前</a>，那篇文章已经进了历史的垃圾堆了。<s>本来是想把挖坟的，但毕竟不是实体机，等到哪天需要搞软路由再说吧</s>于是我又在2025年重新使用了该手机解决了app抓包问题，内容见<a href="/2025/07/28/router/">此链接</a>。</li>
 <li>通过向 httptoolkit 的作者提 <a target="_blank" rel="noopener" href="https://github.com/httptoolkit/httptoolkit-android/issues/13">issue</a> 后得知 waydroid 其实也是可以使用 ADB 的，于是我成功看到了梦寐已求的两个绿勾勾</li>

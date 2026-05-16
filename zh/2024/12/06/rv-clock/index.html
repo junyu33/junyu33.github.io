@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -63,11 +64,11 @@
 
 	<h1>如何手动测量 Risc-V 处理器的 CPU 频率</h1>
 	<p>之前长文章写起来有些累，现在写一篇短的。</p>
-<span id="more"></span>
-<h1>background</h1>
+<h2 id="background">background</h2>
 <p>由于我之前在给 Risc-V 开发板配跳板机环境时，在相关论坛上留下了自己的联系方式。于是今天有人找到我，他认为 ubuntu 镜像是在 CanMV-K230 的大核（1.6 GHz）中，而我之前强调是在小核（800 MHz），想让我看一看。</p>
 <p>首先 <code>lscpu</code>，<code>cat /proc/cpuinfo</code> 肯定是用不了的。同时 <code>/sys/bus/cpu/devices/cpu0/cpufreq/</code> 也不存在，因此只能尝试手写代码衡量 CPU 频率。</p>
-<h1>solution</h1>
+<span id="more"></span>
+<h2 id="solution">solution</h2>
 <p>一个简单的解决方式是通过 Linux 系统调用 <code>clock_gettime</code> 获取当前时间，然后中间运行一定数量级的指令来减小测量误差：</p>
 <pre><code>#define NUM_INSTRUCTIONS (1000000000)
 
@@ -134,7 +135,7 @@ junyu33@zjy-canmv:~/tmp$ ./test
 Elapsed time: 1294905847 ns
 Elapsed Freq: 1.545 GHz
 </code></pre>
-<h1>summary</h1>
+<h2 id="summary">summary</h2>
 <p>那位朋友最后也用了我的代码给他的开发板做了测试，结果是 1.598 GHz。因此，他是对的。</p>
 
 </div>

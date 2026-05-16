@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -65,12 +66,12 @@
 	<p>Last time, in April of last year, I migrated from Windows 11 + VS + VSCode to Ubuntu 22.04 + VSCode + NeoVim. Now, I've switched to Arch Linux + NeoVim.</p>
 <p>Later, for the conclusion of the university innovation project, I might have to set up a Windows driver development environment again, which could be quite a hassle.</p>
 <span id="more"></span>
-<h1>Preface</h1>
+<h2 id="Preface">Preface</h2>
 <p>A few months ago, dependency issues with <code>dpkg</code> (mainly various Qt libraries) caused around 20 packages to become unupdatable. Additionally, <code>sudo apt upgrade</code> updates the Linux kernel by default, which requires recompiling VMware drivers, so I became too lazy to update.</p>
 <p>A few days ago, I tried using <code>PGP</code> for secure communication with a classmate and generated a self-signed PGP key. This led to numerous signature errors during <code>sudo apt upgrade</code>, and even after deleting the key, the issue persisted. After searching online, I decided to reinstall <code>gpg</code>, but it didn't help. In fact, it made things worse—I could no longer install any new packages, meaning I was forced to downgrade to the LFS user's daily installation method: compiling from source.</p>
 <p>As mentioned earlier, I'm a lazy person, and I didn't want to get my hands dirty with compiling and installing. So, I opted for a distribution with a simpler package manager—<code>pacman</code>, the Arch Linux family.</p>
-<h1>Installation</h1>
-<h2 id="Partitioning">Partitioning</h2>
+<h2 id="Installation">Installation</h2>
+<h3 id="Partitioning">Partitioning</h3>
 <p>After using Ubuntu installed on a mechanical hard drive for a few months, I noticed that Firefox's performance was unsatisfactory, and the previously allocated 100GB space for Ubuntu was becoming insufficient. Therefore, I decided to remove Windows 11, assign the root partition to the SSD, and allocate the remaining mechanical drive space to the home directory, resulting in the current partition layout:</p>
 <pre><code class="language-bash">&gt; lsblk
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
@@ -85,18 +86,18 @@ sdb      8:16   0 931.5G  0 disk
 └─sdb6   8:22   0 131.3G  0 part /home
 </code></pre>
 <p>Thus, when installing Arch, I only need to format <code>/dev/sda1</code> and <code>/dev/sda3</code>, while keeping the <code>/home</code> partition intact.</p>
-<h2 id="RTFM">RTFM</h2>
+<h3 id="RTFM">RTFM</h3>
 <p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/Installation_guide">https://wiki.archlinuxcn.org/wiki/Installation_guide</a></p>
 <p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/General_recommendations">https://wiki.archlinuxcn.org/wiki/General_recommendations</a></p>
 <p>Remember to install <code>iwctl</code> (look for alternatives if not using Intel hardware) and <code>dhcpcd</code> before rebooting. Otherwise, you'll have to restart from the USB drive every time, and the computer's beep sound can be a bit startling.</p>
 <p>Then, running <code>systemctl enable iwd dhcpcd</code> should get you online. After that, installing common software or even a GUI should be straightforward.</p>
-<h2 id="nvidia">nvidia</h2>
+<h3 id="nvidia">nvidia</h3>
 <p>Arch Linux is pragmatic, so even though Linus has criticized NVIDIA, installing the driver is as simple as running <code>sudo pacman -S nvidia</code>.</p>
 <p>However, NVIDIA's power consumption issue is still worth considering. I referred to <a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/NVIDIA_Optimus">this documentation</a> and decided to use <code>optimus-manager</code> to switch between graphics cards.</p>
 <blockquote>
 <p>Since I had always been entering the GUI by typing <code>startxfce4</code> in the terminal, I also needed to install <code>lightdm</code> to ensure the switching command works properly.</p>
 </blockquote>
-<h1>Development Environment Setup</h1>
+<h2 id="Development-Environment-Setup">Development Environment Setup</h2>
 <p>I was previously using VSCode 1.67 on Ubuntu, but now the installed version is already 1.80. The following points made me abandon VSCode:</p>
 <ul>
 <li>The UI changes are still hard for me to accept, especially the search bar at the top of the window, which is extremely ugly (though it can be disabled).</li>

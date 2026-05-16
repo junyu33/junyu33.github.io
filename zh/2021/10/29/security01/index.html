@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -62,11 +63,11 @@
     
 
 	<h1>安全项目第一题解答及思路分析</h1>
-	<h1>解答（四个key及message）：</h1>
+	<h2 id="解答（四个key及message）：">解答（四个key及message）：</h2>
   <img src="https://img.junyu33.me/blog/security01/1.png">         
 <p>（注意：这个key在不同的系统，甚至同一个系统的不同IDE得到的结果都不同，因此答案仅供参考）。</p>
 <span id="more"></span>
-<h1>思路分析：</h1>
+<h2 id="思路分析：">思路分析：</h2>
 <p>​    先贴上源代码:</p>
 <pre><code class="language-C">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -289,7 +290,7 @@ o xexxtrxacxt1x.
 <p>通过调试我们可以看到(int*)&amp;key3是0x61fdd0，而data[2]的地址是0x4030a8，这些数据都占四个字节的空间，因此偏移为(0x4030a8-0x61fdd0)/4=-553802，这就是key3的值。</p>
 <p>key4就很好说了，我们要把0x72464663变为0x72004663，因此只需加上-0x460000即可，转换成十进制就是-4587520，也就是key4的值。</p>
 <p><strong>解题完毕</strong></p>
-<h1>评价：</h1>
+<h2 id="评价：">评价：</h2>
 <p>作为一个pwn手，完成这道题并写完这篇思路也花费了我三个晚上的时间。在我看来，这道题涉及的知识点有一点超出了教材的范围（毕竟C语言的精华之所在哪里是教材三言两语说得清的）。如果让一个才学完课程，勉强搞得清&amp;与*这两个符号的同学去做这道题，实在是强人所难。<strong>但是我也不得不承认，如果是自己独立完成了这道题的解答</strong>（其实我也借鉴了求解key1、key2的思路）<strong>，那么你的C语言的水平就迈上了一个新的台阶（甚至比普通的OIer都还要强），也可以去朝着CTF的二进制方向发展了。</strong></p>
 
 </div>

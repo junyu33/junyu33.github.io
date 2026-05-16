@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="/vendor/highlight/github.min.css">
 
   <!-- RSS / Atom -->
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
 
   <script defer src="/vendor/highlight/highlight.min.js"></script>
 
@@ -69,17 +70,17 @@
 <p>如果你觉得中文翻译质量欠佳，想选择英文原版阅读，那么千万不要选择Global Edition！因为Global Edition的习题环节错误百出，有许多题答案根本无法与题目相对应，严重影响阅读体验和对知识的理解！（我就是白嫖了github上面的免费资源，虽然不是影印版，而且正文质量很高，但习题这个问题就可以盖过其他所有优点）。我现在不得不边看英文原文边做中文版本上的习题(lll￢ω￢)</p>
 </blockquote>
 <span id="more"></span>
-<h1>计算机系统漫游</h1>
+<h2 id="计算机系统漫游">计算机系统漫游</h2>
 <p>一个接下所有章节的outline，<s>可以作为计算机系统导论的复习材料。</s></p>
-<h1>信息的表示和处理</h1>
+<h2 id="信息的表示和处理">信息的表示和处理</h2>
 <p>之前草草看过一遍，没做题，现在都搞不清楚浮点数的<strong>最小/最大非规格化数</strong>和<strong>最小/最大规格化数</strong>是怎么算出来的。</p>
 <p>有空再填坑。</p>
-<h1>程序的机器级表示</h1>
-<h2 id="历史观点">历史观点</h2>
+<h2 id="程序的机器级表示">程序的机器级表示</h2>
+<h3 id="历史观点">历史观点</h3>
 <p>讲了一下Intel处理器的历史，顺便提了一下SSE和AVX指令集（我觉得自己将来都要学的，又要开始秃头了(lll￢ω￢)</p>
-<h2 id="程序编码">程序编码</h2>
+<h3 id="程序编码">程序编码</h3>
 <p>如何在linux环境下查看gcc编译的AT&amp;T格式的汇编代码。（其实gdb提供了变更格式为intel的操作）</p>
-<h2 id="数据格式">数据格式</h2>
+<h3 id="数据格式">数据格式</h3>
 <ul>
 <li>char</li>
 <li>short</li>
@@ -89,32 +90,32 @@
 <li>double</li>
 <li>指针（本书是64位环境，所有指针均为8字节）</li>
 </ul>
-<h2 id="访问信息">访问信息</h2>
+<h3 id="访问信息">访问信息</h3>
 <p>各种寄存器（rax~rdx，rsi，rdi，rbp，rsp，r8~r15，及对应的32位、16位、8位版本）及<strong>约定俗成的</strong>用法见下图。</p>
 <img src="https://img.junyu33.me/blog/csapp/reg.png">
 <p>mov指令（movq、movl、movw、movb、movzbw、movsbq等，后两者是类型强转）。</p>
-<h2 id="算术和逻辑操作">算术和逻辑操作</h2>
+<h3 id="算术和逻辑操作">算术和逻辑操作</h3>
 <p>lea——取地址，外加简单算术指令，类似于a+b*c的形式（表示字节数的q、l、w、b字母省略，下同）</p>
 <p>sf、zf、pf、cf、af、of——各种标志符(flag)</p>
 <p>add、sub、(i)mul、(i)div、shl(sal)、shr、sar——改变flag状态</p>
 <p>inc、dec——不改变flag状态</p>
 <p>cqto——64位转128位，做128位除法有用</p>
-<h2 id="控制">控制</h2>
+<h3 id="控制">控制</h3>
 <p>if、switch、while、do-while、for的汇编实现，这部分作业错误尤其多。</p>
 <p>由于cpu具有分支预测的功能（部分语句准确率可达90%），简单if语句会预先计算两种分支之后寄存器的变化，以提高cpu的运行速度。</p>
 <p>对于多分支、取值接近的switch语句，编译器会构造跳表来代替各种jz、jbe等判断语句，以提高代码执行效率，因为跳表的执行速度不受分支个数的影响。</p>
-<h2 id="过程">过程</h2>
+<h3 id="过程">过程</h3>
 <p>再一次复习堆栈调用的汇编实现，将一个栈帧的各个部分（return address, saved registers, local variables, argument build area）都讲到了，很细致。</p>
 <p>64位寄存器传参的顺序为<code>%rdi</code>,<code>%rsi</code>,<code>%rdx</code>,<code>%rcx</code>,<code>%r8</code>,<code>%r9</code>.</p>
-<h2 id="数组分配和访问">数组分配和访问</h2>
+<h3 id="数组分配和访问">数组分配和访问</h3>
 <p>lea指令的作用就是专门为访问数组设计的。</p>
 <p>虽然编译器更喜欢使用指针遍历数组，加上一个固定的值。即使是多维数组遍历，也尽量不用我们数据结构课学到的i*Wid+j这个公式——毕竟乘法太费时间了。</p>
-<h2 id="异数的数据结构——1-15-2022">异数的数据结构——1/15/2022</h2>
+<h3 id="异数的数据结构——1-15-2022">异数的数据结构——1/15/2022</h3>
 <p>讲了struct、union和空间对齐。</p>
 <p><strong>union中的大小是其中最大数据类型的大小。</strong></p>
 <p>使用union可以强转数据类型（比如说把double转成unsigned long）。</p>
 <p>结构体中的每一项数据的地址都必须是其类型大小的整数倍。</p>
-<h2 id="在机器级程序中将控制与数据结合起来——1-16-2022">在机器级程序中将控制与数据结合起来——1/16/2022</h2>
+<h3 id="在机器级程序中将控制与数据结合起来——1-16-2022">在机器级程序中将控制与数据结合起来——1/16/2022</h3>
 <p>指针与地址运算的优先级——判断以下程序的输出结果：</p>
 <pre><code class="language-C">#include&lt;stdio.h&gt;
 int arr[20]=&#123;10,9,8,7,6,5,4,3,2,1,5&#125;;
@@ -158,7 +159,7 @@ ret
 <p>疑问：</p>
 <p>课后习题的B题为什么s2舍入到“最近的8的倍数”，D题为什么“保留s1的偏移量为最近的16的倍数”？</p>
 </blockquote>
-<h2 id="浮点代码——1-19-2022">浮点代码——1/19/2022</h2>
+<h3 id="浮点代码——1-19-2022">浮点代码——1/19/2022</h3>
 <p>寄存器：</p>
 <p>%ymm0~%ymm15是256位的浮点寄存器。</p>
 <p>%xmm0~%xmm15是128位的浮点寄存器，处于ymm的低128位。</p>
@@ -228,7 +229,7 @@ ret
 <p>comisd：double比较。</p>
 <p>比较时会设置3种标识符：CF、ZF、PF。其中PF=1当且仅当两个操作数任意一个是NaN，此时结果会为Unordered.</p>
 <p>（课后习题虽好，可惜不能对答案，算了不做了。）</p>
-<h2 id="小结——1-22-2022">小结——1/22/2022</h2>
+<h3 id="小结——1-22-2022">小结——1/22/2022</h3>
 <p><strong>x86汇编终于学完了，✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！</strong></p>
 
 </div>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    
+      <link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/05/22/moonlight/">
+    
+  
+
+  <link rel="stylesheet" href="/vendor/highlight/github.min.css">
+
+  <!-- RSS / Atom -->
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
+
+  <script defer src="/vendor/highlight/highlight.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <title>Making Official Moonlight iOS Work over Public IPv4 with Split DNS | 现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/">Home</a>
+                                <a href="/archives">Archive</a>
+                                
+                                        <a href="/categories">Categories</a>
+                                
+                                
+                                        <a href="/tags">Tags</a>
+                                
+                                <a href="/zh">中文站</a>
+                                <a id="mirror-switch" data-lang="en" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">CN Mirror</a>
+                        
+                </div>
+        </div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2026/05/22/moonlight/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Making Official Moonlight iOS Work over Public IPv4 with Split DNS</h1>
+	<p>The official Moonlight iOS client is not very friendly to adding hosts over public IPv4. You can compile your own client, or pay $1.49 / 9 CNY for the community fork <code>VoidLink</code> to bypass this restriction, but spending some time approaching the problem from the Sunshine server side is also a reasonable option.</p>
+<p>The final workaround is simple: make the same hostname resolve to a VPN/LAN IP during pairing, and to a public IP during public use. Repository: <a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>
+<blockquote>
+<p>Note that this method only works for non-TLS-ified hostnames.</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="Background">Background</h2>
+<p>In February 2025, I wrote <a href="/en/2025/02/27/overleaf/">an article</a> about connecting to my lab workstation through a public FRP jump server. Following the method from <a href="/en/2024/09/22/vnc/">this article in September 2024</a>, I also set up a VNC service on the lab machine for remote desktop access.</p>
+<p>However, as time went on, the desktop environment on my workstation changed from Xfce to KDE Plasma, so the old setup was no longer suitable. The previous VNC-based connection was replaced by a Sunshine/Moonlight streaming setup, still using a hostname as the connection entry point.</p>
+<p>Moonlight on desktop and Android had no obvious issues. The trouble was on iOS. Due to Apple's previous policy, streaming over the public Internet was not available there. Although this policy <a target="_blank" rel="noopener" href="https://github.com/moonlight-stream/moonlight-ios/issues/611">was changed in 2024</a>, the official client had not caught up as of the time of writing. To work around this public-Internet restriction, I started exploring.</p>
+<h2 id="Existing-Solutions">Existing Solutions</h2>
+<p>There are several ready-made solutions that can be found online:</p>
+<ol>
+<li>If you are physically near the workstation, you can directly enable a hotspot on the workstation, connect your phone to it, and enter the hotspot-side host IP in Moonlight.</li>
+<li>You can use VPN solutions such as Tailscale/WireGuard to make the host look like an internal address.</li>
+<li>Since Moonlight is open source, you can <a target="_blank" rel="noopener" href="https://github.com/moonlight-stream/moonlight-ios/issues/611">remove that restriction</a> and compile your own fork, or use a third-party solution such as VoidLink.</li>
+<li>You can configure DNS hijacking on the router, making the same hostname resolve to the public IP outside the LAN and to the internal IP inside the LAN. See <a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7981472093">this Tieba post</a> for the concrete idea.</li>
+</ol>
+<p>However, these four approaches have their own drawbacks:</p>
+<ol>
+<li>If you can physically access the workstation, there is little point in streaming from it; you might as well use the machine directly.</li>
+<li>Tailscale depends on third-party servers, which in some sense makes it closer to ordinary remote desktop solutions and may introduce latency issues. I did test it, and the latency actually seemed fine, so it can still be used as a fallback. WireGuard also needs a public endpoint or an FRP setup to establish the tunnel. Of course, both of these may conflict with the proxy/VPN setup already used on the phone, which can be quite annoying for users in China.</li>
+<li>Compiling the client yourself is difficult if you do not have a Mac. As for VoidLink, it costs $1.49 / 9 CNY to amortize the developer's Apple-related costs.</li>
+<li>The router-based DNS hijacking solution requires access to the router, and you also need to be near that router once to complete LAN pairing.</li>
+</ol>
+<p>So is there a way to use a public hostname, avoid relying on a long-lived VPN tunnel, keep using the official app, and still avoid physically going to the workstation? Yes.</p>
+<h2 id="Overview-of-My-Approach">Overview of My Approach</h2>
+<p>Simply put, my approach is mainly a fork of the fourth solution: I move the router-side DNS hijacking step onto the Linux server running Sunshine. Meanwhile, the initial LAN pairing step is also moved into a VPN. In other words, as long as you have SSH access and root privileges on the server, you can complete all the steps below.</p>
+<h3 id="Establishing-the-Connection">Establishing the Connection</h3>
+<p>First, if you are using FRP for NAT traversal with <code>bindPort = 8000</code>, remember to expose UDP port 51820 in frps/frpc. The client configuration is as follows, using frp 0.61:</p>
+<pre><code class="language-toml">serverAddr = &quot;&lt;public IP of frps&gt;&quot;
+serverPort = 8000
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+
+[[proxies]]
+name = &quot;moonlight-wireguard-udp-51820&quot;
+type = &quot;udp&quot;
+localIP = &quot;127.0.0.1&quot;
+localPort = 51820
+remotePort = 51820
+</code></pre>
+<p>The server configuration is:</p>
+<pre><code class="language-toml">bindPort = 8000
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+</code></pre>
+<p>Then come the connections required by Sunshine/Moonlight itself. First, the client side:</p>
+<pre><code class="language-toml">serverAddr = &quot;&lt;public IP of frps&gt;&quot;
+serverPort = 8001
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+
+
+&#123;&#123;- range $_, $v := parseNumberRangePair "47984,47989,48010" "47984,47989,48010" &#125;&#125;
+[[proxies]]
+name       = &quot;sunshine-tcp-&#123;&#123; $v.First &#125;&#125;&quot;
+type       = &quot;tcp&quot;
+localIP    = &quot;127.0.0.1&quot;
+localPort  = &#123;&#123; $v.First &#125;&#125;
+remotePort = &#123;&#123; $v.Second &#125;&#125;
+&#123;&#123;- end &#125;&#125;
+
+&#123;&#123;- range $_, $v := parseNumberRangePair "47998-48000,48002,48010" "47998-48000,48002,48010" &#125;&#125;
+[[proxies]]
+name       = &quot;sunshine-udp-&#123;&#123; $v.First &#125;&#125;&quot;
+type       = &quot;udp&quot;
+localIP    = &quot;127.0.0.1&quot;
+localPort  = &#123;&#123; $v.First &#125;&#125;
+remotePort = &#123;&#123; $v.Second &#125;&#125;
+&#123;&#123;- end &#125;&#125;
+</code></pre>
+<p>And the server side:</p>
+<pre><code class="language-toml">bindPort = 8001
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+</code></pre>
+<p>The corresponding firewall ports to open are:</p>
+<pre><code class="language-text">TCP: 8000, 8001, 47984, 47989, 48010
+UDP: 51820, 47998-48000, 48002, 48010
+</code></pre>
+<p>The next step is to establish a WireGuard connection between the iOS device and the Sunshine server. There should be plenty of tutorials online for this part. You can read those, ATFAI, or <a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP/blob/main/README.md">refer to Step 4 in the repository</a>.</p>
+<blockquote>
+<p>Note that my script uses <code>10.0.42.1</code> as the server's virtual IP and <code>10.0.42.2</code> as the client IP by default. You can also modify the repository's <code>.env</code> file yourself, but the rest of this article will use these two IPs.</p>
+</blockquote>
+<p>After scanning the QR code on your phone, importing the tunnel, and starting the WireGuard connection, enter <code>10.0.42.1</code> in Moonlight's Add PC page. If nothing unexpected happens, it should connect successfully, and a locked computer icon should appear on the main screen. Then tap the computer, and a pairing screen will appear. If you are not physically near the machine, you can use SSH port forwarding:</p>
+<pre><code class="language-sh">ssh -L 47990:127.0.0.1:47990 &lt;user&gt;@&lt;server IP&gt;
+</code></pre>
+<p>Then open <a target="_blank" rel="noopener" href="https://localhost:47990/pin">https://localhost:47990/pin</a> in your browser. Note that this is HTTPS, not HTTP. After completing the pairing process, the phone should be able to stream normally.</p>
+<h3 id="Software-Based-DNS-Hijacking">Software-Based DNS Hijacking</h3>
+<p>When your phone connects through VPN, it naturally looks for a DNS server. In general, the phone will automatically use the VPN server, namely <code>10.0.42.1</code>, as its DNS server. Since you now have permission to modify the server, you can use dnsmasq or similar tools to rewrite the hostname you want to connect to into <code>10.0.42.1</code>.</p>
+<p>This way, when you enter the hostname in Moonlight, the phone will query dnsmasq, and dnsmasq will return this address. The result is equivalent to the previous step: it is still an internal address, but Moonlight now stores the hostname internally.</p>
+<p>Concretely, suppose your goal is to use <code>moon.example.test</code> as the final access hostname, and it is currently mapped by the VPN to the virtual IP <code>10.0.42.1</code>. This is equivalent to the following configuration:</p>
+<pre><code class="language-text">MOON_HOST=moon.example.test
+LAN_IP=10.0.42.1
+WG_IFACE=moonwg0
+</code></pre>
+<p>First, clear any existing runtime process:</p>
+<pre><code class="language-sh">sudo pkill -f '/tmp/moon-dnsmasq.conf' 2&gt;/dev/null || true
+sudo rm -f /tmp/moon-dnsmasq.conf /tmp/moon-dnsmasq.pid /tmp/moon-dnsmasq.log
+</code></pre>
+<p>Write the dnsmasq configuration:</p>
+<pre><code class="language-sh">cat &gt; /tmp/moon-dnsmasq.conf &lt;&lt;'EOF'
+no-resolv
+server=8.8.8.8
+interface=moonwg0
+listen-address=10.0.42.1
+bind-dynamic
+local=/moon.example.test/
+address=/moon.example.test/10.0.42.1
+log-queries
+log-facility=/tmp/moon-dnsmasq.log
+EOF
+</code></pre>
+<p>Then start dnsmasq:</p>
+<pre><code class="language-sh">sudo dnsmasq \
+  --conf-file=/tmp/moon-dnsmasq.conf \
+  --pid-file=/tmp/moon-dnsmasq.pid
+</code></pre>
+<p><strong>Remember to allow UDP port 53 through the firewall.</strong></p>
+<p>On the phone side, if you have a terminal emulator, run:</p>
+<pre><code class="language-sh">dig @10.0.42.1 A moon.example.test +short
+</code></pre>
+<p>Make sure the result is <code>10.0.42.1</code>, which verifies that the DNS hijacking has taken effect. Then open Moonlight on the phone, add a new host, and enter <code>moon.example.test</code>. If nothing unexpected happens, it should show <code>host updated</code>, and the second step is complete.</p>
+<h3 id="Modifying-Public-DNS">Modifying Public DNS</h3>
+<p>According to the experience from the Tieba post:</p>
+<blockquote>
+<p>On the client side, because iOS does not allow adding public addresses, but hosts that have already been added are not restricted.</p>
+</blockquote>
+<p>So the next step is to add a DNS A record in your domain provider, Vercel, Netlify, Cloudflare, or similar DNS management panel:</p>
+<pre><code class="language-text">key: moon.example.test
+value: &lt;server IP&gt;
+</code></pre>
+<p>Wait about a minute for DNS propagation, then turn off WireGuard on the phone. Open Moonlight again and wait for the exclamation mark in front of the computer to disappear, if there is one. After that, entering the host should give you real public-hostname streaming.</p>
+<p>For future use, you no longer need to enable WireGuard. You can even uninstall it, as long as Sunshine is online and the following ports are reachable: <code>TCP: 8000, 8001, 47984, 47989, 48010</code> and <code>UDP: 47998-48000, 48002, 48010</code>.</p>
+<blockquote>
+<p>Of course, if you accidentally delete this Sunshine host in Moonlight, you will need to redo from Step 2;</p>
+<p>if you even delete WireGuard, then you need to start over from the beginning.</p>
+</blockquote>
+<p><strong>But please note that this method currently seems to work only for non-TLS-ified hostnames. See the next section for details.</strong></p>
+<h2 id="HTTPS-Support">HTTPS Support</h2>
+<p>Let me state the conclusion first: after several days of hacking, I did not manage to make iOS public streaming work with HSTS-enabled HTTPS hostnames, such as this site's <code>junyu33.me</code>. This conclusion holds for both the official Moonlight client and the third-party VoidLink client. Although I failed, I will still record some observations that may be useful in the future.</p>
+<ol>
+<li>This phenomenon only appears on iOS devices. Moonlight on Android and Windows works perfectly fine.</li>
+<li>In the GitHub code of Moonlight iOS, the URL constructed for fresh manual add is <code>http://&lt;host&gt;:47989/serverinfo</code>. In other words, the app itself wants to use HTTP, but the internal implementation of iOS CFNetwork upgrades it to HTTPS and sends something like a <code>TLS ClientHello</code>. This is also consistent with the fact that both Moonlight and VoidLink fail in the same way.</li>
+<li>I once used stunnel/HAProxy, together with my own domain certificate, to decrypt the TLS-encrypted <code>GET /serverinfo HTTP/1.1</code> request from the client and forward it to the Sunshine server. But the following <code>/pair</code>, cert, challenge, session, RTSP/UDP, and other steps would all need this MITM-like middle layer. The engineering complexity was not low, and I did not succeed after spending a day or two on it.</li>
+<li>The HSTS policy of my main site is <code>strict-transport-security: max-age=31536000</code>, without <code>includeSubDomains</code>, so it may not be the fault of <code>junyu33.me</code>'s HSTS policy itself. One possible explanation is that because I had previously visited my own domain, the iOS device cached the HTTPS state of that domain, and CFNetwork formed <strong>some kind of recursive-HSTS-like state</strong> for my domain, causing the device to send a TLS handshake packet right from the start.</li>
+</ol>
+<p>There is also a vague issue: after repeated HTTPS experiments, normal Moonlight Windows access to Sunshine would get stuck at the RTSP Handshake stage. Restarting NetworkManager did not help; I had to reboot the server machine to recover. I have not found a solution to this issue yet.</p>
+
+</div>
+
+
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
+
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
+</body>
+</html>

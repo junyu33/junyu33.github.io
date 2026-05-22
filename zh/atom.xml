@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-05-11T09:30:00.000Z</updated>
+  <updated>2026-05-22T15:15:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -11,6 +11,17 @@
     <id>https://blog.junyu33.me/zh/2038/01/19/meta/</id>
     <updated>2026-04-25T09:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>用 Split DNS 让官方 Moonlight iOS 跑通公网 IPv4 串流</title>
+    <link href="https://blog.junyu33.me/zh/2026/05/22/moonlight/"/>
+    <id>https://blog.junyu33.me/zh/2026/05/22/moonlight/</id>
+    <updated>2026-05-22T15:15:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>官方 Moonlight iOS 客户端对公网 IPv4 添加主机并不友好。虽然你可以选择自编译仓库或者花 $1.49/9 CNY 购买社区 fork <code>VoidLink</code> 来绕过这一限制，但尝试花一些时间来从服务端 Sunshine 下手也不失一种选择。</p>
+<p>最终的 workaround 很简单：让同一个 hostname 在配对时解析到 VPN/LAN IP，在公网使用时解析到 public IP。仓库见 <a href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>
+<blockquote>
+<p>注意这个方法仅仅对非 TLS 化的域名有效。</p>
+</blockquote>]]></summary>
   </entry>
   <entry>
     <title>A One Round Protocol for Tripartite Diffie–Hellman</title>
@@ -185,12 +196,5 @@
 <p>此游戏有无数变种（正因此随机找一个人很有可能因不认同规则而玩不起来），但 Max 的变种最吸引笔者，因为可以靠自己变7乃至双7限制对方的选择，给纯粹随波逐流的游戏增添了策略。高中时，笔者就试图分析此游戏的策略，无奈学艺不精，半途而废。4年后，笔者受室友影响，沉迷上了国际象棋，对求解器的原理颇好奇，于是一鼓作气，将其解出。</p>
 <p>笔者目前的编程功底不能说比往年高了多少，至今仍然几乎是高一用 Python 刷洛谷攒下的功底，换任何一门语言都不能习惯——即使是类型系统严谨很多的 Rust 和目前最熟悉的 TypeScript。能写出来，也许要感谢 ChatGPT 和 Copilot 吧。</p>
 <p>本文写给无博弈论基础者。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>Diophantine equations and elliptic curves</title>
-    <link href="https://blog.junyu33.me/zh/2025/04/27/diophantine/"/>
-    <id>https://blog.junyu33.me/zh/2025/04/27/diophantine/</id>
-    <updated>2025-04-27T15:30:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>在上一篇 post 中，我们介绍了在椭圆曲线上的 weil pairing 和 tate pairing。在这一篇中我们考虑椭圆曲线在丢番图方程上的一些应用。</p>]]></summary>
   </entry>
 </feed>

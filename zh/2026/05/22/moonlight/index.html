@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    
+      <link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/05/22/moonlight/">
+    
+  
+
+  <link rel="stylesheet" href="/vendor/highlight/github.min.css">
+
+  <!-- RSS / Atom -->
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
+
+  <script defer src="/vendor/highlight/highlight.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <title>用 Split DNS 让官方 Moonlight iOS 跑通公网 IPv4 串流 | 现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/zh">首页</a>
+                                <a href="/zh/archives">归档</a>
+                                
+                                        <a href="/zh/categories">分类</a>
+                                
+                                
+                                        <a href="/zh/tags">标签</a>
+                                
+                                <a href="/">English</a>
+                                <a id="mirror-switch" data-lang="zh" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">国内镜像</a>
+                        
+                </div>
+        </div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2026/05/22/moonlight/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>用 Split DNS 让官方 Moonlight iOS 跑通公网 IPv4 串流</h1>
+	<p>官方 Moonlight iOS 客户端对公网 IPv4 添加主机并不友好。虽然你可以选择自编译仓库或者花 $1.49/9 CNY 购买社区 fork <code>VoidLink</code> 来绕过这一限制，但尝试花一些时间来从服务端 Sunshine 下手也不失一种选择。</p>
+<p>最终的 workaround 很简单：让同一个 hostname 在配对时解析到 VPN/LAN IP，在公网使用时解析到 public IP。仓库见 <a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>
+<blockquote>
+<p>注意这个方法仅仅对非 TLS 化的域名有效。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="背景">背景</h2>
+<p>25 年 2 月份，我写了<a href="/zh/2025/02/27/overleaf/">一篇文章</a>，介绍了利用公网 frp 跳板机地址，连接到实验室的工位电脑，并参照 24 年 9 月份<a href="/zh/2024/09/22/vnc/">这篇文章</a>的方法在实验室电脑上也搭建好了 VNC 服务用于远程访问桌面。</p>
+<p>然而随着时间的推移，我的工位电脑桌面环境从 Xfce 换成了 KDE Plasma，因此原有方案不再适用。先前 VNC 的连接方式变成了 Sunshine/Moonlight 的串流组合方案，并仍然使用域名连接。</p>
+<p>Moonlight 电脑端和 Android 端这边没有遇到任何问题。然而在 iOS 端，由于苹果相关政策，串流无法在公网实现。只不过这一政策<a target="_blank" rel="noopener" href="https://github.com/moonlight-stream/moonlight-ios/issues/611">在 24 年被取消</a>，但开发者截至写作之日并没有跟进。为了绕过这一公网限制，我便开始了探索。</p>
+<h2 id="已有方案">已有方案</h2>
+<p>这里有一些网上能找到的现成的方案：</p>
+<ol>
+<li>如果你就在工位电脑附近，你可以直接工位电脑开热点，手机连接热点，然后 Moonlight 输入热点主机 IP。</li>
+<li>可以使用 Tailscale/Wireguard 等 VPN 方案，伪装成一个内网地址进行连接。</li>
+<li>既然 Moonlight 开源，可以<a target="_blank" rel="noopener" href="https://github.com/moonlight-stream/moonlight-ios/issues/611">删除那行限制</a>并重新编译一个 fork，或者使用 VoidLink 等第三方方案。</li>
+<li>在路由上做域名劫持，使得同一个域名在外网解析为公网地址，内网解析为内网地址。具体方案<a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7981472093">见此贴吧老哥</a>。</li>
+</ol>
+<p>然而，这四者的不足分别如下：</p>
+<ol>
+<li>你既然都能物理接触工位电脑了，那也没必要串流了，直接用电脑就行。</li>
+<li>Tailscale 依赖第三方服务器，其实也等价于普通的远程桌面方案，有一定延迟问题（但我测试了一下延迟貌似还不错，可以作为备选方案）；Wireguard 也需要一个公网的 endpoint / FRP 方案来实现信道建立。当然这两者都会与手机自用的梯子相冲突，对国内用户会带来不少的麻烦。</li>
+<li>自行编译方案如果对于手头没有 Mac 的话比较困难，后者的话 VoidLink 需要支付 $1.49/9 CNY 来摊销开发者付给苹果的成本费用。</li>
+<li>必须有路由器的访问权限，以及人需要在路由器附近进行一次 LAN 配对。</li>
+</ol>
+<p>那么有没有一种方式，既能实现公网域名访问、不依赖 VPN 隧道、仅使用官方 App，还无需到工位电脑现场操作呢？答案是肯定的。</p>
+<h2 id="本文方案简介">本文方案简介</h2>
+<p>简单来说，我的方案主要是对于方案四的一个 fork，只是把路由器的 DNS 劫持步骤改为由 Sunshine 所在的 Linux 服务端来实现。同时对于最开始的 LAN 配对步骤，也搬到 VPN 上来进行实现——也就是，你仅仅只需要对服务器的 SSH 访问权限，以及 root 权限，即可完整下文所有的步骤。</p>
+<h3 id="建立连接">建立连接</h3>
+<p>首先如果你使用的是 FRP 内网穿透，走 <code>bindPort = 8000</code>，记得在 frps/frpc 中开放 UDP 的 51820 端口，客户端配置如下（frp 0.61 版本）：</p>
+<pre><code class="language-toml">serverAddr = &quot;&lt;public IP of frps&gt;&quot;
+serverPort = 8000
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+
+[[proxies]]
+name = &quot;moonlight-wireguard-udp-51820&quot;
+type = &quot;udp&quot;
+localIP = &quot;127.0.0.1&quot;
+localPort = 51820
+remotePort = 51820
+</code></pre>
+<p>服务端配置如下：</p>
+<pre><code class="language-toml">bindPort = 8000
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+</code></pre>
+<p>然后是 Sunshine/Moonlight 本体需要的连接，首先是客户端：</p>
+<pre><code class="language-toml">serverAddr = &quot;&lt;public IP of frps&gt;&quot;
+serverPort = 8001
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+
+
+&#123;&#123;- range $_, $v := parseNumberRangePair "47984,47989,48010" "47984,47989,48010" &#125;&#125;
+[[proxies]]
+name       = &quot;sunshine-tcp-&#123;&#123; $v.First &#125;&#125;&quot;
+type       = &quot;tcp&quot;
+localIP    = &quot;127.0.0.1&quot;
+localPort  = &#123;&#123; $v.First &#125;&#125;
+remotePort = &#123;&#123; $v.Second &#125;&#125;
+&#123;&#123;- end &#125;&#125;
+
+&#123;&#123;- range $_, $v := parseNumberRangePair "47998-48000,48002,48010" "47998-48000,48002,48010" &#125;&#125;
+[[proxies]]
+name       = &quot;sunshine-udp-&#123;&#123; $v.First &#125;&#125;&quot;
+type       = &quot;udp&quot;
+localIP    = &quot;127.0.0.1&quot;
+localPort  = &#123;&#123; $v.First &#125;&#125;
+remotePort = &#123;&#123; $v.Second &#125;&#125;
+&#123;&#123;- end &#125;&#125;
+</code></pre>
+<p>然后是服务端：</p>
+<pre><code class="language-toml">bindPort = 8001
+
+auth.method = &quot;token&quot;
+auth.token = &quot;PUT_YOUR_FRP_TOKEN_HERE&quot;
+</code></pre>
+<p>对应的防火墙也要开放端口为：</p>
+<pre><code>TCP: 8000, 8001, 47984, 47989, 48010
+UDP: 51820, 47998-48000, 48002, 48010
+</code></pre>
+<p>下一步便是用 WireGuard 建立 iOS 端与 Sunshine 服务端的连接，这一步网上应该有很多教程，你可以阅读相关内容、ATFAI，或者<a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP/blob/main/README.zh-CN.md">参考仓库的第四步</a>进行操作。</p>
+<blockquote>
+<p>注意我的脚本默认服务器的虚拟 IP 为 <code>10.0.42.1</code>，客户端为 <code>10.0.42.2</code>。你也可以修改仓库的 <code>.env</code> 文件自行设置，但后文将以这两个 IP 为准。</p>
+</blockquote>
+<p>手机扫描二维码并导入成功，启动 WireGuard 连接后。在 Moonlight 的添加设备中输入 <code>10.0.42.1</code>，不出意外的话，即可连接成功（主界面出现一个带锁电脑的标志）。接着点击电脑会出现一个配对界面，如果你不在电脑身边，可以使用 SSH 端口转发：</p>
+<pre><code class="language-sh">ssh -L 47990:127.0.0.1:47990 &lt;user&gt;@&lt;server IP&gt;
+</code></pre>
+<p>然后浏览器访问 <a target="_blank" rel="noopener" href="https://localhost:47990/pin">https://localhost:47990/pin</a> （注意是 HTTPS，不是 HTTP），完成配对过程后，手机应该就可以正常串流了。</p>
+<h3 id="软件版-DNS-劫持">软件版 DNS 劫持</h3>
+<p>当你的手机要通过 VPN 连接时，手机自然寻找一个 DNS 服务器，一般情况下，手机会自动选择 VPN 的服务端（也就是 <code>10.0.42.1</code>）作为 DNS 地址。而你现在具有对服务端的修改权限，于是你可以使用 dnsmasq 等类似工具将你要连接的域名重写到 <code>10.0.42.1</code>。这样，当你在 Moonlight 输入要连接的域名时，手机将会访问到 dnsmasq，后者返回这个地址，从而等价于上一步的访问结果——仍然是一个内网地址，但 Moonlight 内部存放的信息已经变成那个域名了。</p>
+<p>具体而言，假如你的目的是使用 <code>moon.example.test</code> 作为最终的访问域名，目前被 VPN 映射到了 <code>10.0.42.1</code> 这个虚拟 IP，这等价于以下配置：</p>
+<pre><code>MOON_HOST=moon.example.test
+LAN_IP=10.0.42.1
+WG_IFACE=moonwg0
+</code></pre>
+<p>首先清除已有的运行进程：</p>
+<pre><code class="language-sh">sudo pkill -f '/tmp/moon-dnsmasq.conf' 2&gt;/dev/null || true
+sudo rm -f /tmp/moon-dnsmasq.conf /tmp/moon-dnsmasq.pid /tmp/moon-dnsmasq.log
+</code></pre>
+<p>写 dnsmasq 配置：</p>
+<pre><code class="language-sh">cat &gt; /tmp/moon-dnsmasq.conf &lt;&lt;'EOF'
+no-resolv
+server=8.8.8.8
+interface=moonwg0
+listen-address=10.0.42.1
+bind-dynamic
+local=/moon.example.test/
+address=/moon.example.test/10.0.42.1
+log-queries
+log-facility=/tmp/moon-dnsmasq.log
+EOF
+</code></pre>
+<p>然后启动 dnsmasq：</p>
+<pre><code>sudo dnsmasq \
+  --conf-file=/tmp/moon-dnsmasq.conf \
+  --pid-file=/tmp/moon-dnsmasq.pid
+</code></pre>
+<p><strong>记得允许防火墙的 UDP 53 端口</strong>。</p>
+<p>手机端这边，如果你有 terminal emulator，运行：</p>
+<pre><code>dig @10.0.42.1 A moon.example.test +short
+</code></pre>
+<p>确保结果返回 <code>10.0.42.1</code> 来验证 DNS 劫持生效。之后打开手机 Moonlight，点击新增 host，输入 <code>moon.example.test</code>，不出意外的话，应该会显示 host updated，这样第二步就完成了。</p>
+<h3 id="修改公网-DNS">修改公网 DNS</h3>
+<p>根据贴吧老哥的经验：</p>
+<blockquote>
+<p>客户端这边由于ios限制无法添加公网地址，但已经添加的主机不受限制。</p>
+</blockquote>
+<p>因此我们下一步在域名提供商/vercel/netlify/cloudflare等类似区域，添加一条 DNS A 记录：</p>
+<pre><code>key: moon.example.test
+value: &lt;server IP&gt;
+</code></pre>
+<p>然后等一分钟 DNS 传播，之后关掉手机里的 WireGuard，再打开 Moonlight，等待电脑面前的感叹号消失（如果有的话）。之后进入，即可实现真正的公网域名串流。</p>
+<p>在以后的使用中，也不用开启 WireGuard，甚至你可以直接卸载它，只需要保证 Sunshine 在线，以及 <code>TCP: 8000, 8001, 47984, 47989, 48010</code> 与 <code>UDP: 47998-48000, 48002, 48010</code> 端口通畅即可。</p>
+<blockquote>
+<p>当然如果你在 Moonlight 误删除了这个 Sunshine 主机，就得从第二步 redo；</p>
+<p>如果你甚至把 WireGuard 也删了，那就得从头开始了。</p>
+</blockquote>
+<p><strong>但请注意，这个方法目前似乎仅仅对非 TLS 化的域名有效，具体原因见下一节。</strong></p>
+<h2 id="HTTPS-支持">HTTPS 支持</h2>
+<p>先说结论，经过数日的 hack，我并没有攻克 iOS 端带有 HSTS 支持的 HTTPS 域名（例如本站 <code>junyu33.me</code>）的公网串流。这个结论对官方的 Moonlight 和第三方的 VoidLink 都成立。虽然失败了，我这里仍会给出一些对未来可能有用的 observation。</p>
+<ol>
+<li>这个现象仅在 iOS 设备上出现，Android 和 Windows 端的 Moonlight 完全正常。</li>
+<li>GitHub 的 Moonlight iOS 代码中，fresh manual add 的构造链接是 <code>http://&lt;host&gt;:47989/serverinfo</code>。也就是 App 本身想走 HTTP，但 iOS CFNetwork 的内部实现中，将其升级成了 HTTPS 并发出了类似 <code>TLS ClientHello</code> 指令。这也与 Moonlight/VoidLink 都失败现象一致。</li>
+<li>我曾经使用 stunnel/HAProxy，加上自己的域名证书，解密了客户端使用 TLS 加密的 <code>GET /serverinfo HTTP/1.1</code> 请求，并转发给 sunshine 服务端。但之后的 /pair、cert、challenge、session、RTSP/UDP 等步骤都需要用这种类似于 MITM 的中间层，工程复杂度不低，我花了一两天没有成功。</li>
+<li>我的主站的 HSTS 策略是 <code>strict-transport-security: max-age=31536000</code>，没有 <code>includeSubDomains</code>，因此可能并不是 <code>junyu33.me</code> 本身 HSTS 策略的锅。一些可能的解释是因为我曾经访问过自己的域名，iOS 设备中缓存了我域名的 HTTPS 状态，而 CFNetwork 又把我的域名形成了<strong>某种类似于递归HSTS状态</strong>，从而导致设备一上来发 TLS 握手包。</li>
+</ol>
+<p>还有一个模糊的问题，就是 HTTPS 反复试验后，我的正常 Moonlight Windows 访问 Sunshine 会卡在 RTSP Handshake 状态，重启 NetworkManager 没用，必须重启服务端电脑才能恢复正常——这个问题目前还没找到解决方案。</p>
+
+</div>
+
+
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
+
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
+</body>
+</html>

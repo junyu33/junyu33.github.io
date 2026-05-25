@@ -207,7 +207,7 @@ value: &lt;server IP&gt;
 </blockquote>
 <p><strong>但请注意，这个方法目前似乎仅仅对非 TLS 化的域名有效，具体原因见下一节。</strong></p>
 <h2 id="HTTPS-支持">HTTPS 支持</h2>
-<p>先说结论，经过数日的 hack，我并没有攻克 iOS 端带有 HSTS 支持的 HTTPS 域名（例如本站 <code>junyu33.me</code>）的公网串流。这个结论对官方的 Moonlight 和第三方的 VoidLink 都成立。虽然失败了，我这里仍会给出一些对未来可能有用的 observation。</p>
+<p><s>先说结论，经过数日的 hack，我并没有攻克 iOS 端带有 HSTS 支持的 HTTPS 域名（例如本站 <code>junyu33.me</code>）的公网串流。这个结论对官方的 Moonlight 和第三方的 VoidLink 都成立。虽然失败了，我这里仍会给出一些对未来可能有用的 observation。</s>（已经在 VoidLink 测试成功，内容见后文）</p>
 <ol>
 <li>这个现象仅在 iOS 设备上出现，Android 和 Windows 端的 Moonlight 完全正常。</li>
 <li>GitHub 的 Moonlight iOS 代码中，fresh manual add 的构造链接是 <code>http://&lt;host&gt;:47989/serverinfo</code>。也就是 App 本身想走 HTTP，但 iOS CFNetwork 的内部实现中，将其升级成了 HTTPS 并发出了类似 <code>TLS ClientHello</code> 指令。这也与 Moonlight/VoidLink 都失败现象一致。</li>
@@ -215,6 +215,25 @@ value: &lt;server IP&gt;
 <li>我的主站的 HSTS 策略是 <code>strict-transport-security: max-age=31536000</code>，没有 <code>includeSubDomains</code>，因此可能并不是 <code>junyu33.me</code> 本身 HSTS 策略的锅。一些可能的解释是因为我曾经访问过自己的域名，iOS 设备中缓存了我域名的 HTTPS 状态，而 CFNetwork 又把我的域名形成了<strong>某种类似于递归HSTS状态</strong>，从而导致设备一上来发 TLS 握手包。</li>
 </ol>
 <p>还有一个模糊的问题，就是 HTTPS 反复试验后，我的正常 Moonlight Windows 访问 Sunshine 会卡在 RTSP Handshake 状态，重启 NetworkManager 没用，必须重启服务端电脑才能恢复正常——这个问题目前还没找到解决方案。</p>
+<h3 id="Updated-on-2026-05-25">Updated on 2026/05/25</h3>
+<blockquote>
+<p>该段内容由 GPT 5.5-Thinking 生成，但作者确认该思路在 VoidLink 客户端测试成功。</p>
+</blockquote>
+<p>最终可工作的结构是一个不对称的 HTTPS shim：</p>
+<pre><code class="language-text">47989:
+  client -&gt; hostname:47989
+  nft redirect -&gt; 48489
+  HAProxy presents a Let's Encrypt certificate
+  HAProxy forwards plaintext HTTP -&gt; Sunshine 127.0.0.1:47989
+
+47984:
+  client -&gt; hostname:47984
+  direct to Sunshine native HTTPS/mTLS endpoint
+  Sunshine itself presents the same hostname-valid Let's Encrypt certificate
+</code></pre>
+<p>这里最关键的发现是：<code>47984</code> 不是普通 HTTPS，而是 Sunshine 的原生 mTLS 端点。它会要求 Moonlight/VoidLink 客户端提供 client certificate。因此，不能简单地用 HAProxy 反代 <code>47984</code>：HAProxy 没有 iOS 客户端的私钥，无法代替客户端完成 mTLS。另一方面，如果只代理 <code>47989</code>，但 <code>47984</code> 仍然使用 Sunshine 的自签证书，iOS 又会在 hostname 模式下报 SSL error。</p>
+<p>所以最终解法是：只 shim <code>47989</code>，让它通过 HAProxy 使用公网可信证书完成 hostname TLS bootstrap；而 <code>47984</code> 不经过反代，仍然由 Sunshine 原生处理 mTLS，但把 Sunshine 的 server certificate 替换为同一个 hostname-valid Let's Encrypt 证书。这样 iOS 既能信任 server certificate，又能把自己的 client certificate 直接交给 Sunshine。</p>
+<p>这个方案已经整理到 <code>https-shim</code> branch 中，包括持久化的 HAProxy systemd service、nftables redirect/helper，以及安装和回滚脚本。</p>
 
 </div>
 

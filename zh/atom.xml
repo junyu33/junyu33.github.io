@@ -18,10 +18,7 @@
     <id>https://blog.junyu33.me/zh/2026/05/22/moonlight/</id>
     <updated>2026-05-25T12:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>官方 Moonlight iOS 客户端对公网 IPv4 添加主机并不友好。虽然你可以选择自编译仓库或者花 $1.49/9 CNY 购买社区 fork <code>VoidLink</code> 来绕过这一限制，但尝试花一些时间来从服务端 Sunshine 下手也不失一种选择。</p>
-<p>最终的 workaround 很简单：让同一个 hostname 在配对时解析到 VPN/LAN IP，在公网使用时解析到 public IP。仓库见 <a href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>
-<blockquote>
-<p>注意这个方法仅仅对非 TLS 化的域名有效。</p>
-</blockquote>]]></summary>
+<p>最终的 workaround 很简单：让同一个 hostname 在配对时解析到 VPN/LAN IP，在公网使用时解析到 public IP。仓库见 <a href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>]]></summary>
   </entry>
   <entry>
     <title>A One Round Protocol for Tripartite Diffie–Hellman</title>

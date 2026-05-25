@@ -65,9 +65,6 @@
 	<h1>Making Official Moonlight iOS Work over Public IPv4 with Split DNS</h1>
 	<p>The official Moonlight iOS client is not very friendly to adding hosts over public IPv4. You can compile your own client, or pay $1.49 / 9 CNY for the community fork <code>VoidLink</code> to bypass this restriction, but spending some time approaching the problem from the Sunshine server side is also a reasonable option.</p>
 <p>The final workaround is simple: make the same hostname resolve to a VPN/LAN IP during pairing, and to a public IP during public use. Repository: <a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>
-<blockquote>
-<p>Note that this method only works for non-TLS-ified hostnames.</p>
-</blockquote>
 <span id="more"></span>
 <h2 id="Background">Background</h2>
 <p>In February 2025, I wrote <a href="/en/2025/02/27/overleaf/">an article</a> about connecting to my lab workstation through a public FRP jump server. Following the method from <a href="/en/2024/09/22/vnc/">this article in September 2024</a>, I also set up a VNC service on the lab machine for remote desktop access.</p>
@@ -206,7 +203,6 @@ value: &lt;server IP&gt;
 <p>Of course, if you accidentally delete this Sunshine host in Moonlight, you will need to redo from Step 2;</p>
 <p>if you even delete WireGuard, then you need to start over from the beginning.</p>
 </blockquote>
-<p><strong>But please note that this method currently seems to work only for non-TLS-ified hostnames. See the next section for details.</strong></p>
 <h2 id="HTTPS-Support">HTTPS Support</h2>
 <p><s>Let me state the conclusion first: after several days of hacking, I did not manage to make iOS public streaming work with HSTS-enabled HTTPS hostnames, such as this site's <code>junyu33.me</code>. This conclusion holds for both the official Moonlight client and the third-party VoidLink client. Although I failed, I will still record some observations that may be useful in the future.</s> (Successfully tested on VoidLink, details below)</p>
 <ol>
@@ -234,7 +230,7 @@ value: &lt;server IP&gt;
 </code></pre>
 <p>The key observation is that <code>47984</code> is not ordinary HTTPS. It is Sunshine’s native mTLS endpoint, and it requests a Moonlight/VoidLink client certificate. Therefore, simply reverse-proxying <code>47984</code> through HAProxy does not work: HAProxy does not have the iOS client private key and cannot complete the backend mTLS handshake on behalf of the client. On the other hand, if only <code>47989</code> is proxied while <code>47984</code> still uses Sunshine’s self-signed certificate, iOS still fails with an SSL error in hostname mode.</p>
 <p>The final solution is therefore to shim only <code>47989</code>: HAProxy terminates the hostname TLS bootstrap with a publicly trusted certificate and forwards the request to Sunshine’s plaintext <code>47989</code>. Meanwhile, <code>47984</code> is not proxied at all. It remains Sunshine’s native mTLS endpoint, but Sunshine’s server certificate is replaced with the same hostname-valid Let’s Encrypt certificate. This lets iOS trust the server certificate while still presenting its own client certificate directly to Sunshine.</p>
-<p>I have put this working setup into the <code>https-shim</code> branch, including a persistent HAProxy systemd service, nftables redirect/helper, and install/rollback scripts.</p>
+<p>I have put this <a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP/tree/https-shim">working setup</a> into the <code>https-shim</code> branch, including a persistent HAProxy systemd service, nftables redirect/helper, and install/rollback scripts.</p>
 
 </div>
 

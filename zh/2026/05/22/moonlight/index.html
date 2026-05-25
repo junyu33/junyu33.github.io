@@ -65,9 +65,6 @@
 	<h1>用 Split DNS 让官方 Moonlight iOS 跑通公网 IPv4 串流</h1>
 	<p>官方 Moonlight iOS 客户端对公网 IPv4 添加主机并不友好。虽然你可以选择自编译仓库或者花 $1.49/9 CNY 购买社区 fork <code>VoidLink</code> 来绕过这一限制，但尝试花一些时间来从服务端 Sunshine 下手也不失一种选择。</p>
 <p>最终的 workaround 很简单：让同一个 hostname 在配对时解析到 VPN/LAN IP，在公网使用时解析到 public IP。仓库见 <a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>
-<blockquote>
-<p>注意这个方法仅仅对非 TLS 化的域名有效。</p>
-</blockquote>
 <span id="more"></span>
 <h2 id="背景">背景</h2>
 <p>25 年 2 月份，我写了<a href="/zh/2025/02/27/overleaf/">一篇文章</a>，介绍了利用公网 frp 跳板机地址，连接到实验室的工位电脑，并参照 24 年 9 月份<a href="/zh/2024/09/22/vnc/">这篇文章</a>的方法在实验室电脑上也搭建好了 VNC 服务用于远程访问桌面。</p>
@@ -90,7 +87,7 @@
 </ol>
 <p>那么有没有一种方式，既能实现公网域名访问、不依赖 VPN 隧道、仅使用官方 App，还无需到工位电脑现场操作呢？答案是肯定的。</p>
 <h2 id="本文方案简介">本文方案简介</h2>
-<p>简单来说，我的方案主要是对于方案四的一个 fork，只是把路由器的 DNS 劫持步骤改为由 Sunshine 所在的 Linux 服务端来实现。同时对于最开始的 LAN 配对步骤，也搬到 VPN 上来进行实现——也就是，你仅仅只需要对服务器的 SSH 访问权限，以及 root 权限，即可完整下文所有的步骤。</p>
+<p>简单来说，我的方案主要是对于方案四的一个 fork，只是把路由器的 DNS 劫持步骤改为由 Sunshine 所在的 Linux 服务端来实现。同时对于最开始的 LAN 配对步骤，也搬到 VPN 上来进行实现——也就是，你仅仅只需要对服务器的 SSH 访问权限，以及 root 权限，即可完成下文所有的步骤。</p>
 <h3 id="建立连接">建立连接</h3>
 <p>首先如果你使用的是 FRP 内网穿透，走 <code>bindPort = 8000</code>，记得在 frps/frpc 中开放 UDP 的 51820 端口，客户端配置如下（frp 0.61 版本）：</p>
 <pre><code class="language-toml">serverAddr = &quot;&lt;public IP of frps&gt;&quot;
@@ -205,7 +202,6 @@ value: &lt;server IP&gt;
 <p>当然如果你在 Moonlight 误删除了这个 Sunshine 主机，就得从第二步 redo；</p>
 <p>如果你甚至把 WireGuard 也删了，那就得从头开始了。</p>
 </blockquote>
-<p><strong>但请注意，这个方法目前似乎仅仅对非 TLS 化的域名有效，具体原因见下一节。</strong></p>
 <h2 id="HTTPS-支持">HTTPS 支持</h2>
 <p><s>先说结论，经过数日的 hack，我并没有攻克 iOS 端带有 HSTS 支持的 HTTPS 域名（例如本站 <code>junyu33.me</code>）的公网串流。这个结论对官方的 Moonlight 和第三方的 VoidLink 都成立。虽然失败了，我这里仍会给出一些对未来可能有用的 observation。</s>（已经在 VoidLink 测试成功，内容见后文）</p>
 <ol>
@@ -233,7 +229,7 @@ value: &lt;server IP&gt;
 </code></pre>
 <p>这里最关键的发现是：<code>47984</code> 不是普通 HTTPS，而是 Sunshine 的原生 mTLS 端点。它会要求 Moonlight/VoidLink 客户端提供 client certificate。因此，不能简单地用 HAProxy 反代 <code>47984</code>：HAProxy 没有 iOS 客户端的私钥，无法代替客户端完成 mTLS。另一方面，如果只代理 <code>47989</code>，但 <code>47984</code> 仍然使用 Sunshine 的自签证书，iOS 又会在 hostname 模式下报 SSL error。</p>
 <p>所以最终解法是：只 shim <code>47989</code>，让它通过 HAProxy 使用公网可信证书完成 hostname TLS bootstrap；而 <code>47984</code> 不经过反代，仍然由 Sunshine 原生处理 mTLS，但把 Sunshine 的 server certificate 替换为同一个 hostname-valid Let's Encrypt 证书。这样 iOS 既能信任 server certificate，又能把自己的 client certificate 直接交给 Sunshine。</p>
-<p>这个方案已经整理到 <code>https-shim</code> branch 中，包括持久化的 HAProxy systemd service、nftables redirect/helper，以及安装和回滚脚本。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/junyu33/moonlight-ios-publicIP/tree/https-shim">这个方案</a>已经整理到 <code>https-shim</code> branch 中，包括持久化的 HAProxy systemd service、nftables redirect/helper，以及安装和回滚脚本。</p>
 
 </div>
 

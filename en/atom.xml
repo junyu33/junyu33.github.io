@@ -18,10 +18,7 @@
     <id>https://blog.junyu33.me/en/2026/05/22/moonlight/</id>
     <updated>2026-05-25T12:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>The official Moonlight iOS client is not very friendly to adding hosts over public IPv4. You can compile your own client, or pay $1.49 / 9 CNY for the community fork <code>VoidLink</code> to bypass this restriction, but spending some time approaching the problem from the Sunshine server side is also a reasonable option.</p>
-<p>The final workaround is simple: make the same hostname resolve to a VPN/LAN IP during pairing, and to a public IP during public use. Repository: <a href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>
-<blockquote>
-<p>Note that this method only works for non-TLS-ified hostnames.</p>
-</blockquote>]]></summary>
+<p>The final workaround is simple: make the same hostname resolve to a VPN/LAN IP during pairing, and to a public IP during public use. Repository: <a href="https://github.com/junyu33/moonlight-ios-publicIP">https://github.com/junyu33/moonlight-ios-publicIP</a></p>]]></summary>
   </entry>
   <entry>
     <title>Fifty-nine — Bye, Tenhou</title>

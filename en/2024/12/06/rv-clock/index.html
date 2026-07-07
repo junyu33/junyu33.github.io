@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-  <title>How to manually measure the CPU frequency of a Risc-V processor | 现充|junyu33</title>
+  <title>How to manually measure the CPU frequency of a RISC-V processor | 现充|junyu33</title>
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
@@ -62,7 +62,7 @@
       </nav>
     
 
-	<h1>How to manually measure the CPU frequency of a Risc-V processor</h1>
+	<h1>How to manually measure the CPU frequency of a RISC-V processor</h1>
 	<h2 id="Background">Background</h2>
 <p>Since I previously left my contact information on relevant forums while setting up a jump server environment for a Risc-V development board, someone reached out to me today. They believed that the Ubuntu image was running on the big core (1.6 GHz) of the CanMV-K230, whereas I had previously emphasized it was on the small core (800 MHz), and they wanted me to take a look.</p>
 <p>First, <code>lscpu</code> and <code>cat /proc/cpuinfo</code> are definitely not usable. Also, <code>/sys/bus/cpu/devices/cpu0/cpufreq/</code> does not exist, so the only option was to try writing code manually to measure the CPU frequency.</p>

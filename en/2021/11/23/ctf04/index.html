@@ -63,7 +63,7 @@
     
 
 	<h1>scuctf21 Freshman Contest Writeup</h1>
-	<p>The quality of this freshman contest was pretty good. Every member of our team <strong>“Youhuang Zhong Jian Tian”</strong> played to their strengths, and we had a great time during the competition. Below are a screenshot of the rankings and our team's writeup:</p>
+	<p>The quality of this freshman contest was pretty good. Every member of our team <strong>&quot;Youhuang Zhong Jian Tian&quot;</strong> played to their strengths, and we had a great time during the competition. Below are a screenshot of the rankings and our team's writeup:</p>
 <img src="https://img.junyu33.me/blog/ctf04/rank.jpg" style="zoom:50%;" >
 <span id="more"></span>
 <h2 id="WriteUp-from-junyu33">WriteUp from junyu33</h2>
@@ -78,12 +78,12 @@
 <pre><code>SCUCTF&#123;Welcome_to_SCUCTF!&#125;
 </code></pre>
 <h3 id="Crypto-2-ez-classic">Crypto-2:ez_classic</h3>
-<p>Opening the file shows a string of 0s and 1s. Based on the hint, the ciphertext should be read by interleaving two rows (at first I thought “W-shape” meant rail fence cipher). A script can extract odd positions first, then even positions.</p>
+<p>Opening the file shows a string of 0s and 1s. Based on the hint, the ciphertext should be read by interleaving two rows (at first I thought &quot;W-shape&quot; meant rail fence cipher). A script can extract odd positions first, then even positions.</p>
 <p>After converting the 01 string to ASCII, grouping every 8 bits, and printing decimal values, we get numbers like 210 and 226. I guessed it was another binary string, length 72.</p>
 <p>If we interpret 72 directly as ASCII, the length becomes only 9, which is impossible. Considering Morse code: treating 210 as <code>0</code> and 226 as <code>1</code>, I tried decoding. With 210 = 0, 226 = 1, no meaningful text. With 210 = 1 and 226 = 0, I got the following image:</p>
 <img src="https://img.junyu33.me/blog/ctf04/crypto2.png">
 <p>The tricky part: <strong>Morse code is not prefix-free, which means it cannot be uniquely decoded in linear time. A single ciphertext can map to multiple plaintexts!</strong></p>
-<p>(For example, the flag doesn't contain “tql”, but I still derived it.)</p>
+<p>(For example, the flag doesn't contain &quot;tql&quot;, but I still derived it.)</p>
 <p>After talking to the challenge author, he gave me most of the intended plaintext, and I brute-forced the rest.</p>
 <p>This challenge design wasn't particularly good.</p>
 <pre><code>SCUCTF&#123;B1N?F3NCE!&#125;
@@ -96,7 +96,7 @@
 <img src="https://img.junyu33.me/blog/ctf04/crypto3_1.png">
 <p>(<em>Of course, real mathematicians wouldn't waste time on trivial stuff like this qwq.</em>)</p>
 <blockquote>
-<p><strong>Slang note:</strong> “qwq” is a Chinese emoticon expressing mock-crying.</p>
+<p><strong>Slang note:</strong> &quot;qwq&quot; is a Chinese emoticon expressing mock-crying.</p>
 </blockquote>
 <p>Eventually I found the answer on Wikipedia. <strong>Euler is amazing!!!</strong></p>
 <img src="https://img.junyu33.me/blog/ctf04/crypto3.png">
@@ -118,7 +118,7 @@ print (hex(m)[2:].decode('hex'))
 <p><a target="_blank" rel="noopener" href="https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E5%8D%81%E6%AC%A1%E6%96%B9%E6%A0%B9/README.md">https://github.com/ustclug/hackergame2019-writeups/blob/master/official/十次方根/README.md</a></p>
 <img src="https://img.junyu33.me/blog/ctf04/crypto5.png">
 <h3 id="Crypto-7-Elliptic-Curve">Crypto-7:Elliptic Curve</h3>
-<p>An introductory elliptic curve problem. Unlike the “easy ECC” on Attack-Defense World, this one omits parameters <code>a</code> and <code>b</code>. But since three points are given, we can solve for the two unknowns using the curve equation.</p>
+<p>An introductory elliptic curve problem. Unlike the &quot;easy ECC&quot; on Attack-Defense World, this one omits parameters <code>a</code> and <code>b</code>. But since three points are given, we can solve for the two unknowns using the curve equation.</p>
 <img src="https://img.junyu33.me/blog/ctf04/crypto7.png">
 <p>Note: the values must make sense modulo <code>p</code>. We can use <code>gmpy2.invert</code> to compute them.</p>
 <p>Finally, applying fast exponentiation, the following code works:</p>
@@ -210,7 +210,7 @@ print(hex(m[0] + m[1])[2:])
 <p>Open the file with <strong>Stegsolve</strong>, flip left and right a few times, and a QR code will appear.
 Scan it and you'll get the flag.</p>
 <h3 id="Stego-2-Baby-Steg">Stego-2: Baby_Steg</h3>
-<p>The hint here was quite discouraging and confusing — “secret information bits” clearly felt like awkward machine translation.</p>
+<p>The hint here was quite discouraging and confusing — &quot;secret information bits&quot; clearly felt like awkward machine translation.</p>
 <p>When adjusting in <strong>Stegsolve</strong> to the <em>random color map</em> option, careful observation reveals a series of irregular pixels in the top-left corner, looking like this:</p>
 <img src="https://img.junyu33.me/blog/ctf04/stego2.png">
 <p>Convert those pixels into binary (<code>0/1</code>), then to ASCII, and you'll obtain the flag.
@@ -230,7 +230,7 @@ Although the colored section in the middle is hard to recognize, the flag still 
 <p>The challenge author tried to withdraw the problem, but wasn't fast enough — I had already downloaded it.</p>
 <img src="https://img.junyu33.me/blog/ctf04/java.jpg">  
 <h3 id="Osint-3-Lonely-Night">Osint-3: Lonely Night</h3>
-<p>From the picture, you can see a store called <strong>“Su 8 Supermarket”</strong>. Using Baidu Maps, only a few such locations can be found. One of them, located in Beijing, looks very similar to the given street view image — so that's the answer.</p>
+<p>From the picture, you can see a store called <strong>&quot;Su 8 Supermarket&quot;</strong>. Using Baidu Maps, only a few such locations can be found. One of them, located in Beijing, looks very similar to the given street view image — so that's the answer.</p>
 <h3 id="Pwn-1-test-your-nc">Pwn-1: test_your_nc</h3>
 <p>Same as the <strong>first pwn challenge on buuctf</strong>: simply connect with <code>nc</code>, then run <code>cat flag</code> to get the answer.</p>
 <h3 id="Pwn-2-quiz">Pwn-2: quiz</h3>
@@ -277,7 +277,7 @@ p.interactive()
 </code></pre>
 <p>(Both the easiest and hardest reversing problems were taken by teammates, <strong>qwq</strong>).</p>
 <h3 id="Re5-ezapk">Re5: ezapk</h3>
-<p>(Not at all “easy” — simply using JEB wasn't enough to solve this one.)</p>
+<p>(Not at all &quot;easy&quot; — simply using JEB wasn't enough to solve this one.)</p>
 <p>In <code>MainActivity</code>, there was a private member called the <strong><code>check</code> function</strong>, which was not defined in the code section.</p>
 <p>Based on previous experience with similar problems, I quickly loaded the APK's <strong>library files into IDA</strong>, where I found the implementation of the <code>check</code> function.</p>
 <p>(The code was really unpleasant to read, especially that <code>return</code>.)</p>
@@ -291,7 +291,7 @@ p.interactive()
 </ul>
 <p>I wrote a decryption script, but some characters of the flag came out broken. So in the end, I only XORed each position manually and then <strong>identified the flag by eye</strong>.</p>
 <h3 id="HappyRe-ezJava">HappyRe: ezJava</h3>
-<p>(It really was quite “happy.”)</p>
+<p>(It really was quite &quot;happy.&quot;)</p>
 <p>Open the file in <strong>Jeb 4.2</strong>, decompile, scroll down, and you can directly see the flag.</p>
 <img src="https://img.junyu33.me/blog/ctf04/happyre.png">
 <h3 id="Re4-Upxed">Re4: Upxed</h3>
@@ -307,7 +307,7 @@ p.interactive()
 <p>Also pay attention to the encryption loop count (<strong>32 iterations</strong>) and the <strong>magic number</strong> <code>-0x61C88647</code> (important detail: it's negative, which is somewhat tricky).</p>
 <p>For the rest, just follow the reference implementation and it works.</p>
 <h3 id="Re9-Plants-Vs-Zombies-Unintended-Solution">Re9: Plants_Vs_Zombies (Unintended Solution)</h3>
-<p>(<strong>The intended solution was related to a technique called “Heaven's Gate,” but I definitely wasn't able to do that at the time.</strong>)</p>
+<p>(<strong>The intended solution was related to a technique called &quot;Heaven's Gate,&quot; but I definitely wasn't able to do that at the time.</strong>)</p>
 <p>When I got the game, I used a few tricks and cleared it within half an hour (don't ask me how I beat it so quickly). However, the expected decryption routine didn't appear.</p>
 <p>Instead, when the game failed, the file <strong><code>flag.txt</code></strong> in the root directory was encrypted into <strong><code>flag.enc</code></strong>. Since I had just finished two cryptography problems and was in a crypto mindset, I decided to analyze the relationship between plaintext and ciphertext.</p>
 <img src="https://img.junyu33.me/blog/ctf04/re9.png">

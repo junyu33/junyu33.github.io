@@ -255,7 +255,7 @@ o xexxtrxacxt1x.
 <p>Our next problem is: what value should <strong>dummy</strong> take? As readers of <em>CS:APP</em> will know, data is stored in <strong>little-endian</strong> format — lower addresses hold the low-order bytes, and higher addresses hold the high-order bytes. Clearly, <strong>start</strong> belongs to the lower address, while <strong>stride</strong> is in the higher address, with a difference of exactly <code>sizeof(char)</code>, i.e., 1 byte. One byte corresponds to two hexadecimal digits. Therefore, <strong>key2</strong> is <code>0x309</code>, which is <code>777</code> in decimal.</p>
 <hr>
 <p>Now, <strong>key3</strong> and <strong>key4</strong> are more troublesome. Looking at the hint from <em>message1</em>:</p>
-<p><strong>“Choose a pair of key3, key4 to bypass extract1 and force the program to call extract2.”</strong></p>
+<p><strong>&quot;Choose a pair of key3, key4 to bypass extract1 and force the program to call extract2.&quot;</strong></p>
 <p>Let's analyze the <strong>extract2</strong> function:</p>
 <pre><code class="language-C">char * extract_message2(int start, int stride) &#123;
    int i, j;

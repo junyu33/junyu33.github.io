@@ -65,7 +65,7 @@
 	<h1>如何手动测量 RISC-V 处理器的 CPU 频率</h1>
 	<p>之前长文章写起来有些累，现在写一篇短的。</p>
 <h2 id="background">background</h2>
-<p>由于我之前在给 Risc-V 开发板配跳板机环境时，在相关论坛上留下了自己的联系方式。于是今天有人找到我，他认为 ubuntu 镜像是在 CanMV-K230 的大核（1.6 GHz）中，而我之前强调是在小核（800 MHz），想让我看一看。</p>
+<p>由于我之前在给 RISC-V 开发板配跳板机环境时，在相关论坛上留下了自己的联系方式。于是今天有人找到我，他认为 Ubuntu 镜像是在 CanMV-K230 的大核（1.6 GHz）中，而我之前强调是在小核（800 MHz），想让我看一看。</p>
 <p>首先 <code>lscpu</code>，<code>cat /proc/cpuinfo</code> 肯定是用不了的。同时 <code>/sys/bus/cpu/devices/cpu0/cpufreq/</code> 也不存在，因此只能尝试手写代码衡量 CPU 频率。</p>
 <span id="more"></span>
 <h2 id="solution">solution</h2>

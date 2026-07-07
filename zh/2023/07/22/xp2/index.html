@@ -64,7 +64,7 @@
 
 	<h1>一次给 Grab app 抓包的经历</h1>
 	<p>在 Singapore 的那段时间，为了实现不用纸币，但我的全币种信用卡并不支持云闪付功能，我只能使用第三方平台对自己的银行卡进行绑定。</p>
-<p>然后 grab 提供的大陆第三方平台只有 BOC，并且打开链接之后发现 BOC 的登录页面无法显示验证码。</p>
+<p>然后 Grab 提供的大陆第三方平台只有 BOC，并且打开链接之后发现 BOC 的登录页面无法显示验证码。</p>
 <p>我的任务就是尝试排查验证码无法显示的原因，最起码要把这个 URL 在电脑上复现出来。</p>
 <span id="more"></span>
 <h2 id="grab-desktop">grab desktop</h2>
@@ -143,11 +143,11 @@
 <ul>
 <li>即使装了 magiskhide，似乎 grab 还是有问题</li>
 </ul>
-<pre><code class="language-shell">:/ # magisk --denylist ls                                                                                                                                                            
+<pre><code class="language-shell">:/ # magisk --denylist ls
 com.google.android.gms|com.google.android.gms.unstable
 com.grabtaxi.passenger|com.grabtaxi.passenger
 :/ # pm list | grep grab
-1|:/ # pm list packages -f | grep grab                                                                                                                                               
+1|:/ # pm list packages -f | grep grab
 package:/data/app/~~oaJzpweAfnANsOwMdRVm8g==/com.grabtaxi.passenger-8U-wrhDH8uhWC6LSRS11cg==/base.apk=com.grabtaxi.passenger
 :/ # 
 </code></pre>

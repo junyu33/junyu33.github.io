@@ -13,7 +13,7 @@
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
   </entry>
   <entry>
-    <title>High-Speed Software Implementation of the Optimal Ate Pairing over Barreto-Naehrig Curves</title>
+    <title>Fast AVX-512 Implementation of the Optimal Ate Pairing on BLS12-381</title>
     <link href="https://blog.junyu33.me/zh/2026/07/17/cheng/"/>
     <id>https://blog.junyu33.me/zh/2026/07/17/cheng/</id>
     <updated>2026-07-17T10:15:00.000Z</updated>

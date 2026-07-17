@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+  <link rel="stylesheet" href="/vendor/highlight/github.min.css">
+
+  <!-- RSS / Atom -->
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
+
+  <script defer src="/vendor/highlight/highlight.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <title>High-Speed Software Implementation of the Optimal Ate Pairing over Barreto-Naehrig Curves | 现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/zh">首页</a>
+                                <a href="/zh/archives">归档</a>
+                                
+                                        <a href="/zh/categories">分类</a>
+                                
+                                
+                                        <a href="/zh/tags">标签</a>
+                                
+                                <a href="/">English</a>
+                                <a id="mirror-switch" data-lang="zh" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">国内镜像</a>
+                        
+                </div>
+        </div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+
+	<h1>High-Speed Software Implementation of the Optimal Ate Pairing over Barreto-Naehrig Curves</h1>
+	<p>2026/07/17 组会存档。</p>
+<span id="more"></span>
+<img src='https://img.junyu33.me/blog/cheng/cheng-01.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-02.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-03.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-04.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-05.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-06.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-07.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-08.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-09.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-10.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-11.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-12.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-13.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-14.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-15.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-16.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-17.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-18.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-19.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-20.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-21.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-22.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-23.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-24.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-25.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-26.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-27.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-28.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-29.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-30.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-31.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-32.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-33.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-34.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-35.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-36.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-37.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-38.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-39.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-40.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-41.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-42.png'>
+<img src='https://img.junyu33.me/blog/cheng/cheng-43.png'>
+
+</div>
+
+
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
+
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
+</body>
+</html>

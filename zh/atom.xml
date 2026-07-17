@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-07-07T11:30:00.000Z</updated>
+  <updated>2026-07-17T10:15:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -11,6 +11,13 @@
     <id>https://blog.junyu33.me/zh/2038/01/19/meta/</id>
     <updated>2026-07-08T06:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>High-Speed Software Implementation of the Optimal Ate Pairing over Barreto-Naehrig Curves</title>
+    <link href="https://blog.junyu33.me/zh/2026/07/17/cheng/"/>
+    <id>https://blog.junyu33.me/zh/2026/07/17/cheng/</id>
+    <updated>2026-07-17T10:15:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>2026/07/17 组会存档。</p>]]></summary>
   </entry>
   <entry>
     <title>六一——博客五周年祭 / 再见，外卖</title>
@@ -191,13 +198,5 @@
     <summary type="html"><![CDATA[<p>因为嫌未满 18 岁的外甥外放抖音太吵，并且打网游上瘾，我决定在力所能及的范围内采取一些措施。</p>
 <p>例如尝试编辑电信路由器的防火墙，将游戏对应的域名设为禁止访问。</p>
 <p>这里写一下探索的过程，正解会放在最后一节。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>五五——博客四周年祭 / 谈谈过去十五年接受的教育</title>
-    <link href="https://blog.junyu33.me/zh/2025/07/06/4th_anni/"/>
-    <id>https://blog.junyu33.me/zh/2025/07/06/4th_anni/</id>
-    <updated>2025-07-06T15:30:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>博客四周年了。今年也是我本科毕业的日子，于是这周年的主题是谈一谈目前陪伴了我十五年的国内教育。</p>
-<p>这是一个沉重的话题，但我不想做大段的论述。于是我选择一个较为轻松的方式：通过评价我从小学到大学接触的老师，来给我视角下的教育，勾勒一个大致的轮廓。</p>]]></summary>
   </entry>
 </feed>

@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-07-26T13:45:00.000Z</updated>
+  <updated>2026-08-31T15:55:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -11,6 +11,13 @@
     <id>https://blog.junyu33.me/zh/2038/01/19/meta/</id>
     <updated>2026-07-08T06:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>六三——父亲、象棋与 AI</title>
+    <link href="https://blog.junyu33.me/zh/2026/08/31/xiangqi/"/>
+    <id>https://blog.junyu33.me/zh/2026/08/31/xiangqi/</id>
+    <updated>2026-08-31T15:55:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>从我小时候记事开始，父亲就爱好下象棋——准确来说，这是他为数不多的几个爱好之一（另外两个是打麻将和看电视剧）。一个典型的画面就是小时候坐在父亲的腿上，面前是一块笔记本的显示屏，屏幕内的圆形物体有时候会在中间连成一条线，之后又会分开；再过一段时间，这种圆形物体的数量逐渐减少，直到某一个时刻突然又恢复了初始的样子——新的循环又开始了。</p>]]></summary>
   </entry>
   <entry>
     <title>六二——各自的时间流</title>
@@ -192,12 +199,5 @@
 <p>发布时间：2018-05-09 22:38</p>
 <p>原文地址：<a href="https://zhuanlan.zhihu.com/p/36656157">https://zhuanlan.zhihu.com/p/36656157</a></p>
 </blockquote>]]></summary>
-  </entry>
-  <entry>
-    <title>为什么椭圆曲线点加满足结合律</title>
-    <link href="https://blog.junyu33.me/zh/2025/08/10/cayley/"/>
-    <id>https://blog.junyu33.me/zh/2025/08/10/cayley/</id>
-    <updated>2025-08-10T03:30:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>这篇文章介绍椭圆曲线点加结合律的证明，以及更强的 9-points theorem。另外，也会涉及到该定理的三种推论：pascal 定理、pappus 定理，以及圆锥曲线极点极线的配极原则。</p>]]></summary>
   </entry>
 </feed>

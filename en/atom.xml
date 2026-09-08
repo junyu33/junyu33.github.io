@@ -3,7 +3,7 @@
   <title>My Blog (en)</title>
   <link href="https://blog.junyu33.me/en/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-07-07T11:30:00.000Z</updated>
+  <updated>2026-09-08T07:00:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>(sticky) meta information</title>
@@ -11,6 +11,17 @@
     <id>https://blog.junyu33.me/en/2038/01/19/meta/</id>
     <updated>2026-07-08T06:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>Lists some meta information related to the blog itself for easy reference.</p>]]></summary>
+  </entry>
+  <entry>
+    <title>(repost) statement</title>
+    <link href="https://blog.junyu33.me/en/2026/09/08/tristan/"/>
+    <id>https://blog.junyu33.me/en/2026/09/08/tristan/</id>
+    <updated>2026-09-08T07:00:00.000Z</updated>
+    <summary type="html"><![CDATA[<p><strong>Author:</strong> Tristan Buckmaster</p>
+<p><strong>Original:</strong><br>
+<a href="https://cims.nyu.edu/~tristanb/statement.pdf">https://cims.nyu.edu/~tristanb/statement.pdf</a></p>
+<p><strong>Archived:</strong><br>
+<a href="https://web.archive.org/web/20260908052240/https://cims.nyu.edu/~tristanb/statement.pdf">https://web.archive.org/web/20260908052240/https://cims.nyu.edu/~tristanb/statement.pdf</a></p>]]></summary>
   </entry>
   <entry>
     <title>Sixty-one — Blog 5th anniversary / Bye, food delivery</title>
@@ -189,12 +200,5 @@
 <p>There is <strong>only one repeated number</strong> in <code>nums</code>, return this repeated number.</p>
 <p>You must solve the problem <strong>without modifying the array</strong> and using only <strong>constant extra space</strong>.</p>
 </blockquote>]]></summary>
-  </entry>
-  <entry>
-    <title>How to calculate square roots by hand</title>
-    <link href="https://blog.junyu33.me/en/2025/03/09/sqrt/"/>
-    <id>https://blog.junyu33.me/en/2025/03/09/sqrt/</id>
-    <updated>2025-03-09T15:00:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>In elementary school, my father proudly showed me how he had learned to manually calculate square roots during his school days, saying it might come in handy for showing off among friends someday. I probably learned it back then, but later, this method seemed to disappear from math textbooks. All I could recall was the mnemonic: &quot;twenty times the initial quotient plus the next quotient.&quot; The main purpose of this article is to recount the process of how I managed to recall it.</p>]]></summary>
   </entry>
 </feed>

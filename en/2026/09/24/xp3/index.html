@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    
+      <link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/09/24/xp3/">
+    
+  
+
+  <link rel="stylesheet" href="/vendor/highlight/github.min.css">
+
+  <!-- RSS / Atom -->
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/atom.xml">
+
+  <script defer src="/vendor/highlight/highlight.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <title>Sixty-four——I pwned an HONOR Magic3 using DeepSeek-V4.1-Flash | 现充|junyu33</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="head-nav">
+        <div class="inner">
+                <a href="/">
+                        现充|junyu33
+                </a>
+                <div class="right">
+                        
+                                <a href="/">Home</a>
+                                <a href="/archives">Archive</a>
+                                
+                                        <a href="/categories">Categories</a>
+                                
+                                
+                                        <a href="/tags">Tags</a>
+                                
+                                <a href="/zh">中文站</a>
+                                <a id="mirror-switch" data-lang="en" target="_blank" rel="noopener" href="https://blog-cn.junyu33.me/">CN Mirror</a>
+                        
+                </div>
+        </div>
+</div>
+
+  <div class="main">
+    <div class="post">
+    
+      <nav class="lang-switch" role="navigation" aria-label="Language switch">
+        
+          <a class="lang-pill"
+             href="/zh/2026/09/24/xp3/"
+             hreflang="zh">
+            <span class="lang-label">中文</span>
+          </a>
+        
+      </nav>
+    
+
+	<h1>Sixty-four——I pwned an HONOR Magic3 using DeepSeek-V4.1-Flash</h1>
+	<p>After giving it some thought, I've decided to place this article in the &quot;blah&quot; section, as the non-technical content makes up the greater part of the piece.</p>
+<ul>
+<li>Device: Honor ELZ-AN00 · Android 11 · build ELZ-AN00 5.0.0.189(C00E183R6P1)</li>
+<li>Kernel: 5.4.86-qgki-g33a9ed8573e1 #1 SMP PREEMPT aarch64</li>
+<li>Config: user build, locked bootloader, CFI_CLANG + LTO_CLANG + THINLTO (non-GKI)</li>
+<li>Actor: uid 2000, CapEff=0, no root helper</li>
+</ul>
+<pre><code>junyu33@zjy-asus:/mnt/c/Users/junyu33/Desktop$ bash /home/junyu33/elz-phase2/notes/artifacts/root.sh -v &quot;id&quot;
+[check] target-page sha256 = 3720fc0ef95b2c4d654c6a660b211ee00eafac2bb37d85f5697dd483673a19d4
+[chain] starting the chain (uid 2000 -&gt; uid 0), about 40 s
+=== P1: first bounded kernel write on the phone (uid 2000, no root, no GDB) ===
+[0] links: T=0xffffffc012aae588 (ashmem_misc+0x10) read_jt=0xffffffc01182ae6c write_jt=0xffffffc01182b88c open=0xffffffc0101bd7a0 rt_mutex_init_waiter=0xffffffc0103686b4 do_futex=0xffffffc0103b3f04
+[S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+[S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+[S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+...
+[chain] ready (uid 0 pty on 127.0.0.1:31337, adb forward active)
+--- chain summary (154 lines) ---
+  [S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+  [S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+  [S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+...
+  [S0-SLIDE] d=0x190 samples=28163 candidates=2 best=0x2bc3a00000 votes=27395 second=135
+  [S0-SLIDE] SLIDE=0x2bc3a00000 runtime_text=0xffffffebd3a80000 runtime_etext=0xffffffebd5240000
+  [S0-SLIDE] kernel IPs in [_text,_etext)=150000/150000
+...
+  [7B] KREAD *(V+0x10)=0xffffffebd522ae6c (==read_jt: 1) *(V+0x18)=0xffffffebd522b88c (==write_jt: 1)
+...
+  [P1C-DAEMON] RESIDENT anchor_pt=/dev/pts/0 anchor_fd=3 window_pipe=held_by_parent listening=127.0.0.1:31337 uid=0 pid=7880
+  [P1C-DAEMON] each connection forks a session child with its OWN pty+shell; this process never exits
+...
+  [CRIT] pos_uid0=1 pos_gid0=1 pos_caps=1 pos_mount0=1 neg1_mount=-1 neg2_uid=2000 init_sid=1870 count_win=1848 sid_written=1 page_ctl=0
+  [END] *(T) restored to 0xffffffebd5cba298 (== ashmem_fops+slide: 1)
+  [T] round segment = 24680 ms
+--- end summary ---
+[shell] id
+id
+:/data/local/tmp # id
+uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc),3011(uhid) context=u:r:shell:s0:c999
+:/data/local/tmp #
+</code></pre>
+<span id="more"></span>
+<h2 id="Introduction">Introduction</h2>
+<p>On July 9, 2026, my friend misane sent me a WeChat article about Nebula Security's disclosure of <a target="_blank" rel="noopener" href="https://nebusec.ai/research/ionstack-part-2/">GhostLock</a>, a Linux LPE that had remained hidden for 15 years and affected all distributions running kernel versions from 2.6.39 through 7.1 at the time. On July 15, Nebula demonstrated the entire process of using the vulnerability to <a target="_blank" rel="noopener" href="https://nebusec.ai/research/ionstack-part-3/">root Android 17</a>. Naturally, I was intrigued and immediately wanted to try it on my old Honor Magic 3. But I was busy with a paper submission, so I had to put the idea aside.</p>
+<p>Two months later, on September 18, without being able to unlock the bootloader, I finally saw that <code>#</code> and <code>uid=0</code> on the screen. SELinux restrictions meant there was very little I could actually do with it, but seeing them was already satisfying enough.</p>
+<p>Of course, the price was rather painful (lol). I spent a whole week and more than 200 CNY, burning through over 3 billion tokens on deepseek-v4.1 flash for agent orchestration before finally stumbling my way to the goal like a blind man—after all, the last time I had touched kernel pwn was probably four years ago.</p>
+<h2 id="Early-Exploration">Early Exploration</h2>
+<p>Now that we know about this vulnerability, to pwn the phone sitting next to us, and to keep the process as smooth as possible while eliminating uncertainty, it's best to follow these steps:</p>
+<ol>
+<li>Confirm the phone's kernel version, the date of the latest Android security patch, and other relevant fields, to determine whether the device is affected. (Of course, this is obvious — otherwise this post wouldn't exist.)</li>
+<li>Find the open-source kernel source code corresponding to your phone's OS version. In theory, under the GPL, phone vendors are required to release it — but some domestic vendors may say one thing and do another, going weeks without replying to emails. Then flash the phone to that version.</li>
+<li>Based on the corresponding kernel source, plus some device tree files the vendor has published, construct a Linux simulation environment with a kernel config <strong>as identical as possible</strong> — including but not limited to the architecture, compiler version, etc. Of course, it can't be made completely identical. For example: when building TEE-related kernel components, the vendor obviously won't attach its signing private keys to the open-source files.</li>
+<li>Now you have a Linux simulation environment — say, QEMU. Start reproducing each step according to the official writeup, then gradually tear away the scaffolding: enable LTO+CFI, enable KASLR, then strip debug symbols, and finally get a rootshell even without relying on gdb.</li>
+<li>Finally, take the exploit script you've finished in QEMU and actually go blind-debugging on that phone. How long this takes is highly uncertain. With luck, one or two iterations might resolve all the bugs or discrepancies; otherwise, you could get stuck on the last step forever, never knowing which offset is off by a few bytes — or, even worse, some discrepancy could make the exploit theoretically impossible in the first place.</li>
+</ol>
+<h3 id="Preparing-the-Flashing-Infrastructure">Preparing the Flashing Infrastructure</h3>
+<p>Our goal is to get a root shell, but not every software version happens to be exploitable—or has the corresponding source code available. Switching between system versions by flashing the device is therefore more or less unavoidable. Since flashing always carries some risk, the first thing to do is back up the existing data. The backup process itself is outside the scope of this article.</p>
+<p>Once the backup is done, there is much less to worry about. For this particular ELZ-AN00 device, downgrade packages can be found on Xianyu for around 1 CNY, allowing the phone to be downgraded all the way from MagicOS 8.0 to MagicUI 5.0.</p>
+<p>To reduce the risk of permanently bricking the device, another useful—though not strictly necessary—tool is a firehose programmer for Qualcomm 9008 mode. This gives us low-level read/write access to the phone's non-secure-world partitions. If something does go seriously wrong, previously backed-up partition images can be written back to recover the device.</p>
+<blockquote>
+<p>As for the firehose programmer, I just tried searching for it again and realized that I can no longer find the site where I originally downloaded mine. Most of the other sites I found now require an account or payment. Fortunately, I still have a copy locally, so if you genuinely need it, feel free to email me.</p>
+</blockquote>
+<p>Besides the flashing packages and the firehose programmer, another important ingredient is the official source code. This device is relatively fortunate in that two versions can be found on <a target="_blank" rel="noopener" href="https://www.honor.com/global/opensource/">HONOR's global open-source page</a>:</p>
+<ul>
+<li><code>ELZ-AN00_MagicUI5.0_Code_Opensource</code> — HONOR Magic3</li>
+<li><code>MagicOS8.0-ROM-Elizabeth_MagicOS8.0_Opensource</code> — HONOR Magic3 Pro, HONOR Magic3, HONOR Magic3 Ultimate</li>
+</ul>
+<p>These happen to correspond exactly to the two ends of the version range covered by the 1-CNY downgrade package. In my later work, I ran into obstacles during the final round of on-device debugging on MagicOS 8.0, and eventually succeeded in exploiting the device on MagicUI 5.0 instead.</p>
+<p>On the hardware side, the downgrade package from Xianyu is intended for local flashing through recovery. We therefore need a USB flash drive with a Type-C connector; otherwise, a Type-C adapter is unavoidable.</p>
+<h3 id="Which-model-to-use-as-an-assistant">Which model to use as an assistant?</h3>
+<p>As mentioned in the intro, the last time I played CTF pwn was four years ago. Back then, even grinding BUUCTF every day, I had only just learned those handful of &quot;house of xxx&quot; exploitation tricks, and on the kernel side I had barely figured out the general flow of ret2usr. But with the boost from AI, even though I can't (and don't have the time or energy to) verify every detail of the exploitation process, I can at least keep the big picture straight. Having decided to get LLM's hands dirty, the first question was which LLM to choose. The situation at the time (early August) was as follows:</p>
+<ul>
+<li><strong>GPT</strong>: I was actively using it, had a Plus subscription, the 5-hour limit hadn't returned yet, and I had enough reset cards for trial and error. But doing exploit work requires Cyber verification, which could be bought on Xianyu for a few dozen yuan. However, I was still waiting for the paper rebuttal and didn't want my account banned, losing the rebuttal context — not worth the risk.</li>
+<li><strong>Claude</strong>: Mythos/Fable 5 was definitely top-tier among LLMs at the time, and I had an account from 2023 that still hadn't been banned. But I was still afraid of getting banned, and CVP was more expensive (several hundred yuan), so I didn't consider it.</li>
+<li><strong>Gemini</strong>: Not considering the American Doubao. After testing its intelligence a few months ago, I never used it again.</li>
+<li><strong>Kimi</strong>: K3 had just come out not long before, ranked first among Chinese models on <a target="_blank" rel="noopener" href="http://lmarena.ai">lmarena.ai</a>, and had no Cyber censorship. Downsides: slightly expensive (but reimbursement channels were offered), my senior said it had few tokens, and there was a waitlist.</li>
+<li><strong>GLM</strong>: A Chinese model recommended by my senior. But its pricing plan had recently changed — more expensive than Kimi, but more tokens. Slightly weaker than Kimi in capability.</li>
+<li><strong>DeepSeek</strong>: Also not considered — at the time, v4-flash/pro ranked far below Kimi/GLM.</li>
+</ul>
+<p>So I was torn between Kimi and GLM, but in the end I decided on Kimi, because I had some connections from high school at Moonshot AI. I planned to clearly explain my background and goals, and see if going through my network could get me a referral to skip the waitlist and get some testing access — as it turned out, I got referred to the OpenHarmony CTF instead, where they asked if I wanted to compete. Honestly, that felt worse than not being referred at all.</p>
+<p>No way around it, I decided to reach out to that Moonshot AI &quot;relevant person&quot; myself. I did three things:</p>
+<ul>
+<li>Tried DMing them on X — they don't allow DMs from strangers</li>
+<li>Emailed them directly — no response</li>
+<li>Even submitted a PR to one of their fairly old GitHub projects — still no response</li>
+</ul>
+<p>That route was clearly dead too. So I went back to my senior and asked if he'd ever used Kimi. He said he had an account, but couldn't lend it out due to company privacy policies. However, he pointed me to a path: buying a waitlist-approved account on Xianyu. The result was simple — solved for a bit over ninety yuan.</p>
+<blockquote>
+<p>In hindsight, not choosing GLM back then was <a target="_blank" rel="noopener" href="https://blog.ferstar.org/posts/zcode-silent-workspace-snapshot-upload/">such a correct decision</a>.</p>
+</blockquote>
+<p>Next, I spent another 199 on the Allegretto plan (reimbursable anyway, so who cares). I had already gotten GPT to compute some offsets for the actual phone against the <a target="_blank" rel="noopener" href="https://github.com/NebuSec/CyberMeowfia">vulnerability repository</a>, and then I jumped straight onto Kimi-K3, throwing it a <code>/goal</code> — a rough prompt along the lines of &quot;find the kernel version closest to the real device, try to reproduce this vulnerability in QEMU, and get a root shell.&quot; My phone's kernel version was 5.4.289 at the time; it found a 5.4.200 Ubuntu image, and after several days of repeatedly waiting out the 5-hour limits, it actually got a QEMU root shell — with me &quot;allowing gdb to help inspect the relevant addresses&quot;!</p>
+<p>Of course, things didn't go so smoothly afterward. I asked it to try removing the gdb helper, and it kept at it for a long stretch without progress. I tried to get it to adapt the exploit to the real device, and it said it was theoretically impossible. On top of that, my quota was draining fast — and web chat sessions counted against quota too — burning through a month's worth in about two weeks. My senior really wasn't wrong about that.</p>
+<hr>
+<p>On August 18, just before the rebuttal, I decided to bite the bullet and spend another 95.4 yuan on a proxy Cyber verification for GPT. It worked — the annoying Cyber pop-ups did largely disappear, though not entirely. My impression at the time was that GPT-5.6 had indeed made some progress. Unfortunately, the next day (the 19th), OpenAI, citing &quot;technical reasons&quot; — namely, some users' Cyber information being lost during the migration to Daybreak — revoked my Cyber status. The seller had explicitly stated that &quot;a successful verification marks the end of the service, no refunds accepted,&quot; but seeing that I had only used it for a single day, they refunded me anyway.</p>
+<p>After that, I wanted to re-verify right away. But considering that if the rebuttal got my account banned it would hardly be worth it, and that after September 1 there would also be a hardware FIDO key requirement, I decided not to take the risk with Cyber verification again. Instead, I kept exploiting using models without built-in Cyber detection (for example GPT-5.4 / 5.6-luna). This time, not only did the model keep insisting &quot;I found a contradiction in the earlier steps,&quot; but I also received three consecutive Cyber abuse emails (although after my appeals they all said sorry and reversed). Things made zero progress either way.</p>
+<p>Once the rebuttal was completely over, I went back on Xianyu after September 1 and found that Cyber verification was no longer the few-dozen-yuan deal it used to be — verification alone cost six to seven hundred yuan. Even the acquaintance channel introduced by my senior cost 350, a fully set-up account ran 1000, and Plus/Pro 20x had surged to the absurd heights of 2300/3900. And the verification side had strict account requirements too:</p>
+<ul>
+<li>Never previously verified</li>
+<li>Already subscribed to Plus/Pro</li>
+<li>Account registered for at least one month</li>
+</ul>
+<p>More importantly, even if you met all these conditions, passing wasn't guaranteed — and passing didn't guarantee you wouldn't lose Cyber or get banned later. While I could afford those few hundred yuan, I kept agonizing over whether it was worth spending at least 350 + 140 = 490 yuan for this one-time root purchase (since the previous account was already dead), and taking on that much risk all over again — until—</p>
+<p>the arrival of DeepSeek V4.1 Flash put an end to my dilemma.</p>
+<h2 id="Kicking-Off-for-Real">Kicking Off for Real</h2>
+<p>On September 10, DeepSeek V4.1 Flash officially launched. The costs (during off-peak hours) compared to the original V4 Pro are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align:right">deepseek-flash</th>
+<th style="text-align:right">deepseek-v4-pro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model version</td>
+<td style="text-align:right">DeepSeek-V4.1-Flash</td>
+<td style="text-align:right">DeepSeek-V4-Pro-0813</td>
+</tr>
+<tr>
+<td>Context length</td>
+<td style="text-align:right">1M</td>
+<td style="text-align:right">1M</td>
+</tr>
+<tr>
+<td>Output length</td>
+<td style="text-align:right">Max 384K</td>
+<td style="text-align:right">Max 384K</td>
+</tr>
+<tr>
+<td>Image understanding</td>
+<td style="text-align:right">Supported</td>
+<td style="text-align:right">Not supported</td>
+</tr>
+<tr>
+<td><strong>Per million tokens input (cache hit)</strong></td>
+<td style="text-align:right"><strong>0.02 CNY</strong></td>
+<td style="text-align:right"><strong>0.15 CNY</strong></td>
+</tr>
+<tr>
+<td><strong>Per million tokens input (cache miss)</strong></td>
+<td style="text-align:right"><strong>1 CNY</strong></td>
+<td style="text-align:right"><strong>4.5 CNY</strong></td>
+</tr>
+<tr>
+<td><strong>Per million tokens output</strong></td>
+<td style="text-align:right"><strong>4 CNY</strong></td>
+<td style="text-align:right"><strong>13.5 CNY</strong></td>
+</tr>
+<tr>
+<td>Concurrency limit</td>
+<td style="text-align:right">2500</td>
+<td style="text-align:right">500</td>
+</tr>
+</tbody>
+</table>
+<p>More importantly, the Cyber capabilities:</p>
+<table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th style="text-align:right">V4 Pro 0813</th>
+<th style="text-align:right">V4.1 Flash</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CyberGym</strong></td>
+<td style="text-align:right"><strong>83.3</strong></td>
+<td style="text-align:right"><strong>88.1</strong></td>
+<td style="text-align:right"><strong>+4.8</strong></td>
+</tr>
+<tr>
+<td><strong>SEC-Bench Pro</strong></td>
+<td style="text-align:right"><strong>56.4</strong></td>
+<td style="text-align:right"><strong>62.8</strong></td>
+<td style="text-align:right"><strong>+6.4</strong></td>
+</tr>
+<tr>
+<td><strong>ExploitGym</strong></td>
+<td style="text-align:right"><strong>5.4</strong></td>
+<td style="text-align:right"><strong>15.3</strong></td>
+<td style="text-align:right"><strong>+9.9</strong>, roughly <strong>2.83×</strong></td>
+</tr>
+</tbody>
+</table>
+<p>We can draw two conclusions:</p>
+<ol>
+<li>My kernel pwn scenario definitely involves long conversations, where the context is the code for the entire exploitation chain plus the corresponding run logs, and involves repeated debugging. This pushes the cache hit rate very high (in practice, it stayed above 99% most of the time). A quick back-of-the-envelope calculation shows that for the same number of tokens, V4.1 Flash costs less than 1/7 of V4 Pro.</li>
+<li>As for benchmarks: since we already know what the vulnerability is, the task at hand is the entire process of getting a root shell from that vulnerability, so ExploitGym is the more relevant benchmark. The official metric measures the proportion of cases solved within 2 hours — and V4.1 Flash is nearly 3× Pro on that. Plus, my patience clearly extends well beyond two hours, so whether it can reach the final goal, Flash still looks promising.</li>
+</ol>
+<p>On top of that, DeepSeek itself won't hit you with Cyber pop-ups the way GPT does, interrupting your work entirely. So as long as it can actually make progress — and doesn't go around in circles like GPT-5.4 / 5.6-luna — it's worth a shot. So I started pouring money into the DeepSeek API, gearing up for the next round of the assault.</p>
+<h3 id="Which-MagicUI-MagicOS-version-to-choose">Which MagicUI/MagicOS version to choose?</h3>
+<p>My initial choice was to continue from the partial adaptation that Kimi/GPT 5.4 had done on MagicOS 8 (Linux 5.4.242). But then DeepSeek told me a brutal fact:</p>
+<p><strong>MagicOS 8's sepolicy has no ashmem rules for shell!</strong></p>
+<p>And this happens to be the most core step in IonStack — so this version is a dead end, and all the offsets computed earlier became worthless.</p>
+<p>No way around it, I had to pick up the infrastructure I had prepared earlier and downgrade. A basic security intuition is that the lower the version, the more vulnerabilities must have already been discovered — and indeed, I found that version 5.0.0.189 has at least two CVEs that can be triggered:</p>
+<ol>
+<li>CVE-2026-43499 — this very IonStack.</li>
+<li>CVE-2022-20421 — Binder race → binder_proc spinlock UAF.</li>
+</ol>
+<p>The latter, however, is a race, so its success rate isn't very high; whereas IonStack has a 97% success rate, so naturally I went with IonStack.</p>
+<h3 id="How-to-direct-the-three-cobblers">How to direct &quot;the three cobblers&quot;?</h3>
+<p>My approach was to split the three LLMs into one master and two slaves:</p>
+<ul>
+<li>The master node works with the original CyberMeowfia repository and can see the official PoC and exploit. It only gives abstract next-step plans and does not directly operate the slaves' QEMU instances or adb-connected phones.</li>
+<li>The slave nodes take plans from the master, write the debug scripts they generate into clean git repositories they create themselves, and — after each step — faithfully write up a status report and commit it.</li>
+<li>The reason for using two slave nodes: some tasks are mutually independent, and running them in parallel speeds up progress.</li>
+</ul>
+<p>For data exchange, the master can check the reports in the slaves' repositories to gauge the project's progress and give targeted next steps. As for the slaves, I deliberately did not give them the master's repository path, in order to avoid &quot;attention interference&quot; and to prevent them from absorbing the wrong offsets produced during earlier debugging with Kimi/GPT 5.4.</p>
+<p>So what was the trigger? I fed the master node two Nebula links (the aforementioned ionstack-part-2/3), then gave it the project context:</p>
+<blockquote>
+<p>This is an Honor Magic 3 device. Try reading device information, and start porting the PoC following the steps in these two links and the repository you have.</p>
+</blockquote>
+<p>I also emphasized the legitimate security research background, fed it the five steps I mentioned in the <strong>Early Exploration</strong> section, and the gears of fate started turning.</p>
+<p>Of course, V4.1 Flash still hallucinates, and the master itself can make mistakes. So before QEMU was pwned, my prompts also required that after reviewing and verifying each slave report, the master itself had to invoke an adversarial subagent with zero context, to check the master's own summary reports for inconsistencies.</p>
+<blockquote>
+<p>Of course, the adversarial subagent itself might also hallucinate, but the probability of both happening together is already quite low — not enough to affect this project — so I chose to ignore the impact of this possibility.</p>
+</blockquote>
+<p>The remaining question is whether you want to automate further. You could use another LLM with good computer-use capabilities (say, GPT-6 Astra) to shuttle prompts between sessions. But in my experience, each prompt's task takes at least 40 minutes or more, so the frequency isn't high. On the contrary, I think the more important thing is to keep an eye on the next-step plans the master lays out and check whether anything obviously goes off track — and occasionally, it really did happen a few times.</p>
+<blockquote>
+<p>So unless an LLM's long-horizon memory can genuinely still recall what the truly important mission/step was from over a hundred prompts ago (<strong>note: this is not a hallucination problem</strong>), human-in-the-loop is still necessary. After all, the tokens and time saved may genuinely outweigh the human labor cost.</p>
+</blockquote>
+<h3 id="Can-we-go-further-after-root">Can we go further after root?</h3>
+<p>The answer right now is No.</p>
+<p>Although this work yields <code>uid=0(root) gid=0(root) groups=0(root)</code>, the context is still <code>u:r:shell:s0:c999</code>, and in this phone's SELinux policy version, file read/write permissions sit with <code>init</code> or <code>fs_type:filesystem mount</code>, not the current <code>shell</code> domain. The SELinux policy is baked in at compile time by Honor — even with root privileges, you can't turn it off.</p>
+<p>Of course, I did try switching the SELinux label from <code>u:r:shell:s0</code> to <code>u:r:init:s0</code>, and <code>mount(&quot;tmpfs&quot;, MPS[0], &quot;tmpfs&quot;, 0, NULL)</code> returned <code>0</code>. So domain-switched mounting does work — it's just that without an unlocked bootloader, AVB prevents any modification from persisting, and Magisk remains out of the question.</p>
+<h2 id="Differences-from-Nebula-s-Official-Approach">Differences from Nebula's Official Approach</h2>
+<p>This part is heavy on technical details, so I'll just paste DeepSeek's output directly:</p>
+<hr>
+<p>Only discussing the IonStack line. The official WP = the five-step chain from the public article; the &quot;on-device facts&quot; can all be verified by line numbers in the repository.</p>
+<h3 id="One-line-overview">One-line overview</h3>
+<table>
+<thead>
+<tr>
+<th>Official WP step</th>
+<th>Done as-is on device?</th>
+<th>Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① <code>pselect</code> stack reclaim + fake <code>rt_mutex_waiter</code></td>
+<td>Structure changed</td>
+<td>Landing offset made explicit (shift=10); two fields don't exist on this device; the default &quot;image address shape&quot; was empirically refuted, replaced with a self-referencing shape in an owned page</td>
+</tr>
+<tr>
+<td>② <code>boot_id</code>/<code>loggers</code> KASLR leak</td>
+<td>Approach kept, trustworthiness refuted</td>
+<td>Offset switched to alias conversion; plus boot_id polling as an oracle for &quot;did the write land&quot;; <strong>additionally</strong>, an <code>ashmem_fops</code> alias readout for the slide that the official writeup doesn't have</td>
+</tr>
+<tr>
+<td>③ <code>ashmem</code> fops → configfs handlers</td>
+<td>Same slots, <strong>different functions</strong></td>
+<td>Uses <code>configfs_read_file</code>/<code>configfs_write_bin_file</code>; legacy <strong>jump-table CFI</strong> requires &quot;scan for <code>b &lt;body&gt;</code> to find the slot&quot; — the <code>*.cfi_jt</code> symbol addresses in kallsyms are wrong</td>
+</tr>
+<tr>
+<td>④ <code>pipe_buffer</code> → arbitrary R/W</td>
+<td>Same mechanism, opposite precondition</td>
+<td>Official: <code>VMEMMAP/physmap</code> fixed, direct conversion possible; on-device linear map is <strong>randomized</strong>, must probe aliases first</td>
+</tr>
+<tr>
+<td>⑤ cred + SELinux + seccomp</td>
+<td>Same</td>
+<td>All constants localized; <code>selinux_state</code> is a &quot;+0x1&quot; field within a symbol; first went through a kallsyms extractor flaw that required a full re-export of the block</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Preliminaries-determine-every-subsequent-step">Preliminaries (determine every subsequent step)</h3>
+<p><strong>Different CLI/CFI generation — this is the biggest structural difference.</strong> The official writeup says Android switched to signature-based kCFI starting in 2022, so &quot;same-signature replacement&quot; suffices. This device is Android 11 / 5.4.86, using the legacy <strong>jump-table CFI</strong> — kallsyms is full of <code>*.cfi_jt</code> symbols. So:</p>
+<ul>
+<li>The values written into the fake fops must be <strong>jump table slots</strong>, not function bodies;</li>
+<li>And the <strong>symbol address of <code>*.cfi_jt</code> does not point to the function its name suggests</strong> (empirically: the <code>configfs_read_file.cfi_jt</code> slot <code>b</code>s to 0x563324 — an entirely different function). The reliable method is a two-step: &quot;get the function body address from the symbol table → scan the entire Image for <code>b &lt;body&gt;</code>&quot;. On 8.0.0.117, all 4 constants had to be scrapped and re-extracted (<code>CONFIGFS_READ_ITER 0x18b3c50</code>, <code>CONFIGFS_BIN_WRITE_ITER 0x18b499c</code>, <code>NOOP_LLSEEK 0x18aba58</code>, <code>COPY_SPLICE_READ 0x18a0cbc</code>). This step doesn't exist in the official WP's context.</li>
+</ul>
+<p><strong>Linear map randomization goes the opposite way.</strong> Official: <code>1db780bafa4c</code> removed arm64 linear map randomization → physmap is fixed, VA↔page conversion works directly. This device is 5.4, which doesn't have that commit; ELZ's <code>target.h</code> explicitly says <code>DIRECT_MAP_BASE/END</code>, <code>VMEMMAP_START</code> are <strong>not valid runtime constants</strong> — you must probe aliases within <code>KERNELSNITCH_IDENTITY_START..END</code>, and &quot;never treat DIRECT_MAP_BASE/END as truth&quot;. For this, <code>util.c</code> splits into two profiles: <code>truephone</code> / <code>sim</code>.</p>
+<p><strong>Vendor-private config changes the layout.</strong> <code>CONFIG_HN_VIP_THREAD=y</code> makes <code>struct mutex</code> 40 bytes, and <code>page/needs_read_fill/bin_buffer/bin_buffer_size/cb_max_size</code> in <code>struct configfs_buffer</code> all shift downward (the values differ between the 5.4.86 and 5.4.242 targets — see the comment in <code>target.h</code>). The official target has no such vendor switch.</p>
+<hr>
+<h3 id="①-Stack-reclaim-fake-waiter">① Stack reclaim + fake waiter</h3>
+<ul>
+<li><strong>Landing offset</strong>: the official line is &quot;frame depth and syscall reachability vary by image&quot;. On-device it became an explicit constant: <code>PSELECT_WAITER_WORD_SHIFT 10</code>; <code>target.h</code> notes &quot;on Android, the pselect reclaim lands <strong>0x10 bytes before</strong> the real waiter&quot;, so the fake waiter uses a &quot;compact waiter-local layout&quot; (word2-4=tree_entry, 5-7=pi_tree, 8=task, 9=lock, 10=prio, 11=deadline), not the generic shape from the official default. The same spot also records one incident: previously the generic fallback <code>shift=0</code> was mistakenly used, and the boot_id stayed an ordinary UUID the whole time.</li>
+<li><strong>Fields don't exist</strong>: this device's <code>rt_mutex_waiter</code> has <strong>no <code>wake_state</code>, no <code>ww_ctx</code></strong> (<code>RT_MUTEX_WAITER_HAS_WAKE_STATE=0</code> / <code>HAS_WW_CTX=0</code>; commit <code>d1edcb4</code> &quot;guard wake_state/ww_ctx writes in put_p9_slide_waiter (fields absent on Honor 5.4)&quot;). In the official WP these two fields are part of the fake waiter; on-device the entire section is disabled.</li>
+<li><strong>Default shape empirically refuted</strong> (I consider this one the most important). The official default shape points key qwords to fixed in-image addresses (<code>loggers</code> / <code>boot_id</code>). The comment at <code>slide.c:780-788</code> states: on this device KASLR is enabled at boot, these baked-in addresses are invalid at runtime — <code>rb_erase</code> would dereference q0 as an rb_node, <code>*q2=q0</code> would land in randomized <code>.data</code>, and the walk would be killed outright. Hence the switch to the <strong>R1' self-referencing shape</strong>: q0/q3 point to a fake rb node in a direct-map page we own, q2/q5 point to a scratch qword on the same page — the entire write primitive no longer depends on any image slide.</li>
+<li>The trigger side gained a consumer/mcast-arm mechanism not in the official writeup (<code>SLIDE_CARRIER_NO_CONSUMER</code>, etc.), used to freeze the walk at the right moment.</li>
+</ul>
+<h3 id="②-KASLR-leak">② KASLR leak</h3>
+<ul>
+<li>The official route (limited write pointing <code>sysctl_bootid.data</code> to <code>loggers[0][1]</code>, reading <code>/proc/sys/kernel/random/boot_id</code> as a UUID to recover <code>&amp;nfulnl_logger</code>) <strong>is preserved in the on-device code</strong>: <code>slide.c:1981-2035 slide_read_stext()</code>, and <code>SLIDE_NFULNL_LOGGER_OFF</code> / <code>SLIDE_LOGGERS_0_1_OFF</code> / <code>SLIDE_RANDOM_BOOT_ID_DATA_OFF</code> / <code>SLIDE_SYSCTL_BOOTID_OFF</code> are all in <code>target.h</code>.</li>
+<li>But there are three differences:
+<ol>
+<li>The slide is computed using <code>p0_alias_image_offset(SLIDE_NFULNL_LOGGER)</code> (alias/physical offset conversion), not the official vmlinux-known-offset approach — because the provenance of the <code>SLIDE_*</code> anchors wasn't re-exported on this build; <code>target.h</code> explicitly says they &quot;cannot be treated as verified&quot;.</li>
+<li>An extra <strong>full-window boot_id polling thread</strong> (<code>slide.c:205</code>, commits R1.5/R1.6) treats &quot;did the boot_id become a UUID&quot; as the oracle for whether the limited write landed; R1.5's conclusion was <em>no overwrite observed</em>. The official writeup reads once and needs no oracle.</li>
+<li>An additional <strong>independent slide route</strong> on-device: <code>fops.c:684 leak_kernel_base()</code> reads the <code>ashmem_fops</code> table <strong>via its linear-map alias</strong> (in the image this table is all zeros; the real pointers are filled in by <code>.rela.dyn</code> at boot), back-computes <code>kaslr_base = ashmem_open_ptr - (ASHMEM_OPEN - KIMAGE_TEXT_BASE)</code>, then cross-checks the ioctl/mmap/release/show_fdinfo slots (<code>fops.c:719-758</code>), exiting with <code>kaslr_step=1/2</code> on any mismatch. The official writeup has no such route.</li>
+</ol>
+</li>
+</ul>
+<h3 id="③-fops-hijack">③ fops hijack</h3>
+<ul>
+<li><strong>Same slots</strong>: <code>fops.c:662-663</code> writes <code>FOPS_READ_ITER_OFF</code> / <code>FOPS_WRITE_ITER_OFF</code> (0x20/0x28) — consistent with the official &quot;replace read_iter/write_iter&quot;.</li>
+<li><strong>Different handlers</strong>: on-device we place <code>configfs_read_file</code> and <code>configfs_write_bin_file</code> (<code>CONFIGFS_READ_ITER</code> / <code>CONFIGFS_BIN_WRITE_ITER</code>), not the same-named <code>configfs_read_iter</code>/<code>write_iter</code>. Plus <code>llseek→noop_llseek</code> (<code>repair_fake_fops_llseek()</code>, <code>fops.c:646</code>) and <code>splice_read→generic_file_splice_read</code> (<code>fops.c:669</code>) — the official description mentions only the read_iter/write_iter pair.</li>
+<li>The remaining slots (ioctl/compat_ioctl/mmap/open/release/show_fdinfo) are <strong>kept at original values</strong> and verified one by one (<code>fops.c:664-670</code> compared against the <code>kaslr_expected_*</code> at <code>722-758</code>).</li>
+<li>The ashmem entry path <strong>matches the official one</strong>: <code>util.c:476 init_ashmem_path()</code> first tries <code>/dev/ashmem&lt;boot_id&gt;</code>, falling back to scanning <code>/dev</code> for ashmem nodes only if the boot_id can't be obtained — except on-device we had to implement the fallback scan ourselves (compatible with SDK 30).</li>
+</ul>
+<h3 id="④-pipe-buffer-→-full-arbitrary-R-W">④ pipe_buffer → full arbitrary R/W</h3>
+<ul>
+<li>Official: <code>VMEMMAP</code> is fixed → direct VA↔<code>struct page*</code>, and changing <code>pipe_buffer.page</code> upgrades to arbitrary R/W.</li>
+<li>On-device: no direct conversion possible; must probe the linear-map alias first; <code>PIPE_INODE_INFO_SLOTS_PER_PAGE 28</code>, <code>PIPE_*</code>, <code>STRUCT_PAGE_*</code> are all verified with pahole against a kernel compiled with the <strong>on-device config</strong> (one audit: 49 constants, 0 mismatches).</li>
+<li>Intermediate layers absent from the official writeup: the <code>TMP_PAGE_UNAME</code> path + <code>run_tmp_page_uname_stage()</code> (<code>main.c:260-275</code>, also supporting a <code>SLIDE_SKIP_SLIDE</code> direct-map route), plus the <strong>AF_UNIX <code>MSG_PEEK</code> physical readback channel</strong> and the &quot;five-qword write + canary readback&quot; milestone (<a target="_blank" rel="noopener" href="http://STATUS.md">STATUS.md</a>'s r46/r50/r57/r114 sections), and the <code>pipelen</code> oracle (<code>a5630c3</code>/<code>de69c57</code>). The real device has no debugger, so we had to build our own readback to tell whether writes landed; the official team can just rerun in kernelCTF.</li>
+</ul>
+<h3 id="⑤-cred-SELinux-seccomp">⑤ cred / SELinux / seccomp</h3>
+<ul>
+<li>Same step, but all constants localized: <code>SELINUX_ENFORCING_OFF = selinux_state + 0x1</code> (a field <strong>within</strong> a symbol; on 5.0.0.189 changed from 0x2c9d001 to 0x2c9c001); <code>TIF_SECCOMP_BIT 11</code>, <code>PFA_NO_NEW_PRIVS_BIT 0</code>, <code>SECCOMP_MODE_OFF 0x00</code> / <code>FILTER_COUNT 0x04</code> / <code>FILTER 0x08</code> taken from the Honor arm64 source/config; <code>CRED_*</code>, <code>TASK_CRED_OFF 0x880</code> (also weeded out a regex false positive for <code>ptracer_cred</code>).</li>
+<li>Extra preliminary work: the device's original 21 symbol constants came from a <strong>flawed kallsyms extractor</strong> (<code>image5486</code>'s offsets had constants in the high 4 bytes → each value was actually the address of the <strong>next</strong> symbol), requiring a full re-export (commit <code>6cbbd79</code>). Of those, 19/21 were &quot;the symbol's own kallsyms size&quot;, with two exceptions being struct fields (<code>ashmem_misc.fops = +0x10</code>) and an in-symbol field (<code>selinux_state.enforcing = +0x1</code>). The official team has an accurate vmlinux and never faces this kind of source flaw.</li>
+</ul>
+<hr>
+<h3 id="What-didn-t-change-so-we-don-t-overstate-the-differences">What didn't change (so we don't overstate the differences)</h3>
+<ul>
+<li>The vulnerability itself is untouched: <code>FUTEX_WAIT_REQUEUE_PI</code> + <code>FUTEX_CMP_REQUEUE_PI</code> proxy path, dangling <code>pi_blocked_on</code>, <code>rb_erase</code>-based limited write (<code>slide.c:2064</code>).</li>
+<li>The reclaim syscall is still <code>pselect</code> (the original article also mentions the clone/setsockopt/keyctl family).</li>
+<li>The <code>&lt;boot_id&gt;</code>-named ashmem node, and using <code>ASHMEM_SET_NAME</code> to treat <code>private_data</code> as <code>configfs_buffer</code>, both match the official approach.</li>
+</ul>
+<h3 id="Quantitative-evidence-the-device-side-code-forked-entire-stages">Quantitative evidence: the device-side code forked entire stages</h3>
+<p>Diff of same-named stage files against upstream (<code>exploit/src/*.c</code> vs <code>targets/ELZ-AN00-5.0.0.189/*.c</code>):</p>
+<table>
+<thead>
+<tr>
+<th>File (corresponding WP step)</th>
+<th style="text-align:right">Upstream lines</th>
+<th style="text-align:right">On-device lines</th>
+<th style="text-align:right">+</th>
+<th style="text-align:right">−</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>slide.c</code> (① ② trigger/leak)</td>
+<td style="text-align:right">1343</td>
+<td style="text-align:right">2205</td>
+<td style="text-align:right">1320</td>
+<td style="text-align:right">550</td>
+</tr>
+<tr>
+<td><code>pipe.c</code> (④ arbitrary R/W)</td>
+<td style="text-align:right">845</td>
+<td style="text-align:right">1986</td>
+<td style="text-align:right">1196</td>
+<td style="text-align:right">160</td>
+</tr>
+<tr>
+<td><code>util.c</code> (page prep/alias/probe)</td>
+<td style="text-align:right">1037</td>
+<td style="text-align:right">1463</td>
+<td style="text-align:right">633</td>
+<td style="text-align:right">233</td>
+</tr>
+<tr>
+<td><code>fops.c</code> (③ hijack + slide verification)</td>
+<td style="text-align:right">445</td>
+<td style="text-align:right">991</td>
+<td style="text-align:right">535</td>
+<td style="text-align:right">34</td>
+</tr>
+<tr>
+<td><code>preload.c</code></td>
+<td style="text-align:right">404</td>
+<td style="text-align:right">536</td>
+<td style="text-align:right">140</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td><code>main.c</code> (stage orchestration)</td>
+<td style="text-align:right">269</td>
+<td style="text-align:right">311</td>
+<td style="text-align:right">99</td>
+<td style="text-align:right">59</td>
+</tr>
+<tr>
+<td><code>root.c</code> (⑤)</td>
+<td style="text-align:right">446</td>
+<td style="text-align:right">521</td>
+<td style="text-align:right">84</td>
+<td style="text-align:right">14</td>
+</tr>
+</tbody>
+</table>
+<p>In other words: <strong>of the official five steps, step ⑤ (cred/SELinux) was changed the least; steps ①/② (trigger and leak) and ④ (physical R/W preconditions) were changed the most</strong>. Additionally, the on-device work built benches the official team doesn't have: a nokaslr root-shell reproduction under <code>qemu-honor-5.4.242</code> (<code>6457819</code>, reproduced twice) + a CFI smoke harness (<code>37672a2</code>) + <code>sim/truephone</code> dual profiles — first running the Honor 5.4 rtmutex walk and fake waiter shape offline before touching the real device; plus one log-fidelity fix (historical logs lacked <code>fdatasync</code>, so all panic-location inferences were downgraded to &quot;no earlier than the last preserved marker&quot;).</p>
+<p>In one sentence: <strong>the official writeup is a chain on &quot;new kernel + signature-based CFI + fixed physmap + rerunnable playground&quot;; the on-device work is &quot;5.4 vendor kernel + legacy jump-table CFI + randomized linear map + non-rerunnable real device&quot;</strong> — so steps ①②④ were nearly rewritten, step ③ swapped handlers and hit the <code>.cfi_jt</code> pitfall, and step ⑤ only needed new constants.</p>
+<h2 id="Afterword">Afterword</h2>
+<p>If someone were to ask me, &quot;You aren't going to do this in the future, and you don't know every single detail of the entire process—so what was the point of spending over two hundred on it?&quot;</p>
+<p>I would answer:</p>
+<blockquote>
+<p>Just getting the thrill of doing it once was enough.</p>
+<p>I don't plan to make a living from this, but I'm glad I actually did it at least once in my life.</p>
+</blockquote>
+<pre><code>junyu33@zjy-asus:/mnt/c/Users/junyu33/Desktop$ adb.exe devices
+List of devices attached
+&lt;redacted&gt;              device
+
+junyu33@zjy-asus:/mnt/c/Users/junyu33/Desktop$ bash /home/junyu33/elz-phase2/notes/artifacts/root.sh -v &quot;id&quot;
+[check] target-page sha256 = 3720fc0ef95b2c4d654c6a660b211ee00eafac2bb37d85f5697dd483673a19d4
+[chain] starting the chain (uid 2000 -&gt; uid 0), about 40 s
+=== P1: first bounded kernel write on the phone (uid 2000, no root, no GDB) ===
+[0] links: T=0xffffffc012aae588 (ashmem_misc+0x10) read_jt=0xffffffc01182ae6c write_jt=0xffffffc01182b88c open=0xffffffc0101bd7a0 rt_mutex_init_waiter=0xffffffc0103686b4 do_futex=0xffffffc0103b3f04
+[S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+[S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+[S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+[S0-ENV] uptime=45.69
+[S0-KNOB] perf_event_paranoid=-1
+[S0-KNOB] unprivileged_bpf_disabled=EACCES
+[S0-KNOB] perf_event_max_sample_rate=100000
+[S0-ZONE] start_pfn=525824 spanned=2095616 MemTotal=7526044 kB =&gt; memstart=0x80000000 vmemmap=0xfffffffefde00000 physvirt_offset=0x8080000000 (I49 formula)
+[SID] D files=27 distinct=9
+[S0-SID] D=9 entries0=1851
+[SID] CTX_WRITE 'u:r:init:s0:c999' rc=16 errno=0
+[SID] XEC entries 1851-&gt;1852 delta=1 ctx='u:r:init:s0:c999' readback='u:r:init:s0:c999' match=1
+[S0-SID] init_sid=1870 (formula (entries0-D)+28, fresh=1)
+[SID] CTX_WRITE 'u:r:shell:s0:c999' rc=17 errno=0
+[SID] XEC entries 1852-&gt;1853 delta=1 ctx='u:r:shell:s0:c999' readback='u:r:shell:s0:c999' match=1
+[S0-SID] shell_sid=1871 (formula (entries0-D)+28, fresh=1)
+[S0-ASH] OPEN(/dev/ashmem19831966-28f0-4e7a-b177-25b40f829564) fd=3 errno=0
+[S0-ASH] SET_NAME rc=0 errno=0
+[S0-ASH] GET_NAME rc=0 errno=0 back='P1MARK-00001ec4-0000b284' match=1
+[S0-ASH] SET_NAME(blob) rc=0 errno=0
+[S0-ASH] PRECONDITION OK
+[V] victims forked: p1v0=7877 p1v1=7878 p1v2=7879 p1v3=7880 p1v4=7881 | sid types: p1v0=init p1v1=init p1v2=init p1v3=shell p1v4=init
+[W] LOCK_PI rc=0 errno=0 tid=7882
+[TID] W tid=7882 T0 tid=7883
+[PERF] OPEN pid=7882 period=20000 fd=3 data_offset=4096 data_size=262144 errno=0
+[DBG] warm ms=534 nkern=20247 nrec=20247 iters=444229
+[DBG] warm ms=1076 nkern=40555 nrec=40555 iters=897829
+[DBG] warm ms=1612 nkern=60702 nrec=60702 iters=1343429
+[DBG] warm ms=2145 nkern=80946 nrec=80946 iters=1788992
+[DBG] warm ms=2693 nkern=101683 nrec=101683 iters=2250132
+[DBG] warm ms=3230 nkern=121984 nrec=121984 iters=2701596
+[DBG] warm ms=3761 nkern=142117 nrec=142117 iters=3148164
+[DBG] warm ms=4291 nkern=162190 nrec=150000 iters=3593843
+[DBG] warm ms=4815 nkern=182017 nrec=150000 iters=4033486
+[chain] ready (uid 0 pty on 127.0.0.1:31337, adb forward active)
+--- chain summary (154 lines) ---
+  [S0-ID] uid=2000 euid=2000 gid=2000 CapEff=0x0 CapPrm=0x0 Seccomp=0 NoNewPrivs=0
+  [S0-ENV] uname=5.4.86-qgki-g33a9ed8573e1
+  [S0-ENV] getenforce=1 domain=u:r:shell:s0 boot_id=19831966-28f0-4e7a-b177-25b40f829564
+  [S0-ENV] uptime=45.69
+  [S0-ZONE] start_pfn=525824 spanned=2095616 MemTotal=7526044 kB =&gt; memstart=0x80000000 vmemmap=0xfffffffefde00000 physvirt_offset=0x8080000000 (I49 formula)
+  [S0-SID] D=9 entries0=1851
+  [SID] XEC entries 1851-&gt;1852 delta=1 ctx='u:r:init:s0:c999' readback='u:r:init:s0:c999' match=1
+  [S0-SID] init_sid=1870 (formula (entries0-D)+28, fresh=1)
+  [SID] XEC entries 1852-&gt;1853 delta=1 ctx='u:r:shell:s0:c999' readback='u:r:shell:s0:c999' match=1
+  [S0-SID] shell_sid=1871 (formula (entries0-D)+28, fresh=1)
+  [S0-ASH] OPEN(/dev/ashmem19831966-28f0-4e7a-b177-25b40f829564) fd=3 errno=0
+  [S0-ASH] SET_NAME rc=0 errno=0
+  [S0-ASH] GET_NAME rc=0 errno=0 back='P1MARK-00001ec4-0000b284' match=1
+  [S0-ASH] SET_NAME(blob) rc=0 errno=0
+  [S0-ASH] PRECONDITION OK
+  [S0-F] warm_iters=5028520 kern=227184 user=91636 records=150000
+  [S0-SLIDE] d=0x190 samples=28163 candidates=2 best=0x2bc3a00000 votes=27395 second=135
+  [S0-SLIDE] SLIDE=0x2bc3a00000 runtime_text=0xffffffebd3a80000 runtime_etext=0xffffffebd5240000
+  [S0-SLIDE] kernel IPs in [_text,_etext)=150000/150000
+  [S0-F] F_i=0xffffffc02eb5bcd0 F_ii=0xffffffc02eb5bcd0 match=1 F&amp;0x3fff=0x3cd0 (want 0x3cd0) Hf=0xffffffc02eb5c000 dest=0xffffffc02eb5bcb0 delta=0x0
+  [H2] REGION P: base=0xffffff80e128ac40 table=V=0xffffff80e128ac50 M=0xffffff80e128ad50 (V==base+0x10, M==base+0x110)
+  [PF] T=0xffffffebd64ae588 (T-8=0xffffffebd64ae580) V=0xffffff80e128ac50 M=0xffffff80e128ad50 | F=0xffffffc02eb5bcd0 = dest+0x20 = Hf-0x330 ; T&amp;7=0
+  [RQ] CMP_REQUEUE_PI rc=-1 errno=35 tries=1 (EDEADLK=35)
+  [VGATE] overwritten=1 bpf_errno=-13
+  [TR1] sched_setattr(w=7882,nice=1)=0 errno=0 walk_ms=0 T=0xffffffebd64ae588 V=0xffffff80e128ac50
+  [SELF-W1] M.rb_root=0xffffffc02eb5bcd0 M.leftmost=0xffffffc02eb5bcd0 M.owner=0x0 | chain_ran=1 F_is_Wstack_3cd0=1 M_mod_0x4000=0x3cd0
+  [5d] OWNER REPAIR (second NT_PRFPREG write, before the first open) *(V+0x00)=0x0 (want 0)
+  [7B] KREAD *(V+0x10)=0xffffffebd522ae6c (==read_jt: 1) *(V+0x18)=0xffffffebd522b88c (==write_jt: 1)
+  [E0] TSECW tsec=0xffffff80c466df40 off=0xf44 sid=1870 n=4 (chain-owned pipe write)
+  [E0] TSECW SKIPPED (sid=1870 tsec=0xffffff80b392d980)
+  [E0] TSECW tsec=0xffffff80b3bf99c0 off=0x9c4 sid=1871 n=4 (chain-owned pipe write)
+  [E0] TSECW tsec=0xffffff80f74f3940 off=0x944 sid=1870 n=4 (chain-owned pipe write)
+  [P1C-DAEMON] RESIDENT anchor_pt=/dev/pts/0 anchor_fd=3 window_pipe=held_by_parent listening=127.0.0.1:31337 uid=0 pid=7880
+  [P1C-DAEMON] each connection forks a session child with its OWN pty+shell; this process never exits
+  [VREP0] role=POS(init: mount/ACC) site_sid=1870 uid=0 gid=0 euid=0 egid=0 cap_eff=ffffffffffffffff cap_prm=ffffffffffffffff mount=0 errno=0 mount_tried=1
+  [VREP1] role=NEG1(cred only) site_sid=1870 uid=0 gid=0 euid=0 egid=0 cap_eff=ffffffffffffffff cap_prm=ffffffffffffffff mount=-1 errno=13 mount_tried=3
+  [VREP2] role=NEG2(page-aligned) site_sid=1870 uid=2000 gid=2000 euid=2000 egid=2000 cap_eff=0000000000000000 cap_prm=0000000000000000 mount=-1 errno=13 mount_tried=3
+  [VREP3] role=POS(shell: console) site_sid=1870 uid=0 gid=0 euid=0 egid=0 cap_eff=ffffffffffffffff cap_prm=ffffffffffffffff mount=-1 errno=0 mount_tried=0
+  [VREP4] role=(null) site_sid=1870 uid=0 gid=0 euid=0 egid=0 cap_eff=ffffffffffffffff cap_prm=ffffffffffffffff mount=-1 errno=0 mount_tried=0
+  [CRIT] pos_uid0=1 pos_gid0=1 pos_caps=1 pos_mount0=1 neg1_mount=-1 neg2_uid=2000 init_sid=1870 count_win=1848 sid_written=1 page_ctl=0
+  [END] *(T) restored to 0xffffffebd5cba298 (== ashmem_fops+slide: 1)
+  [T] round segment = 24680 ms
+--- end summary ---
+[shell] id
+id
+:/data/local/tmp # id
+uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc),3011(uhid) context=u:r:shell:s0:c999
+:/data/local/tmp #
+</code></pre>
+
+</div>
+
+
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.hljs) {
+      hljs.highlightAll();
+    }
+
+    var a = document.getElementById('mirror-switch');
+    if (!a) return;
+
+    var mainHost = 'blog.junyu33.me';
+    var cnHost = 'blog-cn.junyu33.me';
+    var path = window.location.pathname + window.location.search + window.location.hash;
+    var lang = a.getAttribute('data-lang') || 'zh';
+
+    if (window.location.hostname === cnHost) {
+      a.href = 'https://' + mainHost + path;
+      a.textContent = lang === 'en' ? 'Main Site' : '主站';
+    } else {
+      a.href = 'https://' + cnHost + path;
+      a.textContent = lang === 'en' ? 'CN Mirror' : '国内镜像';
+    }
+  });
+  </script>
+</body>
+</html>

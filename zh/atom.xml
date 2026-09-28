@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-09-28T10:00:00.000Z</updated>
+  <updated>2026-09-28T10:30:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -16,7 +16,7 @@
     <title>Deep Freeze 忘了密码怎么解冻？</title>
     <link href="https://blog.junyu33.me/zh/2026/09/28/deepfrz/"/>
     <id>https://blog.junyu33.me/zh/2026/09/28/deepfrz/</id>
-    <updated>2026-09-28T10:00:00.000Z</updated>
+    <updated>2026-09-28T10:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>11 年前，也就是自己六年级的时候，我绕过了 Deep Freeze 的还原保护。</p>
 <p>11 年后，Deep Freeze 居然只更新了两个大版本。现在心血来潮又试了一下，发现自己当年的方法仍然健在，并且还有了新的思路。这篇文章针对的两个版本是：</p>
 <ul>

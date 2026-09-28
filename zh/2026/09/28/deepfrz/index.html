@@ -107,7 +107,7 @@
 <p>这个版本对 9.0.20.5760 和 10.10.220.5788 都适用，绕过思路基本一致，只是官方的参数调整让实现细节有所区别。</p>
 <h3 id="9-0-20-5760">9.0.20.5760</h3>
 <p>这里重点说一下白名单校验是怎么来的。首先驱动 <code>deepfrz.sys</code> 在哪些地方用了 <code>ZwQueryInformationProcess</code> API，看一下 Xref：</p>
-<p><img src="image.png" alt="alt text"></p>
+<img src='https://img.junyu33.me/blog/deepfrz/image.png'>
 <p>查看 <code>sub_140007A8C</code>，F5 反编译如下：</p>
 <pre><code class="language-c">__int64 __fastcall sub_140007A8C(__int64 a1, _QWORD *a2)
 &#123;

@@ -107,7 +107,7 @@
 <p>This version applies to both 9.0.20.5760 and 10.10.220.5788; the bypass strategy is essentially the same, though implementation details differ due to parameter adjustments made by the official release.</p>
 <h3 id="9-0-20-5760">9.0.20.5760</h3>
 <p>Let's focus here on how the whitelist verification mechanism is implemented. First, let's examine the cross-references (Xrefs) to see where the <code>deepfrz.sys</code> driver calls the <code>ZwQueryInformationProcess</code> API:</p>
-<p><img src="image.png" alt="alt text"></p>
+<img src='https://img.junyu33.me/blog/deepfrz/image.png'>
 <p>Examining <code>sub_140007A8C</code>, the F5 decompiler output is as follows:</p>
 <pre><code class="language-c">__int64 __fastcall sub_140007A8C(__int64 a1, _QWORD *a2)
 &#123;

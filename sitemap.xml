@@ -1559,4 +1559,16 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/09/28/deepfrz/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/09/28/deepfrz/" />
   </url>
+  <url>
+    <loc>https://blog.junyu33.me/zh/2026/10/15/FISR/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/10/15/FISR/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/10/15/FISR/" />
+  </url>
+  <url>
+    <loc>https://blog.junyu33.me/en/2026/10/15/FISR/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://blog.junyu33.me/zh/2026/10/15/FISR/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.junyu33.me/en/2026/10/15/FISR/" />
+  </url>
 </urlset>

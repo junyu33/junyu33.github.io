@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-09-28T10:30:00.000Z</updated>
+  <updated>2026-10-15T11:30:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -11,6 +11,30 @@
     <id>https://blog.junyu33.me/zh/2038/01/19/meta/</id>
     <updated>2026-07-08T06:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>Why does fast inverse square root work?</title>
+    <link href="https://blog.junyu33.me/zh/2026/10/15/FISR/"/>
+    <id>https://blog.junyu33.me/zh/2026/10/15/FISR/</id>
+    <updated>2026-10-15T11:30:00.000Z</updated>
+    <summary type="html"><![CDATA[<pre><code class="language-c">float Q_rsqrt( float number )
+&#123;
+	long i;
+	float x2, y;
+	const float threehalfs = 1.5F;
+
+	x2 = number * 0.5F;
+	y  = number;
+	i  = * ( long * ) &amp;y;						// evil floating point bit level hacking
+	i  = 0x5f3759df - ( i &gt;&gt; 1 );               // what the fuck?
+	y  = * ( float * ) &amp;i;
+	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+//	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+
+	return y;
+&#125;
+</code></pre>
+<p>So what the fuck?</p>]]></summary>
   </entry>
   <entry>
     <title>Deep Freeze 忘了密码怎么解冻？</title>
@@ -232,13 +256,5 @@ uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdca
     <updated>2025-12-31T15:50:00.000Z</updated>
     <summary type="html"><![CDATA[<p>感觉现在的生活，像是缺少熵源的 PRNG 一般，陷入了一个名为“科研”的循环，但有一个好处是稀缺的“平静”。</p>
 <img src='https://img.junyu33.me/blog/bye2025/bye2025.png'>]]></summary>
-  </entry>
-  <entry>
-    <title>将 STF-AL10 刷机为 Lineage</title>
-    <link href="https://blog.junyu33.me/zh/2025/11/29/lineage/"/>
-    <id>https://blog.junyu33.me/zh/2025/11/29/lineage/</id>
-    <updated>2025-11-29T14:00:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>再次换新手机后，经过一周的不懈努力，我终于让上上台解了 BL 锁的手机（STF-AL10）刷上了 Lineage。</p>
-<p>这里叙述一下完整的刷机过程。</p>]]></summary>
   </entry>
 </feed>

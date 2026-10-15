@@ -179,7 +179,7 @@ io.interactive()
 </code></pre>
 <h3 id="ctfshow-pwn-7-pwn07—64bit-ret2libc">ctfshow-pwn-7: pwn07—64bit ret2libc</h3>
 <p>A 64-bit pwn3.</p>
-<p>Since the <a target="_blank" rel="noopener" href="https://junyu33.github.io/2022/01/15/csapp.html#%E8%BF%87%E7%A8%8B">parameter passing method in 64-bit</a> is &quot;first 6 in registers, then using the stack,&quot; the values of the registers need to be popped during stack unwinding. Therefore, it is necessary to find the values of <code>pop_rdi</code> and <code>pop_ret</code> and insert them into the payload.</p>
+<p>Since the <a href="https://blog.junyu33.me/zh/2022/01/15/csapp/#%E8%BF%87%E7%A8%8B">parameter passing method in 64-bit</a> is &quot;first 6 in registers, then using the stack,&quot; the values of the registers need to be popped during stack unwinding. Therefore, it is necessary to find the values of <code>pop_rdi</code> and <code>pop_ret</code> and insert them into the payload.</p>
 <p>Commands to find the addresses of <code>pop_rdi</code> and <code>pop_ret</code> instructions:</p>
 <pre><code class="language-shell">ROPgadget --binary pwn --only 'pop|ret' 
 </code></pre>
@@ -1842,7 +1842,7 @@ struct _IO_FILE_complete
 <h4 id="gyctf-2020-force—House-of-Force-realloc-hook">gyctf_2020_force—House of Force + realloc_hook</h4>
 <p>Initially, I directly overwrote <code>__malloc_hook</code> with a <code>one_gadget</code>, but it crashed again. (One-gadgets often fail...)</p>
 <p>Then I switched to using <code>realloc</code>, and by randomly pushing a few registers, it worked.</p>
-<p>You can refer to this master's article to understand the conditions required for exploiting <code>one_gadget</code>: <a target="_blank" rel="noopener" href="http://taqini.space/2020/04/29/about-execve/">http://taqini.space/2020/04/29/about-execve/</a></p>
+<p>You can refer to this master's article to understand the conditions required for exploiting <code>one_gadget</code>: <a target="_blank" rel="noopener" href="https://web.archive.org/web/20220924165935/http://taqini.space/2020/04/29/about-execve/">https://web.archive.org/web/20220924165935/http://taqini.space/2020/04/29/about-execve/</a></p>
 <pre><code class="language-python">def exploit():
    libc_base = add(0x200000, b'1') - 0x10 + 0x201000
    libc_sys = libc_base + libc.sym['system']
@@ -2373,7 +2373,7 @@ Original link: <a target="_blank" rel="noopener" href="https://blog.csdn.net/Inv
 <li>The program can allocate at least two different sizes of chunks that fall into the unsorted bin category.</li>
 </ol>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/198173?display=mobile#h3-3">https://www.anquanke.com/post/id/198173?display=mobile#h3-3</a></p>
+<p><a target="_blank" rel="noopener" href="https://web.archive.org/web/20230907001347/https://www.anquanke.com/post/id/198173#h3-3">https://web.archive.org/web/20230907001347/https://www.anquanke.com/post/id/198173#h3-3</a></p>
 </blockquote>
 <p>The challenge requires writing a value greater than <code>0x7f0000000000</code> to a specified location. However, due to additional restrictions on <code>unsortedbin</code> in libc2.29, the <code>unsortedbin attack</code> is no longer effective.</p>
 <p>Since the program uses <code>calloc</code> to allocate memory, it is not possible to write values to regions like <code>malloc_hook</code> using the <code>tcache poisoning</code> method. But <code>calloc</code> happens to be a necessary condition for the <code>tcache stashing unlink attack</code> — as the saying goes, &quot;When God closes a door, he opens a window.&quot;</p>
@@ -3064,7 +3064,7 @@ _Z16password_checkerPFvvE endp
 <p><code>exec 1&gt;&amp;0</code></p>
 <h3 id="mrctf2020-shellcode-revenge-Alphanumeric-Shellcode">mrctf2020_shellcode_revenge - Alphanumeric Shellcode</h3>
 <p>You can use alpha3 to generate or import the AE64 library.</p>
-<p>Reference link: <a target="_blank" rel="noopener" href="http://taqini.space/2020/03/31/alpha-shellcode-gen/#%E7%94%9F%E6%88%90shellcode">http://taqini.space/2020/03/31/alpha-shellcode-gen/#生成shellcode</a></p>
+<p>Reference link: <a target="_blank" rel="noopener" href="https://web.archive.org/web/20220924161544/http://taqini.space/2020/03/31/alpha-shellcode-gen/#%E7%94%9F%E6%88%90shellcode">https://web.archive.org/web/20220924161544/http://taqini.space/2020/03/31/alpha-shellcode-gen/#生成shellcode</a></p>
 <pre><code class="language-python">def exploit():
    shellcode = asm(shellcraft.sh())
    alpha_shellcode = AE64().encode(shellcode)

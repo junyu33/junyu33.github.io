@@ -181,7 +181,7 @@
 <h3 id="4-2">4.2</h3>
 <p>Between 4/9/2024 and 4/16/2024, I mainly spending time finishing my paper. After that, I continue to work on the rest of PA4. PA4.2 is mainly about paging mechanism, here are some points that worth mentioning:</p>
 <ul>
-<li>You will need <a target="_blank" rel="noopener" href="https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv/riscv-isa-manual/LatestRelease/priv-isa-asciidoc.pdf">RISCV manual (privileged version)</a> to understand the paging mechanism in SV32 and the usage of <code>cpu.satp</code> register. The content in ChatGPT is not always reliable.</li>
+<li>You will need <a target="_blank" rel="noopener" href="https://docs.riscv.org/reference/isa/_attachments/riscv-privileged.pdf">RISCV manual (privileged version)</a> to understand the paging mechanism in SV32 and the usage of <code>cpu.satp</code> register. The content in ChatGPT is not always reliable.</li>
 <li>I forgot to dereference <code>as.area.end</code> pointer, which causes that some content of pages are overlapped and results in hard-to-resolve bugs.</li>
 <li>Not having enough testing makes it more difficult to resolve bugs in PA4.3.</li>
 </ul>

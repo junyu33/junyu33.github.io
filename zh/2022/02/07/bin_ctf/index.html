@@ -179,7 +179,7 @@ io.interactive()
 </code></pre>
 <h3 id="ctfshow-pwn-7-pwn07——64bit-ret2libc">ctfshow-pwn-7: pwn07——64bit ret2libc</h3>
 <p>64位的pwn3.</p>
-<p>由于<a target="_blank" rel="noopener" href="https://junyu33.github.io/2022/01/15/csapp.html#%E8%BF%87%E7%A8%8B">64位的传参方式</a>为“前6个是寄存器，之后使用栈”，退栈的时候要取出寄存器的值。因此需要找到<code>pop_rdi</code>和<code>pop_ret</code>的值，并插入到payload中。</p>
+<p>由于<a href="https://blog.junyu33.me/zh/2022/01/15/csapp/#%E8%BF%87%E7%A8%8B">64位的传参方式</a>为“前6个是寄存器，之后使用栈”，退栈的时候要取出寄存器的值。因此需要找到<code>pop_rdi</code>和<code>pop_ret</code>的值，并插入到payload中。</p>
 <p>找<code>pop_rdi</code>和<code>pop_ret</code>指令地址的命令：</p>
 <pre><code class="language-shell">ROPgadget --binary pwn --only 'pop|ret' 
 </code></pre>
@@ -1842,7 +1842,7 @@ struct _IO_FILE_complete
 <h4 id="gyctf-2020-force——house-of-force-realloc-hook">gyctf_2020_force——house of force+realloc_hook</h4>
 <p>开始直接把<code>__malloc_hook</code>覆盖成<code>one_gadget</code>,结果又炸了。（ogg天天出锅）</p>
 <p>然后直接上<code>realloc</code>，随缘push了几个寄存器就好了。</p>
-<p>可以参考这位师傅的文章来了解<code>one_gadget</code>可以利用的条件：<a target="_blank" rel="noopener" href="http://taqini.space/2020/04/29/about-execve/">http://taqini.space/2020/04/29/about-execve/</a></p>
+<p>可以参考这位师傅的文章来了解<code>one_gadget</code>可以利用的条件：<a target="_blank" rel="noopener" href="https://web.archive.org/web/20220924165935/http://taqini.space/2020/04/29/about-execve/">https://web.archive.org/web/20220924165935/http://taqini.space/2020/04/29/about-execve/</a></p>
 <pre><code class="language-python">def exploit():
    libc_base = add(0x200000, b'1') - 0x10 + 0x201000
    libc_sys = libc_base + libc.sym['system']
@@ -2373,7 +2373,7 @@ dele(3)
 <li>程序至少可以分配两种不同大小且大小为unsorted bin的Chunk。</li>
 </ol>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/198173?display=mobile#h3-3">https://www.anquanke.com/post/id/198173?display=mobile#h3-3</a></p>
+<p><a target="_blank" rel="noopener" href="https://web.archive.org/web/20230907001347/https://www.anquanke.com/post/id/198173#h3-3">https://web.archive.org/web/20230907001347/https://www.anquanke.com/post/id/198173#h3-3</a></p>
 </blockquote>
 <p>题目的要求是想让在一个指定位置写一个大于<code>0x7f0000000000</code>的值，但是libc2.29对<code>unsortedbin</code>做出了更多限制，因此<code>unsortedbin attack</code>失效。</p>
 <p>由于程序使用calloc分配内存，所以不能使用<code>tcache poisoning</code>的方式写<code>malloc_hook</code>等区域的值。但calloc恰好又是使用<code>tcache stashing unlink attack</code>的必需条件，正所谓“上帝关了一扇门 必定会再为你打开另一扇窗”。</p>
@@ -3064,7 +3064,7 @@ _Z16password_checkerPFvvE endp
 <p><code>exec 1&gt;&amp;0</code></p>
 <h3 id="mrctf2020-shellcode-revenge——alphanumeric-shellcode">mrctf2020_shellcode_revenge——alphanumeric shellcode</h3>
 <p>可使用alpha3生成或导入AE64库。</p>
-<p>参考链接：<a target="_blank" rel="noopener" href="http://taqini.space/2020/03/31/alpha-shellcode-gen/#%E7%94%9F%E6%88%90shellcode">http://taqini.space/2020/03/31/alpha-shellcode-gen/#生成shellcode</a></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://web.archive.org/web/20220924161544/http://taqini.space/2020/03/31/alpha-shellcode-gen/#%E7%94%9F%E6%88%90shellcode">https://web.archive.org/web/20220924161544/http://taqini.space/2020/03/31/alpha-shellcode-gen/#生成shellcode</a></p>
 <pre><code class="language-python">def exploit():
    shellcode = asm(shellcraft.sh())
    alpha_shellcode = AE64().encode(shellcode)

@@ -96,7 +96,7 @@
 
 	x2 = number * 0.5F;
 	y  = number;
-	i  = * ( long * ) &amp;y;						// evil floating point bit level hacking
+	i  = * ( long * ) &amp;y;                       // evil floating point bit level hacking
 	i  = 0x5f3759df - ( i &gt;&gt; 1 );               // what the fuck?
 	y  = * ( float * ) &amp;i;
 	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration

@@ -3,7 +3,7 @@
   <title>My Blog (zh)</title>
   <link href="https://blog.junyu33.me/atom.xml" rel="self"/>
   <link href="https://blog.junyu33.me/"/>
-  <updated>2026-10-15T11:30:00.000Z</updated>
+  <updated>2026-10-19T08:30:00.000Z</updated>
   <id>https://blog.junyu33.me/</id>
   <entry>
     <title>（置顶）博客元信息一览</title>
@@ -11,6 +11,17 @@
     <id>https://blog.junyu33.me/zh/2038/01/19/meta/</id>
     <updated>2026-07-08T06:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>列出一些与博客本身相关的元信息，以便于查阅。</p>]]></summary>
+  </entry>
+  <entry>
+    <title>(repost) 关于麻枝准的重要公告</title>
+    <link href="https://blog.junyu33.me/zh/2026/10/19/junmaeda/"/>
+    <id>https://blog.junyu33.me/zh/2026/10/19/junmaeda/</id>
+    <updated>2026-10-19T08:30:00.000Z</updated>
+    <summary type="html"><![CDATA[<p><strong>Author:</strong> VISUAL ARTS</p>
+<p><strong>Original:</strong><br>
+<a href="https://nhp.visual-arts.jp/wp/wp-content/uploads/2026/10/VA20261019_SC.pdf">https://nhp.visual-arts.jp/wp/wp-content/uploads/2026/10/VA20261019_SC.pdf</a></p>
+<p><strong>Archived:</strong><br>
+<a href="https://web.archive.org/web/20261019083020/https://nhp.visual-arts.jp/wp/wp-content/uploads/2026/10/VA20261019_SC.pdf">https://web.archive.org/web/20261019083020/https://nhp.visual-arts.jp/wp/wp-content/uploads/2026/10/VA20261019_SC.pdf</a></p>]]></summary>
   </entry>
   <entry>
     <title>Why does fast inverse square root work?</title>
@@ -53,7 +64,7 @@
     <title>六四——I pwned an HONOR Magic3 using DeepSeek-V4.1-Flash</title>
     <link href="https://blog.junyu33.me/zh/2026/09/24/xp3/"/>
     <id>https://blog.junyu33.me/zh/2026/09/24/xp3/</id>
-    <updated>2026-09-27T10:00:00.000Z</updated>
+    <updated>2026-09-24T13:00:00.000Z</updated>
     <summary type="html"><![CDATA[<p>经过反复思考，我决定还是把这篇文章放随笔区，因为文章内容的非技术部分还是占比更高。</p>
 <ul>
 <li>Device: Honor ELZ-AN00 · Android 11 · build ELZ-AN00 5.0.0.189(C00E183R6P1)</li>
@@ -248,13 +259,5 @@ uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdca
     <updated>2026-01-20T02:30:00.000Z</updated>
     <summary type="html"><![CDATA[<p>前天，我站在一块地方，突然发现一件事情。我无论朝什么地方走，都会通向一个终点；无论做什么事情，都会得到同样的结果；无论给谁发消息，最终都会得到同样的回复。最终我发现，是否应该走这个判断本身，也成了一个问题。</p>
 <p>但我还是来到了图书馆，借了一本老旧的《西西弗的神话》。翻到书的第二页，发现上面有一个电话号码。我尝试加这个电话的微信，说明来意后，对方很疑惑，问我是哪个图书馆。我回答后，她说：“那不记得了，太久了。”</p>]]></summary>
-  </entry>
-  <entry>
-    <title>五六——我的 2025</title>
-    <link href="https://blog.junyu33.me/zh/2025/12/31/bye2025/"/>
-    <id>https://blog.junyu33.me/zh/2025/12/31/bye2025/</id>
-    <updated>2025-12-31T15:50:00.000Z</updated>
-    <summary type="html"><![CDATA[<p>感觉现在的生活，像是缺少熵源的 PRNG 一般，陷入了一个名为“科研”的循环，但有一个好处是稀缺的“平静”。</p>
-<img src='https://img.junyu33.me/blog/bye2025/bye2025.png'>]]></summary>
   </entry>
 </feed>

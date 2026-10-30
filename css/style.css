@@ -77,6 +77,20 @@ body {
 	text-decoration: underline;
 }
 
+.main .post-title a,
+.main a.post-title,
+.main .archive li > a {
+	color: #1f2328;
+}
+
+.main .post a:not(.lang-pill),
+.main .post-excerpt a {
+	color: #1f2328;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+
 .main b,
 .main strong {
 	font-weight: 600;
